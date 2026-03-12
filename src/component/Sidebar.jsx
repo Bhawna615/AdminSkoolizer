@@ -149,9 +149,6 @@ const Sidebar = () => {
         navigate("/dashboard/StudentComponent/StudentAdmission");
         break;
 
-      case "View Students":
-        navigate("/dashboard/StudentComponent/AdminViewStudent");
-        break;
       case "List of Students":
         navigate("/dashboard/StudentComponent/AdminListStudent");
         break;

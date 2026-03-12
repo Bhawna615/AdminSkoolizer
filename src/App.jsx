@@ -5,7 +5,6 @@ import AdminLogin from "./component/AdminLogin";
 import Dashboard from "./component/Dashboard";
 import TermsAndConditions from "./component/TermsAndConditions";
 import StudentAdmission from "./StudentComponent/StudentAdmission";
-import AdminViewStudent from "./StudentComponent/AdminViewStudent";
 import AdminListStudent from "./StudentComponent/AdminListStudent";
 import StudentListView from "./StudentComponent/StudentListView";
 import StudentPromote from "./StudentComponent/StudentPromote";
@@ -40,7 +39,6 @@ function App() {
         {/* Dashboard with nested routes */}
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="StudentComponent/StudentAdmission" element={<StudentAdmission />} />
-          <Route path="StudentComponent/AdminViewStudent" element={<AdminViewStudent />} />
           <Route path="StudentComponent/AdminListStudent" element={<AdminListStudent />} />
           <Route path="StudentComponent/StudentPromote" element={<StudentPromote />} />
           <Route path="StudentComponent/StudentMetrics" element={<StudentMetrics />} />

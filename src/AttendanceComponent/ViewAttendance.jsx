@@ -29,8 +29,8 @@ export default function ViewAttendance() {
 
     // ================= FLASH MESSAGE =================
     useEffect(() => {
-        if (location.state?.success) {
-            setMessage(location.state.success);
+        if (location.state?.message) {
+            setMessage(location.state.message);
             setTimeout(() => setMessage(""), 3000);
         }
     }, [location.state]);
