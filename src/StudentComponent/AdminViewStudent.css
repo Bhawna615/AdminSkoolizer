@@ -1,0 +1,117 @@
+.student-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.filter-bar {
+    margin-bottom: 30px;
+    border: 2px dashed #000000;
+    padding: 20px;
+}
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 2px;
+}
+.filter-enable {
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.class-filter {
+  margin: 15px 0px 0px 20px;
+}
+
+.class-filter select {
+  width: 30%;
+  padding: 6px 10px;
+  border: 2px solid black;
+}
+
+.table-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.table-controls select,
+.table-controls input {
+  padding: 5px;
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.student-table th {
+  background-color: #2f56b3;
+  color: white;
+  padding: 10px;
+  text-align: left;
+  font-weight: 100;
+    font-size: 13px;
+}
+
+.student-table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+.search-input{
+  border: 1px solid #ddd;
+  width:69%;
+  border-radius: 3px;
+}
+
+.student-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.pagination {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-buttons button {
+  margin: 0 3px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+}
+
+.page-buttons button.active {
+  background-color: #2f56b3;
+  color: white;
+  border: none;
+}
+
+.page-buttons button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.action-dropdown {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  width: 220px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  padding: 8px 0;
+}
+
+.action-dropdown div {
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.action-dropdown div:hover {
+  background-color: #f2f2f2;
+}

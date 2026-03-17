@@ -1,0 +1,128 @@
+.teacher-page{
+padding:20px;
+background:#f4f6f9;
+}
+
+.success-box{
+border:1px solid #9ad39a;
+background:#eaf7ea;
+padding:15px;
+margin-bottom:15px;
+color:#2c7a2c;
+font-size:16px;
+}
+
+.table-controls{
+display:flex;
+justify-content:space-between;
+margin-bottom:10px;
+}
+
+.table-controls select{
+margin:0 5px;
+padding:4px;
+}
+
+.table-controls input{
+margin-left:5px;
+padding:4px;
+}
+
+.teacher-table{
+width:100%;
+border-collapse:collapse;
+background:white;
+}
+
+.teacher-table th{
+background:#3f60b6;
+color:white;
+padding:10px;
+font-size:14px;
+}
+
+.teacher-table td{
+border:1px solid #ddd;
+padding:10px;
+font-size:14px;
+}
+
+.action-menu{
+position:relative;
+}
+
+.action-menu summary{
+cursor:pointer;
+font-size:20px;
+}
+
+.dropdown{
+position:absolute;
+background:white;
+border:1px solid #ccc;
+right:0;
+top:25px;
+width:180px;
+box-shadow:0 2px 6px rgba(0,0,0,0.2);
+}
+
+.dropdown div{
+padding:10px;
+cursor:pointer;
+}
+
+.dropdown div:hover{
+background:#f1f1f1;
+}
+
+.pagination{
+display:flex;
+justify-content:space-between;
+margin-top:10px;
+font-size:14px;
+}
+
+.pages span{
+margin-left:8px;
+cursor:pointer;
+}
+
+.pages .active{
+background:#3f60b6;
+color:white;
+padding:3px 7px;
+}
+.action-cell{
+position:relative;
+}
+
+.action-wrapper{
+position:relative;
+display:inline-block;
+}
+
+.three-dots{
+cursor:pointer;
+font-size:20px;
+padding:5px;
+}
+
+.action-dropdown{
+position:absolute;
+right:0;
+top:25px;
+background:white;
+border:1px solid #ccc;
+box-shadow:0 2px 6px rgba(0,0,0,0.2);
+width:200px;
+z-index:100;
+}
+
+.action-dropdown div{
+padding:10px;
+cursor:pointer;
+}
+
+.action-dropdown div:hover{
+background:#f1f1f1;
+}

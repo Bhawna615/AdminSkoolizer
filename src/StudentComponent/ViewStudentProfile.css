@@ -1,0 +1,56 @@
+.profile-container {
+  display: flex;
+  padding: 30px;
+  background: #f4f6f9;
+}
+
+.profile-col {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+}
+
+
+
+.profile-item {
+  margin-bottom: 12px;
+}
+
+.profile-label {
+  font-weight: 600;
+  color: #444;
+  font-size: 14px;
+}
+
+.profile-value {
+  font-size: 15px;
+  color: #222;
+  margin-top: 2px;
+}
+
+.profile-edit-section {
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.profile-edit-btn {
+  background-color: #2f5bb7;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.profile-edit-btn:hover {
+  background-color: #1d3f8f;
+}
+
+.profile-loading,
+.profile-error {
+  padding: 40px;
+  text-align: center;
+  font-size: 18px;
+}

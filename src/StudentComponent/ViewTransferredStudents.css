@@ -1,0 +1,95 @@
+.innerview{
+  padding:20px;
+}
+
+/* Top Controls */
+
+.table-controls{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:15px;
+}
+
+.entries-control select{
+  margin:0 8px;
+  padding:4px;
+}
+
+.search-control input{
+    border: 1px solid #858282;
+    border-radius: 1px;
+    width:"30%" !important;
+  margin-left:8px;
+  padding:5px 8px;
+}
+
+/* Table */
+
+.student-table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.student-table th{
+  background:#365db5;
+  color:white;
+  padding:10px;
+  text-align:left;
+}
+
+.student-table td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+.student-table tr:nth-child(even){
+  background:#f5f5f5;
+}
+
+/* Actions */
+
+.actions{
+  display:flex;
+  flex-direction: column;
+  gap:10px;
+}
+
+.action-btn{
+  border:none;
+  background:transparent;
+  font-size:25px;
+  cursor:pointer;
+}
+.actio-btn i{
+    font-size:18px;
+}
+
+/* Pagination */
+
+.pagination-container{
+  display:flex;
+  justify-content:space-between;
+  margin-top:15px;
+}
+
+.pagination button{
+  margin:0 3px;
+  padding:5px 10px;
+  border:1px solid #ccc;
+  background:white;
+  cursor:pointer;
+}
+
+.pagination button:hover{
+  background:#eee;
+}
+
+.active-page{
+  background:#365db5;
+  color:white;
+}
+
+.no-data{
+  text-align:center;
+  padding:20px;
+}

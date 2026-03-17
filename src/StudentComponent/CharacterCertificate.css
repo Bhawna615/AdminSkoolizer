@@ -1,0 +1,64 @@
+/* Main container */
+
+
+/* Message bars */
+.success-bar {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #c3e6cb;
+}
+
+.error-bar {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #f5c6cb;
+}
+
+/* Box */
+.form-box {
+  background: #fff;
+  border: 1px solid #ddd;
+}
+
+/* Top title bar */
+.title-bar {
+  background: #eeeded;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Labels */
+.character-certificate-details {
+    font-family: Rubik-Regular, sans-serif;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+/* Date inputs */
+.form-input {
+  
+  border: 1px solid #999;
+  border-radius: 2px;
+  background: #fff;
+}
+
+/* Generate button */
+.form-submit {
+    width: 30%;
+  background-color: #3b5db7;
+  color: #fff;
+  border: none;
+  padding: 10px 40px;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.form-submit:hover {
+  background-color: #2e4aa3;
+}

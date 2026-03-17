@@ -1,0 +1,129 @@
+.report-container {
+  width: 900px;
+  margin: 30px auto;
+  padding: 40px;
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.report-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  text-align: center;
+}
+
+.report-school-logo{
+  width: 70px;
+}
+
+.report-title {
+  text-align: center;
+  margin: 25px 0;
+  letter-spacing: 1px;
+}
+
+.student-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.student-left p {
+  margin: 8px 0;
+}
+
+.student-right img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.report-table th,
+.report-table td {
+  border: 1px solid #333;
+  padding: 8px;
+  text-align: center;
+}
+
+.report-table th {
+  background-color: #f2f2f2;
+}
+
+.total-row {
+  font-weight: bold;
+}
+
+.percentage {
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+.report-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 80px;
+}
+
+.signature {
+  text-align: center;
+}
+
+.loading, .error {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 18px;
+}
+
+/* Print Friendly */
+@media print {
+  body {
+    background: none;
+  }
+
+  .report-container {
+    box-shadow: none;
+    margin: 0;
+    width: 100%;
+  }
+}
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    margin: 0;
+  }
+
+  .report-container {
+    width: 100%;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  .report-header, .student-section, .report-table, .report-footer {
+    page-break-inside: avoid;
+  }
+
+  table.report-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  table.report-table th, table.report-table td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .percentage {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+}

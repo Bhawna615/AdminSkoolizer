@@ -1,0 +1,99 @@
+/* Main Container */
+.transport-container {
+  padding: 30px;
+  background-color: #f5f6fa;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+/* Main Card */
+.student-card {
+  width: 85%;
+  background: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* ========================= */
+/* TOP SECTION */
+/* ========================= */
+
+.student-top {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Left Red Image Section */
+.student-image-box {
+  width: 35%;
+  background-color: #ff4d4f;   /* red like screenshot */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.student-image-box img {
+  width: 150px;
+  height: 150px;
+  border-radius: 6px;
+  object-fit: cover;
+  background: #fff;
+}
+
+/* Right Info Section */
+.student-info-box {
+  width: 65%;
+  padding: 30px;
+  background-color: #f7f7f7;
+}
+
+.student-name {
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.student-info-box p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #444;
+}
+
+/* ========================= */
+/* BOTTOM SECTION */
+/* ========================= */
+
+.transport-section {
+  padding: 40px;
+  background-color: #f7f7f7;
+  text-align: center;
+}
+
+.no-details {
+  font-size: 22px;
+  font-weight: 500;
+  color: #555;
+}
+
+/* Transport Details Boxes (if data exists) */
+
+.section-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.transport-box {
+  background: #ffffff;
+  padding: 15px;
+  margin: 10px auto;
+  width: 60%;
+  border-radius: 5px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  text-align: left;
+}

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
-  const [activeMenu, setActiveMenu] = useState(""); // Currently expanded main menu
-  const [activeSubMenu, setActiveSubMenu] = useState(""); // Currently selected submenu
+  const [activeMenu, setActiveMenu] = useState("");
+  const [activeSubMenu, setActiveSubMenu] = useState("");
   const navigate = useNavigate();
 
   const menuItems = [
@@ -14,8 +14,6 @@ const Sidebar = () => {
         { label: "New Admission", icon: "las la-plus-square" },
         { label: "View Students", icon: "la-eye" },
         { label: "List of Students", icon: "las la-list-ol" },
-        // { label: "Check In/Out", icon: "las la-arrow-circle-right" },
-        // { label: "Log Book", icon: "la-book" },
         { label: "Promote Students", icon: "las la-redo" },
         { label: "Metrics", icon: "las la-hospital-symbol" },
         { label: "Sports", icon: "las la-basketball-ball" },
@@ -112,9 +110,7 @@ const Sidebar = () => {
     {
       icon: "la-walking",
       label: "Visitor Management",
-      subMenu: [
-        { label: "Log Book", icon: "las la-book" },
-      ]
+      subMenu: [{ label: "Log Book", icon: "las la-book" }]
     },
     {
       icon: "la-sms",
@@ -149,25 +145,70 @@ const Sidebar = () => {
         navigate("/dashboard/StudentComponent/StudentAdmission");
         break;
 
+      case "View Students":
+        navigate("/dashboard/StudentComponent/AdminViewStudent");
+        break;
+
       case "List of Students":
         navigate("/dashboard/StudentComponent/AdminListStudent");
         break;
+
       case "Promote Students":
         navigate("/dashboard/StudentComponent/StudentPromote");
-        break; 
-      case "Metrics":
-        navigate("/dashboard/StudentComponent/StudentMetrics");   
         break;
+
+      case "Metrics":
+        navigate("/dashboard/StudentComponent/StudentMetrics");
+        break;
+
       case "Sports":
         navigate("/dashboard/StudentComponent/StudentSports");
-        break; 
+        break;
+
+      case "SLCs":
+        navigate("/dashboard/StudentComponent/ViewTransferredStudents");
+        break;
+
+      case "Character Certificates":
+        navigate("/dashboard/StudentComponent/DisplayCharacterCertificates");
+        break;
+
+      case "Leave Requests":
+        navigate("/dashboard/StudentComponent/DisplayLeaveRequests");
+        break;
+
+      case "Add Teacher":
+        navigate("/dashboard/TeacherComponent/AddTeachers");
+        break;
+
+      case "View Teachers":
+        navigate("/dashboard/TeacherComponent/ViewTeachers");
+        break;
+
+      case "Former Teachers":
+        navigate("/dashboard/TeacherComponent/FormerTeachers");
+        break;
+
+      case "Experience Certificates":
+        navigate("/dashboard/TeacherComponent/ExperienceCertificate");
+        break;
+
       case "Mark Attendance":
-      navigate("/dashboard/AttendanceComponent/MarkAttendance");   
+        navigate("/dashboard/AttendanceComponent/MarkAttendance");
+        break;
+
+      case "View Attendance":
+        navigate("/dashboard/AttendanceComponent/ViewAttendance");
+        break;
+
+      case "Attendance Sheet":
+        navigate("/dashboard/AttendanceComponent/RollCall");
+        break;
+
       default:
         break;
     }
   };
-
 
   return (
     <nav className="sidebar" aria-label="Main Sidebar Navigation">
@@ -189,8 +230,9 @@ const Sidebar = () => {
               {item.subMenu.map((subItem, subIdx) => (
                 <div
                   key={subIdx}
-                  className={`submenu-item ${activeSubMenu === subItem.label ? "active-sub" : ""
-                    }`}
+                  className={`submenu-item ${
+                    activeSubMenu === subItem.label ? "active-sub" : ""
+                  }`}
                   onClick={() => handleSubMenuClick(subItem.label)}
                 >
                   <i className={`las ${subItem.icon}`}></i>

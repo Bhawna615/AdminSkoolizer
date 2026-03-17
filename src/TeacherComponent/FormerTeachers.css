@@ -1,0 +1,100 @@
+.innerview {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Notification Box - same as your screenshot */
+.success-bar {
+  background: #f0f8ff; /* light blue background */
+  padding: 10px;
+  margin-bottom: 15px;
+  border-left: 4px solid #0d6efd; /* blue border */
+  font-weight: 500;
+  color: #0d6efd;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.error-bar {
+  display: none; /* hide since screenshot has no red box */
+}
+
+.btn-primary {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 7px 15px;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.btn-primary:hover {
+  background-color: #45a049;
+}
+
+/* Controls */
+.table-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.table-controls select,
+.table-controls input {
+  padding: 5px;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+/* Table */
+.former-teachers-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.former-teachers-table th,
+.former-teachers-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.former-teachers-table th {
+  background-color: #0d47a1; /* dark blue header */
+  color: white;
+  text-align: left;
+}
+
+.former-teachers-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.former-teachers-table tr:hover {
+  background-color: #ddd;
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+/* Remove all button styles for pagination */
+.pagination button {
+  all: unset;
+  cursor: pointer;
+  margin: 0 3px;
+}
+.pagination .active{
+    border: 1px solid lightgray;
+    padding: 5px 8px ;
+}
+.pagination-summary {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}

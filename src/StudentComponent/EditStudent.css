@@ -1,0 +1,87 @@
+/* Outer Background */
+.kk-wrapper {
+  background: #f2f2f2;
+  padding: 20px;
+}
+
+/* Main Form Box */
+.kk-form-box {
+  background: #ffffff;
+  border: 1px solid #ddd;
+}
+
+/* Title Bar */
+.kk-title-bar {
+  background: #dcdcdc;
+  padding: 12px 15px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Form */
+.kk-form {
+  padding: 25px;
+}
+
+/* 3 Column Layout */
+.kk-columns {
+  display: flex;
+  gap: 35px;
+}
+
+/* Each Column */
+.kk-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+.kk-column label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  margin-top: 12px;
+  color: #333;
+}
+
+/* Inputs & Select */
+.kk-column input,
+.kk-column select {
+    width: 90%;
+  border: 1px solid #bdbdbd;
+  padding: 6px 10px;
+  font-size: 14px;
+  outline: none;
+}
+
+.kk-column input:focus,
+.kk-column select:focus {
+  background: #ffffff;
+  border-color: #999;
+}
+
+/* File input special */
+.kk-column input[type="file"] {
+  padding: 5px;
+  background: #fff;
+}
+
+/* Button */
+.kk-button-wrapper {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.kk-update-btn {
+  background: #e5e5e5;
+  border: 1px solid #999;
+  padding: 8px 45px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.kk-update-btn:hover {
+  background: #d6d6d6;
+}
