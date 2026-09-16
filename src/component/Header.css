@@ -27,7 +27,7 @@
 ========================================= */
 
 .header-brand {
-  width: 252px;
+  width: 264px;
   min-width: 230px;
 
   height: 70px;
@@ -48,13 +48,12 @@
 
 
 .skoolizer-logo {
-  width: 170px;
-  height: auto;
-  object-fit: contain;
-
-  position: absolute;
-  top: 12%;
-  left: 25px;
+ width: 200px;
+    height: auto;
+    object-fit: contain;
+    position: absolute;
+    top: -4%;
+    left: 7px;
 }
 
 

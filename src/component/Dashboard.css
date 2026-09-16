@@ -21,74 +21,6 @@
 }
 
 /* =========================================
-   SIDEBAR
-   DO NOT CHANGE
-========================================= */
-
-.dashboard-sidebar {
-  width: 250px;
-  min-width: 250px;
-  height: 100%;
-  overflow: hidden;
-}
-
-/* =========================================
-   SIDEBAR CONTENT
-   DO NOT CHANGE
-========================================= */
-
-.dashboard-sidebar .sidebar {
-  width: 100%;
-  height: 100%;
-  background: #171d2d;
-  padding: 0px 0 20px;
-  box-sizing: border-box;
-  overflow-y: hidden;
-  overflow-x: hidden;
-}
-
-/* =========================================
-   SIDEBAR MENU
-   DO NOT CHANGE
-========================================= */
-
-.dashboard-sidebar .menu-item,
-.dashboard-sidebar .submenu-item {
-  color: #f8f8fa;
-  font-size: 14px;
-  padding: 7px 20px;
-  margin: 2px 8px;
-  border-radius: 6px;
-  gap: 12px;
-  transition: 0.2s ease;
-  cursor: pointer;
-  display: flex;
-    align-items: center;
-}
-
-.dashboard-sidebar .menu-item i,
-.dashboard-sidebar .submenu-item i {
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.dashboard-sidebar .menu-item:hover,
-.dashboard-sidebar .submenu-item:hover {
-  background: #292244;
-  color: #ffffff;
-}
-
-.dashboard-sidebar .menu-item.active {
-  background: linear-gradient(
-    90deg,
-    #5b3cc4,
-    #7653e8
-  );
-  color: #ffffff;
-  border: none;
-}
-
-/* =========================================
    MAIN CONTENT
 ========================================= */
 
@@ -639,11 +571,19 @@
    RESPONSIVE SIDEBAR
    KEEPING YOUR EXISTING SIDEBAR BEHAVIOR
 ========================================= */
+/* =========================================
+   SIDEBAR - FULL VIEWPORT HEIGHT
+========================================= */
 
 .sidebar {
-  width: 100%;
-  height: 100%;
+  height: 100vh;
+  max-height: 100vh;
   overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+.sidebar {
+  
   overflow-x: hidden;
   transition: transform 0.3s ease;
 }
@@ -677,60 +617,6 @@
     height: calc(100vh - 70px);
   }
 
-  /* SIDEBAR */
-
-  .dashboard-sidebar {
-    position: fixed;
-    top: 70px;
-    left: 0;
-    width: 260px !important;
-    min-width: 260px !important;
-    height: calc(100vh - 70px) !important;
-    max-height: none !important;
-    z-index: 1001;
-    background: #171d2d;
-    transform: translateX(-100%);
-    transition:
-      transform 0.6s cubic-bezier(
-        0.22,
-        1,
-        0.36,
-        1
-      );
-    will-change: transform;
-    box-shadow:
-      10px 0 30px
-      rgba(0, 0, 0, 0.35);
-  }
-
-  /* OPEN SIDEBAR */
-
-  .dashboard-sidebar.sidebar-open {
-    transform: translateX(0);
-  }
-
-  /* SIDEBAR CONTENT */
-
-  .dashboard-sidebar .sidebar {
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* OVERLAY */
-
-  .sidebar-overlay {
-    display: block;
-    position: fixed;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 70px);
-    background: rgba(0, 0, 0, 0.55);
-    z-index: 1000;
-  }
 
   /* MAIN CONTENT */
 
@@ -848,17 +734,7 @@
    SMALL MOBILE SIDEBAR
 ========================================= */
 
-@media (max-width: 480px) {
-  .dashboard-sidebar {
-    width: 240px !important;
-    min-width: 240px !important;
-  }
 
-  .menu-item,
-  .submenu-item {
-    font-size: 13px;
-  }
-}
 
 @media (max-width: 400px) {
   .dashboard-main {
