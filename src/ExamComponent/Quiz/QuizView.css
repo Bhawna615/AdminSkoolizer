@@ -1,0 +1,730 @@
+
+/* =========================================
+   QUIZ PAGE
+========================================= */
+
+.quiz-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 28px;
+  background: #f7f7fb;
+  box-sizing: border-box;
+  font-family: "Poppins", Arial, sans-serif;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.quiz-title-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.quiz-title-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.quiz-title-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(
+    135deg,
+    #6d28d9,
+    #8b5cf6
+  );
+
+  color: white;
+  font-size: 20px;
+
+  box-shadow:
+    0 6px 15px rgba(109, 40, 217, 0.22);
+}
+
+.quiz-title-left h2 {
+  margin: 0;
+
+  font-size: 23px;
+  font-weight: 700;
+
+  color: #252235;
+}
+
+.quiz-title-left p {
+  margin: 4px 0 0;
+
+  font-size: 13px;
+  color: #858199;
+}
+
+
+/* =========================================
+   CREATE BUTTON
+========================================= */
+
+.create-btn {
+  border: none;
+  outline: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  padding: 11px 19px;
+
+  border-radius: 9px;
+
+  background: linear-gradient(
+    135deg,
+    #6d28d9,
+    #8b5cf6
+  );
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 14px rgba(109, 40, 217, 0.22);
+
+  transition: all 0.25s ease;
+}
+
+.create-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 18px rgba(109, 40, 217, 0.3);
+}
+
+
+/* =========================================
+   MAIN CARD
+========================================= */
+
+.quiz-card {
+  background: white;
+
+  border-radius: 14px;
+
+  border: 1px solid #eceaf3;
+
+  box-shadow:
+    0 5px 22px rgba(35, 25, 70, 0.06);
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   TOP CONTROLS
+========================================= */
+
+.quiz-header {
+  min-height: 72px;
+
+  padding: 0 20px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+}
+
+
+/* =========================================
+   ENTRIES
+========================================= */
+
+.entries-control {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: #777389;
+
+  font-size: 13px;
+}
+
+.entries-control select {
+  height: 34px;
+
+  padding: 0 27px 0 10px;
+
+  border: 1px solid #dedce7;
+
+  border-radius: 7px;
+
+  background: white;
+
+  color: #444052;
+
+  font-size: 13px;
+
+  outline: none;
+
+  cursor: pointer;
+}
+
+.entries-control select:focus {
+  border-color: #7c3aed;
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.search-box {
+  position: relative;
+
+  width: 260px;
+}
+
+.search-box input {
+  width: 100%;
+
+  height: 38px;
+
+  padding: 0 14px 0 37px;
+
+  border: 1px solid #dedce7;
+
+  border-radius: 8px;
+
+  outline: none;
+
+  font-size: 13px;
+
+  color: #393544;
+
+  box-sizing: border-box;
+
+  transition: 0.2s ease;
+}
+
+.search-box input::placeholder {
+  color: #aaa6b5;
+}
+
+.search-box input:focus {
+  border-color: #7c3aed;
+
+  box-shadow:
+    0 0 0 3px rgba(124, 58, 237, 0.08);
+}
+
+.search-icon {
+  position: absolute;
+
+  left: 13px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #9994a8;
+
+  font-size: 13px;
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.quiz-table {
+  width: 100%;
+
+  min-width: 720px;
+
+  border-collapse: collapse;
+}
+
+.quiz-table thead {
+  background: #faf9fd;
+}
+
+.quiz-table th {
+  padding: 15px 18px;
+
+  text-align: left;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+
+  color: #716b80;
+
+  border-bottom: 1px solid #eceaf2;
+
+  white-space: nowrap;
+}
+
+.quiz-table td {
+  padding: 16px 18px;
+
+  border-bottom: 1px solid #f0eff4;
+
+  font-size: 13px;
+
+  color: #4b4658;
+
+  vertical-align: middle;
+}
+
+.quiz-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.quiz-table tbody tr:hover {
+  background: #fbfaff;
+}
+
+.quiz-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* =========================================
+   ID
+========================================= */
+
+.id-badge {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 32px;
+  height: 28px;
+
+  padding: 0 7px;
+
+  border-radius: 7px;
+
+  background: #f2ecff;
+
+  color: #6d28d9;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================
+   QUIZ NAME
+========================================= */
+
+.quiz-name {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  font-weight: 600;
+
+  color: #332e40;
+}
+
+.quiz-small-icon {
+  width: 31px;
+  height: 31px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: #f2ecff;
+
+  color: #7c3aed;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   CLASS
+========================================= */
+
+.class-badge {
+  display: inline-block;
+
+  padding: 5px 11px;
+
+  border-radius: 20px;
+
+  background: #f1f5ff;
+
+  color: #4f46a5;
+
+  font-size: 11px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================
+   EXPIRY DATE
+========================================= */
+
+.expiry-date {
+  color: #6f6a78;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.action-heading {
+  text-align: center !important;
+}
+
+.actions {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+}
+
+
+/* =========================================
+   ACTION ICON BUTTON
+========================================= */
+
+.action-btn {
+  width: 35px;
+  height: 35px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  font-size: 13px;
+
+  transition: all 0.2s ease;
+}
+
+
+/* =========================================
+   VIEW ICON
+========================================= */
+
+.view-btn {
+  background: #eee9ff;
+
+  color: #6d28d9;
+}
+
+.view-btn:hover {
+  background: #6d28d9;
+
+  color: white;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 4px 10px rgba(109, 40, 217, 0.25);
+}
+
+
+/* =========================================
+   DELETE ICON
+========================================= */
+
+.delete-btn {
+  background: #fff0f1;
+
+  color: #e5484d;
+}
+
+.delete-btn:hover {
+  background: #e5484d;
+
+  color: white;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 4px 10px rgba(229, 72, 77, 0.22);
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.no-data {
+  height: 250px;
+
+  text-align: center !important;
+}
+
+.empty-state {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.empty-icon {
+  width: 58px;
+  height: 58px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #f3efff;
+
+  color: #8b5cf6;
+
+  font-size: 21px;
+
+  margin-bottom: 12px;
+}
+
+.empty-state h3 {
+  margin: 0;
+
+  color: #403a4b;
+
+  font-size: 15px;
+}
+
+.empty-state p {
+  margin: 6px 0 0;
+
+  color: #9993a4;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   LOADER
+========================================= */
+
+.loading-container {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  color: #777182;
+
+  font-size: 13px;
+}
+
+.loader {
+  width: 18px;
+  height: 18px;
+
+  border: 2px solid #e8e1f8;
+
+  border-top-color: #7c3aed;
+
+  border-radius: 50%;
+
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.quiz-footer {
+  min-height: 65px;
+
+  padding: 0 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  border-top: 1px solid #eeeef4;
+
+  color: #858091;
+
+  font-size: 12px;
+}
+
+.quiz-footer strong {
+  color: #514b5e;
+}
+
+
+/* =========================================
+   PAGINATION
+========================================= */
+
+.pagination {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+}
+
+.pagination button {
+  height: 32px;
+
+  padding: 0 11px;
+
+  border: 1px solid #e2dfe9;
+
+  border-radius: 7px;
+
+  background: white;
+
+  color: #8a8494;
+
+  font-size: 11px;
+
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+.pagination .active-page {
+  background: #7c3aed;
+
+  color: white;
+
+  border-color: #7c3aed;
+
+  font-weight: 600;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .quiz-page {
+    padding: 16px;
+  }
+
+  .quiz-title-section {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 15px;
+  }
+
+  .quiz-header {
+    padding: 15px;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 13px;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .create-btn {
+    width: 100%;
+  }
+
+  .quiz-footer {
+    padding: 14px;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 12px;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .quiz-page {
+    padding: 10px;
+  }
+
+  .quiz-title-left h2 {
+    font-size: 19px;
+  }
+
+  .quiz-title-left p {
+    font-size: 11px;
+  }
+
+  .quiz-title-icon {
+    width: 42px;
+    height: 42px;
+  }
+}

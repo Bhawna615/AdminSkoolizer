@@ -1,0 +1,646 @@
+.employee-attendance-details-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 28px;
+    box-sizing: border-box;
+    background: #f7f7fb;
+    color: #302b43;
+    font-family: "Poppins", sans-serif;
+}
+
+/* =====================================
+   HEADER
+===================================== */
+
+.employee-details-header {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.employee-details-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.employee-details-header-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #7658e8, #5f40d2);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 7px 18px rgba(108, 76, 232, 0.22);
+}
+
+.employee-details-header h2 {
+    margin: 0;
+    color: #302b43;
+    font-size: 21px;
+    line-height: 1.3;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.employee-details-header p {
+    margin: 4px 0 0;
+    color: #888294;
+    font-size: 11px;
+}
+
+.employee-details-back-btn {
+    height: 38px;
+    padding: 0 14px;
+    border: 1px solid #e1dced;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #625b70;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.employee-details-back-btn:hover {
+    border-color: #c8b9ef;
+    background: #faf8ff;
+    color: #6546d5;
+}
+
+.employee-details-back-btn i {
+    font-size: 12px;
+}
+
+/* =====================================
+   DATE CARD
+===================================== */
+
+.employee-details-date-card {
+    width: 100%;
+    min-height: 70px;
+    margin-bottom: 18px;
+    padding: 12px 16px;
+    box-sizing: border-box;
+    border: 1px solid #e8e4f0;
+    border-radius: 12px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 5px 18px rgba(40, 30, 70, 0.035);
+}
+
+.employee-details-date-icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #f0ecff;
+    color: #6c4ce8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.employee-details-date-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.employee-details-date-content span {
+    color: #9992a4;
+    font-size: 8px;
+}
+
+.employee-details-date-content strong {
+    color: #433d50;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.employee-details-date-divider {
+    width: 1px;
+    height: 32px;
+    margin-left: 5px;
+    background: #ebe7f1;
+}
+
+.employee-details-date-info {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #9992a4;
+    font-size: 9px;
+}
+
+.employee-details-date-info i {
+    color: #7658e8;
+    font-size: 11px;
+}
+
+/* =====================================
+   SUMMARY
+===================================== */
+
+.employee-details-summary {
+    width: 100%;
+    margin-bottom: 18px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 13px;
+}
+
+.employee-details-summary-card {
+    min-height: 72px;
+    padding: 13px;
+    box-sizing: border-box;
+    border: 1px solid #e8e4f0;
+    border-radius: 12px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    box-shadow: 0 5px 18px rgba(40, 30, 70, 0.035);
+}
+
+.employee-details-summary-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+}
+
+.employee-details-summary-icon.total {
+    background: #f0ecff;
+    color: #6c4ce8;
+}
+
+.employee-details-summary-icon.present {
+    background: #eaf8ef;
+    color: #4c9b67;
+}
+
+.employee-details-summary-icon.leave {
+    background: #fff0f3;
+    color: #c26882;
+}
+
+.employee-details-summary-card > div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.employee-details-summary-card span {
+    color: #97909f;
+    font-size: 8px;
+}
+
+.employee-details-summary-card strong {
+    color: #433d50;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* =====================================
+   TABLE CARD
+===================================== */
+
+.employee-details-table-card {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #e8e4f0;
+    border-radius: 14px;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(40, 30, 70, 0.04);
+}
+
+/* =====================================
+   TABLE HEADER
+===================================== */
+
+.employee-details-table-header {
+    min-height: 72px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ece9f3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.employee-details-table-title {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.employee-details-title-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: #f1edff;
+    color: #6c4ce8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.employee-details-table-title h3 {
+    margin: 0;
+    color: #40394f;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.employee-details-table-title p {
+    margin: 3px 0 0;
+    color: #97909f;
+    font-size: 10px;
+}
+
+/* =====================================
+   EXPORT BUTTON
+===================================== */
+
+.employee-details-export-btn {
+    height: 38px;
+    padding: 0 14px;
+    border: 1px solid #ddd5fa;
+    border-radius: 9px;
+    background: #f8f6ff;
+    color: #6748dc;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.employee-details-export-btn:hover:not(:disabled) {
+    background: #eeeaff;
+    border-color: #c9bdf1;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(103, 72, 220, 0.1);
+}
+
+.employee-details-export-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.employee-details-export-btn i {
+    font-size: 12px;
+}
+
+/* =====================================
+   TABLE
+===================================== */
+
+.employee-details-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.employee-details-table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+}
+
+.employee-details-table thead {
+    background: #faf9ff;
+}
+
+.employee-details-table th {
+    height: 50px;
+    padding: 0 20px;
+    border-bottom: 1px solid #ece9f3;
+    color: #70687e;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.employee-details-table td {
+    height: 68px;
+    padding: 0 20px;
+    border-bottom: 1px solid #f0edf5;
+}
+
+.employee-details-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+.employee-details-table tbody tr:hover {
+    background: #faf9ff;
+}
+
+.employee-details-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+/* =====================================
+   ID BADGE
+===================================== */
+
+.employee-id-badge {
+    min-width: 38px;
+    height: 26px;
+    padding: 0 8px;
+    box-sizing: border-box;
+    border-radius: 7px;
+    background: #f3f0fb;
+    color: #766d84;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 600;
+}
+
+/* =====================================
+   EMPLOYEE NAME
+===================================== */
+
+.employee-details-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.employee-details-avatar {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: #f0ecff;
+    color: #6b4be0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.employee-details-name > div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.employee-details-name strong {
+    color: #433d50;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.employee-details-name span {
+    color: #a09aa8;
+    font-size: 8px;
+}
+
+/* =====================================
+   STATUS
+===================================== */
+
+.employee-status {
+    min-width: 78px;
+    height: 29px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.employee-status.present {
+    background: #edf9f1;
+    border: 1px solid #dceee2;
+    color: #4c9664;
+}
+
+.employee-status.leave {
+    background: #fff2f4;
+    border: 1px solid #f0dfe4;
+    color: #bd647c;
+}
+
+.employee-status i {
+    font-size: 10px;
+}
+
+/* =====================================
+   LOADER
+===================================== */
+
+.employee-details-loader {
+    min-height: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.employee-details-spinner {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 5px;
+    border: 3px solid #ebe7f5;
+    border-top-color: #7658e8;
+    border-radius: 50%;
+    animation: employeeDetailsSpin 0.7s linear infinite;
+}
+
+@keyframes employeeDetailsSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.employee-details-loader strong {
+    color: #716a7c;
+    font-size: 11px;
+}
+
+.employee-details-loader span {
+    color: #a09aa8;
+    font-size: 9px;
+}
+
+/* =====================================
+   EMPTY
+===================================== */
+
+.employee-details-empty {
+    min-height: 240px;
+    padding: 25px 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.employee-details-empty-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 5px;
+    border-radius: 12px;
+    background: #f2effa;
+    color: #9389a5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+}
+
+.employee-details-empty strong {
+    color: #6d6678;
+    font-size: 12px;
+}
+
+.employee-details-empty span {
+    color: #a29ca9;
+    font-size: 10px;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 800px) {
+
+    .employee-details-summary {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .employee-details-summary-card:last-child {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .employee-attendance-details-page {
+        padding: 20px;
+    }
+
+    .employee-details-header {
+        align-items: flex-start;
+    }
+
+    .employee-details-back-btn span {
+        display: none;
+    }
+
+    .employee-details-back-btn {
+        width: 38px;
+        padding: 0;
+    }
+
+    .employee-details-date-info {
+        display: none;
+    }
+
+    .employee-details-date-divider {
+        display: none;
+    }
+
+    .employee-details-table-header {
+        min-height: auto;
+        padding: 15px;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .employee-details-export-btn {
+        width: 100%;
+    }
+
+    .employee-details-table th,
+    .employee-details-table td {
+        padding: 0 14px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .employee-attendance-details-page {
+        padding: 15px;
+    }
+
+    .employee-details-header-icon {
+        width: 43px;
+        height: 43px;
+        font-size: 18px;
+    }
+
+    .employee-details-header h2 {
+        font-size: 18px;
+    }
+
+    .employee-details-header p {
+        font-size: 10px;
+    }
+
+    .employee-details-summary {
+        gap: 8px;
+    }
+
+    .employee-details-summary-card {
+        min-height: 65px;
+        padding: 10px;
+    }
+
+    .employee-details-summary-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 13px;
+    }
+
+    .employee-details-summary-card strong {
+        font-size: 14px;
+    }
+
+    .employee-details-summary-card span {
+        font-size: 7px;
+    }
+
+    .employee-details-table-card {
+        border-radius: 12px;
+    }
+}

@@ -1,0 +1,839 @@
+
+/* =========================================================
+   ROLL CALL
+   PURPLE + WHITE ERP UI
+   UNIQUE CLASS NAMES
+========================================================= */
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.roll-call-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 22px 24px 35px;
+    box-sizing: border-box;
+    
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #30263d;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.roll-call-header {
+    width: 100%;
+    min-height: 68px;
+    padding: 13px 18px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #e7e1f0;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 16px rgba(70, 43, 105, 0.06);
+}
+
+.roll-call-header-left {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.roll-call-header-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 11px;
+    background: #6f42c1;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+.roll-call-header h2 {
+    margin: 0;
+    color: #302344;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.roll-call-header p {
+    margin: 3px 0 0;
+    color: #81788d;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.roll-call-back-btn {
+    height: 38px;
+    padding: 0 14px;
+    border-radius: 8px;
+    border: 1px solid #ddd6e8;
+    background: #ffffff;
+    color: #62586e;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: 0.2s ease;
+}
+
+.roll-call-back-btn:hover {
+    border-color: #6f42c1;
+    color: #6f42c1;
+    background: #faf8fd;
+}
+
+
+/* =========================================================
+   INFO BAR
+========================================================= */
+
+.roll-call-info-bar {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e7e1f0;
+    border-radius: 13px;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+    box-shadow: 0 3px 14px rgba(70, 43, 105, 0.05);
+}
+
+.roll-call-info-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.roll-call-info-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+    background: #f0eafa;
+    color: #6f42c1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.roll-call-info-item span {
+    display: block;
+    color: #92899b;
+    font-size: 10px;
+    margin-bottom: 2px;
+}
+
+.roll-call-info-item strong {
+    display: block;
+    color: #3c304c;
+    font-size: 13px;
+}
+
+.roll-call-info-divider {
+    width: 1px;
+    height: 34px;
+    background: #ece8f2;
+    margin: 0 20px;
+}
+
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.roll-call-summary {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.roll-call-summary-card {
+    background: #ffffff;
+    border: 1px solid #e7e1f0;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    box-sizing: border-box;
+    box-shadow: 0 3px 14px rgba(70, 43, 105, 0.04);
+}
+
+.roll-call-summary-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.roll-call-summary-icon.total {
+    background: #f0eafa;
+    color: #6f42c1;
+}
+
+.roll-call-summary-icon.present {
+    background: #e9f8ef;
+    color: #198754;
+}
+
+.roll-call-summary-icon.absent {
+    background: #fdecee;
+    color: #dc3545;
+}
+
+.roll-call-summary-icon.leave {
+    background: #fff5df;
+    color: #d69200;
+}
+
+.roll-call-summary-card span {
+    display: block;
+    color: #898091;
+    font-size: 10px;
+    margin-bottom: 3px;
+}
+
+.roll-call-summary-card strong {
+    display: block;
+    color: #332842;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   TABLE CARD
+========================================================= */
+
+.roll-call-table-card {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e7e1f0;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 17px rgba(70, 43, 105, 0.06);
+}
+
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.roll-call-table-header {
+    padding: 17px 19px;
+    border-bottom: 1px solid #eeeaf3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.roll-call-table-title {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.roll-call-table-title-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 9px;
+    background: #f0eafa;
+    color: #6f42c1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+}
+
+.roll-call-table-title h3 {
+    margin: 0;
+    color: #342746;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.roll-call-table-title p {
+    margin: 3px 0 0;
+    color: #918899;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   STATUS GUIDE
+========================================================= */
+
+.roll-call-status-guide {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.roll-call-status-guide span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #746b7d;
+    font-size: 10px;
+}
+
+.roll-call-status-guide i {
+    font-size: 6px;
+}
+
+.present-dot {
+    color: #198754;
+}
+
+.absent-dot {
+    color: #dc3545;
+}
+
+.leave-dot {
+    color: #d69200;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.roll-call-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.roll-call-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 760px;
+}
+
+.roll-call-table thead {
+    background: #f8f6fb;
+}
+
+.roll-call-table th {
+    height: 45px;
+    padding: 0 14px;
+    text-align: left;
+    border-bottom: 1px solid #e8e3ef;
+    color: #665b72;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.roll-call-table td {
+    height: 60px;
+    padding: 7px 14px;
+    border-bottom: 1px solid #f0edf4;
+    color: #51485c;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.roll-call-table tbody tr {
+    transition: 0.15s ease;
+}
+
+.roll-call-table tbody tr:hover {
+    background: #fbfaff;
+}
+
+.roll-call-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   COLUMNS
+========================================================= */
+
+.roll-call-id-column {
+    width: 50px;
+}
+
+.roll-call-status-column {
+    width: 185px;
+}
+
+
+/* =========================================================
+   ROW NUMBER
+========================================================= */
+
+.roll-call-row-number {
+    width: 26px;
+    height: 26px;
+    border-radius: 7px;
+    background: #f3eff9;
+    color: #6f42c1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   STUDENT ID
+========================================================= */
+
+.roll-call-student-id {
+    color: #6f42c1;
+    font-weight: 600;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   ROLL NUMBER
+========================================================= */
+
+.roll-call-roll-number {
+    display: inline-flex;
+    min-width: 30px;
+    padding: 5px 8px;
+    justify-content: center;
+    border-radius: 6px;
+    background: #f7f4fb;
+    color: #5d5368;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   STUDENT
+========================================================= */
+
+.roll-call-student {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.roll-call-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: #6f42c1;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.roll-call-student strong {
+    display: block;
+    color: #3c3049;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.roll-call-student span {
+    display: block;
+    margin-top: 2px;
+    color: #99909f;
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   ATTENDANCE SELECT
+========================================================= */
+
+.roll-call-select-wrapper {
+    position: relative;
+    width: 155px;
+}
+
+.roll-call-select-icon {
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.roll-call-select-icon.present {
+    color: #198754;
+}
+
+.roll-call-select-icon.absent {
+    color: #dc3545;
+}
+
+.roll-call-select-icon.leave {
+    color: #d69200;
+}
+
+.roll-call-select {
+    width: 100%;
+    height: 37px;
+    border-radius: 7px;
+    padding: 0 28px 0 32px;
+    font-size: 11px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: 0.2s ease;
+}
+
+.roll-call-select-present {
+    background: #f0faf4;
+    border: 1px solid #ccebd8;
+    color: #198754;
+}
+
+.roll-call-select-absent {
+    background: #fff3f4;
+    border: 1px solid #f3ced2;
+    color: #dc3545;
+}
+
+.roll-call-select-leave {
+    background: #fff9ed;
+    border: 1px solid #f2dfb1;
+    color: #b67b00;
+}
+
+.roll-call-select:focus {
+    box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.09);
+    border-color: #6f42c1;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.roll-call-empty {
+    padding: 55px 20px;
+    text-align: center;
+}
+
+.roll-call-empty-icon {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 14px;
+    border-radius: 14px;
+    background: #f1ecf9;
+    color: #6f42c1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.roll-call-empty h3 {
+    margin: 0 0 5px;
+    color: #3a2e48;
+    font-size: 16px;
+}
+
+.roll-call-empty p {
+    margin: 0 0 16px;
+    color: #918899;
+    font-size: 11px;
+}
+
+.roll-call-empty button {
+    height: 38px;
+    padding: 0 15px;
+    border: none;
+    border-radius: 7px;
+    background: #6f42c1;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.roll-call-footer {
+    padding: 15px 19px;
+    border-top: 1px solid #eeeaf3;
+    background: #fdfcff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.roll-call-footer-message {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #857b90;
+    font-size: 10px;
+}
+
+.roll-call-footer-message i {
+    color: #6f42c1;
+    font-size: 13px;
+}
+
+.roll-call-footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.roll-call-footer-back,
+.roll-call-submit {
+    height: 40px;
+    padding: 0 15px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.roll-call-footer-back {
+    background: #ffffff;
+    border: 1px solid #ddd6e8;
+    color: #665c70;
+}
+
+.roll-call-footer-back:hover:not(:disabled) {
+    border-color: #6f42c1;
+    color: #6f42c1;
+}
+
+.roll-call-submit {
+    min-width: 155px;
+    border: none;
+    background: #6f42c1;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(111, 66, 193, 0.20);
+}
+
+.roll-call-submit:hover:not(:disabled) {
+    background: #5c35a5;
+    transform: translateY(-1px);
+}
+
+.roll-call-submit:disabled,
+.roll-call-footer-back:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   SPINNER
+========================================================= */
+
+.roll-call-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: rollCallSpin 0.7s linear infinite;
+}
+
+@keyframes rollCallSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .roll-call-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 750px) {
+
+    .roll-call-page {
+        padding: 15px;
+    }
+
+    .roll-call-info-bar {
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    .roll-call-info-item {
+        min-width: calc(50% - 15px);
+    }
+
+    .roll-call-info-divider {
+        display: none;
+    }
+
+    .roll-call-table-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .roll-call-status-guide {
+        padding-left: 51px;
+    }
+
+    .roll-call-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .roll-call-footer-actions {
+        width: 100%;
+    }
+
+    .roll-call-footer-back,
+    .roll-call-submit {
+        flex: 1;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .roll-call-header {
+        padding: 12px;
+    }
+
+    .roll-call-header-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+    }
+
+    .roll-call-header h2 {
+        font-size: 18px;
+    }
+
+    .roll-call-header p {
+        font-size: 10px;
+    }
+
+    .roll-call-back-btn {
+        padding: 0 10px;
+    }
+
+    .roll-call-back-btn {
+        font-size: 0;
+    }
+
+    .roll-call-back-btn i {
+        font-size: 14px;
+    }
+
+    .roll-call-info-item {
+        min-width: 100%;
+    }
+
+    .roll-call-summary {
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+    }
+
+    .roll-call-summary-card {
+        padding: 11px;
+    }
+
+    .roll-call-summary-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+    }
+
+    .roll-call-summary-card strong {
+        font-size: 16px;
+    }
+
+    .roll-call-footer-actions {
+        flex-direction: column;
+    }
+
+    .roll-call-footer-back,
+    .roll-call-submit {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 380px) {
+
+    .roll-call-page {
+        padding: 10px;
+    }
+
+    .roll-call-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .roll-call-table-title h3 {
+        font-size: 14px;
+    }
+
+    .roll-call-status-guide {
+        padding-left: 0;
+        flex-wrap: wrap;
+    }
+
+}

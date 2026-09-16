@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-
+import "./AcceptStudentFee.css";
 const BASE_URL = "http://localhost/kkblossom/api.php/Adminapi/AdminFee/";
 
 const AcceptStudentFee = () => {
@@ -120,113 +120,194 @@ const AcceptStudentFee = () => {
 
 
   if (loading) {
-    return <div className="text-center mt-5">Loading...</div>;
-  }
+  return (
+    <div className="asf-loading">
+      Loading...
+    </div>
+  );
+}
 
 
   return (
+  <div className="asf-page">
 
-    <div className="container mt-4">
+    <div className="asf-card">
 
-      <h4 className="mb-4">Accept Fee Payment</h4>
+      {/* Header */}
+      <div className="asf-header">
+        Accept Fee Payment
+      </div>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="asf-form">
 
-        <div className="row">
+        <div className="asf-columns">
 
-          {/* LEFT */}
-          <div className="col-md-4">
+          {/* ================= LEFT COLUMN ================= */}
+          <div className="asf-column">
 
-            <p><b>Student Name</b></p>
-            <p>{payment.studentname}</p>
+            <div className="asf-field">
+              <label className="asf-label">
+                Student Name
+              </label>
 
-            <p><b>Class</b></p>
-            <p>{payment.class}</p>
+              <div className="asf-value">
+                {payment.studentname || "-"}
+              </div>
+            </div>
 
-            <p><b>Roll No</b></p>
-            <p>{payment.rollno}</p>
 
-            <p><b>Payment Date</b></p>
-            <input
-              type="date"
-              name="payment_date"
-              className="form-control"
-              value={payment.payment_date}
-              onChange={handleChange}
-              required
-            />
+            <div className="asf-field">
+              <label className="asf-label">
+                Class
+              </label>
+
+              <div className="asf-value">
+                {payment.class || "-"}
+              </div>
+            </div>
+
+
+            <div className="asf-field">
+              <label className="asf-label">
+                Roll No
+              </label>
+
+              <div className="asf-value">
+                {payment.rollno || "-"}
+              </div>
+            </div>
+
+
+            <div className="asf-field">
+              <label className="asf-label">
+                Payment Date
+              </label>
+
+              <input
+                type="date"
+                name="payment_date"
+                className="asf-input"
+                value={payment.payment_date}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
           </div>
 
 
-          {/* MIDDLE */}
-          <div className="col-md-4">
+          {/* ================= MIDDLE COLUMN ================= */}
+          <div className="asf-column">
 
-            <p><b>Amount</b></p>
-            <p>{payment.amount}</p>
+            <div className="asf-field">
+              <label className="asf-label">
+                Amount
+              </label>
 
-            <p><b>Period</b></p>
-            <p>{payment.period}</p>
+              <div className="asf-value">
+                ₹ {payment.amount || "0"}
+              </div>
+            </div>
 
-            <p><b>Last Date</b></p>
-            <p>{payment.lastdate}</p>
+
+            <div className="asf-field">
+              <label className="asf-label">
+                Period
+              </label>
+
+              <div className="asf-value">
+                {payment.period || "-"}
+              </div>
+            </div>
+
+
+            <div className="asf-field">
+              <label className="asf-label">
+                Last Date
+              </label>
+
+              <div className="asf-value">
+                {payment.lastdate || "-"}
+              </div>
+            </div>
 
           </div>
 
 
-          {/* RIGHT */}
-          <div className="col-md-4">
+          {/* ================= RIGHT COLUMN ================= */}
+          <div className="asf-column">
 
-            <p><b>Late Fee Paid</b></p>
-            <input
-              type="number"
-              name="late_fee_paid"
-              className="form-control"
-              value={payment.late_fee_paid}
-              onChange={handleChange}
-            />
+            <div className="asf-field">
+              <label className="asf-label">
+                Late Fee Paid
+              </label>
 
-            <p className="mt-3"><b>Amount Paid</b></p>
-            <input
-              type="number"
-              name="amount_paid"
-              className="form-control"
-              value={payment.amount_paid}
-              onChange={handleChange}
-              required
-            />
+              <input
+                type="number"
+                name="late_fee_paid"
+                className="asf-input"
+                value={payment.late_fee_paid}
+                onChange={handleChange}
+                placeholder="Enter late fee"
+              />
+            </div>
 
-            <p className="mt-3"><b>Payment Mode</b></p>
-            <select
-              name="payment_mode"
-              className="form-control"
-              value={payment.payment_mode}
-              onChange={handleChange}
-            >
-              <option value="cash">Cash</option>
-              <option value="cheque">Cheque</option>
-              <option value="online">Online</option>
-            </select>
+
+            <div className="asf-field">
+              <label className="asf-label">
+                Amount Paid
+              </label>
+
+              <input
+                type="number"
+                name="amount_paid"
+                className="asf-input"
+                value={payment.amount_paid}
+                onChange={handleChange}
+                placeholder="Enter amount paid"
+                required
+              />
+            </div>
+
+
+            <div className="asf-field">
+              <label className="asf-label">
+                Payment Mode
+              </label>
+
+              <select
+                name="payment_mode"
+                className="asf-select"
+                value={payment.payment_mode}
+                onChange={handleChange}
+              >
+                <option value="cash">
+                  Cash
+                </option>
+
+                <option value="cheque">
+                  Cheque
+                </option>
+
+                <option value="online">
+                  Online
+                </option>
+              </select>
+            </div>
 
           </div>
 
         </div>
 
-        <div className="text-center mt-4">
+
+        {/* Button */}
+        <div className="asf-button-area">
 
           <button
             type="submit"
-            style={{
-              fontSize: "18px",
-              width: "30%",
-              backgroundColor: "#2C56BB",
-              color: "white",
-              border: "none",
-              padding: "10px 0",
-              borderRadius: "5px"
-            }}
+            className="asf-accept-button"
           >
-            Accept
+            Accept Payment
           </button>
 
         </div>
@@ -235,6 +316,7 @@ const AcceptStudentFee = () => {
 
     </div>
 
+  </div>
   );
 
 };

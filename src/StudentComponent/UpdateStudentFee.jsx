@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import "./UpdateStudentFee.css";
 
 const BASE_URL = "http://localhost/kkblossom/api.php/Adminapi/AdminFee/";
 
 const UpdateStudentFee = () => {
-
   const { feeId } = useParams();
   const navigate = useNavigate();
 
@@ -34,13 +34,10 @@ const UpdateStudentFee = () => {
 
   // FETCH EXISTING DATA
   useEffect(() => {
-
     axios
       .get(BASE_URL + "getPaymentById/" + feeId)
       .then((res) => {
-
         if (res.data.status) {
-
           const data = res.data.data;
 
           setPayment({
@@ -63,33 +60,26 @@ const UpdateStudentFee = () => {
             remarks: data.remarks || "",
             payment_date: data.paidondate || ""
           });
-
-          setLoading(false);
         }
 
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
         setLoading(false);
       });
-
   }, [feeId]);
 
-
   const handleChange = (e) => {
-
     const { name, value } = e.target;
 
     setPayment({
       ...payment,
       [name]: value
     });
-
   };
 
-
   const handleSubmit = (e) => {
-
     e.preventDefault();
 
     const formData = new FormData();
@@ -101,246 +91,305 @@ const UpdateStudentFee = () => {
     axios
       .post(BASE_URL + "updateStudentFee", formData)
       .then((res) => {
-
         if (res.data.status) {
-
           alert("Updated Successfully");
-          navigate("/StudentComponent/View-Payments/" + payment.student_id);
 
+          navigate(
+            "/StudentComponent/View-Payments/" + payment.student_id
+          );
         } else {
-
           alert("Update Failed");
-
         }
-
       })
       .catch((err) => {
-
         console.log(err);
         alert("Server Error");
-
       });
   };
 
-
   if (loading) {
-    return <div className="text-center mt-5">Loading...</div>;
+    return (
+      <div className="usf-loading-screen">
+        <div className="usf-loader"></div>
+        <p>Loading payment details...</p>
+      </div>
+    );
   }
 
-
   return (
+    <div className="usf-page">
 
-    <div className="container-fluid p-4">
+      {/* HEADER */}
+      <div className="usf-header">
+        <div>
+          <h2 className="usf-title">Update Student Fee</h2>
+          <p className="usf-subtitle">
+            Update payment and fee information
+          </p>
+        </div>
 
-      <h4 className="mb-4">Update Student Fee</h4>
+        <div className="usf-fee-badge">
+          Payment ID: #{payment.id}
+        </div>
+      </div>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="usf-form">
 
-        <div className="row">
+        {/* ================= LEFT COLUMN ================= */}
+        <div className="usf-column">
 
-          {/* LEFT COLUMN */}
-          <div className="col-md-4">
-
-            <div className="mb-3">
-              <label className="form-label">Student Name</label>
-              <p>{payment.student_name}</p>
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label">Class</label>
-              <p>{payment.student_class}</p>
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label">Roll No</label>
-              <p>{payment.rollno}</p>
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label">Session</label>
-              <select
-                className="form-control"
-                name="session"
-                value={payment.session}
-                onChange={handleChange}
-              >
-                <option value="">Select Session</option>
-                <option value="2025-2026">2025-2026</option>
-                <option value="2026-2027">2026-2027</option>
-              </select>
-            </div>
-
+          <div className="usf-section-heading">
+            <span className="usf-section-icon">01</span>
+            Student Information
           </div>
 
+          {/* Student Name */}
+          <div className="usf-field">
+            <label className="usf-label">Student Name</label>
+            <div className="usf-readonly">
+              {payment.student_name || "-"}
+            </div>
+          </div>
 
-          {/* MIDDLE COLUMN */}
-          <div className="col-md-4">
+          {/* Class */}
+          <div className="usf-field">
+            <label className="usf-label">Class</label>
+            <div className="usf-readonly">
+              {payment.student_class || "-"}
+            </div>
+          </div>
 
-            <div className="mb-3">
-              <label className="form-label">Tuition Fee</label>
+          {/* Roll No */}
+          <div className="usf-field">
+            <label className="usf-label">Roll No</label>
+            <div className="usf-readonly">
+              {payment.rollno || "-"}
+            </div>
+          </div>
+
+          {/* Session */}
+          <div className="usf-field">
+            <label className="usf-label">Session</label>
+
+            <select
+              className="usf-input"
+              name="session"
+              value={payment.session}
+              onChange={handleChange}
+            >
+              <option value="">Select Session</option>
+              <option value="2025-2026">2025-2026</option>
+              <option value="2026-2027">2026-2027</option>
+            </select>
+          </div>
+
+        </div>
+
+        {/* ================= MIDDLE COLUMN ================= */}
+        <div className="usf-column">
+
+          <div className="usf-section-heading">
+            <span className="usf-section-icon">02</span>
+            Fee Details
+          </div>
+
+          {/* Tuition Fee */}
+          <div className="usf-field">
+            <label className="usf-label">Tuition Fee</label>
+
+            <div className="usf-input-money">
+              <span>₹</span>
               <input
                 type="number"
-                className="form-control"
                 name="tuition_fee"
                 value={payment.tuition_fee}
                 onChange={handleChange}
               />
             </div>
+          </div>
 
-            <div className="mb-3">
-              <label className="form-label">Annual Fee</label>
+          {/* Annual Fee */}
+          <div className="usf-field">
+            <label className="usf-label">Annual Fee</label>
+
+            <div className="usf-input-money">
+              <span>₹</span>
               <input
                 type="number"
-                className="form-control"
                 name="annual_fee"
                 value={payment.annual_fee}
                 onChange={handleChange}
               />
             </div>
+          </div>
 
-            <div className="mb-3">
-              <label className="form-label">Admission Fee</label>
+          {/* Admission Fee */}
+          <div className="usf-field">
+            <label className="usf-label">Admission Fee</label>
+
+            <div className="usf-input-money">
+              <span>₹</span>
               <input
                 type="number"
-                className="form-control"
                 name="admission_fee"
                 value={payment.admission_fee}
                 onChange={handleChange}
               />
             </div>
+          </div>
 
-            <div className="mb-3">
-              <label className="form-label">Transport Fee</label>
+          {/* Transport Fee */}
+          <div className="usf-field">
+            <label className="usf-label">Transport Fee</label>
+
+            <div className="usf-input-money">
+              <span>₹</span>
               <input
                 type="number"
-                className="form-control"
                 name="transport_fee"
                 value={payment.transport_fee}
                 onChange={handleChange}
               />
             </div>
+          </div>
 
-            <div className="mb-3">
-              <label className="form-label">Any Other Fee</label>
+          {/* Other Fee */}
+          <div className="usf-field">
+            <label className="usf-label">Any Other Fee</label>
+
+            <div className="usf-input-money">
+              <span>₹</span>
               <input
                 type="number"
-                className="form-control"
                 name="late_fee"
                 value={payment.late_fee}
                 onChange={handleChange}
               />
             </div>
-
           </div>
 
+        </div>
 
-          {/* RIGHT COLUMN */}
-          <div className="col-md-4">
+        {/* ================= RIGHT COLUMN ================= */}
+        <div className="usf-column">
 
-            <div className="mb-3">
-              <label className="form-label">Last Date</label>
-              <input
-                type="date"
-                className="form-control"
-                name="last_date"
-                value={payment.last_date || ""}
-                onChange={handleChange}
-              />
-            </div>
+          <div className="usf-section-heading">
+            <span className="usf-section-icon">03</span>
+            Payment Details
+          </div>
 
-            <div className="mb-3">
-              <label className="form-label">Period</label>
-              <input
-                type="text"
-                className="form-control"
-                name="period"
-                value={payment.period}
-                onChange={handleChange}
-              />
-            </div>
+          {/* Last Date */}
+          <div className="usf-field">
+            <label className="usf-label">Last Date</label>
 
-            <div className="mb-3">
-              <label className="form-label">Status</label>
-              <select
-                className="form-control"
-                name="status"
-                value={payment.status}
-                onChange={handleChange}
-              >
-                <option value="0">Unpaid</option>
-                <option value="1">Paid</option>
-              </select>
-            </div>
+            <input
+              type="date"
+              className="usf-input"
+              name="last_date"
+              value={payment.last_date || ""}
+              onChange={handleChange}
+            />
+          </div>
 
-            <div className="mb-3">
-              <label className="form-label">Payment Mode</label>
-              <select
-                className="form-control"
-                name="payment_mode"
-                value={payment.payment_mode}
-                onChange={handleChange}
-              >
-                <option value="">Select</option>
-                <option value="cash">Cash</option>
-                <option value="cheque">Cheque</option>
-                <option value="online">Online</option>
-              </select>
-            </div>
+          {/* Period */}
+          <div className="usf-field">
+            <label className="usf-label">Period</label>
 
-            <div className="mb-3">
-              <label className="form-label">Amount Paid</label>
+            <input
+              type="text"
+              className="usf-input"
+              name="period"
+              value={payment.period}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* Status */}
+          <div className="usf-field">
+            <label className="usf-label">Status</label>
+
+            <select
+              className="usf-input"
+              name="status"
+              value={payment.status}
+              onChange={handleChange}
+            >
+              <option value="0">Unpaid</option>
+              <option value="1">Paid</option>
+            </select>
+          </div>
+
+          {/* Payment Mode */}
+          <div className="usf-field">
+            <label className="usf-label">Payment Mode</label>
+
+            <select
+              className="usf-input"
+              name="payment_mode"
+              value={payment.payment_mode}
+              onChange={handleChange}
+            >
+              <option value="">Select Payment Mode</option>
+              <option value="cash">Cash</option>
+              <option value="cheque">Cheque</option>
+              <option value="online">Online</option>
+            </select>
+          </div>
+
+          {/* Amount Paid */}
+          <div className="usf-field">
+            <label className="usf-label">Amount Paid</label>
+
+            <div className="usf-input-money">
+              <span>₹</span>
               <input
                 type="number"
-                className="form-control"
                 name="amount_paid"
                 value={payment.amount_paid}
                 onChange={handleChange}
               />
             </div>
+          </div>
 
-            <div className="mb-3">
-              <label className="form-label">Remarks</label>
-              <input
-                type="text"
-                className="form-control"
-                name="remarks"
-                value={payment.remarks}
-                onChange={handleChange}
-              />
-            </div>
+          {/* Remarks */}
+          <div className="usf-field">
+            <label className="usf-label">Remarks</label>
 
-            <div className="mb-3">
-              <label className="form-label">Payment Date</label>
-              <input
-                type="date"
-                className="form-control"
-                name="payment_date"
-                value={payment.payment_date || ""}
-                onChange={handleChange}
-              />
-            </div>
+            <input
+              type="text"
+              className="usf-input"
+              name="remarks"
+              value={payment.remarks}
+              onChange={handleChange}
+              placeholder="Enter remarks"
+            />
+          </div>
 
+          {/* Payment Date */}
+          <div className="usf-field">
+            <label className="usf-label">Payment Date</label>
+
+            <input
+              type="date"
+              className="usf-input"
+              name="payment_date"
+              value={payment.payment_date || ""}
+              onChange={handleChange}
+            />
           </div>
 
         </div>
 
-
-        <div className="text-center mt-4">
-          <button
-            type="submit"
-            className="btn btn-primary px-5"
-            style={{ background: "#2C56BB", border: "none", fontSize: "18px" }}
-          >
-            Update
+        {/* BUTTON */}
+        <div className="usf-action-area">
+          <button type="submit" className="usf-update-button">
+            <span>Update Payment</span>
           </button>
         </div>
 
       </form>
-
     </div>
-
   );
-
 };
 
 export default UpdateStudentFee;

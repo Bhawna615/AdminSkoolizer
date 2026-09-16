@@ -1,0 +1,15 @@
+.filter-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;   /* 👈 text bada */
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.filter-toggle input[type="checkbox"] {
+  width: 20px;       /* 👈 checkbox bada */
+  height: 20px;
+  cursor: pointer;
+  accent-color: #4caf50; /* optional nice green */
+}

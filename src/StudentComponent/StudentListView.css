@@ -1,61 +1,448 @@
-.print-container {
+/* =========================================================
+   STUDENT LIST PAGE
+========================================================= */
+
+.student-list-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f5f5;
   padding: 30px;
-  font-family: Nunito_regular;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
+
+
+/* =========================================================
+   PRINT CONTAINER
+========================================================= */
+
+.print-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   SCHOOL HEADER
+========================================================= */
 
 .school-name-container {
   text-align: center;
-  margin-bottom: 150px;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #000;
 }
 
 .school-logo {
-  width: 90px;
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 8px;
 }
 
 .school-name {
-  font-size: 20px;
-  font-weight: bold;
+  margin: 5px 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
 }
 
 .school-address {
-  font-size: 14px;
+  margin: 0;
+  font-size: 15px;
+  color: #333;
+}
+
+
+/* =========================================================
+   CLASS BLOCK
+========================================================= */
+
+.class-block {
+  width: 100%;
+  margin-bottom: 30px;
 }
 
 .class-title {
+  margin: 15px 0 10px;
+  padding: 8px 12px;
   font-size: 18px;
-  margin: 20px 0;
+  font-weight: 700;
+  background: #eeeeee;
+  border-left: 4px solid #000;
 }
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+
+/* =========================================================
+   STUDENT TABLE
+========================================================= */
 
 .student-table {
   width: 100%;
   border-collapse: collapse;
- 
+  background: #ffffff;
+}
+
+.student-table th,
+.student-table td {
+  border: 1px solid #777;
+  padding: 8px;
+  font-size: 13px;
+  color: #000;
+  vertical-align: middle;
 }
 
 .student-table th {
-  background: #ebebec;
-  border: 1px solid #c5c5c5;
+  background: #ebebeb;
+  font-weight: 700;
+  text-align: center;
   text-transform: uppercase;
 }
 
 .student-table td {
-  border: 1px solid #c5c5c5;
+  text-align: left;
 }
-.student-table th,
-.student-table td {
-  padding: 8px 10px;   /* 👈 andar ka gap */
-  font-size: 14px;
- 
+
+
+/* =========================================================
+   IMAGES
+========================================================= */
+
+.image-cell {
+  text-align: center !important;
 }
 
 .icon {
-  width: 80px;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.student-list-actions {
+  width: 100%;
+  max-width: 1400px;
+  margin: 20px auto;
+  display: flex;
+  gap: 15px;
+}
+
+.print-btn,
+.export-btn {
+  border: none;
+  padding: 10px 25px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.print-btn {
+  background: #5d2b86;
 }
 
 .export-btn {
   background: #f95555;
-  color: white;
-  border: none;
-  padding: 6px 25px;
-  margin-top: 20px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.student-list-empty {
+  padding: 40px;
+  text-align: center;
+  font-size: 18px;
+}
+
+
+/* =========================================================
+   PRINT PAGE SETUP
+========================================================= */
+
+@page {
+  size: A4 landscape;
+  margin: 8mm;
+}
+
+
+/* =========================================================
+   PRINT SETTINGS
+========================================================= */
+
+@media print {
+
+  /* -----------------------------------------------
+     RESET
+  ------------------------------------------------ */
+
+  html,
+  body {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+
+  /* -----------------------------------------------
+     HIDE ENTIRE APPLICATION
+     THEN SHOW ONLY PRINT CONTAINER
+  ------------------------------------------------ */
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .print-container,
+  .print-container * {
+    visibility: visible !important;
+  }
+
+
+  /* -----------------------------------------------
+     PRINT CONTAINER
+  ------------------------------------------------ */
+
+  .print-container {
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: #ffffff !important;
+
+    box-shadow: none !important;
+    border: none !important;
+
+    overflow: visible !important;
+  }
+
+
+  /* -----------------------------------------------
+     HIDE BUTTONS
+  ------------------------------------------------ */
+
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+
+
+  /* -----------------------------------------------
+     SCHOOL HEADER
+  ------------------------------------------------ */
+
+  .school-name-container {
+    display: block !important;
+    visibility: visible !important;
+
+    margin: 0 0 10px 0 !important;
+    padding: 0 0 8px 0 !important;
+
+    text-align: center !important;
+    border-bottom: 1px solid #000 !important;
+  }
+
+  .school-logo {
+    display: block !important;
+    visibility: visible !important;
+
+    width: 45px !important;
+    height: auto !important;
+
+    margin: 0 auto 4px !important;
+  }
+
+  .school-name {
+    display: block !important;
+    visibility: visible !important;
+
+    margin: 3px 0 !important;
+
+    font-size: 17px !important;
+    color: #000 !important;
+  }
+
+  .school-address {
+    display: block !important;
+    visibility: visible !important;
+
+    margin: 0 !important;
+
+    font-size: 10px !important;
+    color: #000 !important;
+  }
+
+
+  /* -----------------------------------------------
+     CLASS BLOCK
+  ------------------------------------------------ */
+
+  .class-block {
+    display: block !important;
+
+    width: 100% !important;
+
+    margin: 0 0 10px 0 !important;
+    padding: 0 !important;
+
+    overflow: visible !important;
+
+    break-inside: auto !important;
+  }
+
+  .class-title {
+    display: block !important;
+
+    margin: 8px 0 5px !important;
+    padding: 4px 6px !important;
+
+    font-size: 11px !important;
+
+    color: #000 !important;
+    background: #eeeeee !important;
+
+    border-left: 3px solid #000 !important;
+  }
+
+
+  /* -----------------------------------------------
+     REMOVE SCROLLING
+  ------------------------------------------------ */
+
+  .table-wrapper {
+    display: block !important;
+
+    width: 100% !important;
+
+    overflow: visible !important;
+  }
+
+
+  /* -----------------------------------------------
+     TABLE
+  ------------------------------------------------ */
+
+  .student-table {
+    display: table !important;
+
+    width: 100% !important;
+
+    border-collapse: collapse !important;
+
+    table-layout: auto !important;
+
+    background: #ffffff !important;
+  }
+
+  .student-table thead {
+    display: table-header-group !important;
+  }
+
+  .student-table tbody {
+    display: table-row-group !important;
+  }
+
+  .student-table tr {
+    display: table-row !important;
+
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .student-table th,
+  .student-table td {
+    display: table-cell !important;
+
+    border: 1px solid #000 !important;
+
+    padding: 3px 4px !important;
+
+    font-size: 7px !important;
+
+    color: #000 !important;
+
+    vertical-align: middle !important;
+
+    white-space: normal !important;
+
+    word-break: break-word !important;
+
+    overflow: visible !important;
+  }
+
+  .student-table th {
+    background: #dddddd !important;
+
+    font-weight: 700 !important;
+
+    text-align: center !important;
+  }
+
+  .student-table td {
+    background: #ffffff !important;
+
+    text-align: left !important;
+  }
+
+
+  /* -----------------------------------------------
+     IMAGE
+  ------------------------------------------------ */
+
+  .student-table .icon {
+    display: block !important;
+    visibility: visible !important;
+
+    width: 28px !important;
+    height: 28px !important;
+
+    max-width: 28px !important;
+    max-height: 28px !important;
+
+    object-fit: contain !important;
+
+    margin: 0 auto !important;
+  }
+
+
+  /* -----------------------------------------------
+     FORCE PRINT COLORS
+  ------------------------------------------------ */
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
 }

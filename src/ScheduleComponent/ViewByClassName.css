@@ -1,0 +1,996 @@
+/* =========================================================
+   VIEW BY CLASS NAME
+   MODERN PURPLE + WHITE UI
+========================================================= */
+
+.vbc-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 28px 30px 40px;
+    background: #f7f7fb;
+    font-family: "Poppins", sans-serif;
+    color: #252338;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.vbc-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.vbc-header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.vbc-header-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
+    background: linear-gradient(
+        135deg,
+        #6d28d9,
+        #8b5cf6
+    );
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+    box-shadow: 0 10px 25px rgba(109, 40, 217, 0.20);
+}
+
+.vbc-eyebrow {
+    display: block;
+    color: #8b5cf6;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    margin-bottom: 3px;
+}
+
+.vbc-header h1 {
+    margin: 0;
+    font-size: 27px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #29263d;
+}
+
+.vbc-header p {
+    margin: 4px 0 0;
+    color: #89869a;
+    font-size: 13px;
+}
+
+.vbc-header p strong {
+    color: #6d28d9;
+    font-weight: 600;
+}
+
+.vbc-back-btn {
+    border: 1px solid #e6e2f0;
+    background: #ffffff;
+    color: #5b566d;
+    height: 42px;
+    padding: 0 17px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.vbc-back-btn i {
+    font-size: 17px;
+}
+
+.vbc-back-btn:hover {
+    border-color: #8b5cf6;
+    color: #6d28d9;
+    background: #faf8ff;
+    transform: translateX(-2px);
+}
+
+
+/* =========================================================
+   SUMMARY CARDS
+========================================================= */
+
+.vbc-summary-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 17px;
+    margin-bottom: 22px;
+}
+
+.vbc-summary-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 100px;
+    padding: 19px;
+    border-radius: 15px;
+    background: #ffffff;
+    border: 1px solid #ebe8f2;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 5px 20px rgba(38, 29, 67, 0.04);
+}
+
+.vbc-summary-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+}
+
+.vbc-summary-icon.purple {
+    background: #f0eaff;
+    color: #6d28d9;
+}
+
+.vbc-summary-icon.blue {
+    background: #eaf2ff;
+    color: #4078d8;
+}
+
+.vbc-summary-icon.green {
+    background: #e9f9f1;
+    color: #26935f;
+}
+
+.vbc-summary-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.vbc-summary-content span {
+    color: #9894a6;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+}
+
+.vbc-summary-content strong {
+    margin-top: 3px;
+    font-size: 22px;
+    color: #29263d;
+    font-weight: 700;
+}
+
+.vbc-summary-decoration {
+    position: absolute;
+    right: 14px;
+    bottom: -10px;
+    color: #f5f2fa;
+    font-size: 62px;
+    transform: rotate(-12deg);
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.vbc-main-card {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #ebe8f2;
+    border-radius: 18px;
+    box-shadow: 0 7px 25px rgba(38, 29, 67, 0.05);
+    overflow: visible;
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.vbc-card-header {
+    min-height: 82px;
+    padding: 17px 22px;
+    border-bottom: 1px solid #efedf4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.vbc-card-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.vbc-title-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    background: #f0eaff;
+    color: #6d28d9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+.vbc-card-title h2 {
+    margin: 0;
+    font-size: 16px;
+    color: #2d2941;
+    font-weight: 700;
+}
+
+.vbc-card-title p {
+    margin: 3px 0 0;
+    color: #9995a7;
+    font-size: 11px;
+}
+
+.vbc-class-badge {
+    height: 35px;
+    padding: 0 13px;
+    border-radius: 9px;
+    background: #f7f3ff;
+    color: #6d28d9;
+    border: 1px solid #e7ddff;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.vbc-class-badge i {
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.vbc-toolbar {
+    padding: 15px 22px;
+    border-bottom: 1px solid #efedf4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.vbc-show-control {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #777386;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.vbc-show-control select {
+    width: 62px;
+    height: 35px;
+    padding: 0 8px;
+    border: 1px solid #dedbe8;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #4c475d;
+    font-size: 12px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+}
+
+.vbc-show-control select:focus {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.09);
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.vbc-search-wrapper {
+    position: relative;
+    width: 300px;
+}
+
+.vbc-search-wrapper > i {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9b97aa;
+    font-size: 17px;
+    pointer-events: none;
+}
+
+.vbc-search-wrapper input {
+    width: 100%;
+    height: 37px;
+    padding: 0 38px 0 39px;
+    box-sizing: border-box;
+    border: 1px solid #dedbe8;
+    border-radius: 9px;
+    outline: none;
+    color: #3b374c;
+    background: #ffffff;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.vbc-search-wrapper input::placeholder {
+    color: #aaa6b6;
+}
+
+.vbc-search-wrapper input:focus {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.09);
+}
+
+.vbc-clear-search {
+    position: absolute;
+    right: 9px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 23px;
+    height: 23px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: #f0eaff;
+    color: #6d28d9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.vbc-clear-search:hover {
+    background: #e5dbff;
+}
+
+
+/* =========================================================
+   TABLE CONTAINER
+========================================================= */
+
+.vbc-table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.vbc-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.vbc-table thead {
+    background: #faf9fc;
+}
+
+.vbc-table th {
+    height: 48px;
+    padding: 0 18px;
+    border-bottom: 1px solid #e9e6f0;
+    color: #7e798d;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-align: left;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.vbc-table th:nth-child(1) {
+    width: 18%;
+}
+
+.vbc-table th:nth-child(2) {
+    width: 39%;
+}
+
+.vbc-table th:nth-child(3) {
+    width: 23%;
+}
+
+.vbc-table th:nth-child(4) {
+    width: 20%;
+}
+
+.vbc-table th[onClick] {
+    cursor: pointer;
+}
+
+.vbc-th-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.vbc-sort-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    color: #c6c2d0;
+    font-size: 9px;
+    line-height: 7px;
+}
+
+.vbc-sort-icons i {
+    transition: color 0.15s ease;
+}
+
+.vbc-sort-active {
+    color: #6d28d9 !important;
+}
+
+.vbc-table tbody tr {
+    background: #ffffff;
+    transition: background 0.15s ease;
+}
+
+.vbc-table tbody tr:hover {
+    background: #fbfaff;
+}
+
+.vbc-table td {
+    height: 70px;
+    padding: 0 18px;
+    border-bottom: 1px solid #f0eef4;
+    color: #555064;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+
+/* =========================================================
+   ROLL NUMBER
+========================================================= */
+
+.vbc-roll-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.vbc-roll-number {
+    min-width: 38px;
+    height: 30px;
+    padding: 0 8px;
+    border-radius: 8px;
+    background: #f5f2fa;
+    color: #625d71;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   STUDENT NAME
+========================================================= */
+
+.vbc-student-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.vbc-student-avatar {
+    width: 39px;
+    height: 39px;
+    min-width: 39px;
+    border-radius: 11px;
+    background: linear-gradient(
+        135deg,
+        #eee6ff,
+        #f7f3ff
+    );
+    color: #6d28d9;
+    border: 1px solid #e5dbff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.vbc-student-details {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.vbc-student-details strong {
+    color: #363247;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.vbc-student-details span {
+    margin-top: 2px;
+    color: #aaa6b5;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   CLASS PILL
+========================================================= */
+
+.vbc-class-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 11px;
+    border-radius: 8px;
+    background: #f5f2ff;
+    color: #6d28d9;
+    border: 1px solid #e9e0ff;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.vbc-class-pill i {
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   ACTION
+========================================================= */
+
+.vbc-action-cell {
+    position: relative;
+    text-align: left;
+}
+
+.vbc-action-button {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #e4e1eb;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #7e798b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.vbc-action-button i {
+    font-size: 18px;
+}
+
+.vbc-action-button:hover,
+.vbc-action-button.active {
+    background: #f1ebff;
+    color: #6d28d9;
+    border-color: #d8c9ff;
+}
+
+
+/* =========================================================
+   ACTION DROPDOWN
+========================================================= */
+
+.vbc-action-dropdown {
+    position: absolute;
+    right: 18px;
+    top: 58px;
+    width: 225px;
+    padding: 7px;
+    background: #ffffff;
+    border: 1px solid #e6e2ef;
+    border-radius: 12px;
+    box-shadow:
+        0 18px 45px rgba(35, 26, 62, 0.15),
+        0 3px 10px rgba(35, 26, 62, 0.06);
+    z-index: 100;
+    animation: vbcMenuIn 0.15s ease;
+}
+
+@keyframes vbcMenuIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.vbc-menu-heading {
+    padding: 7px 10px 8px;
+    color: #aaa5b5;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+}
+
+.vbc-action-dropdown button {
+    width: 100%;
+    height: 38px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: #5c576b;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.vbc-action-dropdown button i {
+    width: 19px;
+    color: #837d91;
+    font-size: 16px;
+    text-align: center;
+}
+
+.vbc-action-dropdown button:hover {
+    background: #f5f1ff;
+    color: #6d28d9;
+}
+
+.vbc-action-dropdown button:hover i {
+    color: #6d28d9;
+}
+
+.vbc-menu-divider {
+    height: 1px;
+    background: #eeeaf3;
+    margin: 5px 4px;
+}
+
+.vbc-action-dropdown .vbc-delete-option {
+    color: #dc4545;
+}
+
+.vbc-action-dropdown .vbc-delete-option i {
+    color: #dc4545;
+}
+
+.vbc-action-dropdown .vbc-delete-option:hover {
+    background: #fff1f1;
+    color: #d92f2f;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.vbc-no-data {
+    height: 280px !important;
+    padding: 0 !important;
+}
+
+.vbc-empty-state {
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.vbc-empty-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 18px;
+    background: #f3effa;
+    color: #a69fb5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.vbc-empty-state h3 {
+    margin: 0;
+    color: #49445a;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.vbc-empty-state p {
+    margin: 5px 0 13px;
+    color: #aaa5b4;
+    font-size: 11px;
+}
+
+.vbc-empty-state button {
+    height: 33px;
+    padding: 0 14px;
+    border: none;
+    border-radius: 8px;
+    background: #6d28d9;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.vbc-empty-state button:hover {
+    background: #5b21b6;
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.vbc-pagination {
+    min-height: 68px;
+    padding: 13px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    box-sizing: border-box;
+}
+
+.vbc-pagination-info {
+    color: #9893a4;
+    font-size: 11px;
+}
+
+.vbc-pagination-info strong {
+    color: #5b566b;
+    font-weight: 600;
+}
+
+.vbc-page-buttons {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.vbc-page-buttons button {
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    border: 1px solid #e2dfea;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #777185;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.vbc-page-buttons button:hover:not(:disabled) {
+    border-color: #bca8ed;
+    background: #f7f3ff;
+    color: #6d28d9;
+}
+
+.vbc-page-buttons .vbc-page-active {
+    border-color: #6d28d9;
+    background: #6d28d9;
+    color: #ffffff;
+    box-shadow: 0 5px 12px rgba(109, 40, 217, 0.20);
+}
+
+.vbc-page-buttons .vbc-prev-next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0 11px;
+}
+
+.vbc-page-buttons button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    background: #f8f7fa;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.vbc-table-container::-webkit-scrollbar {
+    height: 7px;
+}
+
+.vbc-table-container::-webkit-scrollbar-track {
+    background: #f5f3f8;
+}
+
+.vbc-table-container::-webkit-scrollbar-thumb {
+    background: #c9c0dc;
+    border-radius: 20px;
+}
+
+.vbc-table-container::-webkit-scrollbar-thumb:hover {
+    background: #a995c7;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .vbc-summary-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .vbc-summary-card:last-child {
+        grid-column: span 2;
+    }
+
+    .vbc-toolbar {
+        flex-wrap: wrap;
+    }
+
+    .vbc-search-wrapper {
+        width: 280px;
+    }
+
+    .vbc-table {
+        min-width: 760px;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .vbc-page {
+        padding: 18px 14px 30px;
+    }
+
+    .vbc-header {
+        align-items: flex-start;
+    }
+
+    .vbc-header-left {
+        align-items: flex-start;
+    }
+
+    .vbc-header-icon {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        font-size: 22px;
+        border-radius: 13px;
+    }
+
+    .vbc-header h1 {
+        font-size: 22px;
+    }
+
+    .vbc-header p {
+        display: none;
+    }
+
+    .vbc-back-btn {
+        height: 38px;
+        padding: 0 12px;
+    }
+
+    .vbc-back-btn {
+        font-size: 0;
+    }
+
+    .vbc-back-btn i {
+        font-size: 17px;
+    }
+
+    .vbc-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vbc-summary-card:last-child {
+        grid-column: auto;
+    }
+
+    .vbc-card-header {
+        padding: 15px;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .vbc-toolbar {
+        padding: 13px 15px;
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .vbc-search-wrapper {
+        width: 100%;
+    }
+
+    .vbc-pagination {
+        padding: 13px 15px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .vbc-page-buttons {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 2px;
+    }
+}
+
+
+@media (max-width: 450px) {
+
+    .vbc-header h1 {
+        font-size: 19px;
+    }
+
+    .vbc-eyebrow {
+        font-size: 9px;
+    }
+
+    .vbc-summary-card {
+        min-height: 88px;
+    }
+
+    .vbc-summary-icon {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+    }
+
+    .vbc-class-badge {
+        align-self: flex-start;
+    }
+
+    .vbc-pagination-info {
+        font-size: 10px;
+    }
+
+    .vbc-page-buttons button {
+        min-width: 29px;
+        height: 30px;
+    }
+}

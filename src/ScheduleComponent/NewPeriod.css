@@ -1,0 +1,630 @@
+/* =========================================================
+   NEW PERIOD
+   Purple + White ERP Dashboard UI
+   ========================================================= */
+
+.np-page {
+    min-height: calc(100vh - 70px);
+    padding: 30px;
+    background: #f7f5fc;
+    font-family: "Poppins", sans-serif;
+}
+
+.np-container {
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.np-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 25px;
+}
+
+.np-header-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #6f42c1,
+        #8e63d2
+    );
+
+    color: #ffffff;
+    font-size: 23px;
+
+    box-shadow:
+        0 8px 20px rgba(111, 66, 193, 0.2);
+}
+
+.np-title {
+    margin: 0;
+
+    color: #29213d;
+
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.np-subtitle {
+    margin: 4px 0 0;
+
+    color: #81788f;
+
+    font-size: 13px;
+}
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.np-card {
+    padding: 30px;
+
+    background: #ffffff;
+
+    border: 1px solid #eee9f7;
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 30px rgba(66, 40, 100, 0.08);
+}
+
+/* =========================================================
+   CARD HEADING
+   ========================================================= */
+
+.np-card-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding-bottom: 22px;
+    margin-bottom: 24px;
+
+    border-bottom: 1px solid #eeeaf4;
+}
+
+.np-heading-icon {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #f0eafa;
+    color: #6f42c1;
+
+    font-size: 20px;
+}
+
+.np-card-heading h3 {
+    margin: 0;
+
+    color: #302744;
+
+    font-size: 18px;
+    font-weight: 650;
+}
+
+.np-card-heading p {
+    margin: 4px 0 0;
+
+    color: #938b9e;
+
+    font-size: 11px;
+}
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+.np-message {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 11px 14px;
+    margin-bottom: 24px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.np-message-success {
+    background: #edf9f2;
+    border: 1px solid #ccebd8;
+    color: #2c8651;
+}
+
+.np-message-error {
+    background: #fff1f2;
+    border: 1px solid #f5d2d6;
+    color: #cf4d5c;
+}
+
+/* =========================================================
+   SECTION TITLE
+   ========================================================= */
+
+.np-section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+.np-section-title > span {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #eee8f8;
+    color: #6f42c1;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.np-section-title h4 {
+    margin: 0;
+
+    color: #40374c;
+
+    font-size: 14px;
+    font-weight: 650;
+}
+
+.np-section-title p {
+    margin: 2px 0 0;
+
+    color: #9b92a4;
+
+    font-size: 10px;
+}
+
+/* =========================================================
+   FORM GRID
+   ========================================================= */
+
+.np-form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+/* =========================================================
+   FORM FIELD
+   ========================================================= */
+
+.np-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.np-field label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    margin-bottom: 8px;
+
+    color: #453b50;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.np-field label i {
+    color: #6f42c1;
+    font-size: 13px;
+}
+
+/* =========================================================
+   INPUT
+   ========================================================= */
+
+.np-select-wrapper,
+.np-input-wrapper {
+    position: relative;
+}
+
+.np-input {
+    width: 100%;
+    height: 47px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #ddd6eb;
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #4b4352;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+
+    outline: none;
+
+    transition: all 0.25s ease;
+}
+
+select.np-input {
+    appearance: none;
+    padding: 0 40px 0 14px;
+    cursor: pointer;
+}
+
+.np-text-input {
+    padding: 0 14px 0 40px;
+}
+
+.np-input:hover {
+    border-color: #b9a6dc;
+}
+
+.np-input:focus {
+    border-color: #6f42c1;
+
+    box-shadow:
+        0 0 0 3px rgba(111, 66, 193, 0.1);
+}
+
+.np-input::placeholder {
+    color: #b1a9b7;
+}
+
+.np-arrow {
+    position: absolute;
+
+    right: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    pointer-events: none;
+
+    color: #83788f;
+
+    font-size: 12px;
+}
+
+.np-input-icon {
+    position: absolute;
+
+    left: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #8060b4;
+
+    font-size: 14px;
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   TIMING SECTION
+   ========================================================= */
+
+.np-timing-section {
+    margin-top: 30px;
+    padding-top: 25px;
+
+    border-top: 1px solid #eeeaf4;
+}
+
+.np-time-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 45px 1fr;
+
+    align-items: end;
+
+    gap: 12px;
+}
+
+.np-time-arrow {
+    width: 34px;
+    height: 34px;
+
+    margin-bottom: 7px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f0eafa;
+    color: #6f42c1;
+
+    font-size: 13px;
+}
+
+/* =========================================================
+   PREVIEW
+   ========================================================= */
+
+.np-preview {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    margin-top: 27px;
+    padding: 15px 17px;
+
+    border: 1px solid #e4dcf1;
+    border-radius: 11px;
+
+    background: #f8f5fc;
+}
+
+.np-preview-icon {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #6f42c1;
+    color: #ffffff;
+
+    font-size: 16px;
+}
+
+.np-preview-content span {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #a096aa;
+
+    font-size: 8px;
+    font-weight: 600;
+
+    letter-spacing: 0.8px;
+}
+
+.np-preview-content strong {
+    display: block;
+
+    color: #463b50;
+
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.np-preview-content p {
+    margin: 3px 0 0;
+
+    color: #8e8498;
+
+    font-size: 10px;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.np-button-area {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 28px;
+    padding-top: 22px;
+
+    border-top: 1px solid #eeeaf4;
+}
+
+.np-cancel-button,
+.np-submit-button {
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 0 18px;
+
+    border-radius: 8px;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.np-cancel-button {
+    border: 1px solid #ddd6eb;
+
+    background: #ffffff;
+
+    color: #6d6377;
+}
+
+.np-cancel-button:hover {
+    background: #f6f3fa;
+    border-color: #c9b9df;
+}
+
+.np-submit-button {
+    min-width: 155px;
+
+    border: none;
+
+    background: linear-gradient(
+        135deg,
+        #6f42c1,
+        #8258ce
+    );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 7px 18px rgba(111, 66, 193, 0.2);
+}
+
+.np-submit-button:hover {
+    transform: translateY(-2px);
+
+    background: linear-gradient(
+        135deg,
+        #6035ae,
+        #754bc1
+    );
+
+    box-shadow:
+        0 10px 22px rgba(111, 66, 193, 0.27);
+}
+
+.np-submit-arrow {
+    transition: transform 0.2s ease;
+}
+
+.np-submit-button:hover .np-submit-arrow {
+    transform: translateX(3px);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .np-page {
+        padding: 20px 15px;
+    }
+
+    .np-card {
+        padding: 22px;
+    }
+
+    .np-form-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .np-time-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .np-time-arrow {
+        display: none;
+    }
+
+    .np-button-area {
+        justify-content: stretch;
+    }
+
+    .np-cancel-button,
+    .np-submit-button {
+        flex: 1;
+    }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .np-page {
+        padding: 15px 10px;
+    }
+
+    .np-header {
+        gap: 11px;
+    }
+
+    .np-header-icon {
+        width: 45px;
+        height: 45px;
+
+        border-radius: 11px;
+
+        font-size: 19px;
+    }
+
+    .np-title {
+        font-size: 20px;
+    }
+
+    .np-subtitle {
+        font-size: 10px;
+    }
+
+    .np-card {
+        padding: 18px;
+
+        border-radius: 14px;
+    }
+
+    .np-card-heading {
+        padding-bottom: 18px;
+    }
+
+    .np-heading-icon {
+        width: 42px;
+        height: 42px;
+
+        font-size: 18px;
+    }
+
+    .np-preview {
+        align-items: flex-start;
+    }
+
+    .np-button-area {
+        flex-direction: column-reverse;
+    }
+
+    .np-cancel-button,
+    .np-submit-button {
+        width: 100%;
+    }
+}

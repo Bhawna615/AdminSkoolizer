@@ -23,7 +23,10 @@ const CharacterCertificate = () => {
     }
 
     if (!admissionDate || !graduationDate) {
-      setMessage({ type: "error", text: "Please select both dates." });
+      setMessage({
+        type: "error",
+        text: "Please select both admission and graduation dates.",
+      });
       return;
     }
 
@@ -50,7 +53,6 @@ const CharacterCertificate = () => {
       );
 
       if (response.data.status) {
-        // ✅ Redirect with message to View Page
         navigate("/dashboard/StudentComponent/ViewCharacterCertificates", {
           state: {
             type: "success",
@@ -58,7 +60,10 @@ const CharacterCertificate = () => {
           },
         });
       } else {
-        setMessage({ type: "error", text: response.data.message });
+        setMessage({
+          type: "error",
+          text: response.data.message,
+        });
       }
     } catch (error) {
       setMessage({
@@ -73,64 +78,140 @@ const CharacterCertificate = () => {
   };
 
   return (
-    <div className="col-12">
-      {/* MESSAGE BAR */}
-      {message.text && (
-        <div
-          className={
-            message.type === "success" ? "success-bar" : "error-bar"
-          }
-        >
-          {message.text}
+    <div className="character-page">
+      <div className="character-container">
+        {/* PAGE HEADER */}
+        <div className="character-header">
+          <div className="character-header-icon">
+            <i className="bi bi-award-fill"></i>
+          </div>
+
+          <div>
+            <h2>Character Certificate</h2>
+            <p>
+              Enter the student's admission and graduation details to generate
+              the certificate.
+            </p>
+          </div>
         </div>
-      )}
 
-      <div className="col-12 form-box">
-        <div className="col-12 title-bar">
-          <p style={{ padding: "10px", margin: 0 }}>Details</p>
-        </div>
+        {/* MESSAGE */}
+        {message.text && (
+          <div
+            className={`certificate-message ${
+              message.type === "success"
+                ? "certificate-success"
+                : "certificate-error"
+            }`}
+          >
+            <i
+              className={
+                message.type === "success"
+                  ? "bi bi-check-circle-fill"
+                  : "bi bi-exclamation-circle-fill"
+              }
+            ></i>
 
-        <div className="col-12" style={{ padding: "20px" }}>
-          <form onSubmit={handleSubmit}>
-            <div className="col-4">
-              <p className="character-certificate-details">
-                Admission Date
-              </p>
-              <DatePicker
-                selected={admissionDate}
-                onChange={(date) => setAdmissionDate(date)}
-                dateFormat="dd-MM-yyyy"
-                placeholderText="dd-mm-yyyy"
-                className="form-input"
-              />
+            <span>{message.text}</span>
+          </div>
+        )}
 
-              <p
-                className="character-certificate-details"
-                style={{ marginTop: "10px" }}
-              >
-                Graduation Date
-              </p>
-              <DatePicker
-                selected={graduationDate}
-                onChange={(date) => setGraduationDate(date)}
-                dateFormat="dd-MM-yyyy"
-                placeholderText="dd-mm-yyyy"
-                className="form-input"
-              />
+        {/* FORM CARD */}
+        <div className="character-card">
+          <div className="character-card-header">
+            <div>
+              <h3>Certificate Details</h3>
+              <p>Please select the required dates below.</p>
             </div>
 
-            <div
-              className="col-12"
-              style={{ textAlign: "center", margin: "20px 0" }}
-            >
-              <input
+            <div className="certificate-badge">
+              <i className="bi bi-file-earmark-text-fill"></i>
+              Character Certificate
+            </div>
+          </div>
+
+          <form onSubmit={handleSubmit}>
+            <div className="character-form-grid">
+              {/* ADMISSION DATE */}
+              <div className="certificate-field">
+                <label>
+                  <i className="bi bi-calendar-plus"></i>
+                  Admission Date
+                </label>
+
+                <DatePicker
+                  selected={admissionDate}
+                  onChange={(date) => setAdmissionDate(date)}
+                  dateFormat="dd-MM-yyyy"
+                  placeholderText="Select admission date"
+                  className="certificate-date-input"
+                  maxDate={new Date()}
+                />
+              </div>
+
+              {/* GRADUATION DATE */}
+              <div className="certificate-field">
+                <label>
+                  <i className="bi bi-mortarboard-fill"></i>
+                  Graduation Date
+                </label>
+
+                <DatePicker
+                  selected={graduationDate}
+                  onChange={(date) => setGraduationDate(date)}
+                  dateFormat="dd-MM-yyyy"
+                  placeholderText="Select graduation date"
+                  className="certificate-date-input"
+                  minDate={admissionDate || undefined}
+                />
+              </div>
+            </div>
+
+            {/* ACTION BUTTONS */}
+            <div className="certificate-actions">
+              <button
+                type="button"
+                className="certificate-cancel-btn"
+                onClick={() => navigate(-1)}
+              >
+                <i className="bi bi-arrow-left"></i>
+                Back
+              </button>
+
+              <button
                 type="submit"
-                value={loading ? "Generating..." : "Generate"}
-                className="form-submit"
+                className="certificate-generate-btn"
                 disabled={loading}
-              />
+              >
+                {loading ? (
+                  <>
+                    <span className="certificate-spinner"></span>
+                    Generating...
+                  </>
+                ) : (
+                  <>
+                    <i className="bi bi-file-earmark-plus-fill"></i>
+                    Generate Certificate
+                  </>
+                )}
+              </button>
             </div>
           </form>
+        </div>
+
+        {/* INFORMATION CARD */}
+        <div className="certificate-info-card">
+          <div className="certificate-info-icon">
+            <i className="bi bi-info-circle-fill"></i>
+          </div>
+
+          <div>
+            <h4>Before generating</h4>
+            <p>
+              Please verify the admission and graduation dates carefully. These
+              details will be used in the student's character certificate.
+            </p>
+          </div>
         </div>
       </div>
     </div>

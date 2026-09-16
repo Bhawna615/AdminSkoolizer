@@ -27,9 +27,34 @@ const AttendanceDetails = () => {
             presentDays: res.data.attendance[1],
             absentDates: res.data.attendance[2] || [],
           });
+
+        } else if (res.data.message === "Student found in transferred records") {
+
+          const student = res.data.data.find(
+            (s) => String(s.student_id) === String(id)
+          );
+
+          if (student) {
+            setInfo({
+              Name: student.name,
+              Class: student.last_class || "N/A",
+              Rollno: student.roll_no,
+              image: null,
+            });
+
+            setAttendance({
+              totalDays: Number(student.working_days || 0),
+              presentDays: Number(student.present_days || 0),
+              absentDates: [],
+            });
+          } else {
+            setError("Student not found in transferred list");
+          }
+
         } else {
           setError(res.data.message);
         }
+
       } catch (err) {
         setError("Server Error");
       } finally {

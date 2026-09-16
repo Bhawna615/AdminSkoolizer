@@ -1,94 +1,346 @@
-.main-container {
-  padding: 20px;
-  background-color: #f4f6f9;
+/* =========================================
+CHARACTER CERTIFICATE CONTAINER
+========================================= */
+
+.character-certificate-container {
+width: 100%;
+min-height: 100vh;
+padding: 25px;
+background: #f7f5fb;
+color: #29213d;
+font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Success box */
-.success-box {
-  border: 1px solid #5bc0de;
-  background: #e9f7fc;
-  padding: 15px;
-  margin-bottom: 15px;
-  font-size: 18px;
-  color: #31708f;
+/* =========================================
+SUCCESS MESSAGE
+========================================= */
+
+.character-certificate-success {
+width: 100%;
+margin-bottom: 20px;
+padding: 13px 18px;
+border: 1px solid #d8c8f5;
+border-radius: 8px;
+background: #f3edff;
+color: #6d28d9;
+font-size: 14px;
+font-weight: 600;
 }
 
-/* Controls */
-.table-controls {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+/* =========================================
+CONTROLS
+========================================= */
+
+.character-certificate-controls {
+display: flex;
+align-items: center;
+justify-content: space-between;
+width: 100%;
+padding: 18px 20px;
+border: 1px solid #e5def1;
+border-bottom: none;
+border-radius: 10px 10px 0 0;
+background: #ffffff;
+color: #51485f;
+font-size: 14px;
 }
 
-.table-controls select,
-.table-controls input {
-  padding: 5px;
+/* =========================================
+ENTRIES
+========================================= */
+
+.character-certificate-entries {
+display: flex;
+align-items: center;
+gap: 4px;
 }
 
-/* Table */
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
+.character-certificate-entries select {
+margin: 0 5px;
+padding: 7px 28px 7px 9px;
+border: 1px solid #d8cde8;
+border-radius: 6px;
+outline: none;
+background: #ffffff;
+color: #4c1d95;
+cursor: pointer;
 }
 
-.data-table thead {
-  background-color: #3c5dbf;   /* EXACT BLUE */
-  color: white;
+.character-certificate-entries select:focus {
+border-color: #7c3aed;
+box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.12);
 }
 
-.data-table th {
-  padding: 3px;
-  text-align: center;
-  font-weight: 600;
-  border: 1px solid #2f4ea0;
-  font-size: 14px;
+/* =========================================
+SEARCH
+========================================= */
+
+.character-certificate-search {
+display: flex;
+align-items: center;
 }
 
-.data-table td {
-  padding: 10px;
-  text-align: center;
-  border: 1px solid #ddd;
-  font-size: 14px;
+.character-certificate-search input {
+height: 36px;
+margin-left: 5px;
+padding: 7px 11px !important;
+border: 1px solid #d8cde8 !important;
+border-radius: 6px;
+outline: none;
+background: #ffffff;
+color: #35264d;
+font-size: 14px;
 }
 
-.data-table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+.character-certificate-search input:focus {
+border-color: #7c3aed !important;
+box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.12);
 }
 
-/* Eye icon */
-.eye-icon {
-  cursor: pointer;
-  font-size: 18px;
+/* =========================================
+TABLE SCROLL
+========================================= */
+
+.character-certificate-table-scroll {
+width: 100%;
+max-width: 100%;
+overflow-x: auto;
+overflow-y: hidden;
+background: #ffffff;
+border-left: 1px solid #e5def1;
+border-right: 1px solid #e5def1;
+-webkit-overflow-scrolling: touch;
 }
 
-.eye-icon:hover {
-  color: #3c5dbf;
+/* =========================================
+TABLE SCROLLBAR
+========================================= */
+.character-certificate-table thead,
+.character-certificate-table thead tr {
+  background: linear-gradient(135deg, #5b21b6, #7c3aed);
 }
 
-/* No data */
-.no-data {
-  padding: 15px;
-}
-
-/* Pagination */
-.pagination {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-  align-items: center;
-}
-
-.pagination button {
-  padding: 5px 10px;
-  margin-left: 5px;
-  border: 1px solid #ccc;
-  background: white;
-  cursor: pointer;
-}
-
-.pagination .active-page {
-  background: #3c5dbf;
-  color: white;
+.character-certificate-table thead th {
+  padding: 14px 12px;
+  background: transparent;
+  color: #ffffff;
   border: none;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+}
+.character-certificate-table-scroll::-webkit-scrollbar {
+height: 8px;
+}
+
+.character-certificate-table-scroll::-webkit-scrollbar-track {
+background: #f1edf7;
+}
+
+.character-certificate-table-scroll::-webkit-scrollbar-thumb {
+background: #b79be8;
+border-radius: 10px;
+}
+
+.character-certificate-table-scroll::-webkit-scrollbar-thumb:hover {
+background: #7c3aed;
+}
+
+/* Firefox */
+
+.character-certificate-table-scroll {
+scrollbar-width: thin;
+scrollbar-color: #b79be8 #f1edf7;
+}
+
+/* =========================================
+TABLE
+========================================= */
+
+.character-certificate-table {
+width: 100%;
+min-width: 1400px;
+border-collapse: collapse;
+background: #ffffff;
+}
+
+/* =========================================
+TABLE HEADER
+========================================= */
+
+.character-certificate-table thead {
+background: #6d28d9;
+}
+
+.character-certificate-table th {
+padding: 14px 12px;
+border: none;
+color: #ffffff;
+font-size: 12px;
+font-weight: 600;
+text-align: left;
+white-space: nowrap;
+}
+
+/* =========================================
+TABLE BODY
+========================================= */
+
+.character-certificate-table td {
+padding: 14px 12px;
+border-bottom: 1px solid #eeeaf4;
+color: #51485f;
+font-size: 13px;
+white-space: nowrap;
+}
+
+.character-certificate-table tbody tr {
+background: #ffffff;
+transition: background 0.2s ease;
+}
+
+.character-certificate-table tbody tr:hover {
+background: #faf7ff;
+}
+
+/* =========================================
+FIRST COLUMNS
+========================================= */
+
+.character-certificate-table td:first-child {
+color: #6d28d9;
+font-weight: 600;
+}
+
+.character-certificate-table td:nth-child(2) {
+color: #6d28d9;
+font-weight: 500;
+}
+
+.character-certificate-table td:nth-child(3) {
+color: #3f2763;
+font-weight: 600;
+}
+
+/* =========================================
+EYE ICON
+========================================= */
+
+.character-certificate-eye {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+width: 34px;
+height: 34px;
+padding: 8px;
+border-radius: 7px;
+background: #f0e9ff;
+color: #6d28d9;
+cursor: pointer;
+transition: all 0.2s ease;
+}
+
+.character-certificate-eye:hover {
+background: #6d28d9;
+color: #ffffff;
+transform: translateY(-1px);
+}
+
+/* =========================================
+NO DATA
+========================================= */
+
+.character-certificate-no-data {
+padding: 45px 20px !important;
+text-align: center;
+color: #958ca2 !important;
+font-size: 14px !important;
+}
+
+/* =========================================
+PAGINATION
+========================================= */
+
+.character-certificate-pagination {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 17px 20px;
+border: 1px solid #e5def1;
+border-top: none;
+border-radius: 0 0 10px 10px;
+background: #ffffff;
+color: #756b82;
+font-size: 13px;
+}
+
+/* =========================================
+PAGINATION BUTTONS
+========================================= */
+
+.character-certificate-pagination-buttons {
+display: flex;
+align-items: center;
+}
+
+.character-certificate-pagination-buttons button {
+margin-left: 5px;
+padding: 8px 13px;
+border: 1px solid #d9cfea;
+border-radius: 6px;
+background: #ffffff;
+color: #6d28d9;
+font-size: 13px;
+cursor: pointer;
+transition: all 0.2s ease;
+}
+
+.character-certificate-pagination-buttons button:hover {
+border-color: #7c3aed;
+background: #f3edff;
+}
+
+.character-certificate-pagination-buttons
+.character-certificate-active-page {
+border-color: #6d28d9;
+background: #6d28d9;
+color: #ffffff;
+}
+
+/* =========================================
+RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+.character-certificate-container {
+padding: 15px;
+}
+
+.character-certificate-controls {
+gap: 15px;
+flex-wrap: wrap;
+}
+
+.character-certificate-entries {
+width: 100%;
+}
+
+.character-certificate-search {
+width: 100%;
+}
+
+.character-certificate-search input {
+width: 60% !important;
+}
+
+.character-certificate-table {
+min-width: 1400px;
+}
+
+.character-certificate-pagination {
+gap: 15px;
+flex-wrap: wrap;
+}
 }

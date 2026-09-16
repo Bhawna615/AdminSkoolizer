@@ -1,0 +1,201 @@
+/* =========================================================
+   ACCEPT STUDENT FEE - PURPLE & WHITE THEME
+   All classes are unique to this component
+========================================================= */
+
+.asf-page {
+  min-height: 100vh;
+  padding: 35px;
+  background: #f7f5fb;
+  font-family: "Questrial", sans-serif;
+}
+
+/* Main Card */
+.asf-card {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid #e5def2;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 18px rgba(88, 52, 130, 0.08);
+}
+
+/* Header */
+.asf-header {
+  background: #6f42c1;
+  color: #ffffff;
+  padding: 16px 25px;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* Form */
+.asf-form {
+  padding: 30px;
+}
+
+/* Three Columns */
+.asf-columns {
+  display: flex;
+  gap: 30px;
+  align-items: stretch;
+}
+
+/* Individual Column */
+.asf-column {
+  flex: 1;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e7def4;
+  border-radius: 8px;
+}
+
+/* Vertical divider feel */
+.asf-column:not(:last-child) {
+  border-right: 1px solid #e3d8f0;
+}
+
+/* Field */
+.asf-field {
+  margin-bottom: 22px;
+}
+
+/* Label */
+.asf-label {
+  display: block;
+  margin-bottom: 7px;
+  color: #5a4773;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Static Information */
+.asf-value {
+  min-height: 40px;
+  padding: 10px 12px;
+  background: #faf8fd;
+  border: 1px solid #e4dcef;
+  border-radius: 5px;
+  color: #30243d;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+
+/* Inputs */
+.asf-input,
+.asf-select {
+  width: 100%;
+  height: 42px;
+  padding: 8px 12px;
+  border: 1px solid #cfc1df;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #30243d;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+/* Focus */
+.asf-input:focus,
+.asf-select:focus {
+  border-color: #6f42c1;
+  box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.12);
+}
+
+/* Placeholder */
+.asf-input::placeholder {
+  color: #a69aae;
+}
+
+/* Accept Button Area */
+.asf-button-area {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid #eee7f5;
+}
+
+/* Accept Button */
+.asf-accept-button {
+  width: 280px;
+  padding: 11px 25px;
+  border: none;
+  border-radius: 6px;
+  background: #6f42c1;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Button Hover */
+.asf-accept-button:hover {
+  background: #59329d;
+  box-shadow: 0 5px 12px rgba(111, 66, 193, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Button Active */
+.asf-accept-button:active {
+  transform: translateY(0);
+}
+
+/* Loading */
+.asf-loading {
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #6f42c1;
+  font-size: 18px;
+  font-weight: 600;
+  background: #f7f5fb;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+  .asf-page {
+    padding: 20px;
+  }
+
+  .asf-columns {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .asf-column {
+    border-right: 1px solid #e7def4 !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .asf-page {
+    padding: 12px;
+  }
+
+  .asf-header {
+    font-size: 18px;
+    padding: 14px 18px;
+  }
+
+  .asf-form {
+    padding: 15px;
+  }
+
+  .asf-column {
+    padding: 15px;
+  }
+
+  .asf-accept-button {
+    width: 100%;
+  }
+}

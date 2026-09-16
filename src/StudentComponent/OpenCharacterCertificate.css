@@ -1,73 +1,850 @@
-.certificate-wrapper {
-  width: 90%;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #000;
-  background: #fff;
-  font-family: "Times New Roman", serif;
+
+/* =========================================================
+   OPEN CHARACTER CERTIFICATE
+   A4 PRINTABLE CERTIFICATE
+   PURPLE + WHITE ERP THEME
+========================================================= */
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.open-character-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 30px;
+    background: #f5f2fa;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.header-section {
-  display: flex;
+
+/* =========================================================
+   SCREEN TOOLBAR
+========================================================= */
+
+.open-character-toolbar {
+    width: 210mm;
+    max-width: 100%;
+    margin: 0 auto 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.open-character-back-btn,
+.open-character-print-btn {
+    height: 44px;
+    padding: 0 18px;
+
+    border-radius: 8px;
+
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-  text-align: center;
+
+    gap: 8px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
 }
 
-.logo {
-  width: 80px;
-  margin-bottom: 5px;
+.open-character-back-btn {
+    background: #ffffff;
+    border: 1px solid #d9d0e8;
+    color: #4c3b5f;
 }
 
-.school-name {
-  margin: 5px 0;
-  font-weight: bold;
+.open-character-back-btn:hover {
+    border-color: #6f42c1;
+    color: #6f42c1;
+    background: #faf8fd;
 }
 
-.contact-row {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-  font-weight: 500;
+.open-character-print-btn {
+    border: none;
+    background: #6f42c1;
+    color: #ffffff;
+
+    box-shadow: 0 4px 12px rgba(111, 66, 193, 0.25);
 }
 
-hr {
-  border: 1px solid #000;
+.open-character-print-btn:hover {
+    background: #59319f;
+    transform: translateY(-1px);
 }
 
-.certificate-title {
-  text-align: center;
-  margin: 20px 0;
-  letter-spacing: 1px;
+
+/* =========================================================
+   A4 PAPER
+========================================================= */
+
+.open-character-paper {
+    position: relative;
+
+    width: 210mm;
+    min-height: 297mm;
+
+    margin: 0 auto;
+
+    padding: 15mm;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    color: #222222;
+
+    border: 1px solid #ddd5e8;
+
+    box-shadow: 0 8px 30px rgba(45, 25, 70, 0.12);
+
+    overflow: hidden;
 }
 
-.certificate-body {
-  margin: 30px 40px;
-  font-size: 16px;
-  line-height: 28px;
-  text-align: justify;
+
+/* =========================================================
+   DECORATIVE BORDERS
+========================================================= */
+
+.open-character-top-line {
+    width: 100%;
+    height: 5px;
+
+    background: #6f42c1;
+
+    margin-bottom: 18px;
 }
 
-.print-btn {
-  text-align: center;
-  margin-top: 30px;
+.open-character-bottom-line {
+    width: 100%;
+    height: 4px;
+
+    background: #6f42c1;
+
+    margin-top: 20px;
 }
 
-.print-btn button {
-  padding: 10px 20px;
-  background: #4CAF50;
-  border: none;
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
+
+/* =========================================================
+   SCHOOL HEADER
+========================================================= */
+
+.open-character-school-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 22px;
+
+    text-align: center;
 }
+
+.open-character-logo-wrapper {
+    width: 95px;
+    height: 95px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.open-character-logo {
+    max-width: 95px;
+    max-height: 95px;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+.open-character-school-info {
+    flex: 1;
+}
+
+.open-character-school-info h1 {
+    margin: 0 0 7px;
+
+    font-size: 28px;
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    color: #3d205c;
+
+    letter-spacing: 0.7px;
+}
+
+.open-character-address {
+    margin: 0 0 4px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    color: #444444;
+}
+
+.open-character-affiliation {
+    margin: 0;
+
+    font-size: 12px;
+
+    color: #666666;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.open-character-contact {
+    margin-top: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 45px;
+
+    font-size: 11.5px;
+    color: #555555;
+}
+
+.open-character-contact span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.open-character-contact i {
+    color: #6f42c1;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.open-character-divider {
+    width: 100%;
+    height: 1px;
+
+    background: #d9d0e6;
+
+    margin: 15px 0;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.open-character-title-area {
+    text-align: center;
+
+    padding: 5px 0 3px;
+}
+
+.open-character-title-area h2 {
+    margin: 0 0 9px;
+
+    font-size: 21px;
+
+    color: #4b2670;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+}
+
+.open-character-title-area h3 {
+    margin: 0;
+
+    font-size: 13px;
+
+    color: #333333;
+
+    font-weight: 700;
+
+    letter-spacing: 1.4px;
+}
+
+
+/* =========================================================
+   META
+========================================================= */
+
+.open-character-meta {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin: 18px 0 20px;
+
+    font-size: 12px;
+
+    color: #444444;
+}
+
+.open-character-meta strong {
+    color: #3d205c;
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+.open-character-body {
+    padding: 0 4px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 15px;
+
+    line-height: 1.9;
+
+    color: #292929;
+
+    text-align: justify;
+}
+
+.open-character-body p {
+    margin: 0 0 18px;
+}
+
+.open-character-body strong {
+    color: #111111;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   STUDENT DETAILS
+========================================================= */
+
+.open-character-student-details {
+    margin-top: 25px;
+
+    border: 1px solid #d8cee5;
+
+    border-radius: 5px;
+
+    overflow: hidden;
+
+    font-size: 12px;
+}
+
+.open-character-detail-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    border-bottom: 1px solid #ddd5e5;
+}
+
+.open-character-detail-row:last-child {
+    border-bottom: none;
+}
+
+.open-character-detail-row > div {
+    padding: 10px 13px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.open-character-detail-row > div:first-child {
+    border-right: 1px solid #ddd5e5;
+}
+
+.open-character-detail-row span {
+    color: #756b80;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    font-weight: 700;
+}
+
+.open-character-detail-row strong {
+    color: #33223f;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   SIGNATURE
+========================================================= */
+
+.open-character-signature-section {
+    margin-top: 55px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+}
+
+.open-character-signature-left,
+.open-character-signature-right {
+    width: 180px;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    color: #333333;
+}
+
+.open-character-signature-right {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.open-character-signature-line {
+    width: 150px;
+
+    height: 1px;
+
+    background: #333333;
+
+    margin: 0 auto 7px;
+}
+
+.open-character-signature-space {
+    width: 150px;
+
+    height: 35px;
+
+    margin-bottom: 3px;
+}
+
+.open-character-signature-right strong {
+    display: block;
+
+    margin-bottom: 3px;
+}
+
+.open-character-signature-right span {
+    font-size: 10px;
+
+    color: #666666;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.open-character-footer {
+    margin-top: 38px;
+
+    padding-top: 10px;
+
+    border-top: 1px solid #ddd5e5;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    font-size: 9px;
+
+    color: #777777;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.open-character-loading {
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #f7f5fb;
+
+    color: #5d3b7e;
+
+    font-family: Arial, sans-serif;
+}
+
+.open-character-loader {
+    width: 38px;
+    height: 38px;
+
+    border: 4px solid #e5daf0;
+    border-top-color: #6f42c1;
+
+    border-radius: 50%;
+
+    animation: openCharacterSpin 0.8s linear infinite;
+
+    margin-bottom: 14px;
+}
+
+@keyframes openCharacterSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.open-character-error {
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #f7f5fb;
+
+    padding: 20px;
+
+    font-family: Arial, sans-serif;
+}
+
+.open-character-error-box {
+    width: 100%;
+    max-width: 450px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border: 1px solid #e3d9ed;
+
+    border-radius: 14px;
+
+    box-shadow: 0 8px 25px rgba(60, 30, 90, 0.08);
+}
+
+.open-character-error-box > i {
+    font-size: 45px;
+
+    color: #b42318;
+
+    display: block;
+
+    margin-bottom: 12px;
+}
+
+.open-character-error-box h3 {
+    margin: 0 0 8px;
+
+    color: #35204f;
+}
+
+.open-character-error-box p {
+    margin: 0 0 20px;
+
+    color: #777080;
+
+    font-size: 14px;
+}
+
+.open-character-error-box button {
+    border: none;
+
+    background: #6f42c1;
+
+    color: #ffffff;
+
+    padding: 10px 18px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .open-character-page {
+        padding: 15px;
+    }
+
+    .open-character-paper {
+        width: 100%;
+        min-height: auto;
+
+        padding: 30px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .open-character-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .open-character-back-btn,
+    .open-character-print-btn {
+        width: 100%;
+    }
+
+    .open-character-paper {
+        padding: 20px;
+    }
+
+    .open-character-school-header {
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+    .open-character-school-info h1 {
+        font-size: 22px;
+    }
+
+    .open-character-contact {
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .open-character-meta {
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 7px;
+    }
+
+    .open-character-body {
+        font-size: 14px;
+        line-height: 1.75;
+    }
+
+    .open-character-detail-row {
+        grid-template-columns: 1fr;
+    }
+
+    .open-character-detail-row > div:first-child {
+        border-right: none;
+
+        border-bottom: 1px solid #ddd5e5;
+    }
+
+    .open-character-signature-section {
+        margin-top: 40px;
+    }
+
+}
+
+
+/* =========================================================
+   PRINT
+   IMPORTANT:
+   DO NOT HIDE .open-character-paper
+========================================================= */
 
 @media print {
-  .print-btn {
-    display: none;
-  }
 
-  .certificate-wrapper {
-    border: none;
-    width: 100%;
-  }
+    @page {
+        size: A4 portrait;
+
+        margin: 0;
+    }
+
+    html,
+    body {
+        width: 210mm;
+        min-height: 297mm;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        background: #ffffff !important;
+    }
+
+    body {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Hide ONLY screen controls */
+
+    .open-character-toolbar {
+        display: none !important;
+    }
+
+    /* Remove page background */
+
+    .open-character-page {
+        width: 210mm;
+        min-height: 297mm;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        background: #ffffff !important;
+    }
+
+    /*
+       IMPORTANT:
+       Keep certificate visible.
+    */
+
+    .open-character-paper {
+        display: block !important;
+
+        position: relative;
+
+        width: 210mm;
+        min-height: 297mm;
+
+        margin: 0 !important;
+
+        padding: 15mm;
+
+        box-sizing: border-box;
+
+        background: #ffffff !important;
+
+        border: none !important;
+
+        box-shadow: none !important;
+
+        overflow: visible !important;
+    }
+
+    /*
+       Prevent certificate sections from being
+       accidentally removed by parent CSS.
+    */
+
+    .open-character-school-header,
+    .open-character-contact,
+    .open-character-title-area,
+    .open-character-meta,
+    .open-character-body,
+    .open-character-student-details,
+    .open-character-signature-section,
+    .open-character-footer,
+    .open-character-top-line,
+    .open-character-bottom-line {
+        display: block;
+        visibility: visible;
+    }
+
+    .open-character-school-header {
+        display: flex !important;
+    }
+
+    .open-character-contact {
+        display: flex !important;
+    }
+
+    .open-character-meta {
+        display: flex !important;
+    }
+
+    .open-character-detail-row {
+        display: grid !important;
+    }
+
+    .open-character-signature-section {
+        display: flex !important;
+    }
+
+    .open-character-footer {
+        display: flex !important;
+    }
+
+    /*
+       Keep logo visible during printing.
+    */
+
+    .open-character-logo {
+        display: block !important;
+
+        visibility: visible !important;
+
+        max-width: 95px;
+        max-height: 95px;
+    }
+
+    /*
+       Avoid splitting certificate blocks.
+    */
+
+    .open-character-school-header,
+    .open-character-title-area,
+    .open-character-student-details,
+    .open-character-signature-section {
+        break-inside: avoid;
+
+        page-break-inside: avoid;
+    }
+
+    .open-character-body p {
+        break-inside: avoid;
+
+        page-break-inside: avoid;
+    }
+
+    .open-character-divider {
+        background: #bfb6c9 !important;
+    }
+
+    .open-character-top-line,
+    .open-character-bottom-line {
+        background: #6f42c1 !important;
+    }
+
+    /*
+       Ensure text prints.
+    */
+
+    .open-character-paper * {
+        visibility: visible !important;
+    }
+
 }

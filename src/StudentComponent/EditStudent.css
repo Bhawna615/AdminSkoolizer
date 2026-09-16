@@ -1,87 +1,464 @@
-/* Outer Background */
-.kk-wrapper {
-  background: #f2f2f2;
-  padding: 20px;
+/* =========================================
+EDIT STUDENT
+PURPLE + WHITE THEME
+ALL CLASSES ARE UNIQUE
+========================================= */
+
+.edit-student-page {
+width: 100%;
+min-height: 100vh;
+padding: 30px 25px 50px;
+background: #f7f4ff;
+font-family: "Poppins", Arial, sans-serif;
 }
 
-/* Main Form Box */
-.kk-form-box {
-  background: #ffffff;
-  border: 1px solid #ddd;
+/* =========================================
+MAIN CARD
+========================================= */
+
+.edit-student-card {
+width: 100%;
+max-width: 1250px;
+margin: 0 auto;
+overflow: hidden;
+background: #ffffff;
+border: 1px solid #e5daf2;
+border-radius: 18px;
+box-shadow: 0 8px 30px rgba(91, 45, 145, 0.1);
 }
 
-/* Title Bar */
-.kk-title-bar {
-  background: #dcdcdc;
-  padding: 12px 15px;
-  font-size: 18px;
-  font-weight: 500;
-  color: #333;
+/* =========================================
+HEADER
+========================================= */
+
+.edit-student-header {
+position: relative;
+overflow: hidden;
+padding: 28px 35px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+background: linear-gradient(
+135deg,
+#5f259f,
+#7b2cbf,
+#9255c7
+);
+color: #ffffff;
 }
 
-/* Form */
-.kk-form {
-  padding: 25px;
+.edit-student-header::before {
+content: "";
+position: absolute;
+width: 250px;
+height: 250px;
+right: -80px;
+top: -140px;
+border-radius: 50%;
+background: rgba(255, 255, 255, 0.08);
 }
 
-/* 3 Column Layout */
-.kk-columns {
-  display: flex;
-  gap: 35px;
+.edit-student-header::after {
+content: "";
+position: absolute;
+width: 150px;
+height: 150px;
+right: 180px;
+bottom: -120px;
+border-radius: 50%;
+background: rgba(255, 255, 255, 0.06);
 }
 
-/* Each Column */
-.kk-column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.edit-student-header h1 {
+position: relative;
+z-index: 2;
+margin: 0 0 5px;
+font-size: 26px;
+font-weight: 700;
 }
 
-/* Labels */
-.kk-column label {
-  font-size: 14px;
-  margin-bottom: 5px;
-  margin-top: 12px;
-  color: #333;
+.edit-student-header p {
+position: relative;
+z-index: 2;
+margin: 0;
+color: rgba(255, 255, 255, 0.82);
+font-size: 13px;
 }
 
-/* Inputs & Select */
-.kk-column input,
-.kk-column select {
-    width: 90%;
-  border: 1px solid #bdbdbd;
-  padding: 6px 10px;
-  font-size: 14px;
-  outline: none;
+.edit-student-header-icon {
+position: relative;
+z-index: 2;
+width: 48px;
+height: 48px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 12px;
+background: rgba(255, 255, 255, 0.15);
+border: 1px solid rgba(255, 255, 255, 0.2);
+font-size: 24px;
 }
 
-.kk-column input:focus,
-.kk-column select:focus {
-  background: #ffffff;
-  border-color: #999;
+/* =========================================
+FORM
+========================================= */
+
+.edit-student-form {
+padding: 30px;
 }
 
-/* File input special */
-.kk-column input[type="file"] {
-  padding: 5px;
-  background: #fff;
+/* =========================================
+SECTION
+========================================= */
+
+.edit-student-section {
+margin-bottom: 25px;
+padding: 25px;
+background: #ffffff;
+border: 1px solid #e7ddf3;
+border-radius: 14px;
+box-shadow: 0 3px 14px rgba(91, 45, 145, 0.045);
 }
 
-/* Button */
-.kk-button-wrapper {
-  text-align: center;
-  margin-top: 30px;
+/* =========================================
+SECTION HEADING
+========================================= */
+
+.edit-student-section-heading {
+display: flex;
+align-items: center;
+gap: 13px;
+margin-bottom: 25px;
+padding-bottom: 17px;
+border-bottom: 1px solid #eee7f5;
 }
 
-.kk-update-btn {
-  background: #e5e5e5;
-  border: 1px solid #999;
-  padding: 8px 45px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.3s;
+.edit-student-section-number {
+width: 39px;
+height: 39px;
+min-width: 39px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 10px;
+background: #f1e7fb;
+color: #6a27a6;
+font-size: 12px;
+font-weight: 700;
 }
 
-.kk-update-btn:hover {
-  background: #d6d6d6;
+.edit-student-section-heading h2 {
+margin: 0 0 3px;
+color: #4e2377;
+font-size: 18px;
+font-weight: 700;
+}
+
+.edit-student-section-heading p {
+margin: 0;
+color: #8b7a98;
+font-size: 12px;
+}
+
+/* =========================================
+FORM GRID
+========================================= */
+
+.edit-student-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px 25px;
+}
+
+/* =========================================
+FIELD
+========================================= */
+
+.edit-student-field {
+display: flex;
+flex-direction: column;
+}
+
+.edit-student-field label {
+margin-bottom: 7px;
+color: #554461;
+font-size: 13px;
+font-weight: 600;
+}
+
+/* =========================================
+INPUTS
+========================================= */
+
+.edit-student-field input,
+.edit-student-field select,
+.edit-student-field textarea {
+width: 100%;
+padding: 11px 13px;
+border: 1px solid #dcd2e6;
+border-radius: 8px;
+outline: none;
+background: #ffffff;
+color: #333333;
+font-family: inherit;
+font-size: 13px;
+transition: all 0.25s ease;
+}
+
+.edit-student-field input::placeholder,
+.edit-student-field textarea::placeholder {
+color: #aaa0b0;
+}
+
+/* Focus */
+
+.edit-student-field input:focus,
+.edit-student-field select:focus,
+.edit-student-field textarea:focus {
+border-color: #7b2cbf;
+box-shadow: 0 0 0 3px rgba(123, 44, 191, 0.09);
+}
+
+/* Textarea */
+
+.edit-student-field textarea {
+resize: vertical;
+min-height: 80px;
+}
+
+/* File Input */
+
+.edit-student-field input[type="file"] {
+padding: 8px;
+background: #faf8fd;
+cursor: pointer;
+}
+
+.edit-student-field input[type="file"]::file-selector-button {
+margin-right: 10px;
+padding: 7px 12px;
+border: none;
+border-radius: 6px;
+background: #f0e5fa;
+color: #6826a4;
+font-family: inherit;
+font-size: 12px;
+font-weight: 600;
+cursor: pointer;
+}
+
+/* Full Width Field */
+
+.edit-student-full-field {
+grid-column: span 2;
+}
+
+/* =========================================
+ACTION BUTTONS
+========================================= */
+
+.edit-student-actions {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 15px;
+margin-top: 10px;
+padding-top: 10px;
+}
+
+/* Cancel */
+
+.edit-student-cancel-btn {
+min-width: 130px;
+padding: 12px 25px;
+border: 1px solid #d8cce2;
+border-radius: 8px;
+background: #ffffff;
+color: #6e5d7a;
+font-family: inherit;
+font-size: 13px;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+
+.edit-student-cancel-btn:hover {
+background: #f7f3fa;
+border-color: #bda9cb;
+}
+
+/* Update */
+
+.edit-student-update-btn {
+min-width: 180px;
+padding: 12px 28px;
+border: none;
+border-radius: 8px;
+background: linear-gradient(
+135deg,
+#6124a0,
+#7b2cbf
+);
+color: #ffffff;
+font-family: inherit;
+font-size: 13px;
+font-weight: 600;
+cursor: pointer;
+box-shadow: 0 5px 14px rgba(95, 37, 159, 0.22);
+transition: all 0.3s ease;
+}
+
+.edit-student-update-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 20px rgba(95, 37, 159, 0.3);
+}
+
+/* =========================================
+LOADING
+========================================= */
+
+.edit-student-loading {
+min-height: 400px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+background: #f7f4ff;
+color: #6325a2;
+font-family: "Poppins", Arial, sans-serif;
+}
+
+.edit-student-loading p {
+margin-top: 15px;
+font-size: 14px;
+font-weight: 500;
+}
+
+/* Loading Spinner */
+
+.edit-student-loader {
+width: 35px;
+height: 35px;
+border: 3px solid #e4d5f0;
+border-top-color: #7b2cbf;
+border-radius: 50%;
+animation: editStudentSpin 0.8s linear infinite;
+}
+
+@keyframes editStudentSpin {
+to {
+transform: rotate(360deg);
+}
+}
+
+/* =========================================
+TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+.edit-student-grid {
+grid-template-columns: repeat(2, 1fr);
+}
+
+.edit-student-full-field {
+grid-column: span 2;
+}
+
+}
+
+/* =========================================
+MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+.edit-student-page {
+padding: 15px 10px 30px;
+}
+
+.edit-student-header {
+padding: 23px 20px;
+}
+
+.edit-student-header h1 {
+font-size: 22px;
+}
+
+.edit-student-header-icon {
+width: 42px;
+height: 42px;
+}
+
+.edit-student-form {
+padding: 15px;
+}
+
+.edit-student-section {
+padding: 20px 17px;
+}
+
+.edit-student-grid {
+grid-template-columns: 1fr;
+gap: 17px;
+}
+
+.edit-student-full-field {
+grid-column: auto;
+}
+
+.edit-student-section-heading {
+margin-bottom: 20px;
+}
+
+.edit-student-section-heading h2 {
+font-size: 16px;
+}
+
+.edit-student-actions {
+flex-direction: column-reverse;
+}
+
+.edit-student-cancel-btn,
+.edit-student-update-btn {
+width: 100%;
+}
+
+}
+
+/* =========================================
+SMALL MOBILE
+========================================= */
+
+@media (max-width: 420px) {
+
+.edit-student-header {
+padding: 20px 15px;
+}
+
+.edit-student-header p {
+font-size: 11px;
+}
+
+.edit-student-form {
+padding: 10px;
+}
+
+.edit-student-section {
+padding: 17px 14px;
+border-radius: 11px;
+}
+
+.edit-student-section-number {
+width: 34px;
+height: 34px;
+min-width: 34px;
+}
+
+.edit-student-field input,
+.edit-student-field select,
+.edit-student-field textarea {
+padding: 10px 11px;
+}
+
 }

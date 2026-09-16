@@ -1,129 +1,904 @@
-.report-container {
-  width: 900px;
-  margin: 30px auto;
-  padding: 40px;
-  background: #ffffff;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  font-family: Arial, sans-serif;
+/* =========================================================
+   REPORT PAGE - SCREEN
+========================================================= */
+
+* {
+  box-sizing: border-box;
 }
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body {
+  background: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #303846;
+
+  /* ENABLE VERTICAL SCROLL */
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  overflow: visible;
+}
+
+
+/* =========================================================
+   REPORT CONTAINER
+========================================================= */
+
+.report-container {
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+
+  background: #ffffff;
+
+  padding: 45px 65px 70px;
+
+  color: #303846;
+
+  /* IMPORTANT:
+     Do not hide overflow here.
+     The page will scroll naturally. */
+  overflow: visible;
+}
+
+
+/* =========================================================
+   SCHOOL HEADER
+========================================================= */
 
 .report-header {
+  width: 100%;
+
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 15px;
+  align-items: center;
+
+  gap: 10px;
+
+  margin: 0;
+  padding: 0;
+}
+
+.report-school-logo {
+  width: 65px;
+  height: 65px;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+.school-details {
   text-align: center;
 }
 
-.report-school-logo{
-  width: 70px;
+.report-header h2 {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 22px;
+  font-weight: 500;
+
+  color: #303846;
 }
+
+.report-header p {
+  margin: 7px 0 0;
+
+  font-size: 14px;
+  font-weight: 400;
+
+  color: #303846;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
 
 .report-title {
+  margin: 30px 0 45px;
+
   text-align: center;
-  margin: 25px 0;
-  letter-spacing: 1px;
+
+  font-size: 22px;
+  font-weight: 500;
+
+  color: #303846;
 }
 
+
+/* =========================================================
+   STUDENT INFORMATION
+========================================================= */
+
 .student-section {
+  width: 100%;
+
   display: flex;
   justify-content: space-between;
-  margin-bottom: 30px;
+  align-items: flex-start;
+
+  margin: 0 0 25px;
+
+  min-height: 145px;
+}
+
+.student-left {
+  width: 65%;
 }
 
 .student-left p {
-  margin: 8px 0;
+  margin: 0 0 20px;
+
+  font-size: 16px;
+  line-height: 1.4;
+
+  color: #303846;
+}
+
+.student-left strong {
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   STUDENT IMAGE
+========================================================= */
+
+.student-right {
+  width: 35%;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .student-right img {
-  width: 100px;
-  height: 100px;
+  width: 105px;
+  height: 105px;
+
   object-fit: contain;
+
+  display: block;
 }
+
+
+/* =========================================================
+   TABLE
+========================================================= */
 
 .report-table {
   width: 100%;
+
   border-collapse: collapse;
-  margin-top: 15px;
+  border-spacing: 0;
+
+  margin: 0;
+
+  color: #303846;
+
+  table-layout: fixed;
+
+  font-size: 15px;
 }
 
 .report-table th,
 .report-table td {
-  border: 1px solid #333;
-  padding: 8px;
-  text-align: center;
+  border: 1px solid #333333;
+
+  padding: 10px;
+
+  text-align: left;
+
+  vertical-align: middle;
+
+  word-wrap: break-word;
 }
 
 .report-table th {
-  background-color: #f2f2f2;
+  height: 40px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  background: #ffffff;
+
+  white-space: nowrap;
 }
 
-.total-row {
-  font-weight: bold;
+.report-table td {
+  height: 40px;
+
+  font-size: 15px;
 }
+
+
+/* =========================================================
+   TABLE WIDTHS
+========================================================= */
+
+.report-table th:nth-child(1),
+.report-table td:nth-child(1) {
+  width: 10%;
+}
+
+.report-table th:nth-child(2),
+.report-table td:nth-child(2) {
+  width: 22%;
+}
+
+.report-table th:nth-child(3),
+.report-table td:nth-child(3) {
+  width: 22%;
+}
+
+.report-table th:nth-child(4),
+.report-table td:nth-child(4) {
+  width: 27%;
+}
+
+.report-table th:nth-child(5),
+.report-table td:nth-child(5) {
+  width: 19%;
+}
+
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+.total-row td {
+  font-weight: 700;
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   PERCENTAGE
+========================================================= */
 
 .percentage {
-  margin-top: 15px;
+  margin: 22px 0 0;
+
   font-size: 16px;
+
+  color: #303846;
 }
 
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
 .report-footer {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 80px;
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr;
+
+  margin-top: 120px;
+
+  align-items: start;
+}
+
+.date-place p {
+  margin: 0 0 16px;
+
+  font-size: 15px;
+
+  color: #303846;
 }
 
 .signature {
   text-align: center;
+
+  font-size: 15px;
+
+  color: #303846;
 }
 
-.loading, .error {
+.controller {
   text-align: center;
-  margin-top: 50px;
+}
+
+
+/* =========================================================
+   LOADING / ERROR
+========================================================= */
+
+.loading,
+.error {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-family: Arial, Helvetica, sans-serif;
+
   font-size: 18px;
 }
 
-/* Print Friendly */
-@media print {
+.error {
+  color: #d32f2f;
+}
+
+
+/* =========================================================
+   SCREEN SCROLL
+========================================================= */
+
+@media screen {
+
+  html {
+    height: auto !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
   body {
-    background: none;
+    height: auto !important;
+    min-height: 100vh !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  #root {
+    height: auto !important;
+    min-height: 100vh !important;
+
+    overflow: visible !important;
   }
 
   .report-container {
-    box-shadow: none;
-    margin: 0;
-    width: 100%;
+    height: auto !important;
+    min-height: 100vh !important;
+    max-height: none !important;
+
+    overflow: visible !important;
   }
 }
-@media print {
-  body {
-    -webkit-print-color-adjust: exact;
-    margin: 0;
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media screen and (max-width: 768px) {
+
+  html,
+  body,
+  #root {
+    height: auto !important;
+    min-height: 100vh !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
   }
 
   .report-container {
     width: 100%;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+
+    min-height: 100vh;
+    height: auto;
+
+    padding: 30px 20px 50px;
+
+    overflow: visible;
   }
 
-  .report-header, .student-section, .report-table, .report-footer {
-    page-break-inside: avoid;
+  .student-left {
+    width: 65%;
   }
 
-  table.report-table {
+  .student-right {
+    width: 35%;
+  }
+
+  .student-left p {
+    font-size: 14px;
+  }
+
+  .report-table {
     width: 100%;
-    border-collapse: collapse;
   }
 
-  table.report-table th, table.report-table td {
-    border: 1px solid #000;
-    padding: 8px;
-    text-align: left;
+  .report-table th,
+  .report-table td {
+    padding: 7px 5px;
   }
+
+  .report-table th {
+    font-size: 11px;
+  }
+
+  .report-table td {
+    font-size: 12px;
+  }
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print {
+
+  /* -------------------------------------------------------
+     PAGE
+  ------------------------------------------------------- */
+
+  @page {
+    size: A4 portrait;
+
+    margin: 8mm;
+  }
+
+
+  /* -------------------------------------------------------
+     REMOVE APPLICATION LAYOUT EFFECTS
+  ------------------------------------------------------- */
+
+  html {
+    width: 100% !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: visible !important;
+
+    background: #ffffff !important;
+  }
+
+  body {
+    width: 100% !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: visible !important;
+
+    background: #ffffff !important;
+
+    color: #303846 !important;
+  }
+
+  #root {
+    width: 100% !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: visible !important;
+
+    background: #ffffff !important;
+  }
+
+
+  /* -------------------------------------------------------
+     HIDE EVERYTHING EXCEPT REPORT
+  ------------------------------------------------------- */
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .report-container,
+  .report-container * {
+    visibility: visible !important;
+  }
+
+
+  /* -------------------------------------------------------
+     REPORT ITSELF
+  ------------------------------------------------------- */
+
+  .report-container {
+    position: absolute !important;
+
+    left: 0 !important;
+    top: 0 !important;
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+    max-width: none !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    margin: 0 !important;
+
+    padding: 3mm 2mm 5mm !important;
+
+    overflow: visible !important;
+
+    background: #ffffff !important;
+
+    color: #303846 !important;
+
+    display: block !important;
+
+    transform: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     HEADER
+  ------------------------------------------------------- */
+
+  .report-header {
+    width: 100% !important;
+
+    display: flex !important;
+
+    justify-content: center !important;
+    align-items: center !important;
+
+    gap: 9px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .report-school-logo {
+    width: 62px !important;
+    height: 62px !important;
+
+    display: block !important;
+
+    object-fit: contain !important;
+  }
+
+  .school-details {
+    display: block !important;
+
+    text-align: center !important;
+  }
+
+  .report-header h2 {
+    margin: 0 !important;
+
+    font-family: Georgia, "Times New Roman", serif !important;
+
+    font-size: 21px !important;
+
+    font-weight: 500 !important;
+
+    color: #303846 !important;
+  }
+
+  .report-header p {
+    margin: 6px 0 0 !important;
+
+    font-size: 13px !important;
+
+    color: #303846 !important;
+  }
+
+
+  /* -------------------------------------------------------
+     TITLE
+  ------------------------------------------------------- */
+
+  .report-title {
+    display: block !important;
+
+    width: 100% !important;
+
+    margin: 22px 0 35px !important;
+
+    padding: 0 !important;
+
+    text-align: center !important;
+
+    font-size: 20px !important;
+
+    font-weight: 500 !important;
+
+    color: #303846 !important;
+  }
+
+
+  /* -------------------------------------------------------
+     STUDENT SECTION
+  ------------------------------------------------------- */
+
+  .student-section {
+    width: 100% !important;
+
+    display: flex !important;
+
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+
+    min-height: 125px !important;
+
+    margin: 0 0 22px !important;
+
+    padding: 0 !important;
+  }
+
+  .student-left {
+    width: 65% !important;
+
+    display: block !important;
+  }
+
+  .student-left p {
+    display: block !important;
+
+    margin: 0 0 15px !important;
+
+    font-size: 14px !important;
+
+    line-height: 1.35 !important;
+
+    color: #303846 !important;
+  }
+
+  .student-left strong {
+    font-weight: 700 !important;
+  }
+
+
+  /* -------------------------------------------------------
+     STUDENT IMAGE
+  ------------------------------------------------------- */
+
+  .student-right {
+    width: 35% !important;
+
+    display: flex !important;
+
+    justify-content: center !important;
+
+    align-items: flex-start !important;
+  }
+
+  .student-right img {
+    display: block !important;
+
+    width: 95px !important;
+    height: 95px !important;
+
+    object-fit: contain !important;
+  }
+
+
+  /* -------------------------------------------------------
+     TABLE
+  ------------------------------------------------------- */
+
+  .report-table {
+    display: table !important;
+
+    width: 100% !important;
+
+    max-width: 100% !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    border-collapse: collapse !important;
+
+    border-spacing: 0 !important;
+
+    table-layout: fixed !important;
+
+    font-size: 13px !important;
+
+    color: #303846 !important;
+
+    page-break-inside: avoid !important;
+  }
+
+  .report-table thead {
+    display: table-header-group !important;
+  }
+
+  .report-table tbody {
+    display: table-row-group !important;
+  }
+
+  .report-table tr {
+    display: table-row !important;
+
+    page-break-inside: avoid !important;
+  }
+
+  .report-table th,
+  .report-table td {
+    display: table-cell !important;
+
+    border: 1px solid #333333 !important;
+
+    padding: 7px 7px !important;
+
+    vertical-align: middle !important;
+
+    text-align: left !important;
+
+    color: #303846 !important;
+  }
+
+  .report-table th {
+    height: 34px !important;
+
+    font-size: 12px !important;
+
+    font-weight: 700 !important;
+
+    background: #ffffff !important;
+
+    white-space: nowrap !important;
+  }
+
+  .report-table td {
+    height: 34px !important;
+
+    font-size: 13px !important;
+  }
+
+
+  /* -------------------------------------------------------
+     TABLE COLUMN WIDTHS
+  ------------------------------------------------------- */
+
+  .report-table th:nth-child(1),
+  .report-table td:nth-child(1) {
+    width: 10% !important;
+  }
+
+  .report-table th:nth-child(2),
+  .report-table td:nth-child(2) {
+    width: 22% !important;
+  }
+
+  .report-table th:nth-child(3),
+  .report-table td:nth-child(3) {
+    width: 22% !important;
+  }
+
+  .report-table th:nth-child(4),
+  .report-table td:nth-child(4) {
+    width: 27% !important;
+  }
+
+  .report-table th:nth-child(5),
+  .report-table td:nth-child(5) {
+    width: 19% !important;
+  }
+
+
+  /* -------------------------------------------------------
+     TOTAL
+  ------------------------------------------------------- */
+
+  .total-row {
+    page-break-inside: avoid !important;
+  }
+
+  .total-row td {
+    font-weight: 700 !important;
+
+    background: #ffffff !important;
+  }
+
+
+  /* -------------------------------------------------------
+     PERCENTAGE
+  ------------------------------------------------------- */
 
   .percentage {
-    margin-top: 10px;
-    font-weight: bold;
+    display: block !important;
+
+    margin: 17px 0 0 !important;
+
+    padding: 0 !important;
+
+    font-size: 14px !important;
+
+    color: #303846 !important;
+  }
+
+
+  /* -------------------------------------------------------
+     FOOTER
+  ------------------------------------------------------- */
+
+  .report-footer {
+    width: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns: 1fr 1fr 1fr !important;
+
+    margin-top: 95px !important;
+
+    padding: 0 !important;
+
+    page-break-inside: avoid !important;
+  }
+
+  .date-place {
+    display: block !important;
+  }
+
+  .date-place p {
+    margin: 0 0 13px !important;
+
+    font-size: 13px !important;
+
+    color: #303846 !important;
+  }
+
+  .signature {
+    display: block !important;
+
+    text-align: center !important;
+
+    font-size: 13px !important;
+
+    color: #303846 !important;
+  }
+
+
+  /* -------------------------------------------------------
+     REMOVE TRANSFORMS / FILTERS / EFFECTS
+  ------------------------------------------------------- */
+
+  .report-container,
+  .report-container * {
+    animation: none !important;
+
+    transition: none !important;
+
+    transform: none !important;
+
+    filter: none !important;
+
+    box-shadow: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     IMAGES
+  ------------------------------------------------------- */
+
+  img {
+    -webkit-print-color-adjust: exact !important;
+
+    print-color-adjust: exact !important;
   }
 }

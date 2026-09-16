@@ -1,0 +1,688 @@
+
+/* =========================================================
+   STUDENT METRICS EDIT
+   PURPLE + WHITE ERP UI
+   UNIQUE CLASSES
+========================================================= */
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.student-metrics-edit-page {
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 24px;
+
+    box-sizing: border-box;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.student-metrics-edit-header {
+    width: 100%;
+
+    min-height: 76px;
+
+    padding: 15px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #e6e0ec;
+
+    border-radius: 10px;
+
+    box-sizing: border-box;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================================
+   HEADER LEFT
+========================================================= */
+
+.student-metrics-edit-header-left {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   HEADER ICON
+========================================================= */
+
+.student-metrics-edit-header-icon {
+    width: 45px;
+
+    height: 45px;
+
+    min-width: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #5b2c91;
+
+    color: #ffffff;
+
+    border-radius: 8px;
+
+    font-size: 18px;
+
+    box-shadow:
+        0 3px 8px rgba(91, 44, 145, 0.18);
+}
+
+
+/* =========================================================
+   HEADER TITLE
+========================================================= */
+
+.student-metrics-edit-header h1 {
+    margin: 0;
+
+    color: #2e2635;
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+
+/* =========================================================
+   HEADER SUBTITLE
+========================================================= */
+
+.student-metrics-edit-header p {
+    margin: 4px 0 0;
+
+    color: #877e8e;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   METRIC ID
+========================================================= */
+
+.student-metrics-edit-id {
+    min-height: 32px;
+
+    padding: 0 13px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f1eafb;
+
+    border: 1px solid #dfd2e9;
+
+    color: #6d5d78;
+
+    border-radius: 6px;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+}
+
+.student-metrics-edit-id strong {
+    color: #5b2c91;
+
+    margin-left: 4px;
+}
+
+
+/* =========================================================
+   FORM CARD
+========================================================= */
+
+.student-metrics-edit-card {
+    width: 100%;
+
+    margin: 0 auto;
+
+    background: #ffffff;
+
+    border: 1px solid #e6e0ec;
+
+    border-radius: 10px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 2px 8px rgba(50, 35, 65, 0.04);
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.student-metrics-edit-card-header {
+    min-height: 72px;
+
+    padding: 15px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    border-bottom: 1px solid #eeeaf1;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   CARD TITLE
+========================================================= */
+
+.student-metrics-edit-card-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+
+/* =========================================================
+   SMALL ICON
+========================================================= */
+
+.student-metrics-edit-small-icon {
+    width: 35px;
+
+    height: 35px;
+
+    min-width: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f1eafb;
+
+    color: #5b2c91;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   CARD TITLE TEXT
+========================================================= */
+
+.student-metrics-edit-card-header h2 {
+    margin: 0;
+
+    color: #332a3b;
+
+    font-size: 15px;
+
+    font-weight: 700;
+}
+
+.student-metrics-edit-card-header p {
+    margin: 4px 0 0;
+
+    color: #938a98;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.student-metrics-edit-form {
+    width: 100%;
+
+    padding: 25px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   FIELD
+========================================================= */
+
+.student-metrics-edit-field {
+    width: 100%;
+
+    margin-bottom: 22px;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.student-metrics-edit-field label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #3b3341;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.student-metrics-edit-field label span {
+    color: #d34848;
+
+    margin-left: 3px;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.student-metrics-edit-field input {
+    width: 100%;
+
+    height: 46px;
+
+    padding: 0 14px;
+
+    background: #ffffff;
+
+    border: 1px solid #dcd3e3;
+
+    border-radius: 7px;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    color: #332a3b;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease,
+        background-color 0.15s ease;
+}
+
+
+/* =========================================================
+   INPUT PLACEHOLDER
+========================================================= */
+
+.student-metrics-edit-field input::placeholder {
+    color: #aaa1b0;
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   INPUT FOCUS
+========================================================= */
+
+.student-metrics-edit-field input:focus {
+    border-color: #5b2c91;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(91, 44, 145, 0.10);
+}
+
+
+/* =========================================================
+   FIELD HELP TEXT
+========================================================= */
+
+.student-metrics-edit-field small {
+    display: block;
+
+    margin-top: 6px;
+
+    color: #958b9b;
+
+    font-size: 10px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+========================================================= */
+
+.student-metrics-edit-form-actions {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding-top: 8px;
+
+    margin-top: 4px;
+
+    border-top: 1px solid #eeeaf1;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   ALL BUTTONS
+========================================================= */
+
+.student-metrics-edit-form-actions button {
+    height: 40px;
+
+    padding: 0 17px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    border-radius: 6px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease,
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.student-metrics-edit-form-actions button svg {
+    width: 13px;
+
+    height: 13px;
+
+    fill: currentColor;
+}
+
+
+/* =========================================================
+   CANCEL BUTTON
+========================================================= */
+
+.student-metrics-edit-cancel-btn {
+    background: #ffffff;
+
+    color: #675d6d;
+
+    border: 1px solid #d8d0dd;
+}
+
+.student-metrics-edit-cancel-btn:hover {
+    background: #f7f4f8;
+
+    border-color: #bfb4c5;
+
+    color: #453b4b;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   UPDATE BUTTON
+========================================================= */
+
+.student-metrics-edit-update-btn {
+    background: #5b2c91;
+
+    color: #ffffff;
+
+    border: 1px solid #5b2c91;
+
+    box-shadow:
+        0 2px 5px rgba(91, 44, 145, 0.16);
+}
+
+.student-metrics-edit-update-btn:hover {
+    background: #482175;
+
+    border-color: #482175;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 4px 10px rgba(91, 44, 145, 0.22);
+}
+
+
+/* =========================================================
+   DISABLED BUTTON
+========================================================= */
+
+.student-metrics-edit-form-actions button:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.student-metrics-edit-loading {
+    width: 100%;
+
+    min-height: 350px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    color: #6f6475;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   LOADING SPINNER
+========================================================= */
+
+.student-metrics-edit-spinner {
+    width: 30px;
+
+    height: 30px;
+
+    border: 3px solid #eee7f2;
+
+    border-top-color: #5b2c91;
+
+    border-radius: 50%;
+
+    animation:
+        studentMetricsEditSpin 0.8s linear infinite;
+}
+
+@keyframes studentMetricsEditSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .student-metrics-edit-page {
+        padding: 16px;
+    }
+
+    .student-metrics-edit-header {
+        padding: 14px 16px;
+    }
+
+    .student-metrics-edit-header h1 {
+        font-size: 19px;
+    }
+
+    .student-metrics-edit-card {
+        max-width: 100%;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .student-metrics-edit-page {
+        padding: 10px;
+    }
+
+    .student-metrics-edit-header {
+        min-height: auto;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 12px;
+
+        padding: 14px;
+    }
+
+    .student-metrics-edit-header-left {
+        width: 100%;
+    }
+
+    .student-metrics-edit-header-icon {
+        width: 40px;
+
+        height: 40px;
+
+        min-width: 40px;
+
+        font-size: 16px;
+    }
+
+    .student-metrics-edit-header h1 {
+        font-size: 18px;
+    }
+
+    .student-metrics-edit-header p {
+        font-size: 10px;
+    }
+
+    .student-metrics-edit-id {
+        align-self: flex-start;
+    }
+
+    .student-metrics-edit-card-header {
+        padding: 14px;
+    }
+
+    .student-metrics-edit-form {
+        padding: 18px 14px;
+    }
+
+    .student-metrics-edit-field {
+        margin-bottom: 19px;
+    }
+
+    .student-metrics-edit-field input {
+        height: 44px;
+    }
+
+    .student-metrics-edit-form-actions {
+        justify-content: stretch;
+
+        flex-direction: column-reverse;
+
+        gap: 9px;
+    }
+
+    .student-metrics-edit-form-actions button {
+        width: 100%;
+    }
+}
+

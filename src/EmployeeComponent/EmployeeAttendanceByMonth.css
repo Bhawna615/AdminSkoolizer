@@ -1,0 +1,435 @@
+
+.employee-month-attendance-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 28px;
+    box-sizing: border-box;
+    background: #f7f7fb;
+    color: #302b43;
+    font-family: "Poppins", sans-serif;
+}
+
+/* =====================================
+   PAGE HEADER
+===================================== */
+
+.employee-month-header {
+    width: 100%;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.employee-month-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.employee-month-header-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #7658e8, #5f40d2);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 7px 18px rgba(108, 76, 232, 0.22);
+}
+
+.employee-month-header h2 {
+    margin: 0;
+    color: #302b43;
+    font-size: 21px;
+    line-height: 1.3;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.employee-month-header p {
+    margin: 4px 0 0;
+    color: #888294;
+    font-size: 11px;
+}
+
+.employee-month-header-badge {
+    height: 34px;
+    padding: 0 12px;
+    border: 1px solid #e1dced;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #6d647c;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.employee-month-header-badge i {
+    color: #7051df;
+    font-size: 11px;
+}
+
+/* =====================================
+   MAIN CARD
+===================================== */
+
+.employee-month-card {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border: 1px solid #e8e4f0;
+    border-radius: 15px;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 7px 25px rgba(40, 30, 70, 0.045);
+}
+
+/* =====================================
+   CARD HEADER
+===================================== */
+
+.employee-month-card-header {
+    min-height: 76px;
+    padding: 0 22px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ece9f3;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.employee-month-title-icon {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #f1edff;
+    color: #6c4ce8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+}
+
+.employee-month-card-header h3 {
+    margin: 0;
+    color: #40394f;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.employee-month-card-header p {
+    margin: 3px 0 0;
+    color: #97909f;
+    font-size: 10px;
+}
+
+/* =====================================
+   FORM
+===================================== */
+
+.employee-month-form {
+    padding: 25px 22px 22px;
+    display: grid;
+    grid-template-columns: 1fr 230px;
+    gap: 18px;
+    align-items: end;
+}
+
+.employee-month-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.employee-month-form-group label {
+    color: #625b70;
+    font-size: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.employee-month-form-group label i {
+    color: #7658e8;
+    font-size: 11px;
+}
+
+/* =====================================
+   SELECT
+===================================== */
+
+.employee-month-select-wrapper {
+    width: 100%;
+    position: relative;
+}
+
+.employee-month-input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8e8799;
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.employee-month-select-wrapper select {
+    width: 100%;
+    height: 42px;
+    padding: 0 36px 0 36px;
+    box-sizing: border-box;
+    border: 1px solid #ddd9e8;
+    border-radius: 9px;
+    outline: none;
+    appearance: none;
+    background: #ffffff;
+    color: #554e61;
+    font-family: "Poppins", sans-serif;
+    font-size: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.employee-month-select-wrapper select:hover {
+    border-color: #cfc5eb;
+}
+
+.employee-month-select-wrapper select:focus {
+    border-color: #7658e5;
+    box-shadow: 0 0 0 3px rgba(108, 76, 232, 0.08);
+}
+
+.employee-month-select-arrow {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9992a4;
+    font-size: 9px;
+    pointer-events: none;
+}
+
+/* =====================================
+   MONTH PREVIEW
+===================================== */
+
+.employee-month-preview {
+    min-height: 42px;
+    padding: 6px 10px;
+    box-sizing: border-box;
+    border: 1px solid #e8e4ee;
+    border-radius: 9px;
+    background: #faf9fc;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.employee-month-preview.active {
+    background: #f8f6ff;
+    border-color: #ded5f6;
+}
+
+.employee-month-preview-icon {
+    width: 29px;
+    height: 29px;
+    flex-shrink: 0;
+    border-radius: 7px;
+    background: #eeebf5;
+    color: #9a93a5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+}
+
+.employee-month-preview.active .employee-month-preview-icon {
+    background: #e9e3ff;
+    color: #6c4ce8;
+}
+
+.employee-month-preview-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.employee-month-preview-content span {
+    color: #9c95a6;
+    font-size: 7px;
+}
+
+.employee-month-preview-content strong {
+    color: #655e70;
+    font-size: 9px;
+    font-weight: 600;
+}
+
+/* =====================================
+   VIEW BUTTON
+===================================== */
+
+.employee-month-view-btn {
+    grid-column: span 2;
+    width: 100%;
+    height: 42px;
+    margin-top: 2px;
+    border: 0;
+    border-radius: 9px;
+    background: linear-gradient(135deg, #7658e8, #5f40d2);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: "Poppins", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(103, 72, 220, 0.18);
+    transition: all 0.2s ease;
+}
+
+.employee-month-view-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(103, 72, 220, 0.25);
+}
+
+.employee-month-view-btn:active {
+    transform: translateY(0);
+}
+
+.employee-month-view-btn i {
+    font-size: 12px;
+}
+
+.employee-month-external-icon {
+    margin-left: 3px;
+    font-size: 10px !important;
+    opacity: 0.8;
+}
+
+/* =====================================
+   INFO BOX
+===================================== */
+
+.employee-month-info {
+    margin: 0 22px 22px;
+    padding: 11px 12px;
+    box-sizing: border-box;
+    border: 1px solid #e5def8;
+    border-radius: 9px;
+    background: #faf8ff;
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+}
+
+.employee-month-info-icon {
+    width: 27px;
+    height: 27px;
+    flex-shrink: 0;
+    border-radius: 7px;
+    background: #eee9ff;
+    color: #7253df;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+}
+
+.employee-month-info > div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.employee-month-info strong {
+    color: #5d566b;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.employee-month-info p {
+    margin: 0;
+    color: #97909f;
+    font-size: 8px;
+    line-height: 1.6;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 700px) {
+
+    .employee-month-attendance-page {
+        padding: 20px;
+    }
+
+    .employee-month-header {
+        align-items: flex-start;
+    }
+
+    .employee-month-header-badge {
+        display: none;
+    }
+
+    .employee-month-form {
+        grid-template-columns: 1fr;
+    }
+
+    .employee-month-view-btn {
+        grid-column: auto;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .employee-month-attendance-page {
+        padding: 15px;
+    }
+
+    .employee-month-header-icon {
+        width: 43px;
+        height: 43px;
+        font-size: 18px;
+    }
+
+    .employee-month-header h2 {
+        font-size: 18px;
+    }
+
+    .employee-month-header p {
+        font-size: 10px;
+    }
+
+    .employee-month-card-header {
+        padding: 15px;
+    }
+
+    .employee-month-form {
+        padding: 20px 15px 18px;
+    }
+
+    .employee-month-info {
+        margin: 0 15px 15px;
+    }
+
+    .employee-month-view-btn span {
+        font-size: 9px;
+    }
+}

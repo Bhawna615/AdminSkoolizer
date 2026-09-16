@@ -1,0 +1,848 @@
+/* =========================================================
+   BUSES PAGE
+========================================================= */
+
+.buses-page {
+  min-height: 100vh;
+  background: #f7f7fb;
+  padding: 30px;
+  color: #29253d;
+}
+
+.buses-page * {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.buses-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.buses-header-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.buses-main-icon {
+  width: 68px;
+  height: 68px;
+  min-width: 68px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 31px;
+  box-shadow: 0 12px 28px rgba(109, 40, 217, 0.22);
+}
+
+.buses-eyebrow {
+  display: block;
+  color: #8b5cf6;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  margin-bottom: 5px;
+}
+
+.buses-header h1 {
+  margin: 0;
+  color: #29253d;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.buses-header p {
+  margin: 6px 0 0;
+  color: #918d9d;
+  font-size: 14px;
+}
+
+.buses-add-header-btn {
+  height: 46px;
+  padding: 0 19px;
+  border: none;
+  border-radius: 11px;
+  background: linear-gradient(135deg, #6d28d9, #7c3aed);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 20px rgba(109, 40, 217, 0.2);
+  transition: 0.25s ease;
+}
+
+.buses-add-header-btn i {
+  font-size: 17px;
+}
+
+.buses-add-header-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(109, 40, 217, 0.28);
+}
+
+/* =========================================================
+   SUCCESS MESSAGE
+========================================================= */
+
+.bus-success-message {
+  max-width: 850px;
+  margin: 0 auto 25px;
+  min-height: 62px;
+  padding: 12px 15px;
+  border: 1px solid #ddd2f5;
+  border-radius: 13px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  box-shadow: 0 7px 22px rgba(45, 35, 75, 0.05);
+  animation: successSlide 0.3s ease;
+}
+
+@keyframes successSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-message-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #eee7ff;
+  color: #6d28d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+}
+
+.bus-success-message div:nth-child(2) {
+  flex: 1;
+}
+
+.bus-success-message strong {
+  display: block;
+  color: #39334c;
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+.bus-success-message span {
+  color: #888394;
+  font-size: 11px;
+}
+
+.bus-success-message > button {
+  border: none;
+  background: transparent;
+  color: #aaa5b2;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.bus-success-message > button:hover {
+  color: #6d28d9;
+}
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.bus-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  max-width: 1250px;
+  margin: 0 auto 25px;
+}
+
+.bus-stat-card {
+  min-height: 125px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #e9e6f0;
+  border-radius: 17px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 7px 25px rgba(42, 35, 65, 0.045);
+  transition: 0.25s ease;
+}
+
+.bus-stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(42, 35, 65, 0.08);
+}
+
+.bus-stat-icon {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+}
+
+.bus-stat-icon.purple {
+  background: #eee7ff;
+  color: #6d28d9;
+}
+
+.bus-stat-icon.blue {
+  background: #e8f1ff;
+  color: #3674d9;
+}
+
+.bus-stat-icon.green {
+  background: #e8f8ef;
+  color: #26965b;
+}
+
+.bus-stat-icon.orange {
+  background: #fff1df;
+  color: #db811b;
+}
+
+.bus-stat-content {
+  min-width: 0;
+}
+
+.bus-stat-content > span {
+  display: block;
+  color: #9691a1;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.bus-stat-content strong {
+  display: block;
+  color: #302b45;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.bus-stat-content small {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 7px;
+  color: #aaa5b3;
+  font-size: 9px;
+}
+
+.bus-stat-content small i {
+  color: #8b5cf6;
+}
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.buses-main-card {
+  max-width: 1250px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #e9e6f0;
+  border-radius: 21px;
+  box-shadow: 0 10px 35px rgba(43, 35, 70, 0.05);
+  overflow: visible;
+}
+
+.buses-card-header {
+  padding: 25px 28px;
+  border-bottom: 1px solid #eeeaf3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.section-label {
+  display: block;
+  color: #8b5cf6;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin-bottom: 5px;
+}
+
+.buses-card-header h2 {
+  margin: 0;
+  color: #302b45;
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.buses-card-header p {
+  margin: 5px 0 0;
+  color: #9692a2;
+  font-size: 11px;
+}
+
+.fleet-count {
+  min-height: 35px;
+  padding: 0 12px;
+  border-radius: 9px;
+  background: #f5f1ff;
+  color: #6d28d9;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.fleet-count i {
+  font-size: 15px;
+}
+
+/* =========================================================
+   BUS GRID
+========================================================= */
+
+.bus-grid {
+  padding: 25px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* =========================================================
+   BUS CARD
+========================================================= */
+
+.bus-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid #e8e4ef;
+  border-radius: 18px;
+  padding: 20px;
+  overflow: visible;
+  transition: 0.25s ease;
+}
+
+.bus-card:hover {
+  border-color: #d7c9f1;
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(58, 39, 93, 0.09);
+}
+
+/* Top */
+
+.bus-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 5;
+}
+
+.bus-number {
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: 0 9px;
+  border-radius: 7px;
+  background: #f4efff;
+  color: #7040ca;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+}
+
+.bus-menu-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ece8f1;
+  border-radius: 9px;
+  background: #fff;
+  color: #918b9c;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  transition: 0.2s ease;
+}
+
+.bus-menu-btn:hover {
+  background: #f5f1ff;
+  color: #6d28d9;
+  border-color: #ddd1f2;
+}
+
+/* Dropdown */
+
+.bus-dropdown {
+  position: absolute;
+  right: 0;
+  top: 38px;
+  min-width: 145px;
+  padding: 5px;
+  border: 1px solid #e5e0ec;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(40, 30, 65, 0.15);
+  z-index: 50;
+}
+
+.bus-dropdown button {
+  width: 100%;
+  border: none;
+  background: transparent;
+  border-radius: 7px;
+  padding: 10px 11px;
+  color: #d1435b;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+}
+
+.bus-dropdown button:hover {
+  background: #fff1f3;
+}
+
+.bus-dropdown button i {
+  font-size: 15px;
+}
+
+/* =========================================================
+   BUS VISUAL
+========================================================= */
+
+.bus-visual {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0 16px;
+}
+
+.bus-icon-circle {
+  width: 65px;
+  height: 65px;
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    #eee6ff,
+    #f7f3ff
+  );
+  color: #6d28d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 31px;
+}
+
+.bus-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 9px;
+  border-radius: 8px;
+  background: #effaf3;
+  color: #32925d;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38a866;
+}
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.bus-title h3 {
+  margin: 0 0 6px;
+  color: #302b45;
+  font-size: 17px;
+  font-weight: 800;
+  text-transform: capitalize;
+}
+
+.bus-title span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #9994a3;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.bus-title span i {
+  color: #8b5cf6;
+  font-size: 13px;
+}
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.bus-divider {
+  height: 1px;
+  background: #eeeaf3;
+  margin: 17px 0;
+}
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+.bus-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px 10px;
+}
+
+.bus-detail {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.detail-icon {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 8px;
+  background: #f7f5fa;
+  color: #7d758d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.bus-detail span {
+  display: block;
+  color: #aaa5b3;
+  font-size: 8px;
+  margin-bottom: 2px;
+}
+
+.bus-detail strong {
+  display: block;
+  color: #494355;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90px;
+}
+
+/* =========================================================
+   CARD FOOTER
+========================================================= */
+
+.bus-card-footer {
+  margin-top: 19px;
+  padding-top: 13px;
+  border-top: 1px solid #eeeaf3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bus-card-footer span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #aaa5b3;
+  font-size: 8px;
+  font-weight: 600;
+}
+
+.bus-card-footer span i {
+  color: #8b5cf6;
+  font-size: 13px;
+}
+
+.bus-card-footer > i {
+  color: #aaa5b3;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.bus-card:hover .bus-card-footer > i {
+  color: #6d28d9;
+  transform: translateX(3px);
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.bus-loading {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bus-loader {
+  width: 55px;
+  height: 55px;
+  border-radius: 16px;
+  background: #f0eaff;
+  color: #6d28d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.bus-loader i {
+  animation: busSpin 0.9s linear infinite;
+}
+
+@keyframes busSpin {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.bus-loading p {
+  margin: 13px 0 0;
+  color: #9994a4;
+  font-size: 12px;
+}
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.bus-empty-state {
+  min-height: 380px;
+  padding: 50px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.empty-bus-icon {
+  width: 85px;
+  height: 85px;
+  border-radius: 24px;
+  background: #f1eaff;
+  color: #7040ca;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+  margin-bottom: 20px;
+}
+
+.bus-empty-state h3 {
+  margin: 0;
+  color: #39334d;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.bus-empty-state p {
+  max-width: 380px;
+  margin: 8px auto 20px;
+  color: #9994a4;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.bus-empty-state button {
+  height: 42px;
+  padding: 0 17px;
+  border: none;
+  border-radius: 10px;
+  background: #6d28d9;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  box-shadow: 0 7px 18px rgba(109, 40, 217, 0.2);
+  transition: 0.2s ease;
+}
+
+.bus-empty-state button:hover {
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   FLOATING BUTTON
+========================================================= */
+
+.floating-add-bus {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 58px;
+  height: 58px;
+  border: none;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+  color: #fff;
+  font-size: 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 28px rgba(109, 40, 217, 0.28);
+  z-index: 100;
+  transition: 0.25s ease;
+}
+
+.floating-add-bus:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 16px 32px rgba(109, 40, 217, 0.35);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+  .bus-stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bus-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .buses-page {
+    padding: 22px;
+  }
+
+  .buses-header {
+    align-items: flex-start;
+  }
+
+  .buses-header h1 {
+    font-size: 26px;
+  }
+
+  .bus-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .buses-page {
+    padding: 16px;
+  }
+
+  .buses-header {
+    flex-direction: column;
+  }
+
+  .buses-header-left {
+    width: 100%;
+  }
+
+  .buses-add-header-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .buses-main-icon {
+    width: 57px;
+    height: 57px;
+    min-width: 57px;
+    border-radius: 16px;
+    font-size: 26px;
+  }
+
+  .buses-header h1 {
+    font-size: 23px;
+  }
+
+  .buses-header p {
+    font-size: 11px;
+  }
+
+  .bus-stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .buses-card-header {
+    padding: 20px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .bus-grid {
+    padding: 15px;
+  }
+
+  .floating-add-bus {
+    right: 20px;
+    bottom: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .buses-header-left {
+    gap: 12px;
+  }
+
+  .buses-eyebrow {
+    font-size: 9px;
+  }
+
+  .buses-header h1 {
+    font-size: 21px;
+  }
+
+  .bus-card {
+    padding: 17px;
+  }
+
+  .bus-details {
+    gap: 13px 6px;
+  }
+}

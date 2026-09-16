@@ -1,0 +1,416 @@
+/* =========================================================
+   STUDENT ATTENDANCE DETAILS
+   PURPLE + WHITE THEME
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+/* =========================
+   MAIN PAGE
+========================= */
+
+.student-attendance-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px;
+  background: #f7f5fb;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.student-attendance-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  background: #ffffff;
+  border: 1px solid #e8e2f0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(91, 44, 135, 0.08);
+}
+
+
+/* =========================
+   STUDENT PROFILE
+========================= */
+
+.student-attendance-profile {
+  display: flex;
+  min-height: 230px;
+  border-bottom: 1px solid #e8e2f0;
+}
+
+.student-attendance-image-section {
+  width: 30%;
+  min-width: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background: linear-gradient(
+    135deg,
+    #5b2c87,
+    #7d3c98
+  );
+}
+
+.student-attendance-image-wrapper {
+  width: 165px;
+  height: 165px;
+  padding: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.student-attendance-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+
+/* =========================
+   STUDENT INFO
+========================= */
+
+.student-attendance-info-section {
+  width: 70%;
+  padding: 35px 40px;
+  background: #ffffff;
+}
+
+.student-attendance-student-name {
+  margin: 0 0 30px;
+  color: #5b2c87;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.student-attendance-info-grid {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.student-attendance-info-item {
+  min-width: 180px;
+  padding: 16px 20px;
+  background: #f8f5fc;
+  border-left: 4px solid #7d3c98;
+  border-radius: 8px;
+}
+
+.student-attendance-label {
+  display: block;
+  margin-bottom: 7px;
+  color: #8b8295;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.student-attendance-value {
+  color: #2d2035;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+
+/* =========================
+   ATTENDANCE SECTION
+========================= */
+
+.student-attendance-details-section {
+  padding: 35px;
+}
+
+.student-attendance-heading-wrapper {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.student-attendance-heading {
+  margin: 0;
+  color: #5b2c87;
+  font-size: 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.student-attendance-heading-line {
+  width: 70px;
+  height: 4px;
+  margin: 12px auto 0;
+  border-radius: 20px;
+  background: #7d3c98;
+}
+
+
+/* =========================
+   STATISTICS CARDS
+========================= */
+
+.student-attendance-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.student-attendance-stat-card {
+  padding: 28px 20px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #e8e2f0;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(91, 44, 135, 0.07);
+  transition: 0.3s ease;
+}
+
+.student-attendance-stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(91, 44, 135, 0.14);
+}
+
+.student-attendance-stat-label {
+  margin: 0 0 12px;
+  color: #776b82;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.student-attendance-stat-number {
+  margin: 0;
+  color: #5b2c87;
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.student-attendance-percentage-card {
+  background: #5b2c87;
+  border-color: #5b2c87;
+}
+
+.student-attendance-percentage-card .student-attendance-stat-label,
+.student-attendance-percentage-card .student-attendance-stat-number {
+  color: #ffffff;
+}
+
+
+/* =========================
+   ATTENDANCE SUMMARY
+========================= */
+
+.student-attendance-summary {
+  margin: 30px 0;
+  padding: 22px;
+  text-align: center;
+  background: #f8f5fc;
+  border: 1px solid #e8e2f0;
+  border-radius: 10px;
+}
+
+.student-attendance-summary-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 0;
+  color: #5e5367;
+  font-size: 20px;
+}
+
+.student-attendance-summary-number {
+  color: #5b2c87;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+
+/* =========================
+   ABSENT DATES
+========================= */
+
+.student-attendance-absent-section {
+  margin-top: 30px;
+  padding: 25px;
+  background: #ffffff;
+  border: 1px solid #e8e2f0;
+  border-radius: 12px;
+}
+
+.student-attendance-absent-heading {
+  margin: 0 0 20px;
+  color: #5b2c87;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.student-attendance-absent-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 15px;
+}
+
+.student-attendance-absent-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 18px;
+  background: #f8f5fc;
+  border-left: 4px solid #7d3c98;
+  border-radius: 8px;
+}
+
+.student-attendance-date-icon {
+  font-size: 22px;
+}
+
+.student-attendance-date {
+  color: #403548;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.student-attendance-no-absence {
+  padding: 25px;
+  text-align: center;
+  color: #5b2c87;
+  font-size: 18px;
+  font-weight: 600;
+  background: #f8f5fc;
+  border-radius: 8px;
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.student-attendance-loading {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #5b2c87;
+  font-size: 18px;
+  background: #f7f5fb;
+}
+
+.student-attendance-loader {
+  width: 45px;
+  height: 45px;
+  margin-bottom: 15px;
+  border: 4px solid #e8e2f0;
+  border-top-color: #5b2c87;
+  border-radius: 50%;
+  animation: student-attendance-spin 0.8s linear infinite;
+}
+
+@keyframes student-attendance-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================
+   ERROR / EMPTY
+========================= */
+
+.student-attendance-error,
+.student-attendance-empty {
+  margin: 30px;
+  padding: 25px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #e8e2f0;
+  border-radius: 10px;
+  color: #5b2c87;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.student-attendance-error {
+  border-left: 5px solid #7d3c98;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 900px) {
+  .student-attendance-profile {
+    flex-direction: column;
+  }
+
+  .student-attendance-image-section,
+  .student-attendance-info-section {
+    width: 100%;
+  }
+
+  .student-attendance-image-section {
+    min-width: auto;
+  }
+
+  .student-attendance-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .student-attendance-page {
+    padding: 15px;
+  }
+
+  .student-attendance-image-section {
+    padding: 25px;
+  }
+
+  .student-attendance-info-section {
+    padding: 25px 20px;
+  }
+
+  .student-attendance-details-section {
+    padding: 25px 15px;
+  }
+
+  .student-attendance-heading {
+    font-size: 24px;
+  }
+
+  .student-attendance-student-name {
+    font-size: 25px;
+  }
+
+  .student-attendance-info-grid {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .student-attendance-info-item {
+    width: 100%;
+  }
+
+  .student-attendance-stat-number {
+    font-size: 36px;
+  }
+
+  .student-attendance-summary-text {
+    font-size: 16px;
+  }
+
+  .student-attendance-summary-number {
+    font-size: 26px;
+  }
+
+  .student-attendance-absent-list {
+    grid-template-columns: 1fr;
+  }
+}

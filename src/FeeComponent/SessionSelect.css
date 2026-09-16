@@ -1,0 +1,46 @@
+body {
+  font-family: "Rubik-Regular", sans-serif;
+  background-color: #f5f5f5;
+}
+
+.session-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  /* center screen */
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+}
+
+.session-container h1 {
+  margin-bottom: 20px;
+}
+
+.session-container select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+.session-container button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.session-container button:hover {
+  background-color: #0056b3;
+}

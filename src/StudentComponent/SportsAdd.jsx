@@ -1,10 +1,20 @@
+
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {
+    FaTrophy,
+    FaCalendarAlt,
+    FaPlus,
+    FaArrowLeft,
+    FaCheckCircle,
+    FaExclamationCircle
+} from "react-icons/fa";
 import "./SportsAdd.css";
 
 const SportsAdd = () => {
     const navigate = useNavigate();
+
     const BASE_URL =
         "http://localhost/kkblossom/api.php/Adminapi/AdminStudentSports";
 
@@ -15,6 +25,7 @@ const SportsAdd = () => {
 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
         setForm({
@@ -25,65 +36,225 @@ const SportsAdd = () => {
 
     const submit = (e) => {
         e.preventDefault();
+
         setError("");
         setSuccess("");
+        setLoading(true);
 
-        axios.post(`${BASE_URL}/insert`, form)
-            .then(res => {
+        axios
+            .post(`${BASE_URL}/insert`, form)
+            .then((res) => {
                 if (res.data.status) {
-                    setSuccess("Event Added Successfully");
-                    setTimeout(() => navigate("/dashboard/StudentComponent/StudentSports"), 1000);
+                    setSuccess("Sports event added successfully");
+
+                    setTimeout(() => {
+                        navigate(
+                            "/dashboard/StudentComponent/StudentSports"
+                        );
+                    }, 1000);
                 } else {
-                    setError(res.data.message);
+                    setError(
+                        res.data.message || "Failed to add sports event"
+                    );
                 }
             })
-            .catch(() => setError("Failed to add event"));
+            .catch(() => {
+                setError("Failed to add sports event");
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     };
 
     return (
-        <div className="col-md-12 innerview">
+        <div className="student-sports-add-page">
+
+            {/* =====================================================
+                PAGE HEADER
+            ===================================================== */}
+
+            <div className="student-sports-add-header">
+
+                <div className="student-sports-add-header-left">
+
+                    <div className="student-sports-add-header-icon">
+                        <FaTrophy />
+                    </div>
+
+                    <div>
+                        <h1>Add Sports Event</h1>
+                        <p>
+                            Create a new student sports event
+                        </p>
+                    </div>
+
+                </div>
+
+                <button
+                    type="button"
+                    className="student-sports-add-back-btn"
+                    onClick={() =>
+                        navigate(
+                            "/dashboard/StudentComponent/StudentSports"
+                        )
+                    }
+                >
+                    <FaArrowLeft />
+                    <span>Back</span>
+                </button>
+
+            </div>
+
+
+            {/* =====================================================
+                ALERTS
+            ===================================================== */}
+
             {error && (
-                <div className="col-md-12 error-bar">
-                    <i className="las la-exclamation-triangle"></i> {error}
+                <div className="student-sports-add-alert student-sports-add-alert-error">
+                    <FaExclamationCircle />
+                    <span>{error}</span>
                 </div>
             )}
 
             {success && (
-                <div className="col-md-12 success-bar">
-                    <i className="las la-check-square"></i> {success}
+                <div className="student-sports-add-alert student-sports-add-alert-success">
+                    <FaCheckCircle />
+                    <span>{success}</span>
                 </div>
             )}
 
-            <form onSubmit={submit}>
-                <div className="gap">
-                    <div className="col-md-4">
-                        <p className="details">Name</p>
-                        <input
-                            type="text"
-                            className="form-input"
-                            name="name"
-                            value={form.name}
-                            onChange={handleChange}
-                        />
+
+            {/* =====================================================
+                FORM CARD
+            ===================================================== */}
+
+            <div className="student-sports-add-card">
+
+                {/* CARD HEADER */}
+
+                <div className="student-sports-add-card-header">
+
+                    <div>
+                        <h2>Sports Event Details</h2>
+                        <p>
+                            Enter the details of the sports event below
+                        </p>
                     </div>
 
-                    <div className="col-md-4">
-                        <p className="details">Date</p>
-                        <input
-                            type="date"
-                            className="form-input"
-                            name="date"
-                            value={form.date}
-                            onChange={handleChange}
-                        />
+                    <div className="student-sports-add-card-icon">
+                        <FaTrophy />
                     </div>
+
                 </div>
-                <div className="col-md-12">
-                    <button type="submit" className="form-submit">
-                        Add
-                    </button>
-                </div>
-            </form>
+
+
+                {/* FORM */}
+
+                <form
+                    onSubmit={submit}
+                    className="student-sports-add-form"
+                >
+
+                    <div className="student-sports-add-form-grid">
+
+                        {/* NAME */}
+
+                        <div className="student-sports-add-field">
+
+                            <label htmlFor="sports-event-name">
+                                Event Name
+                                <span>*</span>
+                            </label>
+
+                            <div className="student-sports-add-input-wrap">
+
+                                <FaTrophy />
+
+                                <input
+                                    id="sports-event-name"
+                                    type="text"
+                                    name="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                    placeholder="Enter sports event name"
+                                    required
+                                />
+
+                            </div>
+
+                        </div>
+
+
+                        {/* DATE */}
+
+                        <div className="student-sports-add-field">
+
+                            <label htmlFor="sports-event-date">
+                                Event Date
+                                <span>*</span>
+                            </label>
+
+                            <div className="student-sports-add-input-wrap">
+
+                                <FaCalendarAlt />
+
+                                <input
+                                    id="sports-event-date"
+                                    type="date"
+                                    name="date"
+                                    value={form.date}
+                                    onChange={handleChange}
+                                    required
+                                />
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    {/* FORM FOOTER */}
+
+                    <div className="student-sports-add-form-footer">
+
+                        <button
+                            type="button"
+                            className="student-sports-add-cancel-btn"
+                            onClick={() =>
+                                navigate(
+                                    "/dashboard/StudentComponent/StudentSports"
+                                )
+                            }
+                        >
+                            Cancel
+                        </button>
+
+                        <button
+                            type="submit"
+                            className="student-sports-add-submit-btn"
+                            disabled={loading}
+                        >
+                            {loading ? (
+                                <>
+                                    <span className="student-sports-add-spinner"></span>
+                                    Adding...
+                                </>
+                            ) : (
+                                <>
+                                    <FaPlus />
+                                    Add Event
+                                </>
+                            )}
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
         </div>
     );
 };

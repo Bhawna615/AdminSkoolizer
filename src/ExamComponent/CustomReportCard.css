@@ -1,0 +1,117 @@
+/* PAGE SETUP */
+@page {
+  size: A4;
+  margin: 10mm;
+}
+
+body {
+  font-family: "Times New Roman", serif;
+}
+
+/* PRINT BUTTON */
+.print-btn {
+  margin-bottom: 10px;
+}
+@media print {
+  .print-btn {
+    display: none;
+  }
+}
+.marks-table{
+    margin: 20px 0px !important;
+}
+/* CONTAINER */
+.print-container {
+  width: 100%;
+}
+
+/* BOX STYLE */
+.box {
+  border: 2px solid black;
+  margin-top: 0;
+}
+
+.no-top {
+  border-top: none;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.logo {
+  width: 70px;
+  margin-right: 10px;
+}
+
+.school-details h2 {
+  margin: 0;
+}
+
+.center {
+  text-align: center;
+  padding: 6px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.border-top {
+  border-top: 1px solid black;
+}
+
+/* TABLE */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border: 1px solid black;
+  padding: 6px;
+  text-align: center;
+}
+
+/* NO BORDER TABLE */
+.no-border-table td {
+  padding: 6px 10px;
+}
+
+/* INPUT LOOK LIKE TEXT */
+input {
+  border: none;
+  width: 40px;
+  text-align: center;
+  font-family: inherit;
+}
+
+/* REMARK BOX */
+.remark-box {
+  height: 80px;
+  padding: 10px;
+}
+
+/* SIGNATURE */
+.signatures {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  font-weight: bold;
+}
+
+/* AVOID PAGE BREAK */
+table {
+  page-break-inside: avoid;
+}

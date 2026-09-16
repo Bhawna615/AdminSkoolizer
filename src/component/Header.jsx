@@ -2,67 +2,138 @@ import "./Header.css";
 import skoolizerLogo from "../images/image.png";
 import schoolLogo from "../images/school-logo.png";
 import { useNavigate } from "react-router-dom";
-const Header = () => {
-const navigate = useNavigate();
 
-  // Get admin info from localStorage
-  const adminData = JSON.parse(localStorage.getItem("admin"));
+const Header = ({
+  toggleSidebar,
+  isSidebarOpen
+}) => {
+  const navigate = useNavigate();
 
-  // Logout handler
+  const adminData = JSON.parse(
+    localStorage.getItem("admin")
+  );
+
   const handleLogout = async () => {
-  try {
-    const response = await fetch(
-      "http://localhost/kkblossom/api.php/Adminapi/AdminAuth/signOut",
-      {
-        method: "GET",
-        credentials: "include", // send PHP session cookies
-        headers: {
-          Accept: "application/json", // tell CI this is React
-        },
+    try {
+      const response = await fetch(
+        "http://localhost/kkblossom/api.php/Adminapi/AdminAuth/signOut",
+        {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.status === "success") {
+        localStorage.removeItem("admin");
+        navigate("/");
       }
-    );
-
-    const data = await response.json();
-    console.log("Logout response:", data);
-
-    if (data.status === "success") {
-      localStorage.removeItem("admin"); // clear React storage
-      navigate("/"); // redirect to login
+    } catch (error) {
+      console.error("Logout failed:", error);
     }
-  } catch (error) {
-    console.error("Logout failed:", error);
-  }
-};
-
+  };
 
   return (
-    <div className="layout">
-      {/* ===== TOP HEADER ===== */}
-      <div className="col-12 top-header">
-        <div className="col-3 brand-logo top-left">
-          <img src={skoolizerLogo} alt="Skoolizer" />
-        </div>
-<div className="col-9 header-right">
-        <div className="top-center">
-          <img src={schoolLogo} alt="School Logo" />
-          <p className="school-name">KK BLOSSOMS SCHOOL</p>
+    <header className="skoolizer-header">
+
+      {/* LOGO */}
+      <div
+        className="header-brand"
+        onClick={() => navigate("/dashboard")}
+      >
+        <img
+          src={skoolizerLogo}
+          alt="Skoolizer"
+          className="skoolizer-logo"
+        />
+      </div>
+
+
+      <div className="header-content">
+
+        {/* LEFT SIDE */}
+        <div className="header-left-section">
+
+          {/* MOBILE MENU TOGGLE */}
+          <button
+            className="menu-toggle"
+            onClick={toggleSidebar}
+            aria-label="Toggle Sidebar"
+          >
+            <i
+              className={`las ${
+                isSidebarOpen
+                  ? "la-times"
+                  : "la-bars"
+              }`}
+            ></i>
+          </button>
+
+
+          {/* SEARCH */}
+          <div className="header-search">
+            <i className="las la-search"></i>
+
+            <input
+              type="text"
+              placeholder="Search anything..."
+            />
+          </div>
+
         </div>
 
-        <div className="top-right">
-           <button
-            className="icon-btn"
+
+        {/* RIGHT SIDE */}
+        <div className="header-right-section">
+
+          <button className="header-icon-btn">
+            <i className="las la-bell"></i>
+            <span className="notification-dot"></span>
+          </button>
+
+
+          <div className="admin-profile">
+
+            <div className="admin-avatar">
+              {schoolLogo ? (
+                <img
+                  src={schoolLogo}
+                  alt="Admin"
+                />
+              ) : (
+                <i className="las la-user"></i>
+              )}
+            </div>
+
+            <div className="admin-info">
+              <h4>
+                {adminData?.username || "Admin"}
+              </h4>
+
+              <span>Administrator</span>
+            </div>
+
+            <i className="las la-angle-down profile-arrow"></i>
+
+          </div>
+
+
+          {/* <button
+            className="logout-btn"
             onClick={handleLogout}
             title="Log Out"
-            style={{ marginLeft: "10px", cursor: "pointer" }}
           >
-            <i className="las la-door-open"></i>
-          </button>
-        </div>
-      </div>
-      </div>
+            <i className="las la-sign-out-alt"></i>
+          </button> */}
 
-      
-    </div>
+        </div>
+
+      </div>
+    </header>
   );
 };
 

@@ -1,0 +1,322 @@
+/* =========================================================
+   UPDATE STUDENT FEE
+   PURPLE + WHITE THEME
+   ALL CLASSES ARE UNIQUE
+========================================================= */
+
+.usf-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f7f5fb;
+  padding: 30px;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ================= HEADER ================= */
+
+.usf-header {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 22px 28px;
+  margin-bottom: 22px;
+  border: 1px solid #e7e0f2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 3px 12px rgba(91, 45, 145, 0.06);
+}
+
+.usf-title {
+  margin: 0;
+  color: #54258a;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.usf-subtitle {
+  margin: 6px 0 0;
+  color: #77718a;
+  font-size: 13px;
+}
+
+.usf-fee-badge {
+  background: #f0e8fb;
+  color: #642ca1;
+  padding: 9px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid #dfcff1;
+}
+
+/* ================= FORM ================= */
+
+.usf-form {
+  background: #ffffff;
+  border: 1px solid #e5ddec;
+  border-radius: 10px;
+  padding: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  box-shadow: 0 4px 16px rgba(79, 38, 125, 0.06);
+}
+
+/* ================= COLUMNS ================= */
+
+.usf-column {
+  min-width: 0;
+  padding: 0 8px;
+}
+
+/* ================= SECTION HEADING ================= */
+
+.usf-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #55238b;
+  font-size: 16px;
+  font-weight: 700;
+  padding-bottom: 13px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #eee5f7;
+}
+
+.usf-section-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  background: #682ca4;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* ================= FIELD ================= */
+
+.usf-field {
+  margin-bottom: 17px;
+}
+
+.usf-label {
+  display: block;
+  color: #494052;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+/* ================= INPUT ================= */
+
+.usf-input {
+  width: 100%;
+  height: 40px;
+  padding: 8px 11px;
+  box-sizing: border-box;
+  border: 1px solid #d7cce3;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #342c3c;
+  font-size: 13px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.usf-input:hover {
+  border-color: #b99ad5;
+}
+
+.usf-input:focus {
+  border-color: #6d32a8;
+  box-shadow: 0 0 0 3px rgba(109, 50, 168, 0.10);
+}
+
+/* ================= READ ONLY STUDENT DATA ================= */
+
+.usf-readonly {
+  min-height: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 8px 11px;
+  background: #faf8fd;
+  border: 1px solid #e2d9eb;
+  border-radius: 6px;
+  color: #4a4251;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ================= MONEY INPUT ================= */
+
+.usf-input-money {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  border: 1px solid #d7cce3;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #ffffff;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.usf-input-money:focus-within {
+  border-color: #6d32a8;
+  box-shadow: 0 0 0 3px rgba(109, 50, 168, 0.10);
+}
+
+.usf-input-money span {
+  width: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f2eafa;
+  color: #642ca1;
+  font-size: 14px;
+  font-weight: 700;
+  border-right: 1px solid #ded2e8;
+}
+
+.usf-input-money input {
+  flex: 1;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 8px 10px;
+  color: #342c3c;
+  font-size: 13px;
+  background: #ffffff;
+}
+
+/* Remove number arrows */
+
+.usf-input-money input::-webkit-inner-spin-button,
+.usf-input-money input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ================= SELECT ================= */
+
+.usf-input option {
+  color: #342c3c;
+  background: #ffffff;
+}
+
+/* ================= ACTION AREA ================= */
+
+.usf-action-area {
+  grid-column: 1 / -1;
+  border-top: 1px solid #eee7f4;
+  padding-top: 24px;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ================= UPDATE BUTTON ================= */
+
+.usf-update-button {
+  min-width: 210px;
+  border: none;
+  border-radius: 7px;
+  padding: 12px 35px;
+  background: #682ca4;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 10px rgba(104, 44, 164, 0.20);
+}
+
+.usf-update-button:hover {
+  background: #54238b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(104, 44, 164, 0.25);
+}
+
+.usf-update-button:active {
+  transform: translateY(0);
+}
+
+/* ================= LOADING ================= */
+
+.usf-loading-screen {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #5e5570;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.usf-loading-screen p {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.usf-loader {
+  width: 35px;
+  height: 35px;
+  border: 4px solid #e7dbf1;
+  border-top-color: #682ca4;
+  border-radius: 50%;
+  animation: usf-spin 0.8s linear infinite;
+}
+
+@keyframes usf-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1100px) {
+  .usf-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .usf-action-area {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 700px) {
+  .usf-page {
+    padding: 15px;
+  }
+
+  .usf-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .usf-form {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 10px;
+  }
+
+  .usf-column {
+    padding: 0;
+  }
+
+  .usf-action-area {
+    grid-column: 1;
+  }
+
+  .usf-update-button {
+    width: 100%;
+  }
+}

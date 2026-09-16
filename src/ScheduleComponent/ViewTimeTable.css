@@ -1,0 +1,312 @@
+/* =========================================================
+   VIEW TIME TABLE
+   Purple + White Admin Dashboard UI
+   ========================================================= */
+
+.vtt-page {
+  min-height: calc(100vh - 70px);
+  padding: 30px;
+  background: #f7f5fc;
+  font-family: "Poppins", sans-serif;
+}
+
+.vtt-container {
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+/* ================= HEADER ================= */
+
+.vtt-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.vtt-header-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6f42c1, #8e63d2);
+  color: #ffffff;
+  font-size: 24px;
+  box-shadow: 0 8px 20px rgba(111, 66, 193, 0.20);
+}
+
+.vtt-title {
+  margin: 0;
+  color: #29213d;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.vtt-subtitle {
+  margin: 4px 0 0;
+  color: #81788f;
+  font-size: 13px;
+}
+
+/* ================= MAIN CARD ================= */
+
+.vtt-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 30px;
+  border: 1px solid #eee9f7;
+  box-shadow: 0 8px 30px rgba(66, 40, 100, 0.08);
+}
+
+/* ================= CARD HEADING ================= */
+
+.vtt-card-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 22px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid #eeeaf4;
+}
+
+.vtt-heading-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: #f0eafa;
+  color: #6f42c1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.vtt-card-heading h3 {
+  margin: 0;
+  color: #302744;
+  font-size: 18px;
+  font-weight: 650;
+}
+
+.vtt-card-heading p {
+  margin: 4px 0 0;
+  color: #938b9e;
+  font-size: 12px;
+}
+
+/* ================= FORM ================= */
+
+.vtt-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.vtt-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.vtt-field label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 9px;
+  color: #403750;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.vtt-field label i {
+  color: #6f42c1;
+  font-size: 14px;
+}
+
+/* ================= SELECT ================= */
+
+.vtt-select-wrapper {
+  position: relative;
+}
+
+.vtt-select {
+  width: 100%;
+  height: 48px;
+  padding: 0 42px 0 15px;
+  appearance: none;
+  border: 1px solid #ddd6eb;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #494152;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.vtt-select:hover {
+  border-color: #b9a6dc;
+}
+
+.vtt-select:focus {
+  border-color: #6f42c1;
+  box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.10);
+}
+
+.vtt-select-arrow {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #766b85;
+  font-size: 13px;
+}
+
+/* ================= BUTTON AREA ================= */
+
+.vtt-button-area {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+  padding-top: 22px;
+  border-top: 1px solid #f0edf5;
+}
+
+.vtt-go-button {
+  min-width: 190px;
+  height: 46px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #6f42c1, #8258ce);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 7px 18px rgba(111, 66, 193, 0.22);
+  transition: all 0.25s ease;
+}
+
+.vtt-go-button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #6035ae, #754bc1);
+  box-shadow: 0 10px 22px rgba(111, 66, 193, 0.28);
+}
+
+.vtt-go-button:active {
+  transform: translateY(0);
+}
+
+.vtt-button-arrow {
+  margin-left: 3px;
+  transition: transform 0.2s ease;
+}
+
+.vtt-go-button:hover .vtt-button-arrow {
+  transform: translateX(4px);
+}
+
+/* ================= INFO BOX ================= */
+
+.vtt-info-box {
+  margin-top: 20px;
+  padding: 17px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  background: #f2edfb;
+  border: 1px solid #e4daf5;
+  border-radius: 12px;
+}
+
+.vtt-info-icon {
+  color: #6f42c1;
+  font-size: 18px;
+  margin-top: 1px;
+}
+
+.vtt-info-box strong {
+  color: #4b3970;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.vtt-info-box p {
+  margin: 4px 0 0;
+  color: #766d82;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.vtt-info-box b {
+  color: #6040a0;
+  font-weight: 600;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .vtt-page {
+    padding: 20px 15px;
+  }
+
+  .vtt-card {
+    padding: 22px;
+  }
+
+  .vtt-form {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .vtt-button-area {
+    grid-column: auto;
+    justify-content: stretch;
+  }
+
+  .vtt-go-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .vtt-page {
+    padding: 15px 10px;
+  }
+
+  .vtt-header-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+
+  .vtt-title {
+    font-size: 21px;
+  }
+
+  .vtt-subtitle {
+    font-size: 11px;
+  }
+
+  .vtt-card {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .vtt-card-heading {
+    margin-bottom: 22px;
+  }
+
+  .vtt-info-box {
+    padding: 14px;
+  }
+}

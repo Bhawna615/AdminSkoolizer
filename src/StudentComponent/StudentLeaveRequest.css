@@ -1,0 +1,932 @@
+/* =========================================================
+   STUDENT LEAVE REQUEST
+   PURPLE + WHITE SCHOOL ERP UI
+   Unique classes: leave-
+========================================================= */
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.leave-container {
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 24px;
+    background: #f7f5fb;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #34273d;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.leave-page-header {
+    width: 100%;
+    min-height: 68px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 22px;
+    margin-bottom: 22px;
+}
+
+
+/* =========================================================
+   HEADER LEFT
+========================================================= */
+
+.leave-header-left {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-width: 0;
+}
+
+.leave-header-icon {
+    width: 52px;
+    height: 52px;
+    flex: 0 0 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: linear-gradient(
+        135deg,
+        #7b4bc4,
+        #5b2c91
+    );
+
+    color: #ffffff;
+    font-size: 23px;
+
+    box-shadow:
+        0 8px 20px rgba(91, 44, 145, 0.20);
+}
+
+.leave-header-title {
+    min-width: 0;
+}
+
+.leave-header-title h2 {
+    margin: 0;
+
+    color: #33243d;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.leave-header-title p {
+    margin: 5px 0 0;
+
+    color: #8d8294;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.leave-search-wrapper {
+    position: relative;
+    width: 330px;
+    flex: 0 0 330px;
+}
+
+.leave-search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #988ca0;
+    font-size: 15px;
+
+    pointer-events: none;
+    z-index: 2;
+}
+
+.search-input {
+    width: 100%;
+    height: 43px;
+
+    box-sizing: border-box;
+
+    padding: 0 14px 0 40px;
+
+    border: 1px solid #ddd5e5;
+    border-radius: 8px;
+
+    outline: none;
+
+    background: #ffffff;
+    color: #382c40;
+
+    font-family: inherit;
+    font-size: 12px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.search-input::placeholder {
+    color: #aaa1ae;
+}
+
+.search-input:hover {
+    border-color: #cbb9dc;
+}
+
+.search-input:focus {
+    border-color: #7042bf;
+
+    box-shadow:
+        0 0 0 3px rgba(111, 66, 193, 0.10);
+}
+
+
+/* =========================================================
+   TABLE CARD
+========================================================= */
+
+.leave-table-card {
+    position: relative;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #e4ddea;
+    border-radius: 13px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 7px 25px rgba(71, 43, 94, 0.07);
+}
+
+
+/* PURPLE TOP ACCENT */
+
+.leave-table-card::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 4px;
+
+    background: linear-gradient(
+        90deg,
+        #5b2c91,
+        #7b4bc4,
+        #9a70cf
+    );
+
+    z-index: 5;
+}
+
+
+/* =========================================================
+   DATATABLE GLOBAL WRAPPER
+========================================================= */
+
+.leave-table-card .rdt_Table {
+    background: #ffffff;
+}
+
+.leave-table-card .rdt_TableWrapper {
+    border-radius: 13px;
+    overflow-x: auto;
+}
+
+
+/* =========================================================
+   DATATABLE HEADER
+========================================================= */
+
+.leave-table-card .rdt_TableHead {
+    background: #faf8fc;
+}
+
+.leave-table-card .rdt_TableHeadRow {
+    min-height: 52px;
+
+    background: #faf8fc;
+
+    border-bottom: 1px solid #e6e0ea;
+
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.leave-table-card .rdt_TableCol {
+    color: #706278;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.45px;
+}
+
+.leave-table-card .rdt_TableCol_Sortable {
+    color: #706278;
+
+    transition: color 0.2s ease;
+}
+
+.leave-table-card .rdt_TableCol_Sortable:hover {
+    color: #65409a;
+}
+
+
+/* =========================================================
+   DATATABLE ROW
+========================================================= */
+
+.leave-table-card .rdt_TableRow {
+    min-height: 62px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #eeeaf1;
+
+    color: #4c3e52;
+
+    transition:
+        background 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.leave-table-card .rdt_TableRow:hover {
+    background: #fcfaff !important;
+
+    box-shadow:
+        inset 3px 0 0 #7b4bc4;
+}
+
+.leave-table-card .rdt_TableRow:last-child {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   TABLE CELL
+========================================================= */
+
+.leave-table-card .rdt_TableCell {
+    padding: 10px 14px;
+
+    color: #514455;
+
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   ID / STUDENT ID
+========================================================= */
+
+.leave-table-card .rdt_TableCell:nth-child(1),
+.leave-table-card .rdt_TableCell:nth-child(2) {
+    color: #65409a;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   STATUS BADGES
+========================================================= */
+
+.approved-status,
+.unapproved-status {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 72px;
+    min-height: 27px;
+
+    box-sizing: border-box;
+
+    padding: 4px 10px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* APPROVED */
+
+.approved-status {
+    background: #edf9f2;
+
+    border: 1px solid #c9e8d5;
+
+    color: #27804e;
+}
+
+.approved-status::before {
+    content: "";
+
+    width: 6px;
+    height: 6px;
+
+    margin-right: 6px;
+
+    border-radius: 50%;
+
+    background: #32a861;
+}
+
+
+/* UNAPPROVED */
+
+.unapproved-status {
+    background: #fff5e9;
+
+    border: 1px solid #f0dcc1;
+
+    color: #a96721;
+}
+
+.unapproved-status::before {
+    content: "";
+
+    width: 6px;
+    height: 6px;
+
+    margin-right: 6px;
+
+    border-radius: 50%;
+
+    background: #e79a43;
+}
+
+
+/* =========================================================
+   APPROVE BUTTON
+========================================================= */
+
+.approve-btn {
+    width: 34px;
+    height: 34px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid #6f42c1;
+    border-radius: 8px;
+
+    background: #6f42c1;
+    color: #ffffff;
+
+    cursor: pointer;
+
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 700;
+
+    line-height: 1;
+
+    box-shadow:
+        0 4px 10px rgba(111, 66, 193, 0.16);
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.approve-btn:hover:not(:disabled) {
+    background: #5b2c91;
+    border-color: #5b2c91;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 6px 14px rgba(91, 44, 145, 0.22);
+}
+
+.approve-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.approve-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   APPROVED TEXT
+========================================================= */
+
+.approved-text {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 30px;
+
+    padding: 4px 10px;
+
+    box-sizing: border-box;
+
+    border-radius: 7px;
+
+    background: #f0faf4;
+
+    border: 1px solid #d2ebdb;
+
+    color: #318255;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.approved-text::before {
+    content: "✓";
+
+    margin-right: 5px;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   REASON COLUMN
+========================================================= */
+
+.leave-table-card .rdt_TableCell:nth-child(7) {
+    color: #685b6d;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.leave-loading {
+    position: absolute;
+
+    top: 4px;
+    left: 0;
+    right: 0;
+
+    z-index: 20;
+
+    min-height: 58px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 12px 18px;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border-bottom: 1px solid #e5ddec;
+
+    color: #65409a;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    box-shadow:
+        0 5px 15px rgba(80, 50, 100, 0.08);
+}
+
+
+/* =========================================================
+   LOADING SPINNER
+========================================================= */
+
+.leave-spinner {
+    width: 19px;
+    height: 19px;
+
+    display: inline-block;
+
+    border: 2px solid #e8def1;
+
+    border-top-color: #6f42c1;
+
+    border-radius: 50%;
+
+    animation:
+        leave-spin 0.75s linear infinite;
+}
+
+@keyframes leave-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.leave-empty {
+    min-height: 340px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 45px 20px;
+
+    text-align: center;
+}
+
+.leave-empty-icon {
+    width: 68px;
+    height: 68px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 16px;
+
+    border-radius: 17px;
+
+    background: #f2ebfa;
+
+    color: #7650a9;
+
+    font-size: 29px;
+}
+
+.leave-empty h3 {
+    margin: 0;
+
+    color: #44354b;
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.leave-empty p {
+    max-width: 400px;
+
+    margin: 7px 0 0;
+
+    color: #998e9f;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.leave-table-card .rdt_Pagination {
+    min-height: 61px;
+
+    padding: 10px 18px;
+
+    box-sizing: border-box;
+
+    border-top: 1px solid #eee9f1;
+
+    background: #fcfbfd;
+
+    color: #8d8293;
+
+    font-size: 11px;
+}
+
+.leave-table-card .rdt_Pagination select {
+    min-height: 30px;
+
+    padding: 3px 26px 3px 8px;
+
+    border: 1px solid #ddd5e5;
+
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #5e5065;
+
+    outline: none;
+
+    font-family: inherit;
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+.leave-table-card .rdt_Pagination select:focus {
+    border-color: #7042bf;
+
+    box-shadow:
+        0 0 0 2px rgba(111, 66, 193, 0.08);
+}
+
+.leave-table-card .rdt_Pagination button {
+    width: 31px;
+    height: 31px;
+
+    border-radius: 6px;
+
+    color: #695b70;
+
+    transition:
+        background 0.18s ease,
+        color 0.18s ease;
+}
+
+.leave-table-card .rdt_Pagination button:hover:not(:disabled) {
+    background: #f0e9f7;
+
+    color: #65409a;
+}
+
+.leave-table-card .rdt_Pagination button:disabled {
+    opacity: 0.35;
+}
+
+
+/* =========================================================
+   TABLE SCROLLBAR
+========================================================= */
+
+.leave-table-card .rdt_TableWrapper::-webkit-scrollbar {
+    height: 7px;
+}
+
+.leave-table-card .rdt_TableWrapper::-webkit-scrollbar-track {
+    background: #f7f5fb;
+}
+
+.leave-table-card .rdt_TableWrapper::-webkit-scrollbar-thumb {
+    background: #c8b6d9;
+
+    border-radius: 20px;
+}
+
+.leave-table-card .rdt_TableWrapper::-webkit-scrollbar-thumb:hover {
+    background: #a88bbb;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .leave-container {
+        padding: 20px 18px 35px;
+    }
+
+    .leave-page-header {
+        align-items: flex-start;
+    }
+
+    .leave-search-wrapper {
+        width: 280px;
+        flex-basis: 280px;
+    }
+
+    .leave-header-title h2 {
+        font-size: 21px;
+    }
+}
+
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .leave-page-header {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 15px;
+    }
+
+    .leave-search-wrapper {
+        width: 100%;
+        flex-basis: auto;
+    }
+
+    .search-input {
+        height: 42px;
+    }
+
+    .leave-table-card {
+        border-radius: 10px;
+    }
+
+    .leave-table-card .rdt_TableWrapper {
+        overflow-x: auto;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .leave-container {
+        padding: 15px 10px 28px;
+    }
+
+    .leave-header-left {
+        gap: 10px;
+    }
+
+    .leave-header-icon {
+        width: 45px;
+        height: 45px;
+
+        flex-basis: 45px;
+
+        border-radius: 11px;
+
+        font-size: 20px;
+    }
+
+    .leave-header-title h2 {
+        font-size: 18px;
+    }
+
+    .leave-header-title p {
+        margin-top: 3px;
+
+        font-size: 10px;
+    }
+
+    .leave-table-card {
+        border-radius: 9px;
+    }
+
+    .leave-table-card .rdt_TableHeadRow {
+        min-height: 48px;
+    }
+
+    .leave-table-card .rdt_TableRow {
+        min-height: 58px;
+    }
+
+    .leave-table-card .rdt_TableCell {
+        padding: 8px 10px;
+
+        font-size: 11px;
+    }
+
+    .leave-table-card .rdt_TableCol {
+        font-size: 9px;
+    }
+
+    .approved-status,
+    .unapproved-status {
+        min-width: 66px;
+
+        padding: 4px 8px;
+
+        font-size: 9px;
+    }
+
+    .approve-btn {
+        width: 31px;
+        height: 31px;
+
+        border-radius: 7px;
+
+        font-size: 15px;
+    }
+
+    .approved-text {
+        min-height: 28px;
+
+        padding: 4px 8px;
+
+        font-size: 9px;
+    }
+
+    .leave-empty {
+        min-height: 290px;
+    }
+
+    .leave-empty-icon {
+        width: 60px;
+        height: 60px;
+
+        border-radius: 15px;
+
+        font-size: 25px;
+    }
+
+    .leave-empty h3 {
+        font-size: 15px;
+    }
+
+    .leave-empty p {
+        font-size: 11px;
+    }
+
+    .leave-table-card .rdt_Pagination {
+        padding: 9px 12px;
+
+        font-size: 10px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .leave-container {
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+
+    .leave-header-icon {
+        width: 42px;
+        height: 42px;
+
+        flex-basis: 42px;
+    }
+
+    .leave-header-title h2 {
+        font-size: 17px;
+    }
+
+    .leave-header-title p {
+        font-size: 9px;
+    }
+
+    .leave-table-card .rdt_TableCell {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .leave-table-card .rdt_TableCol {
+        font-size: 8px;
+    }
+}

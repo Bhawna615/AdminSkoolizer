@@ -1,0 +1,40 @@
+.edit-container {
+  padding: 20px;
+  font-family: "Segoe UI";
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+input {
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 8px;
+}
+
+.info {
+  background: #f5f5f5;
+  padding: 6px;
+  margin-bottom: 8px;
+}
+
+.btn-wrap {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.editpaid_btn{
+  padding: 10px 25px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

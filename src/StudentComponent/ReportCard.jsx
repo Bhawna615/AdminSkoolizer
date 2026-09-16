@@ -24,17 +24,20 @@ const ReportCard = () => {
         formData.append("id", studentId);
 
         const res = await axios.post(
-          "http://localhost/kkblossom/api.php/Adminapi/AdminExam/ReportCard",
+          "http://localhost/kkblossom/api.php/Adminapi/AdminReport/ReportCard",
           formData,
           { withCredentials: true }
         );
 
+        console.log("API RESPONSE:", res.data); // ✅ debug
+
         if (res.data.status) {
-          setReportData(res.data);
+          setReportData(res.data.data);   // ✅ FIXED HERE
         } else {
           setError(res.data.message || "No report found");
         }
       } catch (err) {
+        console.error(err);
         setError("Server error while fetching report");
       } finally {
         setLoading(false);
@@ -75,8 +78,8 @@ const ReportCard = () => {
 
       {/* Header */}
       <div className="row header" style={{ padding: "0px 25px", margin: 0 }}>
-        <div className="col-3 logo">
-          <img src={schoolLogo} alt="School Logo" style={{ width: "80%" }} />
+        <div className="col-3 report-school-logo">
+          <img src={schoolLogo} alt="School Logo"  />
         </div>
         <div className="col-9 school-info" style={{ textAlign: "center" }}>
           <p className="school-name">
@@ -89,8 +92,7 @@ const ReportCard = () => {
       </div>
 
       {/* Report Card Title */}
-      <table className="table table-bordered"
-        style={{ marginBottom: 0, marginTop: 0 }}>
+      <table className="table table-bordered" style={{ marginBottom: 0, marginTop: 0 }}>
         <thead className="report-card-table-head">
           <tr>
             <th>Report Card: Academic Session 2024-25</th>
@@ -101,8 +103,7 @@ const ReportCard = () => {
       {/* Student Info */}
       <div className="row info-container" style={{ margin: 0 }}>
         <div className="col-10" style={{ padding: 0 }}>
-          <table className="table"
-            style={{ marginBottom: "30px",textAlign: "left" }}>
+          <table className="table" style={{ marginBottom: "30px", textAlign: "left" }}>
             <tbody className="report-card-table-body">
               <tr>
                 <td className="student-detail">Student's Name: {student?.Name}</td>
@@ -141,39 +142,15 @@ const ReportCard = () => {
       </div>
 
       {/* Scholastic Result Table */}
-      <table className="table"
-        style={{ marginTop: 0, marginBottom:"30px"}}>
+      <table className="table" style={{ marginTop: 0, marginBottom: "30px" }}>
         <thead className="report-card-table-head">
           <tr>
             <th colSpan="12">Scholastic Result</th>
           </tr>
 
           <tr>
-            <th rowSpan="2">Subjects</th>
-            <th>Work Sheet-I</th>
-            <th>Project-I</th>
-            <th>NB & SEA-I</th>
-            <th>Class Test-I</th>
+            <th>Subjects</th>
             <th>Total</th>
-            <th>Work Sheet-II</th>
-            <th>Project-II</th>
-            <th>NB & SEA-II</th>
-            <th>Class Test-II</th>
-            <th>Total</th>
-            <th rowSpan="2">Total Term 1 (50%) + Term 2 (50%)</th>
-          </tr>
-
-          <tr>
-            <th>Total-50</th>
-            <th>Total-10</th>
-            <th>Total-20</th>
-            <th>Total-20</th>
-            <th>Total-100</th>
-            <th>Total-50</th>
-            <th>Total-10</th>
-            <th>Total-20</th>
-            <th>Total-20</th>
-            <th>Total-100</th>
           </tr>
         </thead>
 
@@ -188,10 +165,12 @@ const ReportCard = () => {
               0
             );
 
+            grandTotal += total;
+            totalMaxMarks += 100;
+
             return (
               <tr key={index}>
                 <td>{subject.Subject}</td>
-                <td colSpan="10"></td>
                 <td>{total}</td>
               </tr>
             );
@@ -200,8 +179,7 @@ const ReportCard = () => {
       </table>
 
       {/* Grand Total */}
-      <table className="table table-bordered"
-        style={{ marginTop: 0, marginBottom: 0 }}>
+      <table className="table table-bordered">
         <thead className="report-card-table-head">
           <tr>
             <th>
@@ -219,7 +197,11 @@ const ReportCard = () => {
               <input
                 type="text"
                 className="report-card-input"
-                value={totalMaxMarks > 0 ? `${percentageValue.toFixed(1)}%` : "0%"}
+                value={
+                  totalMaxMarks > 0
+                    ? `${((grandTotal / totalMaxMarks) * 100).toFixed(1)}%`
+                    : "0%"
+                }
                 readOnly
               />
             </th>

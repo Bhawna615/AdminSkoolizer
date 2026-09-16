@@ -34,7 +34,7 @@ const SpecialReport = ({ data }) => {
     >
       {/* Header Logo */}
       <div style={{ textAlign: "left", marginBottom: "10px" }}>
-        <img src={schoolLogo} alt="Header" style={{ width: "120px" }} />
+        <img src={schoolLogo} alt="Header" style={{ width: "320px",height:"420px" }} />
       </div>
 
       {/* Student Details */}

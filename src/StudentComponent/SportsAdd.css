@@ -1,80 +1,987 @@
-/* Container */
-.innerview {
-  padding: 25px;
+/* =========================================================
+   STUDENT SPORTS ADD
+   PURPLE + WHITE SCHOOL ERP UI
+   SportsAdd.css
+========================================================= */
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.student-sports-add-page {
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 24px 28px 45px;
+
+    box-sizing: border-box;
+
+    background: #f7f5fb;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    color: #33283d;
 }
 
-/* Field wrapper */
-.col-md-4 {
-  margin-bottom: 12px;   /* gap kam */
-   /* padding-right: 12px; */
-  /* padding-left: 25px; */
-}
-.gap{
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.student-sports-add-header {
+    width: 100%;
+
     display: flex;
-    gap: 40px; 
-  
+    align-items: center;
+    justify-content: space-between;
 
-}
-/* Label */
-.details {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: #333;
+    margin-bottom: 22px;
 }
 
-/* INPUT FIELDS */
-.form-input {
-  width: 100%;              /* width bada */
-  height: 38px;             /* height thodi zyada */
-  padding: 8px 12px;
-  font-size: 14px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  transition: 0.2s ease-in-out;
+
+/* =========================================================
+   HEADER LEFT
+========================================================= */
+
+.student-sports-add-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
-.form-input:focus {
-  border-color: #2c7be5;
-  box-shadow: 0 0 0 2px rgba(44, 123, 229, 0.15);
-  outline: none;
+
+/* =========================================================
+   HEADER ICON
+========================================================= */
+
+.student-sports-add-header-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: #6f42c1;
+
+    color: #ffffff;
+
+    font-size: 20px;
+
+    box-shadow:
+        0 6px 15px rgba(111, 66, 193, 0.20);
 }
 
-/* BUTTON */
-.form-submit {
-  margin-top: 15px;
-  width: 180px;             /* button thoda wide */
-  height: 45px;
-  background: linear-gradient(135deg, #2c7be5, #1a5fd0);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s ease-in-out;
+
+/* =========================================================
+   HEADER TITLE
+========================================================= */
+
+.student-sports-add-header h1 {
+    margin: 0;
+
+    color: #35243f;
+
+    font-size: 25px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    letter-spacing: -0.2px;
 }
 
-.form-submit:hover {
-  background: linear-gradient(135deg, #1a5fd0, #154bb3);
-  transform: translateY(-1px);
+
+/* =========================================================
+   HEADER SUBTITLE
+========================================================= */
+
+.student-sports-add-header p {
+    margin: 5px 0 0;
+
+    color: #8a7e91;
+
+    font-size: 12px;
+    font-weight: 400;
 }
 
-/* SUCCESS & ERROR */
-.success-bar,
-.error-bar {
-  padding: 10px 14px;
-  border-radius: 6px;
-  font-size: 14px;
-  margin-bottom: 15px;
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.student-sports-add-back-btn {
+    height: 42px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 0 17px;
+
+    border: 1px solid #dcd3e5;
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #5b2c91;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow: 0 3px 10px rgba(74, 43, 105, 0.05);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-.success-bar {
-  background: #e6f4ea;
-  color: #1e7e34;
+
+.student-sports-add-back-btn svg {
+    font-size: 12px;
 }
 
-.error-bar {
-  background: #fdecea;
-  color: #c82333;
+
+.student-sports-add-back-btn:hover {
+    background: #6f42c1;
+
+    border-color: #6f42c1;
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 14px rgba(111, 66, 193, 0.20);
+}
+
+
+/* =========================================================
+   ALERTS
+========================================================= */
+
+.student-sports-add-alert {
+    width: 100%;
+
+    min-height: 46px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 18px;
+
+    padding: 11px 16px;
+
+    box-sizing: border-box;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    animation: sportsAddAlertIn 0.25s ease;
+}
+
+
+/* =========================================================
+   ERROR ALERT
+========================================================= */
+
+.student-sports-add-alert-error {
+    color: #a3213d;
+
+    background: #fff1f3;
+
+    border: 1px solid #f1c6cf;
+
+    box-shadow:
+        0 4px 12px rgba(163, 33, 61, 0.05);
+}
+
+
+.student-sports-add-alert-error svg {
+    color: #c52c4b;
+
+    font-size: 17px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   SUCCESS ALERT
+========================================================= */
+
+.student-sports-add-alert-success {
+    color: #26734d;
+
+    background: #effaf4;
+
+    border: 1px solid #c8e8d6;
+
+    box-shadow:
+        0 4px 12px rgba(38, 115, 77, 0.05);
+}
+
+
+.student-sports-add-alert-success svg {
+    color: #2e8b57;
+
+    font-size: 17px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.student-sports-add-card {
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #e5dfea;
+
+    border-radius: 13px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 7px 24px rgba(74, 43, 105, 0.065),
+        0 1px 3px rgba(74, 43, 105, 0.035);
+
+    position: relative;
+}
+
+
+/* Purple top accent */
+
+.student-sports-add-card::before {
+    content: "";
+
+    display: block;
+
+    width: 100%;
+    height: 4px;
+
+    background: #6f42c1;
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.student-sports-add-card-header {
+    min-height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 28px;
+
+    box-sizing: border-box;
+
+    border-bottom: 1px solid #eeeaf1;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   CARD TITLE
+========================================================= */
+
+.student-sports-add-card-header h2 {
+    margin: 0;
+
+    color: #3e3048;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+
+.student-sports-add-card-header p {
+    margin: 5px 0 0;
+
+    color: #928799;
+
+    font-size: 11px;
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   CARD ICON
+========================================================= */
+
+.student-sports-add-card-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    background: #f2ebf9;
+
+    color: #6f42c1;
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.student-sports-add-form {
+    width: 100%;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   FORM GRID
+========================================================= */
+
+.student-sports-add-form-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 28px;
+
+    padding: 29px 28px 30px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   FIELD
+========================================================= */
+
+.student-sports-add-field {
+    width: 100%;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.student-sports-add-field label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #4b3c55;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+}
+
+
+.student-sports-add-field label span {
+    margin-left: 4px;
+
+    color: #6f42c1;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   INPUT WRAPPER
+========================================================= */
+
+.student-sports-add-input-wrap {
+    width: 100%;
+    height: 47px;
+
+    display: flex;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    border: 1px solid #ddd5e5;
+
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    overflow: hidden;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* Icon */
+
+.student-sports-add-input-wrap > svg {
+    width: 44px;
+
+    flex-shrink: 0;
+
+    color: #6f42c1;
+
+    font-size: 15px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.student-sports-add-input-wrap input {
+    width: 100%;
+    height: 100%;
+
+    padding: 0 13px 0 2px;
+
+    box-sizing: border-box;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #362b3e;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+.student-sports-add-input-wrap input::placeholder {
+    color: #aaa2af;
+
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   INPUT HOVER
+========================================================= */
+
+.student-sports-add-input-wrap:hover {
+    border-color: #bcaaca;
+}
+
+
+/* =========================================================
+   INPUT FOCUS
+========================================================= */
+
+.student-sports-add-input-wrap:focus-within {
+    border-color: #6f42c1;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(111, 66, 193, 0.10);
+}
+
+
+/* =========================================================
+   DATE INPUT
+========================================================= */
+
+.student-sports-add-input-wrap input[type="date"] {
+    cursor: pointer;
+}
+
+
+/* Calendar icon */
+
+.student-sports-add-input-wrap input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+
+    opacity: 0.60;
+
+    padding: 4px;
+
+    transition: opacity 0.2s ease;
+}
+
+
+.student-sports-add-input-wrap input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   FORM FOOTER
+========================================================= */
+
+.student-sports-add-form-footer {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding: 18px 28px;
+
+    box-sizing: border-box;
+
+    border-top: 1px solid #eeeaf1;
+
+    background: #fcfbfd;
+}
+
+
+/* =========================================================
+   CANCEL BUTTON
+========================================================= */
+
+.student-sports-add-cancel-btn {
+    min-width: 95px;
+    height: 42px;
+
+    padding: 0 20px;
+
+    border: 1px solid #dcd4e3;
+
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #62566b;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.student-sports-add-cancel-btn:hover {
+    background: #f4f1f6;
+
+    border-color: #c9bfd0;
+
+    color: #3f3348;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.student-sports-add-submit-btn {
+    min-width: 125px;
+    height: 42px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 0 20px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #6f42c1;
+
+    color: #ffffff;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 13px rgba(111, 66, 193, 0.20);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.student-sports-add-submit-btn svg {
+    font-size: 12px;
+}
+
+
+.student-sports-add-submit-btn:hover:not(:disabled) {
+    background: #5b2c91;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 7px 17px rgba(91, 44, 145, 0.26);
+}
+
+
+.student-sports-add-submit-btn:active:not(:disabled) {
+    transform: translateY(0);
+
+    box-shadow:
+        0 3px 8px rgba(91, 44, 145, 0.18);
+}
+
+
+/* =========================================================
+   DISABLED SUBMIT
+========================================================= */
+
+.student-sports-add-submit-btn:disabled {
+    background: #aa8bce;
+
+    cursor: not-allowed;
+
+    box-shadow: none;
+
+    opacity: 0.85;
+}
+
+
+/* =========================================================
+   LOADING SPINNER
+========================================================= */
+
+.student-sports-add-spinner {
+    width: 14px;
+    height: 14px;
+
+    border: 2px solid rgba(255, 255, 255, 0.35);
+
+    border-top-color: #ffffff;
+
+    border-radius: 50%;
+
+    animation: sportsAddSpinner 0.7s linear infinite;
+}
+
+
+/* =========================================================
+   FOCUS VISIBLE
+========================================================= */
+
+.student-sports-add-back-btn:focus-visible,
+.student-sports-add-cancel-btn:focus-visible,
+.student-sports-add-submit-btn:focus-visible {
+    outline: 3px solid rgba(111, 66, 193, 0.18);
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes sportsAddSpinner {
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+@keyframes sportsAddAlertIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .student-sports-add-page {
+        padding: 22px 20px 38px;
+    }
+
+
+    .student-sports-add-form-grid {
+        gap: 22px;
+
+        padding: 25px;
+    }
+
+
+    .student-sports-add-card-header {
+        padding: 17px 25px;
+    }
+
+
+    .student-sports-add-form-footer {
+        padding: 17px 25px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .student-sports-add-page {
+        padding: 17px 14px 30px;
+    }
+
+
+    /* Header */
+
+    .student-sports-add-header {
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+
+    .student-sports-add-header-left {
+        gap: 11px;
+    }
+
+
+    .student-sports-add-header-icon {
+        width: 43px;
+        height: 43px;
+
+        font-size: 18px;
+    }
+
+
+    .student-sports-add-header h1 {
+        font-size: 20px;
+    }
+
+
+    .student-sports-add-header p {
+        font-size: 11px;
+    }
+
+
+    /* Back */
+
+    .student-sports-add-back-btn {
+        height: 39px;
+
+        padding: 0 12px;
+    }
+
+
+    .student-sports-add-back-btn span {
+        display: none;
+    }
+
+
+    .student-sports-add-back-btn svg {
+        font-size: 13px;
+    }
+
+
+    /* Card */
+
+    .student-sports-add-card-header {
+        min-height: 70px;
+
+        padding: 16px 19px;
+    }
+
+
+    .student-sports-add-card-header h2 {
+        font-size: 14px;
+    }
+
+
+    .student-sports-add-card-header p {
+        font-size: 10px;
+    }
+
+
+    .student-sports-add-card-icon {
+        width: 35px;
+        height: 35px;
+
+        font-size: 15px;
+    }
+
+
+    /* Form */
+
+    .student-sports-add-form-grid {
+        display: block;
+
+        padding: 22px 19px 21px;
+    }
+
+
+    .student-sports-add-field {
+        margin-bottom: 20px;
+    }
+
+
+    .student-sports-add-field:last-child {
+        margin-bottom: 0;
+    }
+
+
+    /* Footer */
+
+    .student-sports-add-form-footer {
+        padding: 16px 19px;
+
+        gap: 9px;
+    }
+
+
+    .student-sports-add-cancel-btn,
+    .student-sports-add-submit-btn {
+        flex: 1;
+
+        min-width: 0;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .student-sports-add-page {
+        padding: 13px 10px 25px;
+    }
+
+
+    .student-sports-add-header {
+        margin-bottom: 17px;
+    }
+
+
+    .student-sports-add-header h1 {
+        font-size: 18px;
+    }
+
+
+    .student-sports-add-header p {
+        font-size: 10px;
+    }
+
+
+    .student-sports-add-header-icon {
+        width: 40px;
+        height: 40px;
+
+        border-radius: 8px;
+
+        font-size: 16px;
+    }
+
+
+    .student-sports-add-card-header {
+        padding: 15px;
+    }
+
+
+    .student-sports-add-card-header p {
+        max-width: 210px;
+    }
+
+
+    .student-sports-add-form-grid {
+        padding: 20px 15px;
+    }
+
+
+    .student-sports-add-input-wrap {
+        height: 45px;
+    }
+
+
+    .student-sports-add-input-wrap > svg {
+        width: 40px;
+    }
+
+
+    .student-sports-add-input-wrap input {
+        font-size: 12px;
+    }
+
+
+    .student-sports-add-form-footer {
+        padding: 14px 15px;
+    }
+
+
+    .student-sports-add-cancel-btn,
+    .student-sports-add-submit-btn {
+        height: 42px;
+
+        font-size: 11px;
+    }
 }

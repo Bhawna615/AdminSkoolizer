@@ -1,0 +1,102 @@
+.receipt-container {
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* HEADER FIX */
+.school-header {
+  display: flex;
+  align-items: center;       /* vertical center */
+  gap: 10px;                 /* logo aur text ke beech spacing */
+  margin-bottom: 5px;
+}
+
+.schoolss-details{
+    position: relative;
+    top: -18px; 
+}
+/* REMOVE EXTRA SPACE */
+.schoolss-details h3,
+.schoolss-details p {
+  margin: 0;                 /* 🔥 main fix */
+  padding: 0;
+  line-height: 1.2;          /* compact text */
+}
+
+/* OPTIONAL: thoda styling */
+
+.schoolss-details p {
+  font-size: 1rem;
+  color: #444;
+}
+
+/* LOGO */
+.logosch {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+/* TITLE */
+.title {
+  text-align: center;
+  margin: 8px 0;   /* reduce gap */
+  font-weight: bold;
+}
+
+/* TOP DETAILS */
+.top-details {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;   /* reduce gap */
+}
+
+/* TABLE */
+.receipt-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.receipt-table th,
+.receipt-table td {
+  border: 1px solid black;
+  padding: 6px;   /* thoda compact */
+  text-align: center;
+}
+
+/* SIGNATURE */
+.signature {
+  margin-top: 50px;
+ width: 100%;
+ text-align: left;
+}
+
+@page {
+  size: A4 landscape;
+  margin: 10mm;
+}
+
+@media print {
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .receipt-container, .receipt-container * {
+    visibility: visible;
+  }
+
+  .receipt-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    transform: scale(0.75);
+    transform-origin: top left;
+  }
+}

@@ -1,69 +1,521 @@
-.payment-container {
-  background: #f5f5f5;
-  padding: 30px;
-  min-height: 100vh;
-}
 
-.page-title {
-  font-weight: 600;
-  margin-bottom: 20px;
-}
+/* =========================================================
+   CREATE STUDENT PAYMENT
+   PURPLE + WHITE THEME
+   ALL CLASSES ARE UNIQUE TO THIS PAGE
+========================================================= */
 
-.payment-form {
-  display: flex;
-  gap: 40px;
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 6px;
-}
-
-.column {
-  flex: 1;
-}
-
-.form-group,
-.info-group {
-  margin-bottom: 18px;
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label,
-.info-group label {
-  font-weight: 500;
-  margin-bottom: 6px;
-}
-
-.form-group input,
-.form-group select {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-.Fees-input{
-    width: 80%;
-}
-.info-group p {
-  margin: 0;
-  font-weight: 500;
-}
-
-.button-wrapper {
+.csp-page {
   width: 100%;
-  text-align: center;
-  margin-top: 20px;
+  min-height: 100vh;
+  padding: 30px 25px 50px;
+  background: #f7f4ff;
+  font-family: "Poppins", Arial, sans-serif;
 }
 
-.create-btn {
-  background-color: #355dbb;
-  color: white;
-  padding: 10px 60px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.csp-main-card {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid #e6dbf1;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(91, 45, 145, 0.1);
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.csp-header {
+  position: relative;
+  overflow: hidden;
+  min-height: 105px;
+  padding: 25px 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: linear-gradient(
+    135deg,
+    #5f259f,
+    #7b2cbf,
+    #9255c7
+  );
+
+  color: #ffffff;
+}
+
+.csp-header::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  right: -70px;
+  top: -130px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.csp-header::after {
+  content: "";
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  right: 170px;
+  bottom: -100px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.csp-header h2 {
+  position: relative;
+  z-index: 2;
+  margin: 0 0 5px;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.csp-header p {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.csp-header-icon {
+  position: relative;
+  z-index: 2;
+
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.csp-form {
+  padding: 30px;
+}
+
+/* =========================================================
+   THREE COLUMNS
+========================================================= */
+
+.csp-three-column {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+/* =========================================================
+   COLUMN
+========================================================= */
+
+.csp-column {
+  min-width: 0;
+  padding: 24px;
+
+  background: #ffffff;
+
+  border: 1px solid #e7ddf2;
+  border-radius: 14px;
+
+  box-shadow: 0 3px 14px rgba(91, 45, 145, 0.05);
+}
+
+/* =========================================================
+   COLUMN HEADING
+========================================================= */
+
+.csp-column-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 23px;
+  padding-bottom: 17px;
+
+  border-bottom: 1px solid #eee7f5;
+}
+
+.csp-heading-number {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #f1e7fb;
+  color: #6827a4;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.csp-column-heading h3 {
+  margin: 0 0 3px;
+  color: #4f2376;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.csp-column-heading p {
+  margin: 0;
+  color: #94859e;
+  font-size: 11px;
+}
+
+/* =========================================================
+   STUDENT INFORMATION
+========================================================= */
+
+.csp-info-field {
+  margin-bottom: 17px;
+}
+
+.csp-info-field label,
+.csp-form-field label {
+  display: block;
+  margin-bottom: 7px;
+
+  color: #554461;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.csp-info-value {
+  min-height: 40px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 10px 12px;
+
+  border: 1px solid #e0d6e8;
+  border-radius: 8px;
+
+  background: #faf8fc;
+  color: #403747;
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* =========================================================
+   FORM FIELDS
+========================================================= */
+
+.csp-form-field {
+  margin-bottom: 17px;
+}
+
+.csp-form-field input,
+.csp-form-field select,
+.csp-form-field textarea {
+  width: 100%;
+
+  padding: 10px 12px;
+
+  border: 1px solid #dcd2e6;
+  border-radius: 8px;
+
+  outline: none;
+
+  background: #ffffff;
+  color: #333333;
+
+  font-family: inherit;
+  font-size: 13px;
+
+  transition: all 0.25s ease;
+}
+
+.csp-form-field input::placeholder,
+.csp-form-field textarea::placeholder {
+  color: #aaa0b0;
+}
+
+/* Focus */
+
+.csp-form-field input:focus,
+.csp-form-field select:focus,
+.csp-form-field textarea:focus {
+  border-color: #7b2cbf;
+  box-shadow: 0 0 0 3px rgba(123, 44, 191, 0.09);
+}
+
+/* Select */
+
+.csp-form-field select {
   cursor: pointer;
 }
 
-.create-btn:hover {
-  background-color: #2d4fa3;
+/* Textarea */
+
+.csp-form-field textarea {
+  min-height: 75px;
+  resize: vertical;
 }
+
+/* =========================================================
+   TOTAL AMOUNT
+========================================================= */
+
+.csp-total-box {
+  margin-top: 22px;
+  padding: 15px 17px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-radius: 10px;
+
+  background: #f5edfc;
+  border: 1px solid #e1ccef;
+}
+
+.csp-total-box span {
+  color: #68447f;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.csp-total-box strong {
+  color: #61229c;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   ACTION AREA
+========================================================= */
+
+.csp-action-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 28px;
+  padding-top: 25px;
+
+  border-top: 1px solid #eee8f4;
+}
+
+/* =========================================================
+   CREATE BUTTON
+========================================================= */
+
+.csp-create-button {
+  min-width: 190px;
+
+  padding: 12px 30px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: linear-gradient(
+    135deg,
+    #6124a0,
+    #7b2cbf
+  );
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow: 0 5px 15px rgba(95, 37, 159, 0.22);
+
+  transition: all 0.3s ease;
+}
+
+.csp-create-button:hover {
+  transform: translateY(-2px);
+
+  background: linear-gradient(
+    135deg,
+    #54208b,
+    #6d24a9
+  );
+
+  box-shadow: 0 8px 20px rgba(95, 37, 159, 0.3);
+}
+
+.csp-create-button:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.csp-loading-screen {
+  width: 100%;
+  min-height: 400px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: #f7f4ff;
+
+  color: #6124a0;
+
+  font-family: "Poppins", Arial, sans-serif;
+}
+
+.csp-loading-screen p {
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.csp-loader {
+  width: 36px;
+  height: 36px;
+
+  border: 3px solid #e3d5ee;
+  border-top-color: #7b2cbf;
+
+  border-radius: 50%;
+
+  animation: cspLoadingSpin 0.8s linear infinite;
+}
+
+@keyframes cspLoadingSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+  .csp-three-column {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .csp-column:last-child {
+    grid-column: span 2;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+  .csp-page {
+    padding: 15px 10px 30px;
+  }
+
+  .csp-header {
+    padding: 22px 20px;
+  }
+
+  .csp-header h2 {
+    font-size: 21px;
+  }
+
+  .csp-header p {
+    font-size: 11px;
+  }
+
+  .csp-header-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 20px;
+  }
+
+  .csp-form {
+    padding: 15px;
+  }
+
+  .csp-three-column {
+    grid-template-columns: 1fr;
+    gap: 17px;
+  }
+
+  .csp-column:last-child {
+    grid-column: auto;
+  }
+
+  .csp-column {
+    padding: 20px 17px;
+  }
+
+  .csp-action-area {
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+
+  .csp-create-button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+  .csp-header {
+    padding: 20px 15px;
+  }
+
+  .csp-form {
+    padding: 10px;
+  }
+
+  .csp-column {
+    padding: 17px 14px;
+    border-radius: 11px;
+  }
+
+  .csp-column-heading h3 {
+    font-size: 15px;
+  }
+
+  .csp-form-field input,
+  .csp-form-field select,
+  .csp-form-field textarea {
+    padding: 10px;
+  }
+
+  .csp-total-box {
+    padding: 13px;
+  }
+}
+

@@ -1,97 +1,373 @@
-.messages-container {
-  max-width: 900px;
-  margin: 30px auto;
-  font-family: "Questrial", sans-serif;
+/* =========================================
+STUDENT MESSAGES
+UNIQUE PURPLE & WHITE THEME
+========================================= */
+
+/* =========================================
+MAIN CONTAINER
+========================================= */
+
+.student-message-container {
+width: 100%;
+min-height: 100vh;
+padding: 35px 25px;
+background: #f7f4ff;
+font-family: "Poppins", Arial, sans-serif;
+display: flex;
+justify-content: center;
+align-items: flex-start;
 }
 
-.student-card {
-  border: 1px solid #EBEBEC;
-  border-radius: 8px;
-  overflow: hidden;
-  margin-bottom: 30px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+/* =========================================
+MAIN CARD
+========================================= */
+
+.student-message-card {
+width: 100%;
+max-width: 1100px;
+background: #ffffff;
+border: 1px solid #e9ddff;
+border-radius: 18px;
+overflow: hidden;
+box-shadow: 0 8px 30px rgba(107, 45, 177, 0.12);
 }
 
-.student-top {
-  display: flex;
-  border-bottom: 1px solid #EBEBEC;
-  background: #f5f5f5;
+/* =========================================
+STUDENT PROFILE TOP SECTION
+========================================= */
+
+.student-message-top {
+position: relative;
+overflow: hidden;
+display: flex;
+align-items: center;
+gap: 25px;
+padding: 30px 40px;
+background: linear-gradient(
+135deg,
+#5f259f,
+#7b2cbf,
+#9b59d0
+);
 }
 
-.student-image-box {
-  flex: 0 0 180px;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #f95555;
+/* Decorative Circles */
+
+.student-message-top::before {
+content: "";
+position: absolute;
+width: 230px;
+height: 230px;
+border-radius: 50%;
+background: rgba(255, 255, 255, 0.08);
+right: -70px;
+top: -90px;
 }
 
-.student-image-box img {
-  height: 150px;
-  width: 150px;
-  border-radius: 50%;
-  object-fit: cover;
+.student-message-top::after {
+content: "";
+position: absolute;
+width: 150px;
+height: 150px;
+border-radius: 50%;
+background: rgba(255, 255, 255, 0.06);
+right: 150px;
+bottom: -100px;
 }
 
-.student-info-box {
-  flex: 1;
-  padding: 20px;
-  font-size: 18px;
+/* =========================================
+STUDENT IMAGE
+========================================= */
+
+.student-message-image-box {
+position: relative;
+z-index: 2;
+width: 115px;
+height: 115px;
+min-width: 115px;
+border-radius: 50%;
+overflow: hidden;
+background: #ffffff;
+border: 5px solid rgba(255, 255, 255, 0.85);
+box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
 }
 
-.student-info-box h2 {
-  margin: 0 0 10px 0;
-  font-size: 26px;
+.student-message-image-box img {
+width: 100%;
+height: 100%;
+display: block;
+object-fit: cover;
 }
 
-.student-info-box p {
-  margin: 4px 0;
+/* =========================================
+STUDENT INFORMATION
+========================================= */
+
+.student-message-info-box {
+position: relative;
+z-index: 2;
+color: #ffffff;
 }
 
-.messages-section {
-  padding: 20px;
+.student-message-name {
+margin: 0 0 12px;
+font-size: 28px;
+font-weight: 700;
+color: #ffffff;
+letter-spacing: 0.3px;
 }
 
-.section-title {
-  font-size: 28px;
-  text-transform: uppercase;
-  text-align: center;
-  margin-bottom: 20px;
+.student-message-info-box p {
+margin: 7px 0;
+font-size: 15px;
+color: rgba(255, 255, 255, 0.94);
 }
 
-.message-box {
-  border: 1px solid #EBEBEC;
-  border-radius: 5px;
-  padding: 15px 20px;
-  margin-bottom: 15px;
-  background: #f9f9f9;
+.student-message-info-box strong {
+color: #ffffff;
 }
 
-.message-box p {
-  font-size: 20px;
-  margin: 5px 0;
+/* =========================================
+MESSAGES SECTION
+========================================= */
+
+.student-message-section {
+padding: 35px 40px 40px;
 }
 
-.no-details {
-  text-align: center;
-  font-size: 22px;
-  padding: 40px 0;
-  color: #555;
+/* Section Title */
+
+.student-message-section-title {
+display: inline-block;
+margin: 0 0 25px;
+padding-bottom: 8px;
+font-size: 23px;
+font-weight: 700;
+color: #5f259f;
+border-bottom: 3px solid #7b2cbf;
 }
+
+/* =========================================
+MESSAGE LIST
+========================================= */
+
+.student-message-list {
+display: flex;
+flex-direction: column;
+gap: 18px;
+}
+
+/* =========================================
+MESSAGE BOX
+========================================= */
+
+.student-message-box {
+position: relative;
+display: flex;
+align-items: stretch;
+overflow: hidden;
+background: #ffffff;
+border: 1px solid #e6d8f7;
+border-radius: 14px;
+box-shadow: 0 4px 15px rgba(107, 45, 177, 0.07);
+transition: transform 0.3s ease,
+box-shadow 0.3s ease,
+border-color 0.3s ease;
+}
+
+.student-message-box:hover {
+transform: translateY(-4px);
+border-color: #b980e3;
+box-shadow: 0 12px 28px rgba(107, 45, 177, 0.14);
+}
+
+/* =========================================
+MESSAGE NUMBER
+========================================= */
+
+.student-message-number {
+width: 70px;
+min-width: 70px;
+display: flex;
+justify-content: center;
+align-items: center;
+background: linear-gradient(
+180deg,
+#5f259f,
+#8e44d6
+);
+color: #ffffff;
+font-size: 22px;
+font-weight: 700;
+}
+
+/* =========================================
+MESSAGE CONTENT
+========================================= */
+
+.student-message-content {
+flex: 1;
+padding: 20px 25px;
+}
+
+.student-message-text {
+padding-bottom: 16px;
+border-bottom: 1px solid #eee4fa;
+}
+
+.student-message-label {
+display: block;
+margin-bottom: 6px;
+color: #7b2cbf;
+font-size: 12px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.7px;
+}
+
+.student-message-text p {
+margin: 0;
+color: #444444;
+font-size: 16px;
+line-height: 1.7;
+}
+
+.student-message-time {
+margin-top: 15px;
+}
+
+.student-message-time p {
+margin: 0;
+color: #666666;
+font-size: 14px;
+}
+
+/* =========================================
+NO DATA
+========================================= */
+
+.student-message-no-details {
+width: 100%;
+padding: 45px 20px;
+text-align: center;
+font-size: 16px;
+color: #777777;
+background: #faf7ff;
+border: 1px dashed #caa8e8;
+border-radius: 12px;
+}
+
+/* =========================================
+LOADING / ERROR / NOT FOUND
+========================================= */
+
+.student-message-loading,
+.student-message-error,
+.student-message-not-found {
+width: 100%;
+min-height: 300px;
+padding: 40px 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+background: #f7f4ff;
+font-family: "Poppins", Arial, sans-serif;
+font-size: 18px;
+font-weight: 600;
+}
+
+.student-message-loading {
+color: #5f259f;
+}
+
+.student-message-error {
+color: #c62828;
+}
+
+.student-message-not-found {
+color: #5f259f;
+}
+
+/* =========================================
+TABLET
+========================================= */
 
 @media (max-width: 768px) {
-  .student-top {
-    flex-direction: column;
-    align-items: center;
-  }
 
-  .student-info-box {
-    text-align: center;
-  }
+.student-message-container {
+padding: 20px 15px;
+}
 
-  .student-image-box {
-    width: 100%;
-    padding: 20px 0;
-  }
+.student-message-top {
+flex-direction: column;
+padding: 28px 20px;
+text-align: center;
+}
+
+.student-message-image-box {
+width: 105px;
+height: 105px;
+min-width: 105px;
+}
+
+.student-message-name {
+font-size: 24px;
+}
+
+.student-message-section {
+padding: 25px 20px 30px;
+}
+
+.student-message-content {
+padding: 18px 20px;
+}
+
+}
+
+/* =========================================
+MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+.student-message-container {
+padding: 15px 10px;
+}
+
+.student-message-top {
+padding: 22px 15px;
+}
+
+.student-message-name {
+font-size: 21px;
+}
+
+.student-message-info-box p {
+font-size: 14px;
+}
+
+.student-message-section-title {
+font-size: 20px;
+}
+
+.student-message-box {
+flex-direction: column;
+}
+
+.student-message-number {
+width: 100%;
+min-width: 100%;
+height: 45px;
+font-size: 18px;
+}
+
+.student-message-content {
+padding: 18px;
+}
+
+.student-message-text p {
+font-size: 14px;
+}
+
 }

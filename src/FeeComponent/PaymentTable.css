@@ -1,0 +1,139 @@
+.payment-container{
+    width:100%;
+    padding:25px;
+    background:#f4f7fb;
+    min-height:100vh;
+}
+
+.payment-header{
+    margin-bottom:20px;
+}
+
+.page-title{
+    font-size:28px;
+    font-weight:700;
+    color:#2C56BB;
+}
+
+th{
+    /* background: #2C56BB !important; */
+}
+.table-wrapper{
+    background:#fff;
+    padding:20px;
+    border-radius:14px;
+    overflow:auto;
+}
+
+.payment-table{
+    width:100% !important;
+    border-collapse:collapse;
+}
+
+.payment-table thead{
+    background:#2C56BB;
+}
+
+.payment-table thead th{
+    color:white !important;
+    font-size:14px;
+    padding:14px !important;
+    border:none !important;
+}
+
+.payment-table tbody td{
+    padding:12px !important;
+    font-size:14px;
+    vertical-align:middle;
+}
+
+.payment-table tbody tr:hover{
+    background:#f4f7fb;
+}
+
+.status-paid{
+    background:#059862;
+    color:white;
+    padding:6px 12px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.status-pending{
+    background:#FFAE10;
+    color:white;
+    padding:6px 12px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.action-buttons{
+    display:flex;
+    gap:8px;
+}
+
+.receipt-btn,
+.accept-btn,
+.edit-btn{
+    border:none;
+    padding:8px 14px;
+    border-radius:8px;
+    color:white;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:600;
+}
+
+.receipt-btn{
+    background:#2C56BB;
+}
+
+.accept-btn{
+    background:#059862;
+}
+
+.edit-btn{
+    background:#FFAE10;
+}
+
+.no-data{
+    text-align:center;
+    padding:30px !important;
+    font-weight:600;
+}
+
+/* DATATABLE STYLE */
+
+.dataTables_wrapper .dataTables_filter input{
+    border:1px solid #dcdcdc;
+    border-radius:8px;
+    padding:6px 10px;
+    margin-left:10px;
+}
+
+.dataTables_wrapper .dataTables_length select{
+    border:1px solid #dcdcdc;
+    border-radius:8px;
+    padding:5px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current{
+    background:#2C56BB !important;
+    color:white !important;
+    border:none !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+    background:#2C56BB !important;
+    color:white !important;
+}
+
+@media(max-width:768px){
+
+    .page-title{
+        font-size:22px;
+    }
+
+}

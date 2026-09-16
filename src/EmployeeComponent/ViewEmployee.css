@@ -1,0 +1,524 @@
+.employee-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 28px;
+    box-sizing: border-box;
+    background: #f7f7fb;
+    color: #302b43;
+    font-family: "Poppins", sans-serif;
+}
+
+
+/* =========================================
+   SUCCESS MESSAGE
+========================================= */
+
+.employee-success-message {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 58px;
+    margin-bottom: 18px;
+    padding: 10px 14px;
+    border: 1px solid #dcefe3;
+    border-radius: 12px;
+    background: #f8fffa;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    box-shadow: 0 4px 15px rgba(40, 80, 50, 0.04);
+    animation: employeeMessageIn 0.3s ease;
+}
+
+@keyframes employeeMessageIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.employee-success-icon {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: #e5f7eb;
+    color: #3d9b5d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+}
+
+.employee-success-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.employee-success-content strong {
+    color: #3b8151;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.employee-success-content span {
+    color: #718278;
+    font-size: 10px;
+}
+
+.employee-success-close {
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: #9ca59f;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: 0.2s ease;
+}
+
+.employee-success-close:hover {
+    background: #eaf6ed;
+    color: #47815a;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.employee-page-header {
+    width: 100%;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.employee-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.employee-header-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #7658e8, #5f40d2);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 7px 18px rgba(108, 76, 232, 0.22);
+}
+
+.employee-page-header h2 {
+    margin: 0;
+    color: #302b43;
+    font-size: 21px;
+    line-height: 1.3;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.employee-page-header p {
+    margin: 4px 0 0;
+    color: #888294;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.employee-total-card {
+    min-width: 105px;
+    padding: 9px 14px;
+    box-sizing: border-box;
+    border: 1px solid #e5e0f1;
+    border-radius: 10px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+}
+
+.employee-total-card span {
+    color: #9992a5;
+    font-size: 9px;
+    font-weight: 500;
+}
+
+.employee-total-card strong {
+    color: #6748dc;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   TABLE CARD
+========================================= */
+
+.employee-table-card {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #e8e4f0;
+    border-radius: 14px;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(40, 30, 70, 0.04);
+}
+
+
+/* =========================================
+   TABLE HEADER
+========================================= */
+
+.employee-table-header {
+    min-height: 72px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    border-bottom: 1px solid #ece9f3;
+}
+
+.employee-table-title {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.employee-title-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: #f1edff;
+    color: #6c4ce8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.employee-table-title h3 {
+    margin: 0;
+    color: #40394f;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.employee-table-title p {
+    margin: 3px 0 0;
+    color: #97909f;
+    font-size: 10px;
+}
+
+
+/* =========================================
+   ADD BUTTON
+========================================= */
+
+.employee-add-btn {
+    height: 38px;
+    padding: 0 15px;
+    border: 0;
+    border-radius: 9px;
+    background: linear-gradient(135deg, #7658e8, #6243d4);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 14px rgba(103, 72, 220, 0.2);
+    transition: all 0.2s ease;
+}
+
+.employee-add-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 7px 18px rgba(103, 72, 220, 0.28);
+}
+
+.employee-add-btn:active {
+    transform: translateY(0);
+}
+
+.employee-add-btn i {
+    font-size: 12px;
+}
+
+
+/* =========================================
+   EMPLOYEE NAME
+========================================= */
+
+.employee-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.employee-avatar {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: #f0ecff;
+    color: #6b4be0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.employee-name-cell span {
+    color: #433d50;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================
+   POST
+========================================= */
+
+.employee-post-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #686173;
+}
+
+.employee-post-cell i {
+    color: #8871dc;
+    font-size: 12px;
+}
+
+.employee-post-cell span {
+    font-size: 11px;
+    font-weight: 500;
+}
+
+
+/* =========================================
+   DELETE BUTTON
+========================================= */
+
+.employee-delete-btn {
+    height: 31px;
+    padding: 0 10px;
+    border: 1px solid #f0dfe7;
+    border-radius: 8px;
+    background: #fff8fa;
+    color: #c26882;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.employee-delete-btn:hover {
+    border-color: #e4b4c4;
+    background: #ffedf2;
+    color: #b44565;
+    transform: translateY(-1px);
+}
+
+.employee-delete-btn i {
+    font-size: 11px;
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.employee-table-wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.employee-table-wrapper .rdt_Table {
+    background: #ffffff;
+}
+
+.employee-table-wrapper .rdt_TableRow {
+    transition: background 0.15s ease;
+}
+
+.employee-table-wrapper .rdt_TableCell {
+    font-family: "Poppins", sans-serif;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.employee-empty-state {
+    min-height: 180px;
+    padding: 25px 15px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.employee-empty-icon {
+    width: 46px;
+    height: 46px;
+    margin-bottom: 5px;
+    border-radius: 12px;
+    background: #f2effa;
+    color: #9389a5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+}
+
+.employee-empty-state strong {
+    color: #6d6678;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.employee-empty-state span {
+    color: #a29ca9;
+    font-size: 10px;
+}
+
+.employee-empty-add-btn {
+    height: 31px;
+    margin-top: 8px;
+    padding: 0 12px;
+    border: 1px solid #ddd5fa;
+    border-radius: 8px;
+    background: #f8f6ff;
+    color: #6748dc;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.employee-empty-add-btn:hover {
+    background: #eeeaff;
+    border-color: #c9bdf1;
+}
+
+.employee-empty-add-btn i {
+    font-size: 11px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .employee-page {
+        padding: 20px;
+    }
+
+    .employee-page-header {
+        align-items: flex-start;
+    }
+
+    .employee-total-card {
+        display: none;
+    }
+
+    .employee-table-header {
+        min-height: auto;
+        padding: 15px;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .employee-add-btn {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .employee-page {
+        padding: 15px;
+    }
+
+    .employee-header-icon {
+        width: 43px;
+        height: 43px;
+        font-size: 18px;
+    }
+
+    .employee-page-header h2 {
+        font-size: 18px;
+    }
+
+    .employee-page-header p {
+        font-size: 10px;
+    }
+
+    .employee-table-card {
+        border-radius: 12px;
+    }
+
+    .employee-table-title h3 {
+        font-size: 13px;
+    }
+
+    .employee-table-title p {
+        font-size: 9px;
+    }
+
+    .employee-delete-btn span {
+        display: none;
+    }
+
+    .employee-delete-btn {
+        width: 31px;
+        padding: 0;
+    }
+
+    .employee-name-cell span {
+        max-width: 130px;
+    }
+}

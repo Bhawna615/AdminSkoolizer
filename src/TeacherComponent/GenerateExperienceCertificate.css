@@ -1,63 +1,718 @@
-.experience-container{
-    background:#f5f5f5;
-    padding:30px;
-    min-height:100vh;
+/* =========================================================
+   GENERATE EXPERIENCE CERTIFICATE
+   PURPLE + WHITE PREMIUM ERP UI
+   All classes uniquely prefixed with experience-
+========================================================= */
+
+
+/* =========================================================
+   ROOT PAGE
+========================================================= */
+
+.experience-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 28px;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #25213d;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(124, 58, 237, 0.10),
+      transparent 28%
+    ),
+    linear-gradient(
+      135deg,
+      #faf8ff 0%,
+      #f5f1ff 50%,
+      #ffffff 100%
+    );
 }
 
-.experience-card{
-    background:white;
-    border:1px solid #ddd;
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.experience-page-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
 }
 
-.experience-header{
-    background:#e9e9e9;
-    padding:12px 15px;
-    font-size:20px;
-    font-weight:500;
+
+/* LEFT TITLE */
+
+.experience-title-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
-.experience-body{
-    padding:30px;
+.experience-header-icon {
+  width: 58px;
+  height: 58px;
+  min-width: 58px;
+  border-radius: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 25px;
+  color: #ffffff;
+
+  background: linear-gradient(
+    135deg,
+    #6d28d9,
+    #9333ea
+  );
+
+  box-shadow:
+    0 12px 30px
+    rgba(109, 40, 217, 0.25);
 }
 
-.form-group{
-    margin-bottom:20px;
-    width:320px;
+.experience-title-section h2 {
+  margin: 0;
+  font-size: 25px;
+  font-weight: 750;
+  color: #241b45;
+  letter-spacing: -0.5px;
 }
 
-.form-group label{
-    display:block;
-    font-weight:500;
-    margin-bottom:6px;
+.experience-title-section p {
+  margin: 5px 0 0;
+  color: #7b7493;
+  font-size: 14px;
 }
 
-.form-input{
-    width:100%;
-    padding:8px;
-    border:1px solid #cfcfcf;
-    font-size:15px;
+
+/* BACK BUTTON */
+
+.experience-back-btn {
+  border: none;
+  outline: none;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 11px 18px;
+
+  border-radius: 11px;
+
+  color: #6d28d9;
+  background: #ffffff;
+
+  font-size: 14px;
+  font-weight: 650;
+
+  cursor: pointer;
+
+  border: 1px solid #e7ddff;
+
+  transition: 0.25s ease;
+
+  box-shadow:
+    0 5px 18px
+    rgba(40, 25, 70, 0.05);
 }
 
-.submit-area{
-    text-align:center;
-    margin-top:40px;
+.experience-back-btn:hover {
+  background: #f6f1ff;
+  transform: translateY(-2px);
 }
 
-.generate-btn{
-    background:#355db3;
-    color:white;
-    border:none;
-    padding:12px 70px;
-    font-size:20px;
-    border-radius:6px;
-    cursor:pointer;
+.experience-back-btn i {
+  font-size: 17px;
 }
 
-.generate-btn:hover{
-    background:#2c4fa0;
+
+/* =========================================================
+   SUCCESS / ERROR MESSAGE
+========================================================= */
+
+.experience-message {
+  width: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 15px 18px;
+
+  margin-bottom: 22px;
+
+  border-radius: 14px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  animation:
+    experience-message-show
+    0.35s ease;
 }
 
-.message{
-    color:green;
-    margin-bottom:15px;
+.experience-message i {
+  font-size: 19px;
+}
+
+
+/* SUCCESS */
+
+.experience-success {
+  color: #16794b;
+
+  background:
+    linear-gradient(
+      135deg,
+      #edfff5,
+      #f8fffb
+    );
+
+  border:
+    1px solid
+    #bdeed2;
+}
+
+
+/* ERROR */
+
+.experience-error {
+  color: #c43d4b;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff2f3,
+      #fffafb
+    );
+
+  border:
+    1px solid
+    #ffcdd3;
+}
+
+
+@keyframes experience-message-show {
+
+  from {
+    opacity: 0;
+    transform:
+      translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.experience-card {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  background: #ffffff;
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    #eee9f7;
+
+  box-shadow:
+    0 20px 60px
+    rgba(48, 27, 95, 0.08);
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.experience-card-header {
+  padding: 25px 30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fbfaff,
+      #f5f1ff
+    );
+
+  border-bottom:
+    1px solid
+    #ebe5f7;
+}
+
+.experience-card-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.experience-card-icon {
+  width: 46px;
+  height: 46px;
+
+  border-radius: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #7c3aed;
+
+  font-size: 21px;
+
+  background: #ffffff;
+
+  border:
+    1px solid
+    #e8ddff;
+
+  box-shadow:
+    0 5px 15px
+    rgba(109, 40, 217, 0.08);
+}
+
+.experience-card-heading h3 {
+  margin: 0;
+
+  font-size: 19px;
+  font-weight: 750;
+
+  color: #281f47;
+}
+
+.experience-card-heading p {
+  margin: 5px 0 0;
+
+  font-size: 13px;
+
+  color: #827a97;
+}
+
+
+/* =========================================================
+   CARD BODY
+========================================================= */
+
+.experience-body {
+  padding: 32px;
+}
+
+
+/* =========================================================
+   FORM GRID
+========================================================= */
+
+.experience-form-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 25px;
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+.experience-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.experience-form-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  color: #4a4168;
+}
+
+.experience-form-group label i {
+  color: #7c3aed;
+  font-size: 16px;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.experience-form-input {
+  width: 100%;
+
+  height: 48px;
+
+  padding: 0 15px;
+
+  box-sizing: border-box;
+
+  border-radius: 11px;
+
+  border:
+    1px solid
+    #ded7ea;
+
+  background: #ffffff;
+
+  outline: none;
+
+  color: #302746;
+
+  font-size: 14px;
+
+  font-family: inherit;
+
+  transition: 0.25s ease;
+}
+
+.experience-form-input:hover {
+  border-color: #c7b5ef;
+}
+
+.experience-form-input:focus {
+  border-color: #7c3aed;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(124, 58, 237, 0.10);
+}
+
+
+/* DATE ICON AREA */
+
+.experience-form-input[type="date"] {
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   SUBMIT AREA
+========================================================= */
+
+.experience-submit-area {
+  margin-top: 34px;
+
+  padding-top: 24px;
+
+  border-top:
+    1px solid
+    #eeeaf5;
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  align-items: center;
+
+  gap: 13px;
+}
+
+
+/* CANCEL BUTTON */
+
+.experience-cancel-btn {
+  height: 46px;
+
+  padding: 0 22px;
+
+  border-radius: 11px;
+
+  border:
+    1px solid
+    #ded7ea;
+
+  background: #ffffff;
+
+  color: #655d78;
+
+  font-size: 14px;
+
+  font-weight: 650;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.experience-cancel-btn:hover {
+  background: #f7f5fa;
+
+  border-color: #cfc6dc;
+}
+
+
+/* GENERATE BUTTON */
+
+.experience-generate-btn {
+  height: 46px;
+
+  padding: 0 24px;
+
+  border: none;
+
+  border-radius: 11px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  cursor: pointer;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6d28d9,
+      #9333ea
+    );
+
+  box-shadow:
+    0 10px 24px
+    rgba(109, 40, 217, 0.25);
+
+  transition: 0.25s ease;
+}
+
+.experience-generate-btn:hover:not(:disabled) {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 15px 30px
+    rgba(109, 40, 217, 0.35);
+}
+
+.experience-generate-btn:active:not(:disabled) {
+  transform:
+    translateY(0);
+}
+
+.experience-generate-btn:disabled {
+  opacity: 0.65;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+/* =========================================================
+   LOADING SPINNER
+========================================================= */
+
+.experience-spinner {
+  width: 17px;
+  height: 17px;
+
+  border-radius: 50%;
+
+  border:
+    2px solid
+    rgba(255, 255, 255, 0.4);
+
+  border-top-color:
+    #ffffff;
+
+  animation:
+    experience-spin
+    0.7s linear infinite;
+}
+
+@keyframes experience-spin {
+
+  to {
+    transform:
+      rotate(360deg);
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .experience-container {
+    padding: 20px 15px 35px;
+  }
+
+
+  .experience-page-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+
+  .experience-back-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+
+  .experience-form-grid {
+    grid-template-columns:
+      1fr;
+
+    gap: 20px;
+  }
+
+
+  .experience-card-header {
+    padding: 22px 20px;
+  }
+
+
+  .experience-body {
+    padding: 25px 20px;
+  }
+
+
+  .experience-submit-area {
+    flex-direction: column-reverse;
+
+    align-items: stretch;
+  }
+
+
+  .experience-cancel-btn,
+  .experience-generate-btn {
+    width: 100%;
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .experience-container {
+    padding: 14px 10px 30px;
+  }
+
+
+  .experience-title-section {
+    align-items: flex-start;
+  }
+
+
+  .experience-header-icon {
+    width: 50px;
+    height: 50px;
+
+    min-width: 50px;
+
+    border-radius: 15px;
+
+    font-size: 21px;
+  }
+
+
+  .experience-title-section h2 {
+    font-size: 20px;
+  }
+
+
+  .experience-title-section p {
+    font-size: 12px;
+
+    line-height: 1.5;
+  }
+
+
+  .experience-card {
+    border-radius: 17px;
+  }
+
+
+  .experience-card-header {
+    padding: 18px 15px;
+  }
+
+
+  .experience-body {
+    padding: 20px 15px;
+  }
+
+
+  .experience-card-heading h3 {
+    font-size: 17px;
+  }
+
+
+  .experience-card-heading p {
+    font-size: 12px;
+  }
+
+
+  .experience-card-icon {
+    width: 42px;
+    height: 42px;
+
+    font-size: 18px;
+  }
+
+
+  .experience-form-input {
+    height: 46px;
+  }
+
+
+  .experience-submit-area {
+    margin-top: 26px;
+
+    padding-top: 20px;
+  }
+
 }

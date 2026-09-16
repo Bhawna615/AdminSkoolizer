@@ -1,74 +1,328 @@
-.exam-container {
-  padding: 30px;
-  background-color: #f5f6fa;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
+/* =========================================
+STUDENT EXAM DETAILS
+UNIQUE PURPLE & WHITE THEME
+========================================= */
+
+/* Main Container */
+.student-exam-container {
+width: 100%;
+min-height: 100vh;
+padding: 35px 25px;
+background: #f7f4ff;
+font-family: "Poppins", Arial, sans-serif;
+display: flex;
+justify-content: center;
+align-items: flex-start;
 }
 
-.student-card {
-  width: 85%;
-  background: #ffffff;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
+/* Main Card */
+.student-exam-card {
+width: 100%;
+max-width: 1100px;
+background: #ffffff;
+border-radius: 18px;
+overflow: hidden;
+border: 1px solid #e9ddff;
+box-shadow: 0 8px 30px rgba(107, 45, 177, 0.12);
 }
 
-.student-top {
-  display: flex;
-  border-bottom: 1px solid #e0e0e0;
+/* =========================================
+STUDENT PROFILE TOP SECTION
+========================================= */
+
+.student-exam-top {
+position: relative;
+overflow: hidden;
+display: flex;
+align-items: center;
+gap: 25px;
+padding: 30px 40px;
+background: linear-gradient(
+135deg,
+#5f259f,
+#7b2cbf,
+#9b59d0
+);
 }
 
-.student-image-box {
-  width: 35%;
-  background-color: #f95555;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+/* Decorative Circle */
+.student-exam-top::before {
+content: "";
+position: absolute;
+width: 230px;
+height: 230px;
+border-radius: 50%;
+background: rgba(255, 255, 255, 0.08);
+right: -70px;
+top: -90px;
 }
 
-.student-image-box img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  background: #fff;
+.student-exam-top::after {
+content: "";
+position: absolute;
+width: 140px;
+height: 140px;
+border-radius: 50%;
+background: rgba(255, 255, 255, 0.07);
+right: 130px;
+bottom: -100px;
 }
 
-.student-info-box {
-  width: 65%;
-  padding: 30px;
-  background-color: #f7f7f7;
+/* =========================================
+STUDENT IMAGE
+========================================= */
+
+.student-exam-image-box {
+width: 115px;
+height: 115px;
+min-width: 115px;
+border-radius: 50%;
+overflow: hidden;
+background: #ffffff;
+border: 5px solid rgba(255, 255, 255, 0.85);
+box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+position: relative;
+z-index: 2;
 }
 
-.student-name {
-  font-size: 24px;
-  margin-bottom: 10px;
+.student-exam-image-box img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
 }
 
-.exam-section {
-  padding: 20px 40px;
+/* =========================================
+STUDENT INFORMATION
+========================================= */
+
+.student-exam-info-box {
+position: relative;
+z-index: 2;
+color: #ffffff;
 }
 
-.exam-title {
-  text-align: center;
-  font-size: 28px;
-  text-transform: uppercase;
-  margin-bottom: 30px;
-  font-weight: 600;
+.student-exam-name {
+margin: 0 0 12px;
+font-size: 28px;
+font-weight: 700;
+letter-spacing: 0.3px;
+color: #ffffff;
 }
 
-.exam-box {
-  margin-bottom: 30px;
+.student-exam-info-box p {
+margin: 7px 0;
+font-size: 15px;
+color: rgba(255, 255, 255, 0.94);
 }
 
-.exam-name {
-  font-size: 22px;
-  font-weight: 600;
+.student-exam-info-box strong {
+color: #ffffff;
 }
 
-.no-data {
-  text-align: center;
-  font-size: 22px;
+/* =========================================
+EXAM SECTION
+========================================= */
+
+.student-exam-section {
+padding: 35px 40px 40px;
+}
+
+/* Section Title */
+.student-exam-title {
+display: inline-block;
+margin: 0 0 25px;
+padding-bottom: 8px;
+font-size: 23px;
+font-weight: 700;
+color: #5f259f;
+border-bottom: 3px solid #7b2cbf;
+}
+
+/* =========================================
+EXAM GRID
+========================================= */
+
+.student-exam-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+}
+
+/* =========================================
+EXAM CARD
+========================================= */
+
+.student-exam-box {
+position: relative;
+overflow: hidden;
+background: #ffffff;
+border: 1px solid #e6d8f7;
+border-radius: 14px;
+padding: 22px;
+box-shadow: 0 4px 15px rgba(107, 45, 177, 0.07);
+transition: transform 0.3s ease,
+box-shadow 0.3s ease,
+border-color 0.3s ease;
+}
+
+/* Purple Top Border */
+.student-exam-box::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 5px;
+background: linear-gradient(
+90deg,
+#5f259f,
+#9b59d0
+);
+}
+
+.student-exam-box:hover {
+transform: translateY(-6px);
+border-color: #b980e3;
+box-shadow: 0 12px 28px rgba(107, 45, 177, 0.16);
+}
+
+/* Exam Name */
+.student-exam-subject-name {
+margin: 5px 0 18px;
+font-size: 19px;
+font-weight: 700;
+color: #5f259f;
+}
+
+/* Subject and Date */
+.student-exam-subject,
+.student-exam-date {
+margin: 10px 0;
+font-size: 14px;
+line-height: 1.6;
+color: #555555;
+}
+
+.student-exam-subject span,
+.student-exam-date span {
+display: block;
+margin-bottom: 2px;
+font-weight: 600;
+color: #6a1b9a;
+}
+
+/* =========================================
+NO DATA
+========================================= */
+
+.student-exam-no-data {
+width: 100%;
+margin: 0;
+padding: 45px 20px;
+text-align: center;
+font-size: 16px;
+color: #777777;
+background: #faf7ff;
+border: 1px dashed #caa8e8;
+border-radius: 12px;
+}
+
+/* =========================================
+LOADING / NOT FOUND
+========================================= */
+
+.student-exam-loading,
+.student-exam-not-found {
+width: 100%;
+min-height: 300px;
+display: flex;
+justify-content: center;
+align-items: center;
+font-family: "Poppins", Arial, sans-serif;
+font-size: 18px;
+font-weight: 600;
+color: #5f259f;
+background: #f7f4ff;
+}
+
+/* =========================================
+TABLET RESPONSIVE
+========================================= */
+
+@media (max-width: 950px) {
+.student-exam-grid {
+grid-template-columns: repeat(2, 1fr);
+}
+}
+
+/* =========================================
+MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+.student-exam-container {
+padding: 20px 15px;
+}
+
+.student-exam-top {
+flex-direction: column;
+padding: 28px 20px;
+text-align: center;
+}
+
+.student-exam-image-box {
+width: 105px;
+height: 105px;
+min-width: 105px;
+}
+
+.student-exam-name {
+font-size: 24px;
+}
+
+.student-exam-section {
+padding: 25px 20px 30px;
+}
+
+.student-exam-grid {
+grid-template-columns: 1fr;
+gap: 15px;
+}
+}
+
+/* =========================================
+SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+.student-exam-container {
+padding: 15px 10px;
+}
+
+.student-exam-top {
+padding: 22px 15px;
+}
+
+.student-exam-name {
+font-size: 21px;
+}
+
+.student-exam-info-box p {
+font-size: 14px;
+}
+
+.student-exam-title {
+font-size: 20px;
+}
+
+.student-exam-box {
+padding: 18px;
+}
+
+.student-exam-subject-name {
+font-size: 17px;
+}
 }

@@ -1,0 +1,635 @@
+/* =========================================================
+EDIT TEACHER
+MODERN PURPLE + WHITE ERP UI
+UNIQUE PREFIX: edit-teacher-
+========================================================= */
+
+/* ================= PAGE ================= */
+
+.edit-teacher-page {
+width: 100%;
+min-height: 100vh;
+
+padding: 24px;
+
+box-sizing: border-box;
+
+font-family: "Segoe UI", sans-serif;
+
+background:
+radial-gradient(
+circle at 100% 0%,
+rgba(124, 58, 237, 0.12),
+transparent 32%
+),
+radial-gradient(
+circle at 0% 100%,
+rgba(168, 85, 247, 0.08),
+transparent 28%
+),
+#f8f7fc;
+}
+
+.edit-teacher-container {
+width: 100%;
+max-width: 1450px;
+
+margin: auto;
+}
+
+/* ================= HEADER ================= */
+
+.edit-teacher-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+gap: 20px;
+
+padding: 20px 24px;
+
+margin-bottom: 22px;
+
+background: #ffffff;
+
+border: 1px solid #ebe6f2;
+
+border-radius: 18px;
+
+box-shadow:
+0 8px 25px rgba(40, 25, 65, 0.05);
+}
+
+.edit-teacher-header-left {
+display: flex;
+align-items: center;
+
+gap: 15px;
+}
+
+.edit-teacher-back-btn {
+width: 43px;
+height: 43px;
+
+border: none;
+
+border-radius: 12px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+background: #f1ebff;
+
+color: #6d28d9;
+
+font-size: 19px;
+
+cursor: pointer;
+
+transition: 0.25s ease;
+}
+
+.edit-teacher-back-btn:hover {
+background: #6d28d9;
+
+color: #ffffff;
+
+transform: translateX(-3px);
+}
+
+.edit-teacher-header h2 {
+margin: 0;
+
+color: #382646;
+
+font-size: 22px;
+font-weight: 700;
+}
+
+.edit-teacher-header p {
+margin: 4px 0 0;
+
+color: #968c9e;
+
+font-size: 13px;
+}
+
+.edit-teacher-header-badge {
+padding: 10px 15px;
+
+display: flex;
+align-items: center;
+
+gap: 8px;
+
+border-radius: 25px;
+
+background: #f2ecff;
+
+color: #6d28d9;
+
+font-size: 13px;
+font-weight: 700;
+}
+
+/* ================= FORM CARD ================= */
+
+.edit-teacher-card {
+background: #ffffff;
+
+border: 1px solid #ebe6f2;
+
+border-radius: 20px;
+
+padding: 28px;
+
+box-shadow:
+0 10px 30px rgba(40, 25, 65, 0.05);
+}
+
+/* ================= CARD HEADING ================= */
+
+.edit-teacher-card-heading {
+display: flex;
+align-items: center;
+
+gap: 14px;
+
+padding-bottom: 23px;
+
+margin-bottom: 25px;
+
+border-bottom: 1px solid #eeeaf3;
+}
+
+.edit-teacher-heading-icon {
+width: 52px;
+height: 52px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+border-radius: 14px;
+
+background:
+linear-gradient(
+135deg,
+#6d28d9,
+#a855f7
+);
+
+color: #ffffff;
+
+font-size: 21px;
+}
+
+.edit-teacher-card-heading h3 {
+margin: 0;
+
+color: #3b2948;
+
+font-size: 19px;
+font-weight: 700;
+}
+
+.edit-teacher-card-heading p {
+margin: 4px 0 0;
+
+color: #968c9e;
+
+font-size: 12px;
+}
+
+/* ================= FORM GRID ================= */
+
+.edit-teacher-form-grid {
+display: grid;
+
+grid-template-columns:
+repeat(3, minmax(0, 1fr));
+
+gap: 22px;
+}
+
+/* ================= FORM SECTION ================= */
+
+.edit-teacher-section {
+padding: 20px;
+
+background: #fcfbfe;
+
+border: 1px solid #eeeaf4;
+
+border-radius: 16px;
+}
+
+.edit-teacher-section-title {
+display: flex;
+align-items: center;
+
+gap: 9px;
+
+margin-bottom: 20px;
+
+color: #5b21b6;
+
+font-size: 14px;
+font-weight: 700;
+}
+
+.edit-teacher-section-title i {
+width: 32px;
+height: 32px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+border-radius: 9px;
+
+background: #eee7ff;
+
+color: #7c3aed;
+
+font-size: 15px;
+}
+
+/* ================= FIELD ================= */
+
+.edit-teacher-field {
+margin-bottom: 18px;
+}
+
+.edit-teacher-field label {
+display: block;
+
+margin-bottom: 7px;
+
+color: #655a6d;
+
+font-size: 12px;
+font-weight: 650;
+}
+
+.edit-teacher-input-wrapper {
+position: relative;
+
+display: flex;
+align-items: center;
+}
+
+.edit-teacher-input-wrapper > i {
+position: absolute;
+
+left: 13px;
+
+color: #9d8cad;
+
+font-size: 15px;
+
+pointer-events: none;
+
+transition: 0.2s ease;
+}
+
+.edit-teacher-input-wrapper input,
+.edit-teacher-input-wrapper select {
+width: 100%;
+
+height: 45px;
+
+padding: 0 12px 0 40px;
+
+box-sizing: border-box;
+
+outline: none;
+
+border: 1px solid #e5dfea;
+
+border-radius: 10px;
+
+background: #ffffff;
+
+color: #493b54;
+
+font-family: inherit;
+
+font-size: 13px;
+
+transition: 0.2s ease;
+}
+
+.edit-teacher-input-wrapper select {
+cursor: pointer;
+}
+
+.edit-teacher-input-wrapper input:focus,
+.edit-teacher-input-wrapper select:focus {
+border-color: #7c3aed;
+
+box-shadow:
+0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.edit-teacher-input-wrapper:focus-within > i {
+color: #7c3aed;
+}
+
+/* ================= IMAGE UPLOAD ================= */
+
+.edit-teacher-upload-box {
+width: 100%;
+
+min-height: 90px;
+
+padding: 14px;
+
+box-sizing: border-box;
+
+display: flex !important;
+align-items: center;
+
+gap: 13px;
+
+cursor: pointer;
+
+border: 1px dashed #cbb7f4 !important;
+
+border-radius: 12px;
+
+background: #faf8ff;
+
+transition: 0.25s ease;
+}
+
+.edit-teacher-upload-box:hover {
+background: #f4efff;
+
+border-color: #7c3aed !important;
+}
+
+.edit-teacher-upload-box input {
+display: none;
+}
+
+.edit-teacher-upload-icon {
+width: 42px;
+height: 42px;
+
+min-width: 42px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+border-radius: 11px;
+
+background: #eee7ff;
+
+color: #7c3aed;
+
+font-size: 20px;
+}
+
+.edit-teacher-upload-content {
+display: flex;
+flex-direction: column;
+
+gap: 4px;
+
+overflow: hidden;
+}
+
+.edit-teacher-upload-content strong {
+color: #574663;
+
+font-size: 12px;
+
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.edit-teacher-upload-content span {
+color: #a195aa;
+
+font-size: 11px;
+}
+
+/* ================= INFO NOTE ================= */
+
+.edit-teacher-info-note {
+display: flex;
+align-items: flex-start;
+
+gap: 8px;
+
+padding: 11px;
+
+border-radius: 10px;
+
+background: #f3efff;
+
+color: #7c3aed;
+
+font-size: 11px;
+
+line-height: 1.5;
+}
+
+.edit-teacher-info-note i {
+margin-top: 1px;
+
+font-size: 14px;
+}
+
+/* ================= ACTION BUTTONS ================= */
+
+.edit-teacher-actions {
+display: flex;
+justify-content: flex-end;
+
+align-items: center;
+
+gap: 12px;
+
+margin-top: 28px;
+
+padding-top: 22px;
+
+border-top: 1px solid #eeeaf3;
+}
+
+.edit-teacher-cancel-btn,
+.edit-teacher-save-btn {
+min-width: 130px;
+
+height: 46px;
+
+padding: 0 18px;
+
+border-radius: 11px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+gap: 8px;
+
+font-family: inherit;
+
+font-size: 13px;
+font-weight: 700;
+
+cursor: pointer;
+
+transition: 0.25s ease;
+}
+
+.edit-teacher-cancel-btn {
+border: 1px solid #e5dfea;
+
+background: #ffffff;
+
+color: #756a7d;
+}
+
+.edit-teacher-cancel-btn:hover {
+background: #f7f5f9;
+
+border-color: #d7cfdd;
+}
+
+.edit-teacher-save-btn {
+border: none;
+
+color: #ffffff;
+
+background:
+linear-gradient(
+135deg,
+#6d28d9,
+#9333ea
+);
+}
+
+.edit-teacher-save-btn:hover:not(:disabled) {
+transform: translateY(-2px);
+
+box-shadow:
+0 8px 20px rgba(109, 40, 217, 0.25);
+}
+
+.edit-teacher-save-btn:disabled {
+opacity: 0.7;
+
+cursor: not-allowed;
+}
+
+/* ================= BUTTON SPINNER ================= */
+
+.edit-teacher-btn-spinner {
+width: 16px;
+height: 16px;
+
+border-radius: 50%;
+
+border: 2px solid rgba(255, 255, 255, 0.4);
+
+border-top-color: #ffffff;
+
+animation:
+edit-teacher-spin 0.7s linear infinite;
+}
+
+@keyframes edit-teacher-spin {
+
+to {
+transform: rotate(360deg);
+}
+
+}
+
+/* ================= TABLET ================= */
+
+@media screen and (max-width: 1100px) {
+
+.edit-teacher-form-grid {
+grid-template-columns:
+repeat(2, minmax(0, 1fr));
+}
+
+.edit-teacher-section:last-child {
+grid-column: span 2;
+}
+
+}
+
+/* ================= MOBILE ================= */
+
+@media screen and (max-width: 700px) {
+
+.edit-teacher-page {
+padding: 12px;
+}
+
+.edit-teacher-header {
+flex-direction: column;
+
+
+align-items: flex-start;
+
+padding: 17px;
+
+
+}
+
+.edit-teacher-header-badge {
+width: 100%;
+
+
+box-sizing: border-box;
+
+
+}
+
+.edit-teacher-card {
+padding: 17px;
+}
+
+.edit-teacher-form-grid {
+grid-template-columns: 1fr;
+}
+
+.edit-teacher-section:last-child {
+grid-column: auto;
+}
+
+.edit-teacher-actions {
+flex-direction: column-reverse;
+}
+
+.edit-teacher-cancel-btn,
+.edit-teacher-save-btn {
+width: 100%;
+}
+
+}
+
+@media screen and (max-width: 430px) {
+
+.edit-teacher-header h2 {
+font-size: 18px;
+}
+
+.edit-teacher-card-heading h3 {
+font-size: 16px;
+}
+
+.edit-teacher-header-left {
+align-items: flex-start;
+}
+
+}

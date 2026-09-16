@@ -1,56 +1,534 @@
-.certificate-container{
-padding:20px;
-background:#fff;
+/* =========================================================
+   DISPLAY CHARACTER CERTIFICATES
+   PURPLE + WHITE ERP UI
+========================================================= */
+
+.dcc-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 24px;
+    background: #f7f5fb;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
 }
 
-.table-controls{
-display:flex;
-justify-content:space-between;
-margin-bottom:15px;
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.dcc-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
 }
 
-.table-controls select,
-.table-controls input{
-margin-left:8px;
-padding:4px;
+.dcc-header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-.certificate-table{
-width:100%;
-border-collapse:collapse;
+.dcc-header-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: #6f42c1;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 6px 16px rgba(111, 66, 193, 0.20);
 }
 
-.certificate-table th{
-background:#2C56BB;
-color:white;
-padding:10px;
-text-align:left;
+.dcc-header h1 {
+    margin: 0;
+    color: #29213d;
+    font-size: 25px;
+    font-weight: 700;
 }
 
-.certificate-table td{
-padding:10px;
-border:1px solid #ddd;
+.dcc-header p {
+    margin: 5px 0 0;
+    color: #817b8f;
+    font-size: 14px;
 }
 
-.certificate-table tr:nth-child(even){
-background:#f5f5f5;
+.dcc-back-btn {
+    border: 1px solid #ded7eb;
+    background: #fff;
+    color: #5f35a5;
+    border-radius: 8px;
+    padding: 10px 17px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s ease;
 }
 
-.view-btn{
-background:none;
-border:none;
-font-size:20px;
-cursor:pointer;
+.dcc-back-btn:hover {
+    background: #6f42c1;
+    color: #fff;
+    border-color: #6f42c1;
 }
 
-.pagination{
-margin-top:15px;
-display:flex;
-justify-content:center;
-gap:15px;
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.dcc-card {
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e6e0ef;
+    border-radius: 13px;
+    box-shadow: 0 5px 22px rgba(42, 28, 67, 0.07);
+    overflow: hidden;
 }
 
-.pagination button{
-padding:6px 12px;
-cursor:pointer;
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.dcc-card-header {
+    padding: 20px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee9f4;
+}
+
+.dcc-card-header h2 {
+    margin: 0;
+    color: #312442;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.dcc-card-header h2 i {
+    color: #6f42c1;
+    margin-right: 8px;
+}
+
+.dcc-card-header p {
+    margin: 5px 0 0;
+    color: #8b8495;
+    font-size: 13px;
+}
+
+.dcc-total-badge {
+    background: #f0eafb;
+    color: #6138a5;
+    border: 1px solid #ded2f0;
+    padding: 8px 13px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.dcc-total-badge i {
+    margin-right: 6px;
+}
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.dcc-controls {
+    padding: 17px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee9f4;
+    background: #fff;
+}
+
+.dcc-show-control {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #625b6c;
+    font-size: 13px;
+}
+
+.dcc-show-control select {
+    height: 35px;
+    min-width: 70px;
+    border: 1px solid #dcd5e7;
+    border-radius: 6px;
+    padding: 0 9px;
+    background: #fff;
+    color: #41374d;
+    outline: none;
+}
+
+.dcc-show-control select:focus {
+    border-color: #6f42c1;
+}
+
+
+.dcc-search-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dcc-search-control label {
+    color: #625b6c;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.dcc-search-box {
+    width: 270px;
+    height: 36px;
+    border: 1px solid #dcd5e7;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    background: #fff;
+    transition: 0.2s ease;
+}
+
+.dcc-search-box:focus-within {
+    border-color: #6f42c1;
+    box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.08);
+}
+
+.dcc-search-box > i {
+    color: #8c8299;
+    font-size: 14px;
+}
+
+.dcc-search-box input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding: 0 8px;
+    color: #39303f;
+    font-size: 13px;
+}
+
+.dcc-search-box input::placeholder {
+    color: #aaa3b0;
+}
+
+.dcc-search-box button {
+    border: none;
+    background: none;
+    color: #a69dac;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.dcc-search-box button:hover {
+    color: #6f42c1;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.dcc-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.dcc-table {
+    width: 100%;
+    min-width: 1250px;
+    border-collapse: collapse;
+}
+
+.dcc-table thead th {
+    background: #6f42c1;
+    color: #fff;
+    padding: 13px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.dcc-table tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #eeeaf2;
+    color: #514a59;
+    font-size: 13px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.dcc-table tbody tr {
+    transition: 0.15s ease;
+}
+
+.dcc-table tbody tr:hover {
+    background: #faf8fd;
+}
+
+.dcc-table tbody tr:nth-child(even) {
+    background: #fcfbfd;
+}
+
+.dcc-table tbody tr:nth-child(even):hover {
+    background: #faf8fd;
+}
+
+.dcc-student-id {
+    display: inline-block;
+    padding: 4px 8px;
+    background: #f1ebfa;
+    color: #6037a4;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.dcc-student-name {
+    color: #30263b !important;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ACTION
+========================================================= */
+
+.dcc-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dcc-view-btn {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #d9cff0;
+    border-radius: 7px;
+    background: #f4effb;
+    color: #6539ad;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    transition: 0.2s ease;
+}
+
+.dcc-view-btn:hover {
+    background: #6f42c1;
+    color: #fff;
+    border-color: #6f42c1;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.dcc-loading {
+    height: 220px;
+    text-align: center !important;
+    color: #766c80 !important;
+}
+
+.dcc-spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid #e8def5;
+    border-top-color: #6f42c1;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    animation: dccSpin 0.8s linear infinite;
+}
+
+@keyframes dccSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.dcc-empty {
+    padding: 60px 20px !important;
+    text-align: center !important;
+}
+
+.dcc-empty-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #f1ebf8;
+    color: #7650ae;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+}
+
+.dcc-empty h3 {
+    margin: 0;
+    color: #403649;
+    font-size: 16px;
+}
+
+.dcc-empty p {
+    margin: 6px 0 0;
+    color: #918898;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.dcc-table-footer {
+    padding: 17px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee9f4;
+}
+
+.dcc-record-info {
+    color: #81798a;
+    font-size: 13px;
+}
+
+.dcc-record-info strong {
+    color: #51445f;
+}
+
+.dcc-pagination {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dcc-pagination button {
+    border: 1px solid #ddd5e8;
+    background: #fff;
+    color: #60449a;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.2s ease;
+}
+
+.dcc-pagination button:hover:not(:disabled) {
+    background: #6f42c1;
+    color: #fff;
+    border-color: #6f42c1;
+}
+
+.dcc-pagination button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.dcc-page-number {
+    min-width: 105px;
+    text-align: center;
+    color: #635a6e;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .dcc-page {
+        padding: 15px;
+    }
+
+    .dcc-header {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .dcc-header h1 {
+        font-size: 21px;
+    }
+
+    .dcc-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    .dcc-search-control {
+        justify-content: space-between;
+    }
+
+    .dcc-search-box {
+        width: 250px;
+    }
+
+    .dcc-table-footer {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .dcc-header {
+        flex-direction: column;
+    }
+
+    .dcc-back-btn {
+        align-self: flex-start;
+    }
+
+    .dcc-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .dcc-search-control {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dcc-search-box {
+        width: 100%;
+    }
+
+    .dcc-pagination {
+        width: 100%;
+        justify-content: space-between;
+    }
+
 }

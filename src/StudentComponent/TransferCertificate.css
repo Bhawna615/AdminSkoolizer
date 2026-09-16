@@ -1,0 +1,1126 @@
+/* =========================================================
+   TRANSFER CERTIFICATE
+   PURPLE + WHITE SCHOOL ERP UI
+   Unique classes: tc-
+========================================================= */
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.tc-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 24px 24px 40px;
+    box-sizing: border-box;
+    background: #f7f5fb;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #2f2635;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.tc-page-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 22px;
+}
+
+
+/* LEFT HEADER */
+
+.tc-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+}
+
+.tc-header-icon {
+    width: 52px;
+    height: 52px;
+    flex: 0 0 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+    background: linear-gradient(
+        135deg,
+        #7b4bc4,
+        #5b2c91
+    );
+    color: #ffffff;
+    font-size: 25px;
+    box-shadow:
+        0 8px 20px rgba(91, 44, 145, 0.20);
+}
+
+.tc-header-content {
+    min-width: 0;
+}
+
+.tc-header-content h1 {
+    margin: 0;
+    color: #33243d;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.tc-header-content p {
+    margin: 5px 0 0;
+    color: #8b8190;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   HEADER COUNT
+========================================================= */
+
+.tc-header-count {
+    min-width: 190px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 10px 15px;
+    background: #ffffff;
+    border: 1px solid #e5ddec;
+    border-radius: 11px;
+    box-shadow: 0 5px 18px rgba(75, 42, 100, 0.06);
+}
+
+.tc-count-icon {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: #f1eafa;
+    color: #6f42c1;
+    font-size: 19px;
+}
+
+.tc-header-count span {
+    display: block;
+    color: #8d8392;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.tc-header-count strong {
+    display: block;
+    margin-top: 1px;
+    color: #5b2c91;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.tc-message {
+    width: 100%;
+    min-height: 46px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    padding: 11px 13px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.tc-message > i {
+    font-size: 19px;
+    flex-shrink: 0;
+}
+
+.tc-message span {
+    flex: 1;
+}
+
+.tc-message button {
+    width: 29px;
+    height: 29px;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 17px;
+    transition: 0.2s ease;
+}
+
+.tc-message-error {
+    color: #a3313c;
+    background: #fff1f2;
+    border: 1px solid #f3c9ce;
+}
+
+.tc-message-error button {
+    color: #a3313c;
+}
+
+.tc-message-error button:hover {
+    background: #fce0e3;
+}
+
+.tc-message-success {
+    color: #23734b;
+    background: #effaf4;
+    border: 1px solid #c7e9d5;
+}
+
+.tc-message-success button {
+    color: #23734b;
+}
+
+.tc-message-success button:hover {
+    background: #dff4e8;
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.tc-card {
+    position: relative;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e4ddea;
+    border-radius: 13px;
+    overflow: hidden;
+    box-shadow:
+        0 7px 25px rgba(71, 43, 94, 0.07);
+}
+
+.tc-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(
+        90deg,
+        #5b2c91,
+        #7b4bc4,
+        #9b72d1
+    );
+}
+
+
+/* =========================================================
+   CARD TOP
+========================================================= */
+
+.tc-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 24px 23px 20px;
+    border-bottom: 1px solid #eee9f1;
+}
+
+.tc-card-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.tc-title-icon {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f2ebfa;
+    color: #6f42c1;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.tc-card-title h2 {
+    margin: 0;
+    color: #35263e;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.tc-card-title p {
+    margin: 4px 0 0;
+    color: #928896;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.tc-search-wrapper {
+    position: relative;
+    width: 330px;
+    flex: 0 0 330px;
+}
+
+.tc-search-wrapper > i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9a8fa0;
+    font-size: 17px;
+    pointer-events: none;
+}
+
+.tc-search-wrapper input {
+    width: 100%;
+    height: 43px;
+    box-sizing: border-box;
+    padding: 0 40px 0 41px;
+    border: 1px solid #ddd5e5;
+    border-radius: 8px;
+    outline: none;
+    background: #ffffff;
+    color: #33283a;
+    font-size: 12px;
+    transition: 0.2s ease;
+}
+
+.tc-search-wrapper input::placeholder {
+    color: #aaa1af;
+}
+
+.tc-search-wrapper input:hover {
+    border-color: #cbb9dc;
+}
+
+.tc-search-wrapper input:focus {
+    border-color: #7b4bc4;
+    box-shadow:
+        0 0 0 3px rgba(111, 66, 193, 0.10);
+}
+
+.tc-search-clear {
+    position: absolute;
+    right: 9px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 27px;
+    height: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 6px;
+    background: #f1eafa;
+    color: #6f42c1;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.tc-search-clear:hover {
+    background: #e6d9f5;
+    color: #5b2c91;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.tc-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #cbb9dc #f7f5fb;
+}
+
+.tc-table-wrapper::-webkit-scrollbar {
+    height: 7px;
+}
+
+.tc-table-wrapper::-webkit-scrollbar-track {
+    background: #f7f5fb;
+}
+
+.tc-table-wrapper::-webkit-scrollbar-thumb {
+    background: #cbb9dc;
+    border-radius: 20px;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.tc-table {
+    width: 100%;
+    min-width: 920px;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+.tc-table thead {
+    background: #faf8fc;
+}
+
+.tc-table th {
+    height: 49px;
+    padding: 0 15px;
+    border-bottom: 1px solid #e7e1eb;
+    color: #706377;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.45px;
+}
+
+.tc-table td {
+    height: 65px;
+    padding: 9px 15px;
+    border-bottom: 1px solid #eeeaf1;
+    color: #4a3d50;
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.tc-table tbody tr {
+    transition: background 0.18s ease;
+}
+
+.tc-table tbody tr:hover {
+    background: #fcfaff;
+}
+
+.tc-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   COLUMN SIZING
+========================================================= */
+
+.tc-id-column {
+    width: 55px;
+    text-align: center !important;
+}
+
+.tc-action-column {
+    width: 165px;
+    text-align: center !important;
+}
+
+
+/* =========================================================
+   SERIAL NUMBER
+========================================================= */
+
+.tc-id-cell {
+    text-align: center;
+}
+
+.tc-row-number {
+    width: 29px;
+    height: 29px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    background: #f3eef9;
+    color: #6f42c1;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   STUDENT CELL
+========================================================= */
+
+.tc-student-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 180px;
+}
+
+.tc-student-avatar {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: linear-gradient(
+        135deg,
+        #7b4bc4,
+        #5b2c91
+    );
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    box-shadow:
+        0 4px 10px rgba(91, 44, 145, 0.17);
+}
+
+.tc-student-cell > div:last-child {
+    min-width: 0;
+}
+
+.tc-student-cell strong {
+    display: block;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #35283c;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.tc-student-cell span {
+    display: block;
+    margin-top: 3px;
+    color: #968b9b;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   NORMAL TEXT
+========================================================= */
+
+.tc-text {
+    display: inline-block;
+    max-width: 170px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #514554;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   CLASS BADGE
+========================================================= */
+
+.tc-class-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 27px;
+    padding: 4px 10px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    background: #f1eafa;
+    border: 1px solid #e3d7f0;
+    color: #65409a;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   ROLL NUMBER
+========================================================= */
+
+.tc-roll {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    min-height: 27px;
+    padding: 3px 8px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    background: #f8f6f9;
+    border: 1px solid #e9e3eb;
+    color: #665a6c;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   SESSION
+========================================================= */
+
+.tc-session {
+    display: inline-flex;
+    align-items: center;
+    min-height: 27px;
+    padding: 4px 9px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    background: #faf7fc;
+    border: 1px solid #e6ddec;
+    color: #74568e;
+    font-size: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.tc-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.tc-action-btn {
+    min-width: 64px;
+    height: 32px;
+    padding: 0 9px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 700;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+}
+
+.tc-action-btn i {
+    font-size: 14px;
+}
+
+.tc-action-btn:hover {
+    transform: translateY(-1px);
+}
+
+.tc-action-btn:active {
+    transform: translateY(0);
+}
+
+
+/* VIEW */
+
+.tc-view-btn {
+    border: 1px solid #d9c8eb;
+    background: #f5effb;
+    color: #65409a;
+}
+
+.tc-view-btn:hover {
+    background: #e9def5;
+    box-shadow:
+        0 4px 10px rgba(111, 66, 193, 0.12);
+}
+
+
+/* EDIT */
+
+.tc-edit-btn {
+    border: 1px solid #6f42c1;
+    background: #6f42c1;
+    color: #ffffff;
+}
+
+.tc-edit-btn:hover {
+    background: #5b2c91;
+    border-color: #5b2c91;
+    box-shadow:
+        0 4px 11px rgba(91, 44, 145, 0.20);
+}
+
+
+/* =========================================================
+   LOADING STATE
+========================================================= */
+
+.tc-loading {
+    min-height: 330px;
+    padding: 45px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.tc-loader {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 17px;
+    border: 3px solid #eadff3;
+    border-top-color: #6f42c1;
+    border-radius: 50%;
+    animation: tc-spin 0.8s linear infinite;
+}
+
+.tc-loading h3 {
+    margin: 0;
+    color: #44364b;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.tc-loading p {
+    margin: 6px 0 0;
+    color: #998f9e;
+    font-size: 12px;
+}
+
+@keyframes tc-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.tc-empty {
+    min-height: 330px;
+    padding: 45px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.tc-empty-icon {
+    width: 65px;
+    height: 65px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: #f2ebfa;
+    color: #7650a9;
+    font-size: 28px;
+}
+
+.tc-empty h3 {
+    margin: 0;
+    color: #44354b;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.tc-empty p {
+    max-width: 390px;
+    margin: 7px 0 18px;
+    color: #9a909f;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.tc-clear-search-btn {
+    height: 35px;
+    padding: 0 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: 1px solid #d8c8e8;
+    border-radius: 7px;
+    background: #f5effb;
+    color: #65409a;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    transition: 0.2s ease;
+}
+
+.tc-clear-search-btn i {
+    font-size: 14px;
+}
+
+.tc-clear-search-btn:hover {
+    background: #e9def5;
+    border-color: #c7b1dd;
+}
+
+
+/* =========================================================
+   CARD FOOTER
+========================================================= */
+
+.tc-card-footer {
+    min-height: 65px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 12px 20px;
+    border-top: 1px solid #eee9f1;
+    background: #fcfbfd;
+}
+
+.tc-showing {
+    color: #918796;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.tc-showing strong {
+    color: #5e4c68;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.tc-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.tc-page-btn {
+    min-width: 31px;
+    height: 31px;
+    padding: 0 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ded5e5;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #695b70;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.tc-page-btn:hover:not(:disabled) {
+    border-color: #bda7d3;
+    background: #f6f1fa;
+    color: #65409a;
+}
+
+.tc-page-btn i {
+    font-size: 14px;
+}
+
+.tc-page-active {
+    border-color: #6f42c1;
+    background: #6f42c1;
+    color: #ffffff;
+    box-shadow:
+        0 4px 9px rgba(111, 66, 193, 0.18);
+}
+
+.tc-page-active:hover {
+    border-color: #5b2c91 !important;
+    background: #5b2c91 !important;
+    color: #ffffff !important;
+}
+
+.tc-page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: #f7f5f8;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .tc-page {
+        padding: 20px 18px 35px;
+    }
+
+    .tc-page-header {
+        align-items: flex-start;
+    }
+
+    .tc-header-count {
+        min-width: 165px;
+    }
+
+    .tc-card-top {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .tc-search-wrapper {
+        width: 100%;
+        flex: 1;
+    }
+
+    .tc-card-title {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 760px) {
+
+    .tc-page {
+        padding: 17px 13px 30px;
+    }
+
+    .tc-page-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tc-header-count {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .tc-header-icon {
+        width: 46px;
+        height: 46px;
+        flex-basis: 46px;
+        font-size: 22px;
+    }
+
+    .tc-header-content h1 {
+        font-size: 21px;
+    }
+
+    .tc-header-content p {
+        font-size: 12px;
+    }
+
+    .tc-card-top {
+        padding: 20px 16px 17px;
+    }
+
+    .tc-card-title h2 {
+        font-size: 15px;
+    }
+
+    .tc-card-title p {
+        font-size: 11px;
+    }
+
+    .tc-table th,
+    .tc-table td {
+        padding-left: 11px;
+        padding-right: 11px;
+    }
+
+    .tc-card-footer {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+    }
+
+    .tc-showing {
+        white-space: normal;
+        text-align: center;
+    }
+
+    .tc-pagination {
+        max-width: 100%;
+        overflow-x: auto;
+        padding-bottom: 2px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 520px) {
+
+    .tc-page {
+        padding: 14px 10px 25px;
+    }
+
+    .tc-header-left {
+        gap: 10px;
+    }
+
+    .tc-header-icon {
+        width: 43px;
+        height: 43px;
+        flex-basis: 43px;
+        border-radius: 10px;
+        font-size: 20px;
+    }
+
+    .tc-header-content h1 {
+        font-size: 18px;
+    }
+
+    .tc-header-content p {
+        margin-top: 3px;
+        font-size: 10px;
+    }
+
+    .tc-header-count {
+        padding: 9px 12px;
+    }
+
+    .tc-count-icon {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+        font-size: 17px;
+    }
+
+    .tc-header-count span {
+        font-size: 9px;
+    }
+
+    .tc-header-count strong {
+        font-size: 17px;
+    }
+
+    .tc-card {
+        border-radius: 10px;
+    }
+
+    .tc-card-top {
+        padding: 17px 13px 15px;
+        gap: 15px;
+    }
+
+    .tc-title-icon {
+        width: 37px;
+        height: 37px;
+        flex-basis: 37px;
+        font-size: 18px;
+    }
+
+    .tc-card-title {
+        gap: 9px;
+    }
+
+    .tc-card-title h2 {
+        font-size: 14px;
+    }
+
+    .tc-card-title p {
+        display: none;
+    }
+
+    .tc-search-wrapper input {
+        height: 40px;
+        font-size: 11px;
+    }
+
+    .tc-action-btn {
+        min-width: 60px;
+        height: 30px;
+        padding: 0 7px;
+    }
+
+    .tc-action-btn span {
+        display: none;
+    }
+
+    .tc-action-btn i {
+        font-size: 15px;
+    }
+
+    .tc-table {
+        min-width: 760px;
+    }
+
+    .tc-card-footer {
+        min-height: auto;
+    }
+
+    .tc-page-btn {
+        min-width: 29px;
+        height: 29px;
+        font-size: 10px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .tc-page {
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+
+    .tc-header-content h1 {
+        font-size: 17px;
+    }
+
+    .tc-header-count {
+        min-width: 0;
+    }
+
+    .tc-empty,
+    .tc-loading {
+        min-height: 280px;
+    }
+
+    .tc-pagination {
+        gap: 3px;
+    }
+
+    .tc-page-btn {
+        min-width: 27px;
+        padding: 0 6px;
+    }
+}

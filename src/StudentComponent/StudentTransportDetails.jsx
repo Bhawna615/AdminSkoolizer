@@ -3,133 +3,231 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./StudentTransportDetails.css";
 
-const StudentExamDetails = () => {
+const StudentTransportDetails = () => {
   const { id } = useParams();
 
   const [student, setStudent] = useState(null);
-  const [exams, setExams] = useState([]);
+  const [transport, setTransport] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (id && !isNaN(id)) {
-      fetchExamDetails(id);
+    if (id && !isNaN(Number(id))) {
+      fetchTransportDetails(id);
     } else {
       setError("Invalid Student ID");
       setLoading(false);
     }
   }, [id]);
 
-  const fetchExamDetails = async (studentId) => {
+  const fetchTransportDetails = async (studentId) => {
     try {
       setLoading(true);
       setError("");
 
-      const formData = new FormData();
-      formData.append("id", studentId);
+      console.log("Student ID:", studentId);
 
-      const response = await axios.post(
-        "http://localhost/kkblossom/api.php/Adminapi/AdminStudent/getExamDetails",
-        formData
+      const response = await axios.get(
+        `http://localhost/kkblossom/api.php/Adminapi/AdminTransport/getTransportDetails/${studentId}`
       );
 
+      console.log("Transport API Response:", response.data);
+
       if (response.data?.status === true) {
-        setStudent(response.data.info || null);
+        const studentData = response.data.info || null;
+        const details = response.data.details || [];
 
-        // Map exams safely and merge uploaded date if available
-        const examsWithDates = (response.data.exams || []).map((exam) => {
-          // Use uploaded_at from student_marks if it exists
-          let uploadedDate = exam.Date; // default
-          if (response.data.student_marks && Array.isArray(response.data.student_marks)) {
-            const match = response.data.student_marks.find(
-              (m) =>
-                (m.Subject && m.Subject === exam.Subject) ||
-                (m.Examcode && m.Examcode === exam.Examcode) // use proper key from backend
-            );
-            if (match && match.uploaded_at) uploadedDate = match.uploaded_at;
-          }
+        console.log("Student Data:", studentData);
+        console.log("Transport Data:", details);
 
-          return {
-            ...exam,
-            Date: uploadedDate,
-          };
-        });
+        setStudent(studentData);
 
-        setExams(examsWithDates);
+        if (
+          Array.isArray(details) &&
+          details.length > 0 &&
+          details[0].station_id
+        ) {
+          setTransport(details[0]);
+        } else {
+          setTransport(null);
+        }
       } else {
         setStudent(null);
-        setExams([]);
-        setError(response.data?.message || "No data found.");
+        setTransport(null);
+
+        setError(
+          response.data?.message ||
+            "No transport details found."
+        );
       }
     } catch (err) {
-      console.error("API Error:", err);
-      setError("Server Error. Please check backend.");
+      console.error("Transport API Error:", err);
+
       setStudent(null);
-      setExams([]);
+      setTransport(null);
+
+      if (err.response) {
+        setError(
+          err.response.data?.message ||
+            "Server Error. Please check the backend."
+        );
+      } else {
+        setError("Unable to connect to the server.");
+      }
     } finally {
       setLoading(false);
     }
   };
 
-  // ✅ Safe date formatter
- const formatDate = (value) => {
-  if (!value) return "N/A";
+  // =========================================
+  // LOADING
+  // =========================================
 
-  const timestamp = Date.parse(value);
-  if (isNaN(timestamp)) return "N/A";
+  if (loading) {
+    return (
+      <div className="loading">
+        Loading...
+      </div>
+    );
+  }
 
-  const date = new Date(timestamp);
-  return date.toLocaleDateString("en-GB", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
-};
+  // =========================================
+  // ERROR
+  // =========================================
 
-  if (loading) return <div className="loading">Loading...</div>;
-  if (error) return <div className="error">{error}</div>;
-  if (!student) return <div className="no-student">No student found</div>;
+  if (error) {
+    return (
+      <div className="error">
+        {error}
+      </div>
+    );
+  }
+
+  // =========================================
+  // NO STUDENT
+  // =========================================
+
+  if (!student) {
+    return (
+      <div className="no-student">
+        No student found.
+      </div>
+    );
+  }
+
+  // =========================================
+  // MAIN UI
+  // =========================================
 
   return (
     <div className="transport-container">
       <div className="student-card">
 
-        {/* Top Section */}
-        <div className="student-top">
-          <div className="student-image-box">
-            <img
-              src={
-                student.image
-                  ? `http://localhost/kkblossom/assets/images/students/${student.image}`
-                  : `http://localhost/kkblossom/assets/icons/user.svg`
-              }
-              alt="Student"
-            />
-          </div>
+        {/* STUDENT DETAILS */}
 
-          <div className="student-info-box">
-            <h2 className="student-name">{student.Name || "N/A"}</h2>
-            <p><strong>Class:</strong> {student.Class || "N/A"}</p>
-            <p><strong>Roll No:</strong> {student.Rollno || "N/A"}</p>
-          </div>
-        </div>
+        {/* STUDENT DETAILS */}
 
-        {/* Bottom Section */}
+<div className="transport-student-top">
+
+  <div className="trasport-student-image-box">
+    <img
+      src={
+        student.image
+          ? `http://localhost/kkblossom/assets/images/students/${student.image}`
+          : "http://localhost/kkblossom/assets/icons/user.svg"
+      }
+      alt={student.Name || "Student"}
+      onError={(e) => {
+        e.currentTarget.onerror = null;
+        e.currentTarget.src =
+          "http://localhost/kkblossom/assets/icons/user.svg";
+      }}
+    />
+  </div>
+
+  <div className="trasport-student-info-box">
+
+    <h2 className="student-name">
+      {student.Name || "N/A"}
+    </h2>
+
+    <p>
+      <strong>Admission No:</strong>{" "}
+      {student.Admno || "N/A"}
+    </p>
+
+    <p>
+      <strong>Class:</strong>{" "}
+      {student.Class || "N/A"}
+    </p>
+
+    <p>
+      <strong>Roll No:</strong>{" "}
+      {student.Rollno || "N/A"}
+    </p>
+
+  </div>
+
+</div>
+
+        {/* TRANSPORT DETAILS */}
+
         <div className="transport-section">
-          {exams.length === 0 ? (
-            <h3 className="no-details">Nothing to show.</h3>
+
+          {!transport ? (
+
+            <p className="no-details">
+              No Details Available.
+            </p>
+
           ) : (
+
             <>
-              <h3 className="section-title">Exam Details</h3>
-              {exams.map((exam, index) => (
-                <div key={index} className="transport-box">
-                  <p><strong>Exam Name:</strong> {exam.Examname || "N/A"}</p>
-                  <p><strong>Subject:</strong> {exam.Subject || "N/A"}</p>
-                  <p><strong>Date:</strong> {formatDate(exam.Date)}</p>
+              <h3 className="section-title">
+                Transport Details
+              </h3>
+
+              <div className="transport-box">
+
+                <div className="transport-row">
+                  <span className="transport-label">
+                    Route:
+                  </span>
+
+                  <span className="transport-value">
+                    {transport.routename || "N/A"}
+                  </span>
                 </div>
-              ))}
+
+                <div className="transport-row">
+                  <span className="transport-label">
+                    Station:
+                  </span>
+
+                  <span className="transport-value">
+                    {transport.StationName ||
+                      transport.stationname ||
+                      "N/A"}
+                  </span>
+                </div>
+
+                <div className="transport-row">
+                  <span className="transport-label">
+                    Transport Charges:
+                  </span>
+
+                  <span className="transport-value">
+                    {transport.charges !== null &&
+                    transport.charges !== undefined
+                      ? `₹${transport.charges}`
+                      : "N/A"}
+                  </span>
+                </div>
+
+              </div>
             </>
           )}
+
         </div>
 
       </div>
@@ -137,4 +235,4 @@ const StudentExamDetails = () => {
   );
 };
 
-export default StudentExamDetails;
+export default StudentTransportDetails;

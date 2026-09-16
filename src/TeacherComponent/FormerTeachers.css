@@ -1,100 +1,976 @@
-.innerview {
-  padding: 20px;
-  font-family: Arial, sans-serif;
+/* =========================================================
+   FORMER TEACHERS - PURPLE & WHITE ERP UI
+   Unique prefix: former-list-
+========================================================= */
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.former-list-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 24px 26px 40px;
+    box-sizing: border-box;
+
+    background: #f7f5fb;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #2d2433;
 }
 
-/* Notification Box - same as your screenshot */
-.success-bar {
-  background: #f0f8ff; /* light blue background */
-  padding: 10px;
-  margin-bottom: 15px;
-  border-left: 4px solid #0d6efd; /* blue border */
-  font-weight: 500;
-  color: #0d6efd;
-  display: flex;
-  align-items: center;
-  gap: 5px;
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.former-list-header {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
 }
 
-.error-bar {
-  display: none; /* hide since screenshot has no red box */
+
+/* =========================================================
+   TITLE ROW
+========================================================= */
+
+.former-list-title-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-.btn-primary {
-  background-color: #4caf50;
-  border: none;
-  color: white;
-  padding: 7px 15px;
-  cursor: pointer;
-  font-weight: 500;
-  border-radius: 4px;
+.former-list-title-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: linear-gradient(
+        135deg,
+        #6f42c1,
+        #8b5bd3
+    );
+
+    color: #ffffff;
+    font-size: 23px;
+
+    box-shadow:
+        0 8px 20px rgba(111, 66, 193, 0.20);
 }
 
-.btn-primary:hover {
-  background-color: #45a049;
+.former-list-title-row h2 {
+    margin: 0;
+
+    font-size: 25px;
+    font-weight: 700;
+    color: #352044;
+    letter-spacing: -0.3px;
 }
 
-/* Controls */
-.table-controls {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+.former-list-title-row p {
+    margin: 5px 0 0;
+
+    font-size: 13px;
+    color: #8c8294;
 }
 
-.table-controls select,
-.table-controls input {
-  padding: 5px;
-  font-size: 14px;
-  margin-left: 5px;
+
+/* =========================================================
+   TOTAL CARD
+========================================================= */
+
+.former-list-total-card {
+    min-width: 205px;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 12px 17px;
+
+    background: #ffffff;
+    border: 1px solid #eee8f5;
+    border-radius: 11px;
+
+    box-shadow:
+        0 5px 18px rgba(74, 48, 99, 0.07);
 }
 
-/* Table */
-.former-teachers-table {
-  width: 100%;
-  border-collapse: collapse;
+.former-list-total-icon {
+    width: 43px;
+    height: 43px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #f0e9fb;
+    color: #6f42c1;
+
+    font-size: 18px;
 }
 
-.former-teachers-table th,
-.former-teachers-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
+.former-list-total-card span {
+    display: block;
+
+    margin-bottom: 2px;
+
+    font-size: 11px;
+    font-weight: 600;
+    color: #95899f;
+
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
 }
 
-.former-teachers-table th {
-  background-color: #0d47a1; /* dark blue header */
-  color: white;
-  text-align: left;
+.former-list-total-card strong {
+    display: block;
+
+    font-size: 22px;
+    font-weight: 700;
+    color: #5b2c91;
 }
 
-.former-teachers-table tr:nth-child(even) {
-  background-color: #f2f2f2;
+
+/* =========================================================
+   SUCCESS / ERROR
+========================================================= */
+
+.former-list-success,
+.former-list-error {
+    width: 100%;
+    max-width: 1400px;
+
+    margin: 0 auto 18px;
+
+    padding: 12px 16px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    box-sizing: border-box;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: 600;
 }
 
-.former-teachers-table tr:hover {
-  background-color: #ddd;
+.former-list-success {
+    background: #f0fbf5;
+    border: 1px solid #cdeedb;
+    color: #23804b;
 }
 
-/* Pagination */
-.pagination {
-  margin-top: 10px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 5px;
+.former-list-error {
+    background: #fff5f5;
+    border: 1px solid #f1d0d0;
+    color: #c43f48;
 }
 
-/* Remove all button styles for pagination */
-.pagination button {
-  all: unset;
-  cursor: pointer;
-  margin: 0 3px;
+.former-list-success i,
+.former-list-error i {
+    font-size: 16px;
 }
-.pagination .active{
-    border: 1px solid lightgray;
-    padding: 5px 8px ;
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.former-list-card {
+    position: relative;
+
+    width: 100%;
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    background: #ffffff;
+
+    border: 1px solid #ebe5f1;
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 30px rgba(66, 42, 88, 0.08);
 }
-.pagination-summary {
-  margin-top: 10px;
-  margin-bottom: 5px;
-  font-size: 14px;
-  color: #333;
+
+
+/* Purple top accent */
+
+.former-list-card::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        #5b2c91,
+        #7b4bc2,
+        #9a6bdd
+    );
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.former-list-card-header {
+    padding: 21px 22px 17px;
+
+    border-bottom: 1px solid #eeeaf3;
+}
+
+.former-list-card-header h3 {
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    font-size: 17px;
+    font-weight: 700;
+    color: #3c2949;
+}
+
+.former-list-card-header h3 i {
+    color: #6f42c1;
+    font-size: 17px;
+}
+
+.former-list-card-header p {
+    margin: 6px 0 0 26px;
+
+    font-size: 12px;
+    color: #93889c;
+}
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.former-list-controls {
+    padding: 16px 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    border-bottom: 1px solid #eeeaf3;
+}
+
+
+/* =========================================================
+   ENTRIES
+========================================================= */
+
+.former-list-entries {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 13px;
+    color: #776c80;
+}
+
+.former-list-entries select {
+    min-width: 67px;
+    height: 35px;
+
+    padding: 0 28px 0 10px;
+
+    border: 1px solid #ddd5e7;
+    border-radius: 7px;
+
+    background: #ffffff;
+    color: #4b3a57;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    outline: none;
+    cursor: pointer;
+}
+
+.former-list-entries select:focus {
+    border-color: #7b4bc2;
+
+    box-shadow:
+        0 0 0 3px rgba(111, 66, 193, 0.10);
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.former-list-search {
+    position: relative;
+
+    width: 270px;
+}
+
+.former-list-search i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #8c7d98;
+    font-size: 14px;
+
+    pointer-events: none;
+}
+
+.former-list-search input {
+    width: 100%;
+    height: 36px;
+
+    box-sizing: border-box;
+
+    padding: 0 12px 0 35px;
+
+    border: 1px solid #ddd5e7;
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #3d3047;
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.former-list-search input::placeholder {
+    color: #aaa1b1;
+}
+
+.former-list-search input:focus {
+    border-color: #7b4bc2;
+
+    box-shadow:
+        0 0 0 3px rgba(111, 66, 193, 0.10);
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.former-list-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    scrollbar-width: thin;
+    scrollbar-color: #cbbadd #f6f3f9;
+}
+
+.former-list-table-wrapper::-webkit-scrollbar {
+    height: 7px;
+}
+
+.former-list-table-wrapper::-webkit-scrollbar-track {
+    background: #f6f3f9;
+}
+
+.former-list-table-wrapper::-webkit-scrollbar-thumb {
+    background: #cbbadd;
+    border-radius: 20px;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.former-list-table {
+    width: 100%;
+    min-width: 950px;
+
+    border-collapse: collapse;
+
+    table-layout: auto;
+}
+
+.former-list-table thead {
+    background: #faf8fc;
+}
+
+.former-list-table th {
+    padding: 14px 18px;
+
+    border-bottom: 1px solid #e9e3ef;
+
+    text-align: left;
+    white-space: nowrap;
+
+    color: #6e6078;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.65px;
+}
+
+.former-list-table td {
+    padding: 14px 18px;
+
+    border-bottom: 1px solid #f0edf3;
+
+    vertical-align: middle;
+
+    font-size: 13px;
+    color: #514557;
+}
+
+.former-list-table tbody tr {
+    transition:
+        background 0.2s ease;
+}
+
+.former-list-table tbody tr:hover {
+    background: #fbf9fe;
+}
+
+.former-list-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   TEACHER NAME
+========================================================= */
+
+.former-list-name {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    min-width: 180px;
+}
+
+.former-list-avatar {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #eee5fb,
+        #ddd0f1
+    );
+
+    color: #5b2c91;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    border: 1px solid #d9cbed;
+}
+
+.former-list-name span {
+    color: #3d3047;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   DESIGNATION
+========================================================= */
+
+.former-list-designation {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 5px 9px;
+
+    border-radius: 6px;
+
+    background: #f2edfa;
+    color: #67409a;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   DATES
+========================================================= */
+
+.former-list-date,
+.former-list-leaving-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    white-space: nowrap;
+
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.former-list-date {
+    color: #665a70;
+}
+
+.former-list-leaving-date {
+    color: #9b4b67;
+}
+
+.former-list-date i,
+.former-list-leaving-date i {
+    font-size: 14px;
+}
+
+.former-list-date i {
+    color: #7651aa;
+}
+
+.former-list-leaving-date i {
+    color: #c05a78;
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.former-list-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    color: #62556d;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    white-space: nowrap;
+}
+
+.former-list-contact i {
+    color: #6f42c1;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.former-list-empty {
+    min-height: 270px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 35px 20px;
+}
+
+.former-list-empty-icon {
+    width: 62px;
+    height: 62px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 14px;
+
+    border-radius: 50%;
+
+    background: #f1ebf9;
+    color: #7450a8;
+
+    font-size: 24px;
+}
+
+.former-list-empty h3 {
+    margin: 0;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    color: #4a3855;
+}
+
+.former-list-empty p {
+    margin: 7px 0 0;
+
+    color: #968b9e;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.former-list-pagination {
+    padding: 15px 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    border-top: 1px solid #eeeaf3;
+
+    background: #ffffff;
+}
+
+.former-list-pagination-summary {
+    color: #887d90;
+    font-size: 12px;
+}
+
+.former-list-pagination-summary strong {
+    color: #5b2c91;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   PAGINATION BUTTONS
+========================================================= */
+
+.former-list-pagination-buttons {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.former-list-page-nav,
+.former-list-page-number {
+    height: 32px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #ded6e6;
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #665a70;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.former-list-page-nav {
+    padding: 0 11px;
+
+    gap: 6px;
+}
+
+.former-list-page-number {
+    width: 32px;
+}
+
+.former-list-page-nav:hover:not(:disabled),
+.former-list-page-number:hover {
+    border-color: #7b4bc2;
+
+    color: #6f42c1;
+
+    background: #f8f4fd;
+}
+
+.former-list-page-number.former-list-active {
+    border-color: #6f42c1;
+
+    background: #6f42c1;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 4px 10px rgba(111, 66, 193, 0.20);
+}
+
+.former-list-page-nav:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   RESPONSIVE - 1100px
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .former-list-page {
+        padding: 20px 18px 35px;
+    }
+
+    .former-list-table {
+        min-width: 900px;
+    }
+
+    .former-list-table th,
+    .former-list-table td {
+        padding: 13px 14px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 850px
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .former-list-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .former-list-total-card {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .former-list-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .former-list-search {
+        width: 100%;
+    }
+
+    .former-list-pagination {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .former-list-pagination-buttons {
+        width: 100%;
+
+        justify-content: flex-end;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 650px
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .former-list-page {
+        padding: 15px 11px 30px;
+    }
+
+    .former-list-title-row {
+        align-items: flex-start;
+    }
+
+    .former-list-title-icon {
+        width: 46px;
+        height: 46px;
+
+        border-radius: 11px;
+
+        font-size: 20px;
+    }
+
+    .former-list-title-row h2 {
+        font-size: 21px;
+    }
+
+    .former-list-title-row p {
+        max-width: 260px;
+
+        line-height: 1.5;
+    }
+
+    .former-list-card-header {
+        padding: 18px 16px 15px;
+    }
+
+    .former-list-controls {
+        padding: 14px 16px;
+    }
+
+    .former-list-pagination {
+        padding: 14px 16px;
+    }
+
+    .former-list-pagination-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .former-list-page-nav span {
+        display: none;
+    }
+
+    .former-list-page-nav {
+        width: 32px;
+        padding: 0;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 480px
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .former-list-page {
+        padding: 12px 8px 25px;
+    }
+
+    .former-list-title-row {
+        gap: 10px;
+    }
+
+    .former-list-title-icon {
+        width: 42px;
+        height: 42px;
+
+        font-size: 18px;
+    }
+
+    .former-list-title-row h2 {
+        font-size: 19px;
+    }
+
+    .former-list-title-row p {
+        font-size: 11px;
+    }
+
+    .former-list-total-card {
+        padding: 11px 13px;
+    }
+
+    .former-list-total-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .former-list-total-card strong {
+        font-size: 20px;
+    }
+
+    .former-list-card {
+        border-radius: 9px;
+    }
+
+    .former-list-card-header h3 {
+        font-size: 15px;
+    }
+
+    .former-list-card-header p {
+        margin-left: 0;
+        line-height: 1.5;
+    }
+
+    .former-list-entries {
+        justify-content: space-between;
+    }
+
+    .former-list-pagination-summary {
+        width: 100%;
+
+        text-align: center;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 360px
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .former-list-page {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    .former-list-title-row h2 {
+        font-size: 17px;
+    }
+
+    .former-list-title-row p {
+        font-size: 10px;
+    }
+
+    .former-list-pagination-buttons {
+        gap: 3px;
+    }
+
+    .former-list-page-number,
+    .former-list-page-nav {
+        width: 29px;
+        height: 29px;
+    }
+
 }

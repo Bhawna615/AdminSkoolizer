@@ -1,0 +1,453 @@
+/* =====================================================
+   SPORTS EDIT PAGE
+   PURPLE + WHITE THEME
+===================================================== */
+
+.sports-edit-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    padding: 30px 20px;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(124, 77, 255, 0.12),
+            transparent 35%
+        ),
+        #f7f5fc;
+
+    font-family: "Segoe UI", sans-serif;
+}
+
+
+/* =====================================================
+   MAIN CONTAINER
+===================================================== */
+
+.sports-edit-container {
+    width: 100%;
+    max-width: 950px;
+    margin: auto;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    border: 1px solid #e7def8;
+
+    box-shadow:
+        0 12px 35px rgba(98, 58, 160, 0.10);
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.sports-edit-topbar {
+    padding: 26px 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5b2a86,
+            #7b3fc6,
+            #9c6ade
+        );
+
+    color: #ffffff;
+}
+
+
+.sports-edit-topbar h2 {
+    margin: 0;
+
+    font-size: 25px;
+    font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.sports-edit-topbar h2 i {
+    font-size: 28px;
+}
+
+
+.sports-edit-topbar p {
+    margin: 7px 0 0;
+
+    font-size: 14px;
+
+    color: rgba(255, 255, 255, 0.85);
+}
+
+
+/* Header Icon */
+
+.sports-edit-icon {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.16);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+
+.sports-edit-icon i {
+    font-size: 32px;
+}
+
+
+/* =====================================================
+   ALERTS
+===================================================== */
+
+.sports-edit-error,
+.sports-edit-success {
+    margin: 22px 30px 0;
+
+    padding: 14px 18px;
+
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+.sports-edit-error {
+    background: #fff4f4;
+
+    border-left: 4px solid #e53935;
+
+    color: #c62828;
+}
+
+
+.sports-edit-success {
+    background: #f2fff6;
+
+    border-left: 4px solid #43a047;
+
+    color: #2e7d32;
+}
+
+
+.sports-edit-error i,
+.sports-edit-success i {
+    font-size: 21px;
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.sports-edit-form {
+    padding: 35px 30px;
+}
+
+
+.sports-edit-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px;
+}
+
+
+/* =====================================================
+   FORM FIELD
+===================================================== */
+
+.sports-edit-field {
+    width: 100%;
+}
+
+
+.sports-edit-field label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 9px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #4b3566;
+}
+
+
+.sports-edit-field label i {
+    color: #6f3fc4;
+
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+.sports-edit-input {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 15px;
+
+    box-sizing: border-box;
+
+    border-radius: 10px;
+
+    border: 1px solid #ded4ee;
+
+    background: #ffffff;
+
+    color: #333333;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: all 0.25s ease;
+}
+
+
+.sports-edit-input:hover {
+    border-color: #b69be0;
+}
+
+
+.sports-edit-input:focus {
+    border-color: #713fc2;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(113, 63, 194, 0.10);
+}
+
+
+.sports-edit-input::placeholder {
+    color: #a49aad;
+}
+
+
+/* =====================================================
+   BUTTON AREA
+===================================================== */
+
+.sports-edit-actions {
+    margin-top: 35px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #eee9f5;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+}
+
+
+/* Cancel Button */
+
+.sports-edit-cancel {
+    min-width: 120px;
+
+    height: 46px;
+
+    padding: 0 20px;
+
+    border-radius: 10px;
+
+    border: 1px solid #d8cdea;
+
+    background: #ffffff;
+
+    color: #6b4b92;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+
+.sports-edit-cancel:hover {
+    background: #f5f0fc;
+
+    border-color: #9f7ed0;
+}
+
+
+/* Save Button */
+
+.sports-edit-save {
+    min-width: 155px;
+
+    height: 46px;
+
+    padding: 0 22px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5b2a86,
+            #7b3fc6
+        );
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px
+        rgba(91, 42, 134, 0.25);
+
+    transition: all 0.25s ease;
+}
+
+
+.sports-edit-save:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(91, 42, 134, 0.35);
+}
+
+
+.sports-edit-save:active {
+    transform: translateY(0);
+}
+
+
+.sports-edit-save i,
+.sports-edit-cancel i {
+    margin-right: 6px;
+
+    font-size: 17px;
+}
+
+
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .sports-edit-wrapper {
+        padding: 15px;
+    }
+
+
+    .sports-edit-topbar {
+        padding: 22px 20px;
+    }
+
+
+    .sports-edit-topbar h2 {
+        font-size: 21px;
+    }
+
+
+    .sports-edit-topbar p {
+        font-size: 13px;
+    }
+
+
+    .sports-edit-icon {
+        width: 50px;
+        height: 50px;
+
+        border-radius: 14px;
+    }
+
+
+    .sports-edit-icon i {
+        font-size: 25px;
+    }
+
+
+    .sports-edit-form {
+        padding: 25px 20px;
+    }
+
+
+    .sports-edit-grid {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+
+    .sports-edit-error,
+    .sports-edit-success {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+
+    .sports-edit-actions {
+        flex-direction: column-reverse;
+    }
+
+
+    .sports-edit-cancel,
+    .sports-edit-save {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .sports-edit-topbar {
+        align-items: flex-start;
+    }
+
+
+    .sports-edit-icon {
+        display: none;
+    }
+}

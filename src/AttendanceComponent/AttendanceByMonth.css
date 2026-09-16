@@ -1,0 +1,964 @@
+/* =========================================================
+   ATTENDANCE BY MONTH
+   MODERN PURPLE + WHITE SCHOOL ERP UI
+   Unique Prefix: attendance-by-month-
+========================================================= */
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.attendance-by-month-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 24px;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 0% 0%,
+            rgba(111, 66, 193, 0.09),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 100% 100%,
+            rgba(139, 92, 246, 0.08),
+            transparent 30%
+        ),
+        #f8f7fb;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.attendance-by-month-header {
+    width: 100%;
+    min-height: 105px;
+
+    padding: 22px 26px;
+    margin-bottom: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #e8e0f0;
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 28px rgba(82, 52, 120, 0.06);
+}
+
+
+.attendance-by-month-header-left {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+
+/* HEADER ICON */
+
+.attendance-by-month-header-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 16px;
+
+    color: #ffffff;
+
+    background: linear-gradient(
+        135deg,
+        #6f42c1,
+        #8b5cf6
+    );
+
+    font-size: 25px;
+
+    box-shadow:
+        0 9px 20px rgba(111, 66, 193, 0.25);
+}
+
+
+/* HEADER TEXT */
+
+.attendance-by-month-header-content h2 {
+    margin: 0;
+
+    color: #352044;
+
+    font-size: 25px;
+    font-weight: 700;
+
+    letter-spacing: -0.4px;
+}
+
+
+.attendance-by-month-header-content p {
+    margin: 5px 0 0;
+
+    color: #81758d;
+
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* HEADER BADGE */
+
+.attendance-by-month-header-badge {
+    padding: 10px 16px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    border-radius: 10px;
+
+    background: #f3eefb;
+
+    border: 1px solid #dfd1f2;
+
+    color: #6f42c1;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+.attendance-by-month-header-badge i {
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   MAIN CONTENT GRID
+========================================================= */
+
+.attendance-by-month-content {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.6fr)
+        minmax(280px, 0.8fr);
+
+    gap: 24px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   FORM CARD
+========================================================= */
+
+.attendance-by-month-form-card {
+    padding: 28px;
+
+    background: #ffffff;
+
+    border: 1px solid #e8e0f0;
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 30px rgba(85, 49, 130, 0.06);
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.attendance-by-month-card-header {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding-bottom: 22px;
+    margin-bottom: 24px;
+
+    border-bottom: 1px solid #eee8f4;
+}
+
+
+.attendance-by-month-card-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 13px;
+
+    background: #f2ecfb;
+
+    color: #6f42c1;
+
+    font-size: 21px;
+}
+
+
+.attendance-by-month-card-header h3 {
+    margin: 0;
+
+    color: #3b2948;
+
+    font-size: 19px;
+    font-weight: 700;
+}
+
+
+.attendance-by-month-card-header p {
+    margin: 5px 0 0;
+
+    color: #8a7f93;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.attendance-by-month-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 21px;
+}
+
+
+/* =========================================================
+   FORM FIELD
+========================================================= */
+
+.attendance-by-month-field {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+}
+
+
+.attendance-by-month-field label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #554362;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.attendance-by-month-field label i {
+    color: #7548be;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   SELECT WRAPPER
+========================================================= */
+
+.attendance-by-month-select-wrapper {
+    position: relative;
+
+    width: 100%;
+}
+
+
+/* SELECT */
+
+.attendance-by-month-select {
+    width: 100%;
+    height: 50px;
+
+    padding: 0 45px 0 15px;
+
+    box-sizing: border-box;
+
+    appearance: none;
+
+    outline: none;
+
+    border: 1px solid #ded4e8;
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    color: #493b56;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.2s ease;
+}
+
+
+.attendance-by-month-select:hover {
+    border-color: #bba4d6;
+}
+
+
+.attendance-by-month-select:focus {
+    border-color: #7345bc;
+
+    box-shadow:
+        0 0 0 4px rgba(111, 66, 193, 0.1);
+}
+
+
+/* DISABLED */
+
+.attendance-by-month-select:disabled {
+    background: #f6f4f8;
+
+    color: #aaa1b1;
+
+    cursor: not-allowed;
+
+    border-color: #ebe6ee;
+}
+
+
+/* SELECT ARROW */
+
+.attendance-by-month-select-arrow {
+    position: absolute;
+
+    right: 15px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    pointer-events: none;
+
+    color: #806c8d;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   REPORT SUMMARY
+========================================================= */
+
+.attendance-by-month-summary {
+    width: 100%;
+
+    padding: 16px 17px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7f3fc,
+            #fbf9fe
+        );
+
+    border: 1px solid #e4d9f0;
+
+    border-radius: 13px;
+}
+
+
+/* SUMMARY ICON */
+
+.attendance-by-month-summary-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    background: #e9ddf8;
+
+    color: #6f42c1;
+
+    font-size: 19px;
+}
+
+
+/* SUMMARY CONTENT */
+
+.attendance-by-month-summary-content {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.attendance-by-month-summary-content span {
+    color: #8a7b96;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.6px;
+}
+
+
+.attendance-by-month-summary-content strong {
+    color: #4b3659;
+
+    font-size: 15px;
+
+    font-weight: 700;
+}
+
+
+.attendance-by-month-summary-content small {
+    color: #7955a5;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.attendance-by-month-submit {
+    width: 100%;
+    height: 51px;
+
+    margin-top: 3px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    border: none;
+    border-radius: 11px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6f42c1,
+            #8b5cf6
+        );
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 18px rgba(111, 66, 193, 0.22);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.attendance-by-month-submit i {
+    font-size: 17px;
+}
+
+
+.attendance-by-month-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 24px rgba(111, 66, 193, 0.3);
+}
+
+
+.attendance-by-month-submit:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+
+.attendance-by-month-submit:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   SIDE INFORMATION CARD
+========================================================= */
+
+.attendance-by-month-info-card {
+    padding: 28px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #faf8fd
+        );
+
+    border: 1px solid #e8e0f0;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 30px rgba(85, 49, 130, 0.06);
+
+    box-sizing: border-box;
+}
+
+
+/* MAIN INFO ICON */
+
+.attendance-by-month-info-icon {
+    width: 55px;
+    height: 55px;
+
+    margin-bottom: 17px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7043c2,
+            #9666e8
+        );
+
+    color: #ffffff;
+
+    font-size: 23px;
+
+    box-shadow:
+        0 8px 18px rgba(111, 66, 193, 0.22);
+}
+
+
+.attendance-by-month-info-card h3 {
+    margin: 0;
+
+    color: #3d2a4a;
+
+    font-size: 20px;
+
+    font-weight: 700;
+}
+
+
+.attendance-by-month-info-card > p {
+    margin: 8px 0 24px;
+
+    color: #837789;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   INFO LIST
+========================================================= */
+
+.attendance-by-month-info-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 13px;
+}
+
+
+/* INFO ITEM */
+
+.attendance-by-month-info-item {
+    padding: 13px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    border: 1px solid #ece6f2;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.attendance-by-month-info-item:hover {
+    transform: translateX(3px);
+
+    border-color: #d7c4eb;
+
+    box-shadow:
+        0 6px 16px rgba(88, 54, 130, 0.07);
+}
+
+
+/* INFO ITEM ICON */
+
+.attendance-by-month-info-item-icon {
+    width: 39px;
+    height: 39px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: #f2ecfb;
+
+    color: #7043c2;
+
+    font-size: 16px;
+}
+
+
+/* INFO TEXT */
+
+.attendance-by-month-info-item > div:last-child {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.attendance-by-month-info-item strong {
+    color: #4b3a57;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.attendance-by-month-info-item span {
+    color: #8a7e90;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   FOOTER NOTE
+========================================================= */
+
+.attendance-by-month-footer-note {
+    width: 100%;
+
+    margin-top: 24px;
+
+    padding: 15px 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #e6dcf0;
+
+    border-radius: 13px;
+
+    color: #74677e;
+
+    font-size: 13px;
+
+    box-shadow:
+        0 5px 18px rgba(85, 49, 130, 0.04);
+}
+
+
+.attendance-by-month-footer-note i {
+    color: #6f42c1;
+
+    font-size: 18px;
+}
+
+
+.attendance-by-month-footer-note strong {
+    color: #5b367e;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.attendance-by-month-page::-webkit-scrollbar {
+    width: 8px;
+}
+
+
+.attendance-by-month-page::-webkit-scrollbar-track {
+    background: #f5f2f8;
+}
+
+
+.attendance-by-month-page::-webkit-scrollbar-thumb {
+    background: #cbb8df;
+
+    border-radius: 10px;
+}
+
+
+.attendance-by-month-page::-webkit-scrollbar-thumb:hover {
+    background: #9d79c8;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media screen and (max-width: 992px) {
+
+    .attendance-by-month-content {
+        grid-template-columns: 1fr;
+    }
+
+
+    .attendance-by-month-info-card {
+        min-height: auto;
+    }
+
+
+    .attendance-by-month-info-list {
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+
+    .attendance-by-month-info-item {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media screen and (max-width: 768px) {
+
+    .attendance-by-month-page {
+        padding: 16px;
+    }
+
+
+    .attendance-by-month-header {
+        padding: 20px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .attendance-by-month-header-badge {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+
+    .attendance-by-month-form-card,
+    .attendance-by-month-info-card {
+        padding: 21px;
+    }
+
+
+    .attendance-by-month-info-list {
+        grid-template-columns: 1fr;
+    }
+
+
+    .attendance-by-month-info-item {
+        flex-direction: row;
+
+        align-items: center;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media screen and (max-width: 520px) {
+
+    .attendance-by-month-page {
+        padding: 12px;
+    }
+
+
+    .attendance-by-month-header {
+        padding: 17px;
+
+        border-radius: 14px;
+    }
+
+
+    .attendance-by-month-header-left {
+        align-items: flex-start;
+
+        gap: 13px;
+    }
+
+
+    .attendance-by-month-header-icon {
+        width: 48px;
+        height: 48px;
+
+        border-radius: 13px;
+
+        font-size: 21px;
+    }
+
+
+    .attendance-by-month-header-content h2 {
+        font-size: 20px;
+    }
+
+
+    .attendance-by-month-header-content p {
+        font-size: 12px;
+
+        line-height: 1.5;
+    }
+
+
+    .attendance-by-month-form-card,
+    .attendance-by-month-info-card {
+        padding: 17px;
+
+        border-radius: 14px;
+    }
+
+
+    .attendance-by-month-card-header h3 {
+        font-size: 17px;
+    }
+
+
+    .attendance-by-month-info-card h3 {
+        font-size: 18px;
+    }
+
+
+    .attendance-by-month-summary {
+        padding: 14px;
+    }
+
+
+    .attendance-by-month-submit {
+        height: 48px;
+    }
+
+
+    .attendance-by-month-footer-note {
+        align-items: flex-start;
+
+        padding: 14px;
+
+        font-size: 12px;
+
+        line-height: 1.6;
+    }
+
+}

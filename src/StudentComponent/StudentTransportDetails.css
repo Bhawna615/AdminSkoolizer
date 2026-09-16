@@ -1,99 +1,338 @@
-/* Main Container */
+/* =========================================
+   STUDENT TRANSPORT DETAILS
+   PURPLE + WHITE THEME
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
 .transport-container {
-  padding: 30px;
-  background-color: #f5f6fa;
   min-height: 100vh;
+  width: 100%;
+  padding: 40px 25px;
+  background: #f7f4ff;
+  font-family: "Poppins", Arial, sans-serif;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
 }
 
-/* Main Card */
+
+/* =========================================
+   MAIN CARD
+========================================= */
+
 .student-card {
-  width: 85%;
+  width: 100%;
+  max-width: 950px;
   background: #ffffff;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
   overflow: hidden;
+  box-shadow: 0 10px 35px rgba(106, 45, 175, 0.12);
+  border: 1px solid #e8ddff;
 }
 
-/* ========================= */
-/* TOP SECTION */
-/* ========================= */
 
-.student-top {
-  display: flex;
-  align-items: stretch;
-  border-bottom: 1px solid #e0e0e0;
-}
+/* =========================================
+   STUDENT TOP SECTION
+========================================= */
 
-/* Left Red Image Section */
-.student-image-box {
-  width: 35%;
-  background-color: #ff4d4f;   /* red like screenshot */
+.transport-student-top {
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 20px;
+  gap: 30px;
+  padding: 35px 40px;
+  background: linear-gradient(135deg, #6f2dbd, #8e44d4);
+  color: #ffffff;
 }
 
-.student-image-box img {
-  width: 150px;
-  height: 150px;
-  border-radius: 6px;
+
+/* =========================================
+   STUDENT IMAGE
+========================================= */
+
+.trasport-student-image-box {
+  width: 130px;
+  height: 130px;
+  min-width: 130px;
+  border-radius: 50%;
+  padding: 5px;
+  background: #ffffff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+}
+
+.trasport-student-image-box img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
   object-fit: cover;
-  background: #fff;
+  display: block;
 }
 
-/* Right Info Section */
-.student-info-box {
-  width: 65%;
-  padding: 30px;
-  background-color: #f7f7f7;
+
+/* =========================================
+   STUDENT INFORMATION
+========================================= */
+
+.transport-student-info-box {
+  flex: 1;
 }
 
 .student-name {
-  margin-bottom: 15px;
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
+  margin: 0 0 15px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.3px;
 }
 
-.student-info-box p {
+.transport-student-info-box p {
   margin: 8px 0;
-  font-size: 16px;
-  color: #444;
+  font-size: 15px;
+  color: #f5edff;
 }
 
-/* ========================= */
-/* BOTTOM SECTION */
-/* ========================= */
+.transport-student-info-box strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   TRANSPORT SECTION
+========================================= */
 
 .transport-section {
-  padding: 40px;
-  background-color: #f7f7f7;
-  text-align: center;
+  padding: 35px 40px 40px;
+  background: #ffffff;
 }
-
-.no-details {
-  font-size: 22px;
-  font-weight: 500;
-  color: #555;
-}
-
-/* Transport Details Boxes (if data exists) */
 
 .section-title {
-  font-size: 20px;
-  margin-bottom: 20px;
-  color: #333;
+  margin: 0 0 25px;
+  font-size: 23px;
+  font-weight: 700;
+  color: #6f2dbd;
+  position: relative;
+  padding-bottom: 12px;
 }
 
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 70px;
+  height: 4px;
+  border-radius: 10px;
+  background: #7b2cbf;
+}
+
+
+/* =========================================
+   TRANSPORT DETAILS BOX
+========================================= */
+
 .transport-box {
+  border: 1px solid #eadfff;
+  border-radius: 15px;
+  overflow: hidden;
   background: #ffffff;
-  padding: 15px;
-  margin: 10px auto;
-  width: 60%;
-  border-radius: 5px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
-  text-align: left;
+}
+
+.transport-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 1px solid #eee6fa;
+  transition: 0.3s ease;
+}
+
+.transport-row:last-child {
+  border-bottom: none;
+}
+
+.transport-row:hover {
+  background: #faf7ff;
+}
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+.transport-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #5a4b6a;
+}
+
+
+/* =========================================
+   VALUE
+========================================= */
+
+.transport-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #6f2dbd;
+  background: #f3ebff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-align: right;
+}
+
+
+/* =========================================
+   NO DETAILS
+========================================= */
+
+.no-details {
+  margin: 0;
+  padding: 25px;
+  text-align: center;
+  background: #faf7ff;
+  border: 1px dashed #b98ae8;
+  border-radius: 12px;
+  color: #7b2cbf;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+
+/* =========================================
+   LOADING
+========================================= */
+
+.loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7f4ff;
+  color: #6f2dbd;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.error {
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-left: 5px solid #7b2cbf;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(106, 45, 175, 0.1);
+  color: #6f2dbd;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   NO STUDENT
+========================================= */
+
+.no-student {
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 30px;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 15px;
+  border: 1px solid #e8ddff;
+  box-shadow: 0 10px 30px rgba(106, 45, 175, 0.1);
+  color: #6f2dbd;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+  .transport-container {
+    padding: 25px 15px;
+  }
+
+  .transport-student-top {
+  padding: 30px 25px;
+  gap: 20px;
+}
+
+  .transport-section {
+    padding: 30px 25px;
+  }
+
+  .trasport-student-image-box {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+  }
+
+  .student-name {
+    font-size: 23px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 576px) {
+  .transport-container {
+    padding: 15px 10px;
+  }
+
+  .student-card {
+    border-radius: 15px;
+  }
+
+  .transport-student-top {
+  flex-direction: column;
+  text-align: center;
+  padding: 30px 20px;
+}
+  .trasport-student-image-box {
+    width: 110px;
+    height: 110px;
+  }
+
+  .student-name {
+    font-size: 24px;
+  }
+
+  .transport-student-info-box p {
+    font-size: 14px;
+  }
+
+  .transport-section {
+    padding: 25px 18px;
+  }
+
+  .section-title {
+    font-size: 21px;
+  }
+
+  .transport-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 18px;
+  }
+
+  .transport-value {
+    width: 100%;
+    text-align: left;
+  }
 }

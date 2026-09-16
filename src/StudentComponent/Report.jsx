@@ -1,7 +1,8 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./Report.css";
+
 import schoolLogo from "../images/school-logo.png";
 import userLogo from "../images/user.svg";
 
@@ -9,10 +10,11 @@ const API_BASE = "http://localhost/kkblossom/api.php/Adminapi";
 
 const Report = () => {
   const { id } = useParams();
+  const reportRef = useRef(null);
 
   const [schoolInfo] = useState({
     schoolName: "KK BLOSSOMS SCHOOL",
-    schoolAddress: "Rabaun, Solan (H.P)"
+    schoolAddress: "Rabaun, Solan (H.P)",
   });
 
   const [student, setStudent] = useState(null);
@@ -41,12 +43,16 @@ const Report = () => {
       setStudent(data.student ?? null);
       setReport(Array.isArray(data.report) ? data.report : []);
       setMetrics(Array.isArray(data.metrics) ? data.metrics : []);
+
       setLoading(false);
 
-      // Trigger print after data loads
+      // Wait until React completely renders the report
       setTimeout(() => {
-        window.print();
-      }, 500);
+  window.requestAnimationFrame(() => {
+    window.print();
+  });
+}, 2000);
+
     } catch (err) {
       console.error("Fetch Error:", err);
       setError("Failed to load report");
@@ -66,41 +72,117 @@ const Report = () => {
     return {
       totalMarks: total,
       maxMarks: max,
-      percentage: max ? Math.floor((total / max) * 100) : 0,
+      percentage: max
+        ? Math.floor((total / max) * 100)
+        : 0,
     };
   }, [report]);
 
-  if (loading) return <div className="loading">Loading report...</div>;
-  if (error) return <div className="error">{error}</div>;
-  if (!student || Object.keys(student).length === 0) return <div>No student found</div>;
+  if (loading) {
+    return (
+      <div className="loading">
+        Loading report...
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="error">
+        {error}
+      </div>
+    );
+  }
+
+  if (!student || Object.keys(student).length === 0) {
+    return (
+      <div className="error">
+        No student found
+      </div>
+    );
+  }
 
   return (
-    <div className="report-container">
-      {/* Header */}
+    <div
+      className="report-container"
+      ref={reportRef}
+    >
+      {/* HEADER */}
       <div className="report-header">
-        <img src={schoolLogo} alt="logo" className="report-school-logo" />
-        <div>
+
+        <img
+          src={schoolLogo}
+          alt="School Logo"
+          className="report-school-logo"
+        />
+
+        <div className="school-details">
           <h2>{schoolInfo.schoolName}</h2>
-          <p>{schoolInfo.schoolAddress}</p>
+
+          <p>
+            {schoolInfo.schoolAddress}
+          </p>
         </div>
+
       </div>
 
-      <h3 className="report-title">EXAMINATION REPORT</h3>
 
-      {/* Student Info */}
+      {/* TITLE */}
+
+      <h3 className="report-title">
+        EXAMINATION REPORT
+      </h3>
+
+
+      {/* STUDENT INFORMATION */}
+
       <div className="student-section">
+
         <div className="student-left">
-          <p>This is to certify that <strong>{student?.Name}</strong></p>
-          <p>Mother's/Father's Name: <strong>{student?.Mname} / {student?.Fname}</strong></p>
-          <p>Date of Birth: <strong>{student?.Dob}</strong></p>
+
+          <p>
+            This is to certify that{" "}
+            <strong>
+              {student?.Name}
+            </strong>
+          </p>
+
+          <p>
+            Mother's/Father's/Guardian's Name:{" "}
+            <strong>
+              {student?.Mname} / {student?.Fname}
+            </strong>
+          </p>
+
+          <p>
+            Date of Birth:{" "}
+            <strong>
+              {student?.Dob}
+            </strong>
+          </p>
+
         </div>
+
+
         <div className="student-right">
-          <img src={userLogo} alt="student" />
+
+          <img
+            src={userLogo}
+            alt="Student"
+            onError={(e) => {
+              e.currentTarget.style.display = "none";
+            }}
+          />
+
         </div>
+
       </div>
 
-      {/* Marks Table */}
+
+      {/* MARKS TABLE */}
+
       <table className="report-table">
+
         <thead>
           <tr>
             <th>DATE</th>
@@ -110,39 +192,108 @@ const Report = () => {
             <th>MAX MARKS</th>
           </tr>
         </thead>
-        <tbody>
-  {report.map((row, index) => (
-    <tr key={index}>
-      <td>{row.Date || ""}</td>              {/* DATE column */}
-      <td>{row.Subject || ""}</td>           {/* SUBJECT column */}
-      <td>{row.Examtype || ""}</td>          {/* EXAM TYPE column */}
-      <td>{row.Marksobtained || 0}</td>      {/* MARKS OBTAINED */}
-      <td>{row.Maxmarks || 0}</td>           {/* MAX MARKS */}
-    </tr>
-  ))}
 
-  <tr className="total-row">
-    <td><strong>Total</strong></td>
-    <td></td>
-    <td></td>
-    <td><strong>{totalMarks}</strong></td>
-    <td><strong>{maxMarks}</strong></td>
-  </tr>
-</tbody>
+        <tbody>
+
+          {report.map((row, index) => (
+
+            <tr key={index}>
+
+              <td>
+                {row.Date || ""}
+              </td>
+
+              <td>
+                {row.Subject || ""}
+              </td>
+
+              <td>
+                {row.Examtype || ""}
+              </td>
+
+              <td>
+                {row.Marksobtained || 0}
+              </td>
+
+              <td>
+                {row.Maxmarks || 0}
+              </td>
+
+            </tr>
+
+          ))}
+
+
+          <tr className="total-row">
+
+            <td>
+              <strong>Total</strong>
+            </td>
+
+            <td></td>
+
+            <td></td>
+
+            <td>
+              <strong>
+                {totalMarks}
+              </strong>
+            </td>
+
+            <td>
+              <strong>
+                {maxMarks}
+              </strong>
+            </td>
+
+          </tr>
+
+        </tbody>
 
       </table>
 
-      <p className="percentage">Percentage: {percentage} %</p>
 
-      {/* Footer */}
+      {/* PERCENTAGE */}
+
+      <p className="percentage">
+
+        Percentage: {percentage} %
+
+      </p>
+
+
+      {/* FOOTER */}
+
       <div className="report-footer">
-        <div>
-          <p>Date: ___________</p>
-          <p>Place: ___________</p>
+
+        <div className="date-place">
+
+          <p>
+            Date: ___________
+          </p>
+
+          <p>
+            Place: ___________
+          </p>
+
         </div>
-        <div className="signature">Principal</div>
-        <div className="signature">Controller of Examinations</div>
+
+
+        <div className="signature">
+
+          Principal
+
+        </div>
+
+
+        <div className="signature controller">
+
+          Controller of Examinations
+
+        </div>
+
       </div>
+
     </div>
   );
 };

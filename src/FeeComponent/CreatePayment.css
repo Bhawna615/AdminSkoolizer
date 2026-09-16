@@ -1,0 +1,106 @@
+.container {
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* FORM CONTAINER */
+.payment-form {
+  display: flex;
+  gap: 25px;
+  margin: 25px 0;
+  flex-wrap: wrap;
+}
+
+/* FORM GROUP */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+}
+
+/* LABEL */
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+/* INPUT DESIGN */
+.form-group input,
+.form-group select {
+  padding: 12px 14px;
+  font-size: 14px;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+  background: #f9fafc;
+}
+
+/* FOCUS EFFECT */
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #2C56BB;
+  box-shadow: 0 0 0 3px rgba(44, 86, 187, 0.15);
+  background: #fff;
+}
+
+/* DISABLED INPUT */
+.form-group input:disabled {
+  background: #eef1f7;
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* BUTTON UPGRADE */
+.submit-btn {
+  margin-top: 25px;
+  background: linear-gradient(135deg, #2C56BB, #1e3f91);
+  color: white;
+  padding: 12px 28px;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* BUTTON HOVER */
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(44, 86, 187, 0.3);
+}
+
+/* LOADER */
+.spinner-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:#2C56BB;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.spinner {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #fff;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.error {
+  color: red;
+  font-size: 13px;
+  margin-top: 5px;
+}

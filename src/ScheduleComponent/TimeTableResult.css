@@ -1,0 +1,780 @@
+/* =========================================================
+   TIME TABLE RESULT
+   Purple + White Admin Dashboard UI
+   ========================================================= */
+
+.ttr-page {
+    min-height: calc(100vh - 70px);
+    padding: 30px;
+    background: #f7f5fc;
+    font-family: "Poppins", sans-serif;
+}
+
+.ttr-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.ttr-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.ttr-header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.ttr-header-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        135deg,
+        #6f42c1,
+        #8e63d2
+    );
+
+    color: #ffffff;
+    font-size: 23px;
+
+    box-shadow:
+        0 8px 20px rgba(111, 66, 193, 0.2);
+}
+
+.ttr-title {
+    margin: 0;
+    color: #29213d;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.ttr-subtitle {
+    margin: 4px 0 0;
+    color: #81788f;
+    font-size: 13px;
+}
+
+.ttr-change-button {
+    height: 42px;
+    padding: 0 17px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    background: #ffffff;
+    border: 1px solid #ddd6eb;
+    border-radius: 8px;
+
+    color: #62409e;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.ttr-change-button:hover {
+    border-color: #6f42c1;
+    background: #f5f0fc;
+}
+
+/* =========================================================
+   SUMMARY
+   ========================================================= */
+
+.ttr-summary {
+    background: #ffffff;
+    border: 1px solid #eee9f7;
+    border-radius: 15px;
+
+    padding: 20px 25px;
+    margin-bottom: 30px;
+
+    display: flex;
+    align-items: center;
+
+    box-shadow:
+        0 6px 25px rgba(66, 40, 100, 0.06);
+}
+
+.ttr-summary-item {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.ttr-summary-icon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 11px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f0eafa;
+    color: #6f42c1;
+
+    font-size: 17px;
+}
+
+.ttr-summary-item span {
+    display: block;
+    margin-bottom: 2px;
+
+    color: #9990a4;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.ttr-summary-item strong {
+    color: #3d344b;
+    font-size: 14px;
+    font-weight: 650;
+}
+
+.ttr-summary-divider {
+    width: 1px;
+    height: 38px;
+    background: #eeeaf4;
+    margin: 0 25px;
+}
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+.ttr-section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+.ttr-section-heading h3 {
+    margin: 0;
+
+    color: #332b40;
+    font-size: 18px;
+    font-weight: 650;
+}
+
+.ttr-section-heading p {
+    margin: 4px 0 0;
+
+    color: #92899e;
+    font-size: 11px;
+}
+
+.ttr-period-count {
+    padding: 7px 13px;
+
+    border-radius: 20px;
+    background: #eee8f9;
+
+    color: #6542a1;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* =========================================================
+   PERIOD GRID
+   ========================================================= */
+
+.ttr-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+/* =========================================================
+   PERIOD CARD
+   ========================================================= */
+
+.ttr-period-card {
+    position: relative;
+
+    background: #ffffff;
+
+    border: 1px solid #eee9f7;
+    border-radius: 16px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 7px 25px rgba(66, 40, 100, 0.07);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.ttr-period-card:hover {
+    transform: translateY(-4px);
+
+    border-color: #ddd0f1;
+
+    box-shadow:
+        0 12px 30px rgba(66, 40, 100, 0.11);
+}
+
+/* =========================================================
+   CARD TOP
+   ========================================================= */
+
+.ttr-card-top {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.ttr-period-number {
+    width: 37px;
+    height: 37px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #6f42c1,
+        #8b62d1
+    );
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    box-shadow:
+        0 5px 12px rgba(111, 66, 193, 0.18);
+}
+
+.ttr-period-label {
+    margin-left: 10px;
+
+    color: #82798f;
+
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    letter-spacing: 0.6px;
+}
+
+/* =========================================================
+   THREE DOT MENU
+   ========================================================= */
+
+.ttr-menu-button {
+    margin-left: auto;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #8c8395;
+
+    font-size: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.ttr-menu-button:hover {
+    background: #f3eff8;
+    color: #6f42c1;
+}
+
+/* =========================================================
+   DROPDOWN
+   ========================================================= */
+
+.ttr-dropdown {
+    position: absolute;
+
+    z-index: 20;
+
+    top: 57px;
+    right: 18px;
+
+    min-width: 125px;
+
+    padding: 6px;
+
+    background: #ffffff;
+
+    border: 1px solid #ebe6f2;
+    border-radius: 9px;
+
+    box-shadow:
+        0 8px 25px rgba(50, 35, 70, 0.15);
+}
+
+.ttr-dropdown button {
+    width: 100%;
+
+    padding: 9px 11px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: transparent;
+
+    color: #dc4d5c;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    text-align: left;
+}
+
+.ttr-dropdown button:hover {
+    background: #fff1f2;
+}
+
+/* =========================================================
+   SUBJECT
+   ========================================================= */
+
+.ttr-subject {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #f0edf5;
+}
+
+.ttr-subject > i {
+    width: 39px;
+    height: 39px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #f2edfb;
+    color: #6f42c1;
+
+    font-size: 16px;
+}
+
+.ttr-subject span {
+    display: block;
+
+    color: #9a91a4;
+
+    font-size: 9px;
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+.ttr-subject h4 {
+    margin: 3px 0 0;
+
+    color: #342c40;
+
+    font-size: 15px;
+    font-weight: 650;
+}
+
+/* =========================================================
+   TIME
+   ========================================================= */
+
+.ttr-time-box {
+    margin-top: 17px;
+
+    padding: 13px;
+
+    border-radius: 10px;
+
+    background: #faf9fc;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ttr-time-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.ttr-time-item span {
+    margin-bottom: 3px;
+
+    color: #aaa1b0;
+
+    font-size: 8px;
+    font-weight: 600;
+
+    letter-spacing: 0.6px;
+}
+
+.ttr-time-item strong {
+    color: #4d4356;
+
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.ttr-time-arrow {
+    color: #a494bd;
+    font-size: 13px;
+}
+
+.ttr-time-end {
+    text-align: right;
+}
+
+/* =========================================================
+   TEACHER
+   ========================================================= */
+
+.ttr-teacher {
+    margin-top: 17px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ttr-teacher-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eee8f8;
+    color: #6f42c1;
+
+    font-size: 14px;
+}
+
+.ttr-teacher span {
+    display: block;
+
+    color: #9b92a5;
+
+    font-size: 9px;
+}
+
+.ttr-teacher strong {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #514758;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.ttr-empty,
+.ttr-empty-selection {
+    background: #ffffff;
+
+    border: 1px solid #eee9f7;
+    border-radius: 17px;
+
+    padding: 60px 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 7px 25px rgba(66, 40, 100, 0.06);
+}
+
+.ttr-empty-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 18px;
+
+    border-radius: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f0eafa;
+    color: #6f42c1;
+
+    font-size: 27px;
+}
+
+.ttr-empty h3,
+.ttr-empty-selection h3 {
+    margin: 0;
+
+    color: #393041;
+
+    font-size: 19px;
+    font-weight: 650;
+}
+
+.ttr-empty p,
+.ttr-empty-selection p {
+    margin: 8px auto 22px;
+
+    max-width: 450px;
+
+    color: #938a9e;
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.ttr-empty p strong {
+    color: #60409b;
+}
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
+.ttr-back-button {
+    height: 43px;
+
+    padding: 0 18px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: linear-gradient(
+        135deg,
+        #6f42c1,
+        #8258ce
+    );
+
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 16px rgba(111, 66, 193, 0.2);
+
+    transition: all 0.25s ease;
+}
+
+.ttr-back-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 9px 20px rgba(111, 66, 193, 0.25);
+}
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.ttr-loading {
+    background: #ffffff;
+
+    border: 1px solid #eee9f7;
+    border-radius: 17px;
+
+    padding: 70px 20px;
+
+    text-align: center;
+}
+
+.ttr-spinner {
+    width: 38px;
+    height: 38px;
+
+    margin: 0 auto 14px;
+
+    border: 3px solid #e9e2f3;
+    border-top-color: #6f42c1;
+
+    border-radius: 50%;
+
+    animation: ttr-spin 0.8s linear infinite;
+}
+
+.ttr-loading p {
+    margin: 0;
+
+    color: #8e8597;
+    font-size: 12px;
+}
+
+@keyframes ttr-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+    .ttr-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+    .ttr-page {
+        padding: 20px 15px;
+    }
+
+    .ttr-header {
+        align-items: flex-start;
+    }
+
+    .ttr-title {
+        font-size: 21px;
+    }
+
+    .ttr-subtitle {
+        font-size: 11px;
+    }
+
+    .ttr-header-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+    }
+
+    .ttr-change-button {
+        padding: 0 12px;
+        font-size: 11px;
+    }
+
+    .ttr-summary {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+        padding: 18px;
+    }
+
+    .ttr-summary-divider {
+        width: 100%;
+        height: 1px;
+        margin: 0;
+    }
+
+    .ttr-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 450px) {
+    .ttr-page {
+        padding: 15px 10px;
+    }
+
+    .ttr-header-left {
+        gap: 10px;
+    }
+
+    .ttr-header-icon {
+        width: 43px;
+        height: 43px;
+        border-radius: 11px;
+        font-size: 18px;
+    }
+
+    .ttr-title {
+        font-size: 18px;
+    }
+
+    .ttr-subtitle {
+        font-size: 10px;
+    }
+
+    .ttr-change-button {
+        width: 38px;
+        padding: 0;
+        justify-content: center;
+        font-size: 0;
+    }
+
+    .ttr-change-button i {
+        font-size: 14px;
+    }
+
+    .ttr-period-card {
+        padding: 17px;
+    }
+}

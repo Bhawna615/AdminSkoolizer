@@ -1,0 +1,461 @@
+.add-employee-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 28px;
+    box-sizing: border-box;
+    background: #f7f7fb;
+    color: #302b43;
+    font-family: "Poppins", sans-serif;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.add-employee-header {
+    width: 100%;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.add-employee-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.add-employee-header-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #7658e8, #5f40d2);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 7px 18px rgba(108, 76, 232, 0.22);
+}
+
+.add-employee-header h2 {
+    margin: 0;
+    color: #302b43;
+    font-size: 21px;
+    line-height: 1.3;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.add-employee-header p {
+    margin: 4px 0 0;
+    color: #888294;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.add-employee-back-btn {
+    height: 38px;
+    padding: 0 14px;
+    border: 1px solid #e1dced;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #625b70;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.add-employee-back-btn:hover {
+    border-color: #c8b9ef;
+    background: #faf8ff;
+    color: #6546d5;
+}
+
+.add-employee-back-btn i {
+    font-size: 12px;
+}
+
+
+/* =========================================
+   MAIN CARD
+========================================= */
+
+.add-employee-card {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border: 1px solid #e8e4f0;
+    border-radius: 15px;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(40, 30, 70, 0.05);
+}
+
+
+/* =========================================
+   CARD HEADER
+========================================= */
+
+.add-employee-card-header {
+    min-height: 75px;
+    padding: 0 24px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ece9f3;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.add-employee-card-icon {
+    width: 37px;
+    height: 37px;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: #f1edff;
+    color: #6c4ce8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+}
+
+.add-employee-card-header h3 {
+    margin: 0;
+    color: #40394f;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.add-employee-card-header p {
+    margin: 3px 0 0;
+    color: #97909f;
+    font-size: 10px;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.add-employee-form {
+    padding: 28px 30px 30px;
+}
+
+.add-employee-form-group {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.add-employee-form-group label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+    color: #595264;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.add-employee-form-group label i {
+    color: #7658e8;
+    font-size: 12px;
+}
+
+
+/* =========================================
+   INPUT
+========================================= */
+
+.add-employee-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.add-employee-input-wrapper > i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #938aa3;
+    font-size: 13px;
+    pointer-events: none;
+    transition: color 0.2s ease;
+}
+
+.add-employee-input-wrapper input {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px 0 40px;
+    box-sizing: border-box;
+    border: 1px solid #ddd9e8;
+    border-radius: 9px;
+    outline: none;
+    background: #fbfaff;
+    color: #453e51;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.add-employee-input-wrapper input::placeholder {
+    color: #aaa4b2;
+    font-weight: 400;
+}
+
+.add-employee-input-wrapper input:hover {
+    border-color: #c8bee0;
+    background: #ffffff;
+}
+
+.add-employee-input-wrapper input:focus {
+    border-color: #7658e5;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(108, 76, 232, 0.08);
+}
+
+.add-employee-input-wrapper:focus-within > i {
+    color: #7658e8;
+}
+
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.add-employee-actions {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid #eeeaf4;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.add-employee-cancel-btn {
+    height: 40px;
+    padding: 0 18px;
+    border: 1px solid #dfdbe7;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #716a7c;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.add-employee-cancel-btn:hover {
+    border-color: #c9c1d6;
+    background: #faf9fc;
+    color: #514a5e;
+}
+
+.add-employee-submit-btn {
+    height: 40px;
+    min-width: 140px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 9px;
+    background: linear-gradient(135deg, #7658e8, #6243d4);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 14px rgba(103, 72, 220, 0.2);
+    transition: all 0.2s ease;
+}
+
+.add-employee-submit-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 7px 18px rgba(103, 72, 220, 0.28);
+}
+
+.add-employee-submit-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.add-employee-submit-btn:disabled,
+.add-employee-cancel-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.add-employee-submit-btn i {
+    font-size: 12px;
+}
+
+
+/* =========================================
+   LOADER
+========================================= */
+
+.add-employee-spinner {
+    width: 13px;
+    height: 13px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: addEmployeeSpin 0.7s linear infinite;
+}
+
+@keyframes addEmployeeSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================
+   INFORMATION BOX
+========================================= */
+
+.add-employee-info {
+    width: 100%;
+    max-width: 760px;
+    margin: 15px auto 0;
+    padding: 13px 15px;
+    box-sizing: border-box;
+    border: 1px solid #e5e0f0;
+    border-radius: 11px;
+    background: #fbfaff;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.add-employee-info-icon {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: #f0ecff;
+    color: #7253df;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.add-employee-info strong {
+    display: block;
+    margin-bottom: 2px;
+    color: #625b70;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.add-employee-info p {
+    margin: 0;
+    color: #96909f;
+    font-size: 9px;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .add-employee-page {
+        padding: 20px;
+    }
+
+    .add-employee-header {
+        align-items: flex-start;
+    }
+
+    .add-employee-back-btn span {
+        display: none;
+    }
+
+    .add-employee-back-btn {
+        width: 38px;
+        padding: 0;
+    }
+
+    .add-employee-card-header {
+        padding: 0 18px;
+    }
+
+    .add-employee-form {
+        padding: 22px 18px;
+    }
+
+    .add-employee-actions {
+        flex-direction: column-reverse;
+    }
+
+    .add-employee-cancel-btn,
+    .add-employee-submit-btn {
+        width: 100%;
+    }
+
+    .add-employee-info {
+        margin-top: 12px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .add-employee-page {
+        padding: 15px;
+    }
+
+    .add-employee-header-icon {
+        width: 43px;
+        height: 43px;
+        font-size: 18px;
+    }
+
+    .add-employee-header h2 {
+        font-size: 18px;
+    }
+
+    .add-employee-header p {
+        font-size: 10px;
+    }
+
+    .add-employee-card {
+        border-radius: 12px;
+    }
+
+    .add-employee-card-header {
+        min-height: 68px;
+    }
+
+    .add-employee-card-header h3 {
+        font-size: 13px;
+    }
+
+    .add-employee-card-header p {
+        font-size: 9px;
+    }
+}

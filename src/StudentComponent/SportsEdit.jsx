@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import "./StudentSports.css";
+import "./SportsEdit.css";
 
 const SportsEdit = () => {
     const { id } = useParams();
@@ -57,53 +57,116 @@ const SportsEdit = () => {
             .catch(() => setError("Failed to update event"));
     };
 
-    return (
-        <div className="col-md-12 innerview">
+   return (
+    <div className="sports-edit-wrapper">
+
+        <div className="sports-edit-container">
+
+            {/* Header */}
+            <div className="sports-edit-topbar">
+                <div>
+                    <h2>
+                        <i className="las la-trophy"></i>
+                        Edit Sports Event
+                    </h2>
+                    <p>Update sports event details and save your changes.</p>
+                </div>
+
+                <div className="sports-edit-icon">
+                    <i className="las la-football-ball"></i>
+                </div>
+            </div>
+
+            {/* Error Message */}
             {error && (
-                <div className="col-md-12 error-bar">
-                    <i className="las la-exclamation-triangle"></i> {error}
+                <div className="sports-edit-error">
+                    <i className="las la-exclamation-circle"></i>
+                    <span>{error}</span>
                 </div>
             )}
 
+            {/* Success Message */}
             {success && (
-                <div className="col-md-12 success-bar">
-                    <i className="las la-check-square"></i> {success}
+                <div className="sports-edit-success">
+                    <i className="las la-check-circle"></i>
+                    <span>{success}</span>
                 </div>
             )}
 
-            <form onSubmit={submit}>
-                <div className="gap">
-                    <div className="col-md-4">
-                        <p className="details">Name</p>
+            {/* Form */}
+            <form onSubmit={submit} className="sports-edit-form">
+
+                <div className="sports-edit-grid">
+
+                    {/* Event Name */}
+                    <div className="sports-edit-field">
+                        <label>
+                            <i className="las la-running"></i>
+                            Event Name
+                        </label>
+
                         <input
                             type="text"
-                            className="form-input"
+                            className="sports-edit-input"
                             name="name"
                             value={form.name}
                             onChange={handleChange}
+                            placeholder="Enter event name"
+                            required
                         />
                     </div>
 
-                    <div className="col-md-4">
-                        <p className="details">Date</p>
+                    {/* Event Date */}
+                    <div className="sports-edit-field">
+                        <label>
+                            <i className="las la-calendar"></i>
+                            Event Date
+                        </label>
+
                         <input
                             type="date"
-                            className="form-input"
+                            className="sports-edit-input"
                             name="date"
                             value={form.date}
                             onChange={handleChange}
+                            required
                         />
                     </div>
+
                 </div>
 
-                <div className="col-md-12">
-                    <button type="submit" className="form-submit">
-                        Save
+                {/* Buttons */}
+                <div className="sports-edit-actions">
+
+                    <button
+                        type="button"
+                        className="sports-edit-cancel"
+                        onClick={() =>
+                            navigate(
+                                "/dashboard/StudentComponent/StudentSports"
+                            )
+                        }
+                    >
+                        <i className="las la-times"></i>
+                        Cancel
                     </button>
+
+                    <button
+                        type="submit"
+                        className="sports-edit-save"
+                    >
+                        <i className="las la-save"></i>
+                        Save Changes
+                    </button>
+
                 </div>
+
             </form>
+
         </div>
-    );
+
+    </div>
+);
 };
 
 export default SportsEdit;

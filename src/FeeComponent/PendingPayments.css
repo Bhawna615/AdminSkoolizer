@@ -1,0 +1,82 @@
+.container {
+  padding: 30px;
+}
+
+.preview-box {
+  border: 1px solid #f95555;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.preview-title {
+  color: green;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  
+  text-transform: uppercase;
+  border: 1px solid #c5c5c5;
+}
+
+td {
+  border: 1px solid #c5c5c5;
+}
+
+.float-btn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background: #f95555;
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: none;
+  font-size: 20px;
+}
+
+.export-btn {
+  margin-top: 20px;
+  background: #f95555;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+}
+
+
+.chkbx{
+    margin: 0px !important;
+    padding: 0px !important;
+    position: absolute;
+    top: 324px;
+    right: 216px;
+}
+p{
+    font-size: 1rem;
+}
+
+.Pndfloat-btn{
+     position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #f95555;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  border: none;
+  box-shadow: 2px 2px 3px #999;
+  cursor: pointer;
+}
+
+.Pndfloat-btn .material-icons {
+  font-size: 30px;
+  margin-top: 15px;
+}

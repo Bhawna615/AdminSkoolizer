@@ -1,11 +1,13 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
+import "./ViewPayments.css";
 
-const BASE_URL = "http://localhost/kkblossom/api.php/Adminapi/AdminFee/";
+const BASE_URL =
+  "http://localhost/kkblossom/api.php/Adminapi/AdminFee/";
 
 const ViewPayments = () => {
-
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -21,10 +23,9 @@ const ViewPayments = () => {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [entryCount, setEntryCount] = useState(10);
-
   const [currentPage, setCurrentPage] = useState(1);
 
-  // SHOW SUCCESS MESSAGE FROM NAVIGATION
+  /* SUCCESS MESSAGE */
   useEffect(() => {
     if (location.state?.message) {
       setSuccessMsg(location.state.message);
@@ -37,9 +38,10 @@ const ViewPayments = () => {
     }
   }, [location.state]);
 
-  // SEARCH
+  /* SEARCH */
   const filteredData = payments.filter((item) => {
     const searchVal = searchTerm.toLowerCase();
+
     return (
       item.studentname?.toLowerCase().includes(searchVal) ||
       item.feeid?.toString().includes(searchVal) ||
@@ -49,14 +51,23 @@ const ViewPayments = () => {
 
   const indexOfLast = currentPage * entryCount;
   const indexOfFirst = indexOfLast - entryCount;
-  const displayedData = filteredData.slice(indexOfFirst, indexOfLast);
-  const totalPages = Math.ceil(filteredData.length / entryCount);
 
+  const displayedData = filteredData.slice(
+    indexOfFirst,
+    indexOfLast
+  );
+
+  const totalPages = Math.ceil(
+    filteredData.length / entryCount
+  );
+
+  /* INITIAL LOAD */
   useEffect(() => {
     loadClasses();
     loadPayments();
   }, []);
 
+  /* FILTER */
   useEffect(() => {
     if (enableFilter) {
       setCurrentPage(1);
@@ -72,15 +83,20 @@ const ViewPayments = () => {
   const loadPayments = async () => {
     try {
       let payload = {};
+
       if (enableFilter) {
         payload = {
           session: getSessionValue(session),
           class: className,
-          month: month
+          month: month,
         };
       }
 
-      const res = await axios.post(`${BASE_URL}filterBySessionAndClass`, payload);
+      const res = await axios.post(
+        `${BASE_URL}filterBySessionAndClass`,
+        payload
+      );
+
       if (res.data && res.data.status) {
         setPayments(res.data.data || []);
       } else {
@@ -96,7 +112,10 @@ const ViewPayments = () => {
 
   const loadClasses = async () => {
     try {
-      const res = await axios.get(`${BASE_URL}getClasses`);
+      const res = await axios.get(
+        `${BASE_URL}getClasses`
+      );
+
       if (res.data && res.data.status) {
         setClasses(res.data.data || []);
       }
@@ -107,30 +126,65 @@ const ViewPayments = () => {
   };
 
   const calculateLateFee = (row) => {
-    if (row.status === 1) return row.late_fee_paid || 0;
+    if (row.status === 1) {
+      return row.late_fee_paid || 0;
+    }
+
     if (!row.lastdate) return 0;
+
     const today = new Date();
     const lastDate = new Date(row.lastdate);
+
     if (today > lastDate) {
       const diffTime = today - lastDate;
-      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      const diffDays = Math.floor(
+        diffTime / (1000 * 60 * 60 * 24)
+      );
+
       return diffDays > 0 ? (diffDays - 1) * 10 : 0;
     }
+
     return 0;
   };
 
   const months = [
-    "January","February","March","April","May","June",
-    "July","August","September","October","November","December"
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
+  /* EXPORT CSV */
   const exportToCSV = () => {
-
     const headers = [
-      "PaymentID","Transaction Id","EasePay Id","Student Name","Class",
-      "Admission No","Admission Fee","Annual Fee","Tuition Fee","Transport Fee",
-      "Amount","Last Date","Period","Status","Payment Mode","Late Fee",
-      "Amount Paid","Paid On","Session","Remarks"
+      "PaymentID",
+      "Transaction Id",
+      "EasePay Id",
+      "Student Name",
+      "Class",
+      "Admission No",
+      "Admission Fee",
+      "Annual Fee",
+      "Tuition Fee",
+      "Transport Fee",
+      "Amount",
+      "Last Date",
+      "Period",
+      "Status",
+      "Payment Mode",
+      "Late Fee",
+      "Amount Paid",
+      "Paid On",
+      "Session",
+      "Remarks",
     ];
 
     const rows = displayedData.map((row) => [
@@ -153,7 +207,7 @@ const ViewPayments = () => {
       row.amount_paid,
       row.paidondate,
       row.session,
-      row.remarks
+      row.remarks,
     ]);
 
     const csvContent =
@@ -166,43 +220,90 @@ const ViewPayments = () => {
 
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "payments.csv");
-    document.body.appendChild(link);
+    link.setAttribute(
+      "download",
+      "payments.csv"
+    );
 
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
   };
 
   return (
-    <div className="container-fluid p-4">
+    <div className="vp-page">
 
+      {/* SUCCESS MESSAGE */}
       {successMsg && (
-        <div className="alert alert-success">{successMsg}</div>
+        <div className="vp-success-message">
+          <span className="vp-success-icon">✓</span>
+          {successMsg}
+        </div>
       )}
 
-      <div style={{border:"dashed 2px black",padding:"50px",margin:"50px"}}>
+      {/* PAGE HEADER */}
+      <div className="vp-page-header">
+        <div>
+          <h2 className="vp-page-title">
+            Student Payments
+          </h2>
 
-        <div className="form-check mb-3" style={{display:"flex",alignItems:"center",marginBottom:"20px"}}>
-          <input
-            type="checkbox"
-            className="form-check-input"
-            checked={enableFilter}
-            onChange={(e)=>setEnableFilter(e.target.checked)}
-            style={{fontSize:"20px"}}
-          />
-          <label className="form-check-label" style={{display:"block",marginLeft:"-25px",fontSize:"20px"}}>ENABLE FILTER</label>
+          <p className="vp-page-subtitle">
+            Manage and view student fee payment records
+          </p>
+        </div>
+      </div>
+
+      {/* FILTER CARD */}
+      <div className="vp-filter-card">
+
+        <div className="vp-filter-header">
+          <div className="vp-filter-heading">
+            <span className="vp-filter-icon">
+              <i className="las la-filter"></i>
+            </span>
+
+            <div>
+              <h3>Payment Filters</h3>
+              <p>
+                Filter payments by session, month and class
+              </p>
+            </div>
+          </div>
+
+          <label className="vp-switch-label">
+            <input
+              type="checkbox"
+              checked={enableFilter}
+              onChange={(e) =>
+                setEnableFilter(e.target.checked)
+              }
+            />
+
+            <span className="vp-switch"></span>
+
+            <span className="vp-switch-text">
+              Enable Filter
+            </span>
+          </label>
         </div>
 
-        <div className="row">
+        <div className="vp-filter-divider"></div>
 
-          <div className="col-md-4" style={{display:"flex",flexDirection:"column"}}>
-            <label style={{fontSize:"14px",marginBottom:"5px"}}>
-              <i class="las la-filter"></i>
-              YEAR</label>
+        <div className="vp-filter-grid">
+
+          {/* YEAR */}
+          <div className="vp-filter-group">
+            <label>
+              <i className="las la-calendar"></i>
+              YEAR
+            </label>
+
             <select
-              className="form-control"
-              style={{border:"solid 2px black",borderRadius:"0",fontSize:"14px",width:"90%",padding:"5px"}}
               value={session}
-              onChange={(e)=>setSession(e.target.value)}
+              onChange={(e) =>
+                setSession(e.target.value)
+              }
               disabled={!enableFilter}
             >
               <option value="2024">2024</option>
@@ -211,175 +312,387 @@ const ViewPayments = () => {
             </select>
           </div>
 
-          <div className="col-md-4"style={{display:"flex",flexDirection:"column"}}>
-            <label style={{fontSize:"14px",marginBottom:"5px"}}>
-              <i class="las la-filter"></i>
-              MONTH</label>
+          {/* MONTH */}
+          <div className="vp-filter-group">
+            <label>
+              <i className="las la-calendar-alt"></i>
+              MONTH
+            </label>
+
             <select
-              className="form-control"
-                style={{border:"solid 2px black",borderRadius:"0",fontSize:"14px",width:"90%",padding:"5px"}}
               value={month}
-              onChange={(e)=>setMonth(e.target.value)}
+              onChange={(e) =>
+                setMonth(e.target.value)
+              }
               disabled={!enableFilter}
             >
-              {months.map((m)=>(<option key={m} value={m}>{m}</option>))}
+              {months.map((m) => (
+                <option key={m} value={m}>
+                  {m}
+                </option>
+              ))}
             </select>
           </div>
 
-          <div className="col-md-4"style={{display:"flex",flexDirection:"column"}}>
-            <label style={{fontSize:"14px",marginBottom:"5px"}}>
-              <i class="las la-filter"></i>
-              CLASS</label>
+          {/* CLASS */}
+          <div className="vp-filter-group">
+            <label>
+              <i className="las la-graduation-cap"></i>
+              CLASS
+            </label>
+
             <select
-              className="form-control"
-                style={{border:"solid 2px black",borderRadius:"0",fontSize:"14px",width:"90%",padding:"5px"}}
               value={className}
-              onChange={(e)=>setClassName(e.target.value)}
+              onChange={(e) =>
+                setClassName(e.target.value)
+              }
               disabled={!enableFilter}
             >
-              <option value="NURSERY">NURSERY</option>
-              {classes.map((c,index)=>(<option key={index} value={c.Classname}>{c.Classname}</option>))}
+              <option value="NURSERY">
+                NURSERY
+              </option>
+
+              {classes.map((c, index) => (
+                <option
+                  key={index}
+                  value={c.Classname}
+                >
+                  {c.Classname}
+                </option>
+              ))}
             </select>
           </div>
 
         </div>
       </div>
 
-      <div className="justify-content-between mb-3"style={{margin:"0px 50px 50px 50px",flexDirection:"row",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-        <div style={{fontSize:"15px",color:"black"}}>
-          Show
-          <select className="mx-2" value={entryCount} onChange={(e)=>setEntryCount(Number(e.target.value))}>
+      {/* TABLE TOOLBAR */}
+      <div className="vp-table-toolbar">
+
+        <div className="vp-entry-control">
+          <span>Show</span>
+
+          <select
+            value={entryCount}
+            onChange={(e) => {
+              setEntryCount(
+                Number(e.target.value)
+              );
+              setCurrentPage(1);
+            }}
+          >
             <option value="10">10</option>
             <option value="25">25</option>
             <option value="50">50</option>
           </select>
-          entries
+
+          <span>entries</span>
         </div>
-        <div style={{fontSize:"15px",color:"black"}}>
-          Search
-          <input type="text" className="form-control d-inline-block ms-2" style={{width:"200px",border:"solid 1px black",borderRadius:"0",fontSize:"14px",padding:"5px"}} value={searchTerm} onChange={(e)=>setSearchTerm(e.target.value)}/>
+
+        <div className="vp-search-control">
+          <label>
+            <i className="las la-search"></i>
+            Search
+          </label>
+
+          <input
+            type="text"
+            placeholder="Student name, ID or admission no."
+            value={searchTerm}
+            onChange={(e) =>
+              setSearchTerm(e.target.value)
+            }
+          />
         </div>
+
       </div>
 
-      <div className="table-responsive">
-        <table className="table table-bordered custom-table">
-          <thead>
-            <tr >
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>PaymentID</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Transaction Id</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>EasePay Id</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Student Name</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Class</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Admission No.</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Admission Fee</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Annual Fee</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Tuition Fee</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Transport Fee</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Amount</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Last Date</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Period</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Status</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Payment Mode</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Late Fee</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Amount Paid</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Paid On</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Session</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Remarks</th>
-              <th style={{backgroundColor:"#2C56BB",color:"white"}}>Actions</th>
-            </tr>
-          </thead>
+      {/* TABLE */}
+      <div className="vp-table-card">
 
-          <tbody>
-            {displayedData.length === 0 ? (
+        <div className="vp-table-wrapper">
+
+          <table className="vp-payment-table">
+
+            <thead>
               <tr>
-                <td colSpan="21" className="text-center">No Records Found</td>
+                <th>Payment ID</th>
+                <th>Transaction ID</th>
+                <th>EasePay ID</th>
+                <th>Student Name</th>
+                <th>Class</th>
+                <th>Admission No.</th>
+                <th>Admission Fee</th>
+                <th>Annual Fee</th>
+                <th>Tuition Fee</th>
+                <th>Transport Fee</th>
+                <th>Amount</th>
+                <th>Last Date</th>
+                <th>Period</th>
+                <th>Status</th>
+                <th>Payment Mode</th>
+                <th>Late Fee</th>
+                <th>Amount Paid</th>
+                <th>Paid On</th>
+                <th>Session</th>
+                <th>Remarks</th>
+                <th>Actions</th>
               </tr>
-            ) : (
-              displayedData.map((row) => (
-                <tr key={row.feeid}>
-                  <td>{row.feeid}</td>
-                  <td>{row.razorpay_order_id}</td>
-                  <td>{row.easepay_id}</td>
-                  <td>{row.studentname}</td>
-                  <td>{row.class}</td>
-                  <td>{row.admission_number}</td>
-                  <td>{row.admission_fee}</td>
-                  <td>{row.annual_fee}</td>
-                  <td>{row.tuition_fee}</td>
-                  <td>{row.transport_fee}</td>
-                  <td>{row.amount}</td>
-                  <td>{row.lastdate}</td>
-                  <td>{row.period}</td>
-                  <td>{row.status === 1 ? "Paid" : "Pending"}</td>
-                  <td>{row.payment_mode}</td>
-                  <td>{calculateLateFee(row)}</td>
-                  <td>{row.amount_paid}</td>
-                  <td>{row.paidondate}</td>
-                  <td>{row.session}</td>
-                  <td>{row.remarks}</td>
-                  <td>
-                    {row.status === 1 ? (
-                      <>
-                        <button className="btn btn-sm btn-success me-1" onClick={() => navigate(`/receipt/${row.feeid}`)}>Receipt</button>
-                        <button className="btn btn-sm btn-warning" onClick={() => navigate(`/edit-payment/${row.feeid}`)}>Edit</button>
-                      </>
-                    ) : (
-                      <>
-                        <button style={{fontSize: "26px"}} onClick={() => navigate(`/dashboard/StudentComponent/AcceptStudentFee/${row.feeid}`)}><i class="la la-hand-holding-usd btn-icon"></i></button>
-                        <button
-  style={{ fontSize: "26px" }}
-  onClick={() => navigate(`/dashboard/StudentComponent/UpdateStudentFee/${row.feeid}`)}
->
-  <i className="la la-pen btn-icon"></i>
-</button>
-                      </>
-                    )}
+            </thead>
+
+            <tbody>
+
+              {displayedData.length === 0 ? (
+
+                <tr>
+                  <td
+                    colSpan="21"
+                    className="vp-no-records"
+                  >
+                    <div className="vp-empty-state">
+                      <i className="las la-file-invoice"></i>
+                      <strong>
+                        No Records Found
+                      </strong>
+                      <span>
+                        No payment records match your search.
+                      </span>
+                    </div>
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+
+              ) : (
+
+                displayedData.map((row) => (
+
+                  <tr key={row.feeid}>
+
+                    <td>
+                      <span className="vp-payment-id">
+                        #{row.feeid}
+                      </span>
+                    </td>
+
+                    <td>
+                      {row.razorpay_order_id || "-"}
+                    </td>
+
+                    <td>
+                      {row.easepay_id || "-"}
+                    </td>
+
+                    <td className="vp-student-name">
+                      {row.studentname}
+                    </td>
+
+                    <td>
+                      <span className="vp-class-badge">
+                        {row.class}
+                      </span>
+                    </td>
+
+                    <td>
+                      {row.admission_number}
+                    </td>
+
+                    <td>₹{row.admission_fee || 0}</td>
+
+                    <td>₹{row.annual_fee || 0}</td>
+
+                    <td>₹{row.tuition_fee || 0}</td>
+
+                    <td>₹{row.transport_fee || 0}</td>
+
+                    <td className="vp-amount">
+                      ₹{row.amount || 0}
+                    </td>
+
+                    <td>
+                      {row.lastdate || "-"}
+                    </td>
+
+                    <td>
+                      {row.period || "-"}
+                    </td>
+
+                    <td>
+                      {row.status === 1 ? (
+                        <span className="vp-status vp-paid">
+                          Paid
+                        </span>
+                      ) : (
+                        <span className="vp-status vp-pending">
+                          Pending
+                        </span>
+                      )}
+                    </td>
+
+                    <td>
+                      {row.payment_mode || "-"}
+                    </td>
+
+                    <td>
+                      ₹{calculateLateFee(row)}
+                    </td>
+
+                    <td className="vp-paid-amount">
+                      ₹{row.amount_paid || 0}
+                    </td>
+
+                    <td>
+                      {row.paidondate || "-"}
+                    </td>
+
+                    <td>
+                      {row.session || "-"}
+                    </td>
+
+                    <td>
+                      {row.remarks || "-"}
+                    </td>
+
+                    {/* ACTIONS */}
+                    <td>
+                      <div className="vp-action-buttons">
+
+                        {row.status === 1 ? (
+                          <>
+                            <button
+                              className="vp-action-btn vp-receipt-btn"
+                              title="Receipt"
+                              onClick={() =>
+                                navigate(
+                                  `/receipt/${row.feeid}`
+                                )
+                              }
+                            >
+                              <i className="las la-receipt"></i>
+                            </button>
+
+                            <button
+                              className="vp-action-btn vp-edit-btn"
+                              title="Edit"
+                              onClick={() =>
+                                navigate(
+                                  `/edit-payment/${row.feeid}`
+                                )
+                              }
+                            >
+                              <i className="las la-pen"></i>
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            <button
+                              className="vp-action-btn vp-accept-btn"
+                              title="Accept Payment"
+                              onClick={() =>
+                                navigate(
+                                  `/dashboard/StudentComponent/AcceptStudentFee/${row.feeid}`
+                                )
+                              }
+                            >
+                              <i className="la la-hand-holding-usd"></i>
+                            </button>
+
+                            <button
+                              className="vp-action-btn vp-edit-btn"
+                              title="Edit Payment"
+                              onClick={() =>
+                                navigate(
+                                  `/dashboard/StudentComponent/UpdateStudentFee/${row.feeid}`
+                                )
+                              }
+                            >
+                              <i className="la la-pen"></i>
+                            </button>
+                          </>
+                        )}
+
+                      </div>
+                    </td>
+
+                  </tr>
+
+                ))
+              )}
+
+            </tbody>
+
+          </table>
+
+        </div>
+
       </div>
 
-      <div className="mt-3">
-        <div className="d-flex justify-content-between align-items-center"style={{margin:"30px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+      {/* PAGINATION */}
+      <div className="vp-pagination-section">
 
-          <div className="text-muted small"style={{fontSize:"15px"}}>
-            Showing {filteredData.length === 0 ? 0 : indexOfFirst + 1} to {Math.min(indexOfLast, filteredData.length)} of {filteredData.length} entries
-          </div>
-
-          <div className="d-flex align-items-center">
-
-            <button
-              style={{marginRight:"20px",fontSize:"15px"}}
-              disabled={currentPage === 1}
-              onClick={() => setCurrentPage(currentPage - 1)}
-            >
-              Previous
-            </button>
-
-            <button style={{padding:"10px",border:"solid 1px lightgrey", marginRight:"20px"}}>
-              {currentPage}
-            </button>
-
-            <button
-              style={{fontSize:"15px"}}
-              disabled={currentPage === totalPages || totalPages === 0}
-              onClick={() => setCurrentPage(currentPage + 1)}
-            >
-              Next
-            </button>
-
-          </div>
+        <div className="vp-showing-text">
+          Showing{" "}
+          <strong>
+            {filteredData.length === 0
+              ? 0
+              : indexOfFirst + 1}
+          </strong>{" "}
+          to{" "}
+          <strong>
+            {Math.min(
+              indexOfLast,
+              filteredData.length
+            )}
+          </strong>{" "}
+          of{" "}
+          <strong>
+            {filteredData.length}
+          </strong>{" "}
+          entries
         </div>
 
-        <div className="mt-2">
-          <button className="btn-export-csv" onClick={exportToCSV} style={{background: "#f95555", color: "white", border: "none",fontFamily: "Nunito_regular",padding: "5px 25px",fontSize:"15px",margin:"0 35px"}}>
-            Export to CSV
+        <div className="vp-pagination-buttons">
+
+          <button
+            className="vp-page-btn"
+            disabled={currentPage === 1}
+            onClick={() =>
+              setCurrentPage(currentPage - 1)
+            }
+          >
+            <i className="las la-angle-left"></i>
+            Previous
           </button>
+
+          <span className="vp-current-page">
+            {currentPage}
+          </span>
+
+          <button
+            className="vp-page-btn"
+            disabled={
+              currentPage === totalPages ||
+              totalPages === 0
+            }
+            onClick={() =>
+              setCurrentPage(currentPage + 1)
+            }
+          >
+            Next
+            <i className="las la-angle-right"></i>
+          </button>
+
         </div>
 
+      </div>
+
+      {/* EXPORT */}
+      <div className="vp-export-section">
+        <button
+          className="vp-export-btn"
+          onClick={exportToCSV}
+        >
+          <i className="las la-file-csv"></i>
+          Export to CSV
+        </button>
       </div>
 
     </div>

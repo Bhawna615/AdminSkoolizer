@@ -1,0 +1,525 @@
+/* =========================================================
+   ASSIGN HOMEWORK
+   Modern White + Purple ERP UI
+   ========================================================= */
+
+.assign-homework-page {
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 28px;
+    background: #f7f7fb;
+    font-family: "Poppins", sans-serif;
+    color: #302b43;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.assign-homework-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 25px;
+}
+
+.assign-homework-header-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #7658e8, #5f40d2);
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+
+    box-shadow: 0 7px 18px rgba(108, 76, 232, 0.22);
+}
+
+.assign-homework-header h2 {
+    margin: 0;
+    color: #302b43;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.assign-homework-header p {
+    margin: 3px 0 0;
+    color: #888294;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   MAIN CARD
+   ========================================================= */
+
+.assign-homework-card {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+
+    background: #ffffff;
+
+    border: 1px solid #e9e6f2;
+    border-radius: 18px;
+
+    box-shadow: 0 7px 25px rgba(40, 30, 70, 0.055);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   CARD HEADER
+   ========================================================= */
+
+.assign-homework-card-header {
+    padding: 25px 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.assign-homework-card-header h3 {
+    margin: 0;
+
+    color: #302b43;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.assign-homework-card-header p {
+    margin: 6px 0 0;
+
+    color: #8b8597;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.assign-homework-card-icon {
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background: #f2efff;
+    color: #6c4ce8;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 19px;
+}
+
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.assign-homework-divider {
+    width: 100%;
+    height: 1px;
+    background: #efedf4;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.assign-homework-form {
+    padding: 28px;
+}
+
+
+/* =========================================================
+   FIELD
+   ========================================================= */
+
+.assign-homework-field {
+    width: 100%;
+}
+
+.assign-homework-field label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    margin-bottom: 9px;
+
+    color: #514b61;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.assign-homework-field label i {
+    color: #6c4ce8;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   SELECT
+   ========================================================= */
+
+.assign-homework-select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.assign-homework-select-wrapper select {
+    width: 100%;
+    height: 48px;
+
+    box-sizing: border-box;
+
+    padding: 0 45px 0 43px;
+
+    border: 1px solid #ddd9e9;
+    border-radius: 10px;
+
+    background: #fbfaff;
+
+    color: #393349;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+
+    outline: none;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.assign-homework-select-wrapper select:hover {
+    border-color: #b9abe9;
+    background: #ffffff;
+}
+
+.assign-homework-select-wrapper select:focus {
+    border-color: #7658e5;
+    background: #ffffff;
+
+    box-shadow: 0 0 0 3px rgba(108, 76, 232, 0.09);
+}
+
+.assign-homework-select-wrapper select:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+    background: #f5f4f8;
+}
+
+
+/* Left icon */
+
+.assign-homework-select-icon {
+    position: absolute;
+
+    left: 16px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #8067e7;
+
+    font-size: 15px;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+/* Right arrow */
+
+.assign-homework-chevron {
+    position: absolute;
+
+    right: 16px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #827b91;
+
+    font-size: 12px;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   SELECTED CLASS
+   ========================================================= */
+
+.assign-homework-selected {
+    margin-top: 20px;
+
+    padding: 13px 15px;
+
+    border: 1px solid #e5defd;
+    border-radius: 11px;
+
+    background: #faf9ff;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.assign-homework-selected-icon {
+    width: 31px;
+    height: 31px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #ece7ff;
+    color: #6849df;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.assign-homework-selected div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.assign-homework-selected span {
+    color: #9992a5;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.assign-homework-selected strong {
+    color: #504768;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ACTION
+   ========================================================= */
+
+.assign-homework-action {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 25px;
+}
+
+.assign-homework-proceed {
+    min-width: 135px;
+    height: 44px;
+
+    padding: 0 20px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: linear-gradient(135deg, #7658e8, #5f40d2);
+
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 6px 17px rgba(108, 76, 232, 0.23);
+
+    transition: all 0.2s ease;
+}
+
+.assign-homework-proceed:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 9px 21px rgba(108, 76, 232, 0.29);
+}
+
+.assign-homework-proceed:active {
+    transform: translateY(0);
+}
+
+.assign-homework-proceed i {
+    font-size: 13px;
+
+    transition: transform 0.2s ease;
+}
+
+.assign-homework-proceed:hover i {
+    transform: translateX(3px);
+}
+
+.assign-homework-proceed:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   INFORMATION BAR
+   ========================================================= */
+
+.assign-homework-info {
+    max-width: 850px;
+
+    margin: 16px auto 0;
+
+    padding: 12px 15px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #e9e5f5;
+    border-radius: 10px;
+
+    background: #fbfaff;
+
+    color: #817a91;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.assign-homework-info i {
+    color: #7658e8;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.assign-homework-info strong {
+    color: #6250a3;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .assign-homework-page {
+        padding: 20px;
+    }
+
+    .assign-homework-header h2 {
+        font-size: 19px;
+    }
+
+    .assign-homework-card-header {
+        padding: 21px;
+    }
+
+    .assign-homework-form {
+        padding: 21px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .assign-homework-page {
+        padding: 15px;
+    }
+
+    .assign-homework-header {
+        margin-bottom: 18px;
+    }
+
+    .assign-homework-header-icon {
+        width: 43px;
+        height: 43px;
+        font-size: 18px;
+    }
+
+    .assign-homework-header h2 {
+        font-size: 17px;
+    }
+
+    .assign-homework-header p {
+        font-size: 11px;
+    }
+
+    .assign-homework-card {
+        border-radius: 14px;
+    }
+
+    .assign-homework-card-header {
+        padding: 18px;
+    }
+
+    .assign-homework-card-header h3 {
+        font-size: 15px;
+    }
+
+    .assign-homework-card-header p {
+        font-size: 11px;
+    }
+
+    .assign-homework-card-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 17px;
+    }
+
+    .assign-homework-form {
+        padding: 18px;
+    }
+
+    .assign-homework-action {
+        margin-top: 20px;
+    }
+
+    .assign-homework-proceed {
+        width: 100%;
+    }
+
+    .assign-homework-info {
+        align-items: flex-start;
+    }
+
+}

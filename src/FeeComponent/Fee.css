@@ -1,0 +1,1114 @@
+.fee-structure-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 28px;
+    box-sizing: border-box;
+    background: #f7f7fb;
+    color: #302b43;
+    font-family: "Poppins", sans-serif;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.fee-structure-header {
+    width: 100%;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.fee-structure-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.fee-structure-header-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #7658e8, #5f40d2);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 7px 18px rgba(108, 76, 232, 0.22);
+}
+
+.fee-structure-header h2 {
+    margin: 0;
+    color: #302b43;
+    font-size: 21px;
+    line-height: 1.3;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.fee-structure-header p {
+    margin: 4px 0 0;
+    color: #888294;
+    font-size: 11px;
+}
+
+/* Total Card */
+
+.fee-structure-total {
+    min-width: 155px;
+    padding: 9px 13px;
+    box-sizing: border-box;
+    border: 1px solid #e4e0ec;
+    border-radius: 10px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fee-structure-total-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: #f0ecff;
+    color: #6d4ce0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.fee-structure-total div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.fee-structure-total span {
+    color: #96909f;
+    font-size: 8px;
+}
+
+.fee-structure-total strong {
+    color: #494154;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* =========================
+   MAIN CARD
+========================= */
+
+.fee-structure-card {
+    width: 100%;
+    border: 1px solid #e8e4f0;
+    border-radius: 15px;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 7px 25px rgba(40, 30, 70, 0.045);
+}
+
+/* =========================
+   CARD HEADER
+========================= */
+
+.fee-structure-card-header {
+    min-height: 76px;
+    padding: 0 22px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ece9f3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.fee-structure-title {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.fee-structure-title-icon {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #f1edff;
+    color: #6c4ce8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+}
+
+.fee-structure-card-header h3 {
+    margin: 0;
+    color: #40394f;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.fee-structure-card-header p {
+    margin: 3px 0 0;
+    color: #97909f;
+    font-size: 10px;
+}
+
+/* =========================
+   ADD BUTTON
+========================= */
+
+.fee-structure-add-btn {
+    height: 38px;
+    padding: 0 14px;
+    border: none;
+    border-radius: 9px;
+    background: linear-gradient(135deg, #7658e8, #5f40d2);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-family: "Poppins", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 13px rgba(103, 72, 220, 0.18);
+    transition: all 0.2s ease;
+}
+
+.fee-structure-add-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(103, 72, 220, 0.25);
+}
+
+.fee-structure-add-btn:active {
+    transform: translateY(0);
+}
+
+.fee-structure-add-btn i {
+    font-size: 12px;
+}
+
+/* =========================
+   TABLE WRAPPER
+========================= */
+
+.fee-structure-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.fee-structure-table {
+    width: 100%;
+    min-width: 780px;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+.fee-structure-table thead tr {
+    height: 52px;
+    background: #faf9ff;
+    border-bottom: 1px solid #ece9f4;
+}
+
+.fee-structure-table th {
+    padding: 0 18px;
+    text-align: left;
+    color: #70687e;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+}
+
+.fee-structure-table tbody tr {
+    height: 68px;
+    border-bottom: 1px solid #f0edf5;
+    transition: background 0.15s ease;
+}
+
+.fee-structure-table tbody tr:hover {
+    background: #faf9ff;
+}
+
+.fee-structure-table td {
+    padding: 0 18px;
+    color: #514a5e;
+    font-size: 11px;
+    vertical-align: middle;
+}
+
+/* =========================
+   CLASS CELL
+========================= */
+
+.fee-class-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fee-class-icon {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: #f1edff;
+    color: #6d4ce0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.fee-class-cell span {
+    color: #443d50;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* =========================
+   AMOUNT
+========================= */
+
+.fee-amount-cell {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #4f485b;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.fee-currency {
+    color: #7658e8;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+/* =========================
+   SIBLING BADGE
+========================= */
+
+.fee-sibling-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 25px;
+    padding: 0 9px;
+    box-sizing: border-box;
+    border: 1px solid #e4dcfa;
+    border-radius: 7px;
+    background: #f8f5ff;
+    color: #6d51ce;
+    font-size: 9px;
+    font-weight: 600;
+}
+
+/* =========================
+   ACTION
+========================= */
+
+.fee-action-column {
+    width: 125px;
+    text-align: center !important;
+}
+
+.fee-delete-btn {
+    height: 31px;
+    padding: 0 10px;
+    border: 1px solid #f0dfe5;
+    border-radius: 8px;
+    background: #fff8fa;
+    color: #c35d75;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: "Poppins", sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.fee-delete-btn:hover {
+    background: #fff0f3;
+    border-color: #e7c5ce;
+    color: #b74661;
+    transform: translateY(-1px);
+}
+
+.fee-delete-btn i {
+    font-size: 11px;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.fee-structure-empty {
+    min-height: 300px;
+    padding: 35px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.fee-structure-empty-icon {
+    width: 62px;
+    height: 62px;
+    margin-bottom: 13px;
+    border-radius: 15px;
+    background: #f1edff;
+    color: #7051df;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.fee-structure-empty strong {
+    color: #4a4355;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.fee-structure-empty span {
+    margin-top: 5px;
+    color: #9992a4;
+    font-size: 10px;
+}
+
+.fee-structure-empty-btn {
+    height: 36px;
+    margin-top: 17px;
+    padding: 0 13px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #7658e8, #5f40d2);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: "Poppins", sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 13px rgba(103, 72, 220, 0.17);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.fee-structure-footer {
+    min-height: 55px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-top: 1px solid #ece9f3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.fee-footer-info {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #938c9e;
+    font-size: 9px;
+}
+
+.fee-footer-info i {
+    color: #7658e8;
+    font-size: 11px;
+}
+
+.fee-footer-info strong {
+    color: #665d70;
+    font-weight: 700;
+}
+
+.fee-footer-label {
+    height: 27px;
+    padding: 0 9px;
+    border-radius: 7px;
+    background: #f8f6ff;
+    color: #766b8a;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 8px;
+    font-weight: 600;
+}
+
+.fee-footer-label i {
+    color: #6c4ce8;
+    font-size: 10px;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+.fee-structure-table-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.fee-structure-table-wrapper::-webkit-scrollbar-track {
+    background: #f7f6fa;
+}
+
+.fee-structure-table-wrapper::-webkit-scrollbar-thumb {
+    background: #d6d0e4;
+    border-radius: 10px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 800px) {
+
+    .fee-structure-page {
+        padding: 22px;
+    }
+
+    .fee-structure-header {
+        align-items: flex-start;
+    }
+
+    .fee-structure-total {
+        min-width: 135px;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .fee-structure-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .fee-structure-total {
+        width: fit-content;
+    }
+
+    .fee-structure-card-header {
+        min-height: auto;
+        padding: 15px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .fee-structure-add-btn {
+        width: 100%;
+    }
+
+    .fee-structure-footer {
+        min-height: auto;
+        padding: 12px 15px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .fee-structure-page {
+        padding: 15px;
+    }
+
+    .fee-structure-header-icon {
+        width: 43px;
+        height: 43px;
+        font-size: 18px;
+    }
+
+    .fee-structure-header h2 {
+        font-size: 18px;
+    }
+
+    .fee-structure-header p {
+        font-size: 10px;
+    }
+
+    .fee-structure-table th,
+    .fee-structure-table td {
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+
+    .fee-structure-table tbody tr {
+        height: 62px;
+    }
+
+    .fee-structure-empty {
+        min-height: 260px;
+    }
+}
+
+/* =========================================================
+   DISCOUNT PAGE
+========================================================= */
+
+.discount-page {
+  width: 100%;
+  min-height: 100%;
+  padding: 24px;
+  background: #f7f7fb;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.discount-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+  padding: 22px 24px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #7658e8, #5f40d2);
+  box-shadow: 0 8px 25px rgba(95, 64, 210, 0.18);
+  box-sizing: border-box;
+}
+
+.discount-header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.discount-header-icon {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  font-size: 24px;
+}
+
+.discount-header h2 {
+  margin: 0 0 4px;
+  color: #ffffff;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.discount-header p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   TOTAL CARD
+========================================================= */
+
+.discount-total {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 175px;
+  padding: 11px 15px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.discount-total-icon {
+  width: 39px;
+  height: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #6548d9;
+  font-size: 18px;
+}
+
+.discount-total span {
+  display: block;
+  margin-bottom: 2px;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 11px;
+}
+
+.discount-total strong {
+  display: block;
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 1;
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.discount-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ececf4;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(35, 28, 75, 0.06);
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.discount-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 22px;
+  border-bottom: 1px solid #eeeeF5;
+}
+
+.discount-title {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.discount-title-icon {
+  width: 43px;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  background: #f0edff;
+  color: #6548d9;
+  font-size: 19px;
+}
+
+.discount-title h3 {
+  margin: 0 0 3px;
+  color: #242238;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.discount-title p {
+  margin: 0;
+  color: #8c8a9b;
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   ADD BUTTON
+========================================================= */
+
+.discount-add-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 17px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #7658e8, #6042d3);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 5px 13px rgba(100, 70, 215, 0.2);
+  transition: all 0.2s ease;
+}
+
+.discount-add-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 17px rgba(100, 70, 215, 0.28);
+}
+
+.discount-add-btn i {
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.discount-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.discount-table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+}
+
+.discount-table thead {
+  background: #faf9fe;
+}
+
+.discount-table th {
+  padding: 14px 20px;
+  border-bottom: 1px solid #ecebf4;
+  color: #77748b;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.discount-table td {
+  padding: 15px 20px;
+  border-bottom: 1px solid #f0eff5;
+  color: #353247;
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+.discount-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.discount-table tbody tr:hover {
+  background: #fbfaff;
+}
+
+.discount-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* =========================================================
+   ID
+========================================================= */
+
+.discount-id {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  padding: 6px 9px;
+  border-radius: 7px;
+  background: #f2efff;
+  color: #6548d9;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   FEE TYPE
+========================================================= */
+
+.discount-type-cell {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.discount-type-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: #f4f1ff;
+  color: #6548d9;
+  font-size: 15px;
+}
+
+.discount-type-cell span {
+  color: #302d42;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   AMOUNT
+========================================================= */
+
+.discount-amount-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #27243a;
+  font-weight: 700;
+}
+
+.discount-currency {
+  color: #6548d9;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   ACTION
+========================================================= */
+
+.discount-action-column {
+  text-align: right !important;
+}
+
+.discount-student-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px 13px;
+  border: 1px solid #ddd8fa;
+  border-radius: 8px;
+  background: #f7f5ff;
+  color: #6548d9;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.discount-student-btn:hover {
+  background: #6548d9;
+  border-color: #6548d9;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(101, 72, 217, 0.18);
+}
+
+.discount-student-btn i {
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.discount-empty {
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.discount-empty-icon {
+  width: 65px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  border-radius: 18px;
+  background: #f1efff;
+  color: #6548d9;
+  font-size: 27px;
+}
+
+.discount-empty strong {
+  margin-bottom: 6px;
+  color: #302d42;
+  font-size: 15px;
+}
+
+.discount-empty span {
+  color: #92909f;
+  font-size: 12px;
+}
+
+.discount-empty-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 18px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 9px;
+  background: #6548d9;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.discount-empty-btn:hover {
+  background: #5437c5;
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.discount-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 13px 20px;
+  border-top: 1px solid #eeeeF5;
+  background: #fcfbfe;
+}
+
+.discount-footer-info {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #888597;
+  font-size: 11px;
+}
+
+.discount-footer-info i {
+  color: #6548d9;
+  font-size: 13px;
+}
+
+.discount-footer-info strong {
+  color: #504b63;
+}
+
+.discount-footer-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #6548d9;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.discount-footer-label i {
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+  .discount-page {
+    padding: 18px;
+  }
+
+  .discount-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .discount-total {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .discount-card-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .discount-add-btn {
+    width: 100%;
+  }
+
+  .discount-table th,
+  .discount-table td {
+    padding: 13px 15px;
+  }
+
+}
+
+
+@media (max-width: 550px) {
+
+  .discount-page {
+    padding: 12px;
+  }
+
+  .discount-header {
+    padding: 18px;
+    border-radius: 13px;
+  }
+
+  .discount-header h2 {
+    font-size: 19px;
+  }
+
+  .discount-header p {
+    font-size: 11px;
+  }
+
+  .discount-header-icon {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    font-size: 20px;
+  }
+
+  .discount-card {
+    border-radius: 13px;
+  }
+
+  .discount-card-header {
+    padding: 16px;
+  }
+
+  .discount-title h3 {
+    font-size: 14px;
+  }
+
+  .discount-title p {
+    font-size: 10px;
+  }
+
+  .discount-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+}
+.add-discount-page { width: 100%; min-height: 100%; padding: 24px; background: #f7f7fb; font-family: "Poppins", sans-serif; box-sizing: border-box; } /* ========================= HEADER ========================= */ .add-discount-header { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 22px; padding: 22px 24px; border-radius: 16px; background: linear-gradient(135deg, #7658e8, #5f40d2); box-shadow: 0 8px 25px rgba(95, 64, 210, 0.18); box-sizing: border-box; } .add-discount-header-left { display: flex; align-items: center; gap: 15px; } .add-discount-header-icon { width: 52px; height: 52px; min-width: 52px; display: flex; align-items: center; justify-content: center; border-radius: 14px; background: rgba(255, 255, 255, 0.16); color: #ffffff; font-size: 24px; } .add-discount-header h2 { margin: 0 0 4px; color: #ffffff; font-size: 23px; font-weight: 700; } .add-discount-header p { margin: 0; color: rgba(255, 255, 255, 0.82); font-size: 13px; } /* ========================= BACK BUTTON ========================= */ .add-discount-back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 15px; border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 10px; background: rgba(255, 255, 255, 0.12); color: #ffffff; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; } .add-discount-back-btn:hover { background: #ffffff; color: #6548d9; } .add-discount-back-btn i { font-size: 14px; } /* ========================= CARD ========================= */ .add-discount-card { width: 100%; max-width: 900px; margin: 0 auto; background: #ffffff; border: 1px solid #ececf4; border-radius: 16px; overflow: hidden; box-shadow: 0 5px 20px rgba(35, 28, 75, 0.06); } /* ========================= CARD HEADER ========================= */ .add-discount-card-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 24px; border-bottom: 1px solid #eeeeF5; } .add-discount-title { display: flex; align-items: center; gap: 13px; } .add-discount-title-icon { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: #f0edff; color: #6548d9; font-size: 19px; } .add-discount-title h3 { margin: 0 0 3px; color: #242238; font-size: 16px; font-weight: 700; } .add-discount-title p { margin: 0; color: #8c8a9b; font-size: 12px; } .add-discount-badge { display: inline-flex; align-items: center; gap: 6px; padding: 8px 11px; border-radius: 8px; background: #f3f0ff; color: #6548d9; font-size: 10px; font-weight: 700; } /* ========================= FORM ========================= */ .add-discount-form { padding: 28px 24px 24px; } .add-discount-form-group { width: 100%; margin-bottom: 24px; } .add-discount-form-group label { display: flex; align-items: center; gap: 7px; margin-bottom: 9px; color: #373348; font-size: 12px; font-weight: 700; } .add-discount-form-group label i { color: #6548d9; font-size: 14px; } /* ========================= INPUTS ========================= */ .add-discount-input-wrapper { position: relative; width: 100%; } .add-discount-input-wrapper select, .add-discount-input-wrapper input { width: 100%; height: 48px; border: 1px solid #dedce9; border-radius: 10px; outline: none; background: #ffffff; color: #373348; font-family: inherit; font-size: 13px; box-sizing: border-box; transition: all 0.2s ease; } .add-discount-input-wrapper select { appearance: none; padding: 0 44px; cursor: pointer; } .add-discount-input-wrapper input { padding: 0 18px 0 48px; } .add-discount-input-wrapper select:focus, .add-discount-input-wrapper input:focus { border-color: #7658e8; box-shadow: 0 0 0 3px rgba(118, 88, 232, 0.10); } .add-discount-input-wrapper input::placeholder { color: #aaa7b7; } /* ========================= INPUT ICON ========================= */ .add-discount-input-icon { position: absolute; top: 50%; left: 17px; z-index: 2; transform: translateY(-50%); color: #7658e8; font-size: 16px; pointer-events: none; } .add-discount-select-arrow { position: absolute; top: 50%; right: 17px; z-index: 2; transform: translateY(-50%); color: #888497; font-size: 12px; pointer-events: none; } .add-discount-currency { position: absolute; top: 50%; left: 17px; z-index: 2; transform: translateY(-50%); color: #6548d9; font-size: 17px; font-weight: 700; pointer-events: none; } /* ========================= HINT ========================= */ .add-discount-field-hint { display: block; margin-top: 7px; color: #9693a2; font-size: 10px; } /* ========================= SECTION TITLE ========================= */ .add-discount-section-title { display: flex; align-items: center; gap: 12px; margin: 4px 0 24px; } .add-discount-section-title span { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; color: #5b5670; font-size: 11px; font-weight: 700; } .add-discount-section-title span i { color: #6548d9; font-size: 13px; } .add-discount-section-line { flex: 1; height: 1px; background: #eceaf3; } /* ========================= INFO BOX ========================= */ .add-discount-info-box { display: flex; align-items: flex-start; gap: 12px; margin-top: 8px; padding: 15px; border: 1px solid #e4defb; border-radius: 11px; background: #f8f6ff; } .add-discount-info-icon { width: 34px; height: 34px; min-width: 34px; display: flex; align-items: center; justify-content: center; border-radius: 9px; background: #ebe6ff; color: #6548d9; font-size: 15px; } .add-discount-info-box strong { display: block; margin-bottom: 4px; color: #403a59; font-size: 11px; } .add-discount-info-box p { margin: 0; color: #858196; font-size: 10px; line-height: 1.6; } /* ========================= ACTION BUTTONS ========================= */ .add-discount-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px; padding-top: 20px; border-top: 1px solid #eeeeF5; } .add-discount-cancel-btn, .add-discount-submit-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 125px; height: 42px; padding: 0 16px; border-radius: 9px; font-family: inherit; font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; } .add-discount-cancel-btn { border: 1px solid #dddbe6; background: #ffffff; color: #777386; } .add-discount-cancel-btn:hover { background: #f7f6fa; } .add-discount-submit-btn { border: none; background: linear-gradient(135deg, #7658e8, #6042d3); color: #ffffff; box-shadow: 0 5px 13px rgba(100, 70, 215, 0.20); } .add-discount-submit-btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 7px 17px rgba(100, 70, 215, 0.28); } .add-discount-submit-btn:disabled { opacity: 0.7; cursor: not-allowed; } /* ========================= LOADING ANIMATION ========================= */ .add-discount-spin { animation: addDiscountSpin 0.8s linear infinite; } @keyframes addDiscountSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } /* ========================= RESPONSIVE ========================= */ @media (max-width: 700px) { .add-discount-page { padding: 18px; } .add-discount-header { align-items: flex-start; flex-direction: column; padding: 20px; } .add-discount-back-btn { width: 100%; justify-content: center; } .add-discount-card-header { align-items: flex-start; flex-direction: column; padding: 20px; } .add-discount-form { padding: 24px 20px 20px; } .add-discount-actions { flex-direction: column-reverse; } .add-discount-cancel-btn, .add-discount-submit-btn { width: 100%; } } @media (max-width: 500px) { .add-discount-page { padding: 12px; } .add-discount-header { padding: 17px; border-radius: 13px; } .add-discount-header-icon { width: 45px; height: 45px; min-width: 45px; font-size: 20px; } .add-discount-header h2 { font-size: 19px; } .add-discount-header p { font-size: 11px; } .add-discount-card { border-radius: 13px; } .add-discount-title h3 { font-size: 14px; } .add-discount-title p { font-size: 10px; } }

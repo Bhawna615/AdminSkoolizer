@@ -4,113 +4,155 @@ import { useParams } from "react-router-dom";
 import "./StudentExamDetails.css";
 
 const StudentExamDetails = () => {
-  const { id } = useParams();
+const { id } = useParams();
 
-  const [student, setStudent] = useState(null);
-  const [exams, setExams] = useState([]);
-  const [loading, setLoading] = useState(true);
+const [student, setStudent] = useState(null);
+const [exams, setExams] = useState([]);
+const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (id) {
-      fetchExamDetails();
+useEffect(() => {
+if (id) {
+fetchExamDetails();
+}
+}, [id]);
+
+const fetchExamDetails = async () => {
+try {
+setLoading(true);
+
+
+  const formData = new FormData();
+  formData.append("id", id);
+
+  const res = await axios.post(
+    "http://localhost/kkblossom/api.php/Adminapi/AdminStudent/getExamDetails",
+    formData
+  );
+
+  console.log("Exam API Response:", res.data);
+
+  if (res.data && res.data.status === true) {
+    setStudent(res.data.info);
+
+    if (res.data.exams && Array.isArray(res.data.exams)) {
+      setExams(res.data.exams);
+    } else {
+      setExams([]);
     }
-  }, [id]);
+  } else {
+    setStudent(null);
+  }
+} catch (error) {
+  console.error(error);
+  setStudent(null);
+  setExams([]);
+} finally {
+  setLoading(false);
+}
 
-  const fetchExamDetails = async () => {
-    try {
-      setLoading(true);
 
-      const formData = new FormData();
-      formData.append("id", id);
+};
 
-      const res = await axios.post(
-        "http://localhost/kkblossom/api.php/Adminapi/AdminStudent/getExamDetails",
-        formData
-      );
+if (loading) {
+return ( <div className="student-exam-loading">
+Loading... </div>
+);
+}
 
-      console.log("Exam API Response:", res.data);
+if (!student) {
+return ( <div className="student-exam-not-found">
+No student found </div>
+);
+}
 
-      if (res.data && res.data.status === true) {
-        setStudent(res.data.info);
+return ( <div className="student-exam-container"> <div className="student-exam-card">
 
-        if (res.data.exams && Array.isArray(res.data.exams)) {
-          setExams(res.data.exams);
-        } else {
-          setExams([]);
-        }
-      } else {
-        setStudent(null);
-      }
 
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
-    }
-  };
+    {/* Top Section */}
+    <div className="student-exam-top">
+      <div className="student-exam-image-box">
+        {student.image ? (
+          <img
+            src={`http://localhost/kkblossom/assets/images/students/${student.image}`}
+            alt="Student"
+          />
+        ) : (
+          <img
+            src="http://localhost/kkblossom/assets/icons/user.svg"
+            alt="Default"
+          />
+        )}
+      </div>
 
-  if (loading) return <div>Loading...</div>;
+      <div className="student-exam-info-box">
+        <h2 className="student-exam-name">
+          {student.Name}
+        </h2>
 
-  if (!student) return <div>No student found</div>;
+        <p>
+          <strong>Class:</strong> {student.Class}
+        </p>
 
-  return (
-    <div className="exam-container">
-      <div className="student-card">
-
-        {/* Top Section */}
-        <div className="student-top">
-          <div className="student-image-box">
-            {student.image ? (
-              <img
-                src={`http://localhost/kkblossom/assets/images/students/${student.image}`}
-                alt="Student"
-              />
-            ) : (
-              <img
-                src={`http://localhost/kkblossom/assets/icons/user.svg`}
-                alt="Default"
-              />
-            )}
-          </div>
-
-          <div className="student-info-box">
-            <h2 className="student-name">{student.Name}</h2>
-            <p><strong>Class:</strong> {student.Class}</p>
-            <p><strong>Roll No:</strong> {student.Rollno}</p>
-          </div>
-        </div>
-
-        {/* Bottom Section */}
-        <div className="exam-section">
-          {exams.length === 0 ? (
-            <p className="no-data">Nothing to show.</p>
-          ) : (
-            <>
-              <p className="exam-title">Exams Details</p>
-
-              {exams.map((item, index) => {
-                const formattedDate = new Date(item.Date)
-                  .toLocaleDateString("en-GB", {
-                    day: "2-digit",
-                    month: "long",
-                    year: "numeric"
-                  });
-
-                return (
-                  <div key={index} className="exam-box">
-                    <p className="exam-name">{item.Examname}</p>
-                    <p>{item.Subject}</p>
-                    <p>{formattedDate}</p>
-                  </div>
-                );
-              })}
-            </>
-          )}
-        </div>
-
+        <p>
+          <strong>Roll No:</strong> {student.Rollno}
+        </p>
       </div>
     </div>
-  );
+
+    {/* Exam Section */}
+    <div className="student-exam-section">
+
+      {exams.length === 0 ? (
+        <p className="student-exam-no-data">
+          Nothing to show.
+        </p>
+      ) : (
+        <>
+          <p className="student-exam-title">
+            Exam Details
+          </p>
+
+          <div className="student-exam-grid">
+            {exams.map((item, index) => {
+              const formattedDate = new Date(item.Date)
+                .toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "long",
+                  year: "numeric"
+                });
+
+              return (
+                <div
+                  key={index}
+                  className="student-exam-box"
+                >
+                  <p className="student-exam-subject-name">
+                    {item.Examname}
+                  </p>
+
+                  <p className="student-exam-subject">
+                    <span>Subject:</span>
+                    {item.Subject}
+                  </p>
+
+                  <p className="student-exam-date">
+                    <span>Exam Date:</span>
+                    {formattedDate}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </>
+      )}
+
+    </div>
+
+  </div>
+</div>
+
+
+);
 };
 
 export default StudentExamDetails;

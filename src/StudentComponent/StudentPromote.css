@@ -1,134 +1,1119 @@
-/* ===== MAIN WRAPPER ===== */
-.innerview {
-    background: #fff;
-    padding: 20px;
-    min-height: 100vh;
-    font-family: "Nunito", sans-serif;
-}
+/* =========================================================
+   STUDENT PROMOTE
+   PURPLE + WHITE ERP UI
+   UNIQUE CLASS NAMES
+========================================================= */
 
-/* ===== MESSAGE BARS ===== */
-.message {
-    margin-bottom: 15px;
-}
-
-.error-bar {
-    background: #ffe5e5;
-    color: #b30000;
-    padding: 10px 15px;
-    border-left: 5px solid #ff4d4d;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-.success-bar {
-    background: #e6ffed;
-    color: #1e7e34;
-    padding: 10px 15px;
-    border-left: 5px solid #28a745;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-.error-bar i,
-.success-bar i {
-    margin-right: 8px;
-}
-
-/* ===== FORM AREA ===== */
-label {
-    margin-right: 30px;
-}
-
-label p {
-    margin-bottom: 6px;
-    font-weight: 600;
-    color: #333;
-}
-
-select {
-    width: 220px;
-    padding: 6px 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-}
-
-/* ===== TABLE ===== */
-.table {
-    margin-top: 20px;
-    border-collapse: collapse;
+.student-promote-page {
     width: 100%;
+    min-height: 100vh;
+    padding: 24px;
+    box-sizing: border-box;
+    background: #f7f5fb;
+    color: #30283d;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
-.dataTableHead {
-    background: #f5f5f5;
-}
 
-.dataTableHead th {
-    padding: 10px;
-    font-size: 14px;
-    color: #fff;
-    border-bottom: 1px solid #ddd;
-}
+/* =========================================================
+   PAGE HEADER
+========================================================= */
 
-.dataTableBody td {
-    padding: 8px 10px;
-    font-size: 14px;
-    border-bottom: 1px solid #eee;
-}
-
-.dataTableBody tr:hover {
-    background: #fafafa;
-}
-
-/* ===== CHECKBOX ===== */
-input[type="checkbox"] {
-    cursor: pointer;
-}
-
-/* ===== BUTTON BAR ===== */
-.side-btn-bar {
-    margin-top: 20px;
-   width: 100%;
+.student-promote-header {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 22px;
     display: flex;
-    justify-content: flex-end; 
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
 }
 
-.side-btn {
-    background: #007bff;
-    border: none;
-    color: #fff;
-    padding: 12px 18px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: 0.3s ease;
-   
+.student-promote-header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-.side-btn:hover {
-    background: #0056b3;
+.student-promote-header-icon {
+    width: 55px;
+    height: 55px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: #6f42c1;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    box-shadow: 0 8px 22px rgba(111, 66, 193, 0.20);
 }
 
-.side-btn p {
+.student-promote-header h1 {
     margin: 0;
+    color: #30253e;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.student-promote-header p {
+    margin: 5px 0 0;
+    color: #81778c;
+    font-size: 13px;
+}
+
+.student-promote-header-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    border: 1px solid #e5def0;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #6f42c1;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.student-promote-header-badge i {
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.student-promote-message {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 18px;
+    padding: 13px 15px;
+    box-sizing: border-box;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid;
+}
+
+.student-promote-success {
+    background: #f4fbf7;
+    border-color: #ccebd9;
+    color: #25724b;
+}
+
+.student-promote-error {
+    background: #fff7f7;
+    border-color: #f1d0d0;
+    color: #b33c3c;
+}
+
+.student-promote-message-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+}
+
+.student-promote-success .student-promote-message-icon {
+    background: #dff4e8;
+    color: #26925b;
+}
+
+.student-promote-error .student-promote-message-icon {
+    background: #fbe3e3;
+    color: #c54646;
+}
+
+.student-promote-message-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.student-promote-message-content strong {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.student-promote-message-content span {
+    font-size: 11px;
+}
+
+.student-promote-message-close {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.student-promote-message-close:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+
+/* =========================================================
+   SELECTION CARD
+========================================================= */
+
+.student-promote-selection-card {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 18px;
+    background: #ffffff;
+    border: 1px solid #e8e2ef;
+    border-radius: 17px;
+    box-shadow: 0 7px 26px rgba(50, 38, 70, 0.05);
+    overflow: hidden;
+}
+
+.student-promote-card-header {
+    padding: 22px 24px;
+    border-bottom: 1px solid #eee9f3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.student-promote-card-title {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.student-promote-card-title-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    background: #f0eafa;
+    color: #6f42c1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.student-promote-card-title h2 {
+    margin: 0;
+    color: #362b43;
     font-size: 16px;
+    font-weight: 700;
+}
+
+.student-promote-card-title p {
+    margin: 4px 0 0;
+    color: #8b8194;
+    font-size: 11px;
+}
+
+.student-promote-step-badge {
+    padding: 7px 10px;
+    border-radius: 7px;
+    background: #f6f2fb;
+    color: #6f42c1;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+}
+
+
+/* =========================================================
+   SELECTION GRID
+========================================================= */
+
+.student-promote-selection-grid {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 70px minmax(0, 1fr);
+    align-items: end;
+    gap: 12px;
+}
+
+.student-promote-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.student-promote-field label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #51465e;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.student-promote-field label i {
+    color: #6f42c1;
+    font-size: 13px;
+}
+
+.student-promote-select-wrapper {
+    height: 47px;
+    position: relative;
+    box-sizing: border-box;
+    border: 1px solid #ddd5e7;
+    border-radius: 10px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    transition: 0.2s ease;
+}
+
+.student-promote-select-wrapper:focus-within {
+    border-color: #6f42c1;
+    box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.08);
+}
+
+.student-promote-select-wrapper > i:first-child {
+    margin-left: 14px;
+    margin-right: 9px;
+    color: #9b91a6;
+    font-size: 15px;
+}
+
+.student-promote-select-wrapper select {
+    width: 100%;
+    height: 100%;
+    padding: 0 36px 0 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    appearance: none;
+    color: #3d3349;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.student-promote-select-arrow {
+    position: absolute;
+    right: 14px;
+    color: #9a91a5 !important;
+    font-size: 11px !important;
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   TRANSFER ARROW
+========================================================= */
+
+.student-promote-transfer {
+    height: 47px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+}
+
+.student-promote-transfer-line {
+    display: none;
+}
+
+.student-promote-transfer-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #eee8f8;
+    color: #6f42c1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   FLOW SUMMARY
+========================================================= */
+
+.student-promote-flow-summary {
+    margin: 0 24px 22px;
+    padding: 12px 15px;
+    border-radius: 10px;
+    background: #faf9fc;
+    border: 1px solid #eee9f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.student-promote-flow-item {
+    min-width: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.student-promote-flow-item span {
+    color: #a098a7;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+}
+
+.student-promote-flow-item strong {
+    color: #6f42c1;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.student-promote-flow-arrow {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #6f42c1;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   TABLE CARD
+========================================================= */
+
+.student-promote-table-card {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: #ffffff;
+    border: 1px solid #e8e2ef;
+    border-radius: 17px;
+    box-shadow: 0 7px 26px rgba(50, 38, 70, 0.05);
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.student-promote-table-header {
+    padding: 21px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    border-bottom: 1px solid #eee9f3;
+}
+
+.student-promote-table-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.student-promote-table-title-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    background: #f0eafa;
+    color: #6f42c1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+}
+
+.student-promote-table-title h2 {
+    margin: 0;
+    color: #382d45;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.student-promote-table-title p {
+    margin: 4px 0 0;
+    color: #8d8396;
+    font-size: 10px;
+}
+
+.student-promote-table-title p strong {
+    color: #6f42c1;
+}
+
+
+/* =========================================================
+   STAT
+========================================================= */
+
+.student-promote-stat {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 11px;
+    border-radius: 10px;
+    background: #faf9fc;
+    border: 1px solid #eee9f3;
+}
+
+.student-promote-stat-number {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: #6f42c1;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.student-promote-stat span {
+    display: block;
+    color: #62566e;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.student-promote-stat small {
+    display: block;
+    margin-top: 2px;
+    color: #9a91a3;
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   SELECTION BAR
+========================================================= */
+
+.student-promote-selection-bar {
+    min-height: 48px;
+    padding: 7px 20px;
+    box-sizing: border-box;
+    background: #faf9fc;
+    border-bottom: 1px solid #eee9f3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.student-promote-selection-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #756b7d;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.student-promote-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #6f42c1;
+}
+
+.student-promote-select-all-btn {
+    padding: 7px 10px;
+    border: none;
+    border-radius: 7px;
+    background: #eee8f8;
+    color: #6f42c1;
     display: flex;
     align-items: center;
     gap: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 700;
+    transition: 0.2s ease;
 }
 
-.btn-icon {
-    font-size: 16px;
+.student-promote-select-all-btn:hover:not(:disabled) {
+    background: #e5dcf3;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    select {
-        width: 100%;
-        margin-bottom: 10px;
+.student-promote-select-all-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.student-promote-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.student-promote-table {
+    width: 100%;
+    min-width: 780px;
+    border-collapse: collapse;
+}
+
+.student-promote-table-heading {
+    background: #6f42c1 !important;
+}
+
+.student-promote-table th {
+    height: 46px;
+    padding: 0 14px;
+    color: #ffffff !important ;
+    text-align: left;
+    border: none;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.student-promote-table th:first-child {
+    padding-left: 20px;
+}
+
+.student-promote-table tbody tr {
+    border-bottom: 1px solid #f0edf3;
+    transition: background 0.18s ease;
+}
+
+.student-promote-table tbody tr:hover {
+    background: #fbfaff;
+}
+
+.student-promote-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.student-promote-table tbody td {
+    height: 63px;
+    padding: 8px 14px;
+    color: #51475c;
+    font-size: 11px;
+    vertical-align: middle;
+}
+
+.student-promote-row-selected {
+    background: #faf8fe !important;
+}
+
+.student-promote-checkbox-column {
+    width: 52px;
+    text-align: center !important;
+}
+
+
+/* =========================================================
+   CUSTOM CHECKBOX
+========================================================= */
+
+.student-promote-table-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.student-promote-table-check input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.student-promote-table-check span {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    border: 1.5px solid #d4cbdf;
+    background: #ffffff;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    transition: 0.2s ease;
+}
+
+.student-promote-table-check input:checked + span {
+    background: #6f42c1;
+    border-color: #6f42c1;
+}
+
+.student-promote-table-check span i {
+    opacity: 0;
+}
+
+.student-promote-table-check input:checked + span i {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   ID
+========================================================= */
+
+.student-promote-id {
+    padding: 5px 8px;
+    border-radius: 6px;
+    background: #f5f1f9;
+    color: #766987;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   STUDENT NAME
+========================================================= */
+
+.student-promote-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.student-promote-avatar {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: #eee8f8;
+    color: #6f42c1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.student-promote-name-info {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.student-promote-name-info strong {
+    max-width: 230px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #3e3448;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.student-promote-name-info span {
+    color: #a098a7;
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   CLASS BADGE
+========================================================= */
+
+.student-promote-class-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 9px;
+    border-radius: 6px;
+    background: #f0eafa;
+    color: #6f42c1;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.student-promote-class-badge i {
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   NUMBERS
+========================================================= */
+
+.student-promote-number {
+    color: #62576c;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.student-promote-admission {
+    color: #6f42c1;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.student-promote-empty {
+    height: 260px !important;
+    text-align: center !important;
+}
+
+.student-promote-empty-icon {
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 10px;
+    border-radius: 14px;
+    background: #f0eafa;
+    color: #9c8ab7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+}
+
+.student-promote-empty strong {
+    display: block;
+    color: #53495e;
+    font-size: 13px;
+}
+
+.student-promote-empty span {
+    display: block;
+    margin-top: 4px;
+    color: #9a91a3;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   TABLE FOOTER
+========================================================= */
+
+.student-promote-table-footer {
+    padding: 16px 20px;
+    border-top: 1px solid #eee9f3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.student-promote-footer-info {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.student-promote-footer-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #f0eafa;
+    color: #6f42c1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.student-promote-footer-info strong {
+    display: block;
+    color: #4b4055;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.student-promote-footer-info span {
+    display: block;
+    margin-top: 2px;
+    color: #99909f;
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.student-promote-submit-btn {
+    min-width: 190px;
+    height: 44px;
+    padding: 0 10px 0 13px;
+    border: none;
+    border-radius: 9px;
+    background: #6f42c1;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    box-shadow: 0 7px 18px rgba(111, 66, 193, 0.20);
+    transition: 0.2s ease;
+}
+
+.student-promote-submit-btn:hover:not(:disabled) {
+    background: #5f35ad;
+    transform: translateY(-1px);
+    box-shadow: 0 9px 22px rgba(111, 66, 193, 0.25);
+}
+
+.student-promote-submit-btn:disabled {
+    background: #cfc8d8;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.student-promote-submit-btn > i:first-child {
+    font-size: 15px;
+}
+
+.student-promote-submit-btn > i:last-child {
+    margin-left: auto;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   RESPONSIVE - 1000px
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .student-promote-class-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 
-    label {
+    .student-promote-page {
+        padding: 20px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - 750px
+========================================================= */
+
+@media (max-width: 750px) {
+
+    .student-promote-header-badge {
+        display: none;
+    }
+
+    .student-promote-selection-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        align-items: stretch;
+    }
+
+    .student-promote-transfer {
+        height: 38px;
+        flex-direction: row;
+    }
+
+    .student-promote-transfer-line {
         display: block;
+        height: 1px;
+        flex: 1;
+        background: #e5deed;
+    }
+
+    .student-promote-transfer-icon {
+        margin: 0 12px;
+        transform: rotate(90deg);
+    }
+
+    .student-promote-flow-summary {
+        margin-left: 18px;
+        margin-right: 18px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - 600px
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .student-promote-page {
+        padding: 12px;
+    }
+
+    .student-promote-header {
+        margin-bottom: 16px;
+    }
+
+    .student-promote-header-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+        font-size: 19px;
+    }
+
+    .student-promote-header h1 {
+        font-size: 20px;
+    }
+
+    .student-promote-header p {
+        font-size: 10px;
+        line-height: 1.5;
+    }
+
+    .student-promote-card-header,
+    .student-promote-table-header {
+        padding: 17px;
+    }
+
+    .student-promote-card-title-icon,
+    .student-promote-table-title-icon {
+        width: 39px;
+        height: 39px;
+    }
+
+    .student-promote-card-title h2,
+    .student-promote-table-title h2 {
+        font-size: 14px;
+    }
+
+    .student-promote-card-title p {
+        font-size: 9px;
+        line-height: 1.4;
+    }
+
+    .student-promote-step-badge {
+        display: none;
+    }
+
+    .student-promote-selection-grid {
+        padding: 18px;
+    }
+
+    .student-promote-flow-summary {
+        margin-bottom: 18px;
+        gap: 10px;
+    }
+
+    .student-promote-flow-item {
+        min-width: 90px;
+    }
+
+    .student-promote-table-header {
+        align-items: flex-start;
+    }
+
+    .student-promote-stat {
+        padding: 6px;
+    }
+
+    .student-promote-stat-number {
+        width: 29px;
+        height: 29px;
+    }
+
+    .student-promote-stat span {
+        display: none;
+    }
+
+    .student-promote-selection-bar {
+        padding: 8px 12px;
+    }
+
+    .student-promote-table-footer {
+        align-items: stretch;
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .student-promote-submit-btn {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 400px
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .student-promote-page {
+        padding: 8px;
+    }
+
+    .student-promote-header-left {
+        gap: 10px;
+    }
+
+    .student-promote-header-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 17px;
+    }
+
+    .student-promote-header h1 {
+        font-size: 18px;
+    }
+
+    .student-promote-header p {
+        display: none;
+    }
+
+    .student-promote-card-header,
+    .student-promote-table-header {
+        padding: 14px;
+    }
+
+    .student-promote-selection-grid {
+        padding: 14px;
+    }
+
+    .student-promote-flow-summary {
+        margin-left: 14px;
+        margin-right: 14px;
+        gap: 6px;
+    }
+
+    .student-promote-flow-item {
+        min-width: 70px;
+    }
+
+    .student-promote-flow-item strong {
+        font-size: 10px;
+    }
+
+    .student-promote-selection-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .student-promote-select-all-btn {
+        justify-content: center;
+    }
+
+    .student-promote-table-footer {
+        padding: 13px;
     }
 }

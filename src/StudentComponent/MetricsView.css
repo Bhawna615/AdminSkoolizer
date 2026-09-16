@@ -1,0 +1,854 @@
+
+/* =========================================================
+   STUDENT METRICS VIEW
+   PURPLE + WHITE ERP UI
+   UNIQUE CLASSES
+========================================================= */
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.student-metrics-view-page {
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 20px 24px 35px;
+
+    box-sizing: border-box;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.student-metrics-view-header {
+    width: 100%;
+    min-height: 70px;
+
+    padding: 14px 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #e8e3ee;
+
+    border-radius: 10px;
+
+    box-sizing: border-box;
+
+    margin-bottom: 16px;
+}
+
+.student-metrics-view-header-left {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+.student-metrics-view-header-icon {
+    width: 42px;
+    height: 42px;
+
+    min-width: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #5b2c91;
+
+    color: #ffffff;
+
+    border-radius: 8px;
+
+    font-size: 17px;
+}
+
+.student-metrics-view-header h1 {
+    margin: 0;
+
+    color: #2d2633;
+
+    font-size: 21px;
+
+    font-weight: 700;
+}
+
+.student-metrics-view-header p {
+    margin: 4px 0 0;
+
+    color: #877e8e;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   CREATE BUTTON
+========================================================= */
+
+.student-metrics-view-create-btn {
+    height: 39px;
+
+    padding: 0 16px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: #5b2c91;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.15s ease;
+}
+
+.student-metrics-view-create-btn:hover {
+    background: #482175;
+
+    transform: translateY(-1px);
+}
+
+.student-metrics-view-create-btn svg {
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   ALERT
+========================================================= */
+
+.student-metrics-view-alert {
+    width: 100%;
+
+    min-height: 43px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 10px 14px;
+
+    margin-bottom: 16px;
+
+    box-sizing: border-box;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.student-metrics-view-alert-success {
+    background: #edf8f0;
+
+    color: #237542;
+
+    border: 1px solid #d2ecd9;
+}
+
+.student-metrics-view-alert-error {
+    background: #fff0f0;
+
+    color: #b93636;
+
+    border: 1px solid #f1d1d1;
+}
+
+
+/* =========================================================
+   TABLE CARD
+========================================================= */
+
+.student-metrics-view-card {
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #e8e3ee;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.student-metrics-view-card-header {
+    min-height: 65px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 12px 18px;
+
+    border-bottom: 1px solid #eeeaf1;
+
+    box-sizing: border-box;
+}
+
+.student-metrics-view-card-header h2 {
+    margin: 0;
+
+    color: #332a3b;
+
+    font-size: 15px;
+
+    font-weight: 700;
+}
+
+.student-metrics-view-card-header p {
+    margin: 4px 0 0;
+
+    color: #938a98;
+
+    font-size: 11px;
+}
+
+.student-metrics-view-total {
+    min-width: 75px;
+
+    height: 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0 11px;
+
+    background: #f1eafb;
+
+    color: #5b2c91;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.student-metrics-view-table {
+    width: 100%;
+
+    overflow-x: auto;
+
+    overflow-y: visible;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   DATATABLE
+========================================================= */
+
+.student-metrics-view-table .rdt_Table {
+    width: 100%;
+
+    /*
+       Prevent columns from becoming too narrow.
+       Horizontal scrolling will appear on small screens.
+    */
+    min-width: 900px;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.student-metrics-view-table .rdt_TableHeadRow {
+    background: #5b2c91 !important;
+
+    border: none !important;
+
+    min-height: 50px !important;
+}
+
+.student-metrics-view-table .rdt_TableCol {
+    background: #5b2c91 !important;
+
+    color: #ffffff !important;
+
+    font-size: 11px !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: 0.3px;
+
+    overflow: visible !important;
+}
+
+.student-metrics-view-table .rdt_TableCol_Sortable {
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   TABLE ROW
+========================================================= */
+
+.student-metrics-view-table .rdt_TableRow {
+    min-height: 64px !important;
+
+    background: #ffffff !important;
+
+    transition: background-color 0.15s ease;
+
+    overflow: visible !important;
+}
+
+.student-metrics-view-table .rdt_TableRow:hover {
+    background: #faf7fd !important;
+}
+
+
+/* =========================================================
+   TABLE CELL
+========================================================= */
+
+.student-metrics-view-table .rdt_TableCell {
+    color: #49404f !important;
+
+    overflow: visible !important;
+
+    padding-left: 14px !important;
+
+    padding-right: 14px !important;
+
+    box-sizing: border-box !important;
+}
+
+.student-metrics-view-table .rdt_TableCell > div {
+    overflow: visible !important;
+}
+
+
+/* =========================================================
+   ABILITY COLUMN
+========================================================= */
+
+/*
+   Third column is ABILITY.
+   Give it enough physical space.
+*/
+
+.student-metrics-view-table
+.rdt_TableHeadRow
+.rdt_TableCol:nth-child(3) {
+    min-width: 220px !important;
+
+    width: 220px !important;
+}
+
+.student-metrics-view-table
+.rdt_TableRow
+.rdt_TableCell:nth-child(3) {
+    min-width: 220px !important;
+
+    width: 220px !important;
+}
+
+
+/* =========================================================
+   ABILITY BADGE
+========================================================= */
+
+.student-metrics-view-ability {
+    display: inline-flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    min-width: 100px !important;
+
+    max-width: 100% !important;
+
+    min-height: 36px !important;
+
+    padding: 7px 16px !important;
+
+    background: #f1eafb !important;
+
+    color: #5b2c91 !important;
+
+    border: 1px solid #cdb8df !important;
+
+    border-radius: 7px !important;
+
+    font-size: 12px !important;
+
+    font-weight: 700 !important;
+
+    line-height: 1.4 !important;
+
+    text-align: center !important;
+
+    /*
+       IMPORTANT:
+       Do not cut ability text.
+    */
+    white-space: normal !important;
+
+    word-break: break-word !important;
+
+    overflow: visible !important;
+
+    text-overflow: unset !important;
+
+    box-sizing: border-box !important;
+
+    box-shadow:
+        0 1px 3px rgba(91, 44, 145, 0.10) !important;
+}
+
+
+/* =========================================================
+   ACTION COLUMN
+========================================================= */
+
+/*
+   Last column is ACTION.
+   Make it wide enough for both icons.
+*/
+
+.student-metrics-view-table
+.rdt_TableHeadRow
+.rdt_TableCol:last-child {
+    min-width: 170px !important;
+
+    width: 170px !important;
+}
+
+.student-metrics-view-table
+.rdt_TableRow
+.rdt_TableCell:last-child {
+    min-width: 170px !important;
+
+    width: 170px !important;
+
+    overflow: visible !important;
+}
+
+
+/* =========================================================
+   ACTION AREA
+========================================================= */
+
+.student-metrics-view-actions {
+    width: 100% !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    gap: 10px !important;
+
+    padding: 4px 0 !important;
+
+    box-sizing: border-box !important;
+
+    overflow: visible !important;
+}
+
+
+/* =========================================================
+   ACTION BUTTON BASE
+========================================================= */
+
+.student-metrics-view-actions button {
+    width: 38px !important;
+
+    min-width: 38px !important;
+
+    max-width: 38px !important;
+
+    height: 38px !important;
+
+    min-height: 38px !important;
+
+    max-height: 38px !important;
+
+    padding: 0 !important;
+
+    margin: 0 !important;
+
+    display: inline-flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    flex: 0 0 38px !important;
+
+    border-radius: 7px !important;
+
+    cursor: pointer !important;
+
+    box-sizing: border-box !important;
+
+    position: relative !important;
+
+    font-family: inherit !important;
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    transition:
+        background-color 0.18s ease,
+        color 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease !important;
+}
+
+
+/* =========================================================
+   ACTION SVG
+========================================================= */
+
+.student-metrics-view-actions button svg {
+    width: 16px !important;
+
+    height: 16px !important;
+
+    min-width: 16px !important;
+
+    min-height: 16px !important;
+
+    max-width: 16px !important;
+
+    max-height: 16px !important;
+
+    display: block !important;
+
+    color: inherit !important;
+
+    fill: currentColor !important;
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    flex-shrink: 0 !important;
+}
+
+
+/* =========================================================
+   EDIT BUTTON
+========================================================= */
+
+.student-metrics-view-edit {
+    border: 1px solid #bfa5d5 !important;
+
+    background: #f1eafb !important;
+
+    color: #5b2c91 !important;
+
+    box-shadow:
+        0 1px 3px rgba(91, 44, 145, 0.12) !important;
+}
+
+.student-metrics-view-edit svg {
+    color: #5b2c91 !important;
+
+    fill: #5b2c91 !important;
+}
+
+.student-metrics-view-edit:hover {
+    background: #5b2c91 !important;
+
+    border-color: #5b2c91 !important;
+
+    color: #ffffff !important;
+
+    transform: translateY(-2px) !important;
+
+    box-shadow:
+        0 4px 10px rgba(91, 44, 145, 0.25) !important;
+}
+
+.student-metrics-view-edit:hover svg {
+    color: #ffffff !important;
+
+    fill: #ffffff !important;
+}
+
+
+/* =========================================================
+   DELETE BUTTON
+========================================================= */
+
+.student-metrics-view-delete {
+    border: 1px solid #e2b8b8 !important;
+
+    background: #fff1f1 !important;
+
+    color: #c83f3f !important;
+
+    box-shadow:
+        0 1px 3px rgba(200, 63, 63, 0.10) !important;
+}
+
+.student-metrics-view-delete svg {
+    color: #c83f3f !important;
+
+    fill: #c83f3f !important;
+}
+
+.student-metrics-view-delete:hover {
+    background: #c83f3f !important;
+
+    border-color: #c83f3f !important;
+
+    color: #ffffff !important;
+
+    transform: translateY(-2px) !important;
+
+    box-shadow:
+        0 4px 10px rgba(200, 63, 63, 0.22) !important;
+}
+
+.student-metrics-view-delete:hover svg {
+    color: #ffffff !important;
+
+    fill: #ffffff !important;
+}
+
+
+/* =========================================================
+   KEEP ACTION ICONS VISIBLE
+========================================================= */
+
+.student-metrics-view-table
+.rdt_TableCell:last-child > div {
+    overflow: visible !important;
+}
+
+
+/* =========================================================
+   NO DATA
+========================================================= */
+
+.student-metrics-view-no-data {
+    width: 100%;
+
+    padding: 45px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #918795;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.student-metrics-view-table .rdt_Pagination {
+    min-height: 48px !important;
+
+    border-top: 1px solid #eeeaf1 !important;
+
+    font-size: 11px !important;
+}
+
+.student-metrics-view-table .rdt_Pagination button {
+    color: #5b2c91 !important;
+}
+
+.student-metrics-view-table .rdt_Pagination button:hover {
+    background: #f1eafb !important;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .student-metrics-view-page {
+        padding: 16px;
+    }
+
+    .student-metrics-view-header {
+        padding: 13px;
+    }
+
+    .student-metrics-view-header h1 {
+        font-size: 19px;
+    }
+
+    .student-metrics-view-table {
+        overflow-x: auto;
+    }
+
+    .student-metrics-view-table .rdt_Table {
+        min-width: 900px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .student-metrics-view-page {
+        padding: 10px;
+    }
+
+    .student-metrics-view-header {
+        min-height: auto;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 12px;
+    }
+
+    .student-metrics-view-header-left {
+        width: 100%;
+    }
+
+    .student-metrics-view-header-icon {
+        width: 38px;
+
+        height: 38px;
+
+        min-width: 38px;
+    }
+
+    .student-metrics-view-header h1 {
+        font-size: 18px;
+    }
+
+    .student-metrics-view-header p {
+        font-size: 10px;
+    }
+
+    .student-metrics-view-create-btn {
+        width: 100%;
+    }
+
+    .student-metrics-view-card-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 10px;
+
+        padding: 13px;
+    }
+
+    .student-metrics-view-total {
+        align-self: flex-start;
+    }
+
+    /*
+       Horizontal scrolling is intentional on mobile
+       so ABILITY and ACTION do not become cramped.
+    */
+
+    .student-metrics-view-table {
+        overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .student-metrics-view-table .rdt_Table {
+        min-width: 900px;
+    }
+
+    .student-metrics-view-table
+    .rdt_TableHeadRow
+    .rdt_TableCol:nth-child(3),
+
+    .student-metrics-view-table
+    .rdt_TableRow
+    .rdt_TableCell:nth-child(3) {
+        min-width: 220px !important;
+
+        width: 220px !important;
+    }
+
+    .student-metrics-view-table
+    .rdt_TableHeadRow
+    .rdt_TableCol:last-child,
+
+    .student-metrics-view-table
+    .rdt_TableRow
+    .rdt_TableCell:last-child {
+        min-width: 170px !important;
+
+        width: 170px !important;
+    }
+
+    .student-metrics-view-actions button {
+        width: 38px !important;
+
+        min-width: 38px !important;
+
+        height: 38px !important;
+
+        min-height: 38px !important;
+    }
+}
+

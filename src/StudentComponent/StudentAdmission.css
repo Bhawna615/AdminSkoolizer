@@ -1,132 +1,716 @@
-/* ===============================
-   INNER VIEW AREA
-================================*/
-.innerview {
-  min-height: 100vh;
-  font-family: "Segoe UI", sans-serif;
+/* =========================================================
+   STUDENT ADMISSION
+   PURPLE + WHITE ERP UI
+   UNIQUE CLASSES
+========================================================= */
+
+.student-admission-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 24px;
+    box-sizing: border-box;
+    background: #f7f5fb;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #30283d;
 }
 
-/* ===============================
-   FORM BOX
-================================*/
-.form-box {
-  background: #ffffff;
-  border: 1px solid #dcdcdc;
-  box-shadow: 0px 1px 4px rgba(0,0,0,0.1);
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.student-admission-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 22px;
 }
 
-/* ===============================
-   TITLE BAR
-================================*/
-.title-bar {
-  background: #f1f1f1;
-  border-bottom: 1px solid #ddd;
-  font-size: 18px;
-  font-weight: 500;
+.student-admission-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
-/* ===============================
-   LABEL TEXT
-================================*/
-.details {
-  font-family: Rubik-Regular;
+.student-admission-header-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 15px;
+    background: #6f42c1;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    box-shadow: 0 8px 20px rgba(111, 66, 193, 0.22);
+}
+
+.student-admission-header h1 {
+    margin: 0;
+    color: #30234a;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.student-admission-header p {
+    margin: 4px 0 0;
+    color: #877f92;
+    font-size: 13px;
+}
+
+.student-admission-header-badge {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 13px;
+    background: #ffffff;
+    border: 1px solid #e5dfed;
+    border-radius: 9px;
+    color: #6f42c1;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.student-admission-header-badge i {
+    font-size:25px;
+}
+
+
+/* =========================================================
+   SUCCESS MESSAGE
+========================================================= */
+
+.student-admission-success {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 16px;
+    margin-bottom: 18px;
+    background: #ffffff;
+    border: 1px solid #ccebd9;
+    border-left: 4px solid #27a35a;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(40, 150, 80, 0.06);
+}
+
+.student-admission-success-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 9px;
+    background: #e6f7ed;
+    color: #249450;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.student-admission-success strong {
+    display: block;
+    color: #267a48;
+    font-size: 12px;
+}
+
+.student-admission-success span {
+    display: block;
+    margin-top: 2px;
+    color: #6d7b72;
+    font-size: 11px;
+}
+
+.student-admission-success button {
+    margin-left: auto;
+    border: none;
+    background: transparent;
+    color: #849087;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.student-admission-card {
+    background: #ffffff;
+    border: 1px solid #e7e1ef;
+    border-radius: 17px;
+    overflow: hidden;
+    box-shadow: 0 6px 22px rgba(53, 35, 82, 0.05);
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.student-admission-card-header {
+    min-height: 72px;
+    padding: 14px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #eeeaf3;
+    background: #ffffff;
+}
+
+.student-admission-card-title {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.student-admission-card-title-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: #f0eafd;
+    color: #6f42c1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+}
+
+.student-admission-card-title h2 {
+    margin: 0;
+    color: #3a2b53;
     font-size: 15px;
-    margin-bottom: 5px;
-    color: black;
+    font-weight: 700;
 }
 
-/* ===============================
-   INPUT FIELDS
-================================*/
-.form-input,
-.form-select {
-  border: 1px solid;
-    border-color: #A1A1A1;
-    font-family: Questrial-Regular;
+.student-admission-card-title p {
+    margin: 3px 0 0;
+    color: #928a9d;
+    font-size: 11px;
+}
+
+.student-admission-required-note {
+    color: #928b9a;
+    font-size: 11px;
+}
+
+.student-admission-required-note span {
+    color: #dc3545;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.student-admission-form {
+    width: 100%;
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.student-admission-section {
+    padding: 24px 25px;
+    border-bottom: 1px solid #f0edf4;
+}
+
+.student-admission-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 20px;
+}
+
+.student-admission-section-number {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: #6f42c1;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.student-admission-section-heading h3 {
+    margin: 0;
+    color: #403254;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.student-admission-section-heading p {
+    margin: 3px 0 0;
+    color: #978fa2;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   FORM GRID
+========================================================= */
+
+.student-admission-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px 20px;
+}
+
+.student-admission-field {
+    min-width: 0;
+}
+
+.student-admission-field-full {
+    grid-column: 1 / -1;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.student-admission-field label {
+    display: block;
+    margin-bottom: 7px;
+    color: #5b5267;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.student-admission-field label span {
+    margin-left: 3px;
+    color: #dc3545;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.student-admission-input-wrap {
+    height: 42px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px solid #ded8e7;
+    border-radius: 8px;
+    background: #ffffff;
+    transition: 0.2s ease;
+}
+
+.student-admission-input-wrap > i {
+    width: 38px;
+    min-width: 38px;
+    text-align: center;
+    color: #8b78ad;
+    font-size: 13px;
+}
+
+.student-admission-input-wrap input,
+.student-admission-input-wrap select {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    border: none;
     outline: none;
-    width: 90%;
-    margin-bottom: 10px;
-    height: 30px;
+    background: transparent;
+    color: #433a4d;
+    font-family: inherit;
+    font-size: 12px;
 }
 
-.form-input:focus,
-.form-select:focus {
-  border-color: #2c56bb;
-  outline: none;
-  box-shadow: 0 0 3px rgba(44,86,187,0.3);
+.student-admission-input-wrap input::placeholder {
+    color: #aaa3b0;
 }
 
-/* ===============================
-   SUCCESS BAR
-================================*/
-.success-bar {
-  background: #d4edda;
-  border: 1px solid #28a745;
-  color: #155724;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 3px;
-  font-size: 14px;
+.student-admission-input-wrap select {
+    cursor: pointer;
 }
 
-/* ===============================
-   ERROR BAR
-================================*/
-.invalid-bar {
-  background: #f8d7da;
-  border: 1px solid #dc3545;
-  color: #721c24;
-  padding: 5px 8px;
-  margin-top: 4px;
-  border-radius: 3px;
-  font-size: 13px;
+.student-admission-input-wrap:focus-within {
+    border-color: #6f42c1;
+    box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.08);
 }
 
-/* ===============================
-   SUBMIT BUTTON
-================================*/
-.form-submit {
-  background: #2c56bb;
-  color: white;
-  border: none;
-  padding: 10px 35px;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: 0.3s;
+.student-admission-unit {
+    padding-right: 11px;
+    color: #938a9e;
+    font-size: 10px;
+    font-weight: 600;
 }
 
-.form-submit:hover {
-  background: #1f3f8a;
+
+/* =========================================================
+   DATE PICKER
+========================================================= */
+
+.student-admission-datepicker-wrap {
+    height: 42px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px solid #ded8e7;
+    border-radius: 8px;
+    background: #ffffff;
+    transition: 0.2s ease;
 }
 
-/* ===============================
-   GRID FIX FOR COL-MD-4
-================================*/
-.col-md-4 {
-  float: left;
-  width: 33.33%;
+.student-admission-datepicker-wrap > i {
+    width: 38px;
+    min-width: 38px;
+    text-align: center;
+    color: #8b78ad;
+    font-size: 13px;
 }
 
-.col-md-12 {
-  width: 100%;
-  float: left;
+.student-admission-datepicker {
+    width: 100%;
+    height: 40px;
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    color: #433a4d;
+    font-family: inherit;
+    font-size: 12px;
+    padding: 0 8px 0 0 !important;
 }
 
-/* CLEAR FIX */
-.form-box::after {
-  content: "";
-  display: block;
-  clear: both;
+.student-admission-datepicker-wrap:focus-within {
+    border-color: #6f42c1;
+    box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.08);
 }
 
-/* ===============================
-   DATEPICKER FIX
-================================*/
-.react-datepicker-wrapper {
-  width: 95%;
+
+/* =========================================================
+   FILE INPUT
+========================================================= */
+
+.student-admission-file-wrap {
+    height: 42px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px dashed #cfc5dd;
+    border-radius: 8px;
+    background: #faf9fc;
+    transition: 0.2s;
 }
 
-.react-datepicker__input-container input {
-  width: 95%;
+.student-admission-file-wrap > i {
+    width: 38px;
+    min-width: 38px;
+    text-align: center;
+    color: #6f42c1;
+    font-size: 14px;
+}
+
+.student-admission-file-wrap input {
+    width: calc(100% - 38px);
+    color: #777080;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.student-admission-file-wrap:hover {
+    border-color: #6f42c1;
+    background: #f8f5fc;
+}
+
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+.student-admission-textarea-wrap {
+    min-height: 82px;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    box-sizing: border-box;
+    border: 1px solid #ded8e7;
+    border-radius: 8px;
+    background: #ffffff;
+    transition: 0.2s;
+    padding-top: 11px;
+}
+
+.student-admission-textarea-wrap > i {
+    width: 38px;
+    min-width: 38px;
+    text-align: center;
+    color: #8b78ad;
+    font-size: 13px;
+}
+
+.student-admission-textarea-wrap textarea {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    resize: vertical;
+    padding: 0 10px 10px 0;
+    background: transparent;
+    color: #433a4d;
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.student-admission-textarea-wrap textarea::placeholder {
+    color: #aaa3b0;
+}
+
+.student-admission-textarea-wrap:focus-within {
+    border-color: #6f42c1;
+    box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.08);
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.student-admission-error {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #dc3545;
+    font-size: 10px;
+}
+
+.student-admission-error i {
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   SUBMIT AREA
+========================================================= */
+
+.student-admission-submit-area {
+    min-height: 80px;
+    padding: 17px 25px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: #fcfbfd;
+}
+
+.student-admission-submit-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #8a8291;
+    font-size: 10px;
+}
+
+.student-admission-submit-info i {
+    color: #6f42c1;
+    font-size: 13px;
+}
+
+.student-admission-submit-button {
+    min-width: 155px;
+    height: 42px;
+    border: none;
+    border-radius: 8px;
+    background: #6f42c1;
+    color: #ffffff;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 7px 16px rgba(111, 66, 193, 0.2);
+    transition: 0.2s ease;
+}
+
+.student-admission-submit-button:hover {
+    background: #5e35aa;
+    transform: translateY(-1px);
+    box-shadow: 0 9px 20px rgba(111, 66, 193, 0.25);
+}
+
+.student-admission-submit-button:active {
+    transform: translateY(0);
+}
+
+.student-admission-submit-button i {
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   DATEPICKER CUSTOMIZATION
+========================================================= */
+
+.react-datepicker {
+    border: 1px solid #e0d9e9 !important;
+    border-radius: 10px !important;
+    box-shadow: 0 12px 30px rgba(47, 31, 68, 0.15) !important;
+    font-family: "Segoe UI", Arial, sans-serif !important;
+}
+
+.react-datepicker__header {
+    background: #6f42c1 !important;
+    border-bottom: none !important;
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name {
+    color: #ffffff !important;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+    background: #6f42c1 !important;
+    color: #ffffff !important;
+}
+
+.react-datepicker__day:hover {
+    background: #eee6fb !important;
+    color: #6f42c1 !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .student-admission-page {
+        padding: 18px;
+    }
+
+    .student-admission-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .student-admission-page {
+        padding: 12px;
+    }
+
+    .student-admission-header {
+        align-items: flex-start;
+    }
+
+    .student-admission-header-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        font-size: 19px;
+    }
+
+    .student-admission-header h1 {
+        font-size: 20px;
+    }
+
+    .student-admission-header p {
+        font-size: 10px;
+    }
+
+    .student-admission-header-badge {
+        display: none;
+    }
+
+    .student-admission-card-header {
+        padding: 14px;
+    }
+
+    .student-admission-required-note {
+        display: none;
+    }
+
+    .student-admission-section {
+        padding: 20px 14px;
+    }
+
+    .student-admission-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .student-admission-field-full {
+        grid-column: auto;
+    }
+
+    .student-admission-submit-area {
+        padding: 15px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .student-admission-submit-info {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .student-admission-submit-button {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .student-admission-page {
+        padding: 8px;
+    }
+
+    .student-admission-header-left {
+        gap: 9px;
+    }
+
+    .student-admission-header-icon {
+        width: 39px;
+        height: 39px;
+        font-size: 17px;
+    }
+
+    .student-admission-header h1 {
+        font-size: 17px;
+    }
+
+    .student-admission-card {
+        border-radius: 12px;
+    }
+
+    .student-admission-card-title h2 {
+        font-size: 13px;
+    }
+
+    .student-admission-section-number {
+        width: 30px;
+        height: 30px;
+    }
+
 }

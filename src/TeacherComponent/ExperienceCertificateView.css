@@ -1,62 +1,634 @@
-.experience-container{
-width:900px;
-margin:auto;
-padding:30px;
-background:white;
+/* ========================================
+   EXPERIENCE CERTIFICATE PAGE
+======================================== */
+
+.certificate-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px;
+  box-sizing: border-box;
+  background: #f4f1f8;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
-.tc-top-bar{
-text-align:center;
-margin-bottom:20px;
+
+/* ========================================
+   LOADING
+======================================== */
+
+.certificate-loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 600;
+  color: #5b21b6;
 }
 
-.school-logo{
-width:80px;
+
+/* ========================================
+   ACTION BAR
+======================================== */
+
+.certificate-action-bar {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 25px;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.school-name{
-font-size:28px;
-font-weight:bold;
-margin:5px 0;
+.certificate-print-btn {
+  border: none;
+  background: #6d28d9;
+  color: #ffffff;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  transition: 0.3s ease;
 }
 
-.school-address{
-font-size:14px;
+.certificate-print-btn:hover {
+  background: #4c1d95;
+  transform: translateY(-2px);
 }
 
-.tc-style{
-margin-top:20px;
+
+/* ========================================
+   CERTIFICATE OUTER
+======================================== */
+
+.experience-certificate {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  background: #ffffff;
+  padding: 12px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
 }
 
-.tc-float-left{
-float:left;
-font-size:14px;
+
+/* ========================================
+   INNER BORDER
+======================================== */
+
+.certificate-inner {
+  min-height: 1100px;
+  border: 3px solid #6d28d9;
+  padding: 45px 55px;
+  box-sizing: border-box;
+  position: relative;
 }
 
-.tc-float-right{
-float:right;
-font-size:14px;
+
+/* ========================================
+   SCHOOL HEADER
+======================================== */
+
+.certificate-school-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  text-align: center;
 }
 
-.document-title-container{
-text-align:center;
-margin-top:40px;
-margin-bottom:30px;
-clear:both;
+.certificate-school-logo {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
 }
 
-.document-title{
-font-size:22px;
-font-weight:bold;
-text-decoration:underline;
+.certificate-school-details h1 {
+  margin: 0 0 8px;
+  color: #5b21b6;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 1px;
 }
 
-.document-body-container{
-margin-top:20px;
+.certificate-school-details p {
+  margin: 3px 0;
+  color: #333333;
+  font-size: 14px;
 }
 
-.experience-text{
-font-size:16px;
-line-height:1.8;
-text-align:justify;
+
+/* ========================================
+   CONTACT
+======================================== */
+
+.certificate-contact-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  font-size: 14px;
+  color: #333333;
+}
+
+
+/* ========================================
+   DIVIDER
+======================================== */
+
+.certificate-divider {
+  width: 100%;
+  height: 2px;
+  background: #6d28d9;
+  margin: 15px 0 30px;
+}
+
+
+/* ========================================
+   TITLE
+======================================== */
+
+.certificate-title-section {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.certificate-title-section h2 {
+  margin: 0;
+  color: #3b0764;
+  font-size: 26px;
+  letter-spacing: 2px;
+}
+
+.certificate-title-line {
+  width: 240px;
+  height: 3px;
+  background: #6d28d9;
+  margin: 10px auto 0;
+}
+
+
+/* ========================================
+   REFERENCE
+======================================== */
+
+.certificate-reference {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  font-size: 14px;
+  color: #444444;
+}
+
+
+/* ========================================
+   CERTIFICATE CONTENT
+======================================== */
+
+.certificate-content {
+  color: #222222;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.9;
+  text-align: justify;
+}
+
+.certificate-content p {
+  margin-bottom: 20px;
+}
+
+.certificate-opening {
+  text-align: center;
+  margin-bottom: 30px !important;
+  font-family: "Segoe UI", Arial, sans-serif;
+  letter-spacing: 1px;
+}
+
+.certificate-highlight {
+  color: #5b21b6;
+}
+
+
+/* ========================================
+   SIGNATURE
+======================================== */
+
+.certificate-signature-section {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 60px;
+}
+
+.certificate-signature {
+  width: 230px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signature-space {
+  height: 50px;
+}
+
+.signature-line {
+  width: 100%;
+  border-top: 1px solid #333333;
+  margin-bottom: 8px;
+}
+
+.certificate-signature strong {
+  font-size: 16px;
+}
+
+.certificate-signature span {
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.certificate-footer {
+  position: absolute;
+  bottom: 25px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 11px;
+  color: #777777;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media screen and (max-width: 768px) {
+
+  .certificate-page {
+    padding: 15px;
+  }
+
+  .certificate-inner {
+    padding: 30px 25px;
+  }
+
+  .certificate-school-header {
+    flex-direction: column;
+  }
+
+  .certificate-contact-row {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .certificate-reference {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .certificate-content {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .certificate-signature-section {
+    justify-content: center;
+  }
+
+}
+
+
+/* ========================================
+   PRINT SETTINGS - FIXED
+======================================== */
+
+/* ========================================
+   PRINT SETTINGS - FIXED
+======================================== */
+
+@media print {
+
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  /* Hide unnecessary UI */
+  .certificate-action-bar {
+    display: none !important;
+  }
+
+  /* Reset page */
+  html,
+  body {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  /* Main React page */
+  .certificate-page {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    display: block !important;
+  }
+
+  /* Certificate */
+  .experience-certificate {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    margin: 0 !important;
+    padding: 8mm !important;
+
+    display: block !important;
+    position: relative !important;
+
+    background: #ffffff !important;
+    box-shadow: none !important;
+
+    box-sizing: border-box !important;
+  }
+
+  /* Inner certificate */
+  .certificate-inner {
+    width: 100% !important;
+    min-height: 281mm !important;
+
+    margin: 0 !important;
+    padding: 10mm !important;
+
+    display: block !important;
+    position: relative !important;
+
+    border: 2px solid #000000 !important;
+
+    box-sizing: border-box !important;
+  }
+
+  /* HEADER */
+
+  .certificate-school-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 15px !important;
+
+    width: 100% !important;
+
+    text-align: center !important;
+  }
+
+  .certificate-school-logo {
+    width: 65px !important;
+    height: 65px !important;
+
+    display: block !important;
+    object-fit: contain !important;
+  }
+
+  .certificate-school-details {
+    display: block !important;
+  }
+
+  .certificate-school-details h1 {
+    display: block !important;
+
+    margin: 0 0 5px !important;
+
+    color: #000000 !important;
+
+    font-size: 23px !important;
+
+    font-weight: 800 !important;
+  }
+
+  .certificate-school-details p {
+    display: block !important;
+
+    margin: 2px 0 !important;
+
+    color: #000000 !important;
+
+    font-size: 11px !important;
+  }
+
+  /* CONTACT */
+
+  .certificate-contact-row {
+    display: flex !important;
+
+    justify-content: space-between !important;
+
+    width: 100% !important;
+
+    margin-top: 12px !important;
+
+    color: #000000 !important;
+
+    font-size: 11px !important;
+  }
+
+  /* DIVIDER */
+
+  .certificate-divider {
+    display: block !important;
+
+    width: 100% !important;
+
+    height: 1px !important;
+
+    background: #000000 !important;
+
+    margin: 10px 0 20px !important;
+  }
+
+  /* TITLE */
+
+  .certificate-title-section {
+    display: block !important;
+
+    text-align: center !important;
+
+    margin-bottom: 20px !important;
+  }
+
+  .certificate-title-section h2 {
+    display: block !important;
+
+    margin: 0 !important;
+
+    color: #000000 !important;
+
+    font-size: 21px !important;
+
+    letter-spacing: 1px !important;
+  }
+
+  .certificate-title-line {
+    display: block !important;
+
+    width: 180px !important;
+
+    height: 2px !important;
+
+    margin: 8px auto !important;
+
+    background: #000000 !important;
+  }
+
+  /* CERTIFICATE NUMBER */
+
+  .certificate-reference {
+    display: flex !important;
+
+    justify-content: space-between !important;
+
+    width: 100% !important;
+
+    margin-bottom: 20px !important;
+
+    color: #000000 !important;
+
+    font-size: 11px !important;
+  }
+
+  /* BODY CONTENT */
+
+  .certificate-content {
+    display: block !important;
+
+    width: 100% !important;
+
+    color: #000000 !important;
+
+    font-family: Georgia, "Times New Roman", serif !important;
+
+    font-size: 13px !important;
+
+    line-height: 1.6 !important;
+
+    text-align: justify !important;
+  }
+
+  .certificate-content p {
+    display: block !important;
+
+    margin: 0 0 13px !important;
+
+    color: #000000 !important;
+
+    break-inside: avoid !important;
+
+    page-break-inside: avoid !important;
+  }
+
+  .certificate-content strong {
+    color: #000000 !important;
+  }
+
+  .certificate-opening {
+    display: block !important;
+
+    text-align: center !important;
+
+    margin-bottom: 20px !important;
+
+    font-family: Arial, sans-serif !important;
+
+    font-size: 13px !important;
+  }
+
+  .certificate-highlight {
+    color: #000000 !important;
+  }
+
+  /* SIGNATURE */
+
+  .certificate-signature-section {
+    display: flex !important;
+
+    justify-content: flex-end !important;
+
+    margin-top: 35px !important;
+  }
+
+  .certificate-signature {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    width: 180px !important;
+
+    text-align: center !important;
+
+    color: #000000 !important;
+  }
+
+  .signature-space {
+    display: block !important;
+
+    height: 35px !important;
+  }
+
+  .signature-line {
+    display: block !important;
+
+    width: 100% !important;
+
+    border-top: 1px solid #000000 !important;
+
+    margin-bottom: 5px !important;
+  }
+
+  .certificate-signature strong,
+  .certificate-signature span {
+    display: block !important;
+
+    color: #000000 !important;
+  }
+
+  .certificate-signature strong {
+    font-size: 13px !important;
+  }
+
+  .certificate-signature span {
+    margin-top: 3px !important;
+
+    font-size: 10px !important;
+  }
+
+  /* FOOTER */
+
+  .certificate-footer {
+    display: block !important;
+
+    position: absolute !important;
+
+    bottom: 8mm !important;
+
+    left: 0 !important;
+
+    width: 100% !important;
+
+    text-align: center !important;
+
+    color: #000000 !important;
+
+    font-size: 9px !important;
+  }
+
 }

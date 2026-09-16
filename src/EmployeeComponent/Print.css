@@ -1,0 +1,65 @@
+@page {
+  size: A4 landscape;
+  margin: 10mm;
+}
+
+@media print {
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .print-container, .print-container * {
+    visibility: visible;
+  }
+
+  .print-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    transform: scale(0.75);
+    transform-origin: top left;
+  }
+}
+
+.print-container {
+  padding: 20px;
+}
+
+.table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.table th {
+  background: #3d3def;
+  text-align: center;
+  font-size: 10px;
+}
+
+.table td {
+  text-align: center;
+  font-size: 10px;
+  padding: 4px;
+}
+
+.school-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+.school-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    gap: 5px;
+}

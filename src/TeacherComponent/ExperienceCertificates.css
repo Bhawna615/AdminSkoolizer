@@ -1,0 +1,1253 @@
+/* =========================================================
+   EXPERIENCE CERTIFICATES - PURPLE & WHITE ERP UI
+   Unique prefix: experience-list-
+========================================================= */
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.experience-list-page {
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 24px 26px 40px;
+    box-sizing: border-box;
+
+    background: #f7f5fb;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #30243a;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.experience-list-header {
+    width: 100%;
+    max-width: 1450px;
+
+    margin: 0 auto 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.experience-list-title-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.experience-list-title-icon {
+    width: 53px;
+    height: 53px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: linear-gradient(
+        135deg,
+        #5b2c91,
+        #7d4bc1
+    );
+
+    color: #ffffff;
+
+    font-size: 22px;
+
+    box-shadow:
+        0 8px 20px rgba(91, 44, 145, 0.20);
+}
+
+.experience-list-title-section h2 {
+    margin: 0;
+
+    color: #382248;
+
+    font-size: 25px;
+    font-weight: 700;
+
+    letter-spacing: -0.3px;
+}
+
+.experience-list-title-section p {
+    margin: 5px 0 0;
+
+    color: #91869b;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   TOTAL CERTIFICATE CARD
+========================================================= */
+
+.experience-list-total-card {
+    min-width: 205px;
+
+    padding: 12px 17px;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    background: #ffffff;
+
+    border: 1px solid #eae4f1;
+    border-radius: 11px;
+
+    box-shadow:
+        0 5px 18px rgba(68, 43, 92, 0.07);
+}
+
+.experience-list-total-icon {
+    width: 43px;
+    height: 43px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #f0e9fa;
+    color: #6f42c1;
+
+    font-size: 18px;
+}
+
+.experience-list-total-card span {
+    display: block;
+
+    margin-bottom: 2px;
+
+    color: #94899d;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.experience-list-total-card strong {
+    display: block;
+
+    color: #5b2c91;
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   SUCCESS MESSAGE
+========================================================= */
+
+.experience-list-success {
+    width: 100%;
+    max-width: 1450px;
+
+    margin: 0 auto 18px;
+    padding: 12px 15px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background: #f1fbf5;
+
+    border: 1px solid #ccebd8;
+    border-radius: 9px;
+
+    color: #27784b;
+}
+
+.experience-list-success-icon {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #dcf5e6;
+
+    color: #23814c;
+
+    font-size: 15px;
+}
+
+.experience-list-success div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    flex: 1;
+}
+
+.experience-list-success strong {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.experience-list-success span {
+    font-size: 11px;
+    color: #679078;
+}
+
+.experience-list-close-message {
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: transparent;
+
+    color: #6f917d;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.experience-list-close-message:hover {
+    background: #dff3e7;
+    color: #237446;
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.experience-list-card {
+    position: relative;
+
+    width: 100%;
+    max-width: 1450px;
+
+    margin: 0 auto;
+
+    background: #ffffff;
+
+    border: 1px solid #e9e3f0;
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 30px rgba(68, 43, 92, 0.08);
+}
+
+
+/* Top purple accent */
+
+.experience-list-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        #5b2c91,
+        #7442b4,
+        #9a6bd7
+    );
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.experience-list-card-header {
+    padding: 21px 22px 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border-bottom: 1px solid #eeeaf3;
+}
+
+.experience-list-card-header h3 {
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    color: #3e2c4b;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.experience-list-card-header h3 i {
+    color: #6f42c1;
+
+    font-size: 17px;
+}
+
+.experience-list-card-header p {
+    margin: 6px 0 0 26px;
+
+    color: #94899d;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   GENERATE BUTTON
+========================================================= */
+
+.experience-list-add-btn {
+    height: 38px;
+
+    padding: 0 15px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: linear-gradient(
+        135deg,
+        #6f42c1,
+        #7d4bc2
+    );
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 13px rgba(111, 66, 193, 0.20);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.experience-list-add-btn:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 18px rgba(111, 66, 193, 0.28);
+}
+
+.experience-list-add-btn i {
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.experience-list-controls {
+    padding: 16px 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border-bottom: 1px solid #eeeaf3;
+}
+
+
+/* =========================================================
+   ENTRIES
+========================================================= */
+
+.experience-list-entries {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #776b80;
+
+    font-size: 13px;
+}
+
+.experience-list-entries select {
+    width: 68px;
+    height: 35px;
+
+    padding: 0 8px;
+
+    border: 1px solid #ddd5e6;
+    border-radius: 7px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #4e3e59;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.experience-list-entries select:focus {
+    border-color: #7546b9;
+
+    box-shadow:
+        0 0 0 3px rgba(111, 66, 193, 0.10);
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.experience-list-search {
+    position: relative;
+
+    width: 275px;
+}
+
+.experience-list-search i {
+    position: absolute;
+
+    left: 12px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #91859b;
+
+    font-size: 14px;
+
+    pointer-events: none;
+}
+
+.experience-list-search input {
+    width: 100%;
+    height: 36px;
+
+    padding: 0 12px 0 35px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #ddd5e6;
+    border-radius: 8px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #43354d;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.experience-list-search input::placeholder {
+    color: #aaa0b1;
+}
+
+.experience-list-search input:focus {
+    border-color: #7546b9;
+
+    box-shadow:
+        0 0 0 3px rgba(111, 66, 193, 0.10);
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.experience-list-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    scrollbar-width: thin;
+    scrollbar-color: #cbbade #f6f3f9;
+}
+
+.experience-list-table-wrapper::-webkit-scrollbar {
+    height: 7px;
+}
+
+.experience-list-table-wrapper::-webkit-scrollbar-track {
+    background: #f6f3f9;
+}
+
+.experience-list-table-wrapper::-webkit-scrollbar-thumb {
+    background: #c8b6dc;
+
+    border-radius: 20px;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.experience-list-table {
+    width: 100%;
+    min-width: 1250px;
+
+    border-collapse: collapse;
+
+    table-layout: auto;
+}
+
+.experience-list-table thead {
+    background: #faf8fc;
+}
+
+.experience-list-table th {
+    padding: 14px 15px;
+
+    border-bottom: 1px solid #e9e3ef;
+
+    text-align: left;
+
+    color: #6e6178;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.6px;
+
+    white-space: nowrap;
+}
+
+.experience-list-table td {
+    padding: 14px 15px;
+
+    border-bottom: 1px solid #f0edf3;
+
+    color: #55485e;
+
+    font-size: 12px;
+
+    vertical-align: middle;
+}
+
+.experience-list-table tbody tr {
+    transition:
+        background 0.2s ease;
+}
+
+.experience-list-table tbody tr:hover {
+    background: #fcfaff;
+}
+
+.experience-list-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   LATEST ROW
+========================================================= */
+
+.experience-list-table tbody tr.experience-list-latest-row {
+    background: #fbf9ff;
+}
+
+.experience-list-table tbody tr.experience-list-latest-row:hover {
+    background: #f8f4fd;
+}
+
+
+/* =========================================================
+   ID
+========================================================= */
+
+.experience-list-id {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 5px 8px;
+
+    border-radius: 6px;
+
+    background: #f0eafa;
+
+    color: #69409b;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   TEACHER
+========================================================= */
+
+.experience-list-teacher {
+    min-width: 165px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.experience-list-avatar {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #eee6f9,
+        #ddd0f1
+    );
+
+    border: 1px solid #d9cbea;
+
+    color: #5b2c91;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.experience-list-teacher > div:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.experience-list-teacher strong {
+    color: #3e3048;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   LATEST BADGE
+========================================================= */
+
+.experience-list-new-badge {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 3px 7px;
+
+    border-radius: 20px;
+
+    background: #e9dcfa;
+
+    color: #693a9d;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+
+/* =========================================================
+   DESIGNATION
+========================================================= */
+
+.experience-list-designation {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 5px 9px;
+
+    border-radius: 6px;
+
+    background: #f1ebfa;
+
+    color: #69419a;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.experience-list-date {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    color: #675b70;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    white-space: nowrap;
+}
+
+.experience-list-date i {
+    color: #7650a9;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   CLASSES TAUGHT
+========================================================= */
+
+.experience-list-classes {
+    max-width: 180px;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    color: #62566c;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    line-height: 1.4;
+}
+
+.experience-list-classes i {
+    flex-shrink: 0;
+
+    color: #7043a9;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   VIEW BUTTON
+========================================================= */
+
+.experience-list-view-btn {
+    width: 34px;
+    height: 34px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #d9cce8;
+    border-radius: 7px;
+
+    background: #f8f4fd;
+
+    color: #6f42c1;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.experience-list-view-btn:hover {
+    transform: translateY(-1px);
+
+    background: #6f42c1;
+
+    border-color: #6f42c1;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 5px 12px rgba(111, 66, 193, 0.22);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.experience-list-empty {
+    min-height: 280px;
+
+    padding: 35px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.experience-list-empty-icon {
+    width: 65px;
+    height: 65px;
+
+    margin-bottom: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f1ebf9;
+
+    color: #7550a9;
+
+    font-size: 25px;
+}
+
+.experience-list-empty h3 {
+    margin: 0;
+
+    color: #493653;
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.experience-list-empty p {
+    margin: 7px 0 0;
+
+    max-width: 360px;
+
+    color: #978c9f;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.experience-list-pagination {
+    padding: 15px 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    border-top: 1px solid #eeeaf3;
+
+    background: #ffffff;
+}
+
+.experience-list-pagination-summary {
+    color: #887d90;
+
+    font-size: 12px;
+}
+
+.experience-list-pagination-summary strong {
+    color: #5b2c91;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   PAGINATION BUTTONS
+========================================================= */
+
+.experience-list-pagination-buttons {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+}
+
+.experience-list-page-nav,
+.experience-list-page-number {
+    height: 32px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #ddd5e5;
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #665a70;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.experience-list-page-nav {
+    padding: 0 11px;
+
+    gap: 6px;
+}
+
+.experience-list-page-number {
+    width: 32px;
+}
+
+.experience-list-page-nav:hover:not(:disabled),
+.experience-list-page-number:hover {
+    background: #f8f4fd;
+
+    border-color: #7950b8;
+
+    color: #6f42c1;
+}
+
+.experience-list-page-number.experience-list-active {
+    background: #6f42c1;
+
+    border-color: #6f42c1;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 4px 10px rgba(111, 66, 193, 0.20);
+}
+
+.experience-list-page-nav:disabled {
+    opacity: 0.45;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   RESPONSIVE - 1100px
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .experience-list-page {
+        padding: 20px 18px 35px;
+    }
+
+    .experience-list-table {
+        min-width: 1180px;
+    }
+
+    .experience-list-table th,
+    .experience-list-table td {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 850px
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .experience-list-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .experience-list-total-card {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .experience-list-card-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .experience-list-add-btn {
+        width: 100%;
+    }
+
+    .experience-list-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .experience-list-search {
+        width: 100%;
+    }
+
+    .experience-list-pagination {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .experience-list-pagination-buttons {
+        width: 100%;
+
+        justify-content: flex-end;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 650px
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .experience-list-page {
+        padding: 15px 11px 30px;
+    }
+
+    .experience-list-title-section {
+        align-items: flex-start;
+        gap: 11px;
+    }
+
+    .experience-list-title-icon {
+        width: 46px;
+        height: 46px;
+
+        border-radius: 11px;
+
+        font-size: 20px;
+    }
+
+    .experience-list-title-section h2 {
+        font-size: 21px;
+    }
+
+    .experience-list-title-section p {
+        max-width: 290px;
+
+        font-size: 11px;
+    }
+
+    .experience-list-card-header {
+        padding: 18px 16px 15px;
+    }
+
+    .experience-list-controls {
+        padding: 14px 16px;
+    }
+
+    .experience-list-pagination {
+        padding: 14px 16px;
+    }
+
+    .experience-list-pagination-buttons {
+        justify-content: center;
+
+        flex-wrap: wrap;
+    }
+
+    .experience-list-page-nav {
+        min-width: 32px;
+
+        padding: 0 8px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 480px
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .experience-list-page {
+        padding: 12px 8px 25px;
+    }
+
+    .experience-list-title-icon {
+        width: 42px;
+        height: 42px;
+
+        font-size: 18px;
+    }
+
+    .experience-list-title-section h2 {
+        font-size: 19px;
+    }
+
+    .experience-list-title-section p {
+        font-size: 10px;
+    }
+
+    .experience-list-total-card {
+        padding: 11px 13px;
+    }
+
+    .experience-list-total-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .experience-list-total-card strong {
+        font-size: 20px;
+    }
+
+    .experience-list-card {
+        border-radius: 9px;
+    }
+
+    .experience-list-card-header h3 {
+        font-size: 15px;
+    }
+
+    .experience-list-card-header p {
+        margin-left: 0;
+
+        line-height: 1.5;
+    }
+
+    .experience-list-success {
+        align-items: flex-start;
+    }
+
+    .experience-list-success-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .experience-list-success span {
+        line-height: 1.4;
+    }
+
+    .experience-list-pagination-summary {
+        width: 100%;
+
+        text-align: center;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 360px
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .experience-list-page {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    .experience-list-title-section h2 {
+        font-size: 17px;
+    }
+
+    .experience-list-title-section p {
+        font-size: 9px;
+    }
+
+    .experience-list-pagination-buttons {
+        gap: 3px;
+    }
+
+    .experience-list-page-number,
+    .experience-list-page-nav {
+        width: 29px;
+        height: 29px;
+
+        padding: 0;
+    }
+
+    .experience-list-page-nav {
+        min-width: 29px;
+    }
+
+    .experience-list-page-nav {
+        font-size: 0;
+    }
+
+    .experience-list-page-nav i {
+        font-size: 11px;
+    }
+
+}
