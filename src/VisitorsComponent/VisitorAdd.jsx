@@ -1,6 +1,8 @@
+
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./VisitorAdd.css";
 
 const BASE_URL =
   "http://localhost/kkblossom/api.php/Adminapi/AdminVisitors";
@@ -13,56 +15,159 @@ const VisitorAdd = () => {
     address: "",
     purpose: "",
     phone: "",
-    whom_to_meet: ""
+    whom_to_meet: "",
   });
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const res = await axios.post(
-      `${BASE_URL}/addVisitor`,
-      form,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
+    try {
+      const res = await axios.post(
+        `${BASE_URL}/addVisitor`,
+        form,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log(res.data);
+
+      if (res.data.status) {
+        alert("Visitor Added Successfully ✅");
+
+        navigate("/dashboard/VisitorsComponent/VisitorView");
+      } else {
+        alert(res.data.message);
       }
-    );
-
-    console.log(res.data);
-
-    if (res.data.status) {
-      alert("Visitor Added Successfully ✅");
-
-      navigate("/dashboard/VisitorsComponent/VisitorView"); // 👈 FIX PATH
-    } else {
-      alert(res.data.message);
+    } catch (err) {
+      console.error(err);
+      alert("Error while adding visitor");
     }
-
-  } catch (err) {
-    console.error(err);
-    alert("Error while adding visitor");
-  }
-};
+  };
 
   return (
-    <div style={{ padding: 20 }}>
-      <form onSubmit={handleSubmit}>
+    <div className="visitor-add-page">
 
-        <input name="name" placeholder="Name" onChange={handleChange} style={{border:"1px solid grey",width:"30%",textAlign:"left",marginBottom:"20px"}}/><br />
-        <input name="address" placeholder="Address" onChange={handleChange} style={{border:"1px solid grey",width:"30%",textAlign:"left",marginBottom:"20px"}}/><br />
-        <input name="purpose" placeholder="Purpose" onChange={handleChange} style={{border:"1px solid grey",width:"30%",textAlign:"left",marginBottom:"20px"}}/><br />
-        <input name="whom_to_meet" placeholder="Whom to Meet" onChange={handleChange}style={{border:"1px solid grey",width:"30%",textAlign:"left",marginBottom:"20px"}} /><br />
-        <input name="phone" placeholder="Phone" onChange={handleChange}style={{border:"1px solid grey",width:"30%",textAlign:"left"}} /><br />
+      <div className="visitor-add-card">
 
-        <button type="submit"style={{width:"30%"}}>Add Visitor</button>
+        {/* HEADER */}
+        <div className="visitor-add-header">
+          <h2>Add New Visitor</h2>
+        </div>
 
-      </form>
+        {/* FORM */}
+        <form
+          className="visitor-add-form"
+          onSubmit={handleSubmit}
+        >
+
+          <div className="visitor-form-grid">
+
+            {/* NAME */}
+            <div className="visitor-form-group">
+              <label>Visitor Name</label>
+
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter visitor name"
+                value={form.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            {/* PHONE */}
+            <div className="visitor-form-group">
+              <label>Phone</label>
+
+              <input
+                type="text"
+                name="phone"
+                placeholder="Enter phone number"
+                value={form.phone}
+                onChange={handleChange}
+                className="visitor-phone-input"
+              />
+            </div>
+
+            {/* ADDRESS */}
+            <div className="visitor-form-group">
+              <label>Address</label>
+
+              <input
+                type="text"
+                name="address"
+                placeholder="Enter address"
+                value={form.address}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* PURPOSE */}
+            <div className="visitor-form-group">
+              <label>Purpose</label>
+
+              <input
+                type="text"
+                name="purpose"
+                placeholder="Enter purpose of visit"
+                value={form.purpose}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* WHOM TO MEET */}
+            <div className="visitor-form-group full-width">
+              <label>Whom To Meet</label>
+
+              <input
+                type="text"
+                name="whom_to_meet"
+                placeholder="Enter person to meet"
+                value={form.whom_to_meet}
+                onChange={handleChange}
+              />
+            </div>
+
+          </div>
+
+          {/* BUTTONS */}
+          <div className="visitor-form-actions">
+
+            <button
+              type="button"
+              className="visitor-cancel-btn"
+              onClick={() =>
+                navigate(
+                  "/dashboard/VisitorsComponent/VisitorView"
+                )
+              }
+            >
+              Cancel
+            </button>
+
+            <button
+              type="submit"
+              className="visitor-submit-btn"
+            >
+              Add Visitor
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
 
     </div>
   );

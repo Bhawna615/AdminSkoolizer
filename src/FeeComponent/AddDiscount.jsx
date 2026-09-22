@@ -15,32 +15,93 @@ export default function AddDiscount() {
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const submit = async (e) => {
     e.preventDefault();
 
+    if (!form.fee_type) {
+      alert("Please select a fee type.");
+      return;
+    }
+
+    if (form.amount === "" || Number(form.amount) < 0) {
+      alert("Please enter a valid discount amount.");
+      return;
+    }
+
     try {
       setLoading(true);
 
-      const res = await axios.post(API + "addDiscount", form);
+      const discountData = {
+        fee_type: form.fee_type,
+        amount: Number(form.amount)
+      };
 
-      if (res.data.status) {
-        alert("Added Successfully");
-        window.location.href = "/dashboard/FeeComponent/Discounts";
+      console.log("Discount data:", discountData);
+
+      const res = await axios.post(
+        API + "addDiscount",
+        discountData,
+        {
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
+
+      console.log("API response:", res.data);
+
+      if (res.data.status === true) {
+        alert(
+          res.data.message ||
+            "Discount added successfully."
+        );
+
+        window.location.href =
+          "/dashboard/FeeComponent/Discounts";
       } else {
-        alert("Failed");
+        alert(
+          res.data.message ||
+            "Failed to add discount."
+        );
       }
+
     } catch (error) {
-      console.error("Error adding discount:", error);
-      alert("Failed to add discount");
+      console.error(
+        "Error adding discount:",
+        error
+      );
+
+      if (error.response) {
+        alert(
+          error.response.data?.message ||
+            "Server error while adding discount."
+        );
+      } else if (error.request) {
+        alert(
+          "Unable to connect to the API server."
+        );
+      } else {
+        alert(
+          "Failed to add discount. Please try again."
+        );
+      }
+
     } finally {
       setLoading(false);
     }
+  };
+
+  const goBack = () => {
+    window.location.href =
+      "/dashboard/FeeComponent/Discounts";
   };
 
   return (
@@ -57,7 +118,9 @@ export default function AddDiscount() {
 
           <div>
             <h2>Add Discount</h2>
-            <p>Create a new fee discount for students</p>
+            <p>
+              Create a new fee discount for students
+            </p>
           </div>
 
         </div>
@@ -65,10 +128,7 @@ export default function AddDiscount() {
         <button
           type="button"
           className="add-discount-back-btn"
-          onClick={() =>
-            (window.location.href =
-              "/dashboard/FeeComponent/Discounts")
-          }
+          onClick={goBack}
         >
           <i className="bi bi-arrow-left"></i>
           <span>Back to Discounts</span>
@@ -128,6 +188,7 @@ export default function AddDiscount() {
                 value={form.fee_type}
                 onChange={handleChange}
                 required
+                disabled={loading}
               >
                 <option value="admission_fee">
                   Admission Fee
@@ -192,7 +253,9 @@ export default function AddDiscount() {
                 value={form.amount}
                 onChange={handleChange}
                 min="0"
+                step="0.01"
                 required
+                disabled={loading}
               />
 
             </div>
@@ -229,10 +292,8 @@ export default function AddDiscount() {
             <button
               type="button"
               className="add-discount-cancel-btn"
-              onClick={() =>
-                (window.location.href =
-                  "/dashboard/FeeComponent/Discounts")
-              }
+              onClick={goBack}
+              disabled={loading}
             >
               <i className="bi bi-x-lg"></i>
               Cancel
@@ -243,6 +304,7 @@ export default function AddDiscount() {
               className="add-discount-submit-btn"
               disabled={loading}
             >
+
               {loading ? (
                 <>
                   <i className="bi bi-arrow-repeat add-discount-spin"></i>
@@ -254,6 +316,7 @@ export default function AddDiscount() {
                   Add Discount
                 </>
               )}
+
             </button>
 
           </div>

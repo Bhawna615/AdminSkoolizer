@@ -1,9 +1,12 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
 import { useNavigate } from "react-router-dom";
+import "./VisitorView.css";
 
-const BASE_URL = "http://localhost/kkblossom/api.php/Adminapi/AdminVisitors";
+const BASE_URL =
+  "http://localhost/kkblossom/api.php/Adminapi/AdminVisitors";
 
 const VisitorView = () => {
   const [visitors, setVisitors] = useState([]);
@@ -16,12 +19,14 @@ const VisitorView = () => {
   // ================= LOAD DATA =================
   const loadData = async () => {
     setLoading(true);
+
     try {
       const res = await axios.get(BASE_URL);
       setVisitors(res.data.data || []);
     } catch (error) {
       console.log("API ERROR:", error.message);
     }
+
     setLoading(false);
   };
 
@@ -51,47 +56,66 @@ const VisitorView = () => {
 
   // ================= COLUMNS =================
   const columns = [
-    { name: "ID", selector: (row) => row.id, sortable: true },
-    { name: "Name", selector: (row) => row.name, sortable: true },
-    { name: "Address", selector: (row) => row.address },
-    { name: "Purpose", selector: (row) => row.purpose },
-    { name: "Contact", selector: (row) => row.phone },
-    { name: "Whom To Meet", selector: (row) => row.whom_to_meet },
-    { name: "Entered At", selector: (row) => row.created_at },
-    { name: "Exit At", selector: (row) => row.exit_at || "-" },
-
+    {
+      name: "ID",
+      selector: (row) => row.id,
+      sortable: true,
+    },
+    {
+      name: "Name",
+      selector: (row) => row.name,
+      sortable: true,
+    },
+    {
+      name: "Address",
+      selector: (row) => row.address,
+    },
+    {
+      name: "Purpose",
+      selector: (row) => row.purpose,
+    },
+    {
+      name: "Contact",
+      selector: (row) => row.phone,
+    },
+    {
+      name: "Whom To Meet",
+      selector: (row) => row.whom_to_meet,
+    },
+    {
+      name: "Entered At",
+      selector: (row) => row.created_at,
+    },
+    {
+      name: "Exit At",
+      selector: (row) => row.exit_at || "-",
+    },
     {
       name: "Action",
       cell: (row) =>
         !row.exit_at ? (
           <button
+            className="visitor-exit-btn"
             onClick={() => handleExit(row.id)}
-            style={{
-              background: "red",
-              color: "white",
-              border: "none",
-              padding: "6px 12px",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
           >
             Exit
           </button>
         ) : (
-          "Done"
+          <span className="visitor-done">Done</span>
         ),
     },
   ];
 
   return (
-    <div className="container">
+    <div className="visitor-view-page">
 
-      {/* TOP BAR */}
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
-        
+      {/* ================= TOP BAR ================= */}
+      <div className="visitor-top-bar">
+
         {/* LEFT */}
-        <div>
-          Show{" "}
+        <div className="visitor-entries">
+          <span>Show</span>
+
           <select
             value={perPage}
             onChange={(e) => setPerPage(Number(e.target.value))}
@@ -100,68 +124,102 @@ const VisitorView = () => {
             <option value="25">25</option>
             <option value="50">50</option>
             <option value="100">100</option>
-          </select>{" "}
-          entries
+          </select>
+
+          <span>entries</span>
         </div>
 
         {/* RIGHT */}
-        <div>
-          Search:{" "}
+        <div className="visitor-search">
+          <label>Search:</label>
+
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            style={{ border: "1px solid grey" }}
+            placeholder="Search visitors..."
           />
         </div>
       </div>
 
-      {/* NEW VISITOR BUTTON */}
-      <div style={{ textAlign: "right", marginBottom: 10 }}>
+      {/* ================= NEW VISITOR BUTTON ================= */}
+      <div className="visitor-action-bar">
         <button
-          style={{
-            background: "#2d4cc8",
-            color: "white",
-            padding: "10px 20px",
-            borderRadius: "8px",
-            border: "none",
-          }}
-          onClick={() => navigate("/dashboard/VisitorsComponent/VisitorAdd")}
+          className="new-visitor-btn"
+          onClick={() =>
+            navigate("/dashboard/VisitorsComponent/VisitorAdd")
+          }
         >
           + New Visitor
         </button>
       </div>
 
-      {/* DATA TABLE */}
-      <DataTable
-        columns={columns}
-        data={filteredData}
-        progressPending={loading}
-        pagination
-        paginationPerPage={perPage}
-        highlightOnHover
-        striped
-        responsive
-        fixedHeader
-        fixedHeaderScrollHeight="500px"
-        customStyles={customStyles}
-      />
+      {/* ================= DATA TABLE ================= */}
+      <div className="visitor-table-wrapper">
+        <DataTable
+          columns={columns}
+          data={filteredData}
+          progressPending={loading}
+          pagination
+          paginationPerPage={perPage}
+          highlightOnHover
+          striped
+          responsive
+          fixedHeader
+          fixedHeaderScrollHeight="500px"
+          customStyles={customStyles}
+        />
+      </div>
     </div>
   );
 };
 
-// ================= STYLES =================
+// ================= TABLE STYLES =================
 const customStyles = {
+  table: {
+    style: {
+      width: "100%",
+    },
+  },
+
   headRow: {
     style: {
       backgroundColor: "#2C56BB",
+      minHeight: "46px",
+      borderBottom: "none",
     },
   },
+
   headCells: {
     style: {
-      color: "#fff",
+      color: "#ffffff",
       fontSize: "12px",
+      fontWeight: "600",
       textTransform: "uppercase",
+      paddingLeft: "12px",
+      paddingRight: "12px",
+    },
+  },
+
+  rows: {
+    style: {
+      minHeight: "48px",
+      fontSize: "13px",
+      color: "#333333",
+    },
+  },
+
+  cells: {
+    style: {
+      paddingLeft: "12px",
+      paddingRight: "12px",
+    },
+  },
+
+  pagination: {
+    style: {
+      minHeight: "52px",
+      borderTop: "1px solid #e5e8ed",
     },
   },
 };

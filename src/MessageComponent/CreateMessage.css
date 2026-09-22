@@ -1,105 +1,1002 @@
-.create-container {
-  padding: 20px;
-  font-family: Arial;
+/* =========================================
+   CREATE MESSAGE PAGE
+========================================= */
+
+.create-message-page {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+
+  padding: 22px 24px 100px;
+
+  box-sizing: border-box;
+
+  background: #f7f5fb;
+
+  color: #403747;
 }
 
-/* ✅ TOP SECTION FIX (IMPORTANT) */
-.top-section {
-  display: grid;
-  grid-template-columns: 350px 1fr;
-  align-items: start;
-}
+/* =========================================
+   PAGE HEADER
+========================================= */
 
-/* LEFT MESSAGE BOX */
-.message-box {
-  width: 320px;
-}
-
-.message-box label {
-  display: block;
-  margin: 10px 0 5px;
-  font-weight: 500;
-}
-
-.messages-box textarea {
-  width: 80%;
-  height: 120px;
-  border: 1px solid #333;
-  padding: 10px;
-}
-
-.message-box input[type="file"] {
-  margin-top: 5px;
-}
-
-/* ✅ PERFECT CENTER TITLE */
-.recipient-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.recipient-title h2 {
-  font-weight: 500;
-}
-
-/* SELECT ALL */
-.select-all {
-  display: flex;  
-  margin: 20px 0 10px 20px;
-}
-
-/* CLASS SECTION */
-.class-section {
-  margin-bottom: 40px;
-}
-
-/* CLASS HEADER */
-.class-header {
+.create-message-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-left: 20px;
-  margin-bottom: 10px;
-  font-size: 16px;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
 }
 
-/* ✅ TABLE FIX */
-.student-table {
-  width: 80%;
-  margin-left: 60px;
-  border-collapse: collapse;
+.create-message-header h1 {
+  margin: 0;
+
+  color: #382d46;
+
+  font-size: 23px;
+  font-weight: 700;
 }
 
-/* ✅ FORCE BLUE HEADER */
-.student-table thead tr {
-  background-color: #2C56BB !important;
+.create-message-header p {
+  margin: 5px 0 0;
+
+  color: #93899d;
+
+  font-size: 12px;
 }
 
-.student-table thead th {
-     background-color: #2C56BB !important;
-  padding: 10px;
-  text-align: left;
-}
+.back-message-btn {
+  height: 37px;
 
-/* BODY */
-.student-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
-}
+  padding: 0 15px;
 
-/* FLOAT BUTTON */
-.send-btn {
-  position: fixed;
-  right: 40px;
-  bottom: 70px;
-  background: #2C56BB;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 65px;
-  height: 65px;
-  font-size: 24px;
+  background: #ffffff;
+
+  color: #62429f;
+
+  border: 1px solid #d8cde5;
+  border-radius: 5px;
+
+  font-size: 12px;
+  font-weight: 600;
+
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+  transition: 0.2s ease;
+}
+
+.back-message-btn:hover {
+  background: #f1ebf8;
+
+  border-color: #b9a4d2;
+}
+
+/* =========================================
+   MESSAGE COMPOSE CARD
+========================================= */
+
+.message-compose-card {
+  width: 100%;
+
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #e1d9e9;
+  border-radius: 7px;
+
+  box-shadow: 0 2px 8px rgba(65, 45, 90, 0.05);
+
+  margin-bottom: 24px;
+}
+
+/* =========================================
+   MESSAGE HEADING
+========================================= */
+
+.message-card-heading {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+
+  border-bottom: 1px solid #eeeaf2;
+}
+
+.message-heading-icon {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #eee8f7;
+
+  color: #6c4ab6;
+
+  border-radius: 6px;
+
+  font-size: 17px;
+}
+
+.message-card-heading h2 {
+  margin: 0;
+
+  color: #44384e;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.message-card-heading p {
+  margin: 3px 0 0;
+
+  color: #99909f;
+
+  font-size: 11px;
+}
+
+/* =========================================
+   FORM GROUP
+========================================= */
+
+.message-form-group {
+  margin-bottom: 18px;
+}
+
+.message-form-group:last-child {
+  margin-bottom: 0;
+}
+
+.message-form-group > label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #50445b;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.required-star {
+  color: #d74b67;
+
+  margin-left: 3px;
+}
+
+/* =========================================
+   TEXTAREA
+========================================= */
+
+.message-form-group textarea {
+  width: 100%;
+  min-height: 110px;
+
+  padding: 12px 13px;
+
+  box-sizing: border-box;
+
+  resize: vertical;
+
+  background: #ffffff;
+
+  border: 1px solid #d6ccdf;
+  border-radius: 5px;
+
+  color: #423847;
+
+  font-family: inherit;
+  font-size: 12px;
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+.message-form-group textarea::placeholder {
+  color: #aaa2ae;
+}
+
+.message-form-group textarea:hover {
+  border-color: #a58ac6;
+}
+
+.message-form-group textarea:focus {
+  border-color: #6c4ab6;
+
+  box-shadow: 0 0 0 3px rgba(108, 74, 182, 0.09);
+}
+
+/* =========================================
+   MESSAGE BOTTOM INFO
+========================================= */
+
+.message-bottom-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 5px;
+
+  color: #a19aa7;
+
+  font-size: 10px;
+}
+
+/* =========================================
+   FILE UPLOAD
+========================================= */
+
+.file-upload-box {
+  width: 100%;
+  min-height: 58px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 9px 12px;
+
+  box-sizing: border-box;
+
+  background: #fbfaff;
+
+  border: 1px dashed #c8b8d9;
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.file-upload-box:hover {
+  background: #f7f2fc;
+
+  border-color: #8d70b9;
+}
+
+.file-upload-box input {
+  display: none;
+}
+
+.upload-icon {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  background: #eee7f8;
+
+  color: #6c4ab6;
+
+  border-radius: 5px;
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.upload-content strong {
+  max-width: 450px;
+
+  overflow: hidden;
+
+  color: #5a4c65;
+
+  font-size: 11px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.upload-content small {
+  margin-top: 2px;
+
+  color: #aaa1b0;
+
+  font-size: 9px;
+}
+
+.browse-text {
+  margin-left: auto;
+
+  padding: 5px 10px;
+
+  background: #f0eafa;
+
+  color: #6645a3;
+
+  border: 1px solid #ded2ec;
+  border-radius: 4px;
+
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.remove-file-btn {
+  margin-top: 6px;
+
+  padding: 0;
+
+  background: none;
+
+  border: none;
+
+  color: #bd5268;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+/* =========================================
+   RECIPIENT HEADER
+========================================= */
+
+.recipient-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+}
+
+.recipient-header h2 {
+  margin: 0;
+
+  color: #43374d;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.recipient-header p {
+  margin: 4px 0 0;
+
+  color: #978e9e;
+
+  font-size: 11px;
+}
+
+.recipient-counter {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 7px 11px;
+
+  background: #f0eafb;
+
+  border: 1px solid #ddd1eb;
+  border-radius: 5px;
+
+  color: #6544a0;
+}
+
+.recipient-counter strong {
+  font-size: 13px;
+}
+
+.recipient-counter span {
+  font-size: 10px;
+}
+
+/* =========================================
+   SELECT ALL
+========================================= */
+
+.select-all-card {
+  width: 100%;
+
+  padding: 11px 14px;
+
+  box-sizing: border-box;
+
+  margin-bottom: 14px;
+
+  background: #ffffff;
+
+  border: 1px solid #e1d9e9;
+  border-radius: 6px;
+
+  box-shadow: 0 1px 5px rgba(65, 45, 90, 0.03);
+}
+
+.check-row {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  cursor: pointer;
+}
+
+.check-row input,
+.class-checkbox input,
+.student-check input {
+  display: none;
+}
+
+/* =========================================
+   CUSTOM CHECKBOX
+========================================= */
+
+.custom-checkbox {
+  width: 16px;
+  height: 16px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1.5px solid #b7adbf;
+  border-radius: 3px;
+
+  transition: 0.15s ease;
+}
+
+.check-row input:checked + .custom-checkbox,
+.class-checkbox input:checked + .custom-checkbox,
+.student-check input:checked + .custom-checkbox {
+  background: #6c4ab6;
+
+  border-color: #6c4ab6;
+}
+
+.check-row input:checked + .custom-checkbox::after,
+.class-checkbox input:checked + .custom-checkbox::after,
+.student-check input:checked + .custom-checkbox::after {
+  content: "✓";
+
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.select-all-text strong {
+  display: block;
+
+  color: #4c4056;
+
+  font-size: 12px;
+}
+
+.select-all-text span {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #9d94a4;
+
+  font-size: 10px;
+}
+
+/* =========================================
+   CLASSES CONTAINER
+========================================= */
+
+.classes-container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 13px;
+}
+
+/* =========================================
+   CLASS CARD
+========================================= */
+
+.class-section {
+  width: 100%;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #dfd7e7;
+  border-radius: 7px;
+
+  box-shadow: 0 2px 7px rgba(65, 45, 90, 0.04);
+}
+
+/* =========================================
+   CLASS HEADER
+========================================= */
+
+.class-header {
+  min-height: 54px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 8px 14px;
+
+  box-sizing: border-box;
+
+  background: #faf8fc;
+
+  border-bottom: 1px solid #e9e4ed;
+}
+
+.class-checkbox {
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.class-info {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  margin-left: 10px;
+}
+
+.class-icon {
+  width: 31px;
+  height: 31px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #eee7f8;
+
+  color: #6c4ab6;
+
+  border-radius: 5px;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.class-info h3 {
+  margin: 0;
+
+  color: #493d52;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.class-info span {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #9b92a1;
+
+  font-size: 9px;
+}
+
+.class-selection {
+  margin-left: auto;
+
+  padding: 4px 8px;
+
+  background: #f0eafb;
+
+  color: #6646a0;
+
+  border-radius: 4px;
+
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* =========================================
+   STUDENT TABLE
+========================================= */
+
+.student-table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+.student-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+}
+
+.student-table th {
+  height: 35px;
+
+  padding: 0 14px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #ebe6ef;
+
+  color: #887e91;
+
+  text-align: left;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+.student-table td {
+  height: 43px;
+
+  padding: 0 14px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #f1eef3;
+
+  color: #514754;
+
+  font-size: 11px;
+}
+
+.student-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.student-table tbody tr {
+  transition: 0.15s ease;
+}
+
+.student-table tbody tr:hover td {
+  background: #faf8fd;
+}
+
+.student-table tbody tr.student-selected td {
+  background: #f8f4fc;
+}
+
+/* =========================================
+   TABLE COLUMNS
+========================================= */
+
+.select-column {
+  width: 75px;
+}
+
+.roll-column {
+  width: 130px;
+}
+
+/* =========================================
+   STUDENT CHECK
+========================================= */
+
+.student-check {
+  display: inline-flex;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+/* =========================================
+   ROLL NUMBER
+========================================= */
+
+.roll-number {
+  display: inline-block;
+
+  padding: 4px 7px;
+
+  background: #f5f2f7;
+
+  border-radius: 3px;
+
+  color: #6f6476;
+
+  font-size: 9px;
+  font-weight: 600;
+}
+
+/* =========================================
+   STUDENT NAME
+========================================= */
+
+.student-name {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: #4c4054;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.student-avatar {
+  width: 27px;
+  height: 27px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  background: #eee7f8;
+
+  color: #6c4ab6;
+
+  border-radius: 50%;
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+/* =========================================
+   SEND FOOTER
+========================================= */
+
+.send-message-footer {
+  position: fixed;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 1000;
+
+  min-height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 8px 24px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border-top: 1px solid #ddd5e5;
+
+  box-shadow: 0 -3px 12px rgba(60, 40, 90, 0.08);
+}
+
+/* =========================================
+   SEND SUMMARY
+========================================= */
+
+.send-summary {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+}
+
+.summary-icon {
+  width: 31px;
+  height: 31px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #eee7f8;
+
+  color: #6c4ab6;
+
+  border-radius: 50%;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.send-summary strong {
+  display: block;
+
+  color: #493d52;
+
+  font-size: 11px;
+}
+
+.send-summary span {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #9c93a2;
+
+  font-size: 9px;
+}
+
+/* =========================================
+   SEND BUTTON
+========================================= */
+
+.send-message-btn {
+  height: 39px;
+
+  min-width: 140px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 0 16px;
+
+  background: #6c4ab6;
+
+  color: #ffffff;
+
+  border: none;
+  border-radius: 5px;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow: 0 3px 8px rgba(108, 74, 182, 0.22);
+
+  transition: 0.2s ease;
+}
+
+.send-message-btn span {
+  font-size: 14px;
+}
+
+.send-message-btn:hover:not(:disabled) {
+  background: #5b3da0;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 5px 12px rgba(108, 74, 182, 0.28);
+}
+
+.send-message-btn:disabled {
+  background: #c9c3ce;
+
+  color: #f3f1f4;
+
+  cursor: not-allowed;
+
+  box-shadow: none;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 800px) {
+
+  .create-message-page {
+    padding: 16px 16px 90px;
+  }
+
+  .student-table {
+    min-width: 550px;
+  }
+
+  .student-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .send-message-footer {
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .create-message-header {
+    align-items: flex-start;
+  }
+
+  .create-message-header h1 {
+    font-size: 20px;
+  }
+
+  .recipient-header {
+    align-items: flex-start;
+
+    gap: 10px;
+  }
+
+  .recipient-counter {
+    flex-shrink: 0;
+  }
+
+  .browse-text {
+    display: none;
+  }
+
+  .send-summary span {
+    display: none;
+  }
+
+  .send-message-btn {
+    min-width: 125px;
+
+    padding: 0 12px;
+  }
+}
+
+@media (max-width: 450px) {
+
+  .create-message-page {
+    padding: 12px 10px 85px;
+  }
+
+  .create-message-header p {
+    font-size: 10px;
+  }
+
+  .back-message-btn {
+    height: 34px;
+
+    padding: 0 10px;
+
+    font-size: 10px;
+  }
+
+  .message-compose-card {
+    padding: 15px;
+  }
+
+  .message-card-heading {
+    margin-bottom: 15px;
+  }
+
+  .class-header {
+    padding: 8px 10px;
+  }
+
+  .student-table th,
+  .student-table td {
+    padding: 0 10px;
+  }
+
+  .send-message-footer {
+    padding: 7px 10px;
+  }
+
+  .summary-icon {
+    display: none;
+  }
+
+  .send-message-btn {
+    min-width: 110px;
+
+    height: 36px;
+
+    font-size: 10px;
+  }
 }

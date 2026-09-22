@@ -2,10 +2,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./AddFeeStructure.css";
 
-const API = "http://localhost/kkblossom/api.php/AdminApi/AdminPanelFee/";
+const BASE_URL =
+  "http://localhost/kkblossom/api.php/Adminapi/AdminExam/";
+
+const API =
+  "http://localhost/kkblossom/api.php/Adminapi/AdminPanelFee/";
 
 export default function AddFeeStructure() {
   const [classes, setClasses] = useState([]);
+  const [loadingClasses, setLoadingClasses] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const [form, setForm] = useState({
     class: "",
@@ -20,8 +26,37 @@ export default function AddFeeStructure() {
   }, []);
 
   const fetchClasses = async () => {
-    const res = await axios.get(API + "getClasses");
-    setClasses(res.data);
+    try {
+      setLoadingClasses(true);
+
+      const res = await axios.get(BASE_URL + "getClasses");
+
+      console.log("Classes API response:", res.data);
+
+      if (Array.isArray(res.data)) {
+        setClasses(res.data);
+      } else if (Array.isArray(res.data?.data)) {
+        setClasses(res.data.data);
+      } else {
+        setClasses([]);
+        console.error("Unexpected classes response:", res.data);
+      }
+    } catch (error) {
+      console.error("Error fetching classes:", error);
+
+      if (error.response) {
+        console.error("Status:", error.response.status);
+        console.error("Data:", error.response.data);
+      } else if (error.request) {
+        console.error("No response received from Classes API");
+      } else {
+        console.error("Axios error:", error.message);
+      }
+
+      setClasses([]);
+    } finally {
+      setLoadingClasses(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -34,13 +69,48 @@ export default function AddFeeStructure() {
   const submitForm = async (e) => {
     e.preventDefault();
 
-    const res = await axios.post(API + "addFee", form);
+    try {
+      setSubmitting(true);
 
-    if (res.data.status) {
-      alert("Added Successfully");
-      window.location.href = "/dashboard/FeeComponent/FeeStructure";
-    } else {
-      alert("Failed");
+      console.log("Sending fee data:", form);
+
+      // No custom Content-Type header
+      const res = await axios.post(API + "addFee", form);
+
+      console.log("Add Fee response:", res.data);
+
+      if (res.data.status) {
+        alert("Added Successfully");
+
+        window.location.href =
+          "/dashboard/FeeComponent/FeeStructure";
+      } else {
+        alert(res.data.message || "Failed");
+      }
+    } catch (error) {
+      console.error("Error adding fee:", error);
+
+      if (error.response) {
+        console.error("Status:", error.response.status);
+        console.error("Response:", error.response.data);
+
+        alert(
+          error.response.data?.message ||
+            "Failed to add fee structure."
+        );
+      } else if (error.request) {
+        console.error("No response received from API");
+
+        alert(
+          "Unable to connect to server. Please check API/CORS."
+        );
+      } else {
+        console.error("Axios error:", error.message);
+
+        alert("Something went wrong.");
+      }
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -49,6 +119,7 @@ export default function AddFeeStructure() {
 
       {/* Page Header */}
       <div className="add-fee-structure-header">
+
         <div className="add-fee-structure-header-left">
 
           <div className="add-fee-structure-header-icon">
@@ -57,6 +128,7 @@ export default function AddFeeStructure() {
 
           <div>
             <h2>Add Fee Structure</h2>
+
             <p>
               Create a new fee structure for a school class
             </p>
@@ -73,9 +145,14 @@ export default function AddFeeStructure() {
           }
         >
           <i className="bi bi-arrow-left"></i>
-          <span>Back to Fee Structure</span>
+
+          <span>
+            Back to Fee Structure
+          </span>
         </button>
+
       </div>
+
 
       {/* Main Card */}
       <div className="add-fee-structure-card">
@@ -84,24 +161,33 @@ export default function AddFeeStructure() {
         <div className="add-fee-structure-card-header">
 
           <div className="add-fee-structure-card-title">
+
             <div className="add-fee-structure-title-icon">
               <i className="bi bi-cash-stack"></i>
             </div>
 
             <div>
-              <h3>Fee Information</h3>
+              <h3>
+                Fee Information
+              </h3>
+
               <p>
                 Enter the fee details for the selected class
               </p>
             </div>
+
           </div>
 
           <div className="add-fee-structure-badge">
+
             <i className="bi bi-pencil-square"></i>
+
             New Structure
+
           </div>
 
         </div>
+
 
         {/* Form */}
         <form
@@ -113,8 +199,11 @@ export default function AddFeeStructure() {
           <div className="add-fee-form-group add-fee-class-group">
 
             <label htmlFor="fee-class">
+
               <i className="bi bi-mortarboard-fill"></i>
+
               Select Class
+
             </label>
 
             <div className="add-fee-input-wrapper">
@@ -127,8 +216,14 @@ export default function AddFeeStructure() {
                 value={form.class}
                 onChange={handleChange}
                 required
+                disabled={loadingClasses}
               >
-                <option value="">Select Class</option>
+
+                <option value="">
+                  {loadingClasses
+                    ? "Loading Classes..."
+                    : "Select Class"}
+                </option>
 
                 {classes.map((c, i) => (
                   <option
@@ -138,6 +233,7 @@ export default function AddFeeStructure() {
                     {c.Classname}
                   </option>
                 ))}
+
               </select>
 
               <i className="bi bi-chevron-down add-fee-select-arrow"></i>
@@ -145,22 +241,31 @@ export default function AddFeeStructure() {
             </div>
 
             <span className="add-fee-field-hint">
+
               Choose the class for which this fee structure applies.
+
             </span>
 
           </div>
+
 
           {/* Fee Fields */}
           <div className="add-fee-section-title">
+
             <div className="add-fee-section-line"></div>
 
             <span>
+
               <i className="bi bi-wallet2"></i>
+
               Fee Details
+
             </span>
 
             <div className="add-fee-section-line"></div>
+
           </div>
+
 
           <div className="add-fee-fields-grid">
 
@@ -168,13 +273,18 @@ export default function AddFeeStructure() {
             <div className="add-fee-form-group">
 
               <label htmlFor="admission-fee">
+
                 <i className="bi bi-door-open"></i>
+
                 Admission Fee
+
               </label>
 
               <div className="add-fee-input-wrapper">
 
-                <span className="add-fee-currency">₹</span>
+                <span className="add-fee-currency">
+                  ₹
+                </span>
 
                 <input
                   id="admission-fee"
@@ -191,17 +301,23 @@ export default function AddFeeStructure() {
 
             </div>
 
+
             {/* Tuition Fee */}
             <div className="add-fee-form-group">
 
               <label htmlFor="tuition-fee">
+
                 <i className="bi bi-book"></i>
+
                 Tuition Fee
+
               </label>
 
               <div className="add-fee-input-wrapper">
 
-                <span className="add-fee-currency">₹</span>
+                <span className="add-fee-currency">
+                  ₹
+                </span>
 
                 <input
                   id="tuition-fee"
@@ -218,17 +334,23 @@ export default function AddFeeStructure() {
 
             </div>
 
+
             {/* Annual Fee */}
             <div className="add-fee-form-group">
 
               <label htmlFor="annual-fee">
+
                 <i className="bi bi-calendar-event"></i>
+
                 Annual Fee
+
               </label>
 
               <div className="add-fee-input-wrapper">
 
-                <span className="add-fee-currency">₹</span>
+                <span className="add-fee-currency">
+                  ₹
+                </span>
 
                 <input
                   id="annual-fee"
@@ -245,18 +367,24 @@ export default function AddFeeStructure() {
 
             </div>
 
+
             {/* Sibling Discount */}
             <div className="add-fee-form-group">
 
               <label htmlFor="sibling-discount">
+
                 <i className="bi bi-people"></i>
+
                 Sibling Discount
+
               </label>
 
               <div className="add-fee-input-wrapper">
 
                 <span className="add-fee-discount-icon">
+
                   <i className="bi bi-percent"></i>
+
                 </span>
 
                 <input
@@ -267,6 +395,7 @@ export default function AddFeeStructure() {
                   value={form.sibling_discount}
                   onChange={handleChange}
                   min="0"
+                  max="100"
                   required
                 />
 
@@ -276,24 +405,32 @@ export default function AddFeeStructure() {
 
           </div>
 
+
           {/* Information */}
           <div className="add-fee-info-box">
 
             <div className="add-fee-info-icon">
+
               <i className="bi bi-info-circle-fill"></i>
+
             </div>
 
             <div>
-              <strong>Fee Structure Information</strong>
+
+              <strong>
+                Fee Structure Information
+              </strong>
 
               <p>
                 Enter the correct fee amounts for the selected class.
                 The sibling discount should be entered according to
                 your school's fee policy.
               </p>
+
             </div>
 
           </div>
+
 
           {/* Actions */}
           <div className="add-fee-actions">
@@ -305,17 +442,34 @@ export default function AddFeeStructure() {
                 (window.location.href =
                   "/dashboard/FeeComponent/FeeStructure")
               }
+              disabled={submitting}
             >
+
               <i className="bi bi-x-lg"></i>
+
               Cancel
+
             </button>
+
 
             <button
               type="submit"
               className="add-fee-submit-btn"
+              disabled={submitting || loadingClasses}
             >
-              <i className="bi bi-check2-circle"></i>
-              Add Fee Structure
+
+              <i
+                className={
+                  submitting
+                    ? "bi bi-hourglass-split"
+                    : "bi bi-check2-circle"
+                }
+              ></i>
+
+              {submitting
+                ? "Adding..."
+                : "Add Fee Structure"}
+
             </button>
 
           </div>

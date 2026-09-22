@@ -1,0 +1,345 @@
+
+/* =========================================
+   VISITOR VIEW PAGE
+========================================= */
+
+.visitor-view-page {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  padding: 20px;
+  box-sizing: border-box;
+  background: #f7f5fb;
+}
+
+/* =========================================
+   TOP BAR
+========================================= */
+
+.visitor-top-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+
+  background: #ffffff;
+  border: 1px solid #e5def2;
+  border-radius: 7px;
+
+  box-shadow: 0 2px 8px rgba(108, 74, 182, 0.06);
+}
+
+/* =========================================
+   SHOW ENTRIES
+========================================= */
+
+.visitor-entries {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #4b4654;
+  font-size: 14px;
+}
+
+.visitor-entries select {
+  width: 65px;
+  height: 34px;
+
+  padding: 4px 8px;
+
+  background: #ffffff;
+  border: 1px solid #cfc4e2;
+  border-radius: 5px;
+
+  color: #3f3949;
+  font-size: 14px;
+
+  outline: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.visitor-entries select:hover {
+  border-color: #8a6bc1;
+}
+
+.visitor-entries select:focus {
+  border-color: #6c4ab6;
+  box-shadow: 0 0 0 2px rgba(108, 74, 182, 0.10);
+}
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.visitor-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #4b4654;
+  font-size: 14px;
+}
+
+.visitor-search label {
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.visitor-search input {
+  width: 220px;
+  height: 34px;
+
+  padding: 6px 10px;
+  box-sizing: border-box;
+
+  background: #ffffff;
+  border: 1px solid #cfc4e2;
+  border-radius: 5px;
+
+  color: #332d3d;
+  font-size: 14px;
+
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.visitor-search input::placeholder {
+  color: #aaa3b4;
+}
+
+.visitor-search input:hover {
+  border-color: #9a80c9;
+}
+
+.visitor-search input:focus {
+  border-color: #6c4ab6;
+  box-shadow: 0 0 0 2px rgba(108, 74, 182, 0.10);
+}
+
+/* =========================================
+   NEW VISITOR BUTTON
+========================================= */
+
+.visitor-action-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+.new-visitor-btn {
+  background: #6c4ab6;
+  color: #ffffff;
+
+  padding: 10px 20px;
+
+  border: none;
+  border-radius: 6px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  box-shadow: 0 3px 8px rgba(108, 74, 182, 0.20);
+
+  transition: all 0.2s ease;
+}
+
+.new-visitor-btn:hover {
+  background: #5b3da0;
+  box-shadow: 0 5px 12px rgba(108, 74, 182, 0.28);
+}
+
+.new-visitor-btn:active {
+  transform: translateY(1px);
+}
+
+/* =========================================
+   TABLE WRAPPER
+========================================= */
+
+.visitor-table-wrapper {
+  width: 100%;
+
+  background: #ffffff;
+
+  border: 1px solid #e3dced;
+  border-radius: 7px;
+
+  overflow: hidden;
+
+  box-shadow: 0 2px 8px rgba(70, 45, 110, 0.06);
+}
+
+/* =========================================
+   DATA TABLE
+========================================= */
+
+.visitor-table-wrapper .rdt_Table {
+  width: 100%;
+  font-size: 13px;
+}
+
+.visitor-table-wrapper .rdt_TableHeadRow {
+  min-height: 46px;
+
+  background: #6c4ab6;
+}
+
+.visitor-table-wrapper .rdt_TableRow {
+  min-height: 48px;
+
+  border-bottom: 1px solid #eeeaf4;
+
+  transition: background-color 0.15s ease;
+}
+
+.visitor-table-wrapper .rdt_TableRow:hover {
+  background-color: #f7f3fc;
+}
+
+.visitor-table-wrapper .rdt_TableCell {
+  color: #39343f;
+  padding: 8px 12px;
+}
+
+/* =========================================
+   EXIT BUTTON
+========================================= */
+
+.visitor-exit-btn {
+  background: #dc3545;
+  color: #ffffff;
+
+  border: none;
+  border-radius: 4px;
+
+  padding: 6px 13px;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.visitor-exit-btn:hover {
+  background: #c82333;
+  box-shadow: 0 2px 5px rgba(220, 53, 69, 0.20);
+}
+
+/* =========================================
+   DONE STATUS
+========================================= */
+
+.visitor-done {
+  color: #5c3d9e;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  background: #f0eafb;
+  padding: 5px 9px;
+  border-radius: 4px;
+}
+
+/* =========================================
+   PAGINATION
+========================================= */
+
+.visitor-table-wrapper .rdt_Pagination {
+  min-height: 52px;
+
+  background: #ffffff;
+
+  border-top: 1px solid #e5def0;
+
+  color: #4b4654;
+
+  font-size: 13px;
+}
+
+/* =========================================
+   TABLE STRIPED ROWS
+========================================= */
+
+.visitor-table-wrapper .rdt_TableRow:nth-child(even) {
+  background-color: #fcfbfe;
+}
+
+.visitor-table-wrapper .rdt_TableRow:nth-child(even):hover {
+  background-color: #f7f3fc;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+  .visitor-view-page {
+    padding: 15px;
+  }
+
+  .visitor-top-bar {
+    gap: 15px;
+  }
+
+  .visitor-search input {
+    width: 180px;
+  }
+}
+
+@media (max-width: 700px) {
+  .visitor-top-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .visitor-entries {
+    justify-content: flex-start;
+  }
+
+  .visitor-search {
+    justify-content: space-between;
+  }
+
+  .visitor-search input {
+    width: 250px;
+  }
+
+  .visitor-action-bar {
+    justify-content: stretch;
+  }
+
+  .new-visitor-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .visitor-view-page {
+    padding: 10px;
+  }
+
+  .visitor-search {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .visitor-search input {
+    width: 100%;
+  }
+
+  .visitor-entries {
+    font-size: 13px;
+  }
+
+  .new-visitor-btn {
+    padding: 9px 15px;
+  }
+}
