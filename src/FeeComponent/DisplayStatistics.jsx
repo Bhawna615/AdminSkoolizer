@@ -66,7 +66,9 @@ export default function DisplayStatistics() {
 
   return (
     <div className="statistics-view-container">
+
       <div className="chart-row">
+
         <div className="chart-box">
           <Pie data={feeChartData} />
         </div>
@@ -74,9 +76,11 @@ export default function DisplayStatistics() {
         <div className="chart-box">
           <Pie data={typeChartData} />
         </div>
+
       </div>
 
       <div className="cards-container">
+
         <Link
           to={`/FeeComponent/PaymentTable/total/${period}`}
           className="stats-card"
@@ -153,7 +157,9 @@ export default function DisplayStatistics() {
         >
           Total Late Fee : ₹ {summary.totalLateFee}
         </Link>
+
       </div>
+
     </div>
   );
 }

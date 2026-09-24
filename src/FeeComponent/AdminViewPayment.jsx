@@ -4,7 +4,8 @@ import DataTable from "react-data-table-component";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./AdminViewPayment.css";
 
-const API = "http://localhost/kkblossom/api.php/Adminapi/AdminPanelFee/";
+const API =
+  "http://localhost/kkblossom/api.php/Adminapi/AdminPanelFee/";
 
 export default function AdminViewPayment() {
   const [payments, setPayments] = useState([]);
@@ -24,7 +25,6 @@ export default function AdminViewPayment() {
     enabled: false,
   });
 
-  // ✅ MONTH LIST
   const months = [
     { label: "January", value: 1 },
     { label: "February", value: 2 },
@@ -42,9 +42,14 @@ export default function AdminViewPayment() {
 
   // ================= LOAD CLASSES =================
   useEffect(() => {
-    axios.get(API + "getClasses").then((res) => {
-      setClasses(res.data || []);
-    });
+    axios
+      .get(API + "getClasses")
+      .then((res) => {
+        setClasses(res.data || []);
+      })
+      .catch((err) => {
+        console.error("Error loading classes:", err);
+      });
   }, []);
 
   // ================= FETCH PAYMENTS =================
@@ -58,16 +63,17 @@ export default function AdminViewPayment() {
               year: filters.year,
               month: filters.month,
               class: filters.class,
-              session: sessionParam, // 👈 ADD
+              session: sessionParam,
             }
           : sessionParam
-            ? { session: sessionParam } // 👈 only session filter
+            ? { session: sessionParam }
             : {},
       });
 
       setPayments(res.data.data || []);
     } catch (err) {
-      console.error(err);
+      console.error("Error fetching payments:", err);
+      setPayments([]);
     }
 
     setLoading(false);
@@ -85,7 +91,10 @@ export default function AdminViewPayment() {
     const lastDate = new Date(row.lastdate);
 
     if (today > lastDate) {
-      const diff = Math.floor((today - lastDate) / (1000 * 60 * 60 * 24));
+      const diff = Math.floor(
+        (today - lastDate) / (1000 * 60 * 60 * 24),
+      );
+
       return (diff - 1) * 10;
     }
 
@@ -151,7 +160,9 @@ export default function AdminViewPayment() {
 
     const csv =
       "data:text/csv;charset=utf-8," +
-      [headers, ...rows].map((e) => e.join(",")).join("\n");
+      [headers, ...rows]
+        .map((e) => e.join(","))
+        .join("\n");
 
     const link = document.createElement("a");
     link.href = encodeURI(csv);
@@ -161,47 +172,150 @@ export default function AdminViewPayment() {
 
   // ================= TABLE COLUMNS =================
   const columns = [
-    { name: "ID", selector: (row) => row.feeid, sortable: true },
-    { name: "Txn ID", selector: (row) => row.razorpay_order_id },
-    { name: "EasePay", selector: (row) => row.easepay_id },
-    { name: "Student", selector: (row) => row.studentname },
-    { name: "Class", selector: (row) => row.class },
-    { name: "Adm No", selector: (row) => row.admission_number },
-    { name: "Adm Fee", selector: (row) => row.admission_fee },
-    { name: "Annual", selector: (row) => row.annual_fee },
-    { name: "Tuition", selector: (row) => row.tuition_fee },
-    { name: "Transport", selector: (row) => row.transport_fee },
-    { name: "Amount", selector: (row) => row.amount },
-    { name: "Last Date", selector: (row) => row.lastdate },
-    { name: "Period", selector: (row) => row.period },
+    {
+      name: "ID",
+      selector: (row) => row.feeid,
+      sortable: true,
+      width: "70px",
+    },
+    {
+      name: "Txn ID",
+      selector: (row) => row.razorpay_order_id,
+      width: "150px",
+    },
+    {
+      name: "EasePay",
+      selector: (row) => row.easepay_id,
+      width: "120px",
+    },
+    {
+      name: "Student",
+      selector: (row) => row.studentname,
+      sortable: true,
+      width: "170px",
+    },
+    {
+      name: "Class",
+      selector: (row) => row.class,
+      width: "100px",
+    },
+    {
+      name: "Adm No",
+      selector: (row) => row.admission_number,
+      width: "110px",
+    },
+    {
+      name: "Adm Fee",
+      selector: (row) => row.admission_fee,
+      width: "100px",
+    },
+    {
+      name: "Annual",
+      selector: (row) => row.annual_fee,
+      width: "90px",
+    },
+    {
+      name: "Tuition",
+      selector: (row) => row.tuition_fee,
+      width: "90px",
+    },
+    {
+      name: "Transport",
+      selector: (row) => row.transport_fee,
+      width: "100px",
+    },
+    {
+      name: "Amount",
+      selector: (row) => row.amount,
+      sortable: true,
+      width: "100px",
+    },
+    {
+      name: "Last Date",
+      selector: (row) => row.lastdate,
+      width: "120px",
+    },
+    {
+      name: "Period",
+      selector: (row) => row.period,
+      width: "110px",
+    },
     {
       name: "Status",
-      cell: (row) => (row.status ? "Paid" : "Pending"),
+      cell: (row) => (
+        <span
+          className={
+            row.status
+              ? "kk-view-payment-status kk-view-payment-status-paid"
+              : "kk-view-payment-status kk-view-payment-status-pending"
+          }
+        >
+          {row.status ? "Paid" : "Pending"}
+        </span>
+      ),
+      width: "110px",
     },
-    { name: "Mode", selector: (row) => row.payment_mode },
+    {
+      name: "Mode",
+      selector: (row) => row.payment_mode,
+      width: "110px",
+    },
     {
       name: "Late Fee",
-      cell: (row) => calculateLateFee(row),
+      cell: (row) => (
+        <span className="kk-view-payment-late-fee">
+          ₹{calculateLateFee(row)}
+        </span>
+      ),
+      width: "100px",
     },
-    { name: "Paid", selector: (row) => row.amount_paid },
-    { name: "Paid On", selector: (row) => row.paidondate },
-    { name: "Session", selector: (row) => row.session },
-    { name: "Remarks", selector: (row) => row.remarks },
-
+    {
+      name: "Paid",
+      selector: (row) => row.amount_paid,
+      width: "100px",
+    },
+    {
+      name: "Paid On",
+      selector: (row) => row.paidondate,
+      width: "120px",
+    },
+    {
+      name: "Session",
+      selector: (row) => row.session,
+      width: "110px",
+    },
+    {
+      name: "Remarks",
+      selector: (row) => row.remarks,
+      width: "150px",
+    },
     {
       name: "Actions",
       cell: (row) => (
-        <div style={{ display: "flex", gap: "8px" }}>
+        <div className="kk-view-payment-actions">
           {row.status == 1 || row.status === true ? (
             <>
-              {/* ✅ PAID */}
-              <button onClick={() => handleReceipt(row.feeid)}>🧾</button>
-              <button onClick={() => handleEditPaid(row.feeid)}>✏️</button>
+              <button
+                className="kk-view-payment-action-btn kk-view-payment-receipt-btn"
+                title="View Receipt"
+                onClick={() => handleReceipt(row.feeid)}
+              >
+                🧾
+              </button>
+
+              <button
+                className="kk-view-payment-action-btn kk-view-payment-edit-btn"
+                title="Edit Paid Fee"
+                onClick={() => handleEditPaid(row.feeid)}
+              >
+                ✏️
+              </button>
             </>
           ) : (
             <>
-              {/* ✅ PENDING */}
               <button
+                className="kk-view-payment-action-btn kk-view-payment-pay-btn"
+                title="Accept Payment"
                 onClick={() =>
                   navigate(
                     `/dashboard/FeeComponent/AcceptPayment/${row.feeid}`,
@@ -213,7 +327,10 @@ export default function AdminViewPayment() {
               >
                 💰
               </button>
+
               <button
+                className="kk-view-payment-action-btn kk-view-payment-edit-btn"
+                title="Edit Student Fee"
                 onClick={() =>
                   navigate(
                     `/dashboard/FeeComponent/EditStudentFee/${row.feeid}`,
@@ -226,71 +343,194 @@ export default function AdminViewPayment() {
           )}
         </div>
       ),
+      width: "130px",
+      center: true,
     },
   ];
 
   return (
-    <div className="container">
-      {/* FILTER */}
-      <div className="filter-bar">
-        <label className="filter-toggle">
-          Enable Filter
-          <input
-            type="checkbox"
-            checked={filters.enabled}
-            onChange={(e) =>
-              setFilters({ ...filters, enabled: e.target.checked })
-            }
-          />
-        </label>
+    <div className="kk-view-payment-page">
 
-        <select
-          onChange={(e) => setFilters({ ...filters, year: e.target.value })}
-        >
-          <option>{new Date().getFullYear()}</option>
-          <option>{new Date().getFullYear() - 1}</option>
-        </select>
+      {/* ================= HEADER ================= */}
+      <div className="kk-view-payment-header">
+        <div>
+          <h1>View Payments</h1>
+          <p>Manage and monitor student fee payments</p>
+        </div>
 
-        {/* ✅ UPDATED MONTH DROPDOWN */}
-        <select
-          value={filters.month}
-          onChange={(e) => setFilters({ ...filters, month: e.target.value })}
-        >
-          <option value="">Select Month</option>
-          {months.map((m) => (
-            <option key={m.value} value={m.value}>
-              {m.label}
-            </option>
-          ))}
-        </select>
-
-        {/* CLASS */}
-        <select
-          value={filters.class}
-          onChange={(e) => setFilters({ ...filters, class: e.target.value })}
-        >
-          <option value="">Select Class</option>
-          {classes.map((c, i) => (
-            <option key={i} value={c.Classname}>
-              {c.Classname}
-            </option>
-          ))}
-        </select>
+        <div className="kk-view-payment-header-right">
+          <div className="kk-view-payment-count">
+            <span>Total Payments</span>
+            <strong>{payments.length}</strong>
+          </div>
+        </div>
       </div>
 
-      <button onClick={exportCSV}>Export CSV</button>
+      {/* ================= FILTER CARD ================= */}
+      <div className="kk-view-payment-card">
 
-      <DataTable
-        columns={columns}
-        data={payments}
-        progressPending={loading}
-        pagination
-        highlightOnHover
-        striped
-        dense
-        fixedHeader
-        fixedHeaderScrollHeight="500px"
-      />
+        <div className="kk-view-payment-card-header">
+          <div className="kk-view-payment-card-title">
+            <div className="kk-view-payment-card-icon">
+              <i class="bi bi-search"></i>
+            </div>
+
+            <div>
+              <h2>Payment Filters</h2>
+              <p>Filter payment records by year, month or class</p>
+            </div>
+          </div>
+
+          {/* FILTER SWITCH */}
+          <label className="kk-view-payment-switch-wrapper">
+            <span>Enable Filter</span>
+
+            <input
+              type="checkbox"
+              checked={filters.enabled}
+              onChange={(e) =>
+                setFilters({
+                  ...filters,
+                  enabled: e.target.checked,
+                })
+              }
+            />
+
+            <span className="kk-view-payment-switch"></span>
+          </label>
+        </div>
+
+        <div
+          className={`kk-view-payment-filter-content ${
+            filters.enabled
+              ? "kk-view-payment-filter-active"
+              : "kk-view-payment-filter-disabled"
+          }`}
+        >
+          {/* YEAR */}
+          <div className="kk-view-payment-form-group">
+            <label>Year</label>
+
+            <select
+              value={filters.year}
+              disabled={!filters.enabled}
+              onChange={(e) =>
+                setFilters({
+                  ...filters,
+                  year: e.target.value,
+                })
+              }
+            >
+              <option value={new Date().getFullYear()}>
+                {new Date().getFullYear()}
+              </option>
+
+              <option value={new Date().getFullYear() - 1}>
+                {new Date().getFullYear() - 1}
+              </option>
+            </select>
+          </div>
+
+          {/* MONTH */}
+          <div className="kk-view-payment-form-group">
+            <label>Month</label>
+
+            <select
+              value={filters.month}
+              disabled={!filters.enabled}
+              onChange={(e) =>
+                setFilters({
+                  ...filters,
+                  month: e.target.value,
+                })
+              }
+            >
+              <option value="">Select Month</option>
+
+              {months.map((m) => (
+                <option key={m.value} value={m.value}>
+                  {m.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* CLASS */}
+          <div className="kk-view-payment-form-group">
+            <label>Class</label>
+
+            <select
+              value={filters.class}
+              disabled={!filters.enabled}
+              onChange={(e) =>
+                setFilters({
+                  ...filters,
+                  class: e.target.value,
+                })
+              }
+            >
+              <option value="">Select Class</option>
+
+              {classes.map((c, i) => (
+                <option key={i} value={c.Classname}>
+                  {c.Classname}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </div>
+
+      {/* ================= TABLE CARD ================= */}
+      <div className="kk-view-payment-table-card">
+
+        <div className="kk-view-payment-table-header">
+          <div>
+            <h2>Payment Records</h2>
+            <p>
+              {payments.length} payment
+              {payments.length !== 1 ? "s" : ""} found
+            </p>
+          </div>
+
+          <button
+            className="kk-view-payment-export-btn"
+            onClick={exportCSV}
+          >
+            <span>↓</span>
+            Export CSV
+          </button>
+        </div>
+
+        <div className="kk-view-payment-table-wrapper">
+          <DataTable
+            columns={columns}
+            data={payments}
+            progressPending={loading}
+            pagination
+            highlightOnHover
+            striped
+            dense
+            fixedHeader
+            fixedHeaderScrollHeight="500px"
+            responsive
+            noDataComponent={
+              <div className="kk-view-payment-empty">
+                <div className="kk-view-payment-empty-icon">
+                  📋
+                </div>
+
+                <h3>No Payment Records</h3>
+
+                <p>
+                  There are no payment records available for the
+                  selected filters.
+                </p>
+              </div>
+            }
+          />
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Bar, Pie } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -10,7 +10,7 @@ import {
   BarElement,
   ArcElement,
   Tooltip,
-  Legend
+  Legend,
 } from "chart.js";
 
 import "./FeeStatistics.css";
@@ -27,38 +27,35 @@ ChartJS.register(
 const API = "http://localhost/kkblossom/api.php/Adminapi/FeeStatistics/";
 
 export default function FeeStatistics() {
-
   const navigate = useNavigate();
 
   const [periods, setPeriods] = useState([]);
 
   const [chartData, setChartData] = useState({
     labels: [],
-    datasets: []
+    datasets: [],
   });
 
   const [selectedPeriod, setSelectedPeriod] = useState("");
   const [date, setDate] = useState("");
 
-  // ✅ LOAD PERIODS
+  // LOAD PERIODS
   useEffect(() => {
-
-    axios.get(API + "getPeriods")
-      .then(res => {
+    axios
+      .get(API + "getPeriods")
+      .then((res) => {
         setPeriods(res.data || []);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
-
   }, []);
 
-  // ✅ LOAD LAST 7 DAYS CHART
+  // LOAD LAST 7 DAYS CHART
   useEffect(() => {
-
-    axios.get(API + "getStatistics")
-      .then(res => {
-
+    axios
+      .get(API + "getStatistics")
+      .then((res) => {
         const labels = Object.keys(res.data || {});
         const values = Object.values(res.data || {});
 
@@ -69,40 +66,40 @@ export default function FeeStatistics() {
               label: "Fee Collection",
               data: values,
               backgroundColor: [
-                "green",
-                "blue",
-                "orange",
-                "#282A35",
-                "#059862",
-                "#2C56BB",
-                "#FFAE10"
+                "#6c4ce8",
+                "#8065e8",
+                "#927be9",
+                "#a38feb",
+                "#7355d8",
+                "#5b3ed0",
+                "#b09bed",
               ],
-              borderRadius: 5
-            }
-          ]
+              borderRadius: 6,
+              borderSkipped: false,
+              barThickness: 34,
+            },
+          ],
         });
-
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
-
   }, []);
 
-  // ✅ PERIOD GO BUTTON
+  // PERIOD GO BUTTON
   const handlePeriodGo = () => {
-
     if (!selectedPeriod) {
       alert("Please Select Period");
       return;
     }
 
-    navigate(`/dashboard/FeeComponent/DisplayStatistics/${selectedPeriod}`);
+    navigate(
+      `/dashboard/FeeComponent/DisplayStatistics/${selectedPeriod}`
+    );
   };
 
-  // ✅ DATE GO BUTTON
+  // DATE GO BUTTON
   const handleDateGo = () => {
-
     if (!date) {
       alert("Please Select Date");
       return;
@@ -112,97 +109,283 @@ export default function FeeStatistics() {
   };
 
   return (
-    <div className="statistics-container">
+    <div className="kk-fee-statistics-page">
 
-      {/* PERIOD FILTER */}
-      <div className="filter-bar">
+      {/* =====================================================
+          PAGE HEADER
+      ===================================================== */}
 
-        <div className="filter-card">
+      <div className="kk-fee-statistics-header">
 
-          <p className="heading">Period</p>
+        <div className="kk-fee-statistics-header-content">
 
-          <select
-            className="form-select"
-            value={selectedPeriod}
-            onChange={(e) => setSelectedPeriod(e.target.value)}
-          >
+          <div className="kk-fee-statistics-title-icon">
+            <i class="bi bi-bar-chart-line"></i>
+          </div>
 
-            <option value="">Select Period</option>
+          <div>
+            <h1>Fee Statistics</h1>
 
-            {periods.map((p, index) => (
-              <option key={index} value={p.period}>
-                {p.period}
-              </option>
-            ))}
-
-          </select>
-
-          <button
-            className="form-submit"
-            onClick={handlePeriodGo}
-          >
-            Go
-          </button>
+            <p>
+              Monitor fee collections and view payment statistics
+            </p>
+          </div>
 
         </div>
 
       </div>
 
-      {/* DATE FILTER */}
-      <div className="filter-bar">
 
-        <div className="filter-card">
+      {/* =====================================================
+          FILTER SECTION
+      ===================================================== */}
 
-          <p className="heading">Date</p>
+      <div className="kk-fee-statistics-filter-grid">
 
-          <input
-            type="date"
-            className="form-input"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
+        {/* PERIOD FILTER */}
 
-          <button
-            className="form-submit"
-            onClick={handleDateGo}
-          >
-            Go
-          </button>
+        <div className="kk-fee-statistics-filter-card">
+
+          <div className="kk-fee-statistics-filter-icon">
+            📅
+          </div>
+
+          <div className="kk-fee-statistics-filter-content">
+
+            <div className="kk-fee-statistics-filter-title">
+              <h3>Payment Period</h3>
+
+              <span>
+                Period
+              </span>
+            </div>
+
+            <p>
+              Select an academic payment period to view detailed
+              statistics.
+            </p>
+
+            <div className="kk-fee-statistics-control-row">
+
+              <select
+                className="kk-fee-statistics-select"
+                value={selectedPeriod}
+                onChange={(e) =>
+                  setSelectedPeriod(e.target.value)
+                }
+              >
+                <option value="">
+                  Select Period
+                </option>
+
+                {periods.map((p, index) => (
+                  <option
+                    key={index}
+                    value={p.period}
+                  >
+                    {p.period}
+                  </option>
+                ))}
+              </select>
+
+              <button
+                className="kk-fee-statistics-go-btn"
+                onClick={handlePeriodGo}
+              >
+                Go
+                <span>→</span>
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        {/* DATE FILTER */}
+
+        <div className="kk-fee-statistics-filter-card">
+
+          <div className="kk-fee-statistics-filter-icon kk-fee-statistics-date-icon">
+            🗓️
+          </div>
+
+          <div className="kk-fee-statistics-filter-content">
+
+            <div className="kk-fee-statistics-filter-title">
+              <h3>Payment Date</h3>
+
+              <span>
+                Date
+              </span>
+            </div>
+
+            <p>
+              Select a specific date to view paid payment records.
+            </p>
+
+            <div className="kk-fee-statistics-control-row">
+
+              <input
+                type="date"
+                className="kk-fee-statistics-date-input"
+                value={date}
+                onChange={(e) =>
+                  setDate(e.target.value)
+                }
+              />
+
+              <button
+                className="kk-fee-statistics-go-btn"
+                onClick={handleDateGo}
+              >
+                Go
+                <span>→</span>
+              </button>
+
+            </div>
+
+          </div>
 
         </div>
 
       </div>
 
-      {/* BAR CHART */}
-      <div className="chart-card">
 
-        {chartData.datasets.length > 0 && (
+      {/* =====================================================
+          CHART CARD
+      ===================================================== */}
 
-          <Bar
-            data={chartData}
-            options={{
-              responsive: true,
+      <div className="kk-fee-statistics-chart-card">
 
-              plugins: {
-                legend: {
-                  display: false
+        <div className="kk-fee-statistics-chart-header">
+
+          <div>
+
+            <div className="kk-fee-statistics-chart-title-row">
+
+              <div className="kk-fee-statistics-chart-icon">
+                📈
+              </div>
+
+              <div>
+                <h2>
+                  Fee Collection
+                </h2>
+
+                <p>
+                  Collection summary for the last 7 days
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div className="kk-fee-statistics-chart-badge">
+            Last 7 Days
+          </div>
+
+        </div>
+
+
+        <div className="kk-fee-statistics-chart-wrapper">
+
+          {chartData.datasets.length > 0 ? (
+
+            <Bar
+              data={chartData}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+
+                plugins: {
+                  legend: {
+                    display: false,
+                  },
+
+                  tooltip: {
+                    backgroundColor: "#3f2c78",
+                    titleColor: "#ffffff",
+                    bodyColor: "#ffffff",
+                    padding: 12,
+                    cornerRadius: 8,
+
+                    callbacks: {
+                      label: function (context) {
+                        return ` Fee Collection: ₹${context.raw}`;
+                      },
+                    },
+                  },
+
+                  title: {
+                    display: false,
+                  },
                 },
 
-                title: {
-                  display: true,
-                  text: "Last 7 days Fee Collection"
-                }
-              },
+                scales: {
+                  x: {
+                    grid: {
+                      display: false,
+                    },
 
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }}
-          />
+                    ticks: {
+                      color: "#8069b5",
+                      font: {
+                        size: 11,
+                        weight: "500",
+                      },
+                    },
+                  },
 
-        )}
+                  y: {
+                    beginAtZero: true,
+
+                    grid: {
+                      color: "#eeeafb",
+                    },
+
+                    border: {
+                      display: false,
+                    },
+
+                    ticks: {
+                      color: "#8069b5",
+                      font: {
+                        size: 10,
+                      },
+
+                      callback: function (value) {
+                        return "₹" + value;
+                      },
+                    },
+                  },
+                },
+              }}
+            />
+
+          ) : (
+
+            <div className="kk-fee-statistics-chart-empty">
+
+              <div className="kk-fee-statistics-empty-icon">
+                📊
+              </div>
+
+              <h3>
+                No Statistics Available
+              </h3>
+
+              <p>
+                Fee collection data will appear here once available.
+              </p>
+
+            </div>
+
+          )}
+
+        </div>
 
       </div>
 

@@ -1,18 +1,23 @@
 /* =========================================================
-   SESSION SELECT PAGE
-   Unique Prefix: kk-session-select-
+   SELECT PENDING PAYMENTS PERIOD
+   Unique Prefix: kk-pending-period-
    ========================================================= */
 
-.kk-session-select-page {
+.kk-pending-period-page {
   position: relative;
   width: 100%;
   min-height: calc(100vh - 70px);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: 40px 20px;
+
   overflow: hidden;
+
   background: #f5f6fa;
+
   font-family: "Inter", sans-serif;
 }
 
@@ -21,25 +26,31 @@
    BACKGROUND DECORATION
    ========================================================= */
 
-.kk-session-select-decoration {
+.kk-pending-period-decoration {
   position: absolute;
+
   border-radius: 50%;
+
   pointer-events: none;
 }
 
-.kk-session-select-decoration-one {
+.kk-pending-period-decoration-one {
   width: 350px;
   height: 350px;
+
   top: -150px;
   right: -100px;
+
   background: rgba(108, 76, 232, 0.06);
 }
 
-.kk-session-select-decoration-two {
+.kk-pending-period-decoration-two {
   width: 280px;
   height: 280px;
+
   bottom: -130px;
   left: -100px;
+
   background: rgba(108, 76, 232, 0.05);
 }
 
@@ -48,15 +59,21 @@
    MAIN CARD
    ========================================================= */
 
-.kk-session-select-card {
+.kk-pending-period-card {
   position: relative;
   z-index: 2;
+
   width: 100%;
   max-width: 500px;
+
   padding: 38px 40px;
+
   background: #ffffff;
+
   border: 1px solid #e6e7ed;
+
   border-radius: 16px;
+
   box-shadow:
     0 12px 35px rgba(31, 35, 55, 0.08),
     0 2px 8px rgba(31, 35, 55, 0.03);
@@ -67,16 +84,22 @@
    ICON
    ========================================================= */
 
-.kk-session-select-icon {
+.kk-pending-period-icon {
   width: 62px;
   height: 62px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   margin: 0 auto 20px;
+
   border-radius: 15px;
-  background: #f3f2f7;
+
+  background: #f0ebff;
+
   border: 1px solid #e3dbff;
+
   font-size: 28px;
   color: #5b3ed0;
 }
@@ -86,24 +109,33 @@
    HEADER
    ========================================================= */
 
-.kk-session-select-header {
+.kk-pending-period-header {
   text-align: center;
+
   margin-bottom: 30px;
 }
 
-.kk-session-select-header h1 {
+.kk-pending-period-header h1 {
   margin: 0;
+
   color: #5b3ed0;
+
   font-size: 26px;
+
   font-weight: 700;
+
   letter-spacing: -0.3px;
 }
 
-.kk-session-select-header p {
-  max-width: 350px;
+.kk-pending-period-header p {
+  max-width: 360px;
+
   margin: 9px auto 0;
+
   color: #858a98;
+
   font-size: 13px;
+
   line-height: 1.6;
 }
 
@@ -112,15 +144,19 @@
    FORM
    ========================================================= */
 
-.kk-session-select-form {
+.kk-pending-period-form {
   width: 100%;
 }
 
-.kk-session-select-form label {
+.kk-pending-period-form label {
   display: block;
+
   margin-bottom: 8px;
+
   color: #4e5361;
+
   font-size: 12px;
+
   font-weight: 650;
 }
 
@@ -129,87 +165,123 @@
    SELECT WRAPPER
    ========================================================= */
 
-.kk-session-select-input-wrapper {
+.kk-pending-period-input-wrapper {
   position: relative;
+
   width: 100%;
   height: 48px;
 }
 
-.kk-session-select-input-icon {
+.kk-pending-period-input-icon {
   position: absolute;
+
   z-index: 2;
+
   top: 50%;
   left: 14px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   transform: translateY(-50%);
+
   font-size: 16px;
+
   pointer-events: none;
 }
 
-.kk-session-select-input-wrapper select {
+.kk-pending-period-input-wrapper select {
   width: 100%;
   height: 48px;
+
   padding: 0 42px 0 45px;
+
   appearance: none;
+
   border: 1px solid #dfe1e8;
+
   border-radius: 8px;
+
   outline: none;
+
   background: #ffffff;
+
   color: #343844;
+
   font-family: inherit;
+
   font-size: 14px;
+
   font-weight: 500;
+
   cursor: pointer;
+
   transition: all 0.2s ease;
 }
 
-.kk-session-select-input-wrapper select:hover {
+.kk-pending-period-input-wrapper select:hover {
   border-color: #bdb4e9;
 }
 
-.kk-session-select-input-wrapper select:focus {
+.kk-pending-period-input-wrapper select:focus {
   border-color: #6c4ce8;
-  box-shadow: 0 0 0 3px rgba(108, 76, 232, 0.09);
+
+  box-shadow:
+    0 0 0 3px rgba(108, 76, 232, 0.09);
 }
 
-.kk-session-select-arrow {
+.kk-pending-period-arrow {
   position: absolute;
+
   z-index: 2;
+
   top: 50%;
   right: 15px;
+
   transform: translateY(-50%);
+
   color: #777c89;
+
   font-size: 9px;
+
   pointer-events: none;
 }
 
 
 /* =========================================================
-   SELECTED SESSION
+   SELECTED PERIOD
    ========================================================= */
 
-.kk-session-select-selected {
+.kk-pending-period-selected {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   margin-top: 14px;
+
   padding: 11px 13px;
+
   border: 1px solid #e7e2fa;
+
   border-radius: 7px;
+
   background: #faf9ff;
 }
 
-.kk-session-select-selected span {
+.kk-pending-period-selected span {
   color: #858a98;
+
   font-size: 11px;
+
   font-weight: 500;
 }
 
-.kk-session-select-selected strong {
+.kk-pending-period-selected strong {
   color: #6c4ce8;
+
   font-size: 13px;
+
   font-weight: 700;
 }
 
@@ -218,50 +290,73 @@
    BUTTON
    ========================================================= */
 
-.kk-session-select-button {
+.kk-pending-period-button {
   width: 100%;
   height: 48px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   margin-top: 20px;
+
   padding: 0 17px 0 20px;
+
   border: none;
+
   border-radius: 8px;
+
   background: #6c4ce8;
+
   color: #ffffff;
+
   font-family: inherit;
+
   font-size: 13px;
+
   font-weight: 650;
+
   cursor: pointer;
-  box-shadow: 0 5px 12px rgba(108, 76, 232, 0.18);
+
+  box-shadow:
+    0 5px 12px rgba(108, 76, 232, 0.18);
+
   transition: all 0.2s ease;
 }
 
-.kk-session-select-button:hover:not(:disabled) {
+.kk-pending-period-button:hover:not(:disabled) {
   background: #5b3ed0;
+
   transform: translateY(-1px);
-  box-shadow: 0 7px 16px rgba(108, 76, 232, 0.22);
+
+  box-shadow:
+    0 7px 16px rgba(108, 76, 232, 0.22);
 }
 
-.kk-session-select-button:active:not(:disabled) {
+.kk-pending-period-button:active:not(:disabled) {
   transform: translateY(0);
 }
 
-.kk-session-select-button:disabled {
+.kk-pending-period-button:disabled {
   opacity: 0.55;
+
   cursor: not-allowed;
+
   box-shadow: none;
 }
 
-.kk-session-select-button-arrow {
+.kk-pending-period-button-arrow {
   width: 28px;
   height: 28px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   border-radius: 6px;
+
   background: rgba(255, 255, 255, 0.14);
+
   font-size: 17px;
 }
 
@@ -270,22 +365,32 @@
    FOOTER
    ========================================================= */
 
-.kk-session-select-footer {
+.kk-pending-period-footer {
   display: flex;
   align-items: center;
   justify-content: center;
+
   gap: 7px;
+
   margin-top: 22px;
+
   color: #999eaa;
+
   font-size: 10px;
+
+  line-height: 1.5;
+
   text-align: center;
 }
 
-.kk-session-select-footer-dot {
+.kk-pending-period-footer-dot {
   width: 6px;
   height: 6px;
+
   flex-shrink: 0;
+
   border-radius: 50%;
+
   background: #6c4ce8;
 }
 
@@ -295,47 +400,51 @@
    ========================================================= */
 
 @media (max-width: 600px) {
-  .kk-session-select-page {
+  .kk-pending-period-page {
     min-height: calc(100vh - 60px);
+
     padding: 25px 15px;
   }
 
-  .kk-session-select-card {
+  .kk-pending-period-card {
     padding: 30px 24px;
+
     border-radius: 13px;
   }
 
-  .kk-session-select-icon {
+  .kk-pending-period-icon {
     width: 55px;
     height: 55px;
+
     margin-bottom: 17px;
+
     font-size: 24px;
   }
 
-  .kk-session-select-header {
+  .kk-pending-period-header {
     margin-bottom: 25px;
   }
 
-  .kk-session-select-header h1 {
+  .kk-pending-period-header h1 {
     font-size: 23px;
   }
 
-  .kk-session-select-header p {
+  .kk-pending-period-header p {
     font-size: 12px;
   }
 }
 
 
 @media (max-width: 400px) {
-  .kk-session-select-card {
+  .kk-pending-period-card {
     padding: 26px 18px;
   }
 
-  .kk-session-select-header h1 {
+  .kk-pending-period-header h1 {
     font-size: 21px;
   }
 
-  .kk-session-select-footer {
+  .kk-pending-period-footer {
     font-size: 9px;
   }
 }

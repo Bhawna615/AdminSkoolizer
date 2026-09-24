@@ -1,106 +1,538 @@
-.container {
-  padding: 20px;
-  font-family: 'Segoe UI', sans-serif;
+/* =========================================================
+   KK CREATE PAYMENT PAGE
+========================================================= */
+
+.kk-create-payment-page {
+  min-height: 100vh;
+  padding: 28px;
+  background: #f5f6fa;
+  font-family: "Inter", sans-serif;
+  color: #5d40d0;
 }
 
-/* FORM CONTAINER */
-.payment-form {
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.kk-create-payment-header {
   display: flex;
-  gap: 25px;
-  margin: 25px 0;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.kk-create-payment-header h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+ color: #5d40d0;
+}
+
+.kk-create-payment-header p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: #7a8191;
+}
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.kk-create-payment-card {
+  background: #ffffff;
+  border: 1px solid #e5e8ef;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(23, 30, 46, 0.05);
+  overflow: hidden;
+}
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.kk-create-payment-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 22px 24px;
+  border-bottom: 1px solid #edf0f4;
+}
+
+.kk-create-payment-card-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  background: #f0ecff;
+  color: #6c4ce8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.kk-create-payment-card-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 650;
+ color: #6e52e1;
+}
+
+.kk-create-payment-card-header p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  color: #7b8392;
+}
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.kk-create-payment-section-title {
+  margin-bottom: 15px;
+}
+
+.kk-create-payment-section-title h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 650;
+  color: #836dda;
+}
+
+.kk-create-payment-section-title span {
+  display: block;
+  margin-top: 4px;
+  color: #858c9b;
+  font-size: 12px;
+}
+
+/* =========================================================
+   FILTER SECTION
+========================================================= */
+
+.kk-create-payment-filter-section {
+  padding: 20px 24px;
+  background: #fafbfc;
+  border-bottom: 1px solid #edf0f4;
+}
+
+.kk-create-payment-filter-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
-/* FORM GROUP */
-.form-group {
+.kk-create-payment-filter-group {
   display: flex;
   flex-direction: column;
-  width: 280px;
+  gap: 7px;
+  min-width: 240px;
 }
 
-/* LABEL */
-.form-group label {
-  font-size: 14px;
+.kk-create-payment-filter-group label {
+  font-size: 13px;
   font-weight: 600;
-  color: #444;
-  margin-bottom: 6px;
+  color: #4d5565;
 }
 
-/* INPUT DESIGN */
-.form-group input,
-.form-group select {
-  padding: 12px 14px;
-  font-size: 14px;
-  border: 1px solid #dcdcdc;
-  border-radius: 10px;
+.kk-create-payment-filter-group select {
+  height: 42px;
+  padding: 0 13px;
+  border: 1px solid #dfe3ea;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #343b4b;
+  font-size: 13px;
   outline: none;
-  transition: all 0.3s ease;
-  background: #f9fafc;
+  cursor: pointer;
 }
 
-/* FOCUS EFFECT */
-.form-group input:focus,
-.form-group select:focus {
-  border-color: #2C56BB;
-  box-shadow: 0 0 0 3px rgba(44, 86, 187, 0.15);
-  background: #fff;
+.kk-create-payment-filter-group select:focus {
+  border-color: #7657e8;
+  box-shadow: 0 0 0 3px rgba(118, 87, 232, 0.08);
 }
 
-/* DISABLED INPUT */
-.form-group input:disabled {
-  background: #eef1f7;
-  color: #888;
+.kk-create-payment-filter-group select:disabled {
+  background: #f1f2f4;
+  color: #969ca8;
   cursor: not-allowed;
 }
 
-/* BUTTON UPGRADE */
-.submit-btn {
-  margin-top: 25px;
-  background: linear-gradient(135deg, #2C56BB, #1e3f91);
-  color: white;
-  padding: 12px 28px;
-  font-size: 15px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s ease;
+/* =========================================================
+   FILTER SWITCH
+========================================================= */
+
+.kk-create-payment-switch-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 42px;
 }
 
-/* BUTTON HOVER */
-.submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(44, 86, 187, 0.3);
-}
-
-/* LOADER */
-.spinner-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background:#2C56BB;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-}
-
-.spinner {
-  border: 16px solid #f3f3f3;
-  border-top: 16px solid #fff;
-  border-radius: 50%;
-  width: 70px;
-  height: 70px;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  100% { transform: rotate(360deg); }
-}
-
-.error {
-  color: red;
+.kk-create-payment-switch-label {
   font-size: 13px;
-  margin-top: 5px;
+  font-weight: 600;
+  color: #4d5565;
+}
+
+.kk-create-payment-switch {
+  position: relative;
+  width: 42px;
+  height: 23px;
+}
+
+.kk-create-payment-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.kk-create-payment-slider {
+  position: absolute;
+  inset: 0;
+  background: #cfd4dd;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.kk-create-payment-slider::before {
+  content: "";
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  left: 3px;
+  top: 3px;
+  background: #ffffff;
+  border-radius: 50%;
+  transition: 0.2s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.kk-create-payment-switch input:checked + .kk-create-payment-slider {
+  background: #6c4ce8;
+}
+
+.kk-create-payment-switch input:checked + .kk-create-payment-slider::before {
+  transform: translateX(19px);
+}
+
+/* =========================================================
+   PAYMENT DETAILS
+========================================================= */
+
+.kk-create-payment-details-section {
+  padding: 24px;
+  border-bottom: 1px solid #edf0f4;
+}
+
+/* =========================================================
+   PAYMENT FORM
+   PAYMENT PERIOD + SESSION + LAST DATE
+========================================================= */
+
+.kk-create-payment-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+.kk-create-payment-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.kk-create-payment-form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4d5565;
+}
+
+.kk-create-payment-form-group input,
+.kk-create-payment-form-group select {
+  width: 100%;
+  height: 42px;
+  padding: 0 13px;
+  border: 1px solid #dfe3ea;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #303746;
+  font-size: 13px;
+  outline: none;
+  box-sizing: border-box;
+  transition: 0.2s;
+}
+
+.kk-create-payment-form-group input:focus,
+.kk-create-payment-form-group select:focus {
+  border-color: #7657e8;
+  box-shadow: 0 0 0 3px rgba(118, 87, 232, 0.08);
+}
+
+.kk-create-payment-form-group input:disabled {
+  background: #f4f5f7;
+  color: #7d8491;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   PAYMENT PERIOD DROPDOWN
+========================================================= */
+
+.kk-create-payment-period-select {
+  cursor: pointer;
+}
+
+.kk-create-payment-period-select option {
+  color: #303746;
+}
+
+/* =========================================================
+   REQUIRED + ERROR
+========================================================= */
+
+.kk-create-payment-required {
+  color: #e05252;
+  margin-left: 3px;
+}
+
+.kk-create-payment-error {
+  margin-top: 2px;
+  font-size: 12px;
+  color: #df4545;
+}
+
+.kk-create-payment-student-error {
+  margin: 0 18px 14px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: #fff1f1;
+  color: #df4545;
+  font-size: 12px;
+}
+
+/* =========================================================
+   STUDENT SECTION
+========================================================= */
+
+.kk-create-payment-student-section {
+  padding: 0;
+}
+
+.kk-create-payment-student-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 18px;
+}
+
+.kk-create-payment-student-title h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 650;
+  color: #252b3a;
+}
+
+.kk-create-payment-student-title p {
+  margin: 5px 0 0;
+  font-size: 12px;
+  color: #858c9b;
+}
+
+.kk-create-payment-student-count {
+  padding: 7px 12px;
+  border-radius: 6px;
+  background: #f0ecff;
+  color: #6647dc;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   DATATABLE
+========================================================= */
+
+.kk-create-payment-table-wrapper {
+  border: 1px solid #e5e8ee;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 18px;
+}
+
+.kk-create-payment-table-wrapper .rdt_TableHeadRow {
+  min-height: 48px;
+  background: #f7f8fa;
+  border-bottom: 1px solid #e4e7ec;
+}
+
+.kk-create-payment-table-wrapper .rdt_TableCol {
+  font-size: 12px;
+  font-weight: 650;
+  color: #505867;
+}
+
+.kk-create-payment-table-wrapper .rdt_TableCell {
+  font-size: 13px;
+  color: #3d4452;
+  border-bottom: 1px solid #f0f1f4;
+}
+
+.kk-create-payment-table-wrapper .rdt_TableRow {
+  min-height: 52px;
+}
+
+.kk-create-payment-table-wrapper .rdt_TableRow:hover {
+  background: #faf9ff;
+}
+
+/* =========================================================
+   CHECKBOX
+========================================================= */
+
+.kk-create-payment-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #6c4ce8;
+  cursor: pointer;
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.kk-create-payment-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 160px;
+  color: #747c8c;
+  font-size: 14px;
+}
+
+.kk-create-payment-loader {
+  width: 22px;
+  height: 22px;
+  border: 3px solid #e2def8;
+  border-top-color: #6c4ce8;
+  border-radius: 50%;
+  animation: kkCreatePaymentSpin 0.8s linear infinite;
+  margin-right: 10px;
+}
+
+@keyframes kkCreatePaymentSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   ACTION BAR
+========================================================= */
+
+.kk-create-payment-action-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 24px;
+  border-top: 1px solid #edf0f4;
+  background: #fafbfc;
+}
+
+.kk-create-payment-cancel-btn {
+  height: 42px;
+  padding: 0 20px;
+  border: 1px solid #d9dde5;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #555d6c;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.kk-create-payment-cancel-btn:hover {
+  background: #f4f5f7;
+}
+
+.kk-create-payment-submit-btn {
+  height: 42px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 7px;
+  background: #6c4ce8;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.kk-create-payment-submit-btn:hover {
+  background: #5d40d0;
+  transform: translateY(-1px);
+}
+
+.kk-create-payment-submit-btn:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+  .kk-create-payment-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .kk-create-payment-filter-row {
+    align-items: stretch;
+  }
+
+  .kk-create-payment-filter-group {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .kk-create-payment-page {
+    padding: 15px;
+  }
+
+  .kk-create-payment-header {
+    align-items: flex-start;
+  }
+
+  .kk-create-payment-header h1 {
+    font-size: 22px;
+  }
+
+  .kk-create-payment-card-header,
+  .kk-create-payment-filter-section,
+  .kk-create-payment-details-section {
+    padding: 18px;
+  }
+
+  .kk-create-payment-form {
+    grid-template-columns: 1fr;
+  }
+
+  .kk-create-payment-student-header {
+    align-items: flex-start;
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .kk-create-payment-action-bar {
+    padding: 16px 18px;
+    flex-direction: column-reverse;
+  }
+
+  .kk-create-payment-action-bar button {
+    width: 100%;
+  }
 }
