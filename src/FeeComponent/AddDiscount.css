@@ -1,9 +1,9 @@
 /* =========================================================
-   ADD FEE STRUCTURE
+   ADD DISCOUNT PAGE
    WHITE + PURPLE THEME
 ========================================================= */
 
-.add-fee-page {
+.add-discount-page {
   width: 100%;
   min-height: calc(100vh - 70px);
 
@@ -12,6 +12,7 @@
   background: #f7f7fb;
 
   font-family: "Inter", sans-serif;
+
   color: #25233a;
 }
 
@@ -19,7 +20,7 @@
    PAGE HEADER
 ========================================================= */
 
-.add-fee-header {
+.add-discount-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -27,7 +28,7 @@
   margin-bottom: 25px;
 }
 
-.add-fee-header h1 {
+.add-discount-header h1 {
   margin: 0;
 
   font-size: 28px;
@@ -36,10 +37,11 @@
   color: #24213a;
 }
 
-.add-fee-header p {
+.add-discount-header p {
   margin: 7px 0 0;
 
   font-size: 14px;
+
   color: #858398;
 }
 
@@ -47,18 +49,21 @@
    BACK BUTTON
 ========================================================= */
 
-.back-fee-btn {
+.back-discount-btn {
   height: 42px;
 
   padding: 0 17px;
 
   border: 1px solid #e1deeb;
+
   border-radius: 8px;
 
   background: #ffffff;
+
   color: #625e72;
 
   font-size: 13px;
+
   font-weight: 600;
 
   cursor: pointer;
@@ -66,9 +71,11 @@
   transition: all 0.2s ease;
 }
 
-.back-fee-btn:hover {
+.back-discount-btn:hover {
   border-color: #6c4ce8;
+
   color: #6c4ce8;
+
   background: #faf9ff;
 }
 
@@ -76,28 +83,31 @@
    MAIN CARD
 ========================================================= */
 
-.add-fee-card {
+.add-discount-card {
   width: 100%;
-  max-width: 1000px;
+  max-width: 900px;
 
   margin: 0 auto;
 
   background: #ffffff;
 
   border: 1px solid #ebeaf2;
+
   border-radius: 13px;
 
-  box-shadow: 0 3px 15px rgba(36, 33, 58, 0.04);
-
   overflow: hidden;
+
+  box-shadow:
+    0 3px 15px rgba(36, 33, 58, 0.04);
 }
 
 /* =========================================================
    CARD HEADER
 ========================================================= */
 
-.add-fee-card-header {
+.add-discount-card-header {
   display: flex;
+
   align-items: center;
 
   gap: 14px;
@@ -107,36 +117,41 @@
   border-bottom: 1px solid #eeeeF4;
 }
 
-.form-icon {
+.discount-form-icon {
   width: 45px;
   height: 45px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
   border-radius: 10px;
 
   background: #f0ebff;
+
   color: #6c4ce8;
 
-  font-size: 20px;
+  font-size: 21px;
+
   font-weight: 700;
 }
 
-.add-fee-card-header h2 {
+.add-discount-card-header h2 {
   margin: 0;
 
   font-size: 17px;
+
   font-weight: 650;
 
   color: #29263e;
 }
 
-.add-fee-card-header p {
+.add-discount-card-header p {
   margin: 5px 0 0;
 
   font-size: 12px;
+
   color: #9997a8;
 }
 
@@ -144,16 +159,17 @@
    FORM SECTION
 ========================================================= */
 
-.fee-form-section {
-  padding: 25px 28px;
+.discount-form-section {
+  padding: 26px 28px;
 
   border-bottom: 1px solid #f0eff4;
 }
 
-.fee-form-section h3 {
+.discount-form-section h3 {
   margin: 0 0 20px;
 
   font-size: 14px;
+
   font-weight: 650;
 
   color: #373349;
@@ -163,7 +179,7 @@
    FORM GRID
 ========================================================= */
 
-.fee-form-grid {
+.discount-form-grid {
   display: grid;
 
   grid-template-columns: repeat(2, 1fr);
@@ -171,44 +187,43 @@
   gap: 20px;
 }
 
-.full-width {
-  grid-column: 1 / -1;
-}
-
 /* =========================================================
    FORM GROUP
 ========================================================= */
 
-.fee-form-group {
+.discount-form-group {
   display: flex;
+
   flex-direction: column;
 
   gap: 8px;
 }
 
-.fee-form-group label {
+.discount-form-group label {
   font-size: 12px;
+
   font-weight: 600;
 
   color: #555166;
 }
 
-.fee-form-group label span {
+.discount-form-group label span {
   color: #d85d6d;
 }
 
 /* =========================================================
-   SELECT + INPUT
+   SELECT
 ========================================================= */
 
-.fee-form-group select,
-.fee-form-group input {
+.discount-form-group select {
   width: 100%;
+
   height: 44px;
 
   padding: 0 13px;
 
   border: 1px solid #dfdce7;
+
   border-radius: 8px;
 
   background: #ffffff;
@@ -216,41 +231,38 @@
   color: #383449;
 
   font-family: "Inter", sans-serif;
+
   font-size: 13px;
 
   outline: none;
 
+  cursor: pointer;
+
   transition: all 0.2s ease;
 }
 
-.fee-form-group select {
-  cursor: pointer;
-}
-
-.fee-form-group select:focus,
-.fee-form-group input:focus {
+.discount-form-group select:focus {
   border-color: #8064e9;
 
   box-shadow:
     0 0 0 3px rgba(108, 76, 232, 0.08);
 }
 
-.fee-form-group input::placeholder {
-  color: #aaa7b5;
-}
-
 /* =========================================================
    AMOUNT INPUT
 ========================================================= */
 
-.amount-input {
+.discount-amount-input {
   width: 100%;
+
   height: 44px;
 
   display: flex;
+
   align-items: center;
 
   border: 1px solid #dfdce7;
+
   border-radius: 8px;
 
   background: #ffffff;
@@ -260,18 +272,20 @@
   transition: all 0.2s ease;
 }
 
-.amount-input:focus-within {
+.discount-amount-input:focus-within {
   border-color: #8064e9;
 
   box-shadow:
     0 0 0 3px rgba(108, 76, 232, 0.08);
 }
 
-.amount-input > span {
+.discount-amount-input > span {
   width: 42px;
+
   height: 100%;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -282,32 +296,46 @@
   color: #6c4ce8;
 
   font-size: 14px;
+
   font-weight: 600;
 }
 
-.amount-input input {
+.discount-amount-input input {
   flex: 1;
 
   height: 100%;
 
-  border: none !important;
-  border-radius: 0 !important;
-
-  box-shadow: none !important;
-
   padding: 0 12px;
+
+  border: none !important;
+
+  outline: none;
+
+  background: transparent;
+
+  color: #383449;
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 13px;
+}
+
+.discount-amount-input input::placeholder {
+  color: #aaa7b5;
 }
 
 /* Remove number arrows */
 
-.amount-input input::-webkit-outer-spin-button,
-.amount-input input::-webkit-inner-spin-button {
+.discount-amount-input input::-webkit-outer-spin-button,
+.discount-amount-input input::-webkit-inner-spin-button {
   -webkit-appearance: none;
+
   margin: 0;
 }
 
-.amount-input input[type="number"] {
+.discount-amount-input input[type="number"] {
   appearance: textfield;
+
   -moz-appearance: textfield;
 }
 
@@ -315,12 +343,13 @@
    INFORMATION BOX
 ========================================================= */
 
-.fee-info-box {
+.discount-info-box {
   margin: 24px 28px 0;
 
   padding: 14px 16px;
 
   display: flex;
+
   align-items: flex-start;
 
   gap: 12px;
@@ -328,39 +357,45 @@
   border-radius: 9px;
 
   background: #f7f4ff;
+
   border: 1px solid #e9e2ff;
 }
 
-.info-icon {
+.discount-info-icon {
   width: 22px;
   height: 22px;
 
   flex-shrink: 0;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
   border-radius: 50%;
 
   background: #6c4ce8;
+
   color: #ffffff;
 
   font-size: 12px;
+
   font-weight: 700;
 }
 
-.fee-info-box strong {
+.discount-info-box strong {
   display: block;
 
   font-size: 12px;
+
   color: #50456f;
 }
 
-.fee-info-box p {
+.discount-info-box p {
   margin: 4px 0 0;
 
   font-size: 11px;
+
   line-height: 1.5;
 
   color: #8b839e;
@@ -370,9 +405,11 @@
    FORM ACTIONS
 ========================================================= */
 
-.fee-form-actions {
+.discount-form-actions {
   display: flex;
+
   justify-content: flex-end;
+
   align-items: center;
 
   gap: 12px;
@@ -380,14 +417,17 @@
   padding: 24px 28px;
 }
 
-/* Cancel */
+/* =========================================================
+   CANCEL BUTTON
+========================================================= */
 
-.cancel-fee-btn {
+.cancel-discount-btn {
   height: 43px;
 
   padding: 0 20px;
 
   border: 1px solid #dfdce7;
+
   border-radius: 8px;
 
   background: #ffffff;
@@ -395,6 +435,7 @@
   color: #625e72;
 
   font-size: 13px;
+
   font-weight: 600;
 
   cursor: pointer;
@@ -402,24 +443,29 @@
   transition: all 0.2s ease;
 }
 
-.cancel-fee-btn:hover {
+.cancel-discount-btn:hover {
   background: #f8f7fa;
+
   border-color: #cbc7d5;
 }
 
-/* Save */
+/* =========================================================
+   SAVE BUTTON
+========================================================= */
 
-.save-fee-btn {
+.save-discount-btn {
   height: 43px;
 
   padding: 0 21px;
 
   display: flex;
+
   align-items: center;
 
   gap: 8px;
 
   border: none;
+
   border-radius: 8px;
 
   background: #6c4ce8;
@@ -427,6 +473,7 @@
   color: #ffffff;
 
   font-size: 13px;
+
   font-weight: 600;
 
   cursor: pointer;
@@ -434,11 +481,11 @@
   transition: all 0.2s ease;
 }
 
-.save-fee-btn span {
+.save-discount-btn span {
   font-size: 14px;
 }
 
-.save-fee-btn:hover {
+.save-discount-btn:hover {
   background: #5b3bd1;
 
   box-shadow:
@@ -453,11 +500,11 @@
 
 @media (max-width: 768px) {
 
-  .add-fee-page {
+  .add-discount-page {
     padding: 20px 15px;
   }
 
-  .add-fee-header {
+  .add-discount-header {
     align-items: flex-start;
 
     flex-direction: column;
@@ -465,32 +512,29 @@
     gap: 15px;
   }
 
-  .back-fee-btn {
+  .back-discount-btn {
     width: 100%;
   }
 
-  .add-fee-card-header {
+  .add-discount-card-header {
     padding: 20px;
   }
 
-  .fee-form-section {
+  .discount-form-section {
     padding: 22px 20px;
   }
 
-  .fee-form-grid {
+  .discount-form-grid {
     grid-template-columns: 1fr;
   }
 
-  .full-width {
-    grid-column: auto;
-  }
-
-  .fee-info-box {
+  .discount-info-box {
     margin-left: 20px;
+
     margin-right: 20px;
   }
 
-  .fee-form-actions {
+  .discount-form-actions {
     padding: 20px;
 
     flex-direction: column-reverse;
@@ -498,9 +542,10 @@
     align-items: stretch;
   }
 
-  .cancel-fee-btn,
-  .save-fee-btn {
+  .cancel-discount-btn,
+  .save-discount-btn {
     width: 100%;
+
     justify-content: center;
   }
 }

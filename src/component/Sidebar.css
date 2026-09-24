@@ -3,7 +3,6 @@
 ========================================= */
 
 .dashboard-sidebar {
-  min-width: 0;
   box-sizing: border-box;
 }
 
@@ -16,21 +15,11 @@
   height: 100vh;
   max-height: 100vh;
 
-  /*
-     IMPORTANT:
-     Do NOT set a new fixed width here.
-     Let your existing dashboard layout
-     control the sidebar width.
-  */
   width: 100%;
-  min-width: 0;
   max-width: 100%;
 
   box-sizing: border-box;
 
-  /*
-     Scrollbar is ALWAYS present
-  */
   overflow-y: scroll;
   overflow-x: hidden;
 
@@ -86,14 +75,8 @@
 
   box-sizing: border-box;
 
-  /*
-     VERY IMPORTANT:
-     Prevent menu items from increasing
-     the sidebar width.
-  */
   width: calc(100% - 16px);
   max-width: calc(100% - 16px);
-  min-width: 0;
 
   transition:
     background 0.3s ease,
@@ -110,9 +93,7 @@
 .dashboard-sidebar .menu-item i,
 .dashboard-sidebar .submenu-item i {
   font-size: 18px;
-
   cursor: pointer;
-
   flex-shrink: 0;
 
   transition:
@@ -126,8 +107,6 @@
 ========================================= */
 
 .dashboard-sidebar .menu-item span {
-  min-width: 0;
-
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -209,7 +188,6 @@
 ========================================= */
 
 @keyframes mainTabActivate {
-
   0% {
     opacity: 0;
     transform: translateX(-10px);
@@ -224,7 +202,6 @@
     opacity: 1;
     transform: translateX(4px);
   }
-
 }
 
 
@@ -248,21 +225,11 @@
 
   animation: submenuOpen 0.25s ease;
 
-  /*
-     IMPORTANT:
-     Submenu must stay inside sidebar width.
-  */
   width: calc(100% - 26px);
   max-width: calc(100% - 26px);
 
-  min-width: 0;
-
   box-sizing: border-box;
 
-  /*
-     Do NOT allow submenu to create
-     horizontal overflow.
-  */
   overflow: hidden;
 }
 
@@ -272,7 +239,6 @@
 ========================================= */
 
 @keyframes submenuOpen {
-
   0% {
     opacity: 0;
     transform: translateY(-5px);
@@ -282,7 +248,6 @@
     opacity: 1;
     transform: translateY(0);
   }
-
 }
 
 
@@ -303,13 +268,8 @@
 
   color: #cbd0dc;
 
-  /*
-     Keep submenu item inside container.
-  */
   width: calc(100% - 8px);
   max-width: calc(100% - 8px);
-
-  min-width: 0;
 
   box-sizing: border-box;
 }
@@ -320,12 +280,8 @@
 ========================================= */
 
 .dashboard-sidebar .submenu-item span {
-  min-width: 0;
-
   overflow: hidden;
-
   text-overflow: ellipsis;
-
   white-space: nowrap;
 }
 
@@ -336,9 +292,7 @@
 
 .dashboard-sidebar .submenu-item:hover {
   background: #292244;
-
   color: #ffffff;
-
   transform: translateX(4px);
 }
 
@@ -394,7 +348,6 @@
 
 .dashboard-sidebar .submenu-item.active i {
   color: #ffffff;
-
   transform: scale(1.08);
 }
 
@@ -404,7 +357,6 @@
 ========================================= */
 
 @keyframes submenuTabActivate {
-
   0% {
     opacity: 0;
     transform: translateX(-10px);
@@ -419,7 +371,6 @@
     opacity: 1;
     transform: translateX(4px);
   }
-
 }
 
 
@@ -428,7 +379,6 @@
 ========================================= */
 
 @keyframes activeIndicator {
-
   0% {
     height: 0;
     opacity: 0;
@@ -438,5 +388,108 @@
     height: 60%;
     opacity: 1;
   }
+}
 
+
+/* =====================================================
+   RESPONSIVE — ONLY 600px
+===================================================== */
+
+@media (max-width: 600px) {
+
+  /* Sidebar */
+  .dashboard-sidebar {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .dashboard-sidebar .sidebar {
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+
+  /* Main menu */
+  .dashboard-sidebar .menu-item {
+    width: calc(100% - 12px);
+    max-width: calc(100% - 12px);
+
+    margin: 2px 6px;
+
+    padding: 9px 14px;
+
+    gap: 10px;
+
+    font-size: 14px;
+  }
+
+
+  /* Main icons */
+  .dashboard-sidebar .menu-item i {
+    font-size: 17px;
+  }
+
+
+  /* Main text */
+  .dashboard-sidebar .menu-item span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+
+  /* Submenu */
+  .dashboard-sidebar .submenu,
+  .dashboard-sidebar .dropdown-menu {
+    width: calc(100% - 18px);
+    max-width: calc(100% - 18px);
+
+    margin: 3px 6px 6px 12px;
+
+    padding: 4px 3px;
+  }
+
+
+  /* Submenu items */
+  .dashboard-sidebar .submenu-item {
+    width: calc(100% - 6px);
+    max-width: calc(100% - 6px);
+
+    margin: 2px 3px;
+
+    padding: 8px 10px 8px 24px;
+
+    font-size: 13px;
+
+    gap: 8px;
+  }
+
+
+  /* Submenu icons */
+  .dashboard-sidebar .submenu-item i {
+    font-size: 16px;
+  }
+
+
+  /* Reduce movement on small screens */
+  .dashboard-sidebar .menu-item:hover {
+    transform: translateX(2px);
+  }
+
+  .dashboard-sidebar .menu-item.active {
+    transform: translateX(2px);
+  }
+
+  .dashboard-sidebar .submenu-item:hover {
+    transform: translateX(2px);
+  }
+
+  .dashboard-sidebar .submenu-item.active {
+    transform: translateX(2px);
+  }
 }

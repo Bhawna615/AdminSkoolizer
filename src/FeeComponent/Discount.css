@@ -1,0 +1,494 @@
+/* =========================================================
+   DISCOUNT PAGE
+   WHITE + PURPLE THEME
+========================================================= */
+
+.discount-page {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+
+  padding: 30px;
+
+  background: #f7f7fb;
+
+  font-family: "Inter", sans-serif;
+
+  color: #25233a;
+}
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.discount-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 25px;
+}
+
+.discount-header h1 {
+  margin: 0;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  color: #24213a;
+}
+
+.discount-header p {
+  margin: 7px 0 0;
+
+  font-size: 14px;
+
+  color: #858398;
+}
+
+/* =========================================================
+   ADD DISCOUNT BUTTON
+========================================================= */
+
+.add-discount-btn {
+  height: 44px;
+
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #6c4ce8;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.add-discount-btn span {
+  font-size: 21px;
+  font-weight: 400;
+
+  line-height: 1;
+}
+
+.add-discount-btn:hover {
+  background: #5b3bd1;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 6px 15px rgba(108, 76, 232, 0.22);
+}
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.discount-card {
+  width: 100%;
+
+  background: #ffffff;
+
+  border: 1px solid #ebeaf2;
+
+  border-radius: 13px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 3px 15px rgba(36, 33, 58, 0.04);
+}
+
+/* =========================================================
+   CARD TOP
+========================================================= */
+
+.discount-card-top {
+  min-height: 82px;
+
+  padding: 20px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid #eeeeF4;
+}
+
+.discount-card-top h2 {
+  margin: 0;
+
+  font-size: 17px;
+  font-weight: 650;
+
+  color: #29263e;
+}
+
+.discount-card-top p {
+  margin: 5px 0 0;
+
+  font-size: 12px;
+
+  color: #9997a8;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.discount-search {
+  width: 230px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+
+  border: 1px solid #e3e1eb;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  transition: 0.2s ease;
+}
+
+.discount-search:focus-within {
+  border-color: #8b70eb;
+
+  box-shadow:
+    0 0 0 3px rgba(108, 76, 232, 0.08);
+}
+
+.discount-search span {
+  margin-left: 12px;
+
+  font-size: 20px;
+
+  color: #918da2;
+
+  transform: rotate(-20deg);
+}
+
+.discount-search input {
+  width: 100%;
+  height: 100%;
+
+  padding: 0 12px 0 8px;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  font-size: 13px;
+
+  color: #343146;
+}
+
+.discount-search input::placeholder {
+  color: #aaa7b5;
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.discount-table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+.discount-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  min-width: 700px;
+}
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.discount-table thead {
+  background: #faf9fd;
+}
+
+.discount-table th {
+  padding: 14px 24px;
+
+  text-align: left;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.4px;
+
+  color: #8b879b;
+
+  border-bottom: 1px solid #ebeaf1;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   TABLE BODY
+========================================================= */
+
+.discount-table td {
+  padding: 16px 24px;
+
+  font-size: 13px;
+
+  color: #555266;
+
+  border-bottom: 1px solid #f0eff4;
+
+  vertical-align: middle;
+}
+
+.discount-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.discount-table tbody tr:hover {
+  background: #faf9ff;
+}
+
+.discount-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* =========================================================
+   ID
+========================================================= */
+
+.discount-id {
+  display: inline-flex;
+
+  padding: 5px 9px;
+
+  border-radius: 6px;
+
+  background: #f6f4fa;
+
+  color: #777286;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+/* =========================================================
+   FEE TYPE
+========================================================= */
+
+.fee-type-cell {
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  font-weight: 600;
+
+  color: #373349;
+}
+
+.discount-icon {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: #f0ebff;
+
+  color: #6c4ce8;
+
+  font-size: 15px;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   AMOUNT
+========================================================= */
+
+.discount-amount {
+  display: inline-flex;
+
+  padding: 6px 11px;
+
+  border-radius: 6px;
+
+  background: #f1edff;
+
+  color: #6848d8;
+
+  font-size: 13px;
+
+  font-weight: 650;
+}
+
+/* =========================================================
+   ADD STUDENTS BUTTON
+========================================================= */
+
+.assign-student-btn {
+  height: 35px;
+
+  padding: 0 13px;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  border: 1px solid #ddd7f4;
+
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  color: #6848d8;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.assign-student-btn span {
+  font-size: 16px;
+
+  line-height: 1;
+}
+
+.assign-student-btn:hover {
+  background: #f4f0ff;
+
+  border-color: #cfc4f3;
+
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.discount-footer {
+  padding: 15px 24px;
+
+  border-top: 1px solid #eeeeF4;
+
+  color: #9996a7;
+
+  font-size: 12px;
+}
+
+.discount-footer strong {
+  color: #615d70;
+}
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.discount-empty {
+  padding: 55px 20px;
+
+  text-align: center;
+}
+
+.empty-discount-icon {
+  width: 52px;
+  height: 52px;
+
+  margin: 0 auto 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #f1edff;
+
+  color: #6c4ce8;
+
+  font-size: 21px;
+
+  font-weight: 700;
+}
+
+.discount-empty h3 {
+  margin: 0;
+
+  font-size: 16px;
+
+  color: #403c51;
+}
+
+.discount-empty p {
+  margin-top: 7px;
+
+  font-size: 13px;
+
+  color: #9b98a8;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .discount-page {
+    padding: 20px 15px;
+  }
+
+  .discount-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 18px;
+  }
+
+  .add-discount-btn {
+    width: 100%;
+
+    justify-content: center;
+  }
+
+  .discount-card-top {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  .discount-search {
+    width: 100%;
+  }
+
+}

@@ -1,0 +1,397 @@
+/* =========================================================
+   FEE STRUCTURE PAGE
+   WHITE + PURPLE ADMIN UI
+========================================================= */
+
+.fee-page {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  padding: 30px;
+  background: #f7f7fb;
+  font-family: "Inter", sans-serif;
+  color: #25233a;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.fee-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.fee-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #24213a;
+}
+
+.fee-header p {
+  margin: 7px 0 0;
+  font-size: 14px;
+  color: #858398;
+}
+
+/* =========================================================
+   ADD BUTTON
+========================================================= */
+
+.add-fee-btn {
+  border: none;
+  background: #6c4ce8;
+  color: white;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  transition: all 0.2s ease;
+}
+
+.add-fee-btn span {
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.add-fee-btn:hover {
+  background: #5b3bd1;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(108, 76, 232, 0.22);
+}
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.fee-card {
+  background: #ffffff;
+  border: 1px solid #ebeaf2;
+  border-radius: 13px;
+  overflow: hidden;
+  box-shadow: 0 3px 15px rgba(36, 33, 58, 0.04);
+}
+
+/* =========================================================
+   CARD TOP
+========================================================= */
+
+.fee-card-top {
+  min-height: 82px;
+  padding: 20px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid #eeeeF4;
+}
+
+.fee-card-top h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 650;
+  color: #29263e;
+}
+
+.fee-card-top p {
+  margin: 5px 0 0;
+  color: #9997a8;
+  font-size: 12px;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.fee-search {
+  width: 230px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+
+  border: 1px solid #e3e1eb;
+  border-radius: 8px;
+  background: #fff;
+
+  transition: 0.2s ease;
+}
+
+.fee-search:focus-within {
+  border-color: #8b70eb;
+  box-shadow: 0 0 0 3px rgba(108, 76, 232, 0.08);
+}
+
+.fee-search span {
+  margin-left: 12px;
+  font-size: 20px;
+  color: #918da2;
+  transform: rotate(-20deg);
+}
+
+.fee-search input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+
+  padding: 0 12px 0 8px;
+
+  font-size: 13px;
+  color: #343146;
+  background: transparent;
+}
+
+.fee-search input::placeholder {
+  color: #aaa7b5;
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.fee-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.fee-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 850px;
+}
+
+/* TABLE HEADER */
+
+.fee-table thead {
+  background: #6c4ce8;
+}
+
+.fee-table th {
+  padding: 14px 20px;
+
+  text-align: left;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+
+  color: #ecf1f2;
+
+  border-bottom: 1px solid #ebeaf1;
+  white-space: nowrap;
+}
+
+/* TABLE BODY */
+
+.fee-table td {
+  padding: 15px 20px;
+
+  font-size: 13px;
+  color: #555266;
+
+  border-bottom: 1px solid #f0eff4;
+
+  vertical-align: middle;
+}
+
+.fee-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.fee-table tbody tr:hover {
+  background: #faf9ff;
+}
+
+.fee-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* =========================================================
+   CLASS
+========================================================= */
+
+.class-name {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  font-weight: 600;
+  color: #373349;
+}
+
+.class-icon {
+  width: 34px;
+  height: 34px;
+
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f0ebff;
+  color: #6c4ce8;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   AMOUNT
+========================================================= */
+
+.amount {
+  font-size: 13px;
+  font-weight: 600;
+  color: #403b52;
+}
+
+/* =========================================================
+   DISCOUNT
+========================================================= */
+
+.discount-badge {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 5px 10px;
+
+  border-radius: 6px;
+
+  background: #f1edff;
+  color: #6848d8;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+.delete-btn {
+  width: 34px;
+  height: 34px;
+
+  border: 1px solid #eee8ef;
+  border-radius: 7px;
+
+  background: #fff;
+  color: #d45c6b;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+  background: #fff1f3;
+  border-color: #f0cbd0;
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.fee-card-footer {
+  padding: 15px 24px;
+
+  border-top: 1px solid #eeeeF4;
+
+  color: #9996a7;
+  font-size: 12px;
+}
+
+.fee-card-footer strong {
+  color: #615d70;
+}
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-state {
+  text-align: center;
+  padding: 55px 20px;
+}
+
+.empty-icon {
+  width: 52px;
+  height: 52px;
+
+  margin: 0 auto 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #f1edff;
+  color: #6c4ce8;
+
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.empty-state h3 {
+  margin: 0;
+
+  font-size: 16px;
+  color: #403c51;
+}
+
+.empty-state p {
+  margin-top: 7px;
+
+  font-size: 13px;
+  color: #9b98a8;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .fee-page {
+    padding: 20px 15px;
+  }
+
+  .fee-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .add-fee-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .fee-card-top {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .fee-search {
+    width: 100%;
+  }
+
+}

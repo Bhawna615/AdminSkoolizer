@@ -1,60 +1,341 @@
+/* =========================================
+   CREATE POST
+========================================= */
+
 .post-cont {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+
   display: flex;
   justify-content: center;
-  margin-top: 40px;
+
+  padding: 40px 30px;
+
+  background: #f6f4fb;
+
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
 }
 
-.post-crd{
-  width: 450px;
-  background: #fff;
-  padding: 25px;
+/* =========================================
+   CARD
+========================================= */
+
+.post-crd {
+  width: 100%;
+  max-width: 650px;
+
+  background: #ffffff;
+
+  padding: 30px;
+
   border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+
+  border: 1px solid #e8e3f2;
+
+  box-shadow: 0 8px 25px rgba(78, 52, 120, 0.10);
+
+  box-sizing: border-box;
 }
+
+/* =========================================
+   TITLE
+========================================= */
 
 .post-crd h2 {
-  margin-bottom: 20px;
+  margin: 0 0 25px;
+
+  color: #2d2350;
+
+  font-size: 24px;
+  font-weight: 700;
+
   text-align: center;
+
+  padding-bottom: 18px;
+
+  border-bottom: 1px solid #eeeaf5;
 }
 
-.post-crd label {
-  font-weight: 500;
-  margin-top: 10px;
-  display: block;
+/* =========================================
+   FORM
+========================================= */
+
+.post-crd form {
+  display: flex;
+  flex-direction: column;
 }
+
+/* =========================================
+   LABEL
+========================================= */
+
+.post-crd label {
+  display: block;
+
+  margin-top: 14px;
+  margin-bottom: 7px;
+
+  color: #403858;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* =========================================
+   INPUT / SELECT / TEXTAREA
+========================================= */
 
 .post-crd textarea,
 .post-crd select,
-.post-crd input {
+.post-crd input[type="file"] {
   width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+
+  padding: 11px 13px;
+
+  border: 1px solid #d9d3e6;
+
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  color: #302943;
+
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+
+  outline: none;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
+
+/* =========================================
+   TEXTAREA
+========================================= */
 
 .post-crd textarea {
-  min-height: 100px;
+  min-height: 120px;
+
+  resize: vertical;
+
+  line-height: 1.5;
 }
 
-.post-crd button {
-  margin-top: 20px;
-  width: 100%;
-  padding: 12px;
-  border: none;
-  background: #2d4cc8;
-  color: #fff;
-  font-weight: 600;
-  border-radius: 6px;
+.post-crd textarea::placeholder {
+  color: #9b96a8;
+}
+
+/* =========================================
+   SELECT
+========================================= */
+
+.post-crd select {
+  height: 44px;
+
   cursor: pointer;
 }
 
-.post-crd button:hover {
-  background: #1e36a0;
+.post-crd select option {
+  background: #ffffff;
+  color: #302943;
 }
 
+/* =========================================
+   FILE INPUT
+========================================= */
+
+.post-crd input[type="file"] {
+  padding: 9px 10px;
+
+  cursor: pointer;
+
+  background: #faf9fd;
+}
+
+.post-crd input[type="file"]::file-selector-button {
+  margin-right: 10px;
+
+  padding: 7px 12px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: #eee9fa;
+
+  color: #6546a5;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.post-crd input[type="file"]::file-selector-button:hover {
+  background: #e1d9f4;
+}
+
+/* =========================================
+   INPUT FOCUS
+========================================= */
+
+.post-crd textarea:focus,
+.post-crd select:focus,
+.post-crd input[type="file"]:focus {
+  border-color: #7352b8;
+
+  box-shadow: 0 0 0 3px rgba(115, 82, 184, 0.10);
+}
+
+/* =========================================
+   FILE PREVIEW
+========================================= */
+
 .file-preview {
-  margin-top: 5px;
+  margin: 8px 0 0;
+
+  padding: 9px 12px;
+
+  background: #f5f1fc;
+
+  border: 1px solid #e4dcf3;
+
+  border-radius: 6px;
+
+  color: #694ca5;
+
   font-size: 13px;
-  color: #555;
+  font-weight: 500;
+
+  word-break: break-word;
+}
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.post-crd button {
+  width: 100%;
+
+  margin-top: 24px;
+
+  padding: 12px;
+
+  border: none;
+
+  background: #6f4bb8;
+
+  color: #ffffff;
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  border-radius: 7px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease;
+}
+
+.post-crd button:hover:not(:disabled) {
+  background: #5d3da1;
+
+  box-shadow: 0 4px 12px rgba(111, 75, 184, 0.22);
+}
+
+.post-crd button:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.post-crd button:disabled {
+  background: #b9b2c7;
+  cursor: not-allowed;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media screen and (max-width: 768px) {
+
+  .post-cont {
+    padding: 30px 20px;
+  }
+
+  .post-crd {
+    max-width: 600px;
+    padding: 26px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media screen and (max-width: 600px) {
+
+  .post-cont {
+    min-height: calc(100vh - 60px);
+
+    padding: 20px 15px;
+  }
+
+  .post-crd {
+    padding: 22px 18px;
+
+    border-radius: 10px;
+  }
+
+  .post-crd h2 {
+    font-size: 21px;
+
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+  }
+
+  .post-crd label {
+    font-size: 13px;
+  }
+
+  .post-crd textarea {
+    min-height: 110px;
+  }
+
+  .post-crd select {
+    height: 43px;
+  }
+
+  .post-crd button {
+    padding: 11px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media screen and (max-width: 400px) {
+
+  .post-cont {
+    padding: 15px 10px;
+  }
+
+  .post-crd {
+    padding: 20px 15px;
+  }
+
+  .post-crd h2 {
+    font-size: 19px;
+  }
 }

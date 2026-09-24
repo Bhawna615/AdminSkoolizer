@@ -1,0 +1,368 @@
+/* =========================================
+   TERMS & CONDITIONS
+========================================= */
+
+.terms-page {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+
+  padding: 30px;
+
+  background: #f6f4fb;
+
+  box-sizing: border-box;
+
+  font-family: "RedhatR", "Inter", sans-serif;
+}
+
+/* =========================================
+   MAIN CARD
+========================================= */
+
+.terms-card {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  background: #ffffff;
+
+  border: 1px solid #e7e1f2;
+  border-radius: 14px;
+
+  box-shadow: 0 8px 28px rgba(80, 55, 125, 0.09);
+
+  overflow: hidden;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.terms-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 24px 30px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #eeeaf5;
+}
+
+.terms-icon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f0eafa;
+
+  color: #6f4bb8;
+
+  border-radius: 10px;
+
+  font-size: 25px;
+
+  flex-shrink: 0;
+}
+
+.terms-header h1 {
+  margin: 0;
+
+  color: #302448;
+
+  font-family: "Nunito-Semibold", "Inter", sans-serif;
+
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.terms-header p {
+  margin: 5px 0 0;
+
+  color: #8b8499;
+
+  font-family: "RedhatR", sans-serif;
+
+  font-size: 13px;
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.terms-content {
+  padding: 30px 35px;
+
+  color: #514b5e;
+
+  font-family: "RedhatR", sans-serif;
+
+  font-size: 15px;
+
+  line-height: 1.75;
+}
+
+.terms-content > p {
+  margin: 0 0 18px;
+}
+
+.terms-content strong {
+  color: #5d3d9b;
+}
+
+/* =========================================
+   IMPORTANT NOTICE
+========================================= */
+
+.terms-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+
+  margin: 18px 0;
+
+  padding: 16px 18px;
+
+  background: #f7f3fd;
+
+  border: 1px solid #e4daf3;
+
+  border-left: 4px solid #6f4bb8;
+
+  border-radius: 8px;
+}
+
+.terms-notice i {
+  color: #6f4bb8;
+
+  font-size: 20px;
+
+  margin-top: 2px;
+
+  flex-shrink: 0;
+}
+
+.terms-notice p {
+  margin: 0;
+
+  color: #493c5d;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  line-height: 1.65;
+}
+
+/* =========================================
+   TERMS LIST
+========================================= */
+
+.terms-list {
+  margin-top: 25px;
+}
+
+/* =========================================
+   TERM ITEM
+========================================= */
+
+.term-item {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 16px;
+
+  padding: 17px 0;
+
+  border-bottom: 1px solid #eeeaf5;
+}
+
+.term-item:last-child {
+  border-bottom: none;
+}
+
+.term-item span {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  background: #f0eafa;
+
+  color: #6f4bb8;
+
+  border-radius: 7px;
+
+  font-family: "Nunito-Semibold", sans-serif;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.term-item p {
+  margin: 2px 0 0;
+
+  color: #514b5e;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.terms-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 15px;
+
+  background: #faf9fd;
+
+  border-top: 1px solid #eeeaf5;
+
+  color: #8065ad;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.terms-footer i {
+  font-size: 16px;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media screen and (max-width: 768px) {
+
+  .terms-page {
+    padding: 20px;
+  }
+
+  .terms-header {
+    padding: 22px;
+  }
+
+  .terms-content {
+    padding: 25px;
+  }
+
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media screen and (max-width: 600px) {
+
+  .terms-page {
+    min-height: calc(100vh - 60px);
+
+    padding: 15px 10px;
+  }
+
+  .terms-header {
+    padding: 18px;
+
+    gap: 12px;
+  }
+
+  .terms-icon {
+    width: 44px;
+    height: 44px;
+
+    font-size: 21px;
+  }
+
+  .terms-header h1 {
+    font-size: 20px;
+  }
+
+  .terms-header p {
+    font-size: 12px;
+  }
+
+  .terms-content {
+    padding: 20px 18px;
+
+    font-size: 14px;
+  }
+
+  .terms-notice {
+    padding: 13px;
+
+    gap: 10px;
+  }
+
+  .terms-notice p {
+    font-size: 13px;
+  }
+
+  .term-item {
+    gap: 12px;
+
+    padding: 14px 0;
+  }
+
+  .term-item span {
+    width: 28px;
+    height: 28px;
+
+    font-size: 11px;
+  }
+
+  .term-item p {
+    font-size: 13px;
+  }
+
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media screen and (max-width: 400px) {
+
+  .terms-page {
+    padding: 10px 7px;
+  }
+
+  .terms-header {
+    padding: 16px;
+  }
+
+  .terms-header h1 {
+    font-size: 18px;
+  }
+
+  .terms-content {
+    padding: 18px 14px;
+  }
+
+  .terms-notice {
+    display: block;
+  }
+
+  .terms-notice i {
+    display: block;
+
+    margin-bottom: 7px;
+  }
+
+}

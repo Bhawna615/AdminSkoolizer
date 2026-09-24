@@ -8,7 +8,6 @@ const Dashboard = () => {
   const location = useLocation();
   const isDashboardHome = location.pathname === "/dashboard";
 
-  // MOBILE SIDEBAR STATE
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -65,7 +64,6 @@ const Dashboard = () => {
       });
   }, []);
 
-  // CLOSE SIDEBAR WHEN ROUTE CHANGES
   useEffect(() => {
     if (window.innerWidth <= 768) {
       closeSidebar();
@@ -224,6 +222,7 @@ const Dashboard = () => {
                   <h3>Attendance Overview</h3>
 
                   <div className="attendance-content">
+
                     <div className="donut-chart">
                       <div className="donut-center">
                         <strong>85%</strong>
@@ -232,6 +231,7 @@ const Dashboard = () => {
                     </div>
 
                     <div className="attendance-legend">
+
                       <div>
                         <span className="legend-dot present"></span>
                         <span>Present</span>
@@ -249,6 +249,7 @@ const Dashboard = () => {
                         <span>Leave</span>
                         <b>5%</b>
                       </div>
+
                     </div>
                   </div>
                 </div>
@@ -258,6 +259,7 @@ const Dashboard = () => {
                   <h3>Students Overview</h3>
 
                   <div className="chart-area">
+
                     <div className="y-axis">
                       <span>600</span>
                       <span>500</span>
@@ -268,6 +270,7 @@ const Dashboard = () => {
                     </div>
 
                     <div className="line-chart">
+
                       <svg
                         viewBox="0 0 500 250"
                         preserveAspectRatio="none"
@@ -331,12 +334,14 @@ const Dashboard = () => {
                         <span>May</span>
                         <span>Jun</span>
                       </div>
+
                     </div>
                   </div>
                 </div>
 
                 {/* NOTICE BOARD */}
                 <div className="dashboard-panel notice-board">
+
                   <div className="notice-header">
                     <h3>Notice Board</h3>
                     <span>•••</span>
@@ -381,6 +386,7 @@ const Dashboard = () => {
                   >
                     View all notices
                   </a>
+
                 </div>
 
               </div>

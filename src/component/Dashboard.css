@@ -1,43 +1,71 @@
-/* =========================================
+/* =========================================================
    GLOBAL DASHBOARD
-========================================= */
+========================================================= */
 
 .dashboard-page {
+  width: 100%;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   background: #121827;
   color: #ffffff;
+  box-sizing: border-box;
 }
 
-/* =========================================
+
+/* =========================================================
    DASHBOARD LAYOUT
-========================================= */
+========================================================= */
 
 .dashboard-layout {
   display: flex;
-  height: calc(100vh - 70px);
-  background: #121827;
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
   overflow: hidden;
+  background: #121827;
+  box-sizing: border-box;
 }
 
-/* =========================================
+
+/* =========================================================
+   SIDEBAR WRAPPER
+========================================================= */
+
+.dashboard-sidebar {
+  height: 100%;
+  flex-shrink: 0;
+  min-height: 0;
+}
+
+
+/* =========================================================
    MAIN CONTENT
-========================================= */
+========================================================= */
 
 .dashboard-main {
   flex: 1;
-  min-width: 0;
+  width: 100%;
   height: 100%;
+  min-width: 0;
+  min-height: 0;
+
   padding: 20px 24px 8px;
+
   background: #121827;
+
   box-sizing: border-box;
+
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-/* =========================================
+
+/* =========================================================
    MAIN SCROLLBAR
-========================================= */
+========================================================= */
 
 .dashboard-main::-webkit-scrollbar {
   width: 5px;
@@ -52,23 +80,37 @@
   border-radius: 10px;
 }
 
-/* =========================================
+
+/* =========================================================
    DASHBOARD HEADER
-========================================= */
+========================================================= */
 
 .dashboard-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 15px;
   margin-bottom: 20px;
 }
 
 .dashboard-heading h2 {
-  font-size: 22px;
   margin: 0;
+  font-size: 22px;
   font-weight: 600;
   color: #ffffff;
 }
+
+.dashboard-heading p {
+  margin: 3px 0 0;
+  color: #9ca6b8;
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   PURPLE BUTTON
+========================================================= */
+
 .dashboard-purple-btn {
   width: calc(100% - 20px);
   margin: 10px;
@@ -93,9 +135,7 @@
 
   transition: all 0.3s ease;
 }
-.dashboard-purple-btn{
-  color: #ffffff;
-}
+
 .dashboard-purple-btn i {
   font-size: 20px;
   color: #ffffff;
@@ -103,76 +143,103 @@
 
 .dashboard-purple-btn:hover {
   background: linear-gradient(135deg, #8b35d1, #b566ff);
-
   transform: translateY(-2px);
-
   box-shadow: 0 10px 25px rgba(123, 44, 191, 0.45);
 }
-.dashboard-heading p {
-  margin: 3px 0 0;
-  color: #9ca6b8;
-  font-size: 12px;
-}
+
+
+/* =========================================================
+   DASHBOARD ACTIONS
+========================================================= */
 
 .dashboard-actions {
   display: flex;
-  gap: 12px;
   align-items: center;
+  gap: 12px;
+  width: auto;
+}
+
+.dashboard-actions select,
+.dashboard-actions button {
+  box-sizing: border-box;
 }
 
 .dashboard-actions select {
   height: 40px;
-  min-width: 135px;
+  width: 135px;
+
   background: #171e2e;
   border: 1px solid #293246;
+
   color: #aeb7c8;
+
   padding: 0 13px;
   border-radius: 8px;
+
   outline: none;
   font-size: 11px;
 }
 
 .dashboard-actions button {
-  border: none;
-  color: #ffffff;
   height: 40px;
-  min-width: 135px;
+  width: 135px;
+
   padding: 0 20px;
+
+  border: none;
   border-radius: 8px;
+
+  color: #ffffff;
+
   font-size: 11px;
   font-weight: 600;
+
   cursor: pointer;
+
   background: linear-gradient(
     135deg,
     #6d4ce6,
     #8d5cff
   );
-  box-shadow:
-    0 4px 15px
-    rgba(109, 76, 230, 0.25);
+
+  box-shadow: 0 4px 15px rgba(109, 76, 230, 0.25);
 }
 
-/* =========================================
+
+/* =========================================================
    STAT CARDS
-========================================= */
+========================================================= */
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
   gap: 12px;
+
+  width: 100%;
 }
 
 .dashboard-card-link {
   text-decoration: none;
   color: inherit;
+  min-width: 0;
 }
 
 .dashboard-stat-card {
+  width: 100%;
+  min-width: 0;
+
   background: #202839;
   border: 1px solid #283247;
+
   border-radius: 9px;
-  min-height: 92px;
+
   padding: 13px 15px 10px;
+
+  box-sizing: border-box;
+
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
@@ -181,10 +248,11 @@
 
 .dashboard-stat-card:hover {
   transform: translateY(-3px);
+
   background: #242e41;
+
   box-shadow:
-    0 12px 25px
-    rgba(0, 0, 0, 0.25);
+    0 12px 25px rgba(0, 0, 0, 0.25);
 }
 
 .stat-top {
@@ -196,14 +264,17 @@
 .stat-icon {
   width: 42px;
   height: 42px;
-  min-width: 42px;
+
+  flex: 0 0 42px;
+
   border-radius: 8px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   box-shadow:
-    0 5px 12px
-    rgba(0, 0, 0, 0.2);
+    0 5px 12px rgba(0, 0, 0, 0.2);
 }
 
 .stat-icon i {
@@ -217,137 +288,197 @@
 
 .stat-info p {
   margin: 0 0 4px;
+
   font-size: 11px;
   color: #9ca6b8;
 }
 
 .stat-info h3 {
   margin: 0;
+
   font-size: 19px;
   font-weight: 600;
+
   color: #ffffff;
 }
 
 .view-all {
   display: block;
+
   margin-top: 8px;
+
   color: #a2acbe;
   font-size: 10px;
 }
 
-/* =========================================
+
+/* =========================================================
    BOTTOM GRID
-========================================= */
+========================================================= */
 
 .dashboard-bottom-grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr 0.85fr;
+
+  grid-template-columns:
+    1fr
+    1.2fr
+    0.85fr;
+
   gap: 12px;
+
+  width: 100%;
+
   margin-top: 12px;
+
   padding-bottom: 4px;
+
   align-items: stretch;
+
+  box-sizing: border-box;
 }
 
-/* REDUCED PANEL HEIGHT */
+
+/* =========================================================
+   DASHBOARD PANELS
+========================================================= */
 
 .dashboard-panel {
+  width: 100%;
+  min-width: 0;
+
   background: #171f30;
+
   border: 1px solid #252f43;
   border-radius: 9px;
-  height: 205px;
-  min-height: 205px;
+
   padding: 14px;
+
   box-sizing: border-box;
+
   overflow: hidden;
 }
 
 .dashboard-panel h3 {
+  margin: 0 0 10px;
+
   font-size: 13px;
   font-weight: 600;
-  margin: 0 0 10px;
+
   color: #ffffff;
 }
 
-/* =========================================
+
+/* =========================================================
    ATTENDANCE
-========================================= */
+========================================================= */
 
 .attendance-content {
   display: flex;
+
   align-items: center;
   justify-content: center;
+
   gap: 20px;
+
   padding-top: 4px;
 }
 
 .donut-chart {
   width: 105px;
   height: 105px;
-  min-width: 105px;
+
+  flex: 0 0 105px;
+
   border-radius: 50%;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   background:
     conic-gradient(
       #7657e8 0deg 306deg,
       #ef476f 306deg 342deg,
       #3d8bfd 342deg 360deg
     );
+
   position: relative;
 }
 
 .donut-chart::before {
   content: "";
+
   position: absolute;
+
   width: 76px;
   height: 76px;
+
   background: #171f30;
+
   border-radius: 50%;
 }
 
 .donut-center {
   position: relative;
+
   z-index: 1;
+
   text-align: center;
 }
 
 .donut-center strong {
   display: block;
+
   font-size: 21px;
+
   color: #ffffff;
 }
 
 .donut-center span {
   color: #8f99aa;
+
   font-size: 9px;
 }
 
 .attendance-legend {
   display: flex;
+
   flex-direction: column;
+
   gap: 11px;
 }
 
 .attendance-legend div {
   display: grid;
-  grid-template-columns: 7px 55px 32px;
+
+  grid-template-columns:
+    7px
+    55px
+    32px;
+
   align-items: center;
+
   gap: 6px;
+
   color: #9da7b9;
+
   font-size: 10px;
 }
 
 .attendance-legend b {
   color: #ffffff;
+
   font-weight: 500;
+
   font-size: 10px;
+
   text-align: right;
 }
 
 .legend-dot {
   width: 6px;
   height: 6px;
+
   border-radius: 50%;
 }
 
@@ -363,40 +494,60 @@
   background: #3d8bfd;
 }
 
-/* =========================================
+
+/* =========================================================
    STUDENT OVERVIEW CHART
-========================================= */
+========================================================= */
 
 .chart-area {
   display: flex;
+
+  width: 100%;
   height: 150px;
+
+  min-width: 0;
 }
 
 .y-axis {
   width: 30px;
+
+  flex: 0 0 30px;
+
   display: flex;
   flex-direction: column;
+
   justify-content: space-between;
+
   color: #748095;
+
   font-size: 9px;
+
   padding-bottom: 20px;
 }
 
 .line-chart {
   flex: 1;
+
   position: relative;
+
   margin-left: 9px;
+
   min-width: 0;
+
   height: 100%;
 }
 
 .line-chart::before {
   content: "";
+
   position: absolute;
+
   left: 0;
   right: 0;
+
   top: 0;
   bottom: 20px;
+
   background:
     repeating-linear-gradient(
       to bottom,
@@ -404,36 +555,50 @@
       transparent 24px,
       #232c3e 25px
     );
+
   pointer-events: none;
 }
 
 .line-chart svg {
   position: relative;
+
   z-index: 1;
+
   width: 100%;
+
   height: calc(100% - 20px);
+
   display: block;
 }
 
 .months {
   position: absolute;
+
   bottom: 0;
+
   left: 0;
   right: 0;
+
   display: flex;
+
   justify-content: space-between;
+
   color: #748095;
+
   font-size: 9px;
 }
 
-/* =========================================
+
+/* =========================================================
    NOTICE BOARD
-========================================= */
+========================================================= */
 
 .notice-header {
   display: flex;
+
   justify-content: space-between;
   align-items: center;
+
   margin-bottom: 11px;
 }
 
@@ -443,23 +608,32 @@
 
 .notice-header span {
   color: #8c96aa;
+
   cursor: pointer;
+
   font-size: 15px;
 }
 
 .notice-item {
   display: flex;
+
   align-items: center;
+
   gap: 10px;
+
   margin-bottom: 11px;
 }
 
 .notice-icon {
   width: 28px;
   height: 28px;
-  min-width: 28px;
+
+  flex: 0 0 28px;
+
   border-radius: 6px;
+
   display: flex;
+
   align-items: center;
   justify-content: center;
 }
@@ -485,22 +659,31 @@
 
 .notice-item h4 {
   margin: 0 0 3px;
+
   font-size: 10px;
+
   font-weight: 500;
+
   color: #dbe1ec;
 }
 
 .notice-item p {
   margin: 0;
+
   color: #7f899c;
+
   font-size: 8px;
 }
 
 .view-notices {
   display: inline-block;
+
   margin-top: 2px;
+
   color: #8864ff;
+
   text-decoration: none;
+
   font-size: 10px;
 }
 
@@ -508,83 +691,22 @@
   color: #a487ff;
 }
 
-/* =========================================
-   RESPONSIVE
-========================================= */
 
-/* TABLET / SMALL LAPTOP */
-
-@media (max-width: 1200px) {
-  .dashboard-main {
-    padding: 14px 18px;
-  }
-
-  .stats-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  .dashboard-bottom-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  .notice-board {
-    grid-column: span 2;
-  }
-}
-
-/* TABLET */
-
-@media (max-width: 992px) {
-  .dashboard-main {
-    padding: 16px;
-  }
-
-  .stats-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .dashboard-bottom-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .notice-board {
-    grid-column: auto;
-  }
-
-  .dashboard-panel {
-    height: 220px;
-    min-height: 220px;
-  }
-}
-
-/* =========================================
-   MOBILE SIDEBAR OVERLAY
-========================================= */
+/* =========================================================
+   SIDEBAR
+========================================================= */
 
 .sidebar-overlay {
   display: none;
 }
 
-/* =========================================
-   RESPONSIVE SIDEBAR
-   KEEPING YOUR EXISTING SIDEBAR BEHAVIOR
-========================================= */
-/* =========================================
-   SIDEBAR - FULL VIEWPORT HEIGHT
-========================================= */
-
 .sidebar {
-  height: 100vh;
-  max-height: 100vh;
+  height: 100%;
+  max-height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   box-sizing: border-box;
-}
-.sidebar {
-  
-  overflow-x: hidden;
+
   transition: transform 0.3s ease;
 }
 
@@ -595,6 +717,7 @@
 
 .menu-arrow {
   margin-left: auto;
+
   transition: transform 0.3s ease;
 }
 
@@ -602,36 +725,94 @@
   transform: rotate(180deg);
 }
 
-/* =========================================
-   MOBILE
-========================================= */
+
+/* =========================================================
+   1200px
+========================================================= */
+
+@media (max-width: 1200px) {
+
+  .dashboard-main {
+    padding: 14px 18px;
+  }
+
+  .stats-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+  .dashboard-bottom-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .notice-board {
+    grid-column: span 2;
+  }
+}
+
+
+/* =========================================================
+   992px
+========================================================= */
+
+@media (max-width: 992px) {
+
+  .dashboard-main {
+    padding: 16px;
+  }
+
+  .stats-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .notice-board {
+    grid-column: auto;
+  }
+}
+
+
+/* =========================================================
+   768px
+========================================================= */
 
 @media (max-width: 768px) {
-  .dashboard-page {
-    height: 100vh;
-    overflow: hidden;
-  }
 
   .dashboard-layout {
     display: block;
-    height: calc(100vh - 70px);
+
+    width: 100%;
+
+    height: auto;
+
+    min-height: 0;
+
+    overflow: hidden;
   }
-
-
-  /* MAIN CONTENT */
 
   .dashboard-main {
     width: 100%;
-    height: calc(100vh - 70px);
-    min-height: auto;
+
+    height: auto;
+
+    min-height: 0;
+
     padding: 16px 15px;
+
     overflow-x: hidden;
     overflow-y: auto;
   }
 
   .dashboard-heading {
     align-items: flex-start;
+
     flex-direction: column;
+
     gap: 12px;
   }
 
@@ -642,32 +823,35 @@
   .dashboard-actions select,
   .dashboard-actions button {
     flex: 1;
+
+    width: auto;
+
     min-width: 0;
   }
 
   .stats-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
     gap: 12px;
   }
 
   .dashboard-bottom-grid {
     grid-template-columns: 1fr;
-    gap: 14px;
-  }
 
-  .dashboard-panel {
-    height: 220px;
-    min-height: 220px;
+    gap: 14px;
   }
 }
 
-/* =========================================
-   SMALL MOBILE
-========================================= */
 
-@media (max-width: 576px) {
+/* =========================================================
+   600px
+========================================================= */
+
+@media (max-width: 600px) {
+
   .dashboard-main {
-    padding: 15px 12px;
+    padding: 14px 12px;
   }
 
   .dashboard-heading h2 {
@@ -675,68 +859,88 @@
   }
 
   .dashboard-heading p {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .dashboard-actions {
+    width: 100%;
+
     flex-direction: column;
+
     align-items: stretch;
+
+    gap: 8px;
   }
 
   .dashboard-actions select,
   .dashboard-actions button {
     width: 100%;
+
     flex: none;
+
+    min-width: 0;
   }
 
   .stats-grid {
     grid-template-columns: 1fr;
-    gap: 12px;
+
+    gap: 10px;
   }
 
   .dashboard-stat-card {
-    min-height: 95px;
-    padding: 14px;
+    width: 100%;
+
+    padding: 13px;
   }
 
   .dashboard-bottom-grid {
-    margin-top: 14px;
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+
+    margin-top: 12px;
   }
 
   .dashboard-panel {
-    height: auto;
-    min-height: 210px;
-    padding: 15px;
+    width: 100%;
+
+    padding: 14px;
+
+    overflow: hidden;
   }
 
   .attendance-content {
     flex-direction: column;
-    justify-content: center;
+
     align-items: center;
-    gap: 18px;
+
+    justify-content: center;
+
+    gap: 15px;
   }
 
   .attendance-legend {
     width: 100%;
+
     max-width: 220px;
   }
 
   .chart-area {
-    height: 170px;
+    height: 160px;
   }
 
   .line-chart svg {
-    height: 145px;
+    height: 140px;
   }
 }
 
-/* =========================================
-   SMALL MOBILE SIDEBAR
-========================================= */
 
-
+/* =========================================================
+   400px
+========================================================= */
 
 @media (max-width: 400px) {
+
   .dashboard-main {
     padding: 12px 10px;
   }
@@ -747,7 +951,9 @@
 
   .dashboard-actions select,
   .dashboard-actions button {
-    padding: 10px 12px;
+    height: 38px;
+
+    padding: 0 12px;
   }
 
   .dashboard-stat-card {
@@ -757,6 +963,8 @@
   .stat-icon {
     width: 38px;
     height: 38px;
+
+    flex-basis: 38px;
   }
 
   .dashboard-panel {
@@ -764,12 +972,14 @@
   }
 
   .donut-chart {
-    width: 105px;
-    height: 105px;
+    width: 100px;
+    height: 100px;
+
+    flex-basis: 100px;
   }
 
   .donut-chart::before {
-    width: 76px;
-    height: 76px;
+    width: 72px;
+    height: 72px;
   }
 }
