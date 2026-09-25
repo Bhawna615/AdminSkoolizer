@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import "./SelectClass.css";
 const BASE_URL = "http://localhost/kkblossom/api.php/Adminapi/AdminExam";
 
 const SelectClass = () => {

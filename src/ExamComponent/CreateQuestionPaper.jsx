@@ -1,15 +1,17 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./CreateQuestionPaper.css";
 
-const BASE_URL = "http://localhost/kkblossom/api.php/Adminapi/AdminExam";
+const BASE_URL =
+  "http://localhost/kkblossom/api.php/Adminapi/AdminExam";
 
 const CreateQuestionPaper = () => {
   const [classes, setClasses] = useState([]);
   const [subjects, setSubjects] = useState([]);
   const [questions, setQuestions] = useState([]);
 
-  const [createdPapers, setCreatedPapers] = useState([]); // ✅ ADDED
+  const [createdPapers, setCreatedPapers] = useState([]);
 
   const [formData, setFormData] = useState({
     exam: "",
@@ -26,57 +28,88 @@ const CreateQuestionPaper = () => {
     enabled: false
   });
 
-  const [message, setMessage] = useState({ success: "", error: "" });
+  const [message, setMessage] = useState({
+    success: "",
+    error: ""
+  });
+
+  /* =========================================================
+     INITIAL LOAD
+  ========================================================= */
 
   useEffect(() => {
     fetchClasses();
     loadQuestions();
-    loadCreatedPapers(); // ✅ ADDED
+    loadCreatedPapers();
   }, []);
 
+  /* =========================================================
+     FETCH CLASSES
+  ========================================================= */
+
   const fetchClasses = async () => {
-    const res = await axios.get(`${BASE_URL}/classes`);
-    setClasses(res.data);
+    try {
+      const res = await axios.get(
+        `${BASE_URL}/classes`
+      );
 
-    if (res.data.length > 0) {
-      const first = res.data[0].Classname;
+      setClasses(res.data);
 
-      setFormData((prev) => ({
-        ...prev,
-        class: first,
-        subject: ""
-      }));
+      if (res.data.length > 0) {
+        const firstClass =
+          res.data[0].Classname;
 
-      setFilter((prev) => ({
-        ...prev,
-        class: first,
-        subject: ""
-      }));
+        setFormData((prev) => ({
+          ...prev,
+          class: firstClass,
+          subject: ""
+        }));
 
-      fetchSubjects(first);
+        setFilter((prev) => ({
+          ...prev,
+          class: firstClass,
+          subject: ""
+        }));
+
+        fetchSubjects(firstClass);
+      }
+    } catch (err) {
+      console.error(
+        "Error loading classes:",
+        err
+      );
     }
   };
+
+  /* =========================================================
+     FETCH SUBJECTS
+  ========================================================= */
 
   const fetchSubjects = async (className) => {
-    const res = await axios.get(
-      `${BASE_URL}/getSubjectsByClass/${className}`
-    );
+    try {
+      const res = await axios.get(
+        `${BASE_URL}/getSubjectsByClass/${className}`
+      );
 
-    setSubjects(res.data);
+      setSubjects(res.data);
 
-    if (res.data.length > 0) {
-      const firstSubject = res.data[0].Subjectname;
+      if (res.data.length > 0) {
+        const firstSubject =
+          res.data[0].Subjectname;
 
-      setFormData((prev) => ({
-        ...prev,
-        subject: firstSubject
-      }));
+        setFormData((prev) => ({
+          ...prev,
+          subject: firstSubject
+        }));
 
-      setFilter((prev) => ({
-        ...prev,
-        subject: firstSubject
-      }));
-    } else {
+        setFilter((prev) => ({
+          ...prev,
+          subject: firstSubject
+        }));
+
+        return firstSubject;
+      }
+
       setFormData((prev) => ({
         ...prev,
         subject: ""
@@ -86,46 +119,215 @@ const CreateQuestionPaper = () => {
         ...prev,
         subject: ""
       }));
+
+      return "";
+    } catch (err) {
+      console.error(
+        "Error loading subjects:",
+        err
+      );
+
+      return "";
     }
   };
+
+  /* =========================================================
+     LOAD ALL QUESTIONS
+  ========================================================= */
 
   const loadQuestions = async () => {
-    const res = await axios.get(`${BASE_URL}/getQuestions`);
-    setQuestions(res.data);
+    try {
+      const res = await axios.get(
+        `${BASE_URL}/getQuestions`
+      );
+
+      setQuestions(res.data);
+    } catch (err) {
+      console.error(
+        "Error loading questions:",
+        err
+      );
+    }
   };
 
-  // ✅ LOAD CREATED PAPERS FROM DB
+  /* =========================================================
+     LOAD CREATED PAPERS
+  ========================================================= */
+
   const loadCreatedPapers = async () => {
     try {
-      const res = await axios.get(`${BASE_URL}/getQuestionPapers`);
+      const res = await axios.get(
+        `${BASE_URL}/getQuestionPapers`
+      );
+
       setCreatedPapers(res.data);
     } catch (err) {
-      console.log("Error loading papers");
+      console.error(
+        "Error loading papers:",
+        err
+      );
     }
   };
 
-  const filterQuestions = async () => {
-    const res = await axios.get(
-      `${BASE_URL}/getFilteredQuestions/${filter.class}/${filter.subject}`
-    );
-    setQuestions(res.data);
+  /* =========================================================
+     FILTER QUESTIONS
+  ========================================================= */
+
+  const filterQuestions = async (
+    className,
+    subjectName
+  ) => {
+    if (!className || !subjectName) {
+      return;
+    }
+
+    try {
+      const res = await axios.get(
+        `${BASE_URL}/getFilteredQuestions/${className}/${subjectName}`
+      );
+
+      setQuestions(res.data);
+    } catch (err) {
+      console.error(
+        "Error filtering questions:",
+        err
+      );
+    }
   };
+
+  /* =========================================================
+     FILTER TOGGLE
+  ========================================================= */
+
+  const handleFilterToggle = async (e) => {
+    const enabled =
+      e.target.checked;
+
+    setFilter((prev) => ({
+      ...prev,
+      enabled
+    }));
+
+    if (!enabled) {
+      // Filter OFF → show all questions
+      await loadQuestions();
+      return;
+    }
+
+    // Filter ON → apply current class + subject
+    if (
+      filter.class &&
+      filter.subject
+    ) {
+      await filterQuestions(
+        filter.class,
+        filter.subject
+      );
+    }
+  };
+
+  /* =========================================================
+     FILTER CLASS CHANGE
+  ========================================================= */
+
+  const handleFilterClassChange = async (e) => {
+    const selectedClass =
+      e.target.value;
+
+    setFilter((prev) => ({
+      ...prev,
+      class: selectedClass,
+      subject: ""
+    }));
+
+    const firstSubject =
+      await fetchSubjects(
+        selectedClass
+      );
+
+    // Automatically filter after class change
+    if (
+      filter.enabled &&
+      firstSubject
+    ) {
+      await filterQuestions(
+        selectedClass,
+        firstSubject
+      );
+    }
+  };
+
+  /* =========================================================
+     FILTER SUBJECT CHANGE
+  ========================================================= */
+
+  const handleFilterSubjectChange = async (
+    e
+  ) => {
+    const selectedSubject =
+      e.target.value;
+
+    setFilter((prev) => ({
+      ...prev,
+      subject: selectedSubject
+    }));
+
+    if (
+      filter.enabled &&
+      filter.class &&
+      selectedSubject
+    ) {
+      await filterQuestions(
+        filter.class,
+        selectedSubject
+      );
+    }
+  };
+
+  /* =========================================================
+     FORM CHANGE
+  ========================================================= */
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
+
+  /* =========================================================
+     QUESTION CHECKBOX
+  ========================================================= */
 
   const handleCheckbox = (id) => {
-    let updated = [...formData.selectedQuestions];
+    const questionId =
+      String(id);
 
-    if (updated.includes(id)) {
-      updated = updated.filter((q) => q !== id);
+    let updated = [
+      ...formData.selectedQuestions
+    ];
+
+    if (
+      updated.includes(questionId)
+    ) {
+      updated =
+        updated.filter(
+          (q) =>
+            q !== questionId
+        );
     } else {
-      updated.push(id);
+      updated.push(questionId);
     }
 
-    setFormData({ ...formData, selectedQuestions: updated });
+    setFormData({
+      ...formData,
+      selectedQuestions: updated
+    });
   };
+
+  /* =========================================================
+     CREATE QUESTION PAPER
+  ========================================================= */
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -136,7 +338,8 @@ const CreateQuestionPaper = () => {
       class: formData.class,
       duration: formData.duration,
       max_marks: formData.max,
-      questions: formData.selectedQuestions
+      questions:
+        formData.selectedQuestions
     };
 
     try {
@@ -145,173 +348,443 @@ const CreateQuestionPaper = () => {
         payload
       );
 
-      if (res.data.status === "success") {
-        setMessage({ success: "Saved Successfully", error: "" });
+      if (
+        res.data.status ===
+        "success"
+      ) {
+        setMessage({
+          success:
+            "Saved Successfully",
+          error: ""
+        });
 
-        // ✅ REFRESH FROM DATABASE (REAL DATA)
-        loadCreatedPapers();
+        await loadCreatedPapers();
 
-        loadQuestions();
+        if (filter.enabled) {
+          await filterQuestions(
+            filter.class,
+            filter.subject
+          );
+        } else {
+          await loadQuestions();
+        }
+
+        setFormData((prev) => ({
+          ...prev,
+          selectedQuestions: []
+        }));
       } else {
-        setMessage({ error: "Failed to Save", success: "" });
+        setMessage({
+          error:
+            "Failed to Save",
+          success: ""
+        });
       }
-    } catch {
-      setMessage({ error: "Something went wrong", success: "" });
+    } catch (err) {
+      console.error(
+        "Error creating question paper:",
+        err
+      );
+
+      setMessage({
+        error:
+          "Something went wrong",
+        success: ""
+      });
     }
   };
 
   return (
     <div className="innerview">
 
+      {/* =====================================================
+          MESSAGE
+      ===================================================== */}
+
       <div className="message">
-        {message.error && <div className="error-bar">{message.error}</div>}
-        {message.success && <div className="success-bar">{message.success}</div>}
+
+        {message.error && (
+          <div className="error-bar">
+            {message.error}
+          </div>
+        )}
+
+        {message.success && (
+          <div className="success-bar">
+            {message.success}
+          </div>
+        )}
+
       </div>
 
-      <button className="float">✏️</button>
+
+      {/* =====================================================
+          FILTER BAR
+      ===================================================== */}
 
       <div className="filter-bar">
-        <p>
-          <input
-            type="checkbox"
-            checked={filter.enabled}
-            onChange={(e) =>
-              setFilter({ ...filter, enabled: e.target.checked })
-            }
-          /> Enable Filter
-        </p>
+
+        <label className="admin-view-student-toggle">
+  <input
+    type="checkbox"
+    checked={filter.enabled}
+    onChange={handleFilterToggle}
+  />
+
+  <span className="admin-view-student-toggle-slider"></span>
+
+  <span className="admin-view-student-toggle-text">
+    Enable Filter
+  </span>
+</label>
+
 
         <select
           value={filter.class}
-          onChange={(e) => {
-            const selectedClass = e.target.value;
-
-            setFilter({
-              ...filter,
-              class: selectedClass,
-              subject: ""
-            });
-
-            fetchSubjects(selectedClass);
-          }}
+          disabled={!filter.enabled}
+          onChange={
+            handleFilterClassChange
+          }
+          className={
+            !filter.enabled
+              ? "filter-disabled"
+              : ""
+          }
         >
+
           {classes.map((c) => (
-            <option key={c.Classname}>{c.Classname}</option>
+
+            <option
+              key={c.Classname}
+              value={c.Classname}
+            >
+              {c.Classname}
+            </option>
+
           ))}
+
         </select>
+
 
         <select
           value={filter.subject}
-          onChange={(e) =>
-            setFilter({ ...filter, subject: e.target.value })
+          disabled={!filter.enabled}
+          onChange={
+            handleFilterSubjectChange
+          }
+          className={
+            !filter.enabled
+              ? "filter-disabled"
+              : ""
           }
         >
-          {subjects.map((s, i) => (
-            <option key={i} value={s.Subjectname}>
-              {s.Subjectname}
-            </option>
-          ))}
+
+          {subjects.map(
+            (s, i) => (
+
+              <option
+                key={i}
+                value={s.Subjectname}
+              >
+                {s.Subjectname}
+              </option>
+
+            )
+          )}
+
         </select>
 
-        <button onClick={filterQuestions}>Apply</button>
       </div>
 
+
+      {/* =====================================================
+          CREATE QUESTION PAPER
+      ===================================================== */}
+
       <form onSubmit={handleSubmit}>
+
         <div className="form-grid">
 
           <div>
+
             <p>Exam Name</p>
-            <input name="exam" onChange={handleChange} />
+
+            <input
+              name="exam"
+              value={
+                formData.exam
+              }
+              onChange={
+                handleChange
+              }
+            />
+
 
             <p>Class</p>
+
             <select
               name="class"
-              value={formData.class}
+              value={
+                formData.class
+              }
               onChange={(e) => {
-                const selectedClass = e.target.value;
 
-                handleChange(e);
+                const selectedClass =
+                  e.target.value;
 
-                setFormData((prev) => ({
-                  ...prev,
-                  subject: ""
-                }));
+                setFormData(
+                  (prev) => ({
+                    ...prev,
+                    class:
+                      selectedClass,
+                    subject: ""
+                  })
+                );
 
-                fetchSubjects(selectedClass);
+                fetchSubjects(
+                  selectedClass
+                );
+
               }}
             >
-              {classes.map((c) => (
-                <option key={c.Classname}>{c.Classname}</option>
-              ))}
+
+              {classes.map(
+                (c) => (
+
+                  <option
+                    key={
+                      c.Classname
+                    }
+                    value={
+                      c.Classname
+                    }
+                  >
+                    {
+                      c.Classname
+                    }
+                  </option>
+
+                )
+              )}
+
             </select>
 
-            <p>Maximum Marks</p>
-            <input name="max" onChange={handleChange} />
+
+            <p>
+              Maximum Marks
+            </p>
+
+            <input
+              name="max"
+              value={
+                formData.max
+              }
+              onChange={
+                handleChange
+              }
+            />
+
           </div>
 
+
           <div>
+
             <p>Subject</p>
+
             <select
               name="subject"
-              value={formData.subject}
-              onChange={handleChange}
+              value={
+                formData.subject
+              }
+              onChange={
+                handleChange
+              }
             >
-              {subjects.map((s, i) => (
-                <option key={i} value={s.Subjectname}>
-                  {s.Subjectname}
-                </option>
-              ))}
+
+              {subjects.map(
+                (s, i) => (
+
+                  <option
+                    key={i}
+                    value={
+                      s.Subjectname
+                    }
+                  >
+                    {
+                      s.Subjectname
+                    }
+                  </option>
+
+                )
+              )}
+
             </select>
+
           </div>
 
+
           <div>
+
             <p>Duration</p>
-            <input name="duration" onChange={handleChange} />
-            <button type="submit" className="crp_btn">Create</button>
+
+            <input
+              name="duration"
+              value={
+                formData.duration
+              }
+              onChange={
+                handleChange
+              }
+            />
+
+
+            <button
+              type="submit"
+              className="crp_btn"
+            >
+              Create
+            </button>
+
           </div>
 
         </div>
 
-        
-
       </form>
 
-      {/* ✅ CREATED PAPERS TABLE */}
-      <h3>Created Question Papers</h3>
-    {/* TABLE */}
-    <table className="custom-table">
-      <thead>
-        <tr>
-          <th>SELECT</th>
-          <th>ID</th>
-          <th>CONTENT</th>
-          <th>WEIGHTAGE</th>
-          <th>CLASS</th>
-          <th>SUBJECT</th>
-          <th>CREATED AT</th>
-          
-        </tr>
-      </thead>
+
+      {/* =====================================================
+          QUESTIONS TABLE
+      ===================================================== */}
+
+      <h3>
+        Questions
+      </h3>
+
+
+      <table className="custom-table">
+
+        <thead>
+
+          <tr>
+
+            <th>SELECT</th>
+            <th>ID</th>
+            <th>CONTENT</th>
+            <th>WEIGHTAGE</th>
+            <th>CLASS</th>
+            <th>SUBJECT</th>
+            <th>CREATED AT</th>
+
+          </tr>
+
+        </thead>
+
+
         <tbody>
-          
-          {createdPapers.map((p, index) => (
-            <tr key={index}>
-               <td>
-        <input
-          type="checkbox"
-          checked={formData.selectedQuestions.includes(p.id)}
-          onChange={() => handleCheckbox(p.id)}
-        />
-      </td>
-              <td>{p.id}</td>
-              <td>{p.content}</td>
-              <td>{p.max_marks}</td>
-              <td>{p.class}</td>
-              <td>{p.subject}</td>
-              <td>{p.duration}</td>
+
+          {questions.length > 0 ? (
+
+            questions.map(
+              (question, index) => {
+
+                const questionId =
+                  String(
+                    question.id
+                  );
+
+                return (
+
+                  <tr
+                    key={
+                      question.id ||
+                      index
+                    }
+                  >
+
+                    <td>
+
+                      <input
+                        type="checkbox"
+                        checked={formData.selectedQuestions.includes(
+                          questionId
+                        )}
+                        onChange={() =>
+                          handleCheckbox(
+                            questionId
+                          )
+                        }
+                      />
+
+                    </td>
+
+
+                    <td>
+                      {
+                        question.id
+                      }
+                    </td>
+
+
+                    <td>
+                      {
+                        question.content
+                      }
+                    </td>
+
+
+                    <td>
+                      {
+                        question.weightage
+                      }
+                    </td>
+
+
+                    <td>
+                      {
+                        question.class
+                      }
+                    </td>
+
+
+                    <td>
+                      {
+                        question.subject
+                      }
+                    </td>
+
+
+                    <td>
+                      {
+                        question.created_at
+                      }
+                    </td>
+
+                  </tr>
+
+                );
+              }
+            )
+
+          ) : (
+
+            <tr>
+
+              <td
+                colSpan="7"
+                style={{
+                  textAlign:
+                    "center"
+                }}
+              >
+                No questions found.
+              </td>
+
             </tr>
-          ))}
+
+          )}
+
         </tbody>
+
       </table>
 
     </div>

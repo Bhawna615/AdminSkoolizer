@@ -1,0 +1,226 @@
+/* =========================================================
+   SELECT CLASS
+   ========================================================= */
+
+.select-class-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f6fa;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.innerview {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e2e5eb;
+  border-radius: 8px;
+  padding: 25px;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.innerview form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+/* =========================================================
+   BOOTSTRAP COLUMN OVERRIDE
+   ========================================================= */
+
+.innerview .col-md-4 {
+  width: 320px;
+  max-width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.innerview .col-md-12 {
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   LABEL
+   ========================================================= */
+
+.headings {
+  margin: 0 0 9px 0;
+  color: #333d4d;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   SELECT
+   ========================================================= */
+
+.innerview .form-select {
+  width: 100% !important;
+  height: 44px !important;
+
+  padding: 0 40px 0 13px;
+
+  border: 1px solid #d5d9e2;
+  border-radius: 5px;
+
+  background-color: #ffffff;
+  color: #374151;
+
+  font-size: 14px;
+  font-weight: 400;
+
+  outline: none;
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+
+  box-sizing: border-box;
+}
+
+/* Hover */
+
+.innerview .form-select:hover {
+  border-color: #aeb5c2;
+}
+
+/* Focus */
+
+.innerview .form-select:focus {
+  border-color: #7251f8;
+  box-shadow: 0 0 0 3px rgba(44, 86, 187, 0.10);
+}
+
+/* =========================================================
+   OPTIONS
+   ========================================================= */
+
+.innerview .form-select option {
+  padding: 10px;
+  font-size: 14px;
+  color: #333d4d;
+  background: #ffffff;
+}
+
+/* =========================================================
+   SUBMIT AREA
+   ========================================================= */
+
+.innerview form > .col-md-12 {
+  margin-top: 2px;
+}
+
+/* =========================================================
+   GO BUTTON
+   ========================================================= */
+
+.form-submit {
+  height: 44px;
+
+  min-width: 85px;
+
+  padding: 0 22px;
+
+  border: 0;
+  border-radius: 5px;
+
+  background: #6c4ce8;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Hover */
+
+.form-submit:hover {
+  background: #6346d7;
+  box-shadow: 0 4px 10px rgba(44, 86, 187, 0.20);
+}
+
+/* Active */
+
+.form-submit:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .innerview {
+    padding: 20px;
+  }
+
+  .innerview form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+
+  .innerview .col-md-4 {
+    width: 100%;
+  }
+
+  .innerview form > .col-md-12 {
+    width: 100%;
+  }
+
+  .form-submit {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .innerview {
+    padding: 15px;
+    border-radius: 6px;
+  }
+
+  .headings {
+    font-size: 13px;
+  }
+
+  .innerview .form-select {
+    height: 42px !important;
+    font-size: 13px;
+  }
+
+  .form-submit {
+    height: 42px;
+    font-size: 13px;
+  }
+}

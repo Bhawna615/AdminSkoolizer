@@ -114,9 +114,11 @@ const QuestionPapers = () => {
   // ==============================
   // VIEW QUESTION PAPER
   // ==============================
-  const handleView = (quizId) => {
-    navigate(`/dashboard/ExamComponent/QuizQuestion/view/${quizId}`);
-  };
+  const handleView = (questionPaperId) => {
+  navigate(
+    `/dashboard/ExamComponent/QuestionPaperGenerate/${questionPaperId}`
+  );
+};
 
   return (
     <div className="container">
@@ -136,81 +138,87 @@ const QuestionPapers = () => {
       ============================== */}
       <div className="filter-box">
 
-        <label>
-          <input
-            type="checkbox"
-            checked={filterEnabled}
-            onChange={() => setFilterEnabled(!filterEnabled)}
-          />
+  <label className="filter-toggle">
 
-          Enable Filter
-        </label>
+    <input
+      type="checkbox"
+      checked={filterEnabled}
+      onChange={() => setFilterEnabled(!filterEnabled)}
+    />
 
-        <div className="filter-row">
+    <span className="filter-toggle-slider"></span>
 
-          {/* YEAR */}
-          <div className="filter-group">
-            <p className="filter-title">Year</p>
+    <span className="filter-toggle-text">
+      Enable Filter
+    </span>
 
-            <select
-              value={year}
-              onChange={(e) => setYear(e.target.value)}
-            >
-              <option value={new Date().getFullYear()}>
-                {new Date().getFullYear()}
-              </option>
+  </label>
 
-              <option value={new Date().getFullYear() - 1}>
-                {new Date().getFullYear() - 1}
-              </option>
+  <div className="filter-row">
 
-              <option value={new Date().getFullYear() - 2}>
-                {new Date().getFullYear() - 2}
-              </option>
-            </select>
-          </div>
+    {/* YEAR */}
+    <div className="filter-group">
+      <p className="filter-title">Year</p>
 
-          {/* MONTH */}
-          <div className="filter-group">
-            <p className="filter-title">Month</p>
+      <select
+        value={year}
+        onChange={(e) => setYear(e.target.value)}
+      >
+        <option value={new Date().getFullYear()}>
+          {new Date().getFullYear()}
+        </option>
 
-            <select
-              value={month}
-              onChange={(e) => setMonth(e.target.value)}
-            >
-              <option value="1">January</option>
-              <option value="2">February</option>
-              <option value="3">March</option>
-              <option value="4">April</option>
-              <option value="5">May</option>
-              <option value="6">June</option>
-              <option value="7">July</option>
-              <option value="8">August</option>
-              <option value="9">September</option>
-              <option value="10">October</option>
-              <option value="11">November</option>
-              <option value="12">December</option>
-            </select>
-          </div>
+        <option value={new Date().getFullYear() - 1}>
+          {new Date().getFullYear() - 1}
+        </option>
 
-          {/* CLASS */}
-          <div className="filter-group">
-            <p className="filter-title">Class</p>
+        <option value={new Date().getFullYear() - 2}>
+          {new Date().getFullYear() - 2}
+        </option>
+      </select>
+    </div>
 
-            <select
-              value={selectedClass}
-              onChange={(e) => setSelectedClass(e.target.value)}
-            >
-              {classes.map((c, i) => (
-                <option key={i} value={c.Classname}>
-                  {c.Classname}
-                </option>
-              ))}
-            </select>
-          </div>
+    {/* MONTH */}
+    <div className="filter-group">
+      <p className="filter-title">Month</p>
 
-        </div>
-      </div>
+      <select
+        value={month}
+        onChange={(e) => setMonth(e.target.value)}
+      >
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+
+    {/* CLASS */}
+    <div className="filter-group">
+      <p className="filter-title">Class</p>
+
+      <select
+        value={selectedClass}
+        onChange={(e) => setSelectedClass(e.target.value)}
+      >
+        {classes.map((c, i) => (
+          <option key={i} value={c.Classname}>
+            {c.Classname}
+          </option>
+        ))}
+      </select>
+    </div>
+
+  </div>
+</div>
 
       {/* ==============================
           TABLE

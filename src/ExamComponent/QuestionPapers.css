@@ -451,3 +451,77 @@
 .table-container::-webkit-scrollbar-thumb:hover {
     background: #a99bd2;
 }
+/* =========================================================
+   ENABLE FILTER TOGGLE
+   ========================================================= */
+
+.filter-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 18px;
+}
+
+/* Hide original checkbox */
+.filter-toggle input {
+    display: none;
+}
+
+/* Toggle background */
+.filter-toggle-slider {
+    position: relative;
+    display: inline-block;
+
+    width: 42px;
+    height: 22px;
+
+    flex-shrink: 0;
+
+    border-radius: 30px;
+    background: #d9d4e2;
+
+    transition: 0.25s ease;
+}
+
+/* Toggle circle */
+.filter-toggle-slider::after {
+    content: "";
+
+    position: absolute;
+
+    width: 18px;
+    height: 18px;
+
+    left: 2px;
+    top: 2px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+
+    transition: 0.25s ease;
+}
+
+/* ON */
+.filter-toggle input:checked ~ .filter-toggle-slider {
+    background: #6f42c1;
+}
+
+/* Move circle */
+.filter-toggle input:checked ~ .filter-toggle-slider::after {
+    transform: translateX(20px);
+}
+
+/* Text */
+.filter-toggle-text {
+    color: #554d62;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    line-height: 22px;
+}

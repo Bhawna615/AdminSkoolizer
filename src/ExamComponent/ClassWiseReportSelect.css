@@ -1,0 +1,329 @@
+/* =========================================================
+   CLASS WISE REPORT
+   Modern White + Purple ERP UI
+   ========================================================= */
+
+.class-report-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 24px;
+    box-sizing: border-box;
+
+    background: #f7f7fb;
+
+    font-family: "Poppins", sans-serif;
+    color: #302b43;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+   ========================================================= */
+
+.class-report-header {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.class-report-header h2 {
+    margin: 0;
+
+    color: #302b43;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    letter-spacing: -0.3px;
+}
+
+.class-report-header p {
+    margin: 6px 0 0;
+
+    color: #817b8f;
+
+    font-size: 12px;
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   MAIN CARD
+   ========================================================= */
+
+.class-report-card {
+    width: 100%;
+    max-width: 850px;
+
+    background: #ffffff;
+
+    border: 1px solid #e9e6f2;
+    border-radius: 15px;
+
+    padding: 25px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 4px 18px rgba(40, 30, 70, 0.045);
+}
+
+
+/* =========================================================
+   CARD HEADER
+   ========================================================= */
+
+.class-report-card-header {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding-bottom: 22px;
+    margin-bottom: 24px;
+
+    border-bottom: 1px solid #f0eef5;
+}
+
+.report-icon {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #f0ebff;
+
+    color: #6c4ce8;
+
+    font-size: 18px;
+}
+
+.class-report-card-header h3 {
+    margin: 0;
+
+    color: #393349;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.class-report-card-header p {
+    margin: 4px 0 0;
+
+    color: #8b8597;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.class-report-card form {
+    margin: 0;
+    padding: 0;
+
+    box-shadow: none;
+    border: none;
+}
+
+
+/* =========================================================
+   FORM GRID
+   ========================================================= */
+
+.report-form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 22px;
+}
+
+
+/* =========================================================
+   FORM GROUP
+   ========================================================= */
+
+.report-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.report-form-group label {
+    margin-bottom: 8px;
+
+    color: #625c73;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.25px;
+}
+
+
+/* =========================================================
+   SELECT
+   ========================================================= */
+
+.report-form-group select {
+    width: 100%;
+    height: 44px;
+
+    padding: 0 13px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #ddd9e9;
+    border-radius: 9px;
+
+    background: #fbfaff;
+
+    color: #393349;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.report-form-group select:hover {
+    border-color: #b6a8e9;
+}
+
+.report-form-group select:focus {
+    border-color: #7658e5;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(108, 76, 232, 0.08);
+}
+
+
+/* =========================================================
+   BUTTON AREA
+   ========================================================= */
+
+.report-button-area {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 25px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #f0eef5;
+}
+
+
+/* =========================================================
+   GENERATE BUTTON
+   ========================================================= */
+
+.generate-report-btn {
+    height: 44px;
+
+    min-width: 110px;
+
+    padding: 0 22px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: linear-gradient(
+        135deg,
+        #7658e8,
+        #5f40d2
+    );
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 16px rgba(108, 76, 232, 0.23);
+
+    transition: all 0.2s ease;
+}
+
+.generate-report-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 9px 21px rgba(108, 76, 232, 0.30);
+}
+
+.generate-report-btn:active {
+    transform: translateY(0);
+}
+
+.generate-report-btn i {
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .class-report-page {
+        padding: 18px;
+    }
+
+    .class-report-card {
+        padding: 20px;
+    }
+
+    .report-form-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .report-button-area {
+        justify-content: stretch;
+    }
+
+    .generate-report-btn {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .class-report-page {
+        padding: 15px;
+    }
+
+    .class-report-header h2 {
+        font-size: 19px;
+    }
+
+    .class-report-card {
+        padding: 17px;
+    }
+}

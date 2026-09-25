@@ -1,0 +1,762 @@
+
+/* =========================================================
+   QUESTION PAPER - SCREEN
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body {
+  background: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #303846;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  overflow: visible;
+}
+
+
+/* =========================================================
+   QUESTION PAPER CONTAINER
+========================================================= */
+
+.question-paper {
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+
+  background: #ffffff;
+
+  padding: 45px 65px 70px;
+
+  color: #303846;
+
+  overflow: visible;
+}
+
+
+/* =========================================================
+   SCHOOL HEADER
+========================================================= */
+
+.school-name-container {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+
+  margin: 0;
+  padding: 0 0 15px;
+}
+
+.school-logo-container {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 65px;
+  height: 65px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.school-logo {
+  width: 65px;
+  height: 65px;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+.school-name {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 22px;
+  font-weight: 500;
+
+  color: #303846;
+
+  text-align: center;
+}
+
+.school-address {
+  margin: 7px 0 0;
+
+  font-size: 14px;
+  font-weight: 400;
+
+  color: #303846;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   EXAM DETAILS
+========================================================= */
+
+.exam-details {
+  width: 100%;
+
+  margin-top: 30px;
+
+  color: #303846;
+}
+
+.exam-details-top {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr;
+
+  border-top: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+}
+
+.exam-details-bottom {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  border-bottom: 1px solid #333333;
+}
+
+.exam-details p {
+  margin: 0;
+
+  padding: 10px;
+
+  font-size: 14px;
+
+  color: #303846;
+}
+
+.exam-details-top p:not(:last-child),
+.exam-details-bottom p:first-child {
+  border-right: 1px solid #333333;
+}
+
+.exam-name,
+.exam-class,
+.exam-subject,
+.exam-duration,
+.exam-max-marks {
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   GENERAL INSTRUCTIONS
+========================================================= */
+
+.exam-instructions-container {
+  width: 100%;
+
+  margin-top: 25px;
+
+  padding: 15px;
+
+  border: 1px solid #333333;
+
+  background: #ffffff;
+}
+
+.exam-instructions {
+  margin: 0;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+
+  color: #303846;
+}
+
+
+/* =========================================================
+   QUESTION PAPER
+========================================================= */
+
+.exam-paper {
+  width: 100%;
+
+  margin-top: 30px;
+}
+
+.exam-section-container {
+  width: 100%;
+
+  padding: 9px 0;
+
+  text-align: center;
+
+  border-top: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+}
+
+.exam-section {
+  margin: 0;
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  color: #303846;
+
+  text-transform: uppercase;
+}
+
+.section-instruction {
+  margin: 15px 0 20px;
+
+  font-size: 14px;
+
+  font-style: italic;
+
+  color: #303846;
+}
+
+.question {
+  margin: 0;
+
+  padding: 9px 5px;
+
+  font-size: 15px;
+
+  line-height: 1.6;
+
+  color: #303846;
+
+  border-bottom: 1px solid #dddddd;
+}
+
+.no-questions {
+  margin: 20px 0;
+
+  font-size: 14px;
+
+  color: #d32f2f;
+}
+
+
+/* =========================================================
+   LOADING / ERROR
+========================================================= */
+
+.qp-loading,
+.qp-error {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 18px;
+}
+
+.qp-error {
+  color: #d32f2f;
+}
+
+
+/* =========================================================
+   SCREEN SCROLL
+========================================================= */
+
+@media screen {
+
+  html {
+    height: auto !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  body {
+    height: auto !important;
+    min-height: 100vh !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  #root {
+    height: auto !important;
+    min-height: 100vh !important;
+
+    overflow: visible !important;
+  }
+
+  .question-paper {
+    height: auto !important;
+    min-height: 100vh !important;
+    max-height: none !important;
+
+    overflow: visible !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media screen and (max-width: 768px) {
+
+  html,
+  body,
+  #root {
+    height: auto !important;
+    min-height: 100vh !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  .question-paper {
+    width: 100%;
+
+    min-height: 100vh;
+    height: auto;
+
+    padding: 30px 20px 50px;
+
+    overflow: visible;
+  }
+
+  .school-logo-container {
+    position: static;
+
+    margin: 0 auto 10px;
+  }
+
+  .exam-details-top {
+    grid-template-columns: 1fr;
+  }
+
+  .exam-details-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .exam-details-top p:not(:last-child),
+  .exam-details-bottom p:first-child {
+    border-right: none;
+
+    border-bottom: 1px solid #333333;
+  }
+
+  .question {
+    font-size: 14px;
+  }
+}
+
+
+/* =========================================================
+   PRINT
+   SAME PRINT APPROACH AS REPORT
+========================================================= */
+
+@media print {
+
+  /* -------------------------------------------------------
+     PAGE
+  ------------------------------------------------------- */
+
+  @page {
+    size: A4 portrait;
+    margin: 8mm;
+  }
+
+
+  /* -------------------------------------------------------
+     REMOVE APPLICATION LAYOUT EFFECTS
+  ------------------------------------------------------- */
+
+  html {
+    width: 100% !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: visible !important;
+
+    background: #ffffff !important;
+  }
+
+  body {
+    width: 100% !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: visible !important;
+
+    background: #ffffff !important;
+
+    color: #303846 !important;
+  }
+
+  #root {
+    width: 100% !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: visible !important;
+
+    background: #ffffff !important;
+  }
+
+
+  /* -------------------------------------------------------
+     HIDE EVERYTHING EXCEPT QUESTION PAPER
+  ------------------------------------------------------- */
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .question-paper,
+  .question-paper * {
+    visibility: visible !important;
+  }
+
+
+  /* -------------------------------------------------------
+     QUESTION PAPER ITSELF
+  ------------------------------------------------------- */
+
+  .question-paper {
+    position: absolute !important;
+
+    left: 0 !important;
+    top: 0 !important;
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+    max-width: none !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    margin: 0 !important;
+
+    padding: 3mm 2mm 5mm !important;
+
+    overflow: visible !important;
+
+    background: #ffffff !important;
+
+    color: #303846 !important;
+
+    display: block !important;
+
+    transform: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     SCHOOL HEADER
+  ------------------------------------------------------- */
+
+  .school-name-container {
+    width: 100% !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    justify-content: center !important;
+    align-items: center !important;
+
+    position: relative !important;
+
+    margin: 0 !important;
+    padding: 0 0 12px !important;
+  }
+
+  .school-logo-container {
+    position: absolute !important;
+
+    left: 0 !important;
+    top: 0 !important;
+
+    width: 62px !important;
+    height: 62px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .school-logo {
+    width: 62px !important;
+    height: 62px !important;
+
+    display: block !important;
+
+    object-fit: contain !important;
+  }
+
+  .school-name {
+    margin: 0 !important;
+
+    font-family: Georgia, "Times New Roman", serif !important;
+
+    font-size: 21px !important;
+
+    font-weight: 500 !important;
+
+    color: #303846 !important;
+
+    text-align: center !important;
+  }
+
+  .school-address {
+    margin: 6px 0 0 !important;
+
+    font-size: 13px !important;
+
+    color: #303846 !important;
+
+    text-align: center !important;
+  }
+
+
+  /* -------------------------------------------------------
+     EXAM DETAILS
+  ------------------------------------------------------- */
+
+  .exam-details {
+    width: 100% !important;
+
+    margin-top: 22px !important;
+
+    display: block !important;
+  }
+
+  .exam-details-top {
+    width: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns: 1fr 1fr 1fr !important;
+
+    border-top: 1px solid #333333 !important;
+    border-bottom: 1px solid #333333 !important;
+  }
+
+  .exam-details-bottom {
+    width: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns: 1fr 1fr !important;
+
+    border-bottom: 1px solid #333333 !important;
+  }
+
+  .exam-details p {
+    display: block !important;
+
+    margin: 0 !important;
+
+    padding: 7px 8px !important;
+
+    font-size: 12px !important;
+
+    color: #303846 !important;
+  }
+
+  .exam-details-top p:not(:last-child),
+  .exam-details-bottom p:first-child {
+    border-right: 1px solid #333333 !important;
+  }
+
+
+  /* -------------------------------------------------------
+     GENERAL INSTRUCTIONS
+  ------------------------------------------------------- */
+
+  .exam-instructions-container {
+    width: 100% !important;
+
+    margin-top: 18px !important;
+
+    padding: 10px !important;
+
+    border: 1px solid #333333 !important;
+
+    background: #ffffff !important;
+
+    page-break-inside: avoid !important;
+  }
+
+  .exam-instructions {
+    display: block !important;
+
+    margin: 0 !important;
+
+    font-size: 12px !important;
+
+    line-height: 1.55 !important;
+
+    color: #303846 !important;
+  }
+
+
+  /* -------------------------------------------------------
+     EXAM PAPER
+  ------------------------------------------------------- */
+
+  .exam-paper {
+    width: 100% !important;
+
+    margin-top: 20px !important;
+
+    display: block !important;
+
+    overflow: visible !important;
+  }
+
+  .exam-section-container {
+    width: 100% !important;
+
+    display: block !important;
+
+    padding: 7px 0 !important;
+
+    text-align: center !important;
+
+    border-top: 1px solid #333333 !important;
+    border-bottom: 1px solid #333333 !important;
+
+    page-break-inside: avoid !important;
+  }
+
+  .exam-section {
+    display: block !important;
+
+    margin: 0 !important;
+
+    font-size: 16px !important;
+
+    font-weight: 700 !important;
+
+    color: #303846 !important;
+
+    text-align: center !important;
+  }
+
+  .section-instruction {
+    display: block !important;
+
+    margin: 12px 0 15px !important;
+
+    padding: 0 !important;
+
+    font-size: 12px !important;
+
+    font-style: italic !important;
+
+    color: #303846 !important;
+  }
+
+  .question {
+    display: block !important;
+
+    margin: 0 !important;
+
+    padding: 6px 3px !important;
+
+    font-size: 12px !important;
+
+    line-height: 1.45 !important;
+
+    color: #303846 !important;
+
+    border-bottom: 1px solid #dddddd !important;
+
+    page-break-inside: avoid !important;
+  }
+
+  .no-questions {
+    display: block !important;
+
+    font-size: 12px !important;
+
+    color: #d32f2f !important;
+  }
+
+
+  /* -------------------------------------------------------
+     REMOVE TRANSFORMS / EFFECTS
+  ------------------------------------------------------- */
+
+  .question-paper,
+  .question-paper * {
+    animation: none !important;
+
+    transition: none !important;
+
+    transform: none !important;
+
+    filter: none !important;
+
+    box-shadow: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     IMAGES
+  ------------------------------------------------------- */
+
+  img {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

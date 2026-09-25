@@ -1,0 +1,522 @@
+ /* =========================================================
+    CLASS WISE REPORT
+    Modern White + Purple ERP UI
+    ========================================================= */
+
+.class-report-page {
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 24px;
+
+    box-sizing: border-box;
+
+    background: #f7f7fb;
+
+    font-family: "Poppins", sans-serif;
+
+    color: #302b43;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+   ========================================================= */
+
+.class-report-top {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.class-report-heading {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.class-report-icon {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: #eee9ff;
+
+    color: #6c4ce8;
+
+    font-size: 18px;
+}
+
+.class-report-heading h2 {
+    margin: 0;
+
+    color: #302b43;
+
+    font-size: 21px;
+    font-weight: 700;
+
+    letter-spacing: -0.3px;
+}
+
+.class-report-heading p {
+    margin: 5px 0 0;
+
+    color: #817b8f;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   INFO CARDS
+   ========================================================= */
+
+.report-info-row {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+
+    margin-bottom: 22px;
+}
+
+.report-info-card {
+    min-height: 76px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 15px 17px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #e9e6f2;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 4px 18px rgba(
+            40,
+            30,
+            70,
+            0.045
+        );
+}
+
+.report-info-label {
+    margin-bottom: 5px;
+
+    color: #918b9d;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+}
+
+.report-info-card strong {
+    color: #403a54;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   TABLE CARD
+   ========================================================= */
+
+.class-report-table-card {
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #e9e6f2;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 4px 18px rgba(
+            40,
+            30,
+            70,
+            0.045
+        );
+}
+
+
+/* =========================================================
+   TABLE HEADER
+   ========================================================= */
+
+.report-table-header {
+    padding: 20px 22px;
+
+    border-bottom: 1px solid #eeeaf4;
+}
+
+.report-table-header h3 {
+    margin: 0;
+
+    color: #302b43;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.report-table-header p {
+    margin: 4px 0 0;
+
+    color: #8a8495;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+   ========================================================= */
+
+.class-report-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.class-report-table {
+    width: 100%;
+
+    min-width: 900px;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   TABLE HEAD
+   ========================================================= */
+
+.class-report-table thead {
+    background: #f7f5fc;
+}
+
+.class-report-table th {
+    height: 52px;
+
+    padding: 8px 15px;
+
+    border-bottom: 1px solid #e7e3ee;
+
+    color: #686279;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-align: left;
+
+    letter-spacing: 0.5px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   SUBJECT HEADER
+   ========================================================= */
+
+.subject-header {
+    text-align: center !important;
+}
+
+.subject-header span {
+    display: block;
+
+    color: #625c73;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.subject-header small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #9a94a5;
+
+    font-size: 9px;
+    font-weight: 500;
+
+    letter-spacing: 0;
+}
+
+
+/* =========================================================
+   TABLE BODY
+   ========================================================= */
+
+.class-report-table td {
+    padding: 14px 15px;
+
+    border-bottom: 1px solid #f0eef5;
+
+    color: #4d475d;
+
+    font-size: 12px;
+
+    vertical-align: middle;
+
+    white-space: nowrap;
+}
+
+.class-report-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.class-report-table tbody tr:hover {
+    background: #faf9ff;
+}
+
+.class-report-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   ROLL NO
+   ========================================================= */
+
+.roll-cell {
+    color: #6c4ce8 !important;
+
+    font-weight: 700;
+
+    width: 80px;
+}
+
+
+/* =========================================================
+   NAME
+   ========================================================= */
+
+.name-cell {
+    min-width: 180px;
+
+    color: #373145 !important;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   MARKS
+   ========================================================= */
+
+.marks-cell {
+    text-align: center;
+
+    color: #4d475d !important;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   TOTAL
+   ========================================================= */
+
+.total-header {
+    text-align: center !important;
+
+    background: #f3efff;
+}
+
+.total-cell {
+    min-width: 100px;
+
+    text-align: center;
+
+    background: #fcfaff;
+}
+
+.total-cell strong {
+    color: #5f40d2;
+
+    font-size: 12px;
+}
+
+.total-cell span {
+    color: #918b9d;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   PERCENTAGE
+   ========================================================= */
+
+.percentage-header {
+    text-align: center !important;
+
+    background: #f3efff;
+}
+
+.percentage-cell {
+    min-width: 105px;
+
+    text-align: center;
+
+    background: #fcfaff;
+}
+
+.percentage-cell span {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 62px;
+
+    padding: 5px 9px;
+
+    border-radius: 6px;
+
+    background: #eee9ff;
+
+    color: #6242d6;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   NO DATA
+   ========================================================= */
+
+.no-report-data {
+    height: 180px;
+
+    text-align: center !important;
+
+    color: #918b9d !important;
+}
+
+.no-report-data i {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #b0a8bf;
+
+    font-size: 28px;
+}
+
+.no-report-data span {
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+.class-report-table-wrapper::-webkit-scrollbar {
+    height: 7px;
+}
+
+.class-report-table-wrapper::-webkit-scrollbar-track {
+    background: #f5f3f9;
+}
+
+.class-report-table-wrapper::-webkit-scrollbar-thumb {
+    background: #c7bfdf;
+
+    border-radius: 10px;
+}
+
+.class-report-table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #a99bd2;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .report-info-row {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .class-report-page {
+        padding: 15px;
+    }
+
+    .class-report-heading h2 {
+        font-size: 18px;
+    }
+
+    .class-report-heading p {
+        font-size: 11px;
+    }
+
+    .report-info-row {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 10px;
+    }
+
+    .report-info-card {
+        min-height: 70px;
+
+        padding: 12px;
+    }
+
+    .report-info-card strong {
+        font-size: 13px;
+    }
+
+    .report-table-header {
+        padding: 17px;
+    }
+
+    .class-report-table {
+        min-width: 900px;
+    }
+}

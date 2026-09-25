@@ -47,7 +47,7 @@ import SponseredStudents from "./StudentComponent/SponseredStudents";
 import StudentAbsent from "./StudentComponent/StudentAbsent";
 import StudentBirthday from "./StudentComponent/StudentBirthday";
 import StudentLeaveRequest from "./StudentComponent/StudentLeaveRequest";
-
+import QuestionPaperGenerate from "./ExamComponent/QuestionPaperGenerate";
 
 import AdminListStudent from "./StudentComponent/AdminListStudent";
 import StudentListView from "./StudentComponent/StudentListView";
@@ -287,6 +287,10 @@ function App() {
           <Route path="ExamComponent/QuestionPapers" element={<QuestionPapers />} />
           <Route path="ExamComponent/ClassWiseMetrics/SelectClass" element={<SelectClassMetrics />} />
           <Route path="ExamComponent/ClassWiseMetrics/ClassMetrics" element={<ClassMetrics />} />
+          <Route
+  path="ExamComponent/QuestionPaperGenerate/:questionPaperId"
+  element={<QuestionPaperGenerate />}
+/>
           <Route path="/dashboard/ExamComponent/CreateQuestionPaper"element={<CreateQuestionPaper />}/>
           <Route path="/dashboard/ExamComponent/ClassWiseReport" element={<ClassWiseReport />} />
           <Route path="/dashboard/ExamComponent/ClassWiseReportSelect" element={<ClassWiseReportSelect />} />

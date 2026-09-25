@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import "./ClassMetrics.css";
 
 const BASE_URL = "http://localhost/kkblossom/api.php/Adminapi/AdminExam";
 
@@ -49,61 +50,145 @@ const ClassMetrics = () => {
   const allStudentMetrics = Object.values(studentMetrics);
 
   return (
-    <div className="col-md-12 innerview">
-      <table className="table table-responsive table-bordered">
-        
+    <div className="class-metrics-page">
+
+      <div className="class-metrics-card">
+
         {/* HEADER */}
-        <thead className="dataTableHead">
-          <tr>
-            <th style={{color:"#fff"}}>Roll No.</th>
-            <th style={{color:"#fff"}}>Name</th>
 
-            {metrics.map((metric) => (
-              <th key={metric.metric_id} style={{color:"#fff"}}>
-                {metric.metric_name}
-              </th>
-            ))}
-          </tr>
-        </thead>
+        <div className="metrics-header">
 
-        {/* BODY */}
-        <tbody className="dataTableBody">
-          {students.map((student) => (
-            <tr key={student.id} >
-              <td>{student.Rollno}</td>
-              <td>{student.Name}</td>
+          <div className="metrics-title">
 
-              {metrics.map((metric) => (
-                <td key={metric.metric_id}>
-                  {allStudentMetrics.map((group) =>
-                    group.map((sm, index) => {
-                      if (
-                        sm.student_id === student.id &&
-                        sm.metric_id === metric.metric_id
-                      ) {
-                        return <span key={index}>{sm.mark}</span>;
-                      }
-                      return null;
-                    })
-                  )}
-                </td>
+            <div className="metrics-title-icon">
+              <i className="bi bi-bar-chart-fill"></i>
+            </div>
+
+            <div className="metrics-title-content">
+              <h2>Class Performance Metrics</h2>
+              <p>
+                Student-wise examination performance
+              </p>
+            </div>
+
+          </div>
+
+          <div className="class-badge">
+            <i className="bi bi-mortarboard-fill"></i>
+            Class {className}
+          </div>
+
+        </div>
+
+        {/* TABLE */}
+
+        <div className="metrics-table-wrapper">
+
+          <table className="metrics-table">
+
+            {/* HEADER */}
+
+            <thead className="dataTableHead">
+
+              <tr>
+
+                <th style={{ color: "#fff" }}>
+                  Roll No.
+                </th>
+
+                <th style={{ color: "#fff" }}>
+                  Name
+                </th>
+
+                {metrics.map((metric) => (
+                  <th
+                    key={metric.metric_id}
+                    style={{ color: "#fff" }}
+                  >
+                    {metric.metric_name}
+                  </th>
+                ))}
+
+              </tr>
+
+            </thead>
+
+            {/* BODY */}
+
+            <tbody className="dataTableBody">
+
+              {students.map((student) => (
+
+                <tr key={student.id}>
+
+                  <td>
+                    {student.Rollno}
+                  </td>
+
+                  <td>
+                    {student.Name}
+                  </td>
+
+                  {metrics.map((metric) => (
+
+                    <td key={metric.metric_id}>
+
+                      {allStudentMetrics.map((group) =>
+                        group.map((sm, index) => {
+
+                          if (
+                            sm.student_id === student.id &&
+                            sm.metric_id === metric.metric_id
+                          ) {
+                            return (
+                              <span
+                                className="metric-mark"
+                                key={index}
+                              >
+                                {sm.mark}
+                              </span>
+                            );
+                          }
+
+                          return null;
+
+                        })
+                      )}
+
+                    </td>
+
+                  ))}
+
+                </tr>
+
               ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
 
-      <button
-        style={{
-          background: "#f95555",
-          color: "white",
-          border: "none",
-          padding: "5px 25px",
-        }}
-        onClick={exportCSV}
-      >
-        Export to CSV
-      </button>
+            </tbody>
+
+          </table>
+
+        </div>
+
+        {/* FOOTER */}
+
+        <div className="metrics-footer">
+
+          <span className="metrics-info">
+            Class {className} performance data
+          </span>
+
+          <button
+            className="metrics-export-button"
+            onClick={exportCSV}
+          >
+            <i className="bi bi-file-earmark-spreadsheet"></i>
+            Export to CSV
+          </button>
+
+        </div>
+
+      </div>
+
     </div>
   );
 };

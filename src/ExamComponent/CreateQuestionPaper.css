@@ -616,3 +616,56 @@ form {
 .custom-table::-webkit-scrollbar-thumb:hover {
     background: #a99bd2;
 }
+.admin-view-student-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.admin-view-student-toggle input {
+  display: none !important;
+}
+
+.admin-view-student-toggle-slider {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 30px;
+  background: #d9d4e2;
+  transition: 0.25s ease;
+}
+
+.admin-view-student-toggle-slider::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  transition: 0.25s ease;
+}
+
+.admin-view-student-toggle input:checked
+~ .admin-view-student-toggle-slider {
+  background: #6f42c1;
+}
+
+.admin-view-student-toggle input:checked
+~ .admin-view-student-toggle-slider::after {
+  transform: translateX(20px);
+}
+
+.admin-view-student-toggle-text {
+  color: #554d62;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+}
