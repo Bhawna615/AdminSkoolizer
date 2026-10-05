@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -72,7 +73,6 @@ const CreateExam = () => {
       !form.date ||
       !form.topic
     ) {
-      alert("All fields are required");
       return;
     }
 
@@ -92,20 +92,21 @@ const CreateExam = () => {
       setLoadingText("Sending Notifications...");
 
       if (res.data.status) {
-        alert("Exam Created Successfully");
+        // Exam created successfully
 
         navigate("/dashboard/ExamComponent/view-exams", {
-          state: {
-            class: selectedClass,
-            examType: form.type,
-          },
-        });
+  state: {
+    class: selectedClass,
+    examType: form.type,
+    successMessage: "Exam Created Successfully",
+  },
+});
       } else {
-        alert("Failed to Submit");
+        // Submission failed
+        console.error("Failed to Submit");
       }
     } catch (err) {
-      console.error(err);
-      alert("Error occurred");
+      console.error("Error occurred:", err);
     } finally {
       setLoading(false);
     }
@@ -143,13 +144,11 @@ const CreateExam = () => {
       )}
 
       <div className="createExam-wrapper">
-
         {/* =========================================
             HEADER
         ========================================= */}
         <div className="createExam-header">
           <div className="createExam-header-left">
-
             <div className="createExam-header-icon">
               <i className="las la-file-signature"></i>
             </div>
@@ -181,7 +180,6 @@ const CreateExam = () => {
             CLASS BANNER
         ========================================= */}
         <div className="createExam-class-banner">
-
           <div className="createExam-class-icon">
             <i className="las la-school"></i>
           </div>
@@ -195,7 +193,6 @@ const CreateExam = () => {
             <i className="las la-check-circle"></i>
             Class Selected
           </div>
-
         </div>
 
         {/* =========================================
@@ -205,12 +202,10 @@ const CreateExam = () => {
           onSubmit={handleSubmit}
           className="createExam-main-card"
         >
-
           {/* =========================================
               LEFT FORM
           ========================================= */}
           <div className="createExam-form-section">
-
             <div className="createExam-section-heading">
               <div className="createExam-section-number">
                 01
@@ -354,7 +349,6 @@ const CreateExam = () => {
 
             {/* Marks + Date */}
             <div className="createExam-two-columns">
-
               <div className="createExam-field">
                 <label>
                   Maximum Marks
@@ -402,16 +396,13 @@ const CreateExam = () => {
                   />
                 </div>
               </div>
-
             </div>
-
           </div>
 
           {/* =========================================
               RIGHT TOPIC SECTION
           ========================================= */}
           <div className="createExam-topic-section">
-
             <div className="createExam-section-heading">
               <div className="createExam-section-number">
                 02
@@ -426,7 +417,6 @@ const CreateExam = () => {
             </div>
 
             <div className="createExam-topic-box">
-
               <div className="createExam-topic-header">
                 <label>
                   Topic / Syllabus
@@ -450,17 +440,16 @@ const CreateExam = () => {
 
               <div className="createExam-topic-helper">
                 <i className="las la-info-circle"></i>
+
                 <span>
                   Add the chapters or topics students should prepare
                   for this examination.
                 </span>
               </div>
-
             </div>
 
             {/* Selected Summary */}
             <div className="createExam-summary">
-
               <div className="createExam-summary-title">
                 <i className="las la-clipboard-check"></i>
                 <span>Exam Summary</span>
@@ -500,16 +489,13 @@ const CreateExam = () => {
                     : "Not entered"}
                 </strong>
               </div>
-
             </div>
-
           </div>
 
           {/* =========================================
               FOOTER
           ========================================= */}
           <div className="createExam-form-footer">
-
             <div className="createExam-required-note">
               <i className="las la-info-circle"></i>
 
@@ -519,7 +505,6 @@ const CreateExam = () => {
             </div>
 
             <div className="createExam-footer-actions">
-
               <button
                 type="button"
                 className="createExam-cancel-btn"
@@ -535,13 +520,9 @@ const CreateExam = () => {
                 <i className="las la-plus-circle"></i>
                 <span>Create Exam</span>
               </button>
-
             </div>
-
           </div>
-
         </form>
-
       </div>
     </div>
   );

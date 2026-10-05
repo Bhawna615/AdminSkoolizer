@@ -17,7 +17,20 @@ const ViewExams = () => {
   const [deletingId, setDeletingId] = useState(null);
   const [savingId, setSavingId] = useState(null);
   const [search, setSearch] = useState("");
+const successMessage = location.state?.successMessage;
 
+const [showSuccessMessage, setShowSuccessMessage] =
+  useState(Boolean(successMessage));
+
+useEffect(() => {
+  if (!successMessage) return;
+
+  const timer = setTimeout(() => {
+    setShowSuccessMessage(false);
+  }, 4000); // message visible for 4 seconds
+
+  return () => clearTimeout(timer);
+}, [successMessage]);
   // ==================================================
   // BASE URL
   // ==================================================
@@ -509,7 +522,29 @@ const ViewExams = () => {
         </div>
 
       </div>
+{showSuccessMessage && successMessage && (
+  <div className="viewExams-success-message">
+    <div className="viewExams-success-icon">
+      <i className="las la-check-circle"></i>
+    </div>
 
+    <div className="viewExams-success-content">
+      <strong>{successMessage}</strong>
+      <span>
+        The examination has been created and added successfully.
+      </span>
+    </div>
+
+    <button
+      type="button"
+      className="viewExams-success-close"
+      onClick={() => setShowSuccessMessage(false)}
+      title="Close"
+    >
+      <i className="las la-times"></i>
+    </button>
+  </div>
+)}
 
       {/* ==================================================
           MAIN CARD

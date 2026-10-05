@@ -161,7 +161,131 @@
   border-radius: 15px;
   box-shadow: 0 5px 18px rgba(45, 25, 80, 0.04);
 }
+/* =========================================================
+   SUCCESS MESSAGE
+========================================================= */
 
+.viewExams-success-message {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 18px;
+  margin: 18px 0;
+  background: #ffffff;
+  border: 1px solid #bbf7d0;
+  border-left: 4px solid #16a34a;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.08);
+  box-sizing: border-box;
+  animation: viewExamsSuccessSlide 0.35s ease-out;
+}
+
+/* Success Icon */
+
+.viewExams-success-icon {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dcfce7;
+  color: #16a34a;
+  border-radius: 50%;
+  font-size: 22px;
+}
+
+/* Content */
+
+.viewExams-success-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.viewExams-success-content strong {
+  color: #166534;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.viewExams-success-content span {
+  color: #4b6352;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* Close Button */
+
+.viewExams-success-close {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s ease;
+}
+
+.viewExams-success-close:hover {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+/* Animation */
+
+@keyframes viewExamsSuccessSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 600px) {
+  .viewExams-success-message {
+    padding: 13px 14px;
+    gap: 10px;
+  }
+
+  .viewExams-success-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    font-size: 19px;
+  }
+
+  .viewExams-success-content strong {
+    font-size: 14px;
+  }
+
+  .viewExams-success-content span {
+    font-size: 12px;
+  }
+
+  .viewExams-success-close {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+  }
+}
 .viewExams-stat-icon {
   width: 48px;
   height: 48px;

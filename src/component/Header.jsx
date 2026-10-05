@@ -3,10 +3,7 @@ import skoolizerLogo from "../images/image.png";
 import schoolLogo from "../images/school-logo.png";
 import { useNavigate } from "react-router-dom";
 
-const Header = ({
-  toggleSidebar,
-  isSidebarOpen
-}) => {
+const Header = ({ toggleSidebar, isSidebarOpen }) => {
   const navigate = useNavigate();
 
   const adminData = JSON.parse(
@@ -40,7 +37,9 @@ const Header = ({
   return (
     <header className="skoolizer-header">
 
-      {/* LOGO */}
+      {/* =====================================================
+          LOGO
+      ====================================================== */}
       <div
         className="header-brand"
         onClick={() => navigate("/dashboard")}
@@ -53,16 +52,31 @@ const Header = ({
       </div>
 
 
+      {/* =====================================================
+          HEADER CONTENT
+      ====================================================== */}
       <div className="header-content">
 
-        {/* LEFT SIDE */}
+        {/* ===================================================
+            LEFT SECTION
+        ==================================================== */}
         <div className="header-left-section">
 
-          {/* MOBILE MENU TOGGLE */}
+          {/* SIDEBAR TOGGLE */}
           <button
+            type="button"
             className="menu-toggle"
             onClick={toggleSidebar}
-            aria-label="Toggle Sidebar"
+            aria-label={
+              isSidebarOpen
+                ? "Close Sidebar"
+                : "Open Sidebar"
+            }
+            title={
+              isSidebarOpen
+                ? "Close Sidebar"
+                : "Open Sidebar"
+            }
           >
             <i
               className={`las ${
@@ -76,29 +90,42 @@ const Header = ({
 
           {/* SEARCH */}
           <div className="header-search">
+
             <i className="las la-search"></i>
 
             <input
               type="text"
               placeholder="Search anything..."
             />
+
           </div>
 
         </div>
 
 
-        {/* RIGHT SIDE */}
+        {/* ===================================================
+            RIGHT SECTION
+        ==================================================== */}
         <div className="header-right-section">
 
-          <button className="header-icon-btn">
+          {/* NOTIFICATION */}
+          <button
+            type="button"
+            className="header-icon-btn"
+            aria-label="Notifications"
+          >
             <i className="las la-bell"></i>
+
             <span className="notification-dot"></span>
           </button>
 
 
+          {/* ADMIN PROFILE */}
           <div className="admin-profile">
 
+            {/* AVATAR */}
             <div className="admin-avatar">
+
               {schoolLogo ? (
                 <img
                   src={schoolLogo}
@@ -107,32 +134,50 @@ const Header = ({
               ) : (
                 <i className="las la-user"></i>
               )}
+
             </div>
 
+
+            {/* ADMIN INFORMATION */}
             <div className="admin-info">
+
               <h4>
                 {adminData?.username || "Admin"}
               </h4>
 
-              <span>Administrator</span>
+              <span>
+                Administrator
+              </span>
+
             </div>
 
+
+            {/* ARROW */}
             <i className="las la-angle-down profile-arrow"></i>
 
           </div>
 
 
-          {/* <button
+          {/* =================================================
+              LOGOUT BUTTON
+              Currently disabled/commented
+          ================================================== */}
+
+          {/*
+          <button
+            type="button"
             className="logout-btn"
             onClick={handleLogout}
             title="Log Out"
           >
             <i className="las la-sign-out-alt"></i>
-          </button> */}
+          </button>
+          */}
 
         </div>
 
       </div>
+
     </header>
   );
 };

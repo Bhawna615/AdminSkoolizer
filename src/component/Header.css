@@ -27,7 +27,7 @@
 ========================================= */
 
 .header-brand {
-  width: 264px;
+  width: 245px;
   min-width: 230px;
 
   height: 70px;
@@ -48,12 +48,12 @@
 
 
 .skoolizer-logo {
- width: 200px;
-    height: auto;
-    object-fit: contain;
-    position: absolute;
-    top: -4%;
-    left: 7px;
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+  position: absolute;
+  top: -4%;
+  left: 7px;
 }
 
 
@@ -184,8 +184,8 @@
 ========================================= */
 
 .header-icon-btn {
- right: 16%;
-    top: 30%;
+  right: 16%;
+  top: 30%;
   position: absolute;
 
   width: 38px;
@@ -270,12 +270,12 @@
 
 
 .admin-avatar img {
- width: 3%;
-    /* height: 100%; */
-    object-fit: cover;
-    position: absolute;
-    right: 12%;
-    top: 33%;
+  width: 3%;
+  /* height: 100%; */
+  object-fit: cover;
+  position: absolute;
+  right: 12%;
+  top: 33%;
 }
 
 
@@ -353,107 +353,10 @@
 
 
 /* =========================================
-   RESPONSIVE - LARGE LAPTOP
+   RESPONSIVE - ONLY 1200px
 ========================================= */
 
 @media (max-width: 1200px) {
-
-  .header-brand {
-    width: 210px;
-    min-width: 210px;
-    
-    padding: 0 20px;
-  }
-
-  .skoolizer-logo {
-    width: 160px;
-    left: 20px;
-  }
-
-  .header-content {
-    padding: 0 20px;
-  }
-
-  .header-left-section {
-    gap: 20px;
-  }
-
-  .header-search {
-    width: 220px;
-  }
-
-  .header-icon-btn {
-    right: 22%;
-  }
-
-  .admin-avatar img {
-    width: 4.5%;
-    right: 15%;
-  }
-
-}
-
-
-/* =========================================
-   RESPONSIVE - TABLET / SMALL LAPTOP
-========================================= */
-
-@media (max-width: 992px) {
-
-  .header-brand {
-    width: 200px;
-    min-width: 200px;
-
-    padding: 0 18px;
-  }
-
-  .skoolizer-logo {
-    width: 150px;
-    left: 18px;
-  }
-
-  .header-content {
-    padding: 0 16px;
-  }
-
-  .header-left-section {
-    gap: 15px;
-  }
-
-  .header-search {
-    width: 180px;
-  }
-
-  .header-right-section {
-    gap: 12px;
-  }
-
-  .admin-info {
-    display: none;
-  }
-
-  .profile-arrow {
-    display: none;
-  }
-
-  .header-icon-btn {
-    right: 16%;
-  }
-
-  .admin-avatar img {
-    width: 5%;
-    right: 9%;
-    top: 20%;
-  }
-
-}
-
-
-/* =========================================
-   RESPONSIVE - TABLET
-========================================= */
-
-@media (max-width: 768px) {
 
   .skoolizer-header {
     height: 60px;
@@ -467,8 +370,6 @@
     z-index: 1000;
   }
 
-  /* Prevent dashboard content from going
-     behind fixed header */
   .dashboard-page {
     padding-top: 60px;
   }
@@ -494,6 +395,10 @@
   }
 
   .header-left-section {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
     gap: 10px;
   }
 
@@ -503,6 +408,10 @@
 
   .admin-profile {
     gap: 5px;
+  }
+
+  .admin-info {
+    display: none;
   }
 
   .profile-arrow {
@@ -517,14 +426,14 @@
     width: 35px;
     height: 35px;
 
-    right: 14%;
+   right: 22%;
     top: 20%;
   }
 
   .admin-avatar img {
     width: 5.5%;
-    right: 7%;
-    top: 18%;
+    right: 15%;
+        top: 29%;
   }
 
   .logout-btn {
@@ -534,189 +443,34 @@
     padding-left: 10px;
   }
 
-}
-
-
-/* =========================================
-   RESPONSIVE - MOBILE
-========================================= */
-
-@media (max-width: 576px) {
-
-  .skoolizer-header {
-    height: 58px;
-
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-
-    z-index: 1000;
-  }
-
-  /* Adjust content below fixed header */
-  .dashboard-page {
-    padding-top: 58px;
-  }
-
-  .header-brand {
-    width: 145px;
-    min-width: 145px;
-
-    height: 58px;
-
-    padding: 0 12px;
-  }
-
-  .skoolizer-logo {
-    width: 100px;
-
-    left: 12px;
-    top: 17%;
-  }
-
-  .header-content {
-    padding: 0 10px;
-  }
-
-  .header-left-section {
-    gap: 5px;
-  }
-
-  .menu-toggle {
-    font-size: 22px;
-  }
-
-  .header-right-section {
-    gap: 5px;
-  }
-
-  .header-icon-btn {
-    width: 32px;
-    height: 32px;
-
-    font-size: 19px;
-
-    right: 17%;
-    top: 20%;
-  }
-
-  .admin-avatar img {
-    width: 7%;
-    right: 7%;
-    top: 18%;
-  }
-
-  .logout-btn {
-    display: none;
-  }
-
-}
-
-
-/* =========================================
-   RESPONSIVE - SMALL MOBILE
-========================================= */
-
-@media (max-width: 400px) {
-
-  .skoolizer-header {
-    height: 58px;
-
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-
-    z-index: 1000;
-  }
-
-  .dashboard-page {
-    padding-top: 58px;
-  }
-
-  .header-brand {
-    width: 120px;
-    min-width: 120px;
-
-    padding: 0 10px;
-  }
-
-  .skoolizer-logo {
-    width: 90px;
-
-    left: 10px;
-  }
-
-  .header-content {
-    padding: 0 6px;
-  }
-
-  .menu-toggle {
-    font-size: 20px;
-  }
-
-  .header-icon-btn {
-    width: 30px;
-    height: 30px;
-
-    font-size: 17px;
-
-    right: 17%;
-  }
-
-  .admin-avatar img {
-    width: 8%;
-    right: 6%;
-  }
-
-}
-/* =========================================
-   MOBILE MENU TOGGLE
-========================================= */
-
-.menu-toggle {
-  display: none;
-
-  width: 42px;
-  height: 42px;
-
-  border: none;
-  border-radius: 8px;
-
-  background: #292244;
-  color: #ffffff;
-
-  align-items: center;
-  justify-content: center;
-
-  cursor: pointer;
-
-  transition:
-    background 0.3s ease,
-    transform 0.3s ease;
-}
-
-.menu-toggle i {
-  font-size: 24px;
-}
-
-.menu-toggle:hover {
-  background: #5b3cc4;
-}
-
-
-/* =========================================
-   SHOW ONLY ON MOBILE / TABLET
-========================================= */
-
-@media (max-width: 768px) {
-
   .menu-toggle {
     display: flex;
     flex-shrink: 0;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #292244;
+    color: #ffffff;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition:
+      background 0.3s ease,
+      transform 0.3s ease;
   }
 
+  .menu-toggle i {
+    font-size: 24px;
+  }
+
+  .menu-toggle:hover {
+    background: #5b3cc4;
+  }
 }

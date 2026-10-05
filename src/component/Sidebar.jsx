@@ -1,28 +1,30 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Sidebar.css";
 
-const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
+const Sidebar = ({
+  isSidebarOpen,
+  toggleSidebar,
+  closeSidebar,
+}) => {
+
   /* =========================================
      DROPDOWN OPEN/CLOSE STATE
   ========================================= */
+
   const [openMenu, setOpenMenu] = useState("");
+
 
   /* =========================================
      ACTIVE CLICKED ITEM
-     
-     Only ONE item can be active at a time.
-     
-     Examples:
-     "Dashboard"
-     "Students"
-     "New Admission"
-     "View Students"
-     "Teachers"
-     ========================================= */
+  ========================================= */
+
   const [activeItem, setActiveItem] = useState("");
 
+
   const navigate = useNavigate();
+
 
   /* =========================================
      MENU ITEMS
@@ -307,46 +309,32 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
     },
   ];
 
+
   /* =========================================
      TOGGLE DROPDOWN
-
-     IMPORTANT:
-     Opening dropdown and active state
-     are now separate.
   ========================================= */
 
   const toggleMenu = (label) => {
+
     setOpenMenu((prev) =>
       prev === label ? "" : label
     );
 
-    /*
-      Clicking a main tab makes THAT tab active.
-      
-      Example:
-      Click Students
-      -> Students becomes purple
-      -> Students dropdown opens
-    */
     setActiveItem(label);
   };
 
+
   /* =========================================
      SUBMENU CLICK
-     
-     Submenu becomes the ONLY active item.
-     
-     Parent does NOT remain active.
   ========================================= */
 
   const handleSubMenuClick = (subLabel) => {
-    /* Make clicked submenu active */
+
     setActiveItem(subLabel);
 
     switch (subLabel) {
-      /* =====================================
-         STUDENTS
-      ===================================== */
+
+      /* STUDENTS */
 
       case "New Admission":
         navigate(
@@ -402,9 +390,8 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
         );
         break;
 
-      /* =====================================
-         TEACHERS
-      ===================================== */
+
+      /* TEACHERS */
 
       case "Add Teacher":
         navigate(
@@ -430,9 +417,8 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
         );
         break;
 
-      /* =====================================
-         ATTENDANCE
-      ===================================== */
+
+      /* ATTENDANCE */
 
       case "Mark Attendance":
         navigate(
@@ -452,9 +438,8 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
         );
         break;
 
-      /* =====================================
-         SCHEDULE
-      ===================================== */
+
+      /* SCHEDULE */
 
       case "View Timetable":
         navigate(
@@ -480,9 +465,8 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
         );
         break;
 
-      /* =====================================
-         TRANSPORT
-      ===================================== */
+
+      /* TRANSPORT */
 
       case "Active Routes":
         navigate(
@@ -514,9 +498,8 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
         );
         break;
 
-      /* =====================================
-         EXAMS
-      ===================================== */
+
+      /* EXAMS */
 
       case "New Exam":
         navigate(
@@ -558,14 +541,15 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
         navigate(
           "/ExamComponent/CustomReportCard",
           {
-            state: { studentId: 10 },
+            state: {
+              studentId: 10,
+            },
           }
         );
         break;
 
-      /* =====================================
-         HOMEWORK
-      ===================================== */
+
+      /* HOMEWORK */
 
       case "Assign Homework":
         navigate(
@@ -585,9 +569,8 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
         );
         break;
 
-      /* =====================================
-         EMPLOYEE
-      ===================================== */
+
+      /* EMPLOYEE */
 
       case "View Employee":
         navigate(
@@ -613,9 +596,8 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
         );
         break;
 
-      /* =====================================
-         FEE
-      ===================================== */
+
+      /* FEE */
 
       case "Fee Structure":
         navigate(
@@ -653,9 +635,8 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
         );
         break;
 
-      /* =====================================
-         VISITOR MANAGEMENT
-      ===================================== */
+
+      /* VISITORS */
 
       case "Log Book":
         navigate(
@@ -663,9 +644,8 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
         );
         break;
 
-      /* =====================================
-         MESSAGING
-      ===================================== */
+
+      /* MESSAGING */
 
       case "In-App Messaging":
         navigate(
@@ -673,9 +653,8 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
         );
         break;
 
-      /* =====================================
-         MORE
-      ===================================== */
+
+      /* MORE */
 
       case "Terms & Conditions":
         navigate("/terms");
@@ -697,48 +676,38 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
         break;
     }
 
+
     /* =========================================
-       CLOSE SIDEBAR ON MOBILE
+       CLOSE SIDEBAR AFTER MOBILE NAVIGATION
     ========================================= */
 
     if (
-      window.innerWidth <= 768 &&
+      window.innerWidth <= 1200 &&
       closeSidebar
     ) {
       closeSidebar();
     }
   };
 
+
   /* =========================================
      MAIN MENU CLICK
   ========================================= */
 
   const handleMenuClick = (item) => {
-    /*
-      If item has submenu:
-      - open/close dropdown
-      - make parent active ONLY because
-        user actually clicked the parent
-    */
 
     if (item.subMenu) {
-      toggleMenu(item.label);
-    }
 
-    /*
-      Normal links such as Posts
-      */
-    else if (item.onClick) {
-      /*
-        Make clicked link active
-        BEFORE navigation.
-      */
+      toggleMenu(item.label);
+
+    } else if (item.onClick) {
+
       setActiveItem(item.label);
 
       item.onClick();
 
       if (
-        window.innerWidth <= 768 &&
+        window.innerWidth <= 1200 &&
         closeSidebar
       ) {
         closeSidebar();
@@ -746,116 +715,169 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
     }
   };
 
+
   /* =========================================
      RENDER
   ========================================= */
 
   return (
-    <nav
-      className={`sidebar ${
-        isSidebarOpen ? "mobile-open" : ""
-      }`}
-      aria-label="Main Sidebar Navigation"
-    >
+    <>
+      {/* =======================================
+          MOBILE SIDEBAR OVERLAY
+      ======================================= */}
 
-      {menuItems.map((item, idx) => (
+      {isSidebarOpen && (
         <div
-          key={idx}
-          className="menu-section"
+          className="sidebar-overlay"
+          onClick={closeSidebar}
+        ></div>
+      )}
+
+
+      {/* =======================================
+          SIDEBAR
+      ======================================= */}
+
+      <aside
+        className={`sidebar ${
+          isSidebarOpen
+            ? "mobile-open"
+            : ""
+        }`}
+      >
+
+        {/* =====================================
+            MOBILE CLOSE BUTTON
+        ===================================== */}
+
+        <button
+          type="button"
+          className="sidebar-close-btn"
+          onClick={closeSidebar}
+          aria-label="Close Sidebar"
         >
-
-          {/* =================================
-              MAIN MENU ITEM
-          ================================= */}
-
-          <div
-            className={`menu-item ${
-              activeItem === item.label
-                ? "active"
-                : ""
-            }`}
-            onClick={() =>
-              handleMenuClick(item)
-            }
-            role="button"
-            tabIndex={0}
-          >
-
-            <i
-              className={`las ${item.icon}`}
-            ></i>
-
-            <span>
-              {item.label}
-            </span>
-
-            {/* Dropdown arrow */}
-
-            {item.subMenu && (
-              <i
-                className={`las la-angle-down menu-arrow ${
-                  openMenu === item.label
-                    ? "rotate"
-                    : ""
-                }`}
-              ></i>
-            )}
-
-          </div>
+          <i className="las la-times"></i>
+        </button>
 
 
-          {/* =================================
-              SUBMENU
-          ================================= */}
+        {/* =====================================
+            MENU
+        ===================================== */}
 
-          {item.subMenu &&
-            openMenu === item.label && (
-              <div className="submenu">
+        <div className="sidebar-menu">
 
-                {item.subMenu.map(
-                  (subItem, subIdx) => (
-                    <div
-                      key={subIdx}
-                      className={`submenu-item ${
-                        activeItem ===
-                        subItem.label
-                          ? "active"
+          {menuItems.map(
+            (item, idx) => (
+
+              <div
+                key={idx}
+                className="menu-section"
+              >
+
+                {/* MAIN MENU */}
+
+                <div
+                  className={`menu-item ${
+                    activeItem ===
+                    item.label
+                      ? "active"
+                      : ""
+                  }`}
+                  onClick={() =>
+                    handleMenuClick(item)
+                  }
+                  role="button"
+                  tabIndex={0}
+                >
+
+                  <i
+                    className={`las ${item.icon}`}
+                  ></i>
+
+                  <span>
+                    {item.label}
+                  </span>
+
+
+                  {item.subMenu && (
+                    <i
+                      className={`las la-angle-down menu-arrow ${
+                        openMenu ===
+                        item.label
+                          ? "rotate"
                           : ""
                       }`}
-                      onClick={(e) => {
-                        /*
-                          Prevent parent menu
-                          click from firing.
-                        */
-                        e.stopPropagation();
+                    ></i>
+                  )}
 
-                        handleSubMenuClick(
-                          subItem.label
-                        );
-                      }}
-                      role="button"
-                      tabIndex={0}
-                    >
+                </div>
 
-                      <i
-                        className={`las ${subItem.icon}`}
-                      ></i>
 
-                      <span>
-                        {subItem.label}
-                      </span>
+                {/* SUBMENU */}
+
+                {item.subMenu &&
+                  openMenu ===
+                    item.label && (
+
+                    <div className="submenu">
+
+                      {item.subMenu.map(
+                        (
+                          subItem,
+                          subIdx
+                        ) => (
+
+                          <div
+                            key={
+                              subIdx
+                            }
+                            className={`submenu-item ${
+                              activeItem ===
+                              subItem.label
+                                ? "active"
+                                : ""
+                            }`}
+                            onClick={(e) => {
+
+                              e.stopPropagation();
+
+                              handleSubMenuClick(
+                                subItem.label
+                              );
+
+                            }}
+                            role="button"
+                            tabIndex={0}
+                          >
+
+                            <i
+                              className={`las ${subItem.icon}`}
+                            ></i>
+
+                            <span>
+                              {
+                                subItem.label
+                              }
+                            </span>
+
+                          </div>
+
+                        )
+                      )}
 
                     </div>
-                  )
-                )}
+
+                  )}
 
               </div>
-            )}
+
+            )
+          )}
 
         </div>
-      ))}
 
-    </nav>
+      </aside>
+    </>
   );
 };
 
