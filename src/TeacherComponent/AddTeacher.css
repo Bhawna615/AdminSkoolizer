@@ -717,3 +717,288 @@
     }
 
 }
+/* =========================================================
+   ADD TEACHER SUCCESS / ERROR MODAL
+   CENTERED PURPLE ERP POPUP WITH BACKGROUND BLUR
+========================================================= */
+
+.add-teacher-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(28, 18, 40, 0.42);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    animation: addTeacherOverlayFade 0.25s ease;
+}
+
+.add-teacher-modal-popup {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    padding: 35px 30px 28px;
+    box-sizing: border-box;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #eee5f7;
+    border-radius: 20px;
+    box-shadow: 0 22px 65px rgba(35, 20, 52, 0.24);
+    animation: addTeacherModalAppear 0.35s ease;
+}
+
+.add-teacher-modal-close {
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: #f4f0f8;
+    color: #786a86;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.add-teacher-modal-close:hover {
+    background: #e9def5;
+    color: #5b2c91;
+    transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   MODAL ICON
+========================================================= */
+
+.add-teacher-modal-icon {
+    width: 76px;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 19px;
+    border-radius: 50%;
+    font-size: 39px;
+    animation: addTeacherIconPop 0.45s ease;
+}
+
+.add-teacher-modal-success .add-teacher-modal-icon {
+    color: #20a464;
+    background: #e9f9f0;
+    box-shadow: 0 0 0 9px rgba(32, 164, 100, 0.07);
+}
+
+.add-teacher-modal-error .add-teacher-modal-icon {
+    color: #df4558;
+    background: #fff0f1;
+    box-shadow: 0 0 0 9px rgba(223, 69, 88, 0.07);
+}
+
+
+/* =========================================================
+   MODAL TEXT
+========================================================= */
+
+.add-teacher-modal-popup h3 {
+    margin: 0 0 11px;
+    color: #352442;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 24px;
+    font-weight: 750;
+    line-height: 1.3;
+}
+
+.add-teacher-modal-popup p {
+    margin: 0 auto;
+    max-width: 330px;
+    color: #81758d;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.add-teacher-modal-success h3 {
+    color: #208653;
+}
+
+.add-teacher-modal-error h3 {
+    color: #c83c50;
+}
+
+
+/* =========================================================
+   SUCCESS PROGRESS BAR
+========================================================= */
+
+.add-teacher-modal-progress {
+    width: 100%;
+    height: 5px;
+    margin-top: 25px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #e9f4ed;
+}
+
+.add-teacher-modal-progress span {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 20px;
+    background: linear-gradient(
+        90deg,
+        #20a464,
+        #62d69b
+    );
+    transform-origin: left;
+    animation: addTeacherProgress 2.5s linear forwards;
+}
+
+.add-teacher-modal-note {
+    display: block;
+    margin-top: 13px;
+    color: #958a9f;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   ERROR OKAY BUTTON
+========================================================= */
+
+.add-teacher-modal-ok-btn {
+    min-width: 115px;
+    height: 42px;
+    margin-top: 24px;
+    padding: 0 24px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(
+        135deg,
+        #6f42c1,
+        #5b2c91
+    );
+    color: #ffffff;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 14px rgba(111, 66, 193, 0.20);
+    transition: all 0.25s ease;
+}
+
+.add-teacher-modal-ok-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(
+        135deg,
+        #784bc9,
+        #642f9c
+    );
+    box-shadow: 0 8px 18px rgba(111, 66, 193, 0.28);
+}
+
+
+/* =========================================================
+   MODAL ANIMATIONS
+========================================================= */
+
+@keyframes addTeacherOverlayFade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes addTeacherModalAppear {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes addTeacherIconPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    70% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes addTeacherProgress {
+    from {
+        transform: scaleX(1);
+    }
+
+    to {
+        transform: scaleX(0);
+    }
+}
+
+
+/* =========================================================
+   MODAL RESPONSIVE STYLES
+========================================================= */
+
+@media (max-width: 480px) {
+    .add-teacher-modal-overlay {
+        padding: 16px;
+    }
+
+    .add-teacher-modal-popup {
+        max-width: 100%;
+        padding: 32px 22px 25px;
+        border-radius: 16px;
+    }
+
+    .add-teacher-modal-icon {
+        width: 68px;
+        height: 68px;
+        font-size: 34px;
+    }
+
+    .add-teacher-modal-popup h3 {
+        font-size: 21px;
+    }
+
+    .add-teacher-modal-popup p {
+        font-size: 13px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .add-teacher-modal-overlay,
+    .add-teacher-modal-popup,
+    .add-teacher-modal-icon,
+    .add-teacher-modal-progress span {
+        animation-duration: 0.01ms;
+        animation-iteration-count: 1;
+    }
+}

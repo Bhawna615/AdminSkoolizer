@@ -15,6 +15,11 @@ export default function AddEmployee() {
 
   const [loading, setLoading] = useState(false);
 
+  // MESSAGE BOX STATES
+  const [showMsg, setShowMsg] = useState(false);
+  const [message, setMessage] = useState("");
+  const [messageSuccess, setMessageSuccess] = useState(false);
+
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -30,21 +35,95 @@ export default function AddEmployee() {
     axios
       .post(API + "insert", form)
       .then(() => {
-        navigate("/dashboard/EmployeeComponent/ViewEmployee", {
-          state: { message: "Employee Added Successfully ✅" }
+
+        // SHOW SUCCESS MESSAGE BOX
+        setMessageSuccess(true);
+        setMessage("Employee Added Successfully");
+        setShowMsg(true);
+
+        // Clear form after successful insertion
+        setForm({
+          name: "",
+          post: ""
         });
       })
       .catch((err) => {
         console.error(err);
-        alert("Failed to add employee");
+
+        // SHOW ERROR MESSAGE BOX
+        setMessageSuccess(false);
+        setMessage("Failed to add employee");
+        setShowMsg(true);
       })
       .finally(() => {
         setLoading(false);
       });
   };
 
+  // CONTINUE BUTTON
+  const handleContinue = () => {
+    setShowMsg(false);
+
+    navigate("/dashboard/EmployeeComponent/ViewEmployee");
+  };
+
   return (
     <div className="add-employee-page">
+
+      {/* MESSAGE BOX */}
+      {showMsg && (
+        <div className="add-employee-message-overlay">
+
+          <div className="add-employee-message-box">
+
+            <div
+              className={`add-employee-message-icon ${
+                messageSuccess
+                  ? "add-employee-message-success"
+                  : "add-employee-message-error"
+              }`}
+            >
+              <i
+                className={
+                  messageSuccess
+                    ? "bi bi-check-lg"
+                    : "bi bi-x-lg"
+                }
+              ></i>
+            </div>
+
+            <div className="add-employee-message-content">
+
+              <strong>
+                {messageSuccess ? "Success" : "Error"}
+              </strong>
+
+              <span>{message}</span>
+
+            </div>
+
+            {messageSuccess ? (
+              <button
+                type="button"
+                className="add-employee-message-continue"
+                onClick={handleContinue}
+              >
+                Continue
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="add-employee-message-close"
+                onClick={() => setShowMsg(false)}
+              >
+                <i className="bi bi-x"></i>
+              </button>
+            )}
+
+          </div>
+
+        </div>
+      )}
 
       {/* PAGE HEADER */}
       <div className="add-employee-header">

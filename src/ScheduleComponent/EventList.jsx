@@ -14,6 +14,12 @@ const EVENT_LIST_API =
 export default function EventList() {
   const [events, setEvents] = useState([]);
 
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const [selectedEventId, setSelectedEventId] = useState(null);
+  const [deleteMessageType, setDeleteMessageType] = useState("confirm");
+  const [deleteMessage, setDeleteMessage] = useState("");
+  const [deleteLoading, setDeleteLoading] = useState(false);
+
   const tableRef = useRef(null);
   const dataTableRef = useRef(null);
 
@@ -90,31 +96,71 @@ export default function EventList() {
   }, [events]);
 
   /* ================================
-     DELETE EVENT
+     DELETE EVENT - CUSTOM POPUP
   ================================= */
 
   const deleteEvent = (id) => {
-    if (!window.confirm("Are you sure you want to delete this event?")) {
-      return;
+    setSelectedEventId(id);
+    setDeleteMessageType("confirm");
+    setDeleteMessage(
+      "Are you sure you want to delete this event? This action cannot be undone."
+    );
+    setShowDeletePopup(true);
+  };
+
+  const confirmDeleteEvent = async () => {
+    if (!selectedEventId || deleteLoading) return;
+
+    try {
+      setDeleteLoading(true);
+
+      const response = await axios.get(
+        `${EVENT_LIST_API}/delete/${selectedEventId}`
+      );
+
+      if (
+        response.data?.status === false ||
+        response.data?.success === false
+      ) {
+        setDeleteMessageType("error");
+        setDeleteMessage(
+          response.data?.message ||
+            "Failed to delete the event. Please try again."
+        );
+        return;
+      }
+
+      if (
+        tableRef.current &&
+        $.fn.DataTable.isDataTable(tableRef.current)
+      ) {
+        $(tableRef.current).DataTable().destroy();
+      }
+
+      dataTableRef.current = null;
+
+      setDeleteMessageType("success");
+      setDeleteMessage("Event deleted successfully.");
+
+      fetchEvents();
+    } catch (err) {
+      console.log("Error deleting event:", err);
+
+      setDeleteMessageType("error");
+      setDeleteMessage(
+        err.response?.data?.message ||
+          "Failed to delete the event. Please try again."
+      );
+    } finally {
+      setDeleteLoading(false);
     }
+  };
 
-    if (
-      tableRef.current &&
-      $.fn.DataTable.isDataTable(tableRef.current)
-    ) {
-      $(tableRef.current).DataTable().destroy();
-    }
+  const closeDeletePopup = () => {
+    if (deleteLoading) return;
 
-    dataTableRef.current = null;
-
-    axios
-      .get(`${EVENT_LIST_API}/delete/${id}`)
-      .then(() => {
-        fetchEvents();
-      })
-      .catch((err) => {
-        console.log("Error deleting event:", err);
-      });
+    setShowDeletePopup(false);
+    setSelectedEventId(null);
   };
 
   return (
@@ -353,8 +399,6 @@ export default function EventList() {
 
                     <div className="event-actions">
 
-                     
-
                       <button
                         type="button"
                         className="event-action edit"
@@ -395,7 +439,93 @@ export default function EventList() {
 
       </div>
 
+      {/* =====================================
+          CUSTOM DELETE CONFIRMATION POPUP
+      ====================================== */}
+
+      {showDeletePopup && (
+        <div
+          className="event-delete-modal-overlay"
+          onClick={closeDeletePopup}
+        >
+          <div
+            className="event-delete-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="event-delete-modal-title"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div
+              className={`event-delete-modal-icon ${deleteMessageType}`}
+            >
+              <i
+                className={
+                  deleteMessageType === "success"
+                    ? "las la-check-circle"
+                    : deleteMessageType === "error"
+                    ? "las la-exclamation-circle"
+                    : "las la-calendar-times"
+                }
+              ></i>
+            </div>
+
+            <h3 id="event-delete-modal-title">
+              {deleteMessageType === "confirm"
+                ? "Confirm Event Deletion"
+                : deleteMessageType === "success"
+                ? "Deletion Successful"
+                : "Unable to Delete"}
+            </h3>
+
+            <p>{deleteMessage}</p>
+
+            <div className="event-delete-modal-actions">
+
+              {deleteMessageType === "confirm" && (
+                <button
+                  type="button"
+                  className="event-delete-cancel-btn"
+                  onClick={closeDeletePopup}
+                  disabled={deleteLoading}
+                >
+                  Cancel
+                </button>
+              )}
+
+              <button
+                type="button"
+                className={`event-delete-confirm-btn ${deleteMessageType}`}
+                onClick={() => {
+                  if (deleteMessageType === "confirm") {
+                    confirmDeleteEvent();
+                  } else {
+                    closeDeletePopup();
+                  }
+                }}
+                disabled={deleteLoading}
+              >
+                {deleteLoading ? (
+                  <>
+                    <span className="event-delete-spinner"></span>
+                    Deleting...
+                  </>
+                ) : deleteMessageType === "confirm" ? (
+                  <>
+                    <i className="las la-trash-alt"></i>
+                    Confirm Delete
+                  </>
+                ) : deleteMessageType === "success" ? (
+                  "Done"
+                ) : (
+                  "OK"
+                )}
+              </button>
+
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
-

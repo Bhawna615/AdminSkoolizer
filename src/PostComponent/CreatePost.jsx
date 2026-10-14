@@ -14,21 +14,32 @@ const CreatePost = () => {
   const [classes, setClasses] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  // MESSAGE BOX
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
+
   // LOAD CLASSES
   useEffect(() => {
     axios
       .get(
         "http://localhost/kkblossom/api.php/Adminapi/AdminExam/getClasses"
       )
-      .then((res) => setClasses(res.data || []));
+      .then((res) => setClasses(res.data || []))
+      .catch((err) => {
+        console.error(err);
+      });
   }, []);
 
   // SUBMIT
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setMessage("");
+    setMessageType("");
+
     if (!text.trim()) {
-      alert("Enter text");
+      setMessage("Please enter message");
+      setMessageType("error");
       return;
     }
 
@@ -46,12 +57,21 @@ const CreatePost = () => {
       const res = await axios.post(`${BASE_URL}/create`, formData);
 
       if (res.data.status) {
-        alert("Post Created ✅");
-        navigate("/dashboard/PostComponent/PostView");
+        setMessage("Post Created Successfully");
+        setMessageType("success");
+
+        setTimeout(() => {
+          navigate("/dashboard/PostComponent/PostView");
+        }, 1500);
+      } else {
+        setMessage("Post creation failed");
+        setMessageType("error");
       }
     } catch (err) {
       console.error(err);
-      alert("Upload failed ❌");
+
+      setMessage("Upload failed");
+      setMessageType("error");
     } finally {
       setLoading(false);
     }
@@ -67,6 +87,7 @@ const CreatePost = () => {
 
           {/* TEXT */}
           <label>Message</label>
+
           <textarea
             placeholder="Write your post..."
             value={text}
@@ -75,8 +96,13 @@ const CreatePost = () => {
 
           {/* GROUP */}
           <label>Recipient Group</label>
-          <select value={group} onChange={(e) => setGroup(e.target.value)}>
+
+          <select
+            value={group}
+            onChange={(e) => setGroup(e.target.value)}
+          >
             <option value="school">School</option>
+
             {classes.map((c, i) => (
               <option key={i} value={c.Classname}>
                 {c.Classname}
@@ -86,6 +112,7 @@ const CreatePost = () => {
 
           {/* FILE */}
           <label>Attach File</label>
+
           <input
             type="file"
             onChange={(e) => setFile(e.target.files[0])}
@@ -105,6 +132,35 @@ const CreatePost = () => {
 
         </form>
       </div>
+
+      {/* ================= MESSAGE OVERLAY ================= */}
+      {message && (
+        <div className="post-message-overlay">
+          <div className={`post-message-modal ${messageType}`}>
+
+            <div className="post-message-icon">
+              {messageType === "success" ? "✓" : "!"}
+            </div>
+
+            <div className="post-message-text">
+              {message}
+            </div>
+
+            {messageType === "error" && (
+              <button
+                className="post-message-ok"
+                onClick={() => {
+                  setMessage("");
+                  setMessageType("");
+                }}
+              >
+                OK
+              </button>
+            )}
+
+          </div>
+        </div>
+      )}
     </div>
   );
 };

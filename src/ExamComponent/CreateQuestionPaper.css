@@ -669,3 +669,295 @@ form {
   font-weight: 600;
   line-height: 22px;
 }
+/* =========================================================
+   CREATE QUESTION PAPER MESSAGE BOX
+   SAME CENTERED MESSAGE BOX STYLE
+========================================================= */
+
+.create-message-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 12, 28, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   MESSAGE BOX
+========================================================= */
+
+.create-message-box {
+  width: min(430px, 92%);
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 32px 30px 28px;
+  text-align: center;
+  box-sizing: border-box;
+  box-shadow: 0 20px 60px rgba(45, 25, 55, 0.25);
+  animation: createMessageShow 0.25s ease;
+}
+
+@keyframes createMessageShow {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+
+/* =========================================================
+   MESSAGE ICON
+========================================================= */
+
+.create-message-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 17px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+
+/* SUCCESS */
+
+.create-message-success
+.create-message-icon {
+  background: #e8f7ed;
+  color: #238548;
+}
+
+
+/* ERROR */
+
+.create-message-error
+.create-message-icon {
+  background: #fdeaea;
+  color: #d33b3b;
+}
+
+
+/* CONFIRM */
+
+.create-message-confirm
+.create-message-icon {
+  background: #f0e8f7;
+  color: #6a1b9a;
+}
+
+
+/* =========================================================
+   MESSAGE TITLE
+========================================================= */
+
+.create-message-box h3 {
+  margin: 0;
+  color: #302638;
+  font-family: "Poppins", sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   MESSAGE TEXT
+========================================================= */
+
+.create-message-box p {
+  margin: 9px 0 0;
+  color: #81788b;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   MESSAGE ACTIONS
+========================================================= */
+
+.create-message-actions {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+
+/* =========================================================
+   CANCEL BUTTON
+========================================================= */
+
+.create-message-cancel-btn {
+  min-width: 105px;
+  padding: 11px 18px;
+  border: 1px solid #ddd5e3;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #6f6575;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.create-message-cancel-btn:hover {
+  background: #f7f4f8;
+  border-color: #cfc4d5;
+}
+
+
+/* =========================================================
+   CONFIRM CREATE BUTTON
+========================================================= */
+
+.create-message-confirm-btn {
+  min-width: 105px;
+  padding: 11px 18px;
+  border: none;
+  border-radius: 9px;
+  background: linear-gradient(
+    135deg,
+    #6a1b9a,
+    #8e44ad
+  );
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 6px 16px rgba(106, 27, 154, 0.22);
+  transition: all 0.25s ease;
+}
+
+.create-message-confirm-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 9px 20px rgba(106, 27, 154, 0.28);
+}
+
+
+/* =========================================================
+   OK BUTTON
+========================================================= */
+
+.create-message-ok-btn {
+  min-width: 90px;
+  padding: 11px 20px;
+  border: none;
+  border-radius: 9px;
+  background: linear-gradient(
+    135deg,
+    #6a1b9a,
+    #8e44ad
+  );
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(106, 27, 154, 0.22);
+  transition: all 0.25s ease;
+}
+
+.create-message-ok-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 9px 20px rgba(106, 27, 154, 0.28);
+}
+
+
+/* =========================================================
+   DISABLED BUTTONS
+========================================================= */
+
+.create-message-cancel-btn:disabled,
+.create-message-confirm-btn:disabled,
+.create-message-ok-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* =========================================================
+   CREATE LOADER
+========================================================= */
+
+.create-message-loader {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: createMessageSpin 0.7s linear infinite;
+}
+
+@keyframes createMessageSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 500px) {
+
+  .create-message-overlay {
+    padding: 15px;
+  }
+
+  .create-message-box {
+    width: 100%;
+    padding: 28px 20px 24px;
+    border-radius: 16px;
+  }
+
+  .create-message-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 22px;
+  }
+
+  .create-message-box h3 {
+    font-size: 17px;
+  }
+
+  .create-message-box p {
+    font-size: 12px;
+  }
+
+  .create-message-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .create-message-cancel-btn,
+  .create-message-confirm-btn,
+  .create-message-ok-btn {
+    width: 100%;
+  }
+}

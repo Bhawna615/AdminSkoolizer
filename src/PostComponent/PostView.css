@@ -11,7 +11,7 @@
 }
 
 .filter-bar select {
-  width: 100%;
+  width: 38%;
   padding: 5px;
 }
 
@@ -31,4 +31,186 @@ table {
 table th, table td {
   padding: 10px;
   text-align: center;
+}
+/* =========================================================
+   MESSAGE OVERLAY
+========================================================= */
+
+.post-message-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 99999;
+}
+
+/* =========================================================
+   MESSAGE BOX
+========================================================= */
+
+.post-message-box {
+  min-width: 320px;
+  max-width: 450px;
+
+  padding: 25px 35px;
+
+  background: #ffffff;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+
+  animation: postMessagePop 0.25s ease-out;
+}
+
+/* SUCCESS */
+
+.post-message-box.success {
+  border-left: 6px solid #28a745;
+}
+
+/* ERROR */
+
+.post-message-box.error {
+  border-left: 6px solid #ff4d4f;
+}
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.post-message-icon {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 24px;
+  font-weight: bold;
+
+  flex-shrink: 0;
+}
+
+.post-message-box.success .post-message-icon {
+  background: #dff6e5;
+  color: #28a745;
+}
+
+.post-message-box.error .post-message-icon {
+  background: #ffe1e1;
+  color: #ff4d4f;
+}
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+.post-message-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #302b43;
+}
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes postMessagePop {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .post-message-box {
+    min-width: unset;
+    width: 80%;
+    padding: 22px;
+  }
+
+  .post-message-text {
+    font-size: 14px;
+  }
+}
+/* ================= FILTER TOGGLE ================= */
+
+.filter-toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-toggle-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #302b43;
+}
+
+.filter-switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.filter-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.filter-slider {
+  position: absolute;
+  inset: 0;
+  background-color: #ccc;
+  border-radius: 24px;
+  transition: 0.3s;
+}
+
+.filter-slider::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  top: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.filter-switch input:checked + .filter-slider {
+  background-color: #6c4fd7;
+}
+
+.filter-switch input:checked + .filter-slider::before {
+  transform: translateX(22px);
 }

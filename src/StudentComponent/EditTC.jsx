@@ -1,6 +1,12 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import {
+  FaCheckCircle,
+  FaExclamationCircle,
+  FaTimes
+} from "react-icons/fa";
 import "./EditTC.css";
 
 const API_BASE =
@@ -14,11 +20,13 @@ const EditTC = () => {
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
 
-  // Convert date to yyyy-MM-dd for input[type="date"]
+  // =========================================================
+  // CONVERT DATE TO YYYY-MM-DD
+  // =========================================================
+
   const formatDateForInput = (dateString) => {
     if (!dateString) return "";
 
-    // Already yyyy-MM-dd
     if (
       dateString.includes("-") &&
       dateString.split("-")[0].length === 4
@@ -26,7 +34,6 @@ const EditTC = () => {
       return dateString;
     }
 
-    // dd-MM-yyyy
     const parts = dateString.split("-");
 
     if (parts.length === 3) {
@@ -35,6 +42,35 @@ const EditTC = () => {
 
     return "";
   };
+
+  // =========================================================
+  // CLOSE MESSAGE
+  // =========================================================
+
+  const closeMessage = () => {
+    setMessage("");
+    setMessageType("");
+  };
+
+  // =========================================================
+  // AUTO CLOSE SUCCESS MESSAGE AND REDIRECT
+  // =========================================================
+
+  useEffect(() => {
+    if (message && messageType === "success") {
+      const timer = setTimeout(() => {
+        navigate(
+          "/dashboard/StudentComponent/TransferCertificate"
+        );
+      }, 2500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [message, messageType, navigate]);
+
+  // =========================================================
+  // FETCH TRANSFER CERTIFICATE
+  // =========================================================
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,14 +87,18 @@ const EditTC = () => {
           setFormData({
             ...data,
             id: data.id,
-            date_of_birth: formatDateForInput(data.date_of_birth),
+            date_of_birth: formatDateForInput(
+              data.date_of_birth
+            ),
             date_of_admission: formatDateForInput(
               data.date_of_admission
             ),
             application_date: formatDateForInput(
               data.application_date
             ),
-            issue_date: formatDateForInput(data.issue_date),
+            issue_date: formatDateForInput(
+              data.issue_date
+            )
           });
         } else {
           setMessage(
@@ -69,7 +109,9 @@ const EditTC = () => {
       } catch (err) {
         console.error("Fetch Error:", err);
 
-        setMessage("Unable to load transfer certificate.");
+        setMessage(
+          "Unable to load transfer certificate."
+        );
         setMessageType("error");
       }
     };
@@ -79,84 +121,123 @@ const EditTC = () => {
     }
   }, [id]);
 
+  // =========================================================
+  // HANDLE INPUT CHANGE
+  // =========================================================
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: value
     }));
   };
 
-  
+  // =========================================================
+  // UPDATE TRANSFER CERTIFICATE
+  // =========================================================
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  setMessage("");
-  setMessageType("");
+    setMessage("");
+    setMessageType("");
 
-  try {
-    console.log("Sending update data:", formData);
+    try {
+      console.log("Sending update data:", formData);
 
-    const res = await axios.post(
-      `${API_BASE}/updateTc`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    console.log("Update Response:", res.data);
-
-    if (res.data?.status === true) {
-      setMessage(
-        res.data.message ||
-        "Transfer Certificate updated successfully."
+      const res = await axios.post(
+        `${API_BASE}/updateTc`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
       );
 
-      setMessageType("success");
+      console.log("Update Response:", res.data);
 
-      setTimeout(() => {
-        navigate(
-          "/dashboard/StudentComponent/TransferCertificate"
+      if (res.data?.status === true) {
+        setMessage(
+          res.data.message ||
+          "Transfer Certificate updated successfully."
         );
-      }, 1200);
 
-    } else {
+        setMessageType("success");
+      } else {
+        setMessage(
+          res.data?.message ||
+          "Failed to update certificate."
+        );
+
+        setMessageType("error");
+      }
+    } catch (err) {
+      console.error("Update Error:", err);
+      console.error("Server Response:", err.response?.data);
+
       setMessage(
-        res.data?.message ||
-        "Failed to update certificate."
+        err.response?.data?.message ||
+        "Server error. Unable to update certificate."
       );
 
       setMessageType("error");
     }
+  };
 
-  } catch (err) {
-    console.error("Update Error:", err);
-    console.error("Server Response:", err.response?.data);
-
-    setMessage(
-      err.response?.data?.message ||
-      "Server error. Unable to update certificate."
-    );
-
-    setMessageType("error");
-  }
-};
-
-
+  // =========================================================
+  // LOADING STATE
+  // =========================================================
 
   if (!formData) {
     return (
-      <div className="edit-tc-status">
-        <div className="edit-tc-loading-box">
-          <div className="edit-tc-loader"></div>
-          <span>Loading Transfer Certificate...</span>
+      <>
+        <div className="edit-tc-status">
+          <div className="edit-tc-loading-box">
+            <div className="edit-tc-loader"></div>
+            <span>Loading Transfer Certificate...</span>
+          </div>
         </div>
-      </div>
+
+        {/* ERROR POPUP WHILE LOADING */}
+
+        {message && (
+          <div className="edit-tc-modal-overlay">
+            <div
+              className="edit-tc-modal-popup edit-tc-modal-error"
+              role="alertdialog"
+              aria-modal="true"
+            >
+              <button
+                type="button"
+                className="edit-tc-modal-close"
+                onClick={closeMessage}
+                aria-label="Close message"
+              >
+                <FaTimes />
+              </button>
+
+              <div className="edit-tc-modal-icon">
+                <FaExclamationCircle />
+              </div>
+
+              <h2>Action Required</h2>
+
+              <p>{message}</p>
+
+              <button
+                type="button"
+                className="edit-tc-modal-ok-btn"
+                onClick={closeMessage}
+              >
+                Okay
+              </button>
+            </div>
+          </div>
+        )}
+      </>
     );
   }
 
@@ -201,30 +282,6 @@ const handleSubmit = async (e) => {
       </div>
 
       {/* =================================================
-          MESSAGE
-      ================================================= */}
-
-      {message && (
-        <div
-          className={`edit-tc-message ${
-            messageType === "success"
-              ? "edit-tc-success"
-              : "edit-tc-error"
-          }`}
-        >
-          <i
-            className={
-              messageType === "success"
-                ? "las la-check-circle"
-                : "las la-exclamation-circle"
-            }
-          ></i>
-
-          <span>{message}</span>
-        </div>
-      )}
-
-      {/* =================================================
           FORM CARD
       ================================================= */}
 
@@ -255,9 +312,7 @@ const handleSubmit = async (e) => {
 
           <div className="edit-tc-form-grid">
 
-            {/* =============================================
-                COLUMN 1
-            ============================================= */}
+            {/* COLUMN 1 */}
 
             <div className="edit-tc-form-column">
 
@@ -332,9 +387,7 @@ const handleSubmit = async (e) => {
 
             </div>
 
-            {/* =============================================
-                COLUMN 2
-            ============================================= */}
+            {/* COLUMN 2 */}
 
             <div className="edit-tc-form-column">
 
@@ -409,9 +462,7 @@ const handleSubmit = async (e) => {
 
             </div>
 
-            {/* =============================================
-                COLUMN 3
-            ============================================= */}
+            {/* COLUMN 3 */}
 
             <div className="edit-tc-form-column">
 
@@ -515,6 +566,73 @@ const handleSubmit = async (e) => {
 
       </div>
 
+      {/* =================================================
+          SUCCESS / ERROR POPUP
+      ================================================= */}
+
+      {message && (
+        <div className="edit-tc-modal-overlay">
+
+          <div
+            className={`edit-tc-modal-popup ${
+              messageType === "success"
+                ? "edit-tc-modal-success"
+                : "edit-tc-modal-error"
+            }`}
+            role="alertdialog"
+            aria-modal="true"
+          >
+
+            <button
+              type="button"
+              className="edit-tc-modal-close"
+              onClick={closeMessage}
+              aria-label="Close message"
+            >
+              <FaTimes />
+            </button>
+
+            <div className="edit-tc-modal-icon">
+              {messageType === "success" ? (
+                <FaCheckCircle />
+              ) : (
+                <FaExclamationCircle />
+              )}
+            </div>
+
+            <h2>
+              {messageType === "success"
+                ? "Success!"
+                : "Action Required"}
+            </h2>
+
+            <p>{message}</p>
+
+            {messageType === "success" ? (
+              <>
+                <div className="edit-tc-modal-status">
+                  Your transfer certificate has been updated.
+                </div>
+
+                <div className="edit-tc-modal-progress">
+                  <div className="edit-tc-modal-progress-bar"></div>
+                </div>
+              </>
+            ) : (
+              <button
+                type="button"
+                className="edit-tc-modal-ok-btn"
+                onClick={closeMessage}
+              >
+                Okay
+              </button>
+            )}
+
+          </div>
+
+        </div>
+      )}
+
     </div>
   );
 };
@@ -529,7 +647,7 @@ const TCInput = ({
   type = "text",
   name,
   value,
-  onChange,
+  onChange
 }) => {
   return (
     <div className="edit-tc-field">

@@ -23,26 +23,49 @@ const ClassWiseReport = () => {
   }, [className, examType]);
 
   const fetchReport = async () => {
-    try {
-      const res = await axios.post(
-        `${BASE_URL}/generateClassWiseReport`,
-        {
-          class: className,
-          exam: examType
+  try {
+    console.log("SENDING TO API:", {
+      class: className,
+      exam: examType
+    });
+
+    const res = await axios.post(
+      `${BASE_URL}/generateClassWiseReport`,
+      {
+        class: className,
+        exam: examType
+      },
+      {
+        headers: {
+          "Content-Type": "application/json"
         }
-      );
+      }
+    );
 
-      console.log("FULL DATA:", res.data);
+    console.log("FULL DATA:", res.data);
 
-      setStudents(res.data.data.students);
-      setExams(res.data.data.exams);
-      setResults(res.data.data.results);
+    if (!res.data.status) {
+      console.log("REPORT API ERROR:", res.data);
 
-    } catch (error) {
-      console.log("API ERROR:", error);
+      setStudents([]);
+      setExams([]);
+      setResults([]);
+
+      return;
     }
-  };
 
+    setStudents(res.data.data?.students || []);
+    setExams(res.data.data?.exams || []);
+    setResults(res.data.data?.results || []);
+
+  } catch (error) {
+    console.log("API ERROR:", error);
+
+    setStudents([]);
+    setExams([]);
+    setResults([]);
+  }
+};
   // =========================================================
   // GET MARK
   // =========================================================

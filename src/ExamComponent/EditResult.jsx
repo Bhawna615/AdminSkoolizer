@@ -14,8 +14,33 @@ const EditResult = () => {
   const [search, setSearch] = useState("");
   const [error, setError] = useState("");
 
+  // Custom message box states
+  const [showMessage, setShowMessage] = useState(false);
+  const [messageType, setMessageType] = useState("success");
+  const [messageTitle, setMessageTitle] = useState("");
+  const [messageText, setMessageText] = useState("");
+  const [updateComplete, setUpdateComplete] = useState(false);
+
   const BASE_URL =
     "http://localhost/kkblossom/api.php/Adminapi/AdminExam/";
+
+  const showCustomMessage = (type, title, message, completed = false) => {
+    setMessageType(type);
+    setMessageTitle(title);
+    setMessageText(message);
+    setUpdateComplete(completed);
+    setShowMessage(true);
+  };
+
+  const closeMessage = () => {
+    setShowMessage(false);
+
+    if (updateComplete) {
+      navigate(
+        `/dashboard/ExamComponent/view-result/${examCode}`
+      );
+    }
+  };
 
   useEffect(() => {
     if (!examCode) {
@@ -81,22 +106,21 @@ const EditResult = () => {
         formData
       );
 
-      alert(
-        res.data?.message ||
-          "Marks updated successfully!"
-      );
-
-      // Go to View Result page
-      navigate(
-        `/dashboard/ExamComponent/view-result/${examCode}`
+      showCustomMessage(
+        "success",
+        "Marks Updated Successfully!",
+        res.data?.message || "Student examination marks have been updated successfully.",
+        true
       );
 
     } catch (err) {
       console.error("Error updating marks:", err);
 
-      alert(
+      showCustomMessage(
+        "error",
+        "Update Failed",
         err.response?.data?.message ||
-          "Failed to update marks."
+          "Failed to update marks. Please try again."
       );
     } finally {
       setFormSubmitting(false);
@@ -706,6 +730,45 @@ const EditResult = () => {
         </div>
 
       </div>
+
+      {/* CUSTOM MESSAGE BOX */}
+      {showMessage && (
+        <div className="edit-message-overlay">
+          <div
+            className={`edit-message-box edit-message-${messageType}`}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="edit-message-title"
+          >
+            <div
+              className={`edit-message-icon edit-message-icon-${messageType}`}
+            >
+              <i
+                className={
+                  messageType === "success"
+                    ? "bi bi-check-lg"
+                    : "bi bi-x-lg"
+                }
+              ></i>
+            </div>
+
+            <h2 id="edit-message-title">
+              {messageTitle}
+            </h2>
+
+            <p>{messageText}</p>
+
+            <button
+              type="button"
+              className="edit-message-button"
+              onClick={closeMessage}
+            >
+              {updateComplete ? "Continue" : "OK"}
+            </button>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };

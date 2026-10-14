@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +16,11 @@ export default function AddEvent() {
     date: "",
   });
 
+  const [showMessageBox, setShowMessageBox] = useState(false);
+  const [messageType, setMessageType] = useState("success");
+  const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -22,14 +28,51 @@ export default function AddEvent() {
     });
   };
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
 
-    axios
-      .post(API + "/insert", form)
-      .then(() => {
-        nav("/dashboard/ScheduleComponent/EventList");
-      });
+    if (isSubmitting) return;
+
+    try {
+      setIsSubmitting(true);
+
+      const response = await axios.post(API + "/insert", form);
+
+      if (
+        response.data?.status === false ||
+        response.data?.success === false
+      ) {
+        setMessageType("error");
+        setMessage(
+          response.data?.message ||
+            "Unable to add the event. Please try again."
+        );
+      } else {
+        setMessageType("success");
+        setMessage("Event added successfully!");
+      }
+
+      setShowMessageBox(true);
+    } catch (error) {
+      console.error("Add Event Error:", error);
+
+      setMessageType("error");
+      setMessage(
+        error.response?.data?.message ||
+          "Failed to add the event. Please try again."
+      );
+      setShowMessageBox(true);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const closeMessageBox = () => {
+    setShowMessageBox(false);
+
+    if (messageType === "success") {
+      nav("/dashboard/ScheduleComponent/EventList");
+    }
   };
 
   return (
@@ -230,9 +273,10 @@ export default function AddEvent() {
               <button
                 type="submit"
                 className="save-event-btn"
+                disabled={isSubmitting}
               >
                 <i className="las la-check"></i>
-                Add Event
+                {isSubmitting ? "Adding Event..." : "Add Event"}
               </button>
 
             </div>
@@ -242,6 +286,52 @@ export default function AddEvent() {
         </div>
 
       </div>
+
+      {/* CUSTOM SUCCESS / ERROR MESSAGE BOX */}
+      {showMessageBox && (
+        <div
+          className="add-event-modal-overlay"
+          onClick={closeMessageBox}
+        >
+          <div
+            className="add-event-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="add-event-modal-title"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div
+              className={`add-event-modal-icon ${messageType}`}
+            >
+              <i
+                className={
+                  messageType === "success"
+                    ? "las la-check-circle"
+                    : "las la-exclamation-circle"
+                }
+              ></i>
+            </div>
+
+            <h3 id="add-event-modal-title">
+              {messageType === "success"
+                ? "Event Added Successfully"
+                : "Unable to Add Event"}
+            </h3>
+
+            <p>{message}</p>
+
+            <div className="add-event-modal-actions">
+              <button
+                type="button"
+                className={`add-event-modal-ok-btn ${messageType}`}
+                onClick={closeMessageBox}
+              >
+                {messageType === "success" ? "Continue" : "OK"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

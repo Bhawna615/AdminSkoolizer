@@ -1000,3 +1000,1110 @@
     font-size: 10px;
   }
 }
+/* =========================================
+   CREATE MESSAGE PAGE
+========================================= */
+
+.create-message-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 28px;
+  box-sizing: border-box;
+  background: #f7f5fb;
+  color: #302b43;
+  font-family: "Poppins", sans-serif;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.create-message-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.create-message-header h1 {
+  margin: 0 0 5px;
+  color: #302b43;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.create-message-header p {
+  margin: 0;
+  color: #81778f;
+  font-size: 14px;
+}
+
+.back-message-btn {
+  height: 42px;
+  padding: 0 18px;
+
+  background: #ffffff;
+  color: #6c4ab6;
+
+  border: 1px solid #d9cceb;
+  border-radius: 6px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.back-message-btn:hover {
+  background: #f4effb;
+  border-color: #6c4ab6;
+}
+
+/* =========================================
+   MESSAGE COMPOSE CARD
+========================================= */
+
+.message-compose-card {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 26px 28px;
+
+  background: #ffffff;
+
+  border: 1px solid #e3dced;
+  border-radius: 8px;
+
+  box-shadow: 0 2px 8px rgba(70, 45, 110, 0.06);
+
+  margin-bottom: 28px;
+}
+
+/* =========================================
+   MESSAGE CARD HEADING
+========================================= */
+
+.message-card-heading {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+
+  border-bottom: 1px solid #eee9f5;
+}
+
+.message-heading-icon {
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  background: #f0eafb;
+  color: #6c4ab6;
+
+  border-radius: 8px;
+
+  font-size: 23px;
+}
+
+.message-card-heading h2 {
+  margin: 0 0 4px;
+
+  color: #302b43;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.message-card-heading p {
+  margin: 0;
+
+  color: #8a8097;
+
+  font-size: 13px;
+}
+
+/* =========================================
+   FORM GROUP
+========================================= */
+
+.message-form-group {
+  width: 100%;
+  margin-bottom: 22px;
+}
+
+.message-form-group > label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #40394a;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.required-star {
+  color: #d9534f;
+  margin-left: 3px;
+}
+
+/* =========================================
+   MESSAGE TEXTAREA
+========================================= */
+
+.message-form-group textarea {
+  width: 100%;
+  min-height: 145px;
+
+  padding: 13px 14px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #cec4df;
+  border-radius: 6px;
+
+  color: #40394a;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+
+  resize: vertical;
+
+  outline: none;
+
+  transition: all 0.2s ease;
+}
+
+.message-form-group textarea::placeholder {
+  color: #aaa3b4;
+}
+
+.message-form-group textarea:hover {
+  border-color: #9a80c9;
+}
+
+.message-form-group textarea:focus {
+  border-color: #6c4ab6;
+
+  box-shadow:
+    0 0 0 3px rgba(108, 74, 182, 0.10);
+}
+
+/* =========================================
+   MESSAGE BOTTOM INFO
+========================================= */
+
+.message-bottom-info {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 7px;
+
+  color: #91889d;
+
+  font-size: 12px;
+}
+
+/* =========================================
+   FILE GROUP
+========================================= */
+
+.file-group {
+  margin-bottom: 0;
+}
+
+/* =========================================
+   FILE UPLOAD
+========================================= */
+
+.file-upload-box {
+  width: 100%;
+  min-height: 75px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  box-sizing: border-box;
+
+  padding: 12px 14px;
+
+  background: #fcfaff;
+
+  border: 1px dashed #cbbbe2;
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.file-upload-box:hover {
+  background: #f7f2fc;
+  border-color: #6c4ab6;
+}
+
+.file-upload-box input {
+  display: none;
+}
+
+.upload-icon {
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  background: #f0eafb;
+  color: #6c4ab6;
+
+  border-radius: 6px;
+
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.upload-content {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.upload-content strong {
+  color: #40394a;
+
+  font-size: 13px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.upload-content small {
+  margin-top: 3px;
+
+  color: #958b9f;
+
+  font-size: 11px;
+}
+
+.browse-text {
+  color: #6c4ab6;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================================
+   REMOVE FILE
+========================================= */
+
+.remove-file-btn {
+  margin-top: 8px;
+
+  padding: 5px 10px;
+
+  background: transparent;
+
+  border: none;
+
+  color: #d9534f;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+/* =========================================
+   RECIPIENT HEADER
+========================================= */
+
+.recipient-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 16px;
+}
+
+.recipient-header h2 {
+  margin: 0 0 4px;
+
+  color: #302b43;
+
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.recipient-header p {
+  margin: 0;
+
+  color: #8a8097;
+
+  font-size: 13px;
+}
+
+.recipient-counter {
+  min-width: 80px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 9px 15px;
+
+  background: #f0eafb;
+
+  border: 1px solid #ddd0ef;
+  border-radius: 6px;
+}
+
+.recipient-counter strong {
+  color: #6c4ab6;
+
+  font-size: 19px;
+}
+
+.recipient-counter span {
+  color: #81758f;
+
+  font-size: 11px;
+}
+
+/* =========================================
+   SELECT ALL
+========================================= */
+
+.select-all-card {
+  width: 100%;
+
+  padding: 15px 18px;
+
+  margin-bottom: 18px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #e3dced;
+  border-radius: 7px;
+
+  box-shadow: 0 2px 8px rgba(70, 45, 110, 0.05);
+}
+
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  cursor: pointer;
+}
+
+.check-row input,
+.class-checkbox input,
+.student-check input {
+  display: none;
+}
+
+.custom-checkbox {
+  width: 19px;
+  height: 19px;
+
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+
+  border: 1.5px solid #c5bad4;
+  border-radius: 4px;
+
+  transition: all 0.2s ease;
+}
+
+.check-row input:checked + .custom-checkbox,
+.class-checkbox input:checked + .custom-checkbox,
+.student-check input:checked + .custom-checkbox {
+  background: #6c4ab6;
+  border-color: #6c4ab6;
+}
+
+.check-row input:checked + .custom-checkbox::after,
+.class-checkbox input:checked + .custom-checkbox::after,
+.student-check input:checked + .custom-checkbox::after {
+  content: "✓";
+
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.select-all-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.select-all-text strong {
+  color: #40394a;
+
+  font-size: 13px;
+}
+
+.select-all-text span {
+  margin-top: 2px;
+
+  color: #958b9f;
+
+  font-size: 11px;
+}
+
+/* =========================================
+   CLASSES
+========================================= */
+
+.classes-container {
+  width: 100%;
+}
+
+.class-section {
+  width: 100%;
+
+  margin-bottom: 18px;
+
+  background: #ffffff;
+
+  border: 1px solid #e3dced;
+  border-radius: 7px;
+
+  overflow: hidden;
+
+  box-shadow: 0 2px 8px rgba(70, 45, 110, 0.05);
+}
+
+/* =========================================
+   CLASS HEADER
+========================================= */
+
+.class-header {
+  min-height: 68px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 12px 18px;
+
+  box-sizing: border-box;
+
+  background: #faf8fd;
+
+  border-bottom: 1px solid #eee9f5;
+}
+
+.class-checkbox {
+  display: flex;
+  align-items: center;
+
+  margin-right: 14px;
+
+  cursor: pointer;
+}
+
+.class-info {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  flex: 1;
+}
+
+.class-icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f0eafb;
+  color: #6c4ab6;
+
+  border-radius: 6px;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.class-info h3 {
+  margin: 0 0 2px;
+
+  color: #40394a;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.class-info span {
+  color: #91889d;
+
+  font-size: 11px;
+}
+
+.class-selection {
+  color: #81758f;
+
+  font-size: 12px;
+}
+
+.class-selection span {
+  color: #6c4ab6;
+
+  font-weight: 700;
+}
+
+/* =========================================
+   STUDENT TABLE
+========================================= */
+
+.student-table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+.student-table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+.student-table th {
+  height: 43px;
+
+  padding: 0 18px;
+
+  background: #6c4ab6;
+
+  color: #ffffff;
+
+  text-align: left;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+}
+
+.student-table td {
+  height: 48px;
+
+  padding: 0 18px;
+
+  border-bottom: 1px solid #eeeaf4;
+
+  color: #403a47;
+
+  font-size: 12px;
+}
+
+.student-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.student-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.student-table tbody tr:hover {
+  background: #f8f4fc;
+}
+
+.student-table tbody tr.student-selected {
+  background: #f4effb;
+}
+
+.select-column {
+  width: 90px;
+}
+
+.roll-column {
+  width: 120px;
+}
+
+.student-check {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.roll-number {
+  color: #6c4ab6;
+
+  font-weight: 600;
+}
+
+.student-name {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.student-avatar {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  background: #f0eafb;
+  color: #6c4ab6;
+
+  border-radius: 50%;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* =========================================
+   BOTTOM SEND BAR
+========================================= */
+
+.send-message-footer {
+  position: sticky;
+
+  bottom: 0;
+
+  z-index: 50;
+
+  width: 100%;
+
+  min-height: 76px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-top: 25px;
+  padding: 12px 18px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #e3dced;
+  border-radius: 7px;
+
+  box-shadow: 0 -3px 15px rgba(70, 45, 110, 0.10);
+}
+
+.send-summary {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+}
+
+.summary-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  background: #f0eafb;
+  color: #6c4ab6;
+
+  border-radius: 50%;
+
+  font-size: 18px;
+}
+
+.send-summary strong {
+  display: block;
+
+  color: #40394a;
+
+  font-size: 13px;
+}
+
+.send-summary span {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #958b9f;
+
+  font-size: 11px;
+}
+
+.send-message-btn {
+  height: 43px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0 20px;
+
+  background: #6c4ab6;
+  color: #ffffff;
+
+  border: none;
+  border-radius: 6px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.send-message-btn:hover:not(:disabled) {
+  background: #5b3da0;
+
+  transform: translateY(-1px);
+}
+
+.send-message-btn:disabled {
+  background: #c9c3d0;
+
+  color: #ffffff;
+
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   CENTERED MESSAGE MODAL
+========================================================= */
+
+.create-message-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  background: rgba(30, 25, 45, 0.38);
+
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+/* =========================================
+   SQUARE MESSAGE BOX
+========================================= */
+
+.create-message-modal {
+  width: 390px;
+  min-height: 290px;
+
+  padding: 32px 30px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  background: #ffffff;
+
+  border: 1px solid #e2d9ed;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 15px 45px rgba(55, 40, 80, 0.20),
+    0 4px 12px rgba(55, 40, 80, 0.08);
+
+  animation: createMessageModalIn 0.2s ease-out;
+}
+
+/* =========================================
+   MODAL ICON
+========================================= */
+
+.create-message-modal-icon {
+  width: 68px;
+  height: 68px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 18px;
+
+  border-radius: 50%;
+
+  font-size: 29px;
+}
+
+.create-message-modal-icon.success {
+  background: #f0eafb;
+  color: #6c4ab6;
+}
+
+.create-message-modal-icon.error {
+  background: #fbecec;
+  color: #d9534f;
+}
+
+/* =========================================
+   MODAL CONTENT
+========================================= */
+
+.create-message-modal-content {
+  width: 100%;
+}
+
+.create-message-modal-content h2 {
+  margin: 0 0 8px;
+
+  color: #302b43;
+
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.create-message-modal-content p {
+  margin: 0 auto;
+
+  max-width: 310px;
+
+  color: #81778f;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   MODAL BUTTON
+========================================= */
+
+.create-message-modal-btn {
+  min-width: 115px;
+  height: 40px;
+
+  margin-top: 24px;
+
+  padding: 0 22px;
+
+  background: #6c4ab6;
+  color: #ffffff;
+
+  border: none;
+  border-radius: 6px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.create-message-modal-btn:hover {
+  background: #5b3da0;
+
+  transform: translateY(-1px);
+}
+
+.create-message-modal-btn:active {
+  transform: translateY(0);
+}
+
+/* =========================================
+   MODAL ANIMATION
+========================================= */
+
+@keyframes createMessageModalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+  .create-message-page {
+    padding: 20px;
+  }
+
+  .message-compose-card {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 700px) {
+  .create-message-page {
+    padding: 15px;
+  }
+
+  .create-message-header {
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .create-message-header h1 {
+    font-size: 25px;
+  }
+
+  .message-compose-card {
+    padding: 18px;
+  }
+
+  .recipient-header {
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .send-message-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .send-message-btn {
+    width: 100%;
+  }
+
+  .create-message-modal {
+    width: 350px;
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .create-message-page {
+    padding: 10px;
+  }
+
+  .create-message-header {
+    flex-direction: column;
+  }
+
+  .back-message-btn {
+    width: 100%;
+  }
+
+  .message-compose-card {
+    padding: 15px;
+  }
+
+  .message-card-heading {
+    gap: 10px;
+  }
+
+  .message-heading-icon {
+    width: 43px;
+    height: 43px;
+    font-size: 19px;
+  }
+
+  .message-card-heading h2 {
+    font-size: 17px;
+  }
+
+  .message-bottom-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+  }
+
+  .recipient-header {
+    flex-direction: column;
+  }
+
+  .recipient-counter {
+    align-self: flex-start;
+  }
+
+  .class-header {
+    padding: 10px;
+  }
+
+  .student-table th,
+  .student-table td {
+    padding: 0 10px;
+  }
+
+  .send-message-footer {
+    padding: 12px;
+  }
+
+  .create-message-overlay {
+    padding: 15px;
+  }
+
+  .create-message-modal {
+    width: 100%;
+    max-width: 350px;
+    min-height: 270px;
+
+    padding: 28px 22px;
+  }
+
+  .create-message-modal-icon {
+    width: 60px;
+    height: 60px;
+
+    font-size: 25px;
+  }
+}

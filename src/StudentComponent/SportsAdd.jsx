@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {
@@ -8,7 +8,8 @@ import {
     FaPlus,
     FaArrowLeft,
     FaCheckCircle,
-    FaExclamationCircle
+    FaExclamationCircle,
+    FaTimes
 } from "react-icons/fa";
 import "./SportsAdd.css";
 
@@ -27,12 +28,45 @@ const SportsAdd = () => {
     const [success, setSuccess] = useState("");
     const [loading, setLoading] = useState(false);
 
+    // =====================================================
+    // AUTO CLOSE SUCCESS MESSAGE AND REDIRECT
+    // =====================================================
+
+    useEffect(() => {
+        if (success) {
+            const timer = setTimeout(() => {
+                navigate(
+                    "/dashboard/StudentComponent/StudentSports"
+                );
+            }, 2500);
+
+            return () => clearTimeout(timer);
+        }
+    }, [success, navigate]);
+
+    // =====================================================
+    // CLOSE MESSAGE
+    // =====================================================
+
+    const closeMessage = () => {
+        setError("");
+        setSuccess("");
+    };
+
+    // =====================================================
+    // HANDLE INPUT CHANGE
+    // =====================================================
+
     const handleChange = (e) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value
         });
     };
+
+    // =====================================================
+    // SUBMIT FORM
+    // =====================================================
 
     const submit = (e) => {
         e.preventDefault();
@@ -46,19 +80,14 @@ const SportsAdd = () => {
             .then((res) => {
                 if (res.data.status) {
                     setSuccess("Sports event added successfully");
-
-                    setTimeout(() => {
-                        navigate(
-                            "/dashboard/StudentComponent/StudentSports"
-                        );
-                    }, 1000);
                 } else {
                     setError(
                         res.data.message || "Failed to add sports event"
                     );
                 }
             })
-            .catch(() => {
+            .catch((err) => {
+                console.log(err);
                 setError("Failed to add sports event");
             })
             .finally(() => {
@@ -105,26 +134,6 @@ const SportsAdd = () => {
 
             </div>
 
-
-            {/* =====================================================
-                ALERTS
-            ===================================================== */}
-
-            {error && (
-                <div className="student-sports-add-alert student-sports-add-alert-error">
-                    <FaExclamationCircle />
-                    <span>{error}</span>
-                </div>
-            )}
-
-            {success && (
-                <div className="student-sports-add-alert student-sports-add-alert-success">
-                    <FaCheckCircle />
-                    <span>{success}</span>
-                </div>
-            )}
-
-
             {/* =====================================================
                 FORM CARD
             ===================================================== */}
@@ -147,7 +156,6 @@ const SportsAdd = () => {
                     </div>
 
                 </div>
-
 
                 {/* FORM */}
 
@@ -185,7 +193,6 @@ const SportsAdd = () => {
 
                         </div>
 
-
                         {/* DATE */}
 
                         <div className="student-sports-add-field">
@@ -213,7 +220,6 @@ const SportsAdd = () => {
                         </div>
 
                     </div>
-
 
                     {/* FORM FOOTER */}
 
@@ -254,6 +260,73 @@ const SportsAdd = () => {
                 </form>
 
             </div>
+
+            {/* =====================================================
+                SUCCESS / ERROR POPUP
+            ===================================================== */}
+
+            {(error || success) && (
+                <div className="student-sports-add-modal-overlay">
+
+                    <div
+                        className={`student-sports-add-modal-popup ${
+                            success
+                                ? "student-sports-add-modal-success"
+                                : "student-sports-add-modal-error"
+                        }`}
+                        role="alertdialog"
+                        aria-modal="true"
+                    >
+
+                        <button
+                            type="button"
+                            className="student-sports-add-modal-close"
+                            onClick={closeMessage}
+                            aria-label="Close message"
+                        >
+                            <FaTimes />
+                        </button>
+
+                        <div className="student-sports-add-modal-icon">
+                            {success ? (
+                                <FaCheckCircle />
+                            ) : (
+                                <FaExclamationCircle />
+                            )}
+                        </div>
+
+                        <h2>
+                            {success
+                                ? "Success!"
+                                : "Action Required"}
+                        </h2>
+
+                        <p>{success || error}</p>
+
+                        {success ? (
+                            <>
+                                <div className="student-sports-add-modal-status">
+                                    Your sports event has been added.
+                                </div>
+
+                                <div className="student-sports-add-modal-progress">
+                                    <div className="student-sports-add-modal-progress-bar"></div>
+                                </div>
+                            </>
+                        ) : (
+                            <button
+                                type="button"
+                                className="student-sports-add-modal-ok-btn"
+                                onClick={closeMessage}
+                            >
+                                Okay
+                            </button>
+                        )}
+
+                    </div>
+
+                </div>
+            )}
 
         </div>
     );

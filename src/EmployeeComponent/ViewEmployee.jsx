@@ -10,6 +10,15 @@ export default function ViewEmployee() {
   const [employees, setEmployees] = useState([]);
   const [showMsg, setShowMsg] = useState(true);
 
+  // DELETE MESSAGE BOX STATES
+  const [showDeleteMsg, setShowDeleteMsg] = useState(false);
+  const [deleteMessage, setDeleteMessage] = useState("");
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
+
+  // DELETE CONFIRMATION STATES
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [selectedDeleteId, setSelectedDeleteId] = useState(null);
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -40,17 +49,54 @@ export default function ViewEmployee() {
       });
   };
 
+  // ================= DELETE EMPLOYEE =================
   const deleteEmployee = (id) => {
-    if (window.confirm("Are you sure?")) {
-      axios
-        .get(API + "delete/" + id)
-        .then(() => {
-          loadData();
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
+    setSelectedDeleteId(id);
+    setShowDeleteConfirm(true);
+  };
+
+  // ================= CONFIRM DELETE =================
+  const confirmDeleteEmployee = () => {
+    if (!selectedDeleteId) return;
+
+    setShowDeleteConfirm(false);
+
+    axios
+      .get(API + "delete/" + selectedDeleteId)
+      .then((res) => {
+        loadData();
+
+        // SHOW DELETE SUCCESS MESSAGE
+        setDeleteSuccess(true);
+        setDeleteMessage("Employee Deleted Successfully");
+        setShowDeleteMsg(true);
+
+        setTimeout(() => {
+          setShowDeleteMsg(false);
+        }, 3000);
+
+        setSelectedDeleteId(null);
+      })
+      .catch((err) => {
+        console.error(err);
+
+        // SHOW DELETE ERROR MESSAGE
+        setDeleteSuccess(false);
+        setDeleteMessage("Failed to delete employee");
+        setShowDeleteMsg(true);
+
+        setTimeout(() => {
+          setShowDeleteMsg(false);
+        }, 3000);
+
+        setSelectedDeleteId(null);
+      });
+  };
+
+  // ================= CANCEL DELETE =================
+  const cancelDeleteEmployee = () => {
+    setShowDeleteConfirm(false);
+    setSelectedDeleteId(null);
   };
 
   const columns = [
@@ -90,7 +136,6 @@ export default function ViewEmployee() {
           title="Delete Employee"
         >
           <i className="bi bi-trash3"></i>
-          <span>Delete</span>
         </button>
       ),
       width: "140px",
@@ -170,7 +215,7 @@ export default function ViewEmployee() {
     <div className="employee-page">
 
       {/* SUCCESS MESSAGE */}
-      {location.state?.message && showMsg && (
+      {/* {location.state?.message && showMsg && (
         <div className="employee-success-message">
           <div className="employee-success-icon">
             <i className="bi bi-check-lg"></i>
@@ -187,6 +232,82 @@ export default function ViewEmployee() {
           >
             <i className="bi bi-x"></i>
           </button>
+        </div>
+      )} */}
+
+      {/* DELETE MESSAGE */}
+      {/* {showDeleteMsg && (
+        <div className="employee-success-message">
+          <div className="employee-success-icon">
+            <i
+              className={
+                deleteSuccess
+                  ? "bi bi-check-lg"
+                  : "bi bi-x-lg"
+              }
+            ></i>
+          </div>
+
+          <div className="employee-success-content">
+            <strong>
+              {deleteSuccess ? "Success" : "Error"}
+            </strong>
+
+            <span>{deleteMessage}</span>
+          </div>
+
+          <button
+            className="employee-success-close"
+            onClick={() => setShowDeleteMsg(false)}
+          >
+            <i className="bi bi-x"></i>
+          </button>
+        </div>
+      )} */}
+
+      {/* DELETE CONFIRMATION MESSAGE BOX */}
+      {showDeleteConfirm && (
+        <div className="employee-delete-confirm-overlay">
+
+          <div className="employee-delete-confirm-box">
+
+            <div className="employee-delete-confirm-icon">
+              <i className="bi bi-exclamation-triangle-fill"></i>
+            </div>
+
+            <div className="employee-delete-confirm-content">
+              <h3>Delete Employee?</h3>
+
+              <p>
+                Are you sure you want to delete this employee?
+                This action cannot be undone.
+              </p>
+            </div>
+
+            <div className="employee-delete-confirm-actions">
+
+              <button
+                type="button"
+                className="employee-delete-confirm-cancel"
+                onClick={cancelDeleteEmployee}
+              >
+                <i className="bi bi-x-lg"></i>
+                Cancel
+              </button>
+
+              <button
+                type="button"
+                className="employee-delete-confirm-delete"
+                onClick={confirmDeleteEmployee}
+              >
+                <i className="bi bi-trash3"></i>
+                Delete
+              </button>
+
+            </div>
+
+          </div>
+
         </div>
       )}
 

@@ -1138,3 +1138,163 @@
     }
 
 }
+
+/* =========================================================
+   EDIT ATTENDANCE CONFIRMATION MESSAGE BOX
+========================================================= */
+
+.view-attendance-confirm-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    box-sizing: border-box;
+
+    background: rgba(25, 18, 35, 0.45);
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.view-attendance-confirm-modal {
+    width: 100%;
+    max-width: 430px;
+
+    padding: 30px 26px;
+    box-sizing: border-box;
+
+    text-align: center;
+
+    background: #ffffff;
+    border: 1px solid #eee6f7;
+    border-radius: 18px;
+
+    box-shadow: 0 20px 60px rgba(40, 20, 65, 0.2);
+
+    animation: viewAttendanceConfirmAppear 0.22s ease-out;
+}
+
+.view-attendance-confirm-icon {
+    width: 64px;
+    height: 64px;
+
+    margin: 0 auto 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f0e8fc;
+    color: #6f42c1;
+
+    font-size: 27px;
+}
+
+.view-attendance-confirm-modal h3 {
+    margin: 0 0 12px;
+
+    color: #38264e;
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.view-attendance-confirm-modal p {
+    margin: 0;
+
+    color: #71667e;
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.view-attendance-confirm-modal p strong {
+    color: #51347d;
+}
+
+.view-attendance-confirm-actions {
+    display: flex;
+    justify-content: center;
+
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.view-attendance-confirm-actions button {
+    min-width: 120px;
+
+    padding: 11px 18px;
+
+    border: 0;
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+/* CANCEL BUTTON */
+
+.view-attendance-confirm-cancel {
+    color: #655873;
+    background: #f1edf5;
+}
+
+.view-attendance-confirm-cancel:hover {
+    background: #e6dfef;
+}
+
+/* CONTINUE BUTTON */
+
+.view-attendance-confirm-proceed {
+    color: #ffffff;
+    background: #6f42c1;
+}
+
+.view-attendance-confirm-proceed:hover {
+    background: #59329f;
+
+    box-shadow: 0 5px 12px rgba(111, 66, 193, 0.2);
+}
+
+/* MODAL ANIMATION */
+
+@keyframes viewAttendanceConfirmAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* RESPONSIVE CONFIRMATION BOX */
+
+@media screen and (max-width: 480px) {
+    .view-attendance-confirm-modal {
+        padding: 25px 18px;
+    }
+
+    .view-attendance-confirm-actions {
+        gap: 8px;
+    }
+
+    .view-attendance-confirm-actions button {
+        min-width: 0;
+        flex: 1;
+        padding: 11px 10px;
+    }
+}

@@ -17,20 +17,43 @@ const ViewExams = () => {
   const [deletingId, setDeletingId] = useState(null);
   const [savingId, setSavingId] = useState(null);
   const [search, setSearch] = useState("");
-const successMessage = location.state?.successMessage;
 
-const [showSuccessMessage, setShowSuccessMessage] =
-  useState(Boolean(successMessage));
+  const successMessage = location.state?.successMessage;
 
-useEffect(() => {
-  if (!successMessage) return;
+  const [showSuccessMessage, setShowSuccessMessage] =
+    useState(Boolean(successMessage));
 
-  const timer = setTimeout(() => {
-    setShowSuccessMessage(false);
-  }, 4000); // message visible for 4 seconds
+  // ==================================================
+  // CUSTOM DELETE MESSAGE BOX
+  // ==================================================
+  const [showDeleteMessage, setShowDeleteMessage] =
+    useState(false);
 
-  return () => clearTimeout(timer);
-}, [successMessage]);
+  const [deleteMessageType, setDeleteMessageType] =
+    useState("warning");
+
+  const [deleteMessageTitle, setDeleteMessageTitle] =
+    useState("");
+
+  const [deleteMessageText, setDeleteMessageText] =
+    useState("");
+
+  const [examToDelete, setExamToDelete] =
+    useState(null);
+
+  const [deleteMessageLoading, setDeleteMessageLoading] =
+    useState(false);
+
+  useEffect(() => {
+    if (!successMessage) return;
+
+    const timer = setTimeout(() => {
+      setShowSuccessMessage(false);
+    }, 4000); // message visible for 4 seconds
+
+    return () => clearTimeout(timer);
+  }, [successMessage]);
+
   // ==================================================
   // BASE URL
   // ==================================================
@@ -158,19 +181,39 @@ useEffect(() => {
   };
 
   // ==================================================
-  // DELETE EXAM
+  // DELETE EXAM - OPEN CUSTOM CONFIRMATION
   // ==================================================
-  const deleteExam = async (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure? All results of this exam will be deleted!"
-    );
-
-    if (!confirmDelete) {
+  const deleteExam = (id) => {
+    if (deletingId !== null || deleteMessageLoading) {
       return;
     }
 
+    setExamToDelete(id);
+    setDeleteMessageType("warning");
+    setDeleteMessageTitle("Delete Examination?");
+    setDeleteMessageText(
+      "Are you sure you want to delete this examination? All results of this exam will also be deleted. This action cannot be undone."
+    );
+    setShowDeleteMessage(true);
+  };
+
+  // ==================================================
+  // CONFIRM DELETE EXAM
+  // ==================================================
+  const confirmDeleteExam = async () => {
+    if (
+      examToDelete === null ||
+      examToDelete === undefined ||
+      deleteMessageLoading
+    ) {
+      return;
+    }
+
+    const id = examToDelete;
+
     try {
       setDeletingId(id);
+      setDeleteMessageLoading(true);
 
       const fd = new FormData();
       fd.append("id", id);
@@ -183,31 +226,50 @@ useEffect(() => {
       console.log("Delete Response:", res.data);
 
       if (res.data?.status) {
-        alert(
+        setDeleteMessageType("success");
+        setDeleteMessageTitle("Examination Deleted!");
+        setDeleteMessageText(
           res.data?.message ||
-          "Deleted Successfully"
+          "The examination and its associated results have been deleted successfully."
         );
 
-        fetchData();
+        setExamToDelete(null);
+
+        await fetchData();
 
       } else {
-        alert(
+        setDeleteMessageType("error");
+        setDeleteMessageTitle("Deletion Failed!");
+        setDeleteMessageText(
           res.data?.message ||
-          "Failed to Delete"
+          "Failed to delete the examination."
         );
       }
 
     } catch (error) {
       console.error("Delete error:", error);
 
-      alert(
+      setDeleteMessageType("error");
+      setDeleteMessageTitle("Something Went Wrong!");
+      setDeleteMessageText(
         error.response?.data?.message ||
-        "Server Error"
+        "Unable to delete the examination. Please try again."
       );
 
     } finally {
       setDeletingId(null);
+      setDeleteMessageLoading(false);
     }
+  };
+
+  // ==================================================
+  // CLOSE CUSTOM DELETE MESSAGE
+  // ==================================================
+  const closeDeleteMessage = () => {
+    if (deleteMessageLoading) return;
+
+    setShowDeleteMessage(false);
+    setExamToDelete(null);
   };
 
   // ==================================================
@@ -522,29 +584,30 @@ useEffect(() => {
         </div>
 
       </div>
-{showSuccessMessage && successMessage && (
-  <div className="viewExams-success-message">
-    <div className="viewExams-success-icon">
-      <i className="las la-check-circle"></i>
-    </div>
 
-    <div className="viewExams-success-content">
-      <strong>{successMessage}</strong>
-      <span>
-        The examination has been created and added successfully.
-      </span>
-    </div>
+      {showSuccessMessage && successMessage && (
+        <div className="viewExams-success-message">
+          <div className="viewExams-success-icon">
+            <i className="las la-check-circle"></i>
+          </div>
 
-    <button
-      type="button"
-      className="viewExams-success-close"
-      onClick={() => setShowSuccessMessage(false)}
-      title="Close"
-    >
-      <i className="las la-times"></i>
-    </button>
-  </div>
-)}
+          <div className="viewExams-success-content">
+            <strong>{successMessage}</strong>
+            <span>
+              The examination has been created and added successfully.
+            </span>
+          </div>
+
+          <button
+            type="button"
+            className="viewExams-success-close"
+            onClick={() => setShowSuccessMessage(false)}
+            title="Close"
+          >
+            <i className="las la-times"></i>
+          </button>
+        </div>
+      )}
 
       {/* ==================================================
           MAIN CARD
@@ -1203,6 +1266,110 @@ useEffect(() => {
           )}
 
       </div>
+
+      {/* ==================================================
+          CUSTOM DELETE MESSAGE BOX
+          Uses the existing createExam-message-* CSS classes
+      ================================================== */}
+      {showDeleteMessage && (
+        <div
+          className="createExam-message-overlay"
+          onClick={(e) => {
+            if (
+              e.target === e.currentTarget &&
+              !deleteMessageLoading
+            ) {
+              closeDeleteMessage();
+            }
+          }}
+        >
+          <div
+            className={`createExam-message-box createExam-message-${deleteMessageType}`}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="viewExams-delete-message-title"
+          >
+            <div className="createExam-message-icon">
+              {deleteMessageType === "warning" && (
+                <i className="las la-exclamation-triangle"></i>
+              )}
+
+              {deleteMessageType === "success" && (
+                <i className="las la-check-circle"></i>
+              )}
+
+              {deleteMessageType === "error" && (
+                <i className="las la-times-circle"></i>
+              )}
+            </div>
+
+            <h2 id="viewExams-delete-message-title">
+              {deleteMessageTitle}
+            </h2>
+
+            <p>{deleteMessageText}</p>
+
+            {deleteMessageType === "warning" ? (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: "10px",
+                  flexWrap: "wrap",
+                }}
+              >
+                <button
+                  type="button"
+                  className="createExam-message-button"
+                  style={{
+                    background: "#f1edf7",
+                    color: "#5f536e",
+                    boxShadow: "none",
+                  }}
+                  onClick={closeDeleteMessage}
+                  disabled={deleteMessageLoading}
+                >
+                  Cancel
+                </button>
+
+                <button
+                  type="button"
+                  className="createExam-message-button"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #e04455, #c92f43)",
+                    boxShadow:
+                      "0 8px 20px rgba(224, 68, 85, 0.2)",
+                  }}
+                  onClick={confirmDeleteExam}
+                  disabled={deleteMessageLoading}
+                >
+                  {deleteMessageLoading ? (
+                    <>
+                      <i className="las la-spinner la-spin"></i>{" "}
+                      Deleting...
+                    </>
+                  ) : (
+                    <>
+                      <i className="las la-trash"></i>{" "}
+                      Delete Exam
+                    </>
+                  )}
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                className="createExam-message-button"
+                onClick={closeDeleteMessage}
+                disabled={deleteMessageLoading}
+              >
+                Okay
+              </button>
+            )}
+          </div>
+        </div>
+      )}
 
     </div>
   );

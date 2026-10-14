@@ -1,0 +1,937 @@
+
+/* =========================================
+   ADD STATION
+   PURPLE + WHITE TRANSPORT ERP UI
+========================================= */
+
+.add-station-page {
+  min-height: 100vh;
+  background: #f7f7fb;
+  padding: 30px;
+  color: #29253d;
+}
+
+.add-station-page * {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.add-station-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 32px;
+}
+
+.add-station-header-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.add-station-main-icon {
+  width: 68px;
+  height: 68px;
+  min-width: 68px;
+  border-radius: 20px;
+
+  background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 31px;
+
+  box-shadow: 0 12px 28px rgba(109, 40, 217, 0.22);
+}
+
+.add-station-eyebrow {
+  display: block;
+  color: #8b5cf6;
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+
+  margin-bottom: 5px;
+}
+
+.add-station-header h1 {
+  margin: 0;
+  color: #29253d;
+
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.add-station-header p {
+  margin: 6px 0 0;
+  color: #918d9d;
+  font-size: 14px;
+}
+
+.add-station-back-btn {
+  height: 44px;
+  padding: 0 17px;
+
+  border: 1px solid #e4e0eb;
+  border-radius: 11px;
+
+  background: #fff;
+  color: #625d6d;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  transition: 0.25s ease;
+}
+
+.add-station-back-btn i {
+  font-size: 16px;
+}
+
+.add-station-back-btn:hover {
+  color: #6d28d9;
+  border-color: #d4c7ec;
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.add-station-content {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 0.82fr 1.25fr;
+
+  gap: 25px;
+  align-items: stretch;
+}
+
+/* =========================================
+   LEFT INFORMATION CARD
+========================================= */
+
+.add-station-information-card {
+  position: relative;
+  overflow: hidden;
+
+  padding: 32px;
+  border-radius: 22px;
+
+  background: linear-gradient(145deg, #5b21b6, #7c3aed);
+  color: #fff;
+
+  box-shadow: 0 18px 40px rgba(91, 33, 182, 0.18);
+}
+
+.add-station-information-card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 270px;
+  height: 270px;
+
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  right: -120px;
+  top: -125px;
+}
+
+.add-station-information-card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 190px;
+  height: 190px;
+
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.045);
+
+  left: -90px;
+  bottom: -90px;
+}
+
+.add-station-info-top,
+.add-station-info-list,
+.add-station-info-tip {
+  position: relative;
+  z-index: 2;
+}
+
+.add-station-info-icon {
+  width: 65px;
+  height: 65px;
+
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 30px;
+  margin-bottom: 24px;
+}
+
+.add-station-info-label {
+  display: block;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.7px;
+}
+
+.add-station-info-top h2 {
+  margin: 8px 0 11px;
+
+  color: #fff;
+
+  font-size: 27px;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.add-station-info-top p {
+  max-width: 390px;
+
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.add-station-info-divider {
+  height: 1px;
+  margin: 27px 0;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.add-station-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.add-station-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+}
+
+.add-station-info-item-icon {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.11);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 17px;
+}
+
+.add-station-info-item strong {
+  display: block;
+  margin-bottom: 4px;
+
+  color: #fff;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.add-station-info-item span {
+  display: block;
+
+  color: rgba(255, 255, 255, 0.6);
+
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.add-station-info-tip {
+  margin-top: 30px;
+  padding: 14px;
+
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.09);
+
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.add-station-tip-icon {
+  width: 27px;
+  height: 27px;
+  min-width: 27px;
+
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.1);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-station-tip-icon i {
+  font-size: 14px;
+}
+
+.add-station-info-tip strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 10px;
+}
+
+.add-station-info-tip p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  font-size: 9px;
+  line-height: 1.55;
+}
+
+/* =========================================
+   FORM CARD
+========================================= */
+
+.add-station-form-card {
+  min-width: 0;
+
+  padding: 32px;
+
+  background: #fff;
+  border: 1px solid #e9e6f0;
+  border-radius: 22px;
+
+  box-shadow: 0 10px 35px rgba(43, 35, 70, 0.055);
+}
+
+.add-station-form-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.add-station-form-header > div:first-child > span {
+  display: block;
+
+  color: #8b5cf6;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+
+  margin-bottom: 5px;
+}
+
+.add-station-form-header h2 {
+  margin: 0;
+
+  color: #302b45;
+
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.add-station-form-header p {
+  margin: 6px 0 0;
+  color: #9692a2;
+  font-size: 11px;
+}
+
+.add-station-form-header-icon {
+  width: 45px;
+  height: 45px;
+  min-width: 45px;
+
+  border-radius: 12px;
+  background: #f0eaff;
+  color: #6d28d9;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 20px;
+}
+
+/* =========================================
+   FORM FIELDS
+========================================= */
+
+.add-station-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.add-station-form-group {
+  min-width: 0;
+  margin-bottom: 23px;
+}
+
+.add-station-form-group label {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: #393449;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.add-station-form-group label b {
+  color: #e11d48;
+  margin-left: 3px;
+}
+
+.add-station-input-wrapper {
+  min-height: 52px;
+  min-width: 0;
+
+  border: 1px solid #e3dfea;
+  border-radius: 11px;
+
+  background: #fff;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+  transition: 0.2s ease;
+}
+
+.add-station-input-wrapper:focus-within {
+  border-color: #8b5cf6;
+
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.add-station-input-icon {
+  width: 50px;
+  height: 52px;
+  min-width: 50px;
+
+  background: #faf8ff;
+  border-right: 1px solid #eeeaf4;
+  color: #7c3aed;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+}
+
+.add-station-input-wrapper input {
+  width: 100%;
+  min-width: 0;
+  height: 52px;
+
+  border: none;
+  outline: none;
+
+  padding: 0 14px;
+
+  background: transparent;
+  color: #302b45;
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.add-station-input-wrapper input::placeholder {
+  color: #b0acb9;
+}
+
+/* =========================================
+   STATION PREVIEW
+========================================= */
+
+.add-station-preview {
+  margin-top: 2px;
+  margin-bottom: 27px;
+
+  padding: 16px;
+
+  border: 1px solid #eeeaf4;
+  border-radius: 15px;
+
+  background: #faf9fc;
+
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.add-station-preview-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+
+  border-radius: 13px;
+
+  background: #ede5ff;
+  color: #6d28d9;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+}
+
+.add-station-preview-content {
+  min-width: 0;
+}
+
+.add-station-preview-content > span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #a19cab;
+
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.add-station-preview-content strong {
+  display: block;
+
+  color: #302b45;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  overflow-wrap: anywhere;
+}
+
+.add-station-preview-content p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  margin: 5px 0 0;
+
+  color: #8e899a;
+  font-size: 9px;
+}
+
+.add-station-preview-content p span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.add-station-preview-content p i {
+  color: #7c3aed;
+  font-size: 11px;
+}
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.add-station-form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 11px;
+
+  padding-top: 22px;
+  border-top: 1px solid #eeeaf3;
+}
+
+.add-station-cancel-btn,
+.add-station-submit-btn {
+  min-height: 44px;
+  padding: 0 18px;
+
+  border-radius: 10px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  transition: 0.2s ease;
+}
+
+.add-station-cancel-btn {
+  background: #fff;
+  border: 1px solid #e1dde8;
+  color: #777283;
+}
+
+.add-station-cancel-btn:hover {
+  background: #f8f7fa;
+  color: #4b4658;
+}
+
+.add-station-submit-btn {
+  min-width: 140px;
+
+  border: none;
+
+  background: linear-gradient(135deg, #6d28d9, #7c3aed);
+  color: #fff;
+
+  box-shadow: 0 7px 18px rgba(109, 40, 217, 0.2);
+}
+
+.add-station-submit-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 23px rgba(109, 40, 217, 0.28);
+}
+
+.add-station-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =========================================
+   SPINNER
+========================================= */
+
+.add-station-spinner {
+  animation: addStationSpinner 0.8s linear infinite;
+}
+
+@keyframes addStationSpinner {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   SUCCESS / ERROR MESSAGE MODAL
+========================================= */
+
+.add-station-message-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(35, 24, 55, 0.48);
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  animation: addStationOverlayFade 0.25s ease;
+}
+
+.add-station-message-box {
+  width: 100%;
+  max-width: 410px;
+
+  padding: 34px 30px 28px;
+
+  border: 1px solid #eee8f8;
+  border-radius: 22px;
+
+  background: #fff;
+
+  text-align: center;
+
+  box-shadow: 0 22px 65px rgba(39, 20, 70, 0.2);
+
+  animation: addStationModalEnter 0.3s ease;
+}
+
+.add-station-message-icon {
+  width: 72px;
+  height: 72px;
+
+  margin: 0 auto 20px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 37px;
+}
+
+.add-station-message-icon.success {
+  color: #16a36a;
+
+  background: #e8f9f0;
+
+  border: 7px solid #f3fcf7;
+  box-shadow: 0 0 0 1px #d2f2e0;
+}
+
+.add-station-message-icon.error {
+  color: #dc3545;
+
+  background: #fff0f1;
+
+  border: 7px solid #fff7f7;
+  box-shadow: 0 0 0 1px #f8dadd;
+}
+
+.add-station-message-box h2 {
+  margin: 0 0 11px;
+
+  color: #302644;
+
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.add-station-message-box p {
+  margin: 0 auto;
+
+  max-width: 320px;
+
+  color: #898394;
+
+  font-size: 13px;
+  line-height: 1.7;
+
+  overflow-wrap: anywhere;
+}
+
+.add-station-message-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 27px;
+}
+
+.add-station-message-btn {
+  min-width: 135px;
+  min-height: 43px;
+
+  padding: 0 24px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+  color: #fff;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 7px 18px rgba(109, 40, 217, 0.22);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-station-message-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 23px rgba(109, 40, 217, 0.3);
+}
+
+.add-station-message-btn:active {
+  transform: translateY(0);
+}
+
+@keyframes addStationOverlayFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes addStationModalEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+  .add-station-content {
+    grid-template-columns: 1fr;
+    max-width: 750px;
+  }
+
+  .add-station-information-card {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .add-station-page {
+    padding: 20px;
+  }
+
+  .add-station-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .add-station-header-left {
+    align-items: flex-start;
+  }
+
+  .add-station-back-btn {
+    justify-content: center;
+  }
+
+  .add-station-header h1 {
+    font-size: 25px;
+  }
+
+  .add-station-form-card,
+  .add-station-information-card {
+    padding: 25px;
+    border-radius: 18px;
+  }
+
+  .add-station-form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .add-station-page {
+    padding: 15px;
+  }
+
+  .add-station-header-left {
+    gap: 12px;
+  }
+
+  .add-station-main-icon {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+
+    border-radius: 16px;
+    font-size: 25px;
+  }
+
+  .add-station-header h1 {
+    font-size: 21px;
+  }
+
+  .add-station-header p {
+    font-size: 10px;
+  }
+
+  .add-station-information-card,
+  .add-station-form-card {
+    padding: 20px;
+  }
+
+  .add-station-info-top h2 {
+    font-size: 23px;
+  }
+
+  .add-station-form-header h2 {
+    font-size: 20px;
+  }
+
+  .add-station-form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .add-station-cancel-btn,
+  .add-station-submit-btn {
+    width: 100%;
+  }
+
+  .add-station-preview-content p {
+    gap: 7px;
+  }
+
+  .add-station-message-box {
+    max-width: 360px;
+    padding: 28px 22px 24px;
+    border-radius: 18px;
+  }
+
+  .add-station-message-icon {
+    width: 64px;
+    height: 64px;
+    font-size: 32px;
+  }
+
+  .add-station-message-box h2 {
+    font-size: 19px;
+  }
+
+  .add-station-message-box p {
+    font-size: 12px;
+  }
+
+  .add-station-message-btn {
+    width: 100%;
+  }
+}

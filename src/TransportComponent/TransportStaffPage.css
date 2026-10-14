@@ -1125,3 +1125,231 @@
     border-radius: 15px;
   }
 }
+
+/* =========================================
+   CUSTOM DELETE MESSAGE MODAL
+   SAME PURPLE-WHITE STYLE AS ADD BUS
+========================================= */
+
+.staff-message-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(22, 18, 40, 0.48);
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  animation: staffMessageOverlayFade 0.2s ease;
+}
+
+.staff-message-box {
+  width: 100%;
+  max-width: 420px;
+
+  padding: 32px 28px 28px;
+
+  text-align: center;
+
+  background: #ffffff;
+
+  border: 1px solid #eee9ff;
+  border-radius: 20px;
+
+  box-shadow: 0 24px 70px rgba(38, 24, 75, 0.22);
+
+  animation: staffMessageModalEnter 0.25s ease;
+}
+
+.staff-message-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 68px;
+  height: 68px;
+
+  margin: 0 auto 18px;
+
+  border-radius: 50%;
+
+  font-size: 36px;
+}
+
+.staff-message-icon.confirm {
+  color: #7657e8;
+  background: #f0eaff;
+  border: 1px solid #ded2ff;
+}
+
+.staff-message-icon.success {
+  color: #168653;
+  background: #e7f8ef;
+  border: 1px solid #c5efd8;
+}
+
+.staff-message-icon.error {
+  color: #d83a4e;
+  background: #fff0f1;
+  border: 1px solid #ffd6da;
+}
+
+.staff-message-box h2 {
+  margin: 0 0 10px;
+
+  color: #292044;
+
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.staff-message-box p {
+  margin: 0;
+
+  color: #777187;
+
+  font-size: 14px;
+  line-height: 1.7;
+
+  overflow-wrap: anywhere;
+}
+
+.staff-message-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 24px;
+}
+
+.staff-message-cancel-btn,
+.staff-message-confirm-btn,
+.staff-message-btn {
+  min-width: 120px;
+
+  padding: 12px 20px;
+
+  border-radius: 10px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.staff-message-cancel-btn {
+  color: #625b73;
+
+  background: #ffffff;
+
+  border: 1px solid #e3deed;
+}
+
+.staff-message-cancel-btn:hover {
+  background: #f8f6fc;
+  transform: translateY(-2px);
+}
+
+.staff-message-confirm-btn {
+  color: #ffffff;
+
+  background: linear-gradient(135deg, #7657e8, #6241d8);
+
+  border: none;
+
+  box-shadow: 0 6px 16px rgba(108, 76, 232, 0.22);
+}
+
+.staff-message-confirm-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 9px 22px rgba(108, 76, 232, 0.3);
+}
+
+.staff-message-confirm-btn i {
+  margin-right: 5px;
+}
+
+.staff-message-btn {
+  min-width: 120px;
+
+  margin-top: 24px;
+
+  color: #ffffff;
+
+  background: linear-gradient(135deg, #7657e8, #6241d8);
+
+  border: none;
+
+  box-shadow: 0 6px 16px rgba(108, 76, 232, 0.22);
+}
+
+.staff-message-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 9px 22px rgba(108, 76, 232, 0.3);
+}
+
+.staff-message-cancel-btn:active,
+.staff-message-confirm-btn:active,
+.staff-message-btn:active {
+  transform: translateY(0);
+}
+
+@keyframes staffMessageOverlayFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes staffMessageModalEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .staff-message-box {
+    padding: 28px 20px 24px;
+  }
+
+  .staff-message-box h2 {
+    font-size: 20px;
+  }
+
+  .staff-message-actions {
+    gap: 8px;
+  }
+
+  .staff-message-cancel-btn,
+  .staff-message-confirm-btn {
+    min-width: 0;
+    flex: 1;
+    padding: 12px 14px;
+  }
+}

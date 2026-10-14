@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AddTransportStaff.css";
@@ -17,6 +18,13 @@ const AddTransportStaff = () => {
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const [messageModal, setMessageModal] = useState({
+    open: false,
+    type: "success",
+    title: "",
+    text: "",
+  });
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -35,6 +43,23 @@ const AddTransportStaff = () => {
     });
 
     setPreview(URL.createObjectURL(file));
+  };
+
+  const closeMessageModal = () => {
+    setMessageModal({
+      open: false,
+      type: "success",
+      title: "",
+      text: "",
+    });
+  };
+
+  const handleMessageContinue = () => {
+    closeMessageModal();
+
+    if (messageModal.type === "success") {
+      navigate("/dashboard/TransportComponent/transport-staff");
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -66,15 +91,29 @@ const AddTransportStaff = () => {
       const result = await res.json();
 
       if (result.status === "success") {
-        navigate("/dashboard/TransportComponent/transport-staff", {
-          state: { success: "Staff Added Successfully" },
+        setMessageModal({
+          open: true,
+          type: "success",
+          title: "Staff Added Successfully!",
+          text: "The new transport staff member has been registered successfully.",
         });
       } else {
-        alert(result.message);
+        setMessageModal({
+          open: true,
+          type: "error",
+          title: "Unable to Add Staff",
+          text: result.message || "Something went wrong while adding staff.",
+        });
       }
     } catch (error) {
       console.error("Error adding transport staff:", error);
-      alert("Server Error");
+
+      setMessageModal({
+        open: true,
+        type: "error",
+        title: "Server Error",
+        text: "Unable to connect to the server. Please try again.",
+      });
     } finally {
       setLoading(false);
     }
@@ -538,6 +577,54 @@ const AddTransportStaff = () => {
         </div>
 
       </div>
+
+      {/* CUSTOM SUCCESS / ERROR MESSAGE MODAL */}
+      {messageModal.open && (
+        <div className="add-staff-message-overlay">
+
+          <div
+            className="add-staff-message-box"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="add-staff-message-title"
+          >
+
+            <div
+              className={`add-staff-message-icon ${messageModal.type}`}
+            >
+              {messageModal.type === "success" ? (
+                <i className="las la-check"></i>
+              ) : (
+                <i className="las la-exclamation"></i>
+              )}
+            </div>
+
+            <h2 id="add-staff-message-title">
+              {messageModal.title}
+            </h2>
+
+            <p>{messageModal.text}</p>
+
+            <div className="add-staff-message-actions">
+
+              <button
+                type="button"
+                className="add-staff-message-btn"
+                onClick={
+                  messageModal.type === "success"
+                    ? handleMessageContinue
+                    : closeMessageModal
+                }
+              >
+                {messageModal.type === "success" ? "Continue" : "OK"}
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      )}
 
     </div>
   );

@@ -795,3 +795,171 @@ select.createExam-input {
     max-width: 55%;
   }
 }
+
+/* =========================================================
+   CUSTOM MESSAGE BOX
+========================================================= */
+
+.createExam-message-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  background: rgba(35, 27, 45, 0.52);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: createExamMessageFadeIn 0.22s ease;
+}
+
+.createExam-message-box {
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #eee8f5;
+  border-radius: 21px;
+  padding: 32px 28px 27px;
+  text-align: center;
+  box-shadow: 0 25px 75px rgba(28, 17, 42, 0.24);
+  animation: createExamMessageSlideIn 0.3s ease;
+}
+
+.createExam-message-icon {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 37px;
+}
+
+.createExam-message-success .createExam-message-icon {
+  color: #16a36a;
+  background: #e8f9f0;
+  border: 1px solid #c7f0dc;
+  box-shadow: 0 8px 22px rgba(22, 163, 106, 0.1);
+}
+
+.createExam-message-error .createExam-message-icon {
+  color: #e04455;
+  background: #fff0f1;
+  border: 1px solid #ffd6da;
+  box-shadow: 0 8px 22px rgba(224, 68, 85, 0.08);
+}
+
+.createExam-message-warning .createExam-message-icon {
+  color: #c78314;
+  background: #fff7e6;
+  border: 1px solid #f7e2b3;
+  box-shadow: 0 8px 22px rgba(199, 131, 20, 0.08);
+}
+
+.createExam-message-box h2 {
+  margin: 0 0 10px;
+  color: #302938;
+  font-size: 21px;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.createExam-message-box p {
+  margin: 0 auto 24px;
+  max-width: 330px;
+  color: #827a8c;
+  font-size: 12px;
+  font-weight: 450;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.createExam-message-button {
+  min-width: 125px;
+  min-height: 43px;
+  padding: 0 25px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 750;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.22);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.createExam-message-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 11px 25px rgba(124, 58, 237, 0.3);
+}
+
+.createExam-message-button:active {
+  transform: translateY(0);
+}
+
+.createExam-message-button:focus-visible {
+  outline: 3px solid rgba(124, 58, 237, 0.3);
+  outline-offset: 4px;
+}
+
+@keyframes createExamMessageFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes createExamMessageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+   MESSAGE BOX RESPONSIVE
+========================================================= */
+
+@media (max-width: 480px) {
+  .createExam-message-overlay {
+    padding: 16px;
+  }
+
+  .createExam-message-box {
+    max-width: 360px;
+    padding: 27px 21px 23px;
+    border-radius: 18px;
+  }
+
+  .createExam-message-icon {
+    width: 59px;
+    height: 59px;
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+
+  .createExam-message-box h2 {
+    font-size: 18px;
+  }
+
+  .createExam-message-box p {
+    font-size: 11px;
+  }
+
+  .createExam-message-button {
+    width: 100%;
+  }
+}

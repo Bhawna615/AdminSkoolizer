@@ -193,10 +193,10 @@ const Sidebar = ({
           label: "View Homework",
           icon: "la-eye",
         },
-        {
-          label: "Assignment Generator",
-          icon: "las la-cog",
-        },
+        // {
+        //   label: "Assignment Generator",
+        //   icon: "las la-cog",
+        // },
       ],
     },
 
@@ -563,11 +563,11 @@ const Sidebar = ({
         );
         break;
 
-      case "Assignment Generator":
-        navigate(
-          "/dashboard/HomeworkComponent/AssignmentGenerator"
-        );
-        break;
+      // case "Assignment Generator":
+      //   navigate(
+      //     "/dashboard/HomeworkComponent/AssignmentGenerator"
+      //   );
+      //   break;
 
 
       /* EMPLOYEE */
@@ -832,11 +832,10 @@ const Sidebar = ({
                               subIdx
                             }
                             className={`submenu-item ${
-                              activeItem ===
-                              subItem.label
-                                ? "active"
-                                : ""
-                            }`}
+  activeItem === subItem.label
+    ? "active"
+    : ""
+}`}
                             onClick={(e) => {
 
                               e.stopPropagation();

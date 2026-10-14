@@ -878,3 +878,341 @@
   }
 
 }
+
+/* =========================================
+   EVENT EDIT — FIXED CONFIRMATION MODAL
+========================================= */
+
+.event-edit-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  box-sizing: border-box;
+
+  background: rgba(24, 18, 39, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  animation: eventEditOverlayFade 0.2s ease;
+}
+
+.event-edit-modal-overlay * {
+  box-sizing: border-box;
+}
+
+.event-edit-modal {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  max-width: 440px;
+  min-width: 0;
+  height: auto;
+  max-height: calc(100vh - 40px);
+
+  padding: 30px;
+
+  margin: 0;
+  overflow-y: auto;
+
+  background: #ffffff;
+  border: 1px solid #eee7f8;
+  border-radius: 20px;
+
+  text-align: center;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+
+  box-shadow: 0 22px 70px rgba(25, 16, 45, 0.2);
+
+  animation: eventEditModalEnter 0.25s ease;
+}
+
+/* Prevent global heading rules from breaking the modal */
+
+.event-edit-modal h2 {
+  display: block;
+  position: static;
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  margin: 0 0 12px;
+  padding: 0;
+
+  color: #2c263e;
+  background: transparent;
+
+  font-family: inherit;
+  font-size: 21px;
+  font-weight: 750;
+  line-height: 1.4;
+  letter-spacing: normal;
+
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* MODAL ICON */
+
+.event-edit-modal .event-edit-modal-icon {
+  position: static;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+
+  margin: 0 auto 20px;
+  padding: 0;
+
+  border-radius: 50%;
+  background: #f2ebff;
+  color: #7c3aed;
+
+  font-size: 32px;
+  line-height: 1;
+}
+
+.event-edit-modal-success .event-edit-modal-icon {
+  background: #e7f9ee;
+  color: #16a34a;
+}
+
+.event-edit-modal-error .event-edit-modal-icon {
+  background: #fff0f0;
+  color: #dc2626;
+}
+
+/* MESSAGE */
+
+.event-edit-modal p {
+  display: block;
+  position: static;
+
+  width: 100%;
+  max-width: 350px;
+  min-width: 0;
+
+  margin: 0 auto;
+  padding: 0;
+
+  color: #827b91;
+  background: transparent;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: normal;
+
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* BUTTON CONTAINER */
+
+.event-edit-modal .event-edit-modal-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  gap: 12px;
+  margin: 26px 0 0;
+  padding: 0;
+
+  border: none;
+  background: transparent;
+}
+
+/* BOTH BUTTONS */
+
+.event-edit-modal .event-edit-modal-cancel,
+.event-edit-modal .event-edit-modal-confirm {
+  position: static;
+
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 1 auto;
+  width: auto;
+  min-width: 115px;
+  max-width: 100%;
+  min-height: 44px;
+  height: auto;
+
+  gap: 8px;
+  margin: 0;
+  padding: 12px 18px;
+
+  border-radius: 10px;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-align: center;
+  text-transform: none;
+  white-space: normal;
+
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.event-edit-modal .event-edit-modal-cancel {
+  border: 1px solid #e3ddea;
+  background: #ffffff;
+  color: #716a80;
+  box-shadow: none;
+}
+
+.event-edit-modal .event-edit-modal-cancel:hover:not(:disabled) {
+  background: #f8f6fb;
+  border-color: #d2c8e0;
+}
+
+.event-edit-modal .event-edit-modal-confirm {
+  border: 1px solid #6d28d9;
+  background: #6d28d9;
+  color: #ffffff;
+
+  box-shadow: 0 6px 16px rgba(109, 40, 217, 0.18);
+}
+
+.event-edit-modal .event-edit-modal-confirm:hover:not(:disabled) {
+  background: #5b21b6;
+  border-color: #5b21b6;
+  transform: translateY(-1px);
+}
+
+.event-edit-modal-success .event-edit-modal-confirm {
+  background: #16a34a;
+  border-color: #16a34a;
+}
+
+.event-edit-modal-success .event-edit-modal-confirm:hover:not(:disabled) {
+  background: #15803d;
+  border-color: #15803d;
+}
+
+.event-edit-modal .event-edit-modal-error-button {
+  background: #dc2626;
+  border-color: #dc2626;
+}
+
+.event-edit-modal .event-edit-modal-error-button:hover:not(:disabled) {
+  background: #b91c1c;
+  border-color: #b91c1c;
+}
+
+.event-edit-modal .event-edit-modal-cancel:disabled,
+.event-edit-modal .event-edit-modal-confirm:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ICONS INSIDE BUTTONS */
+
+.event-edit-modal .event-edit-modal-actions button i {
+  display: inline-block;
+  position: static;
+
+  flex: 0 0 auto;
+
+  margin: 0;
+  padding: 0;
+
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* LOADING SPINNER */
+
+.event-edit-modal-spinner {
+  display: inline-block;
+  flex: 0 0 14px;
+
+  width: 14px;
+  height: 14px;
+
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+
+  animation: eventEditSpinner 0.7s linear infinite;
+}
+
+/* ANIMATIONS */
+
+@keyframes eventEditOverlayFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes eventEditModalEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes eventEditSpinner {
+  to { transform: rotate(360deg); }
+}
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+  .event-edit-modal {
+    max-width: 100%;
+    padding: 25px 20px;
+    border-radius: 17px;
+  }
+
+  .event-edit-modal h2 {
+    font-size: 19px;
+  }
+
+  .event-edit-modal p {
+    font-size: 12px;
+  }
+
+  .event-edit-modal .event-edit-modal-actions {
+    gap: 9px;
+  }
+
+  .event-edit-modal .event-edit-modal-cancel,
+  .event-edit-modal .event-edit-modal-confirm {
+    min-width: 105px;
+    padding: 11px 14px;
+  }
+}

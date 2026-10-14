@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
@@ -20,6 +21,11 @@ export default function EventEdit() {
     error: "",
     success: "",
   });
+
+  const [showMessageBox, setShowMessageBox] = useState(false);
+  const [messageType, setMessageType] = useState("confirm");
+  const [messageText, setMessageText] = useState("");
+  const [isUpdating, setIsUpdating] = useState(false);
 
   useEffect(() => {
     axios
@@ -45,6 +51,16 @@ export default function EventEdit() {
   const update = (e) => {
     e.preventDefault();
 
+    setMessageType("confirm");
+    setMessageText("Are you sure you want to save the changes made to this event?");
+    setShowMessageBox(true);
+  };
+
+  const confirmUpdate = () => {
+    if (isUpdating) return;
+
+    setIsUpdating(true);
+
     axios
       .post(API + "/update/" + id, form)
       .then(() => {
@@ -53,16 +69,37 @@ export default function EventEdit() {
           error: "",
         });
 
+        setMessageType("success");
+        setMessageText("Event Updated Successfully!");
+        setIsUpdating(false);
+
         setTimeout(() => {
+          setShowMessageBox(false);
           nav("/dashboard/ScheduleComponent/EventList");
-        }, 1200);
+        }, 1500);
       })
       .catch(() => {
         setMessage({
           error: "Something went wrong!",
           success: "",
         });
+
+        setMessageType("error");
+        setMessageText("Something went wrong! Unable to update the event.");
+        setIsUpdating(false);
       });
+  };
+
+  const closeMessageBox = () => {
+    if (isUpdating) return;
+
+    if (messageType === "success") {
+      setShowMessageBox(false);
+      nav("/dashboard/ScheduleComponent/EventList");
+      return;
+    }
+
+    setShowMessageBox(false);
   };
 
   return (
@@ -327,6 +364,87 @@ export default function EventEdit() {
         </div>
 
       </div>
+
+      {/* CUSTOM CONFIRMATION / STATUS MESSAGE BOX */}
+      {showMessageBox && (
+        <div
+          className="event-edit-modal-overlay"
+          onClick={closeMessageBox}
+        >
+          <div
+            className={`event-edit-modal event-edit-modal-${messageType}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="event-edit-modal-icon">
+              <i
+                className={
+                  messageType === "confirm"
+                    ? "las la-question-circle"
+                    : messageType === "success"
+                    ? "las la-check-circle"
+                    : "las la-exclamation-circle"
+                }
+              ></i>
+            </div>
+
+            <h2>
+              {messageType === "confirm"
+                ? "Confirm Changes"
+                : messageType === "success"
+                ? "Update Successful"
+                : "Update Failed"}
+            </h2>
+
+            <p>{messageText}</p>
+
+            <div className="event-edit-modal-actions">
+              {messageType === "confirm" ? (
+                <>
+                  <button
+                    type="button"
+                    className="event-edit-modal-cancel"
+                    onClick={closeMessageBox}
+                    disabled={isUpdating}
+                  >
+                    Cancel
+                  </button>
+
+                  <button
+                    type="button"
+                    className="event-edit-modal-confirm"
+                    onClick={confirmUpdate}
+                    disabled={isUpdating}
+                  >
+                    {isUpdating ? (
+                      <>
+                        <span className="event-edit-modal-spinner"></span>
+                        Updating...
+                      </>
+                    ) : (
+                      <>
+                        <i className="las la-save"></i>
+                        Confirm Update
+                      </>
+                    )}
+                  </button>
+                </>
+              ) : (
+                <button
+                  type="button"
+                  className={`event-edit-modal-confirm ${
+                    messageType === "error"
+                      ? "event-edit-modal-error-button"
+                      : ""
+                  }`}
+                  onClick={closeMessageBox}
+                >
+                  {messageType === "success" ? "Done" : "OK"}
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

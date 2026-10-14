@@ -478,12 +478,12 @@
 
 
 /* EDIT */
-.edit-btn {
+.Quiz-view-edit-btn {
   background: #f0eafd;
   color: #7041bd;
 }
 
-.edit-btn:hover {
+.Quiz-view-edit-btn:hover {
   background: #7041bd;
   color: #ffffff;
 
@@ -495,12 +495,12 @@
 
 
 /* DELETE */
-.delete-btn {
+.Quiz-view-delete-btn {
   background: #fff0f0;
   color: #e04c4c;
 }
 
-.delete-btn:hover {
+.Quiz-view-delete-btn:hover {
   background: #e04c4c;
   color: #ffffff;
 
@@ -757,4 +757,349 @@
     padding: 14px;
   }
 }
+/* =========================================================
+   QUIZ QUESTION DELETE MESSAGE BOX
+========================================================= */
 
+.Quiz-view-message-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(30, 20, 40, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  box-sizing: border-box;
+
+  animation: QuizViewOverlayFade 0.2s ease;
+}
+
+.Quiz-view-message-box {
+  width: min(430px, 100%);
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 30px 28px 25px;
+
+  text-align: center;
+
+  box-shadow:
+    0 20px 60px rgba(45, 25, 60, 0.20);
+
+  border: 1px solid #eee7f2;
+
+  animation: QuizViewMessagePop 0.25s ease;
+}
+
+/* =========================================================
+   MESSAGE ICON
+========================================================= */
+
+.Quiz-view-message-icon {
+  width: 58px;
+  height: 58px;
+
+  margin: 0 auto 17px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+}
+
+/* CONFIRM */
+
+.Quiz-view-message-box.confirm
+  .Quiz-view-message-icon {
+  background: #fff3e0;
+  color: #ef8b00;
+}
+
+/* SUCCESS */
+
+.Quiz-view-message-box.success
+  .Quiz-view-message-icon {
+  background: #eaf8ef;
+  color: #2e9d59;
+}
+
+/* ERROR */
+
+.Quiz-view-message-box.error
+  .Quiz-view-message-icon {
+  background: #fdecec;
+  color: #d93636;
+}
+
+/* =========================================================
+   MESSAGE CONTENT
+========================================================= */
+
+.Quiz-view-message-content h3 {
+  margin: 0;
+
+  color: #302638;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.Quiz-view-message-content p {
+  margin: 9px auto 0;
+
+  max-width: 340px;
+
+  color: #81788b;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   MESSAGE ACTIONS
+========================================================= */
+
+.Quiz-view-message-actions {
+  margin-top: 23px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+}
+
+/* =========================================================
+   CANCEL BUTTON
+========================================================= */
+
+.Quiz-view-message-cancel {
+  min-width: 105px;
+
+  padding: 11px 18px;
+
+  border: 1px solid #ddd5e3;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #6f6575;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  transition: all 0.25s ease;
+}
+
+.Quiz-view-message-cancel:hover {
+  background: #f7f4f8;
+  border-color: #cfc4d5;
+}
+
+.Quiz-view-message-cancel:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   DELETE BUTTON
+========================================================= */
+
+.Quiz-view-message-delete {
+  min-width: 105px;
+
+  padding: 11px 18px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: linear-gradient(
+    135deg,
+    #d32f2f,
+    #e53935
+  );
+
+  color: #ffffff;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  box-shadow: 0 6px 16px rgba(211, 47, 47, 0.20);
+
+  transition: all 0.25s ease;
+}
+
+.Quiz-view-message-delete:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 8px 20px rgba(211, 47, 47, 0.28);
+}
+
+.Quiz-view-message-delete:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =========================================================
+   OK BUTTON
+========================================================= */
+
+.Quiz-view-message-ok {
+  min-width: 90px;
+
+  padding: 11px 20px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: linear-gradient(
+    135deg,
+    #6a1b9a,
+    #8e44ad
+  );
+
+  color: #ffffff;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  box-shadow:
+    0 6px 16px rgba(106, 27, 154, 0.20);
+
+  transition: all 0.25s ease;
+}
+
+.Quiz-view-message-ok:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 8px 20px rgba(106, 27, 154, 0.28);
+}
+
+/* =========================================================
+   DELETE LOADER
+========================================================= */
+
+.Quiz-view-delete-loader {
+  width: 13px;
+  height: 13px;
+
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #ffffff;
+
+  border-radius: 50%;
+
+  animation: QuizViewDeleteSpin 0.7s linear infinite;
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes QuizViewOverlayFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes QuizViewMessagePop {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes QuizViewDeleteSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE MESSAGE BOX
+========================================================= */
+
+@media (max-width: 500px) {
+
+  .Quiz-view-message-overlay {
+    padding: 15px;
+  }
+
+  .Quiz-view-message-box {
+    padding: 27px 20px 22px;
+    border-radius: 16px;
+  }
+
+  .Quiz-view-message-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .Quiz-view-message-content h3 {
+    font-size: 17px;
+  }
+
+  .Quiz-view-message-content p {
+    font-size: 12px;
+  }
+
+  .Quiz-view-message-actions {
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+
+  .Quiz-view-message-cancel,
+  .Quiz-view-message-delete,
+  .Quiz-view-message-ok {
+    width: 100%;
+  }
+}

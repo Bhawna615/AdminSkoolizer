@@ -11,7 +11,9 @@ const AdminViewStudent = () => {
   const [selectedClass, setSelectedClass] = useState("");
   const [enableFilter, setEnableFilter] = useState(false);
   const [activeAction, setActiveAction] = useState(null);
-
+const [deleteStudent, setDeleteStudent] = useState(null);
+const [deleteStatus, setDeleteStatus] = useState("");
+const [deleteLoading, setDeleteLoading] = useState(false);
   const navigate = useNavigate();
 
   const API_BASE =
@@ -40,52 +42,64 @@ const AdminViewStudent = () => {
     }
   };
 
-  const handleDelete = async (id) => {
-    if (!id) {
-      alert("Invalid student ID");
-      return;
-    }
+const handleDelete = (id) => {
+  const student = students.find(
+    (student) => String(student.id) === String(id)
+  );
 
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this student?"
+  setActiveAction(null);
+  setDeleteStatus("");
+  setDeleteLoading(false);
+
+  setDeleteStudent({
+    id,
+    name: student?.Name || "this student",
+  });
+};
+
+const confirmDeleteStudent = async () => {
+  if (!deleteStudent?.id || deleteLoading) return;
+
+  setDeleteLoading(true);
+
+  try {
+    const response = await axios.post(
+      `${API_BASE}AdminStudent/delete/${deleteStudent.id}`
     );
 
-    if (!confirmDelete) return;
-
-    try {
-      const response = await axios.post(
-        `${API_BASE}AdminStudent/delete/${id}`
+    if (
+      response.data.status === true ||
+      response.data.status === "true"
+    ) {
+      setStudents((prev) =>
+        prev.filter(
+          (student) =>
+            String(student.id) !== String(deleteStudent.id)
+        )
       );
 
-      if (response.data.status === true) {
-        alert("Student deleted successfully");
+      setDeleteStatus("success");
+      setDeleteLoading(false);
 
-        setStudents((prev) =>
-          prev.filter(
-            (student) =>
-              String(student.id) !== String(id)
-          )
-        );
+      await fetchStudents();
 
-        setActiveAction(null);
-
-        await fetchStudents();
-      } else {
-        alert(
-          response.data.message ||
-            "Failed to delete student"
-        );
-      }
-    } catch (error) {
-      console.error("Delete Error:", error);
-
-      alert(
-        error.response?.data?.message ||
-          "Server Error while deleting student"
-      );
+      setTimeout(() => {
+        setDeleteStudent(null);
+        setDeleteStatus("");
+      }, 2500);
+    } else {
+      setDeleteStatus("error");
+      setDeleteLoading(false);
     }
-  };
+  } catch (error) {
+    console.error("Delete Error:", error);
+    setDeleteStatus("error");
+    setDeleteLoading(false);
+  }
+};
 
+
+  
   const filteredStudents = useMemo(() => {
     let data = Array.isArray(students)
       ? [...students]
@@ -213,6 +227,109 @@ const AdminViewStudent = () => {
   };
 
   return (
+  <>
+    
+{deleteStudent && (
+  <div className="student-delete-overlay">
+    <div className="student-delete-popup">
+
+      {/* CONFIRM DELETE */}
+
+      {!deleteStatus && (
+        <>
+          <div className="student-delete-icon">
+            <i className="bi bi-exclamation-triangle-fill"></i>
+          </div>
+
+          <h2>Delete Student?</h2>
+
+          <p>
+            Are you sure you want to delete{" "}
+            <strong>{deleteStudent.name}</strong>?
+            This action cannot be undone.
+          </p>
+
+          <div className="student-delete-buttons">
+            <button
+              type="button"
+              className="student-delete-cancel"
+              onClick={() => {
+                setDeleteStudent(null);
+                setDeleteStatus("");
+              }}
+              disabled={deleteLoading}
+            >
+              Cancel
+            </button>
+
+            <button
+              type="button"
+              className="student-delete-confirm"
+              onClick={confirmDeleteStudent}
+              disabled={deleteLoading}
+            >
+              {deleteLoading ? "Deleting..." : "Delete"}
+            </button>
+          </div>
+        </>
+      )}
+
+      {/* DELETE SUCCESS */}
+
+      {deleteStatus === "success" && (
+        <>
+          <div className="student-delete-success-icon">
+            <i className="bi bi-check-circle-fill"></i>
+          </div>
+
+          <h2>Deleted Successfully!</h2>
+
+          <p>
+            Student has been deleted successfully.
+          </p>
+
+          <div className="student-delete-loading">
+            <span></span>
+          </div>
+
+          <small>Updating student list...</small>
+        </>
+      )}
+
+      {/* DELETE ERROR */}
+
+      {deleteStatus === "error" && (
+        <>
+          <div className="student-delete-error-icon">
+            <i className="bi bi-x-circle-fill"></i>
+          </div>
+
+          <h2>Delete Failed</h2>
+
+          <p>
+            Unable to delete the student.
+            Please try again.
+          </p>
+
+          <button
+            type="button"
+            className="student-delete-cancel"
+            onClick={() => {
+              setDeleteStudent(null);
+              setDeleteStatus("");
+              setDeleteLoading(false);
+            }}
+          >
+            Okay
+          </button>
+        </>
+      )}
+
+    </div>
+  </div>
+
+    )}
+
     <div className="admin-view-student-page">
 
       {/* ================= HEADER ================= */}
@@ -950,6 +1067,7 @@ const AdminViewStudent = () => {
       </div>
 
     </div>
+    </>
   );
 };
 

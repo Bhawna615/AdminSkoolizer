@@ -699,3 +699,188 @@
         align-items: flex-start;
     }
 }
+/* =========================================================
+   EMPLOYEE ATTENDANCE MESSAGE BOX
+   SAME CENTERED STYLE AS ADD EMPLOYEE
+========================================================= */
+
+.employee-attendance-message-overlay {
+  position: fixed;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(20, 16, 35, 0.35);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 99999;
+}
+
+.employee-attendance-message-box {
+  width: 380px;
+  min-height: 230px;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  padding: 32px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  box-shadow: 0 20px 55px rgba(38, 27, 65, 0.25);
+
+  animation: employeeAttendanceMessagePopup 0.2s ease-out;
+}
+
+@keyframes employeeAttendanceMessagePopup {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ICON */
+
+.employee-attendance-message-icon {
+  width: 64px;
+  height: 64px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 18px;
+
+  font-size: 28px;
+}
+
+.employee-attendance-message-success {
+  background: #eee9ff;
+  color: #6c4ce8;
+}
+
+.employee-attendance-message-error {
+  background: #fff0f2;
+  color: #e05268;
+}
+
+/* CONTENT */
+
+.employee-attendance-message-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 7px;
+}
+
+.employee-attendance-message-content strong {
+  font-size: 18px;
+  font-weight: 700;
+
+  color: #29233a;
+}
+
+.employee-attendance-message-content span {
+  font-size: 13px;
+
+  color: #81798f;
+
+  line-height: 1.5;
+}
+
+/* CONTINUE */
+
+.employee-attendance-message-continue {
+  margin-top: 24px;
+
+  min-width: 120px;
+  height: 42px;
+
+  padding: 0 22px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #6c4ce8;
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.employee-attendance-message-continue:hover {
+  background: #5d40cc;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 6px 15px rgba(108, 76, 232, 0.22);
+}
+
+/* ERROR CLOSE */
+
+.employee-attendance-message-close {
+  margin-top: 24px;
+
+  width: 42px;
+  height: 42px;
+
+  border: 1px solid #eeeaf5;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #777084;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 19px;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.employee-attendance-message-close:hover {
+  background: #faf9ff;
+  color: #6c4ce8;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  .employee-attendance-message-box {
+    width: calc(100% - 40px);
+    max-width: 380px;
+
+    padding: 28px 22px;
+  }
+
+}

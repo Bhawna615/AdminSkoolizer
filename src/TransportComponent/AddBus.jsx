@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +16,12 @@ const AddBus = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [messageModal, setMessageModal] = useState({
+    open: false,
+    type: "success",
+    title: "",
+    message: "",
+  });
 
   const handleChange = (e) => {
     setForm({
@@ -35,17 +42,48 @@ const AddBus = () => {
       );
 
       if (res.data.status) {
-        navigate("/dashboard/TransportComponent/BussesPage", {
-          state: { success: "Bus Added Successfully" },
+        setMessageModal({
+          open: true,
+          type: "success",
+          title: "Bus Added Successfully!",
+          message: "The new bus has been added to your transport fleet.",
         });
       } else {
-        alert(res.data.message);
+        setMessageModal({
+          open: true,
+          type: "error",
+          title: "Unable to Add Bus",
+          message: res.data.message || "Something went wrong. Please try again.",
+        });
       }
     } catch (err) {
       console.error("Error adding bus:", err);
-      alert("Server Error");
+
+      setMessageModal({
+        open: true,
+        type: "error",
+        title: "Server Error",
+        message: "Unable to connect to the server. Please try again.",
+      });
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleCloseMessage = () => {
+    const isSuccess = messageModal.type === "success";
+
+    setMessageModal({
+      open: false,
+      type: "success",
+      title: "",
+      message: "",
+    });
+
+    if (isSuccess) {
+      navigate("/dashboard/TransportComponent/BussesPage", {
+        state: { success: "Bus Added Successfully" },
+      });
     }
   };
 
@@ -393,6 +431,52 @@ const AddBus = () => {
           </form>
         </div>
       </div>
+
+      {/* ================= CUSTOM MESSAGE MODAL ================= */}
+      {messageModal.open && (
+        <div
+          className="add-bus-message-overlay"
+          onClick={handleCloseMessage}
+        >
+          <div
+            className="add-bus-message-box"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="add-bus-message-title"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div
+              className={`add-bus-message-icon ${
+                messageModal.type === "success"
+                  ? "success"
+                  : "error"
+              }`}
+            >
+              <i
+                className={`las ${
+                  messageModal.type === "success"
+                    ? "la-check"
+                    : "la-exclamation"
+                }`}
+              ></i>
+            </div>
+
+            <h2 id="add-bus-message-title">
+              {messageModal.title}
+            </h2>
+
+            <p>{messageModal.message}</p>
+
+            <button
+              type="button"
+              className="add-bus-message-btn"
+              onClick={handleCloseMessage}
+            >
+              {messageModal.type === "success" ? "Continue" : "OK"}
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

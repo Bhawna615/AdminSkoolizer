@@ -1,12 +1,14 @@
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./CreateQuestionPaper.css";
 
 const BASE_URL =
   "http://localhost/kkblossom/api.php/Adminapi/AdminExam";
 
 const CreateQuestionPaper = () => {
+  const navigate = useNavigate();
+
   const [classes, setClasses] = useState([]);
   const [subjects, setSubjects] = useState([]);
   const [questions, setQuestions] = useState([]);
@@ -32,6 +34,22 @@ const CreateQuestionPaper = () => {
     success: "",
     error: ""
   });
+
+  /* =========================================================
+     CREATE MESSAGE BOX
+  ========================================================= */
+
+  const [showCreateMessage, setShowCreateMessage] =
+    useState(false);
+
+  const [createMessageType, setCreateMessageType] =
+    useState("");
+
+  const [createMessageText, setCreateMessageText] =
+    useState("");
+
+  const [creating, setCreating] =
+    useState(false);
 
   /* =========================================================
      INITIAL LOAD
@@ -332,6 +350,33 @@ const CreateQuestionPaper = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    /*
+      Show the same message box first.
+      Actual creation happens after clicking Create
+      inside the message box.
+    */
+
+    setCreateMessageType("confirm");
+
+    setCreateMessageText(
+      "Are you sure you want to create this question paper?"
+    );
+
+    setShowCreateMessage(true);
+  };
+
+  /* =========================================================
+     CONFIRM CREATE QUESTION PAPER
+  ========================================================= */
+
+  const confirmCreate = async () => {
+
+    if (creating) {
+      return;
+    }
+
+    setCreating(true);
+
     const payload = {
       exam: formData.exam,
       subject: formData.subject,
@@ -352,11 +397,14 @@ const CreateQuestionPaper = () => {
         res.data.status ===
         "success"
       ) {
-        setMessage({
-          success:
-            "Saved Successfully",
-          error: ""
-        });
+
+        setCreateMessageType(
+          "success"
+        );
+
+        setCreateMessageText(
+          "Saved Successfully"
+        );
 
         await loadCreatedPapers();
 
@@ -373,17 +421,58 @@ const CreateQuestionPaper = () => {
           ...prev,
           selectedQuestions: []
         }));
+
+        setMessage({
+          success:
+            "Saved Successfully",
+          error: ""
+        });
+
+        setCreating(false);
+
+        /*
+          Show success message first,
+          then navigate to Question Papers page.
+        */
+
+        setTimeout(() => {
+          navigate(
+            "/dashboard/ExamComponent/QuestionPapers"
+          );
+        }, 1000);
+
       } else {
+
+        setCreateMessageType(
+          "error"
+        );
+
+        setCreateMessageText(
+          "Failed to Save"
+        );
+
         setMessage({
           error:
             "Failed to Save",
           success: ""
         });
+
+        setCreating(false);
       }
+
     } catch (err) {
+
       console.error(
         "Error creating question paper:",
         err
+      );
+
+      setCreateMessageType(
+        "error"
+      );
+
+      setCreateMessageText(
+        "Something went wrong"
       );
 
       setMessage({
@@ -391,17 +480,166 @@ const CreateQuestionPaper = () => {
           "Something went wrong",
         success: ""
       });
+
+      setCreating(false);
     }
+  };
+
+  /* =========================================================
+     CLOSE CREATE MESSAGE
+  ========================================================= */
+
+  const closeCreateMessage = () => {
+
+    if (creating) {
+      return;
+    }
+
+    setShowCreateMessage(false);
+
+    setCreateMessageType("");
+
+    setCreateMessageText("");
   };
 
   return (
     <div className="innerview">
 
       {/* =====================================================
+          CREATE MESSAGE BOX
+      ===================================================== */}
+
+      {showCreateMessage && (
+        <div className="create-message-overlay">
+
+          <div
+            className={`create-message-box ${
+              createMessageType === "success"
+                ? "create-message-success"
+                : createMessageType === "error"
+                ? "create-message-error"
+                : "create-message-confirm"
+            }`}
+          >
+
+            {/* ICON */}
+
+            <div className="create-message-icon">
+
+              {createMessageType ===
+                "success" && (
+                <i className="bi bi-check-lg"></i>
+              )}
+
+              {createMessageType ===
+                "error" && (
+                <i className="bi bi-x-lg"></i>
+              )}
+
+              {createMessageType ===
+                "confirm" && (
+                <i className="bi bi-question-lg"></i>
+              )}
+
+            </div>
+
+
+            {/* TITLE */}
+
+            <h3>
+
+              {createMessageType ===
+                "success" &&
+                "Success"}
+
+              {createMessageType ===
+                "error" &&
+                "Error"}
+
+              {createMessageType ===
+                "confirm" &&
+                "Create Question Paper"}
+
+            </h3>
+
+
+            {/* MESSAGE */}
+
+            <p>
+              {createMessageText}
+            </p>
+
+
+            {/* ACTIONS */}
+
+            {createMessageType ===
+              "confirm" ? (
+
+              <div className="create-message-actions">
+
+                <button
+                  type="button"
+                  className="create-message-cancel-btn"
+                  onClick={
+                    closeCreateMessage
+                  }
+                  disabled={creating}
+                >
+                  Cancel
+                </button>
+
+                <button
+                  type="button"
+                  className="create-message-confirm-btn"
+                  onClick={
+                    confirmCreate
+                  }
+                  disabled={creating}
+                >
+
+                  {creating ? (
+                    <>
+                      <span className="create-message-loader"></span>
+                      Creating...
+                    </>
+                  ) : (
+                    "Create"
+                  )}
+
+                </button>
+
+              </div>
+
+            ) : (
+
+              <div className="create-message-actions">
+
+                <button
+                  type="button"
+                  className="create-message-ok-btn"
+                  onClick={
+                    closeCreateMessage
+                  }
+                  disabled={creating}
+                >
+                  OK
+                </button>
+
+              </div>
+
+            )}
+
+          </div>
+
+        </div>
+      )}
+
+
+      {/* =====================================================
           MESSAGE
       ===================================================== */}
 
-      <div className="message">
+      {/* <div className="message">
 
         {message.error && (
           <div className="error-bar">
@@ -415,7 +653,7 @@ const CreateQuestionPaper = () => {
           </div>
         )}
 
-      </div>
+      </div>  */}
 
 
       {/* =====================================================
@@ -425,18 +663,22 @@ const CreateQuestionPaper = () => {
       <div className="filter-bar">
 
         <label className="admin-view-student-toggle">
-  <input
-    type="checkbox"
-    checked={filter.enabled}
-    onChange={handleFilterToggle}
-  />
 
-  <span className="admin-view-student-toggle-slider"></span>
+          <input
+            type="checkbox"
+            checked={filter.enabled}
+            onChange={
+              handleFilterToggle
+            }
+          />
 
-  <span className="admin-view-student-toggle-text">
-    Enable Filter
-  </span>
-</label>
+          <span className="admin-view-student-toggle-slider"></span>
+
+          <span className="admin-view-student-toggle-text">
+            Enable Filter
+          </span>
+
+        </label>
 
 
         <select

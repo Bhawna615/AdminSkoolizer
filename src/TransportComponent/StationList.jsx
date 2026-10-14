@@ -214,7 +214,7 @@ const StationList = () => {
           className="station-add-btn"
           onClick={() =>
             navigate(
-              "/dashboard/TransportComponent/AddStation"
+              "/dashboard/TransportComponent/add-station"
             )
           }
         >
@@ -697,7 +697,7 @@ const StationList = () => {
         className="station-floating-add"
         onClick={() =>
           navigate(
-            "/dashboard/TransportComponent/AddStation"
+            "/dashboard/TransportComponent/add-station"
           )
         }
         title="Add Station"

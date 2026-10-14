@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
 import { useNavigate } from "react-router-dom";
@@ -13,25 +13,51 @@ const PostView = () => {
   const [filterEnabled, setFilterEnabled] = useState(false);
   const [search, setSearch] = useState("");
 
+  // ================= MESSAGE BOX =================
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
+
   const navigate = useNavigate();
+
+  // ================= SHOW MESSAGE =================
+  const showMessage = (msg, type) => {
+    setMessage(msg);
+    setMessageType(type);
+
+    setTimeout(() => {
+      setMessage("");
+      setMessageType("");
+    }, 3000);
+  };
 
   // ================= LOAD =================
   const loadPosts = async () => {
-    const res = await axios.get(BASE_URL);
-    setPosts(res.data || []);
-  };
-
-  // ================= FILTER =================
-  const filterPosts = async () => {
-    const res = await axios.get(`${BASE_URL}/filter/${year}/${month}`);
-    setPosts(res.data || []);
+    try {
+      const res = await axios.get(BASE_URL);
+      setPosts(res.data || []);
+    } catch (error) {
+      console.error("LOAD ERROR:", error);
+      showMessage("Failed to load posts ❌", "error");
+      setPosts([]);
+    }
   };
 
   // ================= DELETE =================
   const deletePost = async (id) => {
-    if (window.confirm("Delete this post?")) {
-      await axios.get(`${BASE_URL}/delete/${id}`);
-      filterEnabled ? filterPosts() : loadPosts();
+    try {
+      const res = await axios.get(`${BASE_URL}/delete/${id}`);
+
+      console.log("DELETE RESPONSE:", res.data);
+
+      // SUCCESS MESSAGE IN OVERLAY
+      showMessage("Post deleted successfully ✅", "success");
+
+      // REFRESH POSTS
+      await loadPosts();
+    } catch (error) {
+      console.error("DELETE ERROR:", error);
+
+      showMessage("Failed to delete post ❌", "error");
     }
   };
 
@@ -40,38 +66,81 @@ const PostView = () => {
     loadPosts();
   }, []);
 
-  useEffect(() => {
-    if (filterEnabled) {
-      filterPosts();
-    } else {
-      loadPosts(); // ✅ IMPORTANT FIX
-    }
-  }, [year, month, filterEnabled]);
+  // ================= FILTER + SEARCH =================
+  const filteredData = useMemo(() => {
+    let data = Array.isArray(posts) ? [...posts] : [];
 
-  // ================= SEARCH =================
-  const filteredData = posts.filter(
-    (p) =>
-      p.recipient_group?.toLowerCase().includes(search.toLowerCase()) ||
-      p.text?.toLowerCase().includes(search.toLowerCase())
-  );
+    // ================= YEAR + MONTH FILTER =================
+    if (filterEnabled) {
+      data = data.filter((p) => {
+        if (!p.created_at) return false;
+
+        // Replaced space with 'T' for reliable browser date parsing
+        const postDate = new Date(p.created_at.replace(" ", "T"));
+
+        const postYear = postDate.getFullYear();
+        const postMonth = postDate.getMonth() + 1;
+
+        return postYear === year && postMonth === month;
+      });
+    }
+
+    // ================= SEARCH =================
+    if (search) {
+      data = data.filter(
+        (p) =>
+          p.recipient_group
+            ?.toLowerCase()
+            .includes(search.toLowerCase()) ||
+          p.text
+            ?.toLowerCase()
+            .includes(search.toLowerCase())
+      );
+    }
+
+    return data;
+  }, [posts, year, month, filterEnabled, search]);
 
   // ================= COLUMNS =================
   const columns = [
-    { name: "ID", selector: (row) => row.id, sortable: true },
-    { name: "Group", selector: (row) => row.recipient_group },
-    { name: "Text", selector: (row) => row.text, wrap: true },
+    {
+      name: "ID",
+      selector: (row) => row.id,
+      sortable: true,
+    },
+
+    {
+      name: "Group",
+      selector: (row) => row.recipient_group,
+    },
+
+    {
+      name: "Text",
+      selector: (row) => row.text,
+      wrap: true,
+    },
+
     {
       name: "File",
       cell: (row) =>
         row.url ? (
-          <a href={row.url} target="_blank" rel="noreferrer">
+          <a
+            href={row.url}
+            target="_blank"
+            rel="noreferrer"
+          >
             View
           </a>
         ) : (
           "-"
         ),
     },
-    { name: "Date", selector: (row) => row.created_at },
+
+    {
+      name: "Date",
+      selector: (row) => row.created_at,
+    },
+
     {
       name: "Action",
       cell: (row) => (
@@ -95,7 +164,7 @@ const PostView = () => {
   return (
     <div className="container">
 
-      {/* CREATE BUTTON */}
+      {/* ================= CREATE BUTTON ================= */}
       <button
         className="fab"
         onClick={() =>
@@ -105,42 +174,90 @@ const PostView = () => {
         ✎
       </button>
 
-      {/* FILTER BAR */}
+      {/* ================= FILTER BAR ================= */}
       <div className="filter-bar">
 
-        <label className="filter-toggle">
-          Enable Filter
-          <input
-            type="checkbox"
-            checked={filterEnabled}
-            onChange={(e) => setFilterEnabled(e.target.checked)}
-          />
-        </label>
+        {/* ================= ENABLE FILTER TOGGLE ================= */}
+        <div className="filter-toggle-container">
+          <span className="filter-toggle-text">
+            Enable Filter
+          </span>
 
-        <select value={year} onChange={(e) => setYear(e.target.value)}>
-          <option>{new Date().getFullYear()}</option>
-          <option>{new Date().getFullYear() - 1}</option>
-          <option>{new Date().getFullYear() - 2}</option>
+          <label className="filter-switch">
+            <input
+              type="checkbox"
+              checked={filterEnabled}
+              onChange={(e) =>
+                setFilterEnabled(e.target.checked)
+              }
+            />
+
+            <span className="filter-slider"></span>
+          </label>
+        </div>
+
+        {/* YEAR */}
+        <select
+          value={year}
+          disabled={!filterEnabled}
+          onChange={(e) => {
+            setYear(Number(e.target.value));
+          }}
+        >
+          <option value={new Date().getFullYear()}>
+            {new Date().getFullYear()}
+          </option>
+
+          <option value={new Date().getFullYear() - 1}>
+            {new Date().getFullYear() - 1}
+          </option>
+
+          <option value={new Date().getFullYear() - 2}>
+            {new Date().getFullYear() - 2}
+          </option>
         </select>
 
-        <select value={month} onChange={(e) => setMonth(e.target.value)}>
+        {/* MONTH */}
+        <select
+          value={month}
+          disabled={!filterEnabled}
+          onChange={(e) => {
+            setMonth(Number(e.target.value));
+          }}
+        >
           {[...Array(12)].map((_, i) => (
-            <option key={i + 1} value={i + 1}>
-              {new Date(0, i).toLocaleString("default", {
+            <option
+              key={i + 1}
+              value={i + 1}
+            >
+              {new Date(
+                2000,
+                i,
+                1
+              ).toLocaleString("default", {
                 month: "long",
               })}
             </option>
           ))}
         </select>
 
-        <input
-          type="text"
-          placeholder="Search..."
-          onChange={(e) => setSearch(e.target.value)}
-        />
       </div>
 
-      {/* DATATABLE */}
+      {/* ================= SEARCH ================= */}
+      <input
+        type="text"
+        style={{
+          backgroundColor: "white",
+          width: "30%",
+        }}
+        placeholder="Search..."
+        value={search}
+        onChange={(e) =>
+          setSearch(e.target.value)
+        }
+      />
+
+      {/* ================= DATATABLE ================= */}
       <DataTable
         columns={columns}
         data={filteredData}
@@ -151,17 +268,39 @@ const PostView = () => {
         dense
         customStyles={customStyles}
       />
+
+      {/* =====================================================
+          MESSAGE OVERLAY
+      ===================================================== */}
+      {message && (
+        <div className="post-message-overlay">
+          <div
+            className={`post-message-box ${messageType}`}
+          >
+            <div className="post-message-icon">
+              {messageType === "success" ? "✓" : "!"}
+            </div>
+
+            <div className="post-message-text">
+              {message}
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
 
 // ================= STYLE =================
+
 const customStyles = {
   headRow: {
     style: {
       backgroundColor: "#2d4cc8",
     },
   },
+
   headCells: {
     style: {
       color: "#fff",
@@ -170,6 +309,7 @@ const customStyles = {
       textTransform: "uppercase",
     },
   },
+
   rows: {
     style: {
       fontSize: "13px",

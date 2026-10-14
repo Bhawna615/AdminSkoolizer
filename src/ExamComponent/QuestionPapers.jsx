@@ -12,6 +12,17 @@ const QuestionPapers = () => {
   const [filterEnabled, setFilterEnabled] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
 
+  // ==============================
+  // DELETE MESSAGE BOX STATES
+  // ==============================
+  const [deleteMessage, setDeleteMessage] = useState({
+    show: false,
+    type: "",
+    title: "",
+    message: "",
+    id: null,
+  });
+
   const navigate = useNavigate();
   const [, setSearchParams] = useSearchParams();
 
@@ -77,10 +88,30 @@ const QuestionPapers = () => {
   // ==============================
   // DELETE QUESTION PAPER
   // ==============================
-  const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this question paper?")) {
-      return;
-    }
+  const handleDelete = (id) => {
+    setDeleteMessage({
+      show: true,
+      type: "confirm",
+      title: "Delete Question Paper?",
+      message:
+        "Are you sure you want to delete this question paper? This action cannot be undone.",
+      id: id,
+    });
+  };
+
+  // ==============================
+  // CONFIRM DELETE
+  // ==============================
+  const confirmDelete = async () => {
+    const id = deleteMessage.id;
+
+    setDeleteMessage({
+      show: false,
+      type: "",
+      title: "",
+      message: "",
+      id: null,
+    });
 
     try {
       console.log("Deleting question paper ID:", id);
@@ -93,7 +124,9 @@ const QuestionPapers = () => {
 
       // Remove deleted paper from UI immediately
       setPapers((prevPapers) =>
-        prevPapers.filter((paper) => String(paper.id) !== String(id))
+        prevPapers.filter(
+          (paper) => String(paper.id) !== String(id)
+        )
       );
 
       // Show success message
@@ -103,22 +136,40 @@ const QuestionPapers = () => {
       setTimeout(() => {
         setShowMessage(false);
       }, 3000);
-
     } catch (err) {
       console.error("Delete failed:", err);
 
-      alert("Unable to delete question paper.");
+      setDeleteMessage({
+        show: true,
+        type: "error",
+        title: "Delete Failed",
+        message: "Unable to delete question paper.",
+        id: null,
+      });
     }
+  };
+
+  // ==============================
+  // CLOSE MESSAGE BOX
+  // ==============================
+  const closeDeleteMessage = () => {
+    setDeleteMessage({
+      show: false,
+      type: "",
+      title: "",
+      message: "",
+      id: null,
+    });
   };
 
   // ==============================
   // VIEW QUESTION PAPER
   // ==============================
   const handleView = (questionPaperId) => {
-  navigate(
-    `/dashboard/ExamComponent/QuestionPaperGenerate/${questionPaperId}`
-  );
-};
+    navigate(
+      `/dashboard/ExamComponent/QuestionPaperGenerate/${questionPaperId}`
+    );
+  };
 
   return (
     <div className="container">
@@ -134,91 +185,160 @@ const QuestionPapers = () => {
       )}
 
       {/* ==============================
+          DELETE MESSAGE BOX
+      ============================== */}
+      {deleteMessage.show && (
+        <div className="delete-message-overlay">
+
+          <div className="delete-message-box">
+
+            {/* ICON */}
+            <div
+              className={`delete-message-icon ${
+                deleteMessage.type === "error"
+                  ? "delete-error-icon"
+                  : ""
+              }`}
+            >
+              <i
+                className={
+                  deleteMessage.type === "error"
+                    ? "bi bi-x-circle-fill"
+                    : "bi bi-exclamation-triangle-fill"
+                }
+              ></i>
+            </div>
+
+            {/* TITLE */}
+            <h3>{deleteMessage.title}</h3>
+
+            {/* MESSAGE */}
+            <p>{deleteMessage.message}</p>
+
+            {/* BUTTONS */}
+            <div className="delete-message-actions">
+
+              {deleteMessage.type === "confirm" ? (
+                <>
+                  <button
+                    type="button"
+                    className="delete-cancel-btn"
+                    onClick={closeDeleteMessage}
+                  >
+                    Cancel
+                  </button>
+
+                  <button
+                    type="button"
+                    className="delete-confirm-btn"
+                    onClick={confirmDelete}
+                  >
+                    Delete
+                  </button>
+                </>
+              ) : (
+                <button
+                  type="button"
+                  className="delete-ok-btn"
+                  onClick={closeDeleteMessage}
+                >
+                  OK
+                </button>
+              )}
+
+            </div>
+
+          </div>
+
+        </div>
+      )}
+
+      {/* ==============================
           FILTER BOX
       ============================== */}
       <div className="filter-box">
 
-  <label className="filter-toggle">
+        <label className="filter-toggle">
 
-    <input
-      type="checkbox"
-      checked={filterEnabled}
-      onChange={() => setFilterEnabled(!filterEnabled)}
-    />
+          <input
+            type="checkbox"
+            checked={filterEnabled}
+            onChange={() => setFilterEnabled(!filterEnabled)}
+          />
 
-    <span className="filter-toggle-slider"></span>
+          <span className="filter-toggle-slider"></span>
 
-    <span className="filter-toggle-text">
-      Enable Filter
-    </span>
+          <span className="filter-toggle-text">
+            Enable Filter
+          </span>
 
-  </label>
+        </label>
 
-  <div className="filter-row">
+        <div className="filter-row">
 
-    {/* YEAR */}
-    <div className="filter-group">
-      <p className="filter-title">Year</p>
+          {/* YEAR */}
+          <div className="filter-group">
+            <p className="filter-title">Year</p>
 
-      <select
-        value={year}
-        onChange={(e) => setYear(e.target.value)}
-      >
-        <option value={new Date().getFullYear()}>
-          {new Date().getFullYear()}
-        </option>
+            <select
+              value={year}
+              onChange={(e) => setYear(e.target.value)}
+            >
+              <option value={new Date().getFullYear()}>
+                {new Date().getFullYear()}
+              </option>
 
-        <option value={new Date().getFullYear() - 1}>
-          {new Date().getFullYear() - 1}
-        </option>
+              <option value={new Date().getFullYear() - 1}>
+                {new Date().getFullYear() - 1}
+              </option>
 
-        <option value={new Date().getFullYear() - 2}>
-          {new Date().getFullYear() - 2}
-        </option>
-      </select>
-    </div>
+              <option value={new Date().getFullYear() - 2}>
+                {new Date().getFullYear() - 2}
+              </option>
+            </select>
+          </div>
 
-    {/* MONTH */}
-    <div className="filter-group">
-      <p className="filter-title">Month</p>
+          {/* MONTH */}
+          <div className="filter-group">
+            <p className="filter-title">Month</p>
 
-      <select
-        value={month}
-        onChange={(e) => setMonth(e.target.value)}
-      >
-        <option value="1">January</option>
-        <option value="2">February</option>
-        <option value="3">March</option>
-        <option value="4">April</option>
-        <option value="5">May</option>
-        <option value="6">June</option>
-        <option value="7">July</option>
-        <option value="8">August</option>
-        <option value="9">September</option>
-        <option value="10">October</option>
-        <option value="11">November</option>
-        <option value="12">December</option>
-      </select>
-    </div>
+            <select
+              value={month}
+              onChange={(e) => setMonth(e.target.value)}
+            >
+              <option value="1">January</option>
+              <option value="2">February</option>
+              <option value="3">March</option>
+              <option value="4">April</option>
+              <option value="5">May</option>
+              <option value="6">June</option>
+              <option value="7">July</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+          </div>
 
-    {/* CLASS */}
-    <div className="filter-group">
-      <p className="filter-title">Class</p>
+          {/* CLASS */}
+          <div className="filter-group">
+            <p className="filter-title">Class</p>
 
-      <select
-        value={selectedClass}
-        onChange={(e) => setSelectedClass(e.target.value)}
-      >
-        {classes.map((c, i) => (
-          <option key={i} value={c.Classname}>
-            {c.Classname}
-          </option>
-        ))}
-      </select>
-    </div>
+            <select
+              value={selectedClass}
+              onChange={(e) => setSelectedClass(e.target.value)}
+            >
+              {classes.map((c, i) => (
+                <option key={i} value={c.Classname}>
+                  {c.Classname}
+                </option>
+              ))}
+            </select>
+          </div>
 
-  </div>
-</div>
+        </div>
+      </div>
 
       {/* ==============================
           TABLE
@@ -274,7 +394,7 @@ const QuestionPapers = () => {
                     {/* DELETE */}
                     <button
                       type="button"
-                      className="action-btn delete-btn"
+                      className="action-btn QuestionPaper-view-delete-btn"
                       title="Delete Question Paper"
                       onClick={() => handleDelete(p.id)}
                     >

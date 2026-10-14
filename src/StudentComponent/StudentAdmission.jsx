@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./StudentAdmission.css";
 
 const StudentAdmission = () => {
+  const navigate = useNavigate();
+
   const [classes, setClasses] = useState([]);
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState("");
@@ -61,6 +64,7 @@ const StudentAdmission = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setErrors({});
     setSuccess("");
 
@@ -87,12 +91,24 @@ const StudentAdmission = () => {
       );
 
       if (res.data?.status) {
-        setSuccess(res.data.message);
+        setSuccess(
+          res.data?.message || "Student admission successful!"
+        );
+
+        setTimeout(() => {
+          navigate("/dashboard/StudentComponent/AdminViewStudent");
+        }, 2500);
       } else {
         setErrors(res.data?.errors || {});
       }
     } catch (err) {
       console.error(err);
+
+      setErrors({
+        submit:
+          err.response?.data?.message ||
+          "Something went wrong. Please try again.",
+      });
     }
   };
 
@@ -113,6 +129,7 @@ const StudentAdmission = () => {
 
           <div>
             <h1>Student Admission</h1>
+
             <p>
               Register a new student in the school management system
             </p>
@@ -129,28 +146,26 @@ const StudentAdmission = () => {
 
 
       {/* =====================================================
-          SUCCESS MESSAGE
+          SUCCESS POPUP
       ===================================================== */}
 
       {success && (
-        <div className="student-admission-success">
-          <div className="student-admission-success-icon">
-            <i className="bi bi-check-lg"></i>
-          </div>
+  <div className="student-admission-success">
+    <div>
+      <div className="student-admission-success-icon">
+        <i className="bi bi-check-lg"></i>
+      </div>
 
-          <div>
-            <strong>Admission Successful</strong>
-            <span>{success}</span>
-          </div>
+      <strong>Admission Successful</strong>
 
-          <button
-            type="button"
-            onClick={() => setSuccess("")}
-          >
-            <i className="bi bi-x-lg"></i>
-          </button>
-        </div>
-      )}
+      <span>{success}</span>
+
+      <button type="button">
+        <i className="bi bi-x-lg"></i>
+      </button>
+    </div>
+  </div>
+)}
 
 
       {/* =====================================================
@@ -158,8 +173,6 @@ const StudentAdmission = () => {
       ===================================================== */}
 
       <div className="student-admission-card">
-
-        {/* CARD HEADER */}
 
         <div className="student-admission-card-header">
 
@@ -171,6 +184,7 @@ const StudentAdmission = () => {
 
             <div>
               <h2>Student Registration Form</h2>
+
               <p>
                 Enter the student's personal and admission details
               </p>
@@ -356,6 +370,7 @@ const StudentAdmission = () => {
                     <option value="">
                       Select Blood Group
                     </option>
+
                     <option value="A+">A+</option>
                     <option value="A-">A-</option>
                     <option value="B+">B+</option>
@@ -434,6 +449,7 @@ const StudentAdmission = () => {
                     placeholder="Enter father's name"
                     onChange={handleChange}
                   />
+
                 </div>
 
               </div>
@@ -455,6 +471,7 @@ const StudentAdmission = () => {
                     placeholder="Enter mother's name"
                     onChange={handleChange}
                   />
+
                 </div>
 
               </div>
@@ -476,6 +493,7 @@ const StudentAdmission = () => {
                     placeholder="Enter guardian's name"
                     onChange={handleChange}
                   />
+
                 </div>
 
               </div>
@@ -497,6 +515,7 @@ const StudentAdmission = () => {
                     placeholder="Enter contact number"
                     onChange={handleChange}
                   />
+
                 </div>
 
               </div>
@@ -518,6 +537,7 @@ const StudentAdmission = () => {
                     placeholder="Enter SMS number"
                     onChange={handleChange}
                   />
+
                 </div>
 
               </div>
@@ -539,6 +559,7 @@ const StudentAdmission = () => {
                     placeholder="Enter email address"
                     onChange={handleChange}
                   />
+
                 </div>
 
               </div>
@@ -560,6 +581,7 @@ const StudentAdmission = () => {
                     onChange={handleChange}
                     rows="3"
                   />
+
                 </div>
 
               </div>
@@ -607,6 +629,7 @@ const StudentAdmission = () => {
                     placeholder="Enter admission number"
                     onChange={handleChange}
                   />
+
                 </div>
 
               </div>
@@ -628,6 +651,7 @@ const StudentAdmission = () => {
                     placeholder="Enter roll number"
                     onChange={handleChange}
                   />
+
                 </div>
 
               </div>
@@ -649,6 +673,7 @@ const StudentAdmission = () => {
                     placeholder="Enter previous school"
                     onChange={handleChange}
                   />
+
                 </div>
 
               </div>
@@ -665,9 +690,7 @@ const StudentAdmission = () => {
                   <i className="bi bi-calendar-check"></i>
 
                   <DatePicker
-                    selected={
-                      form.date_of_admission
-                    }
+                    selected={form.date_of_admission}
                     onChange={(date) =>
                       setForm((prev) => ({
                         ...prev,
@@ -703,6 +726,7 @@ const StudentAdmission = () => {
                     placeholder="Enter Aadhar number"
                     onChange={handleChange}
                   />
+
                 </div>
 
               </div>
@@ -741,6 +765,7 @@ const StudentAdmission = () => {
                 <label>Height</label>
 
                 <div className="student-admission-input-wrap">
+
                   <i className="bi bi-arrows-vertical"></i>
 
                   <input
@@ -754,6 +779,7 @@ const StudentAdmission = () => {
                   <span className="student-admission-unit">
                     cm
                   </span>
+
                 </div>
 
               </div>
@@ -766,6 +792,7 @@ const StudentAdmission = () => {
                 <label>Weight</label>
 
                 <div className="student-admission-input-wrap">
+
                   <i className="bi bi-speedometer2"></i>
 
                   <input
@@ -779,6 +806,7 @@ const StudentAdmission = () => {
                   <span className="student-admission-unit">
                     kg
                   </span>
+
                 </div>
 
               </div>
@@ -804,7 +832,6 @@ const StudentAdmission = () => {
               </span>
 
             </div>
-
 
             <button
               type="submit"

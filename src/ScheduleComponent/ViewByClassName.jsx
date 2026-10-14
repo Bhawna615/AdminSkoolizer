@@ -1,3 +1,4 @@
+
 import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
@@ -15,6 +16,13 @@ const ViewByClassName = () => {
 
     const [sortField, setSortField] = useState("");
     const [sortDirection, setSortDirection] = useState("asc");
+
+    // DELETE CONFIRMATION POPUP STATES
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+    const [selectedStudent, setSelectedStudent] = useState(null);
+    const [deleteLoading, setDeleteLoading] = useState(false);
+    const [deleteMessage, setDeleteMessage] = useState("");
+    const [deleteMessageType, setDeleteMessageType] = useState("confirm");
 
     const API_BASE =
         "http://localhost/kkblossom/api.php/Adminapi/";
@@ -48,34 +56,75 @@ const ViewByClassName = () => {
     };
 
     // =====================================================
-    // DELETE STUDENT
+    // OPEN DELETE CONFIRMATION POPUP
     // =====================================================
-    const handleDelete = async (id) => {
-        const confirmDelete = window.confirm(
-            "Are you sure you want to delete this student?"
+    const handleDelete = (student) => {
+        setSelectedStudent(student);
+        setDeleteMessageType("confirm");
+        setDeleteMessage(
+            `Are you sure you want to delete ${
+                student?.Name || "this student"
+            }? This action cannot be undone.`
         );
+        setShowDeleteConfirmation(true);
+        setActiveAction(null);
+    };
 
-        if (!confirmDelete) {
+    // =====================================================
+    // CONFIRM AND DELETE STUDENT
+    // =====================================================
+    const confirmDeleteStudent = async () => {
+        if (!selectedStudent?.id) {
+            setDeleteMessageType("error");
+            setDeleteMessage(
+                "Unable to identify the selected student."
+            );
             return;
         }
 
         try {
+            setDeleteLoading(true);
+
             const response = await axios.delete(
-                `${API_BASE}AdminStudent/delete/${id}`
+                `${API_BASE}AdminStudent/delete/${selectedStudent.id}`
             );
 
             console.log("Delete Response:", response.data);
 
             if (response.data.status) {
-                setActiveAction(null);
-                fetchStudents();
+                // Keep the popup open and show success
+                setDeleteMessageType("success");
+                setDeleteMessage("Student deleted successfully.");
+                setSelectedStudent(null);
+
+                // Refresh the student list
+                await fetchStudents();
             } else {
-                alert("Failed to delete student");
+                setDeleteMessageType("error");
+                setDeleteMessage(
+                    "Failed to delete student. Please try again."
+                );
             }
         } catch (error) {
             console.error("Delete Error:", error);
-            alert("Failed to delete student");
+
+            setDeleteMessageType("error");
+            setDeleteMessage(
+                "Failed to delete student. Please try again."
+            );
+        } finally {
+            setDeleteLoading(false);
         }
+    };
+
+    // =====================================================
+    // CLOSE DELETE POPUP
+    // =====================================================
+    const closeDeletePopup = () => {
+        if (deleteLoading) return;
+
+        setShowDeleteConfirmation(false);
+        setSelectedStudent(null);
     };
 
     // =====================================================
@@ -270,7 +319,6 @@ const ViewByClassName = () => {
 
             </div>
 
-
             {/* =================================================
                 SUMMARY CARDS
             ================================================= */}
@@ -295,7 +343,6 @@ const ViewByClassName = () => {
 
                 </div>
 
-
                 <div className="vbc-summary-card">
 
                     <div className="vbc-summary-icon blue">
@@ -314,7 +361,6 @@ const ViewByClassName = () => {
                     </div>
 
                 </div>
-
 
                 <div className="vbc-summary-card">
 
@@ -336,7 +382,6 @@ const ViewByClassName = () => {
                 </div>
 
             </div>
-
 
             {/* =================================================
                 MAIN CONTENT CARD
@@ -373,7 +418,6 @@ const ViewByClassName = () => {
 
                 </div>
 
-
                 {/* =================================================
                     TOOLBAR
                 ================================================= */}
@@ -401,7 +445,6 @@ const ViewByClassName = () => {
                         <span>entries</span>
 
                     </div>
-
 
                     <div className="vbc-search-wrapper">
 
@@ -434,7 +477,6 @@ const ViewByClassName = () => {
                     </div>
 
                 </div>
-
 
                 {/* =================================================
                     TABLE
@@ -483,7 +525,6 @@ const ViewByClassName = () => {
                                     </div>
                                 </th>
 
-
                                 {/* NAME */}
                                 <th
                                     className="vbc-name-column"
@@ -520,7 +561,6 @@ const ViewByClassName = () => {
                                     </div>
                                 </th>
 
-
                                 {/* CLASS */}
                                 <th className="vbc-class-column">
 
@@ -534,14 +574,11 @@ const ViewByClassName = () => {
 
                                 </th>
 
-
                                 {/* ACTIONS */}
                                 <th className="vbc-actions-column">
 
                                     <div className="vbc-th-content">
-
                                         <span>ACTIONS</span>
-
                                     </div>
 
                                 </th>
@@ -549,7 +586,6 @@ const ViewByClassName = () => {
                             </tr>
 
                         </thead>
-
 
                         <tbody>
 
@@ -571,7 +607,6 @@ const ViewByClassName = () => {
                                             </div>
 
                                         </td>
-
 
                                         {/* NAME */}
                                         <td className="vbc-student-name">
@@ -604,7 +639,6 @@ const ViewByClassName = () => {
 
                                         </td>
 
-
                                         {/* CLASS */}
                                         <td>
 
@@ -618,7 +652,6 @@ const ViewByClassName = () => {
 
                                         </td>
 
-
                                         {/* ACTIONS */}
                                         <td className="vbc-action-cell">
 
@@ -630,7 +663,6 @@ const ViewByClassName = () => {
                                                         : ""
                                                 }`}
                                                 onClick={(e) => {
-
                                                     e.stopPropagation();
 
                                                     setActiveAction(
@@ -638,14 +670,12 @@ const ViewByClassName = () => {
                                                             ? null
                                                             : row.id
                                                     );
-
                                                 }}
                                             >
 
                                                 <i className="las la-ellipsis-v"></i>
 
                                             </button>
-
 
                                             {activeAction === row.id && (
 
@@ -660,7 +690,6 @@ const ViewByClassName = () => {
                                                         <span>STUDENT ACTIONS</span>
                                                     </div>
 
-
                                                     <button
                                                         type="button"
                                                         onClick={() =>
@@ -673,7 +702,6 @@ const ViewByClassName = () => {
                                                         <span>Exam Report</span>
                                                     </button>
 
-
                                                     <button
                                                         type="button"
                                                         onClick={() =>
@@ -685,7 +713,6 @@ const ViewByClassName = () => {
                                                         <i className="las la-calendar-check"></i>
                                                         <span>Attendance</span>
                                                     </button>
-
 
                                                     <button
                                                         type="button"
@@ -701,7 +728,6 @@ const ViewByClassName = () => {
                                                         </span>
                                                     </button>
 
-
                                                     <button
                                                         type="button"
                                                         onClick={() =>
@@ -713,7 +739,6 @@ const ViewByClassName = () => {
                                                         <i className="las la-bus"></i>
                                                         <span>Transport</span>
                                                     </button>
-
 
                                                     <button
                                                         type="button"
@@ -727,7 +752,6 @@ const ViewByClassName = () => {
                                                         <span>Exams</span>
                                                     </button>
 
-
                                                     <button
                                                         type="button"
                                                         onClick={() =>
@@ -739,7 +763,6 @@ const ViewByClassName = () => {
                                                         <i className="las la-wallet"></i>
                                                         <span>Fee</span>
                                                     </button>
-
 
                                                     <button
                                                         type="button"
@@ -753,17 +776,13 @@ const ViewByClassName = () => {
                                                         <span>Messages</span>
                                                     </button>
 
-
                                                     <div className="vbc-menu-divider"></div>
-
 
                                                     <button
                                                         type="button"
                                                         className="vbc-delete-option"
                                                         onClick={() =>
-                                                            handleDelete(
-                                                                row.id
-                                                            )
+                                                            handleDelete(row)
                                                         }
                                                     >
                                                         <i className="las la-trash-alt"></i>
@@ -831,7 +850,6 @@ const ViewByClassName = () => {
 
                 </div>
 
-
                 {/* =================================================
                     PAGINATION
                 ================================================= */}
@@ -860,7 +878,6 @@ const ViewByClassName = () => {
 
                     </div>
 
-
                     <div className="vbc-page-buttons">
 
                         <button
@@ -868,15 +885,12 @@ const ViewByClassName = () => {
                             className="vbc-prev-next"
                             disabled={currentPage === 1}
                             onClick={() =>
-                                changePage(
-                                    currentPage - 1
-                                )
+                                changePage(currentPage - 1)
                             }
                         >
                             <i className="las la-angle-left"></i>
                             Previous
                         </button>
-
 
                         {Array.from(
                             {
@@ -902,7 +916,6 @@ const ViewByClassName = () => {
 
                         ))}
 
-
                         <button
                             type="button"
                             className="vbc-prev-next"
@@ -911,9 +924,7 @@ const ViewByClassName = () => {
                                 totalPages === 0
                             }
                             onClick={() =>
-                                changePage(
-                                    currentPage + 1
-                                )
+                                changePage(currentPage + 1)
                             }
                         >
                             Next
@@ -925,6 +936,92 @@ const ViewByClassName = () => {
                 </div>
 
             </div>
+
+            {/* =================================================
+                DELETE CONFIRMATION / SUCCESS / ERROR POPUP
+            ================================================= */}
+            {showDeleteConfirmation && (
+                <div
+                    className="vbc-delete-modal-overlay"
+                    onClick={closeDeletePopup}
+                >
+                    <div
+                        className="vbc-delete-modal"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="vbc-delete-modal-title"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div
+                            className={`vbc-delete-modal-icon ${deleteMessageType}`}
+                        >
+                            <i
+                                className={
+                                    deleteMessageType === "success"
+                                        ? "las la-check-circle"
+                                        : deleteMessageType === "error"
+                                        ? "las la-exclamation-circle"
+                                        : "las la-user-times"
+                                }
+                            ></i>
+                        </div>
+
+                        <h3 id="vbc-delete-modal-title">
+                            {deleteMessageType === "success"
+                                ? "Deletion Successful"
+                                : deleteMessageType === "error"
+                                ? "Unable to Delete"
+                                : "Confirm Student Deletion"}
+                        </h3>
+
+                        <p>{deleteMessage}</p>
+
+                        <div className="vbc-delete-modal-actions">
+
+                            {deleteMessageType === "confirm" && (
+                                <button
+                                    type="button"
+                                    className="vbc-delete-cancel-btn"
+                                    onClick={closeDeletePopup}
+                                    disabled={deleteLoading}
+                                >
+                                    Cancel
+                                </button>
+                            )}
+
+                            <button
+                                type="button"
+                                className={`vbc-delete-confirm-btn ${deleteMessageType}`}
+                                onClick={() => {
+                                    if (deleteMessageType === "confirm") {
+                                        confirmDeleteStudent();
+                                    } else {
+                                        closeDeletePopup();
+                                    }
+                                }}
+                                disabled={deleteLoading}
+                            >
+                                {deleteLoading ? (
+                                    <>
+                                        <span className="vbc-delete-spinner"></span>
+                                        Deleting...
+                                    </>
+                                ) : deleteMessageType === "confirm" ? (
+                                    <>
+                                        <i className="las la-trash-alt"></i>
+                                        Confirm Delete
+                                    </>
+                                ) : deleteMessageType === "success" ? (
+                                    "Done"
+                                ) : (
+                                    "OK"
+                                )}
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            )}
 
         </div>
     );

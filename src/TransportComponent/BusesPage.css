@@ -846,3 +846,188 @@
     gap: 13px 6px;
   }
 }
+/* =========================================================
+   BUS DELETE CONFIRMATION MODAL
+   Purple and white confirmation message box
+========================================================= */
+
+.bus-delete-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(29, 22, 48, 0.48);
+  backdrop-filter: blur(5px);
+  animation: busModalFadeIn 0.2s ease;
+}
+
+.bus-delete-modal {
+  width: 100%;
+  max-width: 420px;
+  padding: 30px 28px 26px;
+  border: 1px solid #eee7fa;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(35, 20, 64, 0.24);
+  text-align: center;
+  animation: busModalPopIn 0.25s ease;
+}
+
+.bus-delete-modal-icon {
+  width: 66px;
+  height: 66px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  font-size: 28px;
+}
+
+.bus-delete-warning-icon {
+  background: #f1eaff;
+  color: #6d28d9;
+}
+
+.bus-delete-success-icon {
+  background: #e8f8ef;
+  color: #26965b;
+}
+
+.bus-delete-error-icon {
+  background: #fff0f1;
+  color: #d1435b;
+}
+
+.bus-delete-modal-eyebrow {
+  display: block;
+  margin-bottom: 7px;
+  color: #8b5cf6;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+}
+
+.bus-delete-modal h3 {
+  margin: 0 0 10px;
+  color: #302b45;
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.bus-delete-modal p {
+  margin: 0 auto 25px;
+  max-width: 310px;
+  color: #898395;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.bus-delete-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.bus-delete-modal-actions button,
+.bus-delete-primary-btn {
+  min-height: 43px;
+  padding: 0 18px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.bus-delete-secondary-btn {
+  border: 1px solid #e7e1ef;
+  background: #fff;
+  color: #777184;
+}
+
+.bus-delete-secondary-btn:hover {
+  background: #f8f5fc;
+  border-color: #d9ccec;
+}
+
+.bus-delete-danger-btn {
+  border: 1px solid #d1435b;
+  background: #d1435b;
+  color: #fff;
+  box-shadow: 0 6px 15px rgba(209, 67, 91, 0.18);
+  min-height: 43px;
+  padding: 0 18px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.bus-delete-danger-btn:hover {
+  background: #b83249;
+  transform: translateY(-1px);
+}
+
+.bus-delete-primary-btn {
+  min-width: 110px;
+  border: none;
+  background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+  color: #fff;
+  box-shadow: 0 7px 18px rgba(109, 40, 217, 0.2);
+}
+
+.bus-delete-primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(109, 40, 217, 0.28);
+}
+
+.bus-delete-modal button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@keyframes busModalFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes busModalPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .bus-delete-modal {
+    padding: 26px 20px 22px;
+  }
+
+  .bus-delete-modal h3 {
+    font-size: 19px;
+  }
+
+  .bus-delete-modal-actions {
+    gap: 8px;
+  }
+
+  .bus-delete-modal-actions button {
+    padding: 0 13px;
+  }
+}

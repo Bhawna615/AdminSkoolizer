@@ -1214,3 +1214,333 @@
     flex-direction: column;
   }
 }
+
+/* =========================================================
+   CUSTOM DELETE MESSAGE BOX
+========================================================= */
+
+.viewExams-message-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  background: rgba(35, 27, 45, 0.52);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: viewExamsMessageFadeIn 0.22s ease;
+}
+
+.viewExams-message-box {
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #eee8f5;
+  border-radius: 21px;
+  padding: 32px 28px 27px;
+  text-align: center;
+  box-shadow: 0 25px 75px rgba(28, 17, 42, 0.24);
+  animation: viewExamsMessageSlideIn 0.3s ease;
+}
+
+.viewExams-message-icon {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 37px;
+}
+
+.viewExams-message-success .viewExams-message-icon {
+  color: #16a36a;
+  background: #e8f9f0;
+  border: 1px solid #c7f0dc;
+  box-shadow: 0 8px 22px rgba(22, 163, 106, 0.1);
+}
+
+.viewExams-message-error .viewExams-message-icon {
+  color: #e04455;
+  background: #fff0f1;
+  border: 1px solid #ffd6da;
+  box-shadow: 0 8px 22px rgba(224, 68, 85, 0.08);
+}
+
+.viewExams-message-warning .viewExams-message-icon {
+  color: #c78314;
+  background: #fff7e6;
+  border: 1px solid #f7e2b3;
+  box-shadow: 0 8px 22px rgba(199, 131, 20, 0.08);
+}
+
+.viewExams-message-box h2 {
+  margin: 0 0 10px;
+  color: #302938;
+  font-size: 21px;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.viewExams-message-box p {
+  margin: 0 auto 24px;
+  max-width: 330px;
+  color: #827a8c;
+  font-size: 12px;
+  font-weight: 450;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.viewExams-message-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.viewExams-message-button,
+.viewExams-message-cancel {
+  min-width: 125px;
+  min-height: 43px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 750;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.viewExams-message-button {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.22);
+}
+
+.viewExams-message-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 11px 25px rgba(124, 58, 237, 0.3);
+}
+
+.viewExams-message-cancel {
+  background: #f4f1f8;
+  color: #655a73;
+  border: 1px solid #e6dfef;
+}
+
+.viewExams-message-cancel:hover {
+  background: #eae4f2;
+  transform: translateY(-2px);
+}
+
+.viewExams-message-button:focus-visible,
+.viewExams-message-cancel:focus-visible {
+  outline: 3px solid rgba(124, 58, 237, 0.3);
+  outline-offset: 4px;
+}
+
+@keyframes viewExamsMessageFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes viewExamsMessageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+   MESSAGE BOX RESPONSIVE
+========================================================= */
+
+@media (max-width: 480px) {
+  .viewExams-message-overlay {
+    padding: 16px;
+  }
+
+  .viewExams-message-box {
+    max-width: 360px;
+    padding: 27px 21px 23px;
+    border-radius: 18px;
+  }
+
+  .viewExams-message-icon {
+    width: 59px;
+    height: 59px;
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+
+  .viewExams-message-box h2 {
+    font-size: 18px;
+  }
+
+  .viewExams-message-box p {
+    font-size: 11px;
+  }
+
+  .viewExams-message-actions {
+    flex-direction: column-reverse;
+  }
+
+  .viewExams-message-button,
+  .viewExams-message-cancel {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   CUSTOM UPLOAD SUCCESS / ERROR MESSAGE BOX
+========================================================= */
+
+.upload-message-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(30, 20, 48, 0.48);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  animation: uploadMessageFadeIn 0.2s ease;
+}
+
+.upload-message-box {
+  width: 100%;
+  max-width: 430px;
+  padding: 32px 28px 27px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid #eee8f8;
+  box-shadow: 0 22px 65px rgba(35, 20, 65, 0.2);
+  text-align: center;
+  animation: uploadMessageSlideIn 0.25s ease;
+}
+
+.upload-message-icon {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 19px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.upload-message-success .upload-message-icon {
+  color: #15803d;
+  background: #e8f8f0;
+  border: 1px solid #c7eed8;
+}
+
+.upload-message-error .upload-message-icon {
+  color: #c62845;
+  background: #fff0f2;
+  border: 1px solid #ffd6dd;
+}
+
+.upload-message-box h2 {
+  margin: 0 0 10px;
+  color: #29213e;
+  font-size: 21px;
+  line-height: 1.4;
+  font-weight: 800;
+}
+
+.upload-message-box p {
+  margin: 0 auto 24px;
+  max-width: 340px;
+  color: #858097;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.upload-message-button {
+  min-width: 125px;
+  min-height: 43px;
+  padding: 0 24px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #7c3aed, #5b21b6);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 750;
+  cursor: pointer;
+  box-shadow: 0 7px 18px rgba(124, 58, 237, 0.2);
+  transition: 0.2s ease;
+}
+
+.upload-message-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 23px rgba(124, 58, 237, 0.28);
+}
+
+.upload-message-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@keyframes uploadMessageFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes uploadMessageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 520px) {
+  .upload-message-box {
+    padding: 27px 20px 23px;
+    border-radius: 17px;
+  }
+
+  .upload-message-icon {
+    width: 58px;
+    height: 58px;
+    font-size: 26px;
+  }
+
+  .upload-message-box h2 {
+    font-size: 18px;
+  }
+
+  .upload-message-box p {
+    font-size: 12px;
+  }
+}

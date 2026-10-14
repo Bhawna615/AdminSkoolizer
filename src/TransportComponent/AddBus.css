@@ -654,3 +654,128 @@
     gap: 7px;
   }
 }
+
+/* ================= CUSTOM MESSAGE MODAL ================= */
+
+.add-bus-message-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(22, 18, 40, 0.48);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: addBusOverlayFade 0.2s ease;
+}
+
+.add-bus-message-box {
+  width: 100%;
+  max-width: 420px;
+  padding: 32px 28px 28px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #eee9ff;
+  border-radius: 20px;
+  box-shadow: 0 24px 70px rgba(38, 24, 75, 0.22);
+  animation: addBusModalEnter 0.25s ease;
+}
+
+.add-bus-message-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  font-size: 36px;
+}
+
+.add-bus-message-icon.success {
+  color: #168653;
+  background: #e7f8ef;
+  border: 1px solid #c5efd8;
+}
+
+.add-bus-message-icon.error {
+  color: #d83a4e;
+  background: #fff0f1;
+  border: 1px solid #ffd6da;
+}
+
+.add-bus-message-box h2 {
+  margin: 0 0 10px;
+  color: #292044;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.add-bus-message-box p {
+  margin: 0;
+  color: #777187;
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.add-bus-message-btn {
+  min-width: 120px;
+  margin-top: 24px;
+  padding: 12px 26px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #7657e8, #6241d8);
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(108, 76, 232, 0.22);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.add-bus-message-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 22px rgba(108, 76, 232, 0.3);
+}
+
+.add-bus-message-btn:active {
+  transform: translateY(0);
+}
+
+@keyframes addBusOverlayFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes addBusModalEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .add-bus-message-box {
+    padding: 28px 20px 24px;
+  }
+
+  .add-bus-message-box h2 {
+    font-size: 20px;
+  }
+}

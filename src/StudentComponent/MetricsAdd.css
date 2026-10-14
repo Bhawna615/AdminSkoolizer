@@ -537,3 +537,229 @@ font-size: 16px;
 font-size: 12px;
 }
 }
+
+/* =========================================================
+STUDENT METRICS - CENTERED SUCCESS / ERROR POPUP
+========================================================= */
+
+.student-metrics-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(29, 21, 42, 0.42);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    animation: studentMetricsOverlayIn 0.25s ease;
+}
+
+.student-metrics-modal-popup {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    padding: 35px 30px 28px;
+    box-sizing: border-box;
+    border: 1px solid #eee7f7;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 22px 65px rgba(36, 22, 56, 0.22);
+    text-align: center;
+    animation: studentMetricsPopupIn 0.3s ease;
+}
+
+.student-metrics-modal-close {
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: 9px;
+    background: #f6f3fa;
+    color: #82768f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.student-metrics-modal-close:hover {
+    background: #ece5f5;
+    color: #5b2c91;
+}
+
+.student-metrics-modal-icon {
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 19px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    animation: studentMetricsIconIn 0.45s ease;
+}
+
+.student-metrics-modal-success .student-metrics-modal-icon {
+    background: #e2f7eb;
+    color: #20a464;
+    box-shadow: 0 0 0 9px #f2fbf5;
+}
+
+.student-metrics-modal-error .student-metrics-modal-icon {
+    background: #fff0f0;
+    color: #d64c4c;
+    box-shadow: 0 0 0 9px #fff8f8;
+}
+
+.student-metrics-modal-popup h2 {
+    margin: 0 0 10px;
+    color: #30253e;
+    font-size: 22px;
+    font-weight: 750;
+    letter-spacing: -0.4px;
+}
+
+.student-metrics-modal-popup p {
+    margin: 0 auto;
+    max-width: 330px;
+    color: #81778c;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.student-metrics-modal-status {
+    margin-top: 22px;
+    padding: 11px 12px;
+    border: 1px solid #d9f0e2;
+    border-radius: 10px;
+    background: #f5fcf7;
+    color: #288253;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.student-metrics-modal-status svg {
+    flex-shrink: 0;
+    font-size: 14px;
+}
+
+.student-metrics-modal-progress {
+    width: 100%;
+    height: 4px;
+    margin-top: 22px;
+    border-radius: 10px;
+    background: #eee8f6;
+    overflow: hidden;
+}
+
+.student-metrics-modal-progress span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: #5b2c91;
+    transform-origin: left;
+    animation: studentMetricsProgress 2.5s linear forwards;
+}
+
+.student-metrics-modal-ok {
+    min-width: 115px;
+    height: 40px;
+    margin-top: 23px;
+    padding: 0 22px;
+    border: none;
+    border-radius: 9px;
+    background: #5b2c91;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.student-metrics-modal-ok:hover {
+    background: #4b237a;
+    transform: translateY(-1px);
+}
+
+@keyframes studentMetricsOverlayIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes studentMetricsPopupIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes studentMetricsIconIn {
+    from {
+        opacity: 0;
+        transform: scale(0.65);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes studentMetricsProgress {
+    from {
+        transform: scaleX(1);
+    }
+
+    to {
+        transform: scaleX(0);
+    }
+}
+
+/* =========================================================
+STUDENT METRICS POPUP - RESPONSIVE
+========================================================= */
+
+@media (max-width: 600px) {
+    .student-metrics-modal-popup {
+        max-width: 360px;
+        padding: 32px 22px 24px;
+        border-radius: 17px;
+    }
+
+    .student-metrics-modal-icon {
+        width: 66px;
+        height: 66px;
+        font-size: 30px;
+    }
+
+    .student-metrics-modal-popup h2 {
+        font-size: 19px;
+    }
+
+    .student-metrics-modal-popup p {
+        font-size: 12px;
+    }
+}

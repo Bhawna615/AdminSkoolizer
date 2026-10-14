@@ -827,3 +827,204 @@
     }
 
 }
+/* =========================================================
+   HOMEWORK MESSAGE BOX
+========================================================= */
+
+.homework-details-message-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(15, 23, 42, 0.45);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 10000;
+
+  animation: homework-details-message-fade 0.2s ease;
+}
+
+
+/* =========================================================
+   MESSAGE BOX
+========================================================= */
+
+.homework-details-message-box {
+  width: 420px;
+  max-width: calc(100% - 40px);
+
+  background: #ffffff;
+
+  border-radius: 18px;
+
+  padding: 32px 30px 28px;
+
+  text-align: center;
+
+  box-shadow:
+    0 20px 50px rgba(15, 23, 42, 0.20);
+
+  animation: homework-details-message-scale 0.25s ease;
+}
+
+
+/* =========================================================
+   MESSAGE ICON
+========================================================= */
+
+.homework-details-message-icon {
+  width: 68px;
+  height: 68px;
+
+  margin: 0 auto 18px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 32px;
+}
+
+
+/* =========================================================
+   SUCCESS
+========================================================= */
+
+.homework-details-message-success
+.homework-details-message-icon {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.homework-details-message-error
+.homework-details-message-icon {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+
+/* =========================================================
+   MESSAGE TITLE
+========================================================= */
+
+.homework-details-message-box h4 {
+  margin: 0 0 8px;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  color: #1e293b;
+}
+
+
+/* =========================================================
+   MESSAGE TEXT
+========================================================= */
+
+.homework-details-message-box p {
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.6;
+
+  color: #64748b;
+}
+
+
+/* =========================================================
+   OK BUTTON
+========================================================= */
+
+.homework-details-message-button {
+  margin-top: 22px;
+
+  min-width: 100px;
+
+  padding: 10px 22px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #6c4ce8;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+
+.homework-details-message-button:hover {
+  background: #5b3ed1;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes homework-details-message-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+@keyframes homework-details-message-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .homework-details-message-box {
+    width: calc(100% - 30px);
+
+    padding: 28px 22px 24px;
+
+    border-radius: 16px;
+  }
+
+  .homework-details-message-icon {
+    width: 60px;
+    height: 60px;
+
+    font-size: 28px;
+  }
+
+  .homework-details-message-box h4 {
+    font-size: 18px;
+  }
+
+}

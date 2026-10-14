@@ -82,87 +82,230 @@
 }
 
 
+
 /* =========================================================
-   MESSAGE
+   MESSAGE POPUP - CENTERED MODAL
 ========================================================= */
 
-.student-promote-message {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto 18px;
-    padding: 13px 15px;
-    box-sizing: border-box;
-    border-radius: 11px;
+.student-promote-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
     display: flex;
     align-items: center;
-    gap: 12px;
-    border: 1px solid;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(29, 21, 42, 0.42);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    animation: studentPromoteOverlayIn 0.25s ease;
 }
 
-.student-promote-success {
-    background: #f4fbf7;
-    border-color: #ccebd9;
-    color: #25724b;
+.student-promote-modal-popup {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    padding: 35px 30px 28px;
+    box-sizing: border-box;
+    border: 1px solid #eee7f7;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 22px 65px rgba(36, 22, 56, 0.22);
+    text-align: center;
+    animation: studentPromotePopupIn 0.3s ease;
 }
 
-.student-promote-error {
-    background: #fff7f7;
-    border-color: #f1d0d0;
-    color: #b33c3c;
-}
-
-.student-promote-message-icon {
+.student-promote-modal-close {
+    position: absolute;
+    top: 13px;
+    right: 13px;
     width: 32px;
     height: 32px;
-    flex-shrink: 0;
-    border-radius: 8px;
+    padding: 0;
+    border: none;
+    border-radius: 9px;
+    background: #f6f3fa;
+    color: #82768f;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s ease;
 }
 
-.student-promote-success .student-promote-message-icon {
-    background: #dff4e8;
-    color: #26925b;
+.student-promote-modal-close:hover {
+    background: #ece5f5;
+    color: #6f42c1;
 }
 
-.student-promote-error .student-promote-message-icon {
-    background: #fbe3e3;
-    color: #c54646;
-}
-
-.student-promote-message-content {
-    flex: 1;
+.student-promote-modal-icon {
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 19px;
+    border-radius: 50%;
     display: flex;
-    flex-direction: column;
-    gap: 2px;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    animation: studentPromoteIconIn 0.45s ease;
 }
 
-.student-promote-message-content strong {
+.student-promote-modal-success .student-promote-modal-icon {
+    background: #e2f7eb;
+    color: #20a464;
+    box-shadow: 0 0 0 9px #f2fbf5;
+}
+
+.student-promote-modal-error .student-promote-modal-icon {
+    background: #fff0f0;
+    color: #d64c4c;
+    box-shadow: 0 0 0 9px #fff8f8;
+}
+
+.student-promote-modal-popup h2 {
+    margin: 0 0 10px;
+    color: #30253e;
+    font-size: 22px;
+    font-weight: 750;
+    letter-spacing: -0.4px;
+}
+
+.student-promote-modal-popup p {
+    margin: 0 auto;
+    max-width: 330px;
+    color: #81778c;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.student-promote-modal-success .student-promote-modal-status {
+    margin-top: 22px;
+    padding: 11px 12px;
+    border: 1px solid #d9f0e2;
+    border-radius: 10px;
+    background: #f5fcf7;
+    color: #288253;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.student-promote-modal-status i {
+    font-size: 14px;
+}
+
+.student-promote-modal-progress {
+    width: 100%;
+    height: 4px;
+    margin-top: 22px;
+    border-radius: 10px;
+    background: #eee8f6;
+    overflow: hidden;
+}
+
+.student-promote-modal-progress span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: #6f42c1;
+    transform-origin: left;
+    animation: studentPromoteProgress 2.5s linear forwards;
+}
+
+.student-promote-modal-ok {
+    min-width: 115px;
+    height: 40px;
+    margin-top: 23px;
+    padding: 0 22px;
+    border: none;
+    border-radius: 9px;
+    background: #6f42c1;
+    color: #ffffff;
+    font-family: inherit;
     font-size: 12px;
     font-weight: 700;
-}
-
-.student-promote-message-content span {
-    font-size: 11px;
-}
-
-.student-promote-message-close {
-    width: 30px;
-    height: 30px;
-    border: none;
-    border-radius: 7px;
-    background: transparent;
-    color: inherit;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    transition: 0.2s ease;
 }
 
-.student-promote-message-close:hover {
-    background: rgba(0, 0, 0, 0.05);
+.student-promote-modal-ok:hover {
+    background: #5f35ad;
+    transform: translateY(-1px);
+}
+
+@keyframes studentPromoteOverlayIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes studentPromotePopupIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes studentPromoteIconIn {
+    from {
+        opacity: 0;
+        transform: scale(0.65);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes studentPromoteProgress {
+    from {
+        transform: scaleX(1);
+    }
+
+    to {
+        transform: scaleX(0);
+    }
+}
+
+/* =========================================================
+   POPUP RESPONSIVE
+========================================================= */
+
+@media (max-width: 600px) {
+    .student-promote-modal-popup {
+        max-width: 360px;
+        padding: 32px 22px 24px;
+        border-radius: 17px;
+    }
+
+    .student-promote-modal-icon {
+        width: 66px;
+        height: 66px;
+        font-size: 30px;
+    }
+
+    .student-promote-modal-popup h2 {
+        font-size: 19px;
+    }
+
+    .student-promote-modal-popup p {
+        font-size: 12px;
+    }
 }
 
 

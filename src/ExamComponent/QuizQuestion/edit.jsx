@@ -31,6 +31,40 @@ function Edit() {
   const [error, setError] = useState("");
 
   // ==========================================
+  // MESSAGE BOX
+  // ==========================================
+  const [messageBox, setMessageBox] = useState({
+    show: false,
+    type: "",
+    title: "",
+    message: "",
+  });
+
+  // ==========================================
+  // SHOW MESSAGE
+  // ==========================================
+  const showMessage = (type, title, message) => {
+    setMessageBox({
+      show: true,
+      type,
+      title,
+      message,
+    });
+  };
+
+  // ==========================================
+  // CLOSE MESSAGE
+  // ==========================================
+  const closeMessage = () => {
+    setMessageBox({
+      show: false,
+      type: "",
+      title: "",
+      message: "",
+    });
+  };
+
+  // ==========================================
   // GET QUESTION DATA
   // ==========================================
   useEffect(() => {
@@ -96,23 +130,40 @@ function Edit() {
     // VALIDATION
     // -------------------------------
     if (!form.id) {
-      alert("Question ID is missing.");
+      showMessage(
+        "error",
+        "Missing Question ID",
+        "Question ID is missing."
+      );
+
       console.error("QUESTION ID IS MISSING:", form);
       return;
     }
 
     if (!form.question.trim()) {
-      alert("Please enter the question.");
+      showMessage(
+        "error",
+        "Question Required",
+        "Please enter the question."
+      );
       return;
     }
 
     if (!form.options.trim()) {
-      alert("Please enter the options.");
+      showMessage(
+        "error",
+        "Options Required",
+        "Please enter the options."
+      );
       return;
     }
 
     if (!form.correct_option.trim()) {
-      alert("Please enter the correct option.");
+      showMessage(
+        "error",
+        "Correct Option Required",
+        "Please enter the correct option."
+      );
       return;
     }
 
@@ -153,17 +204,25 @@ function Edit() {
       // SUCCESS
       // ==========================================
       if (res.data?.status === true) {
-        alert("Question updated successfully!");
+        showMessage(
+          "success",
+          "Question Updated Successfully",
+          "The quiz question has been updated successfully."
+        );
 
-        if (form.quiz_id) {
-          navigate(
-            `/Dashboard/ExamComponent/QuizQuestion/view/${form.quiz_id}`
-          );
-        } else {
-          navigate("/Dashboard/ExamComponent/Quiz");
-        }
+        setTimeout(() => {
+          if (form.quiz_id) {
+            navigate(
+              `/Dashboard/ExamComponent/QuizQuestion/view/${form.quiz_id}`
+            );
+          } else {
+            navigate("/Dashboard/ExamComponent/Quiz");
+          }
+        }, 1500);
       } else {
-        alert(
+        showMessage(
+          "error",
+          "Update Failed",
           res.data?.message ||
             "Question could not be updated."
         );
@@ -179,12 +238,18 @@ function Edit() {
         console.error("STATUS:", err.response.status);
         console.error("SERVER RESPONSE:", err.response.data);
 
-        alert(
+        showMessage(
+          "error",
+          "Update Failed",
           err.response.data?.message ||
             "Server error while updating question."
         );
       } else {
-        alert("Unable to connect to the server.");
+        showMessage(
+          "error",
+          "Connection Error",
+          "Unable to connect to the server."
+        );
       }
     } finally {
       setSaving(false);
@@ -256,6 +321,49 @@ function Edit() {
   // ==========================================
   return (
     <div className="edit-question-page">
+
+      {/* ================= MESSAGE BOX ================= */}
+      {messageBox.show && (
+        <div className="edit-message-overlay">
+          <div
+            className={`edit-message-box ${
+              messageBox.type === "success"
+                ? "edit-message-success"
+                : "edit-message-error"
+            }`}
+          >
+
+            <button
+              type="button"
+              className="edit-message-close"
+              onClick={closeMessage}
+            >
+              <FaTimes />
+            </button>
+
+            <div className="edit-message-icon">
+              {messageBox.type === "success" ? (
+                <FaCheckCircle />
+              ) : (
+                <FaTimes />
+              )}
+            </div>
+
+            <h3>{messageBox.title}</h3>
+
+            <p>{messageBox.message}</p>
+
+            <button
+              type="button"
+              className="edit-message-ok-btn"
+              onClick={closeMessage}
+            >
+              OK
+            </button>
+
+          </div>
+        </div>
+      )}
 
       {/* ================= HEADER ================= */}
       <div className="edit-question-header">

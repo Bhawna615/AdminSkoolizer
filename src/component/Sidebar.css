@@ -1,3 +1,4 @@
+
 /* =========================================================
    SIDEBAR
 ========================================================= */
@@ -217,9 +218,9 @@
 
 .submenu {
   width: 100%;
-
+box-shadow: inset 3px 0 0 #8d5cff;
   padding: 3px 0 5px 12px;
-
+border-radius: 7px;
   box-sizing: border-box;
 }
 
@@ -304,18 +305,25 @@
 ========================================================= */
 
 .submenu-item.active {
-  background: rgba(
-    118,
-    87,
-    232,
-    0.16
+  background: linear-gradient(
+    90deg,
+    rgba(118, 87, 232, 0.25),
+    rgba(118, 87, 232, 0.10)
   );
 
-  color: #a987ff;
+  color: #ffffff;
+
+  
+
+  font-weight: 600;
 }
 
 .submenu-item.active i {
   color: #a987ff;
+}
+
+.submenu-item.active span {
+  color: #ffffff;
 }
 
 

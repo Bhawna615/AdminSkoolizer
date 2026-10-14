@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
@@ -12,6 +11,8 @@ import {
   FaClipboardList,
   FaArrowLeft,
   FaCheckCircle,
+  FaTimes,
+  FaExclamationTriangle,
 } from "react-icons/fa";
 
 function View() {
@@ -23,6 +24,23 @@ function View() {
   const [entries, setEntries] = useState(10);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  // ==========================================
+  // MESSAGE BOX STATES
+  // ==========================================
+  const [messageBox, setMessageBox] = useState({
+    show: false,
+    type: "",
+    title: "",
+    message: "",
+  });
+
+  const [deleteData, setDeleteData] = useState({
+    id: null,
+    quizId: null,
+  });
+
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
     console.log("QUIZ ID:", quizId);
@@ -53,29 +71,118 @@ function View() {
       });
   }, [quizId]);
 
-  const handleDelete = (id, questionQuizId) => {
-    if (!window.confirm("Are you sure you want to delete this question?")) {
+  // ==========================================
+  // SHOW MESSAGE BOX
+  // ==========================================
+  const showMessageBox = (type, title, message) => {
+    setMessageBox({
+      show: true,
+      type,
+      title,
+      message,
+    });
+  };
+
+  // ==========================================
+  // CLOSE MESSAGE BOX
+  // ==========================================
+  const closeMessageBox = () => {
+    if (deleting) {
       return;
     }
 
+    setMessageBox({
+      show: false,
+      type: "",
+      title: "",
+      message: "",
+    });
+
+    setDeleteData({
+      id: null,
+      quizId: null,
+    });
+  };
+
+  // ==========================================
+  // DELETE QUESTION - OPEN CONFIRMATION BOX
+  // ==========================================
+  const handleDelete = (id, questionQuizId) => {
+    setDeleteData({
+      id,
+      quizId: questionQuizId,
+    });
+
+    showMessageBox(
+      "confirm",
+      "Delete Question?",
+      "Are you sure you want to delete this question? This action cannot be undone."
+    );
+  };
+
+  // ==========================================
+  // CONFIRM DELETE QUESTION
+  // ==========================================
+  const confirmDelete = () => {
+    if (!deleteData.id) {
+      return;
+    }
+
+    setDeleting(true);
+
     axios
       .get(
-        `http://localhost/kkblossom/api.php/Adminapi/AdminExam/quizQuestionDelete/${id}/${questionQuizId}`
+        `http://localhost/kkblossom/api.php/Adminapi/AdminExam/quizQuestionDelete/${deleteData.id}/${deleteData.quizId}`
       )
       .then((res) => {
         if (res.data.status) {
-          alert("Question deleted successfully.");
-
           setQuestions((prev) =>
-            prev.filter((question) => question.id !== id)
+            prev.filter((question) => question.id !== deleteData.id)
           );
+
+          setDeleting(false);
+
+          showMessageBox(
+            "success",
+            "Question Deleted",
+            "Question deleted successfully."
+          );
+
+          setDeleteData({
+            id: null,
+            quizId: null,
+          });
+
+          // Automatically hide success message
+          setTimeout(() => {
+            setMessageBox({
+              show: false,
+              type: "",
+              title: "",
+              message: "",
+            });
+          }, 2000);
         } else {
-          alert("Delete failed.");
+          setDeleting(false);
+
+          showMessageBox(
+            "error",
+            "Delete Failed",
+            res.data?.message || "Question could not be deleted."
+          );
         }
       })
       .catch((err) => {
         console.error("Delete error:", err);
-        alert("Unable to delete question.");
+
+        setDeleting(false);
+
+        showMessageBox(
+          "error",
+          "Unable to Delete",
+          err.response?.data?.message ||
+            "Unable to delete question."
+        );
       });
   };
 
@@ -93,51 +200,51 @@ function View() {
 
   const displayedQuestions = filteredQuestions.slice(0, entries);
 
- const formatOptions = (options) => {
-  if (!options) return [];
+  const formatOptions = (options) => {
+    if (!options) return [];
 
-  // Already an array
-  if (Array.isArray(options)) {
-    return options;
-  }
-
-  const value = String(options).trim();
-
-  if (!value) return [];
-
-  // Try JSON first
-  try {
-    const parsedOptions = JSON.parse(value);
-
-    if (Array.isArray(parsedOptions)) {
-      return parsedOptions;
+    // Already an array
+    if (Array.isArray(options)) {
+      return options;
     }
-  } catch (error) {
-    // Not JSON, continue with normal text format
-  }
 
-  // Comma-separated options
-  if (value.includes(",")) {
+    const value = String(options).trim();
+
+    if (!value) return [];
+
+    // Try JSON first
+    try {
+      const parsedOptions = JSON.parse(value);
+
+      if (Array.isArray(parsedOptions)) {
+        return parsedOptions;
+      }
+    } catch (error) {
+      // Not JSON, continue with normal text format
+    }
+
+    // Comma-separated options
+    if (value.includes(",")) {
+      return value
+        .split(",")
+        .map((option) => option.trim())
+        .filter(Boolean);
+    }
+
+    // New-line separated options
+    if (value.includes("\n")) {
+      return value
+        .split(/\r?\n/)
+        .map((option) => option.trim())
+        .filter(Boolean);
+    }
+
+    // Space-separated options
     return value
-      .split(",")
+      .split(/\s+/)
       .map((option) => option.trim())
       .filter(Boolean);
-  }
-
-  // New-line separated options
-  if (value.includes("\n")) {
-    return value
-      .split(/\r?\n/)
-      .map((option) => option.trim())
-      .filter(Boolean);
-  }
-
-  // Space-separated options
-  return value
-    .split(/\s+/)
-    .map((option) => option.trim())
-    .filter(Boolean);
-};
+  };
 
   return (
     <div className="question-page">
@@ -324,7 +431,7 @@ function View() {
                           {/* EDIT */}
                           <button
                             type="button"
-                            className="action-btn edit-btn"
+                            className="action-btn Quiz-view-edit-btn"
                             title="Edit Question"
                             onClick={() =>
                               navigate(
@@ -338,7 +445,7 @@ function View() {
                           {/* DELETE */}
                           <button
                             type="button"
-                            className="action-btn delete-btn"
+                            className="action-btn Quiz-view-delete-btn"
                             title="Delete Question"
                             onClick={() =>
                               handleDelete(q.id, q.quiz_id)
@@ -425,6 +532,106 @@ function View() {
         </div>
 
       </div>
+
+      {/* =========================================================
+          CUSTOM MESSAGE BOX
+      ========================================================= */}
+      {messageBox.show && (
+        <div className="Quiz-view-message-overlay">
+
+          <div
+            className={`Quiz-view-message-box ${messageBox.type}`}
+          >
+
+            {/* ICON */}
+            <div className="Quiz-view-message-icon">
+
+              {messageBox.type === "confirm" && (
+                <FaExclamationTriangle />
+              )}
+
+              {messageBox.type === "success" && (
+                <FaCheckCircle />
+              )}
+
+              {messageBox.type === "error" && (
+                <FaTimes />
+              )}
+
+            </div>
+
+            {/* CONTENT */}
+            <div className="Quiz-view-message-content">
+
+              <h3>
+                {messageBox.title}
+              </h3>
+
+              <p>
+                {messageBox.message}
+              </p>
+
+            </div>
+
+            {/* CONFIRM BUTTONS */}
+            {messageBox.type === "confirm" && (
+              <div className="Quiz-view-message-actions">
+
+                <button
+                  type="button"
+                  className="Quiz-view-message-cancel"
+                  onClick={closeMessageBox}
+                  disabled={deleting}
+                >
+                  <FaTimes />
+                  Cancel
+                </button>
+
+                <button
+                  type="button"
+                  className="Quiz-view-message-delete"
+                  onClick={confirmDelete}
+                  disabled={deleting}
+                >
+
+                  {deleting ? (
+                    <>
+                      <span className="Quiz-view-delete-loader"></span>
+                      Deleting...
+                    </>
+                  ) : (
+                    <>
+                      <FaTrash />
+                      Delete
+                    </>
+                  )}
+
+                </button>
+
+              </div>
+            )}
+
+            {/* CLOSE BUTTON FOR ERROR */}
+            {messageBox.type === "error" && (
+              <div className="Quiz-view-message-actions">
+
+                <button
+                  type="button"
+                  className="Quiz-view-message-ok"
+                  onClick={closeMessageBox}
+                >
+                  <FaCheckCircle />
+                  OK
+                </button>
+
+              </div>
+            )}
+
+          </div>
+
+        </div>
+      )}
+
     </div>
   );
 }

@@ -1,550 +1,519 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import "./EditTeacher.css";
 
 const BASE_URL =
-"http://localhost/kkblossom/api.php/Adminapi/AdminTeacher/";
+  "http://localhost/kkblossom/api.php/Adminapi/AdminTeacher/";
 
 const EditTeacher = () => {
-const { id } = useParams();
-const navigate = useNavigate();
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-const [teacher, setTeacher] = useState({
-name: "",
-post: "",
-contact: "",
-class: "",
-email: "",
-dob: "",
-doj: "",
-});
-
-const [image, setImage] = useState(null);
-const [classes, setClasses] = useState([]);
-const [loading, setLoading] = useState(false);
-
-useEffect(() => {
-fetchTeacher();
-fetchClasses();
-}, []);
-
-// ================= GET TEACHER =================
-
-const fetchTeacher = async () => {
-try {
-const res = await axios.get(BASE_URL + "getTeacher/" + id);
-
-
-  console.log(res.data);
-
-  const data = res.data;
-
-  setTeacher({
-    name: data.Teachername || "",
-    post: data.Post || "",
-    contact: data.Contact || "",
-    class: data.Classteacher || "",
-    email: data.Email || "",
-    dob: data.Dob || "",
-    doj: data.Doj || "",
+  const [teacher, setTeacher] = useState({
+    name: "",
+    post: "",
+    contact: "",
+    class: "",
+    email: "",
+    dob: "",
+    doj: "",
   });
-} catch (error) {
-  console.log(error);
-}
 
+  const [image, setImage] = useState(null);
+  const [classes, setClasses] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-};
+  // MESSAGE MODAL
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
 
-// ================= GET CLASSES =================
+  useEffect(() => {
+    fetchTeacher();
+    fetchClasses();
+  }, []);
 
-const fetchClasses = async () => {
-try {
-const res = await axios.get(
-BASE_URL + "getClasses"
-);
+  // AUTO CLOSE SUCCESS MESSAGE
+  useEffect(() => {
+    if (messageType !== "success" || !message) return;
 
+    const timer = setTimeout(() => {
+      setMessage("");
+      setMessageType("");
 
-  setClasses(res.data);
-} catch (error) {
-  console.log(error);
-}
+      navigate("/dashboard/TeacherComponent/ViewTeachers");
+    }, 2500);
 
+    return () => clearTimeout(timer);
+  }, [message, messageType, navigate]);
 
-};
+  // ================= GET TEACHER =================
 
-// ================= INPUT CHANGE =================
+  const fetchTeacher = async () => {
+    try {
+      const res = await axios.get(BASE_URL + "getTeacher/" + id);
 
-const handleChange = (e) => {
-setTeacher({
-...teacher,
-[e.target.name]: e.target.value,
-});
-};
+      console.log(res.data);
 
-// ================= IMAGE CHANGE =================
+      const data = res.data;
 
-const handleImageChange = (e) => {
-if (e.target.files && e.target.files[0]) {
-setImage(e.target.files[0]);
-}
-};
-
-// ================= UPDATE TEACHER =================
-
-const updateTeacher = async (e) => {
-e.preventDefault();
-
-
-setLoading(true);
-
-try {
-  const formData = new FormData();
-
-  formData.append("id", id);
-  formData.append("name", teacher.name);
-  formData.append("post", teacher.post);
-  formData.append("contact", teacher.contact);
-  formData.append("class", teacher.class);
-  formData.append("email", teacher.email);
-  formData.append("dob", teacher.dob);
-  formData.append("doj", teacher.doj);
-
-  if (image) {
-    formData.append("image", image);
-  }
-
-  const res = await axios.post(
-    BASE_URL + "updateTeacher",
-    formData,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+      setTeacher({
+        name: data.Teachername || "",
+        post: data.Post || "",
+        contact: data.Contact || "",
+        class: data.Classteacher || "",
+        email: data.Email || "",
+        dob: data.Dob || "",
+        doj: data.Doj || "",
+      });
+    } catch (error) {
+      console.log(error);
     }
-  );
+  };
 
-  if (res.data.status === "success") {
-    alert("Teacher Updated Successfully");
+  // ================= GET CLASSES =================
 
-    navigate(
-      "/dashboard/TeacherComponent/ViewTeachers"
-    );
-  }
-} catch (error) {
-  console.log(error);
-  alert("Something went wrong!");
-} finally {
-  setLoading(false);
-}
+  const fetchClasses = async () => {
+    try {
+      const res = await axios.get(BASE_URL + "getClasses");
 
+      setClasses(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-};
+  // ================= INPUT CHANGE =================
 
-return ( <div className="edit-teacher-page">
+  const handleChange = (e) => {
+    setTeacher({
+      ...teacher,
+      [e.target.name]: e.target.value,
+    });
+  };
 
+  // ================= IMAGE CHANGE =================
 
-  <div className="edit-teacher-container">
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
 
-    {/* ================= HEADER ================= */}
+  // ================= UPDATE TEACHER =================
 
-    <div className="edit-teacher-header">
+  const updateTeacher = async (e) => {
+    e.preventDefault();
 
-      <div className="edit-teacher-header-left">
+    setLoading(true);
 
-        <button
-          type="button"
-          className="edit-teacher-back-btn"
-          onClick={() =>
-            navigate(
-              "/dashboard/TeacherComponent/ViewTeachers"
-            )
-          }
-        >
-          <i className="bi bi-arrow-left"></i>
-        </button>
+    try {
+      const formData = new FormData();
 
-        <div>
-          <h2>Edit Teacher</h2>
-          <p>
-            Update teacher information and details
-          </p>
-        </div>
+      formData.append("id", id);
+      formData.append("name", teacher.name);
+      formData.append("post", teacher.post);
+      formData.append("contact", teacher.contact);
+      formData.append("class", teacher.class);
+      formData.append("email", teacher.email);
+      formData.append("dob", teacher.dob);
+      formData.append("doj", teacher.doj);
 
-      </div>
+      if (image) {
+        formData.append("image", image);
+      }
 
-      <div className="edit-teacher-header-badge">
+      const res = await axios.post(
+        BASE_URL + "updateTeacher",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
-        <i className="bi bi-person-badge-fill"></i>
-        Teacher ID #{id}
+      if (res.data.status === "success") {
+        setMessage("Teacher Updated Successfully");
+        setMessageType("success");
+      } else {
+        setMessage(
+          res.data.message || "Unable to update teacher."
+        );
+        setMessageType("error");
+      }
+    } catch (error) {
+      console.log(error);
 
-      </div>
+      setMessage(
+        error.response?.data?.message ||
+          "Something went wrong!"
+      );
+      setMessageType("error");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    </div>
+  // ================= CLOSE MESSAGE =================
 
+  const closeMessage = () => {
+    setMessage("");
+    setMessageType("");
+  };
 
-    {/* ================= FORM CARD ================= */}
+  return (
+    <div className="edit-teacher-page">
+      <div className="edit-teacher-container">
 
-    <div className="edit-teacher-card">
+        {/* ================= HEADER ================= */}
 
-      {/* CARD HEADING */}
+        <div className="edit-teacher-header">
+          <div className="edit-teacher-header-left">
+            <button
+              type="button"
+              className="edit-teacher-back-btn"
+              onClick={() =>
+                navigate(
+                  "/dashboard/TeacherComponent/ViewTeachers"
+                )
+              }
+            >
+              <i className="bi bi-arrow-left"></i>
+            </button>
 
-      <div className="edit-teacher-card-heading">
-
-        <div className="edit-teacher-heading-icon">
-          <i className="bi bi-pencil-square"></i>
-        </div>
-
-        <div>
-          <h3>Teacher Information</h3>
-          <p>
-            Modify the details below and save changes
-          </p>
-        </div>
-
-      </div>
-
-
-      <form onSubmit={updateTeacher}>
-
-        <div className="edit-teacher-form-grid">
-
-
-          {/* ================= PERSONAL ================= */}
-
-          <div className="edit-teacher-section">
-
-            <div className="edit-teacher-section-title">
-
-              <i className="bi bi-person-fill"></i>
-
-              <span>Personal Details</span>
-
+            <div>
+              <h2>Edit Teacher</h2>
+              <p>
+                Update teacher information and details
+              </p>
             </div>
-
-
-            <div className="edit-teacher-field">
-
-              <label>
-                Teacher Name
-              </label>
-
-              <div className="edit-teacher-input-wrapper">
-
-                <i className="bi bi-person"></i>
-
-                <input
-                  type="text"
-                  name="name"
-                  value={teacher.name}
-                  onChange={handleChange}
-                  placeholder="Enter teacher name"
-                  required
-                />
-
-              </div>
-
-            </div>
-
-
-            <div className="edit-teacher-field">
-
-              <label>
-                Designation / Post
-              </label>
-
-              <div className="edit-teacher-input-wrapper">
-
-                <i className="bi bi-briefcase"></i>
-
-                <input
-                  type="text"
-                  name="post"
-                  value={teacher.post}
-                  onChange={handleChange}
-                  placeholder="Enter designation"
-                  required
-                />
-
-              </div>
-
-            </div>
-
-
-            <div className="edit-teacher-field">
-
-              <label>
-                Contact Number
-              </label>
-
-              <div className="edit-teacher-input-wrapper">
-
-                <i className="bi bi-telephone"></i>
-
-                <input
-                  type="number"
-                  name="contact"
-                  value={teacher.contact}
-                  onChange={handleChange}
-                  placeholder="Enter contact number"
-                  required
-                />
-
-              </div>
-
-            </div>
-
           </div>
 
+          <div className="edit-teacher-header-badge">
+            <i className="bi bi-person-badge-fill"></i>
+            Teacher ID #{id}
+          </div>
+        </div>
 
-          {/* ================= ACADEMIC ================= */}
+        {/* ================= FORM CARD ================= */}
 
-          <div className="edit-teacher-section">
+        <div className="edit-teacher-card">
 
-            <div className="edit-teacher-section-title">
+          {/* CARD HEADING */}
 
-              <i className="bi bi-mortarboard-fill"></i>
-
-              <span>School Details</span>
-
+          <div className="edit-teacher-card-heading">
+            <div className="edit-teacher-heading-icon">
+              <i className="bi bi-pencil-square"></i>
             </div>
 
-
-            <div className="edit-teacher-field">
-
-              <label>
-                Class Teacher Of
-              </label>
-
-              <div className="edit-teacher-input-wrapper">
-
-                <i className="bi bi-building"></i>
-
-                <select
-                  name="class"
-                  value={teacher.class}
-                  onChange={handleChange}
-                >
-
-                  <option value="">
-                    Select Class
-                  </option>
-
-                  {classes.map((cls) => (
-
-                    <option
-                      key={cls.id}
-                      value={cls.Classname}
-                    >
-                      Class {cls.Classname}
-                    </option>
-
-                  ))}
-
-                </select>
-
-              </div>
-
+            <div>
+              <h3>Teacher Information</h3>
+              <p>
+                Modify the details below and save changes
+              </p>
             </div>
+          </div>
 
+          <form onSubmit={updateTeacher}>
+            <div className="edit-teacher-form-grid">
 
-            {/* IMAGE UPLOAD */}
+              {/* ================= PERSONAL ================= */}
 
-            <div className="edit-teacher-field">
-
-              <label>
-                Teacher Image
-              </label>
-
-              <label
-                htmlFor="teacher-image-upload"
-                className="edit-teacher-upload-box"
-              >
-
-                <input
-                  id="teacher-image-upload"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                />
-
-                <div className="edit-teacher-upload-icon">
-                  <i className="bi bi-cloud-arrow-up"></i>
+              <div className="edit-teacher-section">
+                <div className="edit-teacher-section-title">
+                  <i className="bi bi-person-fill"></i>
+                  <span>Personal Details</span>
                 </div>
 
-                <div className="edit-teacher-upload-content">
+                <div className="edit-teacher-field">
+                  <label>Teacher Name</label>
 
-                  <strong>
-                    {image
-                      ? image.name
-                      : "Click to upload image"}
-                  </strong>
+                  <div className="edit-teacher-input-wrapper">
+                    <i className="bi bi-person"></i>
+
+                    <input
+                      type="text"
+                      name="name"
+                      value={teacher.name}
+                      onChange={handleChange}
+                      placeholder="Enter teacher name"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="edit-teacher-field">
+                  <label>Designation / Post</label>
+
+                  <div className="edit-teacher-input-wrapper">
+                    <i className="bi bi-briefcase"></i>
+
+                    <input
+                      type="text"
+                      name="post"
+                      value={teacher.post}
+                      onChange={handleChange}
+                      placeholder="Enter designation"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="edit-teacher-field">
+                  <label>Contact Number</label>
+
+                  <div className="edit-teacher-input-wrapper">
+                    <i className="bi bi-telephone"></i>
+
+                    <input
+                      type="number"
+                      name="contact"
+                      value={teacher.contact}
+                      onChange={handleChange}
+                      placeholder="Enter contact number"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* ================= ACADEMIC ================= */}
+
+              <div className="edit-teacher-section">
+                <div className="edit-teacher-section-title">
+                  <i className="bi bi-mortarboard-fill"></i>
+                  <span>School Details</span>
+                </div>
+
+                <div className="edit-teacher-field">
+                  <label>Class Teacher Of</label>
+
+                  <div className="edit-teacher-input-wrapper">
+                    <i className="bi bi-building"></i>
+
+                    <select
+                      name="class"
+                      value={teacher.class}
+                      onChange={handleChange}
+                    >
+                      <option value="">Select Class</option>
+
+                      {classes.map((cls) => (
+                        <option
+                          key={cls.id}
+                          value={cls.Classname}
+                        >
+                          Class {cls.Classname}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* IMAGE UPLOAD */}
+
+                <div className="edit-teacher-field">
+                  <label>Teacher Image</label>
+
+                  <label
+                    htmlFor="teacher-image-upload"
+                    className="edit-teacher-upload-box"
+                  >
+                    <input
+                      id="teacher-image-upload"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageChange}
+                    />
+
+                    <div className="edit-teacher-upload-icon">
+                      <i className="bi bi-cloud-arrow-up"></i>
+                    </div>
+
+                    <div className="edit-teacher-upload-content">
+                      <strong>
+                        {image
+                          ? image.name
+                          : "Click to upload image"}
+                      </strong>
+
+                      <span>PNG, JPG or JPEG</span>
+                    </div>
+                  </label>
+                </div>
+
+                <div className="edit-teacher-info-note">
+                  <i className="bi bi-info-circle-fill"></i>
 
                   <span>
-                    PNG, JPG or JPEG
+                    Leave the image empty if you don't want to change it.
                   </span>
+                </div>
+              </div>
 
+              {/* ================= CONTACT ================= */}
+
+              <div className="edit-teacher-section">
+                <div className="edit-teacher-section-title">
+                  <i className="bi bi-envelope-fill"></i>
+                  <span>Contact & Dates</span>
                 </div>
 
-              </label>
+                <div className="edit-teacher-field">
+                  <label>Email Address</label>
 
-            </div>
+                  <div className="edit-teacher-input-wrapper">
+                    <i className="bi bi-envelope"></i>
 
+                    <input
+                      type="email"
+                      name="email"
+                      value={teacher.email}
+                      onChange={handleChange}
+                      placeholder="Enter email address"
+                    />
+                  </div>
+                </div>
 
-            <div className="edit-teacher-info-note">
+                <div className="edit-teacher-field">
+                  <label>Date of Birth</label>
 
-              <i className="bi bi-info-circle-fill"></i>
+                  <div className="edit-teacher-input-wrapper">
+                    <i className="bi bi-calendar-heart"></i>
 
-              <span>
-                Leave the image empty if you don't want to change it.
-              </span>
+                    <input
+                      type="date"
+                      name="dob"
+                      value={teacher.dob}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
 
-            </div>
+                <div className="edit-teacher-field">
+                  <label>Date of Joining</label>
 
-          </div>
+                  <div className="edit-teacher-input-wrapper">
+                    <i className="bi bi-calendar-check"></i>
 
-
-          {/* ================= CONTACT ================= */}
-
-          <div className="edit-teacher-section">
-
-            <div className="edit-teacher-section-title">
-
-              <i className="bi bi-envelope-fill"></i>
-
-              <span>Contact & Dates</span>
-
-            </div>
-
-
-            <div className="edit-teacher-field">
-
-              <label>
-                Email Address
-              </label>
-
-              <div className="edit-teacher-input-wrapper">
-
-                <i className="bi bi-envelope"></i>
-
-                <input
-                  type="email"
-                  name="email"
-                  value={teacher.email}
-                  onChange={handleChange}
-                  placeholder="Enter email address"
-                />
-
+                    <input
+                      type="date"
+                      name="doj"
+                      value={teacher.doj}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
               </div>
-
             </div>
 
+            {/* ================= ACTIONS ================= */}
 
-            <div className="edit-teacher-field">
+            <div className="edit-teacher-actions">
+              <button
+                type="button"
+                className="edit-teacher-cancel-btn"
+                onClick={() =>
+                  navigate(
+                    "/dashboard/TeacherComponent/ViewTeachers"
+                  )
+                }
+              >
+                <i className="bi bi-x-circle"></i>
+                Cancel
+              </button>
 
-              <label>
-                Date of Birth
-              </label>
-
-              <div className="edit-teacher-input-wrapper">
-
-                <i className="bi bi-calendar-heart"></i>
-
-                <input
-                  type="date"
-                  name="dob"
-                  value={teacher.dob}
-                  onChange={handleChange}
-                />
-
-              </div>
-
+              <button
+                type="submit"
+                className="edit-teacher-save-btn"
+                disabled={loading}
+              >
+                {loading ? (
+                  <>
+                    <span className="edit-teacher-btn-spinner"></span>
+                    Saving Changes...
+                  </>
+                ) : (
+                  <>
+                    <i className="bi bi-check-circle-fill"></i>
+                    Save Changes
+                  </>
+                )}
+              </button>
             </div>
-
-
-            <div className="edit-teacher-field">
-
-              <label>
-                Date of Joining
-              </label>
-
-              <div className="edit-teacher-input-wrapper">
-
-                <i className="bi bi-calendar-check"></i>
-
-                <input
-                  type="date"
-                  name="doj"
-                  value={teacher.doj}
-                  onChange={handleChange}
-                />
-
-              </div>
-
-            </div>
-
-          </div>
-
+          </form>
         </div>
+      </div>
 
+      {/* ================= SUCCESS / ERROR MODAL ================= */}
 
-        {/* ================= ACTIONS ================= */}
-
-        <div className="edit-teacher-actions">
-
-          <button
-            type="button"
-            className="edit-teacher-cancel-btn"
-            onClick={() =>
-              navigate(
-                "/dashboard/TeacherComponent/ViewTeachers"
-              )
-            }
+      {message && (
+        <div
+          className="edit-teacher-modal-overlay"
+          onClick={
+            messageType === "error"
+              ? closeMessage
+              : undefined
+          }
+        >
+          <div
+            className={`edit-teacher-modal-popup ${
+              messageType === "success"
+                ? "edit-teacher-modal-success"
+                : "edit-teacher-modal-error"
+            }`}
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-live="polite"
           >
+            <button
+              type="button"
+              className="edit-teacher-modal-close"
+              onClick={closeMessage}
+              aria-label="Close message"
+            >
+              <i className="bi bi-x-lg"></i>
+            </button>
 
-            <i className="bi bi-x-circle"></i>
+            <div className="edit-teacher-modal-icon">
+              <i
+                className={
+                  messageType === "success"
+                    ? "bi bi-check-lg"
+                    : "bi bi-exclamation-lg"
+                }
+              ></i>
+            </div>
 
-            Cancel
+            <h3>
+              {messageType === "success"
+                ? "Success!"
+                : "Something went wrong"}
+            </h3>
 
-          </button>
+            <p>{message}</p>
 
-
-          <button
-            type="submit"
-            className="edit-teacher-save-btn"
-            disabled={loading}
-          >
-
-            {loading ? (
-
-              <>
-                <span className="edit-teacher-btn-spinner"></span>
-                Saving Changes...
-              </>
-
+            {messageType === "success" ? (
+              <div className="edit-teacher-modal-progress">
+                <div className="edit-teacher-modal-progress-bar"></div>
+              </div>
             ) : (
-
-              <>
-                <i className="bi bi-check-circle-fill"></i>
-                Save Changes
-              </>
-
+              <button
+                type="button"
+                className="edit-teacher-modal-ok"
+                onClick={closeMessage}
+              >
+                Okay
+              </button>
             )}
-
-          </button>
-
+          </div>
         </div>
-
-      </form>
-
+      )}
     </div>
-
-  </div>
-
-</div>
-
-
-);
+  );
 };
 
 export default EditTeacher;

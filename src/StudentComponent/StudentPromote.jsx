@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./StudentPromote.css";
@@ -13,6 +14,19 @@ const StudentPromote = () => {
   const [selectedIds, setSelectedIds] = useState([]);
   const [checkAll, setCheckAll] = useState(true);
   const [message, setMessage] = useState({ type: "", text: "" });
+
+  // =====================================================
+  // AUTO-CLOSE SUCCESS MESSAGE
+  // =====================================================
+  useEffect(() => {
+    if (message.type === "success") {
+      const timer = setTimeout(() => {
+        setMessage({ type: "", text: "" });
+      }, 2500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
 
   // =====================================================
   // LOAD CLASSES
@@ -194,55 +208,86 @@ const StudentPromote = () => {
 
       </div>
 
-
       {/* =====================================================
-          MESSAGE
+          CENTERED SUCCESS / ERROR POPUP
       ===================================================== */}
       {message.type && (
-        <div
-          className={`student-promote-message ${
-            message.type === "success"
-              ? "student-promote-success"
-              : "student-promote-error"
-          }`}
-        >
+        <div className="student-promote-modal-overlay">
 
-          <div className="student-promote-message-icon">
-            <i
-              className={
-                message.type === "success"
-                  ? "bi bi-check-circle-fill"
-                  : "bi bi-exclamation-circle-fill"
-              }
-            ></i>
-          </div>
-
-          <div className="student-promote-message-content">
-            <strong>
-              {message.type === "success"
-                ? "Promotion Successful"
-                : "Action Required"}
-            </strong>
-
-            <span>{message.text}</span>
-          </div>
-
-          <button
-            type="button"
-            className="student-promote-message-close"
-            onClick={() =>
-              setMessage({
-                type: "",
-                text: "",
-              })
-            }
+          <div
+            className={`student-promote-modal-popup ${
+              message.type === "success"
+                ? "student-promote-modal-success"
+                : "student-promote-modal-error"
+            }`}
+            role="alertdialog"
+            aria-live="assertive"
           >
-            <i className="bi bi-x-lg"></i>
-          </button>
+
+            <button
+              type="button"
+              className="student-promote-modal-close"
+              onClick={() =>
+                setMessage({
+                  type: "",
+                  text: "",
+                })
+              }
+              aria-label="Close message"
+            >
+              <i className="bi bi-x-lg"></i>
+            </button>
+
+            <div className="student-promote-modal-icon">
+              <i
+                className={
+                  message.type === "success"
+                    ? "bi bi-check-lg"
+                    : "bi bi-exclamation-lg"
+                }
+              ></i>
+            </div>
+
+            <h2>
+              {message.type === "success"
+                ? "Promotion Successful!"
+                : "Action Required"}
+            </h2>
+
+            <p>{message.text}</p>
+
+            {message.type === "success" && (
+              <>
+                <div className="student-promote-modal-status">
+                  <i className="bi bi-check-circle-fill"></i>
+                  Student records have been updated.
+                </div>
+
+                <div className="student-promote-modal-progress">
+                  <span></span>
+                </div>
+              </>
+            )}
+
+            {message.type === "error" && (
+              <button
+                type="button"
+                className="student-promote-modal-ok"
+                onClick={() =>
+                  setMessage({
+                    type: "",
+                    text: "",
+                  })
+                }
+              >
+                Okay
+              </button>
+            )}
+
+          </div>
 
         </div>
       )}
-
 
       <form onSubmit={handleSubmit}>
 
@@ -275,7 +320,6 @@ const StudentPromote = () => {
             </div>
 
           </div>
-
 
           <div className="student-promote-selection-grid">
 
@@ -322,7 +366,6 @@ const StudentPromote = () => {
 
             </div>
 
-
             {/* TRANSFER ARROW */}
             <div className="student-promote-transfer">
 
@@ -335,7 +378,6 @@ const StudentPromote = () => {
               <div className="student-promote-transfer-line"></div>
 
             </div>
-
 
             {/* TO CLASS */}
             <div className="student-promote-field">
@@ -381,7 +423,6 @@ const StudentPromote = () => {
 
           </div>
 
-
           {/* PROMOTION SUMMARY */}
           <div className="student-promote-flow-summary">
 
@@ -413,7 +454,6 @@ const StudentPromote = () => {
 
         </div>
 
-
         {/* =====================================================
             STUDENT TABLE
         ===================================================== */}
@@ -441,7 +481,6 @@ const StudentPromote = () => {
 
             </div>
 
-
             <div className="student-promote-stat">
 
               <div className="student-promote-stat-number">
@@ -458,7 +497,6 @@ const StudentPromote = () => {
             </div>
 
           </div>
-
 
           {/* SELECTION BAR */}
           <div className="student-promote-selection-bar">
@@ -495,7 +533,6 @@ const StudentPromote = () => {
 
           </div>
 
-
           {/* TABLE */}
           <div className="student-promote-table-wrapper">
 
@@ -527,19 +564,14 @@ const StudentPromote = () => {
                   </th>
 
                   <th>ID</th>
-
                   <th>STUDENT</th>
-
                   <th>CLASS</th>
-
                   <th>ROLL NO.</th>
-
                   <th>ADMISSION NO.</th>
 
                 </tr>
 
               </thead>
-
 
               <tbody>
 
@@ -581,7 +613,6 @@ const StudentPromote = () => {
 
                         </td>
 
-
                         {/* ID */}
                         <td>
 
@@ -590,7 +621,6 @@ const StudentPromote = () => {
                           </span>
 
                         </td>
-
 
                         {/* STUDENT */}
                         <td>
@@ -619,7 +649,6 @@ const StudentPromote = () => {
 
                         </td>
 
-
                         {/* CLASS */}
                         <td>
 
@@ -633,7 +662,6 @@ const StudentPromote = () => {
 
                         </td>
 
-
                         {/* ROLL */}
                         <td>
 
@@ -642,7 +670,6 @@ const StudentPromote = () => {
                           </span>
 
                         </td>
-
 
                         {/* ADMISSION */}
                         <td>
@@ -691,7 +718,6 @@ const StudentPromote = () => {
 
           </div>
 
-
           {/* TABLE FOOTER */}
           <div className="student-promote-table-footer">
 
@@ -722,7 +748,6 @@ const StudentPromote = () => {
               </div>
 
             </div>
-
 
             <button
               className="student-promote-submit-btn"

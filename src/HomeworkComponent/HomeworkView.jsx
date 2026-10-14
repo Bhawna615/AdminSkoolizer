@@ -16,6 +16,34 @@ export default function HomeworkView() {
 
   const [filterEnabled, setFilterEnabled] = useState(false);
 
+  // ================= MESSAGE BOX =================
+  const [messageBox, setMessageBox] = useState({
+    show: false,
+    type: "",
+    title: "",
+    message: "",
+  });
+
+  const [deleteId, setDeleteId] = useState(null);
+
+  const showMessage = (type, title, message) => {
+    setMessageBox({
+      show: true,
+      type,
+      title,
+      message,
+    });
+  };
+
+  const closeMessage = () => {
+    setMessageBox({
+      show: false,
+      type: "",
+      title: "",
+      message: "",
+    });
+  };
+
   // ================= GET CLASSES =================
   useEffect(() => {
     axios
@@ -72,12 +100,32 @@ export default function HomeworkView() {
   // ================= DELETE =================
   const deleteHomework = async (id) => {
 
-    if (!window.confirm("Are you sure ?")) return;
+    setDeleteId(id);
+
+    showMessage(
+      "confirm",
+      "Delete Homework?",
+      "Are you sure you want to delete this homework?"
+    );
+  };
+
+  // ================= CONFIRM DELETE =================
+  const confirmDelete = async () => {
+
+    if (!deleteId) return;
 
     try {
-      await axios.get(`${API}/delete/${id}`);
+      closeMessage();
 
-      alert("Deleted Successfully");
+      await axios.get(`${API}/delete/${deleteId}`);
+
+      setDeleteId(null);
+
+      showMessage(
+        "success",
+        "Deleted Successfully",
+        "Homework has been deleted successfully."
+      );
 
       if (filterEnabled) {
         filterHomework();
@@ -87,6 +135,14 @@ export default function HomeworkView() {
 
     } catch (err) {
       console.log(err);
+
+      setDeleteId(null);
+
+      showMessage(
+        "error",
+        "Delete Failed",
+        "Unable to delete the homework. Please try again."
+      );
     }
   };
 
@@ -476,6 +532,72 @@ export default function HomeworkView() {
         </div>
 
       </div>
+
+
+      {/* ================= MESSAGE BOX ================= */}
+      {messageBox.show && (
+        <div className="homework-view-message-overlay">
+
+          <div className="homework-view-message-box">
+
+            <div
+              className={`homework-view-message-icon ${
+                messageBox.type
+              }`}
+            >
+              <i
+                className={
+                  messageBox.type === "success"
+                    ? "bi bi-check-lg"
+                    : messageBox.type === "error"
+                    ? "bi bi-x-lg"
+                    : "bi bi-exclamation-lg"
+                }
+              ></i>
+            </div>
+
+            <h3>{messageBox.title}</h3>
+
+            <p>{messageBox.message}</p>
+
+            {messageBox.type === "confirm" ? (
+              <div className="homework-view-message-actions">
+
+                <button
+                  type="button"
+                  className="homework-view-message-cancel"
+                  onClick={() => {
+                    setDeleteId(null);
+                    closeMessage();
+                  }}
+                >
+                  Cancel
+                </button>
+
+                <button
+                  type="button"
+                  className="homework-view-message-confirm"
+                  onClick={confirmDelete}
+                >
+                  <i className="bi bi-trash3"></i>
+                  Delete
+                </button>
+
+              </div>
+            ) : (
+              <button
+                type="button"
+                className="homework-view-message-ok"
+                onClick={closeMessage}
+              >
+                OK
+              </button>
+            )}
+
+          </div>
+
+        </div>
+      )}
 
     </div>
   );

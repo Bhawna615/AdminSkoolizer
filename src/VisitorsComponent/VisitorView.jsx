@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
@@ -13,6 +12,15 @@ const VisitorView = () => {
   const [search, setSearch] = useState("");
   const [perPage, setPerPage] = useState(10);
   const [loading, setLoading] = useState(false);
+
+  // MESSAGE BOX STATES
+  const [showMsg, setShowMsg] = useState(false);
+  const [message, setMessage] = useState("");
+  const [messageSuccess, setMessageSuccess] = useState(false);
+
+  // EXIT CONFIRMATION STATES
+  const [showExitConfirm, setShowExitConfirm] = useState(false);
+  const [selectedVisitorId, setSelectedVisitorId] = useState(null);
 
   const navigate = useNavigate();
 
@@ -34,16 +42,54 @@ const VisitorView = () => {
     loadData();
   }, []);
 
-  // ================= EXIT =================
-  const handleExit = async (id) => {
-    if (!window.confirm("Are you sure?")) return;
+  // ================= EXIT BUTTON =================
+  const handleExit = (id) => {
+    setSelectedVisitorId(id);
+    setShowExitConfirm(true);
+  };
+
+  // ================= CONFIRM EXIT =================
+  const confirmExit = async () => {
+    if (!selectedVisitorId) return;
+
+    setShowExitConfirm(false);
 
     try {
-      await axios.post(`${BASE_URL}/deleteVisitor/${id}`);
+      await axios.post(
+        `${BASE_URL}/deleteVisitor/${selectedVisitorId}`
+      );
+
+      // SHOW SUCCESS MESSAGE BOX
+      setMessageSuccess(true);
+      setMessage("Visitor Exit Successfully");
+      setShowMsg(true);
+
+      // Reload visitor list
       loadData();
+
+      // Clear selected visitor
+      setSelectedVisitorId(null);
     } catch (error) {
       console.log("EXIT ERROR:", error.message);
+
+      // SHOW ERROR MESSAGE BOX
+      setMessageSuccess(false);
+      setMessage("Failed to update visitor exit");
+      setShowMsg(true);
+
+      setSelectedVisitorId(null);
     }
+  };
+
+  // ================= CANCEL EXIT =================
+  const cancelExit = () => {
+    setShowExitConfirm(false);
+    setSelectedVisitorId(null);
+  };
+
+  // ================= CONTINUE =================
+  const handleContinue = () => {
+    setShowMsg(false);
   };
 
   // ================= SEARCH =================
@@ -109,11 +155,108 @@ const VisitorView = () => {
   return (
     <div className="visitor-view-page">
 
+      {/* ================= EXIT CONFIRMATION MESSAGE BOX ================= */}
+      {showExitConfirm && (
+        <div className="visitor-message-overlay">
+
+          <div className="visitor-message-box">
+
+            <div className="visitor-message-icon">
+              <i className="bi bi-box-arrow-right"></i>
+            </div>
+
+            <div className="visitor-message-content">
+
+              <strong>Confirm Exit</strong>
+
+              <span>
+                Are you sure you want to mark this visitor as exited?
+              </span>
+
+            </div>
+
+            <div className="visitor-message-actions">
+
+              <button
+                type="button"
+                className="visitor-message-cancel"
+                onClick={cancelExit}
+              >
+                Cancel
+              </button>
+
+              <button
+                type="button"
+                className="visitor-message-continue"
+                onClick={confirmExit}
+              >
+                Yes, Exit
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      )}
+
+      {/* ================= SUCCESS / ERROR MESSAGE BOX ================= */}
+      {showMsg && (
+        <div className="visitor-message-overlay">
+
+          <div className="visitor-message-box">
+
+            <div className="visitor-message-icon">
+
+              <i
+                className={
+                  messageSuccess
+                    ? "bi bi-check-lg"
+                    : "bi bi-x-lg"
+                }
+              ></i>
+
+            </div>
+
+            <div className="visitor-message-content">
+
+              <strong>
+                {messageSuccess ? "Success" : "Error"}
+              </strong>
+
+              <span>{message}</span>
+
+            </div>
+
+            {messageSuccess ? (
+              <button
+                type="button"
+                className="visitor-message-continue"
+                onClick={handleContinue}
+              >
+                Continue
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="visitor-message-close"
+                onClick={() => setShowMsg(false)}
+              >
+                <i className="bi bi-x"></i>
+              </button>
+            )}
+
+          </div>
+
+        </div>
+      )}
+
       {/* ================= TOP BAR ================= */}
       <div className="visitor-top-bar">
 
         {/* LEFT */}
         <div className="visitor-entries">
+
           <span>Show</span>
 
           <select
@@ -127,10 +270,12 @@ const VisitorView = () => {
           </select>
 
           <span>entries</span>
+
         </div>
 
         {/* RIGHT */}
         <div className="visitor-search">
+
           <label>Search:</label>
 
           <input
@@ -139,11 +284,14 @@ const VisitorView = () => {
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search visitors..."
           />
+
         </div>
+
       </div>
 
       {/* ================= NEW VISITOR BUTTON ================= */}
       <div className="visitor-action-bar">
+
         <button
           className="new-visitor-btn"
           onClick={() =>
@@ -152,10 +300,12 @@ const VisitorView = () => {
         >
           + New Visitor
         </button>
+
       </div>
 
       {/* ================= DATA TABLE ================= */}
       <div className="visitor-table-wrapper">
+
         <DataTable
           columns={columns}
           data={filteredData}
@@ -169,7 +319,9 @@ const VisitorView = () => {
           fixedHeaderScrollHeight="500px"
           customStyles={customStyles}
         />
+
       </div>
+
     </div>
   );
 };

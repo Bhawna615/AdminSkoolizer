@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./AddTeacher.css";
 import { useNavigate } from "react-router-dom";
+import {
+  FaCheckCircle,
+  FaExclamationCircle,
+  FaTimes,
+} from "react-icons/fa";
 
 const BASE_URL =
   "http://localhost/kkblossom/api.php/Adminapi/AdminTeacher/";
@@ -12,7 +17,9 @@ const AddTeacher = () => {
   const [classes, setClasses] = useState([]);
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
+
   const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -29,6 +36,17 @@ const AddTeacher = () => {
     fetchClasses();
   }, []);
 
+  // Automatically redirect after a successful addition.
+  useEffect(() => {
+    if (message && messageType === "success") {
+      const timer = setTimeout(() => {
+        navigate("/dashboard/TeacherComponent/ViewTeachers");
+      }, 2500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [message, messageType, navigate]);
+
   const fetchClasses = async () => {
     try {
       const res = await axios.get(BASE_URL + "getClasses");
@@ -41,23 +59,28 @@ const AddTeacher = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
-    });
+    }));
   };
 
   const handleFile = (e) => {
     const file = e.target.files[0];
 
     if (file) {
-      setFormData({
-        ...formData,
+      setFormData((prev) => ({
+        ...prev,
         image: file,
-      });
+      }));
 
       setPreview(URL.createObjectURL(file));
     }
+  };
+
+  const closeMessage = () => {
+    setMessage("");
+    setMessageType("");
   };
 
   const handleSubmit = async (e) => {
@@ -65,6 +88,7 @@ const AddTeacher = () => {
 
     setLoading(true);
     setMessage("");
+    setMessageType("");
 
     const data = new FormData();
 
@@ -75,23 +99,25 @@ const AddTeacher = () => {
     });
 
     try {
-      const res = await axios.post(
-        BASE_URL + "insertTeacher",
-        data
-      );
+      const res = await axios.post(BASE_URL + "insertTeacher", data);
 
       if (res.data.status === "success") {
         setMessage("Teacher added successfully!");
-
-        setTimeout(() => {
-          navigate("/dashboard/TeacherComponent/ViewTeachers");
-        }, 1000);
+        setMessageType("success");
       } else {
-        setMessage("Unable to add teacher.");
+        setMessage(
+          res.data.message || "Unable to add teacher."
+        );
+        setMessageType("error");
       }
     } catch (error) {
       console.error(error);
-      setMessage("Something went wrong. Please try again.");
+
+      setMessage(
+        error.response?.data?.message ||
+          "Something went wrong. Please try again."
+      );
+      setMessageType("error");
     } finally {
       setLoading(false);
     }
@@ -99,12 +125,9 @@ const AddTeacher = () => {
 
   return (
     <div className="add-teacher-page">
-
       <div className="add-teacher-container">
-
         {/* HEADER */}
         <div className="add-teacher-header">
-
           <div className="add-teacher-header-content">
             <div className="add-teacher-icon">
               <i className="bi bi-person-plus-fill"></i>
@@ -128,21 +151,17 @@ const AddTeacher = () => {
             <i className="bi bi-arrow-left"></i>
             Back
           </button>
-
         </div>
 
         {/* FORM CARD */}
         <div className="add-teacher-card">
-
           <form onSubmit={handleSubmit}>
-
             <div className="add-teacher-section-title">
               <i className="bi bi-person-vcard"></i>
               Personal Information
             </div>
 
             <div className="add-teacher-grid">
-
               {/* NAME */}
               <div className="add-teacher-field">
                 <label>
@@ -232,15 +251,10 @@ const AddTeacher = () => {
                     value={formData.class}
                     onChange={handleChange}
                   >
-                    <option value="">
-                      Select Class
-                    </option>
+                    <option value="">Select Class</option>
 
                     {classes.map((c, i) => (
-                      <option
-                        key={i}
-                        value={c.Classname}
-                      >
+                      <option key={i} value={c.Classname}>
                         Class {c.Classname}
                       </option>
                     ))}
@@ -285,7 +299,6 @@ const AddTeacher = () => {
                 <label>Teacher Image</label>
 
                 <label className="add-teacher-upload">
-
                   <input
                     type="file"
                     accept="image/*"
@@ -297,64 +310,31 @@ const AddTeacher = () => {
 
                     <div>
                       <strong>Upload Image</strong>
-                      <small>
-                        JPG, PNG or JPEG supported
-                      </small>
+                      <small>JPG, PNG or JPEG supported</small>
                     </div>
                   </div>
-
                 </label>
               </div>
-
             </div>
 
             {/* IMAGE PREVIEW */}
             {preview && (
               <div className="add-teacher-preview-section">
-
                 <p>Image Preview</p>
 
                 <div className="add-teacher-preview">
-                  <img
-                    src={preview}
-                    alt="Teacher Preview"
-                  />
+                  <img src={preview} alt="Teacher Preview" />
                 </div>
-
-              </div>
-            )}
-
-            {/* MESSAGE */}
-            {message && (
-              <div
-                className={`add-teacher-message ${
-                  message.includes("success")
-                    ? "success"
-                    : "error"
-                }`}
-              >
-                <i
-                  className={
-                    message.includes("success")
-                      ? "bi bi-check-circle-fill"
-                      : "bi bi-exclamation-circle-fill"
-                  }
-                ></i>
-
-                {message}
               </div>
             )}
 
             {/* BUTTONS */}
             <div className="add-teacher-actions">
-
               <button
                 type="button"
                 className="add-teacher-cancel-btn"
                 onClick={() =>
-                  navigate(
-                    "/dashboard/TeacherComponent/ViewTeachers"
-                  )
+                  navigate("/dashboard/TeacherComponent/ViewTeachers")
                 }
               >
                 Cancel
@@ -377,15 +357,71 @@ const AddTeacher = () => {
                   </>
                 )}
               </button>
-
             </div>
-
           </form>
-
         </div>
-
       </div>
 
+      {/* CENTERED SUCCESS / ERROR MODAL */}
+      {message && (
+        <div className="add-teacher-modal-overlay">
+          <div
+            className={`add-teacher-modal-popup ${
+              messageType === "success"
+                ? "add-teacher-modal-success"
+                : "add-teacher-modal-error"
+            }`}
+            role="alertdialog"
+            aria-modal="true"
+            aria-live="assertive"
+          >
+            <button
+              type="button"
+              className="add-teacher-modal-close"
+              onClick={closeMessage}
+              aria-label="Close message"
+            >
+              <FaTimes />
+            </button>
+
+            <div className="add-teacher-modal-icon">
+              {messageType === "success" ? (
+                <FaCheckCircle />
+              ) : (
+                <FaExclamationCircle />
+              )}
+            </div>
+
+            <h3>
+              {messageType === "success"
+                ? "Success!"
+                : "Something went wrong"}
+            </h3>
+
+            <p>{message}</p>
+
+            {messageType === "success" ? (
+              <>
+                <div className="add-teacher-modal-progress">
+                  <span></span>
+                </div>
+
+                <small className="add-teacher-modal-note">
+                  Redirecting to the teachers list...
+                </small>
+              </>
+            ) : (
+              <button
+                type="button"
+                className="add-teacher-modal-ok-btn"
+                onClick={closeMessage}
+              >
+                Okay
+              </button>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

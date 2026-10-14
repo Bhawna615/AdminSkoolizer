@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./TransportStaffPage.css";
@@ -7,6 +8,14 @@ const TransportStaffPage = () => {
   const [message, setMessage] = useState(null);
   const [openMenuId, setOpenMenuId] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const [deleteModal, setDeleteModal] = useState({
+    open: false,
+    id: null,
+    type: "confirm",
+    title: "",
+    text: "",
+  });
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -65,14 +74,31 @@ const TransportStaffPage = () => {
   }, [location.state]);
 
   // =========================================
-  // DELETE STAFF
+  // OPEN DELETE CONFIRMATION MODAL
   // =========================================
   const handleDelete = (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this staff member?"
-    );
+    setOpenMenuId(null);
 
-    if (!confirmDelete) return;
+    setDeleteModal({
+      open: true,
+      id,
+      type: "confirm",
+      title: "Delete Staff Member?",
+      text: "Are you sure you want to delete this staff member? This action cannot be undone.",
+    });
+  };
+
+  // =========================================
+  // CONFIRM DELETE STAFF
+  // =========================================
+  const confirmDeleteStaff = (id) => {
+    setDeleteModal({
+      open: false,
+      id: null,
+      type: "confirm",
+      title: "",
+      text: "",
+    });
 
     fetch(
       `http://localhost/kkblossom/api.php/Adminapi/AdminTransport/deleteTransportStaff/${id}`
@@ -80,31 +106,51 @@ const TransportStaffPage = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
-          setMessage({
-            type: "success",
-            text: "Staff deleted successfully",
-          });
-
           setStaff((prevStaff) =>
             prevStaff.filter((item) => item.id !== id)
           );
+
+          setDeleteModal({
+            open: true,
+            id: null,
+            type: "success",
+            title: "Staff Deleted Successfully!",
+            text: "The transport staff member has been removed successfully.",
+          });
         } else {
-          setMessage({
+          setDeleteModal({
+            open: true,
+            id: null,
             type: "error",
-            text: "Failed to delete staff",
+            title: "Unable to Delete Staff",
+            text: "Failed to delete staff. Please try again.",
           });
         }
       })
       .catch((error) => {
         console.error("Error deleting staff:", error);
 
-        setMessage({
+        setDeleteModal({
+          open: true,
+          id: null,
           type: "error",
-          text: "Error deleting staff",
+          title: "Server Error",
+          text: "An error occurred while deleting staff. Please try again.",
         });
       });
+  };
 
-    setOpenMenuId(null);
+  // =========================================
+  // CLOSE DELETE MESSAGE MODAL
+  // =========================================
+  const closeDeleteModal = () => {
+    setDeleteModal({
+      open: false,
+      id: null,
+      type: "confirm",
+      title: "",
+      text: "",
+    });
   };
 
   // =========================================
@@ -563,6 +609,76 @@ const TransportStaffPage = () => {
       >
         <i className="las la-plus"></i>
       </button>
+
+      {/* =========================================
+          DELETE CONFIRMATION / RESULT MODAL
+      ========================================= */}
+
+      {deleteModal.open && (
+        <div
+          className="staff-message-overlay"
+          onClick={closeDeleteModal}
+        >
+          <div
+            className="staff-message-box"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="staff-message-title"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div
+              className={`staff-message-icon ${deleteModal.type}`}
+            >
+              <i
+                className={`las ${
+                  deleteModal.type === "success"
+                    ? "la-check"
+                    : deleteModal.type === "error"
+                    ? "la-exclamation"
+                    : "la-trash-alt"
+                }`}
+              ></i>
+            </div>
+
+            <h2 id="staff-message-title">
+              {deleteModal.title}
+            </h2>
+
+            <p>{deleteModal.text}</p>
+
+            {deleteModal.type === "confirm" ? (
+              <div className="staff-message-actions">
+                <button
+                  type="button"
+                  className="staff-message-cancel-btn"
+                  onClick={closeDeleteModal}
+                >
+                  Cancel
+                </button>
+
+                <button
+                  type="button"
+                  className="staff-message-confirm-btn"
+                  onClick={() =>
+                    confirmDeleteStaff(deleteModal.id)
+                  }
+                >
+                  <i className="las la-trash-alt"></i>
+                  Delete
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                className="staff-message-btn"
+                onClick={closeDeleteModal}
+              >
+                OK
+              </button>
+            )}
+          </div>
+        </div>
+      )}
 
     </div>
   );

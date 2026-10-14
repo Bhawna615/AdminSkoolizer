@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { submitAttendance } from "../AttendanceComponent/attendanceApi";
 import "./RollCall.css";
@@ -20,6 +20,29 @@ export default function RollCall() {
     );
 
     const [loading, setLoading] = useState(false);
+
+    // =========================
+    // MESSAGE POPUP
+    // =========================
+    const [message, setMessage] = useState("");
+    const [messageType, setMessageType] = useState("");
+
+    useEffect(() => {
+        if (messageType === "success") {
+            const timer = setTimeout(() => {
+                navigate(
+                    "/dashboard/AttendanceComponent/ViewAttendance",
+                    {
+                        state: {
+                            message: "Attendance Marked Successfully ✅",
+                        },
+                    }
+                );
+            }, 2500);
+
+            return () => clearTimeout(timer);
+        }
+    }, [messageType, navigate]);
 
     // =========================
     // CHANGE ATTENDANCE
@@ -50,7 +73,8 @@ export default function RollCall() {
     // =========================
     const submit = async () => {
         if (students.length === 0) {
-            alert("No students found.");
+            setMessage("No students found.");
+            setMessageType("error");
             return;
         }
 
@@ -64,20 +88,23 @@ export default function RollCall() {
                 date,
             });
 
-            navigate(
-                "/dashboard/AttendanceComponent/ViewAttendance",
-                {
-                    state: {
-                        message: "Attendance Marked Successfully ✅",
-                    },
-                }
-            );
+            setMessage("Attendance Marked Successfully!");
+            setMessageType("success");
         } catch (err) {
             console.log(err);
-            alert("Error while submitting attendance");
+            setMessage("Error while submitting attendance. Please try again.");
+            setMessageType("error");
         } finally {
             setLoading(false);
         }
+    };
+
+    // =========================
+    // CLOSE ERROR POPUP
+    // =========================
+    const closeMessage = () => {
+        setMessage("");
+        setMessageType("");
     };
 
     // =========================
@@ -520,6 +547,66 @@ export default function RollCall() {
                 )}
 
             </div>
+
+
+            {/* =================================================
+                SUCCESS / ERROR MESSAGE POPUP
+            ================================================= */}
+            {message && (
+
+                <div className="roll-call-message-overlay">
+
+                    <div
+                        className={`roll-call-message-popup ${
+                            messageType === "success"
+                                ? "roll-call-message-success"
+                                : "roll-call-message-error"
+                        }`}
+                        role="alertdialog"
+                        aria-modal="true"
+                    >
+
+                        <div className="roll-call-message-icon">
+                            <i
+                                className={
+                                    messageType === "success"
+                                        ? "bi bi-check-lg"
+                                        : "bi bi-x-lg"
+                                }
+                            ></i>
+                        </div>
+
+                        <h3>
+                            {messageType === "success"
+                                ? "Success!"
+                                : "Error!"}
+                        </h3>
+
+                        <p>{message}</p>
+
+                        {messageType === "success" ? (
+
+                            <div className="roll-call-message-progress">
+                                <div className="roll-call-message-progress-bar"></div>
+                            </div>
+
+                        ) : (
+
+                            <button
+                                type="button"
+                                className="roll-call-message-close"
+                                onClick={closeMessage}
+                            >
+                                Okay
+                            </button>
+
+                        )}
+
+                    </div>
+
+                </div>
+
+            )}
 
         </div>
     );

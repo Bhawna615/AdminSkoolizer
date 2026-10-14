@@ -727,3 +727,168 @@
   }
 
 }
+
+/* =========================================
+   ADD EVENT SUCCESS / ERROR MESSAGE POPUP
+   Unique class names
+========================================= */
+
+.add-event-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  box-sizing: border-box;
+
+  background: rgba(25, 18, 35, 0.48);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.add-event-modal {
+  width: 100%;
+  max-width: 420px;
+
+  padding: 30px 26px;
+  box-sizing: border-box;
+
+  text-align: center;
+
+  background: #ffffff;
+  border: 1px solid #e8def4;
+  border-radius: 18px;
+
+  box-shadow: 0 20px 60px rgba(40, 20, 65, 0.22);
+
+  animation: addEventModalAppear 0.22s ease-out;
+}
+
+.add-event-modal-icon {
+  width: 66px;
+  height: 66px;
+
+  margin: 0 auto 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  font-size: 32px;
+}
+
+.add-event-modal-icon.success {
+  color: #218838;
+  background: #e8f7ec;
+}
+
+.add-event-modal-icon.error {
+  color: #c0392b;
+  background: #fff0ee;
+}
+
+.add-event-modal h3 {
+  margin: 0 0 12px;
+
+  color: #38264e;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.add-event-modal p {
+  margin: 0;
+
+  color: #71667e;
+  font-size: 13px;
+  line-height: 1.75;
+
+  overflow-wrap: anywhere;
+}
+
+.add-event-modal-actions {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 26px;
+}
+
+.add-event-modal-ok-btn {
+  min-width: 130px;
+  min-height: 42px;
+
+  padding: 11px 22px;
+
+  border: none;
+  border-radius: 9px;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.add-event-modal-ok-btn.success {
+  background: #218838;
+}
+
+.add-event-modal-ok-btn.success:hover {
+  background: #19692c;
+  box-shadow: 0 5px 12px rgba(33, 136, 56, 0.2);
+  transform: translateY(-1px);
+}
+
+.add-event-modal-ok-btn.error {
+  background: #6d28d9;
+}
+
+.add-event-modal-ok-btn.error:hover {
+  background: #5b21b6;
+  transform: translateY(-1px);
+}
+
+.save-event-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@keyframes addEventModalAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .add-event-modal {
+    padding: 25px 18px;
+    border-radius: 15px;
+  }
+
+  .add-event-modal h3 {
+    font-size: 18px;
+  }
+
+  .add-event-modal p {
+    font-size: 12px;
+  }
+}

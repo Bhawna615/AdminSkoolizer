@@ -35,6 +35,11 @@ export default function EditAttendance() {
 
     const [loading, setLoading] = useState(false);
 
+    // Custom confirmation message box
+    const [showUpdateConfirmation, setShowUpdateConfirmation] = useState(false);
+    const [popupMessage, setPopupMessage] = useState("");
+    const [popupType, setPopupType] = useState("confirm");
+
     // =========================================================
     // CHANGE ATTENDANCE
     // =========================================================
@@ -92,11 +97,29 @@ export default function EditAttendance() {
     };
 
     // =========================================================
-    // SUBMIT UPDATED ATTENDANCE
+    // OPEN UPDATE CONFIRMATION BOX
     // =========================================================
-    const handleSubmit = async () => {
+    const handleSubmit = () => {
         if (students.length === 0) {
-            alert("No students found.");
+            setPopupType("error");
+            setPopupMessage("No students found.");
+            setShowUpdateConfirmation(true);
+            return;
+        }
+
+        setPopupType("confirm");
+        setPopupMessage(
+            "Are you sure you want to update attendance for this class and date? The existing attendance record will be updated."
+        );
+        setShowUpdateConfirmation(true);
+    };
+
+    // =========================================================
+    // CONFIRM AND SUBMIT UPDATED ATTENDANCE
+    // =========================================================
+    const confirmUpdateAttendance = async () => {
+        if (popupType === "error") {
+            setShowUpdateConfirmation(false);
             return;
         }
 
@@ -112,7 +135,7 @@ export default function EditAttendance() {
 
             await submitAttendance(payload);
 
-            alert("Attendance Updated Successfully ✅");
+            setShowUpdateConfirmation(false);
 
             navigate(
                 "/dashboard/AttendanceComponent/ViewAttendance",
@@ -124,7 +147,9 @@ export default function EditAttendance() {
             );
         } catch (err) {
             console.log(err);
-            alert("Error updating attendance");
+
+            setPopupType("error");
+            setPopupMessage("Error updating attendance. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -592,6 +617,94 @@ export default function EditAttendance() {
                 )}
 
             </div>
+
+            {/* =================================================
+                UPDATE ATTENDANCE CONFIRMATION MESSAGE BOX
+            ================================================= */}
+            {showUpdateConfirmation && (
+                <div
+                    className="edit-attendance-confirm-overlay"
+                    onClick={() => {
+                        if (!loading) {
+                            setShowUpdateConfirmation(false);
+                        }
+                    }}
+                >
+                    <div
+                        className="edit-attendance-confirm-modal"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="edit-attendance-confirm-title"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+
+                        <div
+                            className={`edit-attendance-confirm-icon ${
+                                popupType === "error" ? "error" : "confirm"
+                            }`}
+                        >
+                            <i
+                                className={
+                                    popupType === "error"
+                                        ? "bi bi-exclamation-circle-fill"
+                                        : "bi bi-clipboard-check-fill"
+                                }
+                            ></i>
+                        </div>
+
+                        <h3 id="edit-attendance-confirm-title">
+                            {popupType === "error"
+                                ? "Unable to Update"
+                                : "Confirm Attendance Update"}
+                        </h3>
+
+                        <p>{popupMessage}</p>
+
+                        <div className="edit-attendance-confirm-actions">
+
+                            {popupType === "confirm" && (
+                                <button
+                                    type="button"
+                                    className="edit-attendance-confirm-cancel"
+                                    onClick={() =>
+                                        setShowUpdateConfirmation(false)
+                                    }
+                                    disabled={loading}
+                                >
+                                    Cancel
+                                </button>
+                            )}
+
+                            <button
+                                type="button"
+                                className="edit-attendance-confirm-proceed"
+                                onClick={
+                                    popupType === "error"
+                                        ? () => setShowUpdateConfirmation(false)
+                                        : confirmUpdateAttendance
+                                }
+                                disabled={loading}
+                            >
+                                {loading ? (
+                                    <>
+                                        <span className="edit-attendance-confirm-spinner"></span>
+                                        Updating...
+                                    </>
+                                ) : popupType === "error" ? (
+                                    "OK"
+                                ) : (
+                                    <>
+                                        <i className="bi bi-check2-circle"></i>
+                                        {" "}Confirm Update
+                                    </>
+                                )}
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
+            )}
 
         </div>
     );

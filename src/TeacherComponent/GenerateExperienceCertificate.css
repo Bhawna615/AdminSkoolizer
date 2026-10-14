@@ -1,3 +1,4 @@
+
 /* =========================================================
    GENERATE EXPERIENCE CERTIFICATE
    PURPLE + WHITE PREMIUM ERP UI
@@ -135,6 +136,7 @@
 
 /* =========================================================
    SUCCESS / ERROR MESSAGE
+   Retained for compatibility with existing styles
 ========================================================= */
 
 .experience-message {
@@ -201,19 +203,15 @@
 
 
 @keyframes experience-message-show {
-
   from {
     opacity: 0;
-    transform:
-      translateY(-10px);
+    transform: translateY(-10px);
   }
 
   to {
     opacity: 1;
-    transform:
-      translateY(0);
+    transform: translateY(0);
   }
-
 }
 
 
@@ -520,8 +518,7 @@
 }
 
 .experience-generate-btn:hover:not(:disabled) {
-  transform:
-    translateY(-2px);
+  transform: translateY(-2px);
 
   box-shadow:
     0 15px 30px
@@ -529,8 +526,7 @@
 }
 
 .experience-generate-btn:active:not(:disabled) {
-  transform:
-    translateY(0);
+  transform: translateY(0);
 }
 
 .experience-generate-btn:disabled {
@@ -565,12 +561,320 @@
 }
 
 @keyframes experience-spin {
-
   to {
-    transform:
-      rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   CENTERED SUCCESS / ERROR MODAL
+========================================================= */
+
+.experience-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  box-sizing: border-box;
+
+  background: rgba(24, 17, 43, 0.42);
+
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+
+  animation: experience-modal-overlay-show 0.25s ease;
+}
+
+
+/* MODAL BOX */
+
+.experience-modal-popup {
+  position: relative;
+
+  width: 100%;
+  max-width: 430px;
+
+  padding: 38px 32px 30px;
+
+  box-sizing: border-box;
+
+  text-align: center;
+
+  background: #ffffff;
+
+  border-radius: 22px;
+
+  border: 1px solid #eee8f8;
+
+  box-shadow:
+    0 25px 80px
+    rgba(25, 15, 55, 0.25);
+
+  animation: experience-modal-popup-show 0.35s ease;
+}
+
+
+/* CLOSE ICON */
+
+.experience-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f5f2fa;
+  color: #817891;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.experience-modal-close:hover {
+  background: #ebe5f5;
+  color: #3c3155;
+}
+
+
+/* MODAL ICON */
+
+.experience-modal-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 82px;
+  height: 82px;
+
+  margin: 0 auto 20px;
+
+  border-radius: 50%;
+
+  font-size: 43px;
+}
+
+
+/* SUCCESS ICON */
+
+.experience-modal-success .experience-modal-icon {
+  color: #16a05d;
+
+  background: #e9fff2;
+
+  box-shadow:
+    0 0 0 9px
+    rgba(22, 160, 93, 0.08);
+
+  animation: experience-modal-icon-pop 0.45s ease;
+}
+
+
+/* ERROR ICON */
+
+.experience-modal-error .experience-modal-icon {
+  color: #e04452;
+
+  background: #fff0f1;
+
+  box-shadow:
+    0 0 0 9px
+    rgba(224, 68, 82, 0.07);
+
+  animation: experience-modal-icon-pop 0.45s ease;
+}
+
+
+/* MODAL HEADING */
+
+.experience-modal-popup h3 {
+  margin: 0 0 10px;
+
+  font-size: 24px;
+  font-weight: 750;
+
+  letter-spacing: -0.4px;
+}
+
+.experience-modal-success h3 {
+  color: #176b43;
+}
+
+.experience-modal-error h3 {
+  color: #b92f40;
+}
+
+
+/* MODAL MESSAGE */
+
+.experience-modal-popup p {
+  margin: 0 auto 24px;
+
+  max-width: 330px;
+
+  color: #777087;
+
+  font-size: 14px;
+  line-height: 1.7;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* SUCCESS PROGRESS TRACK */
+
+.experience-modal-progress-track {
+  width: 100%;
+  height: 5px;
+
+  overflow: hidden;
+
+  margin: 0 auto 12px;
+
+  border-radius: 20px;
+
+  background: #e8f5ed;
+}
+
+
+/* SUCCESS PROGRESS BAR */
+
+.experience-modal-progress-bar {
+  width: 100%;
+  height: 100%;
+
+  border-radius: 20px;
+
+  background: linear-gradient(
+    90deg,
+    #16a05d,
+    #54d994
+  );
+
+  transform-origin: left;
+
+  animation: experience-modal-progress 2.5s linear forwards;
+}
+
+
+/* REDIRECTING TEXT */
+
+.experience-modal-note {
+  display: block;
+
+  color: #8b849b;
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+
+/* ERROR OKAY BUTTON */
+
+.experience-modal-okay-btn {
+  min-width: 120px;
+  height: 43px;
+
+  padding: 0 25px;
+
+  border: none;
+  border-radius: 10px;
+
+  color: #ffffff;
+
+  background: linear-gradient(
+    135deg,
+    #6d28d9,
+    #9333ea
+  );
+
+  box-shadow:
+    0 8px 20px
+    rgba(109, 40, 217, 0.22);
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.experience-modal-okay-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 25px
+    rgba(109, 40, 217, 0.30);
+}
+
+
+/* =========================================================
+   MODAL ANIMATIONS
+========================================================= */
+
+@keyframes experience-modal-overlay-show {
+  from {
+    opacity: 0;
   }
 
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes experience-modal-popup-show {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes experience-modal-icon-pop {
+  0% {
+    transform: scale(0.65);
+    opacity: 0.5;
+  }
+
+  70% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes experience-modal-progress {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
 }
 
 
@@ -579,55 +883,42 @@
 ========================================================= */
 
 @media (max-width: 768px) {
-
   .experience-container {
     padding: 20px 15px 35px;
   }
 
-
   .experience-page-header {
     flex-direction: column;
-
     align-items: flex-start;
   }
-
 
   .experience-back-btn {
     width: 100%;
     justify-content: center;
   }
 
-
   .experience-form-grid {
-    grid-template-columns:
-      1fr;
-
+    grid-template-columns: 1fr;
     gap: 20px;
   }
-
 
   .experience-card-header {
     padding: 22px 20px;
   }
 
-
   .experience-body {
     padding: 25px 20px;
   }
 
-
   .experience-submit-area {
     flex-direction: column-reverse;
-
     align-items: stretch;
   }
-
 
   .experience-cancel-btn,
   .experience-generate-btn {
     width: 100%;
   }
-
 }
 
 
@@ -636,16 +927,13 @@
 ========================================================= */
 
 @media (max-width: 480px) {
-
   .experience-container {
     padding: 14px 10px 30px;
   }
 
-
   .experience-title-section {
     align-items: flex-start;
   }
-
 
   .experience-header-icon {
     width: 50px;
@@ -658,43 +946,34 @@
     font-size: 21px;
   }
 
-
   .experience-title-section h2 {
     font-size: 20px;
   }
 
-
   .experience-title-section p {
     font-size: 12px;
-
     line-height: 1.5;
   }
-
 
   .experience-card {
     border-radius: 17px;
   }
 
-
   .experience-card-header {
     padding: 18px 15px;
   }
-
 
   .experience-body {
     padding: 20px 15px;
   }
 
-
   .experience-card-heading h3 {
     font-size: 17px;
   }
 
-
   .experience-card-heading p {
     font-size: 12px;
   }
-
 
   .experience-card-icon {
     width: 42px;
@@ -703,16 +982,32 @@
     font-size: 18px;
   }
 
-
   .experience-form-input {
     height: 46px;
   }
 
-
   .experience-submit-area {
     margin-top: 26px;
-
     padding-top: 20px;
   }
 
+  .experience-modal-popup {
+    max-width: 360px;
+    padding: 35px 22px 26px;
+    border-radius: 19px;
+  }
+
+  .experience-modal-icon {
+    width: 72px;
+    height: 72px;
+    font-size: 38px;
+  }
+
+  .experience-modal-popup h3 {
+    font-size: 21px;
+  }
+
+  .experience-modal-popup p {
+    font-size: 13px;
+  }
 }

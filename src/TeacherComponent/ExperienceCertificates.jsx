@@ -115,7 +115,7 @@ const ExperienceCertificates = () => {
       </div>
 
 
-      {/* ================= SUCCESS MESSAGE ================= */}
+      {/* ================= SUCCESS MESSAGE =================
 
       {showMessage && certificates.length > 0 && (
 
@@ -146,7 +146,7 @@ const ExperienceCertificates = () => {
 
         </div>
 
-      )}
+      )} */}
 
 
       {/* ================= MAIN CARD ================= */}

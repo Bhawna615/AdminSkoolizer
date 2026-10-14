@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import "./ViewAttendance.css";
@@ -23,6 +24,10 @@ export default function ViewAttendance() {
 
     const [filterEnabled, setFilterEnabled] = useState(false);
     const [message, setMessage] = useState("");
+
+    // Custom edit confirmation message box
+    const [showEditConfirmation, setShowEditConfirmation] = useState(false);
+    const [selectedAttendance, setSelectedAttendance] = useState(null);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -118,15 +123,22 @@ export default function ViewAttendance() {
     };
 
     // ================= EDIT ATTENDANCE =================
-    const remarkAttendance = async (row) => {
+    // Open custom confirmation message box
+    const remarkAttendance = (row) => {
+        setSelectedAttendance(row);
+        setShowEditConfirmation(true);
+    };
 
-        const confirmEdit = window.confirm(
-            "Already marked attendance will be removed. Continue?"
-        );
+    // Continue editing after confirmation
+    const confirmEditAttendance = async () => {
 
-        if (!confirmEdit) {
+        if (!selectedAttendance) {
             return;
         }
+
+        const row = selectedAttendance;
+
+        setShowEditConfirmation(false);
 
         try {
 
@@ -149,7 +161,7 @@ export default function ViewAttendance() {
 
         } catch (error) {
             console.log("Edit attendance error:", error);
-            alert("Unable to edit attendance.");
+            setMessage("Unable to edit attendance.");
         }
     };
 
@@ -205,6 +217,7 @@ export default function ViewAttendance() {
             cell: (row) => (
                 <div className="view-attendance-action-wrapper">
 
+                    {/* VIEW ATTENDANCE */}
                     <button
                         type="button"
                         className="view-attendance-action-btn view-attendance-view-btn"
@@ -215,6 +228,7 @@ export default function ViewAttendance() {
                         <i className="bi bi-eye-fill"></i>
                     </button>
 
+                    {/* EDIT ATTENDANCE */}
                     <button
                         type="button"
                         className="view-attendance-action-btn view-attendance-view-btn"
@@ -359,7 +373,7 @@ export default function ViewAttendance() {
 
             </div>
 
-            {/* ================= SUCCESS MESSAGE ================= */}
+            {/* ================= SUCCESS MESSAGE =================
             {message && (
                 <div className="view-attendance-success-message">
 
@@ -381,7 +395,7 @@ export default function ViewAttendance() {
                     </button>
 
                 </div>
-            )}
+            )} */}
 
             {/* ================= FILTER CARD ================= */}
             <div className="view-attendance-filter-card">
@@ -626,7 +640,7 @@ export default function ViewAttendance() {
 
                         <span className="view-attendance-legend-item">
                             <span className="view-attendance-legend-icon view-attendance-legend-edit">
-                                <i className="bi bi-trash-fill"></i>
+                                <i className="bi bi-pencil-square"></i>
                             </span>
                             Edit Attendance
                         </span>
@@ -636,6 +650,60 @@ export default function ViewAttendance() {
                 </div>
 
             </div>
+
+            {/* ================= EDIT ATTENDANCE CONFIRMATION BOX ================= */}
+            {showEditConfirmation && selectedAttendance && (
+                <div
+                    className="view-attendance-confirm-overlay"
+                    onClick={() => setShowEditConfirmation(false)}
+                >
+                    <div
+                        className="view-attendance-confirm-modal"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="view-attendance-confirm-title"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+
+                        <div className="view-attendance-confirm-icon">
+                            <i className="bi bi-pencil-square"></i>
+                        </div>
+
+                        <h3 id="view-attendance-confirm-title">
+                            Edit Attendance
+                        </h3>
+
+                        <p>
+                            Do you want to edit the attendance for{" "}
+                            <strong>{selectedAttendance.Class}</strong> on{" "}
+                            <strong>{selectedAttendance.Date}</strong>?
+                            Already marked attendance will be removed.
+                        </p>
+
+                        <div className="view-attendance-confirm-actions">
+
+                            <button
+                                type="button"
+                                className="view-attendance-confirm-cancel"
+                                onClick={() => setShowEditConfirmation(false)}
+                            >
+                                Cancel
+                            </button>
+
+                            <button
+                                type="button"
+                                className="view-attendance-confirm-proceed"
+                                onClick={confirmEditAttendance}
+                            >
+                                <i className="bi bi-pencil-square"></i>
+                                {" "}Continue
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
+            )}
 
         </div>
     );

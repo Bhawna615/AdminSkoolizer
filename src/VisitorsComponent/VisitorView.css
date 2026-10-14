@@ -343,3 +343,204 @@
     padding: 9px 15px;
   }
 }
+/* =========================================================
+   VISITOR MESSAGE BOX OVERLAY
+========================================================= */
+
+.visitor-message-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 25, 45, 0.42);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* =========================================================
+   MESSAGE BOX
+========================================================= */
+
+.visitor-message-box {
+  position: relative;
+  width: 380px;
+  min-height: 260px;
+  padding: 32px 30px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 18px 50px rgba(48, 43, 67, 0.22);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: visitorMessageShow 0.2s ease-out;
+}
+
+@keyframes visitorMessageShow {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================================================
+   MESSAGE ICON
+========================================================= */
+
+.visitor-message-icon {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: #eeeafd;
+  color: #7657e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.visitor-message-icon i {
+  font-size: 30px;
+}
+
+/* =========================================================
+   MESSAGE CONTENT
+========================================================= */
+
+.visitor-message-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.visitor-message-content strong {
+  color: #302b43;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.visitor-message-content span {
+  color: #777084;
+  font-size: 12px;
+  line-height: 1.6;
+  max-width: 290px;
+}
+
+/* =========================================================
+   MESSAGE ACTIONS
+========================================================= */
+
+.visitor-message-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+/* =========================================================
+   CANCEL BUTTON
+========================================================= */
+
+.visitor-message-cancel {
+  min-width: 95px;
+  padding: 10px 18px;
+  border: 1px solid #ddd8e8;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #70687e;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.visitor-message-cancel:hover {
+  background: #f7f5fa;
+  border-color: #cfc8dc;
+}
+
+/* =========================================================
+   CONTINUE / YES EXIT BUTTON
+========================================================= */
+
+.visitor-message-continue {
+  min-width: 110px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background: #7657e8;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.visitor-message-continue:hover {
+  background: #6547d5;
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.visitor-message-close {
+  margin-top: 22px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: #f3f1f7;
+  color: #777084;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.visitor-message-close:hover {
+  background: #e9e5f0;
+  color: #302b43;
+}
+
+.visitor-message-close i {
+  font-size: 18px;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .visitor-message-box {
+    width: calc(100% - 32px);
+    max-width: 380px;
+    padding: 28px 22px;
+  }
+
+  .visitor-message-actions {
+    width: 100%;
+  }
+
+  .visitor-message-cancel,
+  .visitor-message-continue {
+    flex: 1;
+  }
+}

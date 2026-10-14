@@ -1,3 +1,4 @@
+
 import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
@@ -16,6 +17,15 @@ const AddPassengers = () => {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [search, setSearch] = useState("");
+
+  // Custom message box state
+  const [messageBox, setMessageBox] = useState({
+    visible: false,
+    type: "success",
+    title: "",
+    message: "",
+    redirect: false,
+  });
 
   /* =====================================================
      FETCH STUDENTS
@@ -104,16 +114,57 @@ const AddPassengers = () => {
   };
 
   /* =====================================================
+     CUSTOM MESSAGE BOX
+  ===================================================== */
+  const showMessage = (
+    type,
+    title,
+    message,
+    redirect = false
+  ) => {
+    setMessageBox({
+      visible: true,
+      type,
+      title,
+      message,
+      redirect,
+    });
+  };
+
+  const closeMessage = () => {
+    const shouldRedirect = messageBox.redirect;
+
+    setMessageBox((prev) => ({
+      ...prev,
+      visible: false,
+    }));
+
+    if (shouldRedirect) {
+      navigate(-1);
+    }
+  };
+
+  /* =====================================================
      SUBMIT
   ===================================================== */
   const submit = async () => {
+    if (submitting) return;
+
     if (!stationId) {
-      alert("Station ID is missing from the URL");
+      showMessage(
+        "error",
+        "Station ID Missing",
+        "Station ID is missing from the URL. Please go back and open the station again."
+      );
       return;
     }
 
     if (selected.length === 0) {
-      alert("Please select at least one student");
+      showMessage(
+        "warning",
+        "No Students Selected",
+        "Please select at least one student before adding passengers."
+      );
       return;
     }
 
@@ -129,19 +180,29 @@ const AddPassengers = () => {
       );
 
       if (response.data.status) {
-        alert("Passengers added successfully");
-        navigate(-1);
+        showMessage(
+          "success",
+          "Passengers Added Successfully!",
+          `${selected.length} ${
+            selected.length === 1 ? "student has" : "students have"
+          } been added to this transport station.`,
+          true
+        );
       } else {
-        alert(
-          "Error: " +
-            (response.data.message || "Unable to add passengers")
+        showMessage(
+          "error",
+          "Unable to Add Passengers",
+          response.data.message || "Unable to add passengers. Please try again."
         );
       }
     } catch (error) {
       console.error("Submission error:", error);
 
-      alert(
-        "Failed to add passengers. Check connection to backend."
+      showMessage(
+        "error",
+        "Something Went Wrong",
+        error.response?.data?.message ||
+          "Failed to add passengers. Please check your connection and try again."
       );
     } finally {
       setSubmitting(false);
@@ -493,9 +554,7 @@ const AddPassengers = () => {
                             type="checkbox"
                             checked={isSelected}
                             onChange={() =>
-                              handleCheck(
-                                student.id
-                              )
+                              handleCheck(student.id)
                             }
                           />
 
@@ -646,6 +705,55 @@ const AddPassengers = () => {
         )}
 
       </div>
+
+      {/* =================================================
+          CUSTOM MESSAGE BOX
+      ================================================= */}
+      {messageBox.visible && (
+        <div
+          className="passenger-message-overlay"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              closeMessage();
+            }
+          }}
+        >
+          <div
+            className={`passenger-message-box passenger-message-${messageBox.type}`}
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="passenger-message-title"
+            aria-describedby="passenger-message-description"
+          >
+            <div className="passenger-message-icon">
+              {messageBox.type === "success" ? (
+                <i className="las la-check"></i>
+              ) : messageBox.type === "warning" ? (
+                <i className="las la-exclamation"></i>
+              ) : (
+                <i className="las la-times"></i>
+              )}
+            </div>
+
+            <h2 id="passenger-message-title">
+              {messageBox.title}
+            </h2>
+
+            <p id="passenger-message-description">
+              {messageBox.message}
+            </p>
+
+            <button
+              type="button"
+              className="passenger-message-button"
+              onClick={closeMessage}
+              autoFocus
+            >
+              {messageBox.redirect ? "Done" : "OK"}
+            </button>
+          </div>
+        </div>
+      )}
 
     </div>
   );

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./RoutesPage.css";
@@ -6,6 +7,14 @@ const RoutesPage = () => {
   const [routes, setRoutes] = useState([]);
   const [openMenuId, setOpenMenuId] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  // Custom delete confirmation / status message box
+  const [showMessageBox, setShowMessageBox] = useState(false);
+  const [messageType, setMessageType] = useState("confirm");
+  const [messageText, setMessageText] = useState("");
+  const [selectedRouteId, setSelectedRouteId] = useState(null);
+  const [selectedRouteName, setSelectedRouteName] = useState("");
+  const [deleting, setDeleting] = useState(false);
 
   const navigate = useNavigate();
 
@@ -35,25 +44,62 @@ const RoutesPage = () => {
     setOpenMenuId(openMenuId === id ? null : id);
   };
 
-  // Delete route
-  const deleteRoute = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this route?")) {
-      return;
-    }
+  // Show custom delete confirmation message box
+  const deleteRoute = (id) => {
+    const route = routes.find((r) => r.id === id);
+
+    setSelectedRouteId(id);
+    setSelectedRouteName(route?.routename || "");
+    setMessageType("confirm");
+    setMessageText(
+      `Are you sure you want to delete the route "${route?.routename || ""}"? This action cannot be undone.`
+    );
+    setShowMessageBox(true);
+    setOpenMenuId(null);
+  };
+
+  // Confirm and delete route
+  const confirmDeleteRoute = async () => {
+    if (deleting || selectedRouteId === null) return;
 
     try {
-      await fetch(
-        `http://localhost/kkblossom/api.php/Adminapi/AdminTransport/deleteRoute/${id}`
+      setDeleting(true);
+
+      const response = await fetch(
+        `http://localhost/kkblossom/api.php/Adminapi/AdminTransport/deleteRoute/${selectedRouteId}`
       );
+
+      if (!response.ok) {
+        throw new Error("Failed to delete route.");
+      }
 
       setRoutes((prevRoutes) =>
-        prevRoutes.filter((r) => r.id !== id)
+        prevRoutes.filter((r) => r.id !== selectedRouteId)
       );
 
-      setOpenMenuId(null);
+      setMessageType("success");
+      setMessageText(
+        `The route "${selectedRouteName}" has been deleted successfully.`
+      );
     } catch (error) {
       console.error("Error deleting route:", error);
+
+      setMessageType("error");
+      setMessageText(
+        "Something went wrong while deleting the route. Please try again."
+      );
+    } finally {
+      setDeleting(false);
     }
+  };
+
+  // Close custom message box
+  const closeMessageBox = () => {
+    if (deleting) return;
+
+    setShowMessageBox(false);
+    setSelectedRouteId(null);
+    setSelectedRouteName("");
   };
 
   return (
@@ -115,7 +161,6 @@ const RoutesPage = () => {
 
         </div>
 
-
         <div className="route-summary-card">
 
           <div className="route-summary-icon passengers-icon">
@@ -142,7 +187,6 @@ const RoutesPage = () => {
 
         </div>
 
-
         <div className="route-info-card">
 
           <div className="route-info-icon">
@@ -160,7 +204,6 @@ const RoutesPage = () => {
         </div>
 
       </div>
-
 
       {/* ================= SECTION HEADER ================= */}
       <div className="routes-section-header">
@@ -183,7 +226,6 @@ const RoutesPage = () => {
         </div>
 
       </div>
-
 
       {/* ================= LOADING ================= */}
       {loading ? (
@@ -283,7 +325,6 @@ const RoutesPage = () => {
 
               </div>
 
-
               {/* Route body */}
               <div className="route-card-body">
 
@@ -305,7 +346,6 @@ const RoutesPage = () => {
 
                 </div>
 
-
                 {/* Route details */}
                 <div className="route-details">
 
@@ -321,7 +361,6 @@ const RoutesPage = () => {
                     </div>
 
                   </div>
-
 
                   <div className="route-detail">
 
@@ -339,7 +378,6 @@ const RoutesPage = () => {
                   </div>
 
                 </div>
-
 
                 {/* Passenger indicator */}
                 <div className="passenger-section">
@@ -370,7 +408,6 @@ const RoutesPage = () => {
 
               </div>
 
-
               {/* Card footer */}
               <div className="route-card-footer">
 
@@ -393,7 +430,6 @@ const RoutesPage = () => {
 
       )}
 
-
       {/* ================= FLOATING ADD BUTTON ================= */}
       <button
         className="floating-add-route"
@@ -404,6 +440,88 @@ const RoutesPage = () => {
       >
         <i className="las la-plus"></i>
       </button>
+
+      {/* ================= CUSTOM DELETE MESSAGE BOX ================= */}
+      {showMessageBox && (
+        <div
+          className="rp-message-overlay"
+          onClick={closeMessageBox}
+        >
+          <div
+            className={`rp-message-modal rp-message-modal-${messageType}`}
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="rp-message-modal-title"
+          >
+            <div className="rp-message-modal-icon">
+              <i
+                className={
+                  messageType === "confirm"
+                    ? "las la-question-circle"
+                    : messageType === "success"
+                    ? "las la-check-circle"
+                    : "las la-exclamation-circle"
+                }
+              ></i>
+            </div>
+
+            <h2 id="rp-message-modal-title">
+              {messageType === "confirm"
+                ? "Confirm Delete"
+                : messageType === "success"
+                ? "Route Deleted Successfully"
+                : "Unable to Delete Route"}
+            </h2>
+
+            <p>{messageText}</p>
+
+            <div className="rp-message-modal-actions">
+              {messageType === "confirm" ? (
+                <>
+                  <button
+                    type="button"
+                    className="rp-message-modal-cancel"
+                    onClick={closeMessageBox}
+                    disabled={deleting}
+                  >
+                    Cancel
+                  </button>
+
+                  <button
+                    type="button"
+                    className="rp-message-modal-confirm-btn"
+                    onClick={confirmDeleteRoute}
+                    disabled={deleting}
+                  >
+                    {deleting ? (
+                      <>
+                        <span className="rp-message-modal-spinner"></span>
+                        Deleting...
+                      </>
+                    ) : (
+                      <>
+                        <i className="las la-trash-alt"></i>
+                        Delete Route
+                      </>
+                    )}
+                  </button>
+                </>
+              ) : (
+                <button
+                  type="button"
+                  className="rp-message-modal-confirm"
+                  onClick={closeMessageBox}
+                  disabled={deleting}
+                  style={{padding:"15px 25px",backgroundColor:"#16a34a",borderRadius:"15px",color:"white"}}
+                >
+                  {messageType === "success" ? "Done" : "OK"}
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

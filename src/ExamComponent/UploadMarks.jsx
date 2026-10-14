@@ -1,3 +1,4 @@
+
 import React, { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -18,8 +19,50 @@ const UploadMarks = () => {
   const [search, setSearch] = useState("");
   const [error, setError] = useState("");
 
+  // =========================================================
+  // CUSTOM MESSAGE BOX
+  // =========================================================
+  const [showMessage, setShowMessage] = useState(false);
+  const [messageType, setMessageType] = useState("success");
+  const [messageTitle, setMessageTitle] = useState("");
+  const [messageText, setMessageText] = useState("");
+  const [messageAction, setMessageAction] = useState(null);
+
   const BASE_URL =
     "http://localhost/kkblossom/api.php/Adminapi/AdminExam/";
+
+  // =========================================================
+  // SHOW CUSTOM MESSAGE
+  // =========================================================
+  const showCustomMessage = (
+    type,
+    title,
+    text,
+    action = null
+  ) => {
+    setMessageType(type);
+    setMessageTitle(title);
+    setMessageText(text);
+    setMessageAction(() => action);
+    setShowMessage(true);
+  };
+
+  // =========================================================
+  // CLOSE CUSTOM MESSAGE
+  // =========================================================
+  const closeMessage = () => {
+    if (uploading) return;
+
+    setShowMessage(false);
+
+    if (messageAction) {
+      const action = messageAction;
+      setMessageAction(null);
+      action();
+    } else {
+      setMessageAction(null);
+    }
+  };
 
   // =========================================================
   // LOAD STUDENTS
@@ -136,7 +179,11 @@ const UploadMarks = () => {
     e.preventDefault();
 
     if (students.length === 0) {
-      alert("No students available.");
+      showCustomMessage(
+        "error",
+        "No Students Available!",
+        "There are no students available to upload marks for."
+      );
       return;
     }
 
@@ -165,27 +212,36 @@ const UploadMarks = () => {
       );
 
       if (res.data.status) {
-        alert("Successfully Uploaded!");
-
-        navigate(
-          "/dashboard/ExamComponent/view-exams",
-          {
-            state: {
-              class: selectedClass,
-              examType: examType,
-            },
+        showCustomMessage(
+          "success",
+          "Marks Uploaded Successfully!",
+          "The marks for all students have been uploaded successfully.",
+          () => {
+            navigate(
+              "/dashboard/ExamComponent/view-exams",
+              {
+                state: {
+                  class: selectedClass,
+                  examType: examType,
+                },
+              }
+            );
           }
         );
       } else {
-        alert(
+        showCustomMessage(
+          "error",
+          "Upload Failed!",
           res.data.message ||
-            "Failed to Upload!"
+            "Failed to upload marks. Please try again."
         );
       }
     } catch (err) {
       console.error("Upload error:", err);
 
-      alert(
+      showCustomMessage(
+        "error",
+        "Something Went Wrong!",
         "Unable to upload marks. Please check your connection and try again."
       );
     } finally {
@@ -764,6 +820,52 @@ const UploadMarks = () => {
         </div>
 
       </div>
+
+      {/* =====================================================
+          CUSTOM SUCCESS / ERROR MESSAGE BOX
+      ===================================================== */}
+      {showMessage && (
+        <div
+          className="upload-message-overlay"
+          onClick={(e) => {
+            if (e.target === e.currentTarget && !uploading) {
+              closeMessage();
+            }
+          }}
+        >
+          <div
+            className={`upload-message-box upload-message-${messageType}`}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="upload-message-title"
+          >
+            <div className="upload-message-icon">
+              {messageType === "success" ? (
+                <i className="bi bi-check-lg"></i>
+              ) : (
+                <i className="bi bi-exclamation-lg"></i>
+              )}
+            </div>
+
+            <h2 id="upload-message-title">
+              {messageTitle}
+            </h2>
+
+            <p>
+              {messageText}
+            </p>
+
+            <button
+              type="button"
+              className="upload-message-button"
+              onClick={closeMessage}
+              disabled={uploading}
+            >
+              Okay
+            </button>
+          </div>
+        </div>
+      )}
 
     </div>
   );

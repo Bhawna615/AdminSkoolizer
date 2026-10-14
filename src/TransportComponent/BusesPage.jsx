@@ -12,6 +12,14 @@ const BusesPage = () => {
 
   const [message, setMessage] = useState(location.state?.success || "");
 
+  // Custom delete confirmation modal
+  const [deleteModal, setDeleteModal] = useState({
+    open: false,
+    id: null,
+  });
+  const [deletingBus, setDeletingBus] = useState(false);
+  const [deleteResult, setDeleteResult] = useState("");
+
   // Fetch buses
   const fetchBuses = async () => {
     try {
@@ -22,7 +30,6 @@ const BusesPage = () => {
       );
 
       const data = await res.json();
-
       setBuses(data.data || []);
     } catch (error) {
       console.error("Error fetching buses:", error);
@@ -40,35 +47,52 @@ const BusesPage = () => {
     setOpenMenuId(openMenuId === id ? null : id);
   };
 
-  // Delete bus
-  const deleteBus = async (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this bus?"
-    );
+  // Open custom delete confirmation modal
+  const deleteBus = (id) => {
+    setOpenMenuId(null);
+    setDeleteModal({ open: true, id });
+    setDeleteResult("");
+  };
 
-    if (!confirmDelete) return;
+  // Close modal
+  const closeDeleteModal = () => {
+    if (deletingBus) return;
+
+    setDeleteModal({ open: false, id: null });
+    setDeleteResult("");
+  };
+
+  // Confirm bus deletion
+  const confirmDeleteBus = async () => {
+    if (deleteModal.id == null) return;
 
     try {
+      setDeletingBus(true);
+
       const res = await fetch(
-        `http://localhost/kkblossom/api.php/Adminapi/AdminTransport/deleteBus/${id}`
+        `http://localhost/kkblossom/api.php/Adminapi/AdminTransport/deleteBus/${deleteModal.id}`
       );
 
       const data = await res.json();
 
       if (data.status) {
-        setBuses((prev) => prev.filter((b) => b.id !== id));
-        setOpenMenuId(null);
-        setMessage("Bus deleted successfully.");
+        setBuses((prev) =>
+          prev.filter(
+            (bus) => String(bus.id) !== String(deleteModal.id)
+          )
+        );
 
-        setTimeout(() => {
-          setMessage("");
-        }, 3000);
+        setOpenMenuId(null);
+        setDeleteResult("success");
+        setMessage("Bus deleted successfully.");
       } else {
-        alert("Failed to delete bus.");
+        setDeleteResult("error");
       }
     } catch (error) {
       console.error("Error deleting bus:", error);
-      alert("Something went wrong while deleting the bus.");
+      setDeleteResult("error");
+    } finally {
+      setDeletingBus(false);
     }
   };
 
@@ -112,9 +136,7 @@ const BusesPage = () => {
 
             <h1>School Buses</h1>
 
-            <p>
-              Manage your school's transportation fleet
-            </p>
+            <p>Manage your school's transportation fleet</p>
           </div>
         </div>
 
@@ -220,9 +242,7 @@ const BusesPage = () => {
 
             <h2>Bus Directory</h2>
 
-            <p>
-              View and manage all registered school buses.
-            </p>
+            <p>View and manage all registered school buses.</p>
           </div>
 
           <div className="fleet-count">
@@ -289,9 +309,7 @@ const BusesPage = () => {
                   {/* Dropdown */}
                   {openMenuId === b.id && (
                     <div className="bus-dropdown">
-                      <button
-                        onClick={() => deleteBus(b.id)}
-                      >
+                      <button onClick={() => deleteBus(b.id)}>
                         <i className="las la-trash"></i>
                         Delete Bus
                       </button>
@@ -355,9 +373,7 @@ const BusesPage = () => {
 
                     <div>
                       <span>Fuel Tank</span>
-                      <strong>
-                        {b.fueltankcapacity || "0"} L
-                      </strong>
+                      <strong>{b.fueltankcapacity || "0"} L</strong>
                     </div>
                   </div>
 
@@ -398,6 +414,123 @@ const BusesPage = () => {
       >
         <i className="las la-plus"></i>
       </button>
+
+      {/* ================= DELETE CONFIRMATION MODAL ================= */}
+      {deleteModal.open && (
+        <div
+          className="bus-delete-modal-overlay"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) {
+              closeDeleteModal();
+            }
+          }}
+        >
+          <div
+            className="bus-delete-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="bus-delete-modal-title"
+          >
+            <div
+              className={`bus-delete-modal-icon ${
+                deleteResult === "success"
+                  ? "bus-delete-success-icon"
+                  : deleteResult === "error"
+                  ? "bus-delete-error-icon"
+                  : "bus-delete-warning-icon"
+              }`}
+            >
+              <i
+                className={`las ${
+                  deleteResult === "success"
+                    ? "la-check"
+                    : deleteResult === "error"
+                    ? "la-times"
+                    : "la-trash"
+                }`}
+              ></i>
+            </div>
+
+            <span className="bus-delete-modal-eyebrow">
+              TRANSPORT MANAGEMENT
+            </span>
+
+            <h3 id="bus-delete-modal-title">
+              {deleteResult === "success"
+                ? "Bus Deleted Successfully"
+                : deleteResult === "error"
+                ? "Deletion Failed"
+                : "Delete This Bus?"}
+            </h3>
+
+            <p>
+              {deleteResult === "success"
+                ? "The bus has been successfully removed from your transport fleet."
+                : deleteResult === "error"
+                ? "We couldn't delete this bus. Please try again."
+                : "Are you sure you want to delete this bus? This action cannot be undone."}
+            </p>
+
+            <div className="bus-delete-modal-actions">
+              {deleteResult === "" && (
+                <>
+                  <button
+                    type="button"
+                    className="bus-delete-secondary-btn"
+                    onClick={closeDeleteModal}
+                    disabled={deletingBus}
+                  >
+                    Cancel
+                  </button>
+
+                  <button
+                    type="button"
+                    className="bus-delete-danger-btn"
+                    onClick={confirmDeleteBus}
+                    disabled={deletingBus}
+                  >
+                    <i className="las la-trash"></i>
+                    {deletingBus ? "Deleting..." : "Delete Bus"}
+                  </button>
+                </>
+              )}
+
+              {deleteResult === "success" && (
+                <button
+                  type="button"
+                  className="bus-delete-primary-btn"
+                  onClick={() => {
+                    setDeleteModal({ open: false, id: null });
+                    setDeleteResult("");
+                  }}
+                >
+                  Okay
+                </button>
+              )}
+
+              {deleteResult === "error" && (
+                <>
+                  <button
+                    type="button"
+                    className="bus-delete-secondary-btn"
+                    onClick={closeDeleteModal}
+                  >
+                    Cancel
+                  </button>
+
+                  <button
+                    type="button"
+                    className="bus-delete-primary-btn"
+                    onClick={() => setDeleteResult("")}
+                  >
+                    Try Again
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

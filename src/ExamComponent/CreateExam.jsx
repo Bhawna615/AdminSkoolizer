@@ -16,6 +16,44 @@ const CreateExam = () => {
   const [loading, setLoading] = useState(false);
   const [loadingText, setLoadingText] = useState("Loading...");
 
+  // Custom message box
+  const [messageBox, setMessageBox] = useState({
+    visible: false,
+    type: "success",
+    title: "",
+    message: "",
+    redirect: false,
+  });
+
+  const showMessage = (type, title, message, redirect = false) => {
+    setMessageBox({
+      visible: true,
+      type,
+      title,
+      message,
+      redirect,
+    });
+  };
+
+  const closeMessage = () => {
+    const shouldRedirect = messageBox.redirect;
+
+    setMessageBox((prev) => ({
+      ...prev,
+      visible: false,
+    }));
+
+    if (shouldRedirect) {
+      navigate("/dashboard/ExamComponent/view-exams", {
+        state: {
+          class: selectedClass,
+          examType: form.type,
+          successMessage: "Exam Created Successfully",
+        },
+      });
+    }
+  };
+
   const [form, setForm] = useState({
     subject: "",
     teacher: "",
@@ -55,11 +93,22 @@ const CreateExam = () => {
             }));
           }
         } else {
-          alert(res.data.message);
+          showMessage(
+            "error",
+            "Unable to Load Exam Details",
+            res.data.message || "Could not load subjects and teachers."
+          );
         }
       })
       .catch((err) => {
         console.error("Error fetching exam details:", err);
+
+        showMessage(
+          "error",
+          "Something Went Wrong",
+          err.response?.data?.message ||
+            "Unable to fetch exam details. Please try again."
+        );
       });
   }, [selectedClass, navigate]);
 
@@ -73,6 +122,20 @@ const CreateExam = () => {
       !form.date ||
       !form.topic
     ) {
+      showMessage(
+        "warning",
+        "Required Fields Missing",
+        "Please fill in all required fields before creating the exam."
+      );
+      return;
+    }
+
+    if (Number(form.marks) < 1) {
+      showMessage(
+        "warning",
+        "Invalid Maximum Marks",
+        "Maximum marks must be at least 1."
+      );
       return;
     }
 
@@ -92,21 +155,31 @@ const CreateExam = () => {
       setLoadingText("Sending Notifications...");
 
       if (res.data.status) {
-        // Exam created successfully
-
-        navigate("/dashboard/ExamComponent/view-exams", {
-  state: {
-    class: selectedClass,
-    examType: form.type,
-    successMessage: "Exam Created Successfully",
-  },
-});
+        showMessage(
+          "success",
+          "Exam Created Successfully!",
+          "The examination has been created successfully. Click Done to continue.",
+          true
+        );
       } else {
-        // Submission failed
         console.error("Failed to Submit");
+
+        showMessage(
+          "error",
+          "Exam Creation Failed",
+          res.data.message ||
+            "The exam could not be created. Please check the details and try again."
+        );
       }
     } catch (err) {
       console.error("Error occurred:", err);
+
+      showMessage(
+        "error",
+        "Something Went Wrong",
+        err.response?.data?.message ||
+          "An error occurred while creating the exam. Please try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -516,6 +589,7 @@ const CreateExam = () => {
               <button
                 type="submit"
                 className="createExam-submit-btn"
+                disabled={loading}
               >
                 <i className="las la-plus-circle"></i>
                 <span>Create Exam</span>
@@ -524,6 +598,55 @@ const CreateExam = () => {
           </div>
         </form>
       </div>
+
+      {/* =========================================
+          CUSTOM MESSAGE BOX
+      ========================================= */}
+      {messageBox.visible && (
+        <div
+          className="createExam-message-overlay"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              closeMessage();
+            }
+          }}
+        >
+          <div
+            className={`createExam-message-box createExam-message-${messageBox.type}`}
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="createExam-message-title"
+            aria-describedby="createExam-message-description"
+          >
+            <div className="createExam-message-icon">
+              {messageBox.type === "success" ? (
+                <i className="las la-check"></i>
+              ) : messageBox.type === "warning" ? (
+                <i className="las la-exclamation"></i>
+              ) : (
+                <i className="las la-times"></i>
+              )}
+            </div>
+
+            <h2 id="createExam-message-title">
+              {messageBox.title}
+            </h2>
+
+            <p id="createExam-message-description">
+              {messageBox.message}
+            </p>
+
+            <button
+              type="button"
+              className="createExam-message-button"
+              onClick={closeMessage}
+              autoFocus
+            >
+              {messageBox.redirect ? "Done" : "OK"}
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

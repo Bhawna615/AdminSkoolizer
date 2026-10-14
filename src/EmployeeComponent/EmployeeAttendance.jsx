@@ -11,6 +11,11 @@ export default function EmployeeAttendance() {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
 
+  // MESSAGE BOX STATES
+  const [showMsg, setShowMsg] = useState(false);
+  const [message, setMessage] = useState("");
+  const [messageSuccess, setMessageSuccess] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -54,35 +59,47 @@ export default function EmployeeAttendance() {
       .post(API + "submitAttendance", marks)
       .then((res) => {
         if (res.data.status === "success") {
-          navigate(
-            "/dashboard/EmployeeComponent/ViewEmployeeAttendance",
-            {
-              state: { msg: "success" },
-            }
-          );
+
+          // SHOW SUCCESS MESSAGE BOX
+          setMessageSuccess(true);
+          setMessage("Attendance Submitted Successfully");
+          setShowMsg(true);
+
         } else if (res.data.status === "already") {
-          navigate(
-            "/dashboard/EmployeeComponent/ViewEmployeeAttendance",
-            {
-              state: { msg: "already" },
-            }
-          );
+
+          // SHOW ALREADY SUBMITTED MESSAGE BOX
+          setMessageSuccess(false);
+          setMessage("Attendance has already been submitted for today");
+          setShowMsg(true);
+
         } else {
-          navigate(
-            "/dashboard/EmployeeComponent/ViewEmployeeAttendance",
-            {
-              state: { msg: "error" },
-            }
-          );
+
+          // SHOW ERROR MESSAGE BOX
+          setMessageSuccess(false);
+          setMessage("Failed to submit attendance");
+          setShowMsg(true);
         }
       })
       .catch((err) => {
         console.error(err);
-        alert("Failed to submit attendance.");
+
+        // SHOW ERROR MESSAGE BOX
+        setMessageSuccess(false);
+        setMessage("Failed to submit attendance");
+        setShowMsg(true);
       })
       .finally(() => {
         setSubmitting(false);
       });
+  };
+
+  // CONTINUE BUTTON
+  const handleContinue = () => {
+    setShowMsg(false);
+
+    navigate(
+      "/dashboard/EmployeeComponent/ViewEmployeeAttendance"
+    );
   };
 
   const presentCount = marks.filter(
@@ -95,6 +112,63 @@ export default function EmployeeAttendance() {
 
   return (
     <div className="employee-attendance-page">
+
+      {/* MESSAGE BOX */}
+      {showMsg && (
+        <div className="employee-attendance-message-overlay">
+
+          <div className="employee-attendance-message-box">
+
+            <div
+              className={`employee-attendance-message-icon ${
+                messageSuccess
+                  ? "employee-attendance-message-success"
+                  : "employee-attendance-message-error"
+              }`}
+            >
+              <i
+                className={
+                  messageSuccess
+                    ? "bi bi-check-lg"
+                    : "bi bi-x-lg"
+                }
+              ></i>
+            </div>
+
+            <div className="employee-attendance-message-content">
+
+              <strong>
+                {messageSuccess ? "Success" : "Error"}
+              </strong>
+
+              <span>{message}</span>
+
+            </div>
+
+            <button
+              type="button"
+              className={
+                messageSuccess
+                  ? "employee-attendance-message-continue"
+                  : "employee-attendance-message-close"
+              }
+              onClick={
+                messageSuccess
+                  ? handleContinue
+                  : () => setShowMsg(false)
+              }
+            >
+              {messageSuccess ? (
+                "Continue"
+              ) : (
+                <i className="bi bi-x"></i>
+              )}
+            </button>
+
+          </div>
+
+        </div>
+      )}
 
       {/* PAGE HEADER */}
       <div className="employee-attendance-header">
