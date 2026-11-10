@@ -1,450 +1,488 @@
+
 /* =========================================================
    SELECT PENDING PAYMENTS PERIOD
-   Unique Prefix: kk-pending-period-
-   ========================================================= */
+   PREMIUM PURPLE + WHITE ERP DESIGN
+   UNIQUE CLASS NAMES
+========================================================= */
 
 .kk-pending-period-page {
-  position: relative;
-  width: 100%;
-  min-height: calc(100vh - 70px);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 40px 20px;
-
-  overflow: hidden;
-
-  background: #f5f6fa;
-
-  font-family: "Inter", sans-serif;
+    width: 100%;
+    min-height: 100vh;
+    padding: 35px 20px;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #f8f7ff 0%, #f0edff 55%, #f9f8ff 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #29243e;
 }
 
-
-/* =========================================================
-   BACKGROUND DECORATION
-   ========================================================= */
+/* ================= BACKGROUND DECORATIONS ================= */
 
 .kk-pending-period-decoration {
-  position: absolute;
-
-  border-radius: 50%;
-
-  pointer-events: none;
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .kk-pending-period-decoration-one {
-  width: 350px;
-  height: 350px;
-
-  top: -150px;
-  right: -100px;
-
-  background: rgba(108, 76, 232, 0.06);
+    width: 340px;
+    height: 340px;
+    background: rgba(108, 76, 232, 0.09);
+    top: -130px;
+    right: -100px;
 }
 
 .kk-pending-period-decoration-two {
-  width: 280px;
-  height: 280px;
-
-  bottom: -130px;
-  left: -100px;
-
-  background: rgba(108, 76, 232, 0.05);
+    width: 280px;
+    height: 280px;
+    background: rgba(153, 128, 255, 0.10);
+    bottom: -110px;
+    left: -90px;
 }
 
+.kk-pending-period-decoration-three {
+    width: 120px;
+    height: 120px;
+    border: 25px solid rgba(108, 76, 232, 0.045);
+    top: 20%;
+    left: 12%;
+}
 
-/* =========================================================
-   MAIN CARD
-   ========================================================= */
+/* ================= MAIN CARD ================= */
 
 .kk-pending-period-card {
-  position: relative;
-  z-index: 2;
-
-  width: 100%;
-  max-width: 500px;
-
-  padding: 38px 40px;
-
-  background: #ffffff;
-
-  border: 1px solid #e6e7ed;
-
-  border-radius: 16px;
-
-  box-shadow:
-    0 12px 35px rgba(31, 35, 55, 0.08),
-    0 2px 8px rgba(31, 35, 55, 0.03);
+    width: 100%;
+    max-width: 530px;
+    padding: 42px 42px 30px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid #eae6ff;
+    border-radius: 22px;
+    box-shadow: 0 18px 55px rgba(65, 43, 145, 0.11);
+    position: relative;
+    z-index: 1;
+    animation: kkPendingPeriodAppear 0.55s ease;
 }
 
+@keyframes kkPendingPeriodAppear {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
 
-/* =========================================================
-   ICON
-   ========================================================= */
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================= ICON ================= */
 
 .kk-pending-period-icon {
-  width: 62px;
-  height: 62px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin: 0 auto 20px;
-
-  border-radius: 15px;
-
-  background: #f0ebff;
-
-  border: 1px solid #e3dbff;
-
-  font-size: 28px;
-  color: #5b3ed0;
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 23px;
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #7657e8, #5c3bc9);
+    color: #ffffff;
+    font-size: 34px;
+    box-shadow: 0 10px 24px rgba(108, 76, 232, 0.28);
 }
 
-
-/* =========================================================
-   HEADER
-   ========================================================= */
+/* ================= HEADER ================= */
 
 .kk-pending-period-header {
-  text-align: center;
+    text-align: center;
+}
 
-  margin-bottom: 30px;
+.kk-pending-period-subtitle {
+    display: inline-block;
+    color: #7657e8;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
 }
 
 .kk-pending-period-header h1 {
-  margin: 0;
-
-  color: #5b3ed0;
-
-  font-size: 26px;
-
-  font-weight: 700;
-
-  letter-spacing: -0.3px;
+    margin: 0;
+    color: #28213f;
+    font-size: 27px;
+    font-weight: 750;
+    letter-spacing: -0.6px;
 }
 
 .kk-pending-period-header p {
-  max-width: 360px;
-
-  margin: 9px auto 0;
-
-  color: #858a98;
-
-  font-size: 13px;
-
-  line-height: 1.6;
+    max-width: 370px;
+    margin: 12px auto 0;
+    color: #817b96;
+    font-size: 14px;
+    line-height: 1.7;
 }
 
+/* ================= DIVIDER ================= */
 
-/* =========================================================
-   FORM
-   ========================================================= */
+.kk-pending-period-divider {
+    height: 1px;
+    width: 100%;
+    margin: 28px 0;
+    background: linear-gradient(
+        to right,
+        transparent,
+        #e8e2ff,
+        transparent
+    );
+}
+
+/* ================= FORM ================= */
 
 .kk-pending-period-form {
-  width: 100%;
+    width: 100%;
 }
 
 .kk-pending-period-form label {
-  display: block;
-
-  margin-bottom: 8px;
-
-  color: #4e5361;
-
-  font-size: 12px;
-
-  font-weight: 650;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 11px;
+    color: #38304f;
+    font-size: 13px;
+    font-weight: 700;
 }
 
+.kk-pending-period-form label i {
+    color: #7657e8;
+    font-size: 15px;
+}
 
-/* =========================================================
-   SELECT WRAPPER
-   ========================================================= */
+/* ================= SELECT INPUT ================= */
 
 .kk-pending-period-input-wrapper {
-  position: relative;
+    width: 100%;
+    height: 57px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #faf9ff;
+    border: 1px solid #e3ddf8;
+    border-radius: 12px;
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+}
 
-  width: 100%;
-  height: 48px;
+.kk-pending-period-input-wrapper:focus-within {
+    border-color: #7657e8;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(108, 76, 232, 0.09);
 }
 
 .kk-pending-period-input-icon {
-  position: absolute;
-
-  z-index: 2;
-
-  top: 50%;
-  left: 14px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  transform: translateY(-50%);
-
-  font-size: 16px;
-
-  pointer-events: none;
+    width: 48px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7657e8;
+    font-size: 19px;
+    flex-shrink: 0;
 }
 
 .kk-pending-period-input-wrapper select {
-  width: 100%;
-  height: 48px;
-
-  padding: 0 42px 0 45px;
-
-  appearance: none;
-
-  border: 1px solid #dfe1e8;
-
-  border-radius: 8px;
-
-  outline: none;
-
-  background: #ffffff;
-
-  color: #343844;
-
-  font-family: inherit;
-
-  font-size: 14px;
-
-  font-weight: 500;
-
-  cursor: pointer;
-
-  transition: all 0.2s ease;
+    width: 100%;
+    height: 100%;
+    padding: 0 42px 0 0;
+    border: none;
+    outline: none;
+    appearance: none;
+    background: transparent;
+    color: #332a50;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 650;
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
-.kk-pending-period-input-wrapper select:hover {
-  border-color: #bdb4e9;
-}
-
-.kk-pending-period-input-wrapper select:focus {
-  border-color: #6c4ce8;
-
-  box-shadow:
-    0 0 0 3px rgba(108, 76, 232, 0.09);
+.kk-pending-period-input-wrapper select:disabled {
+    cursor: not-allowed;
+    color: #9992aa;
 }
 
 .kk-pending-period-arrow {
-  position: absolute;
-
-  z-index: 2;
-
-  top: 50%;
-  right: 15px;
-
-  transform: translateY(-50%);
-
-  color: #777c89;
-
-  font-size: 9px;
-
-  pointer-events: none;
+    position: absolute;
+    right: 18px;
+    color: #7657e8;
+    font-size: 13px;
+    pointer-events: none;
 }
 
-
-/* =========================================================
-   SELECTED PERIOD
-   ========================================================= */
+/* ================= SELECTED PERIOD ================= */
 
 .kk-pending-period-selected {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  margin-top: 14px;
-
-  padding: 11px 13px;
-
-  border: 1px solid #e7e2fa;
-
-  border-radius: 7px;
-
-  background: #faf9ff;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 15px 16px;
+    margin-top: 20px;
+    background: linear-gradient(110deg, #f5f2ff, #fbfaff);
+    border: 1px solid #e7e0ff;
+    border-radius: 12px;
+    animation: kkPendingSelectedAppear 0.3s ease;
 }
 
-.kk-pending-period-selected span {
-  color: #858a98;
+@keyframes kkPendingSelectedAppear {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
 
-  font-size: 11px;
-
-  font-weight: 500;
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.kk-pending-period-selected strong {
-  color: #6c4ce8;
-
-  font-size: 13px;
-
-  font-weight: 700;
+.kk-pending-period-selected-icon {
+    width: 39px;
+    height: 39px;
+    flex-shrink: 0;
+    border-radius: 11px;
+    background: #e9e2ff;
+    color: #6c4ce8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
 }
 
+.kk-pending-period-selected-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+}
 
-/* =========================================================
-   BUTTON
-   ========================================================= */
+.kk-pending-period-selected-content span {
+    color: #89819f;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.kk-pending-period-selected-content strong {
+    color: #3e3265;
+    font-size: 16px;
+    font-weight: 750;
+}
+
+.kk-pending-period-selected-check {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    background: #6c4ce8;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+/* ================= BUTTON ================= */
 
 .kk-pending-period-button {
-  width: 100%;
-  height: 48px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  margin-top: 20px;
-
-  padding: 0 17px 0 20px;
-
-  border: none;
-
-  border-radius: 8px;
-
-  background: #6c4ce8;
-
-  color: #ffffff;
-
-  font-family: inherit;
-
-  font-size: 13px;
-
-  font-weight: 650;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 5px 12px rgba(108, 76, 232, 0.18);
-
-  transition: all 0.2s ease;
+    width: 100%;
+    min-height: 55px;
+    margin-top: 25px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(110deg, #7657e8, #5e3bc9);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(108, 76, 232, 0.22);
+    transition: all 0.25s ease;
 }
 
-.kk-pending-period-button:hover:not(:disabled) {
-  background: #5b3ed0;
-
-  transform: translateY(-1px);
-
-  box-shadow:
-    0 7px 16px rgba(108, 76, 232, 0.22);
+.kk-pending-period-button span {
+    display: flex;
+    align-items: center;
+    gap: 11px;
 }
 
-.kk-pending-period-button:active:not(:disabled) {
-  transform: translateY(0);
-}
-
-.kk-pending-period-button:disabled {
-  opacity: 0.55;
-
-  cursor: not-allowed;
-
-  box-shadow: none;
+.kk-pending-period-button span i {
+    font-size: 17px;
 }
 
 .kk-pending-period-button-arrow {
-  width: 28px;
-  height: 28px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 6px;
-
-  background: rgba(255, 255, 255, 0.14);
-
-  font-size: 17px;
+    font-size: 19px;
+    transition: transform 0.25s ease;
 }
 
+.kk-pending-period-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(108, 76, 232, 0.31);
+}
 
-/* =========================================================
-   FOOTER
-   ========================================================= */
+.kk-pending-period-button:hover:not(:disabled) .kk-pending-period-button-arrow {
+    transform: translateX(5px);
+}
+
+.kk-pending-period-button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.kk-pending-period-button:disabled {
+    background: #b9afd9;
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+/* ================= FOOTER ================= */
 
 .kk-pending-period-footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 7px;
-
-  margin-top: 22px;
-
-  color: #999eaa;
-
-  font-size: 10px;
-
-  line-height: 1.5;
-
-  text-align: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #f0edfa;
 }
 
-.kk-pending-period-footer-dot {
-  width: 6px;
-  height: 6px;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-
-  background: #6c4ce8;
+.kk-pending-period-footer-icon {
+    color: #8b75d9;
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
 }
 
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media (max-width: 600px) {
-  .kk-pending-period-page {
-    min-height: calc(100vh - 60px);
-
-    padding: 25px 15px;
-  }
-
-  .kk-pending-period-card {
-    padding: 30px 24px;
-
-    border-radius: 13px;
-  }
-
-  .kk-pending-period-icon {
-    width: 55px;
-    height: 55px;
-
-    margin-bottom: 17px;
-
-    font-size: 24px;
-  }
-
-  .kk-pending-period-header {
-    margin-bottom: 25px;
-  }
-
-  .kk-pending-period-header h1 {
-    font-size: 23px;
-  }
-
-  .kk-pending-period-header p {
-    font-size: 12px;
-  }
+.kk-pending-period-footer p {
+    margin: 0;
+    color: #928ba5;
+    font-size: 11px;
+    line-height: 1.6;
+    text-align: center;
 }
 
+/* ================= BOTTOM LABEL ================= */
 
-@media (max-width: 400px) {
-  .kk-pending-period-card {
-    padding: 26px 18px;
-  }
+.kk-pending-period-bottom-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 23px;
+    color: #9a92b4;
+    font-size: 11px;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+}
 
-  .kk-pending-period-header h1 {
-    font-size: 21px;
-  }
+.kk-pending-period-bottom-label i {
+    color: #8b75d9;
+    font-size: 13px;
+}
 
-  .kk-pending-period-footer {
-    font-size: 9px;
-  }
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1200px) {
+    .kk-pending-period-decoration-three {
+        left: 5%;
+    }
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 768px) {
+    .kk-pending-period-page {
+        padding: 30px 18px;
+    }
+
+    .kk-pending-period-card {
+        max-width: 490px;
+        padding: 35px 30px 27px;
+    }
+
+    .kk-pending-period-decoration-one {
+        width: 250px;
+        height: 250px;
+    }
+
+    .kk-pending-period-decoration-two {
+        width: 210px;
+        height: 210px;
+    }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 480px) {
+    .kk-pending-period-page {
+        padding: 25px 14px;
+    }
+
+    .kk-pending-period-card {
+        padding: 30px 21px 23px;
+        border-radius: 18px;
+    }
+
+    .kk-pending-period-icon {
+        width: 65px;
+        height: 65px;
+        font-size: 29px;
+        border-radius: 19px;
+        margin-bottom: 19px;
+    }
+
+    .kk-pending-period-header h1 {
+        font-size: 23px;
+    }
+
+    .kk-pending-period-header p {
+        font-size: 13px;
+    }
+
+    .kk-pending-period-divider {
+        margin: 23px 0;
+    }
+
+    .kk-pending-period-input-wrapper {
+        height: 53px;
+    }
+
+    .kk-pending-period-input-wrapper select {
+        font-size: 14px;
+    }
+
+    .kk-pending-period-selected {
+        padding: 13px;
+    }
+
+    .kk-pending-period-button {
+        min-height: 52px;
+        padding: 0 15px;
+        font-size: 13px;
+    }
+
+    .kk-pending-period-footer p {
+        font-size: 10px;
+    }
 }

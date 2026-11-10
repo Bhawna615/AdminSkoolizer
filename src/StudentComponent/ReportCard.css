@@ -1,0 +1,1272 @@
+
+/* =========================================================
+   KK BLOSSOMS — REPORT CARD
+   Purple + White ERP Theme
+   Screen + A4 Landscape Print
+========================================================= */
+
+.report-card-page {
+  --rc-purple: #6c4ce8;
+  --rc-purple-dark: #4d32b4;
+  --rc-purple-light: #f1edff;
+  --rc-text: #302b43;
+  --rc-muted: #827d95;
+  --rc-border: #e8e4f0;
+
+  min-height: 100vh;
+  width: 100%;
+  padding: 28px;
+  background: #f6f5fb;
+  color: var(--rc-text);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.report-card-page *,
+.report-card-page *::before,
+.report-card-page *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.report-card-toolbar {
+  max-width: 1450px;
+  margin: 0 auto 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.report-card-toolbar-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.report-card-toolbar-icon {
+  width: 47px;
+  height: 47px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #8d72f7, #6040d8);
+  color: #ffffff;
+  font-size: 23px;
+  box-shadow: 0 6px 18px rgba(108, 76, 232, 0.2);
+}
+
+.report-card-toolbar h1 {
+  margin: 0 0 5px;
+  color: #302744;
+  font-size: 23px;
+  font-weight: 750;
+  letter-spacing: -0.4px;
+}
+
+.report-card-toolbar p {
+  margin: 0;
+  color: #89849b;
+  font-size: 13px;
+}
+
+.report-card-print-button {
+  min-height: 43px;
+  padding: 0 19px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: none;
+  border-radius: 10px;
+  background: var(--rc-purple);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(108, 76, 232, 0.18);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.report-card-print-button:hover {
+  background: var(--rc-purple-dark);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   REPORT SHEET
+========================================================= */
+
+.report-card-sheet {
+  width: 100%;
+  max-width: 1450px;
+  margin: 0 auto;
+  padding: 35px;
+  border: 1px solid #ece8f4;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 12px 38px rgba(47, 32, 91, 0.07);
+}
+
+/* =========================================================
+   SCHOOL HEADER
+========================================================= */
+
+.rc-school-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding-bottom: 23px;
+  border-bottom: 2px solid var(--rc-purple);
+}
+
+.rc-school-logo {
+  width: 86px;
+  height: 86px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.rc-school-identity {
+  text-align: center;
+}
+
+.rc-official-label {
+  display: block;
+  margin-bottom: 7px;
+  color: #8068d8;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.rc-school-identity h2 {
+  margin: 0;
+  color: #352451;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 29px;
+  font-weight: 750;
+  letter-spacing: 0.4px;
+}
+
+.rc-school-identity > p {
+  margin: 5px 0 0;
+  color: #77718a;
+  font-size: 12px;
+}
+
+.rc-school-meta {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 10px;
+  color: #625b78;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+/* =========================================================
+   REPORT TITLE
+========================================================= */
+
+.rc-report-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin: 22px 0;
+  padding: 16px 21px;
+  border: 1px solid #e4dcff;
+  border-radius: 11px;
+  background: linear-gradient(105deg, #f2edff, #ffffff);
+}
+
+.rc-report-title > div:first-child > span {
+  color: #8167d8;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+}
+
+.rc-report-title h3 {
+  margin: 5px 0;
+  color: #3b2b64;
+  font-size: 21px;
+  font-weight: 850;
+  letter-spacing: 0.8px;
+}
+
+.rc-report-title p {
+  margin: 0;
+  color: #7f7892;
+  font-size: 12px;
+}
+
+.rc-session-badge {
+  padding: 10px 14px;
+  border: 1px solid #d8cdff;
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--rc-purple);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+}
+
+/* =========================================================
+   SECTION HEADINGS
+========================================================= */
+
+.rc-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 15px;
+}
+
+.rc-section-heading > span {
+  width: 33px;
+  height: 33px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: #eee9ff;
+  color: var(--rc-purple);
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.rc-section-heading h4 {
+  margin: 0 0 4px;
+  color: #382b54;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.rc-section-heading p {
+  margin: 0;
+  color: #8a849b;
+  font-size: 10px;
+}
+
+/* =========================================================
+   STUDENT PROFILE
+========================================================= */
+
+.rc-student-section {
+  margin-bottom: 25px;
+}
+
+.rc-student-content {
+  display: flex;
+  align-items: stretch;
+  gap: 15px;
+  padding: 15px;
+  border: 1px solid var(--rc-border);
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.rc-student-grid {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.rc-student-field {
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid #efedf5;
+  border-radius: 7px;
+  background: #faf9fd;
+}
+
+.rc-student-field > span {
+  display: block;
+  margin-bottom: 5px;
+  color: #89839c;
+  font-size: 9px;
+  font-weight: 650;
+}
+
+.rc-student-field strong {
+  display: block;
+  color: #39324c;
+  font-size: 11px;
+  font-weight: 750;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+
+.rc-student-photo {
+  width: 105px;
+  min-height: 130px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  align-self: stretch;
+  overflow: hidden;
+  border: 1px solid #ded5ff;
+  border-radius: 8px;
+  background: #f6f2ff;
+}
+
+.rc-student-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 130px;
+  object-fit: cover;
+}
+
+.rc-photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: #8a77d3;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.rc-photo-placeholder small {
+  font-size: 8px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   SCHOLASTIC TABLE
+========================================================= */
+
+.rc-results-section {
+  margin-bottom: 22px;
+}
+
+.rc-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #e4e0ee;
+  border-radius: 9px;
+}
+
+.rc-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  color: #3e384f;
+  font-size: 10px;
+}
+
+.rc-table th,
+.rc-table td {
+  padding: 9px 7px;
+  border: 1px solid #e6e2ee;
+  text-align: center;
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+  line-height: 1.4;
+}
+
+.rc-table th {
+  background: #f0ebff;
+  color: #503b98;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.rc-scholastic-table th {
+  padding: 9px 4px;
+}
+
+.rc-scholastic-table thead tr:first-child th {
+  background: #6c4ce8;
+  color: #ffffff;
+  font-size: 10px;
+  letter-spacing: 0.4px;
+}
+
+.rc-scholastic-table .rc-term-heading {
+  background: #6c4ce8;
+  color: #ffffff;
+}
+
+.rc-scholastic-table thead tr:nth-child(2) th {
+  background: #f0ebff;
+  color: #4f3a92;
+  font-size: 8px;
+}
+
+.rc-scholastic-table th small {
+  display: block;
+  margin-top: 4px;
+  font-size: 8px;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.rc-scholastic-table .rc-subject-column {
+  width: 12%;
+}
+
+.rc-scholastic-table .rc-final-column {
+  width: 9%;
+}
+
+.rc-scholastic-table tbody tr:nth-child(even) {
+  background: #faf9fd;
+}
+
+.rc-scholastic-table tbody tr:hover {
+  background: #f3efff;
+}
+
+.rc-scholastic-table .rc-subject-name {
+  text-align: left;
+  padding-left: 11px;
+  color: #4f3b91;
+  font-weight: 750;
+}
+
+.rc-scholastic-table .rc-final-mark {
+  color: #5638be;
+  font-weight: 800;
+  background: #f5f1ff;
+}
+
+.rc-data-note {
+  margin: 9px 0 0;
+  color: #8b849a;
+  font-size: 10px;
+}
+
+/* =========================================================
+   SUMMARY CARDS
+========================================================= */
+
+.rc-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+  margin: 20px 0 25px;
+}
+
+.rc-summary-card {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 17px;
+  border: 1px solid #e8e3f4;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.rc-summary-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: #eee8ff;
+  color: #6c4ce8;
+  font-size: 16px;
+  font-weight: 850;
+}
+
+.rc-summary-card > div {
+  min-width: 0;
+}
+
+.rc-summary-card > div > span {
+  display: block;
+  margin-bottom: 6px;
+  color: #827c94;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.rc-summary-card strong {
+  display: block;
+  color: #39304f;
+  font-size: 18px;
+  font-weight: 850;
+  overflow-wrap: anywhere;
+}
+
+.rc-percentage-card {
+  border-color: #dcd0ff;
+  background: linear-gradient(120deg, #f4efff, #ffffff);
+}
+
+.rc-percentage-card .rc-summary-icon {
+  background: #6c4ce8;
+  color: #ffffff;
+}
+
+.rc-percentage-card strong {
+  color: #6442d2;
+}
+
+/* =========================================================
+   LOWER PANELS
+========================================================= */
+
+.rc-lower-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.rc-panel {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #e8e4f0;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.rc-panel .rc-table th,
+.rc-panel .rc-table td {
+  padding: 9px 7px;
+  font-size: 10px;
+}
+
+.rc-grading-table td:nth-child(even) {
+  color: #6347c4;
+  font-weight: 800;
+}
+
+/* =========================================================
+   ATTENDANCE
+========================================================= */
+
+.rc-attendance-section {
+  margin-bottom: 22px;
+  padding: 17px;
+  border: 1px solid #e6e0f4;
+  border-radius: 10px;
+  background: #fcfbff;
+}
+
+.rc-attendance-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.rc-attendance-grid > div {
+  padding: 13px;
+  border: 1px solid #ebe6f7;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.rc-attendance-grid span {
+  display: block;
+  margin-bottom: 7px;
+  color: #888199;
+  font-size: 10px;
+}
+
+.rc-attendance-grid strong {
+  display: block;
+  color: #5338b2;
+  font-size: 19px;
+  font-weight: 850;
+}
+
+/* =========================================================
+   REMARKS AND RESULT
+========================================================= */
+
+.rc-remarks-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.rc-remarks-item,
+.rc-result-item {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #e9e4f2;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.rc-remarks-item > span,
+.rc-result-item > span {
+  display: block;
+  margin-bottom: 9px;
+  color: #7d719d;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.rc-remarks-item p {
+  min-height: 35px;
+  margin: 0;
+  color: #494258;
+  font-size: 11px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.rc-result-item strong {
+  color: #5338b2;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   SIGNATURES
+========================================================= */
+
+.rc-signatures {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: end;
+  gap: 30px;
+  margin-top: 43px;
+  padding: 0 10px 22px;
+}
+
+.rc-signatures > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.rc-signature-line {
+  width: 85%;
+  max-width: 190px;
+  margin-bottom: 10px;
+  border-top: 1px solid #7c758e;
+}
+
+.rc-signatures strong {
+  color: #494158;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.rc-footer-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e7e2ef;
+  color: #8c85a0;
+  font-size: 8px;
+  font-weight: 750;
+  letter-spacing: 0.7px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1200px) {
+  .report-card-page {
+    padding: 20px;
+  }
+
+  .report-card-sheet {
+    padding: 25px;
+  }
+
+  .rc-student-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rc-table {
+    min-width: 750px;
+  }
+
+  .rc-panel .rc-table {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .report-card-page {
+    padding: 12px;
+  }
+
+  .report-card-toolbar {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .report-card-toolbar h1 {
+    font-size: 19px;
+  }
+
+  .report-card-toolbar p {
+    font-size: 11px;
+  }
+
+  .report-card-sheet {
+    padding: 18px 13px;
+    border-radius: 10px;
+  }
+
+  .rc-school-header {
+    gap: 10px;
+    padding-bottom: 16px;
+  }
+
+  .rc-school-logo {
+    width: 58px;
+    height: 58px;
+  }
+
+  .rc-school-identity h2 {
+    font-size: 18px;
+  }
+
+  .rc-school-identity > p {
+    font-size: 10px;
+  }
+
+  .rc-school-meta {
+    gap: 5px 10px;
+    font-size: 8px;
+  }
+
+  .rc-report-title {
+    margin: 16px 0;
+    padding: 12px;
+  }
+
+  .rc-report-title h3 {
+    font-size: 16px;
+  }
+
+  .rc-session-badge {
+    font-size: 8px;
+    padding: 8px;
+  }
+
+  .rc-student-content {
+    padding: 10px;
+    gap: 9px;
+  }
+
+  .rc-student-grid {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .rc-student-field {
+    padding: 9px;
+  }
+
+  .rc-student-photo {
+    width: 75px;
+    min-height: 100px;
+  }
+
+  .rc-student-photo img {
+    min-height: 100px;
+  }
+
+  .rc-summary-grid {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .rc-summary-card {
+    padding: 12px;
+  }
+
+  .rc-lower-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rc-attendance-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rc-remarks-section {
+    grid-template-columns: 1fr;
+  }
+
+  .rc-signatures {
+    gap: 10px;
+    margin-top: 35px;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .rc-signatures strong {
+    font-size: 9px;
+  }
+
+  .rc-footer-strip {
+    font-size: 7px;
+    letter-spacing: 0;
+  }
+}
+
+/* =========================================================
+   PRINT — A4 LANDSCAPE
+========================================================= */
+
+@page {
+  size: A4 landscape;
+  margin: 7mm;
+}
+
+@media print {
+  html,
+  body,
+  #root {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .report-card-page,
+  .report-card-page * {
+    visibility: visible !important;
+  }
+
+  .report-card-page {
+    position: static !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .report-card-toolbar {
+    display: none !important;
+  }
+
+  .report-card-sheet {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+  }
+
+  .rc-school-header {
+    gap: 12px !important;
+    padding-bottom: 3mm !important;
+    border-bottom: 1.5px solid #6c4ce8 !important;
+    break-inside: avoid !important;
+  }
+
+  .rc-school-logo {
+    width: 17mm !important;
+    height: 17mm !important;
+    object-fit: contain !important;
+  }
+
+  .rc-official-label {
+    font-size: 6pt !important;
+    margin-bottom: 1mm !important;
+  }
+
+  .rc-school-identity h2 {
+    font-size: 17pt !important;
+    color: #352451 !important;
+  }
+
+  .rc-school-identity > p {
+    margin-top: 1mm !important;
+    font-size: 7pt !important;
+  }
+
+  .rc-school-meta {
+    margin-top: 1.5mm !important;
+    font-size: 6pt !important;
+  }
+
+  .rc-report-title {
+    margin: 3mm 0 !important;
+    padding: 2.5mm 4mm !important;
+    border: 1px solid #ddd4ff !important;
+    border-radius: 0 !important;
+    background: #f2edff !important;
+    break-inside: avoid !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .rc-report-title > div:first-child > span {
+    font-size: 6pt !important;
+  }
+
+  .rc-report-title h3 {
+    margin: 1mm 0 !important;
+    font-size: 12pt !important;
+  }
+
+  .rc-report-title p {
+    font-size: 7pt !important;
+  }
+
+  .rc-session-badge {
+    padding: 2mm 3mm !important;
+    font-size: 7pt !important;
+  }
+
+  .rc-section-heading {
+    gap: 2mm !important;
+    margin-bottom: 2mm !important;
+    break-after: avoid !important;
+  }
+
+  .rc-section-heading > span {
+    width: 7mm !important;
+    height: 7mm !important;
+    border-radius: 1mm !important;
+    font-size: 7pt !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .rc-section-heading h4 {
+    margin-bottom: 1mm !important;
+    font-size: 8pt !important;
+  }
+
+  .rc-section-heading p {
+    font-size: 6pt !important;
+  }
+
+  .rc-student-section {
+    margin-bottom: 3mm !important;
+    break-inside: avoid !important;
+  }
+
+  .rc-student-content {
+    gap: 3mm !important;
+    padding: 2mm !important;
+    border: 1px solid #ddd9e5 !important;
+    border-radius: 0 !important;
+  }
+
+  .rc-student-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 1.5mm !important;
+  }
+
+  .rc-student-field {
+    padding: 1.5mm 2mm !important;
+    border: 1px solid #e7e3ed !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+  }
+
+  .rc-student-field > span {
+    margin-bottom: 1mm !important;
+    font-size: 6pt !important;
+  }
+
+  .rc-student-field strong {
+    font-size: 7pt !important;
+    color: #302b43 !important;
+  }
+
+  .rc-student-photo {
+    width: 18mm !important;
+    min-height: 22mm !important;
+    max-height: 22mm !important;
+    border: 1px solid #d9d3e5 !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+  }
+
+  .rc-student-photo img {
+    width: 100% !important;
+    min-height: 0 !important;
+    height: 22mm !important;
+    object-fit: cover !important;
+  }
+
+  .rc-photo-placeholder {
+    font-size: 6pt !important;
+  }
+
+  .rc-results-section {
+    margin-bottom: 3mm !important;
+  }
+
+  .rc-table-scroll {
+    width: 100% !important;
+    overflow: visible !important;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+
+  .rc-table {
+    width: 100% !important;
+    min-width: 0 !important;
+    table-layout: fixed !important;
+    border-collapse: collapse !important;
+    font-size: 6.5pt !important;
+    break-inside: auto !important;
+  }
+
+  .rc-table th,
+  .rc-table td {
+    padding: 1.5mm 1mm !important;
+    border: 1px solid #bcb7c9 !important;
+    font-size: 6.5pt !important;
+    line-height: 1.2 !important;
+    overflow-wrap: anywhere !important;
+    color: #302b43 !important;
+  }
+
+  .rc-scholastic-table th {
+    padding: 1.5mm 0.5mm !important;
+  }
+
+  .rc-scholastic-table thead tr:first-child th {
+    background: #6c4ce8 !important;
+    color: #ffffff !important;
+    font-size: 7pt !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .rc-scholastic-table thead tr:nth-child(2) th {
+    background: #f0ebff !important;
+    font-size: 6pt !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .rc-scholastic-table th small {
+    margin-top: 0.5mm !important;
+    font-size: 5.5pt !important;
+  }
+
+  .rc-scholastic-table .rc-subject-column {
+    width: 12% !important;
+  }
+
+  .rc-scholastic-table .rc-final-column {
+    width: 9% !important;
+  }
+
+  .rc-scholastic-table .rc-subject-name {
+    padding-left: 2mm !important;
+    font-weight: 700 !important;
+  }
+
+  .rc-scholastic-table .rc-final-mark {
+    background: #f5f1ff !important;
+    font-weight: 800 !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .rc-scholastic-table tbody tr {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .rc-data-note {
+    font-size: 6pt !important;
+  }
+
+  .rc-summary-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 2mm !important;
+    margin: 3mm 0 !important;
+    break-inside: avoid !important;
+  }
+
+  .rc-summary-card {
+    gap: 2mm !important;
+    padding: 2.5mm !important;
+    border: 1px solid #ded8ec !important;
+    border-radius: 0 !important;
+  }
+
+  .rc-summary-icon {
+    width: 8mm !important;
+    height: 8mm !important;
+    border-radius: 1mm !important;
+    font-size: 9pt !important;
+    background: #eee8ff !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .rc-summary-card > div > span {
+    margin-bottom: 1mm !important;
+    font-size: 6pt !important;
+  }
+
+  .rc-summary-card strong {
+    font-size: 10pt !important;
+  }
+
+  .rc-percentage-card {
+    background: #f4efff !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .rc-lower-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 3mm !important;
+    margin-bottom: 3mm !important;
+  }
+
+  .rc-panel {
+    padding: 2.5mm !important;
+    border: 1px solid #ddd8e7 !important;
+    border-radius: 0 !important;
+    break-inside: avoid !important;
+  }
+
+  .rc-panel .rc-section-heading {
+    margin-bottom: 2mm !important;
+  }
+
+  .rc-panel .rc-table {
+    min-width: 0 !important;
+  }
+
+  .rc-panel .rc-table th,
+  .rc-panel .rc-table td {
+    padding: 1.5mm !important;
+    font-size: 6.5pt !important;
+  }
+
+  .rc-attendance-section {
+    margin-bottom: 3mm !important;
+    padding: 2.5mm !important;
+    border: 1px solid #ded8e9 !important;
+    border-radius: 0 !important;
+    break-inside: avoid !important;
+  }
+
+  .rc-attendance-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 2mm !important;
+  }
+
+  .rc-attendance-grid > div {
+    padding: 2mm !important;
+    border: 1px solid #e3deed !important;
+    border-radius: 0 !important;
+  }
+
+  .rc-attendance-grid span {
+    margin-bottom: 1mm !important;
+    font-size: 6pt !important;
+  }
+
+  .rc-attendance-grid strong {
+    font-size: 10pt !important;
+  }
+
+  .rc-remarks-section {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) !important;
+    gap: 3mm !important;
+    margin-bottom: 3mm !important;
+    break-inside: avoid !important;
+  }
+
+  .rc-remarks-item,
+  .rc-result-item {
+    padding: 2.5mm !important;
+    border: 1px solid #ded9e8 !important;
+    border-radius: 0 !important;
+  }
+
+  .rc-remarks-item > span,
+  .rc-result-item > span {
+    margin-bottom: 1.5mm !important;
+    font-size: 6.5pt !important;
+  }
+
+  .rc-remarks-item p {
+    min-height: 5mm !important;
+    font-size: 7pt !important;
+  }
+
+  .rc-result-item strong {
+    font-size: 8pt !important;
+  }
+
+  .rc-signatures {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 8mm !important;
+    margin-top: 13mm !important;
+    padding: 0 3mm 3mm !important;
+    break-inside: avoid !important;
+  }
+
+  .rc-signature-line {
+    margin-bottom: 2mm !important;
+  }
+
+  .rc-signatures strong {
+    font-size: 7pt !important;
+  }
+
+  .rc-footer-strip {
+    padding-top: 2mm !important;
+    border-top: 1px solid #ddd8e7 !important;
+    font-size: 5.5pt !important;
+    break-inside: avoid !important;
+  }
+
+  .report-card-page *,
+  .report-card-page *::before,
+  .report-card-page *::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
+    box-shadow: none !important;
+  }
+
+  img {
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+}

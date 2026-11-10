@@ -74,6 +74,120 @@ const MetricsAdd = () => {
     }));
   };
 
+  // ===== LINE GRAPH DATA =====
+  const chartData = metrics
+    .map((item) => {
+      const value = Number(marks[item.metric_id]);
+
+      return {
+        id: item.metric_id,
+        name: item.metric_name || `Metric ${item.metric_id}`,
+        marks:
+          marks[item.metric_id] !== "" &&
+          marks[item.metric_id] !== undefined &&
+          Number.isFinite(value)
+            ? value
+            : null
+      };
+    })
+    .filter(
+      (item) =>
+        item.marks !== null &&
+        item.marks >= 0
+    );
+
+  // ===== GRAPH DIMENSIONS =====
+  const chartWidth = 760;
+  const chartHeight = 340;
+
+  const chartPadding = {
+    top: 30,
+    right: 35,
+    bottom: 85,
+    left: 65
+  };
+
+  const graphWidth =
+    chartWidth - chartPadding.left - chartPadding.right;
+
+  const graphHeight =
+    chartHeight - chartPadding.top - chartPadding.bottom;
+
+  const maxMark =
+    chartData.length > 0
+      ? Math.max(...chartData.map((item) => item.marks))
+      : 0;
+
+  const yAxisMax =
+    maxMark === 0
+      ? 10
+      : Math.ceil(maxMark / 10) * 10;
+
+  const yAxisTicks = [
+    0,
+    yAxisMax * 0.25,
+    yAxisMax * 0.5,
+    yAxisMax * 0.75,
+    yAxisMax
+  ];
+
+  // ===== CALCULATE GRAPH POINTS =====
+  const graphPoints = chartData.map((item, index) => {
+    const x =
+      chartPadding.left +
+      (chartData.length === 1
+        ? graphWidth / 2
+        : (index / (chartData.length - 1)) * graphWidth);
+
+    const y =
+      chartPadding.top +
+      graphHeight -
+      (item.marks / yAxisMax) * graphHeight;
+
+    return {
+      ...item,
+      x,
+      y
+    };
+  });
+
+  // ===== LINE PATH =====
+  const linePath = graphPoints
+    .map(
+      (point, index) =>
+        `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`
+    )
+    .join(" ");
+
+  // ===== AREA PATH =====
+  const areaPath =
+    graphPoints.length > 1
+      ? `${linePath} L ${graphPoints[graphPoints.length - 1].x} ${
+          chartPadding.top + graphHeight
+        } L ${graphPoints[0].x} ${
+          chartPadding.top + graphHeight
+        } Z`
+      : "";
+
+  // ===== PERFORMANCE SUMMARY =====
+  const averageMarks =
+    chartData.length > 0
+      ? (
+          chartData.reduce((sum, item) => sum + item.marks, 0) /
+          chartData.length
+        ).toFixed(1)
+      : "0";
+
+  const highestMarks =
+    chartData.length > 0
+      ? Math.max(...chartData.map((item) => item.marks))
+      : 0;
+
+  const lowestMarks =
+    chartData.length > 0
+      ? Math.min(...chartData.map((item) => item.marks))
+      : 0;
+
   // ===== SUBMIT =====
   const submit = () => {
     setSaving(true);
@@ -94,7 +208,8 @@ const MetricsAdd = () => {
         setMessage("Metrics saved successfully");
         setMessageType("success");
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
         setMessage("Failed to save metrics");
         setMessageType("error");
       })
@@ -135,7 +250,7 @@ const MetricsAdd = () => {
           type="text"
           className="student-metrics-mark-input"
           placeholder="Enter mark"
-          value={marks[row.metric_id] || ""}
+          value={marks[row.metric_id] ?? ""}
           onChange={(e) =>
             handleChange(row.metric_id, e.target.value)
           }
@@ -279,6 +394,7 @@ const MetricsAdd = () => {
         </div>
       ) : (
         <>
+
           {/* STUDENT INFORMATION */}
           {student && (
             <div className="student-metrics-student-card">
@@ -333,6 +449,270 @@ const MetricsAdd = () => {
             </div>
           )}
 
+          {/* STUDENT PERFORMANCE LINE GRAPH */}
+          <div className="student-metrics-chart-card">
+
+            <div className="student-metrics-chart-header">
+
+              <div className="student-metrics-chart-heading">
+                <div className="student-metrics-chart-icon">
+                  <FaChartLine />
+                </div>
+
+                <div>
+                  <h2>Student Performance Trend</h2>
+                  <p>
+                    Visual representation of student performance
+                  </p>
+                </div>
+              </div>
+
+              <div className="student-metrics-chart-label">
+                <span></span>
+                Performance Marks
+              </div>
+
+            </div>
+
+            {/* GRAPH */}
+            <div className="student-metrics-graph-wrapper">
+
+              {graphPoints.length > 0 ? (
+
+                <svg
+                  className="student-metrics-line-graph"
+                  viewBox={`0 0 ${chartWidth} ${chartHeight}`}
+                  preserveAspectRatio="xMidYMid meet"
+                  role="img"
+                  aria-label="Student performance line graph"
+                >
+
+                  <defs>
+                    <linearGradient
+                      id="studentMetricsAreaGradient"
+                      x1="0"
+                      y1="0"
+                      x2="0"
+                      y2="1"
+                    >
+                      <stop
+                        offset="0%"
+                        stopColor="#7657e8"
+                        stopOpacity="0.25"
+                      />
+                      <stop
+                        offset="100%"
+                        stopColor="#7657e8"
+                        stopOpacity="0.02"
+                      />
+                    </linearGradient>
+                  </defs>
+
+                  {/* Y AXIS GRID LINES */}
+                  {yAxisTicks.map((tick, index) => {
+                    const y =
+                      chartPadding.top +
+                      graphHeight -
+                      (tick / yAxisMax) * graphHeight;
+
+                    return (
+                      <g key={index}>
+
+                        <line
+                          x1={chartPadding.left}
+                          y1={y}
+                          x2={chartWidth - chartPadding.right}
+                          y2={y}
+                          stroke="#ece8f4"
+                          strokeWidth="1"
+                          strokeDasharray="5 5"
+                        />
+
+                        <text
+                          x={chartPadding.left - 12}
+                          y={y + 4}
+                          textAnchor="end"
+                          fill="#8c849c"
+                          fontSize="12"
+                        >
+                          {Number(tick.toFixed(1))}
+                        </text>
+
+                      </g>
+                    );
+                  })}
+
+                  {/* X AXIS */}
+                  <line
+                    x1={chartPadding.left}
+                    y1={chartPadding.top + graphHeight}
+                    x2={chartWidth - chartPadding.right}
+                    y2={chartPadding.top + graphHeight}
+                    stroke="#d9d2e5"
+                    strokeWidth="1.5"
+                  />
+
+                  {/* Y AXIS */}
+                  <line
+                    x1={chartPadding.left}
+                    y1={chartPadding.top}
+                    x2={chartPadding.left}
+                    y2={chartPadding.top + graphHeight}
+                    stroke="#d9d2e5"
+                    strokeWidth="1.5"
+                  />
+
+                  {/* AREA UNDER LINE */}
+                  {graphPoints.length > 1 && (
+                    <path
+                      d={areaPath}
+                      fill="url(#studentMetricsAreaGradient)"
+                    />
+                  )}
+
+                  {/* PERFORMANCE LINE */}
+                  {graphPoints.length > 1 && (
+                    <path
+                      d={linePath}
+                      fill="none"
+                      stroke="#7657e8"
+                      strokeWidth="3.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  )}
+
+                  {/* PERFORMANCE POINTS */}
+                  {graphPoints.map((point, index) => (
+                    <g key={point.id}>
+
+                      <circle
+                        cx={point.x}
+                        cy={point.y}
+                        r="10"
+                        fill="#7657e8"
+                        opacity="0.12"
+                      />
+
+                      <circle
+                        cx={point.x}
+                        cy={point.y}
+                        r="5.5"
+                        fill="#7657e8"
+                        stroke="#ffffff"
+                        strokeWidth="2.5"
+                      >
+                        <title>
+                          {point.name}: {point.marks} marks
+                        </title>
+                      </circle>
+
+                      {/* MARK VALUE */}
+                      <text
+                        x={point.x}
+                        y={point.y - 17}
+                        textAnchor="middle"
+                        fill="#5b3ac5"
+                        fontSize="12"
+                        fontWeight="700"
+                      >
+                        {point.marks}
+                      </text>
+
+                      {/* X AXIS LABEL */}
+                      <text
+                        x={point.x}
+                        y={chartPadding.top + graphHeight + 23}
+                        textAnchor="end"
+                        transform={`rotate(-25 ${point.x} ${
+                          chartPadding.top + graphHeight + 23
+                        })`}
+                        fill="#716981"
+                        fontSize="11"
+                      >
+                        {point.name.length > 17
+                          ? `${point.name.substring(0, 15)}...`
+                          : point.name}
+                      </text>
+
+                    </g>
+                  ))}
+
+                  {/* AXIS TITLES */}
+                  <text
+                    x="17"
+                    y={chartHeight / 2}
+                    textAnchor="middle"
+                    fill="#716981"
+                    fontSize="12"
+                    transform={`rotate(-90 17 ${chartHeight / 2})`}
+                  >
+                    Marks
+                  </text>
+
+                  <text
+                    x={chartWidth / 2}
+                    y={chartHeight - 5}
+                    textAnchor="middle"
+                    fill="#716981"
+                    fontSize="12"
+                  >
+                    Performance Metrics
+                  </text>
+
+                </svg>
+
+              ) : (
+
+                <div className="student-metrics-chart-empty">
+                  <FaChartLine />
+
+                  <h3>No Performance Data Available</h3>
+
+                  <p>
+                    Enter student marks in the table below to generate
+                    the performance graph.
+                  </p>
+                </div>
+
+              )}
+
+            </div>
+
+            {/* GRAPH SUMMARY */}
+            <div className="student-metrics-chart-summary">
+
+              <div className="student-metrics-summary-item">
+                <span>Average Marks</span>
+                <strong>{averageMarks}</strong>
+              </div>
+
+              <div className="student-metrics-summary-item">
+                <span>Highest Marks</span>
+                <strong>{highestMarks}</strong>
+              </div>
+
+              <div className="student-metrics-summary-item">
+                <span>Lowest Marks</span>
+                <strong>{lowestMarks}</strong>
+              </div>
+
+              <div className="student-metrics-summary-item">
+                <span>Metrics Evaluated</span>
+                <strong>{chartData.length}</strong>
+              </div>
+
+            </div>
+
+            <div className="student-metrics-chart-note">
+              <i className="bi bi-info-circle"></i>
+              The graph updates automatically when marks are entered.
+              It currently represents the available performance metrics,
+              not individual examination results.
+            </div>
+
+          </div>
+
           {/* METRICS TABLE */}
           <div className="student-metrics-table-card">
 
@@ -377,8 +757,10 @@ const MetricsAdd = () => {
             </div>
 
           </div>
+
         </>
       )}
+
     </div>
   );
 };

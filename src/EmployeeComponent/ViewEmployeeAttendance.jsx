@@ -1,7 +1,19 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import "./ViewEmployeeAttendance.css";
+
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend
+} from "chart.js";
+
+import { Pie } from "react-chartjs-2";
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const API =
   "http://localhost/kkblossom/api.php/Adminapi/AdminEmployee/";
@@ -43,36 +55,36 @@ export default function ViewEmployeeAttendance() {
     }
   }, [location.state]);
 
-  useEffect(() => {
-    fetchAttendance();
-  }, []);
-
+  // FETCH ALL ATTENDANCE
   const fetchAttendance = () => {
     setLoading(true);
 
     axios
       .get(API + "getAttendance")
       .then((res) => {
-        setAttendance(res.data);
+        setAttendance(Array.isArray(res.data) ? res.data : []);
       })
       .catch((err) => {
         console.error(err);
+        setAttendance([]);
       })
       .finally(() => {
         setLoading(false);
       });
   };
 
+  // FETCH FILTERED ATTENDANCE
   const fetchFiltered = () => {
     setLoading(true);
 
     axios
       .get(API + `filter/${year}/${month}`)
       .then((res) => {
-        setAttendance(res.data);
+        setAttendance(Array.isArray(res.data) ? res.data : []);
       })
       .catch((err) => {
         console.error(err);
+        setAttendance([]);
       })
       .finally(() => {
         setLoading(false);
@@ -91,27 +103,117 @@ export default function ViewEmployeeAttendance() {
     handleFilter();
   }, [year, month, filter]);
 
+  // ATTENDANCE TOTALS
   const totalPresent = attendance.reduce(
-    (sum, row) => sum + Number(row.Present || 0),
+    (sum, row) => sum + (Number(row.Present) || 0),
     0
   );
 
   const totalLeave = attendance.reduce(
-    (sum, row) => sum + Number(row.onLeave || 0),
+    (sum, row) => sum + (Number(row.onLeave) || 0),
     0
   );
 
   const totalStrength = attendance.reduce(
-    (sum, row) => sum + Number(row.Total || 0),
+    (sum, row) => sum + (Number(row.Total) || 0),
     0
   );
+
+  // ABSENT = TOTAL - PRESENT - ON LEAVE
+  const totalAbsent = Math.max(
+    0,
+    totalStrength - totalPresent - totalLeave
+  );
+
+  // PERCENTAGES
+  const presentPercentage = totalStrength
+    ? ((totalPresent / totalStrength) * 100).toFixed(1)
+    : 0;
+
+  const absentPercentage = totalStrength
+    ? ((totalAbsent / totalStrength) * 100).toFixed(1)
+    : 0;
+
+  const leavePercentage = totalStrength
+    ? ((totalLeave / totalStrength) * 100).toFixed(1)
+    : 0;
+
+  // PIE CHART DATA
+  const attendanceChartData = {
+    labels: ["Present", "Absent", "On Leave"],
+    datasets: [
+      {
+        data: [
+          totalPresent,
+          totalAbsent,
+          totalLeave
+        ],
+        backgroundColor: [
+          "#27ae8a",
+          "#ef476f",
+          "#f5a623"
+        ],
+        hoverBackgroundColor: [
+          "#209b7b",
+          "#dc365e",
+          "#e49a1e"
+        ],
+        borderColor: "#ffffff",
+        borderWidth: 4,
+        hoverOffset: 10,
+      },
+    ],
+  };
+
+  const attendanceChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+
+    animation: {
+      animateRotate: true,
+      animateScale: true,
+      duration: 1000,
+    },
+
+    plugins: {
+      legend: {
+        display: false,
+      },
+
+      tooltip: {
+        enabled: true,
+        backgroundColor: "#302650",
+        padding: 12,
+        cornerRadius: 8,
+
+        titleFont: {
+          size: 12,
+          weight: "bold",
+        },
+
+        bodyFont: {
+          size: 11,
+        },
+
+        callbacks: {
+          label: function (context) {
+            const value = context.raw || 0;
+
+            const percentage = totalStrength
+              ? ((value / totalStrength) * 100).toFixed(1)
+              : 0;
+
+            return ` ${context.label}: ${value} (${percentage}%)`;
+          },
+        },
+      },
+    },
+  };
 
   return (
     <div className="view-employee-attendance-page">
 
-      {/* =========================
-          SUCCESS / ERROR MESSAGE
-      ========================== */}
+      {/* SUCCESS / ERROR MESSAGE */}
 
       {showMsg && location.state?.msg === "success" && (
         <div className="employee-attendance-alert success">
@@ -173,9 +275,7 @@ export default function ViewEmployeeAttendance() {
         </div>
       )}
 
-      {/* =========================
-          PAGE HEADER
-      ========================== */}
+      {/* PAGE HEADER */}
 
       <div className="view-attendance-header">
 
@@ -211,9 +311,7 @@ export default function ViewEmployeeAttendance() {
 
       </div>
 
-      {/* =========================
-          SUMMARY
-      ========================== */}
+      {/* SUMMARY */}
 
       <div className="view-attendance-summary">
 
@@ -263,9 +361,161 @@ export default function ViewEmployeeAttendance() {
 
       </div>
 
-      {/* =========================
-          MAIN TABLE CARD
-      ========================== */}
+      {/* ATTENDANCE PIE CHART */}
+
+      <div className="view-attendance-chart-card">
+
+        <div className="view-attendance-chart-header">
+
+          <div className="view-attendance-card-title">
+
+            <div className="view-attendance-chart-title-icon">
+              <i className="bi bi-pie-chart-fill"></i>
+            </div>
+
+            <div>
+              <h3>Attendance Overview</h3>
+              <p>
+                Present, absent and leave distribution
+              </p>
+            </div>
+
+          </div>
+
+          <div className="view-attendance-chart-badge">
+            <span></span>
+            {filter && month !== ""
+              ? `${months[Number(month) - 1]} ${year}`
+              : "All Records"}
+          </div>
+
+        </div>
+
+        {loading ? (
+
+          <div className="view-attendance-chart-loader">
+            <div className="attendance-loader-spinner"></div>
+            <span>Loading attendance statistics...</span>
+          </div>
+
+        ) : attendance.length === 0 ? (
+
+          <div className="view-attendance-chart-empty">
+            <i className="bi bi-pie-chart"></i>
+            <span>No attendance data available for this period.</span>
+          </div>
+
+        ) : (
+
+          <div className="view-attendance-chart-content">
+
+            {/* PIE CHART */}
+
+            <div className="view-attendance-pie-wrapper">
+
+              <Pie
+                data={attendanceChartData}
+                options={attendanceChartOptions}
+              />
+
+            </div>
+
+            {/* CHART DETAILS */}
+
+            <div className="view-attendance-chart-details">
+
+              <div className="view-attendance-chart-description">
+                <span>Attendance Distribution</span>
+                <strong>Recorded Attendance Statistics</strong>
+              </div>
+
+              {/* PRESENT */}
+
+              <div className="view-attendance-chart-stat">
+
+                <div className="view-attendance-chart-stat-left">
+
+                  <span className="view-attendance-chart-dot present-dot"></span>
+
+                  <div>
+                    <strong>Present</strong>
+                    <small>{presentPercentage}% of total strength</small>
+                  </div>
+
+                </div>
+
+                <div className="view-attendance-chart-stat-value">
+                  {totalPresent}
+                </div>
+
+              </div>
+
+              {/* ABSENT */}
+
+              <div className="view-attendance-chart-stat">
+
+                <div className="view-attendance-chart-stat-left">
+
+                  <span className="view-attendance-chart-dot absent-dot"></span>
+
+                  <div>
+                    <strong>Absent</strong>
+                    <small>{absentPercentage}% of total strength</small>
+                  </div>
+
+                </div>
+
+                <div className="view-attendance-chart-stat-value">
+                  {totalAbsent}
+                </div>
+
+              </div>
+
+              {/* ON LEAVE */}
+
+              <div className="view-attendance-chart-stat">
+
+                <div className="view-attendance-chart-stat-left">
+
+                  <span className="view-attendance-chart-dot leave-dot"></span>
+
+                  <div>
+                    <strong>On Leave</strong>
+                    <small>{leavePercentage}% of total strength</small>
+                  </div>
+
+                </div>
+
+                <div className="view-attendance-chart-stat-value">
+                  {totalLeave}
+                </div>
+
+              </div>
+
+              {/* TOTAL */}
+
+              <div className="view-attendance-chart-total">
+                <span>Total Attendance Strength</span>
+                <strong>{totalStrength}</strong>
+              </div>
+
+              <div className="view-attendance-chart-note">
+                <i className="bi bi-info-circle"></i>
+                <span>
+                  The chart updates automatically according to the selected
+                  attendance filter.
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+        )}
+
+      </div>
+
+      {/* MAIN TABLE CARD */}
 
       <div className="view-attendance-card">
 
@@ -319,9 +569,7 @@ export default function ViewEmployeeAttendance() {
 
         </div>
 
-        {/* =========================
-            FILTER PANEL
-        ========================== */}
+        {/* FILTER PANEL */}
 
         <div
           className={`attendance-filter-panel ${
@@ -440,9 +688,7 @@ export default function ViewEmployeeAttendance() {
 
         </div>
 
-        {/* =========================
-            TABLE
-        ========================== */}
+        {/* TABLE */}
 
         <div className="view-attendance-table-wrapper">
 

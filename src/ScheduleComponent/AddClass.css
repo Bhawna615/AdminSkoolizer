@@ -1,0 +1,609 @@
+
+/* =========================================================
+   ADD CLASS
+   Premium Purple + White ERP UI
+   Unique prefix: ac-
+========================================================= */
+
+.ac-page {
+    min-height: 100vh;
+    padding: 28px;
+    box-sizing: border-box;
+    background: #f7f5ff;
+    font-family: "Poppins", "Segoe UI", sans-serif;
+    color: #302650;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.ac-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.ac-header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.ac-header-icon {
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #6c3fd4, #8d63e9);
+    color: #ffffff;
+    font-size: 23px;
+    box-shadow: 0 8px 20px rgba(108, 63, 212, 0.22);
+}
+
+.ac-title {
+    margin: 0;
+    color: #272044;
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+}
+
+.ac-subtitle {
+    margin: 4px 0 0;
+    color: #817b98;
+    font-size: 13px;
+}
+
+.ac-back-button {
+    border: 1px solid #e5def4;
+    background: #ffffff;
+    color: #6c3fd4;
+    border-radius: 11px;
+    padding: 11px 16px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.ac-back-button:hover {
+    background: #f0eaff;
+    border-color: #cfc0f1;
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.ac-content {
+    width: 100%;
+    max-width: 1050px;
+    margin: 35px auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(250px, 0.8fr);
+    align-items: start;
+    gap: 24px;
+}
+
+/* =========================================================
+   FORM CARD
+========================================================= */
+
+.ac-form-card {
+    background: #ffffff;
+    border: 1px solid #ebe6f8;
+    border-radius: 19px;
+    padding: 28px;
+    box-shadow: 0 8px 30px rgba(55, 39, 99, 0.06);
+}
+
+.ac-form-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.ac-form-heading-icon {
+    width: 47px;
+    height: 47px;
+    flex-shrink: 0;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0eaff;
+    color: #6c3fd4;
+    font-size: 19px;
+}
+
+.ac-form-heading h3 {
+    margin: 0;
+    color: #302650;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.ac-form-heading p {
+    margin: 4px 0 0;
+    color: #918ba0;
+    font-size: 11px;
+}
+
+.ac-divider {
+    height: 1px;
+    background: #eeeaf5;
+    margin: 24px 0;
+}
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+.ac-form-group {
+    margin-bottom: 28px;
+}
+
+.ac-form-group label {
+    display: block;
+    margin-bottom: 10px;
+    color: #51496b;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.ac-required {
+    margin-left: 4px;
+    color: #e14b65;
+}
+
+.ac-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.ac-input-icon {
+    position: absolute;
+    left: 15px;
+    color: #8b70d5;
+    font-size: 16px;
+    pointer-events: none;
+}
+
+.ac-input {
+    width: 100%;
+    height: 49px;
+    box-sizing: border-box;
+    border: 1px solid #e6e0f1;
+    border-radius: 11px;
+    background: #fcfbff;
+    color: #302650;
+    padding: 0 15px 0 43px;
+    outline: none;
+    font-family: inherit;
+    font-size: 12px;
+    transition: all 0.25s ease;
+}
+
+.ac-input::placeholder {
+    color: #aaa4b8;
+}
+
+.ac-input:hover {
+    border-color: #cfc1ed;
+}
+
+.ac-input:focus {
+    background: #ffffff;
+    border-color: #8060d9;
+    box-shadow: 0 0 0 3px rgba(108, 63, 212, 0.10);
+}
+
+.ac-input:disabled {
+    background: #f5f3f9;
+    cursor: not-allowed;
+}
+
+.ac-field-hint {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 9px;
+    color: #9a94a8;
+    font-size: 10px;
+}
+
+/* =========================================================
+   FORM ACTIONS
+========================================================= */
+
+.ac-form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 5px;
+}
+
+.ac-cancel-button,
+.ac-submit-button {
+    min-width: 115px;
+    height: 42px;
+    padding: 0 18px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.ac-cancel-button {
+    border: 1px solid #e5def1;
+    background: #ffffff;
+    color: #777086;
+}
+
+.ac-cancel-button:hover {
+    background: #f7f5fb;
+    border-color: #d6cbed;
+}
+
+.ac-submit-button {
+    border: 1px solid #6c3fd4;
+    background: #6c3fd4;
+    color: #ffffff;
+    box-shadow: 0 6px 15px rgba(108, 63, 212, 0.18);
+}
+
+.ac-submit-button:hover:not(:disabled) {
+    background: #5930bb;
+    border-color: #5930bb;
+    transform: translateY(-2px);
+    box-shadow: 0 9px 20px rgba(108, 63, 212, 0.25);
+}
+
+.ac-submit-button:disabled,
+.ac-cancel-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.ac-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: ac-spin 0.7s linear infinite;
+}
+
+@keyframes ac-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================================
+   INFORMATION CARD
+========================================================= */
+
+.ac-info-card {
+    padding: 25px;
+    background: linear-gradient(145deg, #ffffff, #faf8ff);
+    border: 1px solid #ebe6f8;
+    border-radius: 19px;
+    box-shadow: 0 8px 30px rgba(55, 39, 99, 0.05);
+}
+
+.ac-info-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff5df;
+    color: #d69a32;
+    font-size: 19px;
+}
+
+.ac-info-card h3 {
+    margin: 17px 0 8px;
+    color: #302650;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.ac-info-card > p {
+    margin: 0;
+    color: #8b849e;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.ac-info-divider {
+    height: 1px;
+    background: #eeeaf5;
+    margin: 20px 0;
+}
+
+.ac-info-point {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 13px 0;
+    color: #625a77;
+    font-size: 11px;
+}
+
+.ac-info-point i {
+    color: #28a47b;
+    font-size: 14px;
+}
+
+/* =========================================================
+   MESSAGE OVERLAY
+========================================================= */
+
+.ac-message-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(25, 20, 43, 0.40);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: ac-overlay-appear 0.25s ease;
+}
+
+.ac-message-box {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    padding: 32px 28px;
+    border-radius: 20px;
+    background: #ffffff;
+    text-align: center;
+    box-shadow: 0 20px 65px rgba(35, 25, 68, 0.22);
+    animation: ac-modal-appear 0.3s ease;
+}
+
+.ac-message-icon {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 17px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 29px;
+}
+
+.ac-message-success .ac-message-icon {
+    background: #e8f8f0;
+    color: #269b70;
+}
+
+.ac-message-error .ac-message-icon {
+    background: #fff0f2;
+    color: #d44862;
+}
+
+.ac-message-box h3 {
+    margin: 0;
+    color: #302650;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.ac-message-box p {
+    margin: 10px 0 0;
+    color: #89839a;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.ac-message-close {
+    min-width: 105px;
+    margin-top: 22px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 9px;
+    background: #6c3fd4;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.ac-message-close:hover {
+    background: #5930bb;
+}
+
+.ac-success-progress {
+    width: 100%;
+    height: 4px;
+    margin-top: 23px;
+    overflow: hidden;
+    border-radius: 5px;
+    background: #e9e5f2;
+}
+
+.ac-success-progress span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    background: #6c3fd4;
+    transform-origin: left;
+    animation: ac-progress 1.8s linear forwards;
+}
+
+@keyframes ac-progress {
+    from {
+        transform: scaleX(1);
+    }
+
+    to {
+        transform: scaleX(0);
+    }
+}
+
+@keyframes ac-overlay-appear {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes ac-modal-appear {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1200px) {
+    .ac-content {
+        max-width: 850px;
+        grid-template-columns: minmax(0, 1.3fr) minmax(220px, 0.8fr);
+    }
+}
+
+@media (max-width: 750px) {
+    .ac-page {
+        padding: 20px 15px;
+    }
+
+    .ac-header {
+        align-items: flex-start;
+    }
+
+    .ac-header-icon {
+        width: 47px;
+        height: 47px;
+        font-size: 19px;
+    }
+
+    .ac-title {
+        font-size: 23px;
+    }
+
+    .ac-subtitle {
+        font-size: 11px;
+    }
+
+    .ac-back-button {
+        padding: 10px;
+    }
+
+    .ac-back-button span {
+        display: none;
+    }
+
+    .ac-content {
+        max-width: 520px;
+        margin: 20px auto;
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+
+    .ac-form-card {
+        padding: 22px;
+    }
+
+    .ac-info-card {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ac-page {
+        padding: 15px 12px;
+    }
+
+    .ac-header {
+        gap: 10px;
+    }
+
+    .ac-header-left {
+        gap: 10px;
+    }
+
+    .ac-header-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 17px;
+    }
+
+    .ac-title {
+        font-size: 20px;
+    }
+
+    .ac-subtitle {
+        max-width: 210px;
+        font-size: 10px;
+        line-height: 1.5;
+    }
+
+    .ac-form-card {
+        padding: 19px 15px;
+        border-radius: 15px;
+    }
+
+    .ac-form-heading h3 {
+        font-size: 15px;
+    }
+
+    .ac-form-actions {
+        gap: 8px;
+    }
+
+    .ac-cancel-button,
+    .ac-submit-button {
+        min-width: 0;
+        flex: 1;
+        padding: 0 10px;
+        font-size: 11px;
+    }
+
+    .ac-info-card {
+        padding: 19px;
+    }
+
+    .ac-message-box {
+        padding: 27px 20px;
+    }
+}

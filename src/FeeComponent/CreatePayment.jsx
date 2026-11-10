@@ -1,22 +1,27 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
-import "./CreatePayment.css";
 import { useNavigate } from "react-router-dom";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "./CreatePayment.css";
 
 const API =
   "http://localhost/kkblossom/api.php/Adminapi/AdminPanelFee/";
 
 export default function CreatePayment() {
+  const navigate = useNavigate();
+
   const [classes, setClasses] = useState([]);
   const [students, setStudents] = useState([]);
   const [selectedClass, setSelectedClass] = useState("");
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
   const [selectedIds, setSelectedIds] = useState([]);
   const [filterEnabled, setFilterEnabled] = useState(false);
   const [errors, setErrors] = useState({});
-
-  const navigate = useNavigate();
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
 
   const [form, setForm] = useState({
     period: "",
@@ -24,24 +29,20 @@ export default function CreatePayment() {
     session: "2026-2027",
   });
 
+  const months = [
+    "January", "February", "March", "April",
+    "May", "June", "July", "August",
+    "September", "October", "November", "December"
+  ];
+
   // =========================================================
-  // MONTHS
+  // MESSAGE BOX
   // =========================================================
 
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  const showMessage = (text, type) => {
+    setMessage(text);
+    setMessageType(type);
+  };
 
   // =========================================================
   // LOAD CLASSES
@@ -56,14 +57,6 @@ export default function CreatePayment() {
       .catch((error) => {
         console.error("Error loading classes:", error);
       });
-  }, []);
-
-  // =========================================================
-  // INITIAL LOAD
-  // =========================================================
-
-  useEffect(() => {
-    fetchStudents();
   }, []);
 
   // =========================================================
@@ -82,11 +75,8 @@ export default function CreatePayment() {
 
         const allIds = data
           .filter((s) => {
-            const tuition =
-              parseInt(s.tuition_fee) || 0;
-
-            const transport =
-              parseInt(s.transport_fee) || 0;
+            const tuition = parseInt(s.tuition_fee) || 0;
+            const transport = parseInt(s.transport_fee) || 0;
 
             return tuition + transport > 0;
           })
@@ -96,17 +86,18 @@ export default function CreatePayment() {
         setLoading(false);
       })
       .catch((error) => {
-        console.error(
-          "Error loading students:",
-          error
-        );
-
+        console.error("Error loading students:", error);
         setLoading(false);
+
+        showMessage(
+          "Unable to load students. Please try again.",
+          "error"
+        );
       });
   };
 
   // =========================================================
-  // FILTER STUDENTS
+  // INITIAL LOAD AND CLASS FILTER
   // =========================================================
 
   useEffect(() => {
@@ -116,6 +107,9 @@ export default function CreatePayment() {
     }
 
     if (!selectedClass) {
+      setStudents([]);
+      setSelectedIds([]);
+      setLoading(false);
       return;
     }
 
@@ -124,8 +118,8 @@ export default function CreatePayment() {
     axios
       .get(
         API +
-          "filterStudents/" +
-          encodeURIComponent(selectedClass)
+        "filterStudents/" +
+        encodeURIComponent(selectedClass)
       )
       .then((res) => {
         const data = res.data || [];
@@ -134,11 +128,8 @@ export default function CreatePayment() {
 
         const allIds = data
           .filter((s) => {
-            const tuition =
-              parseInt(s.tuition_fee) || 0;
-
-            const transport =
-              parseInt(s.transport_fee) || 0;
+            const tuition = parseInt(s.tuition_fee) || 0;
+            const transport = parseInt(s.transport_fee) || 0;
 
             return tuition + transport > 0;
           })
@@ -148,12 +139,13 @@ export default function CreatePayment() {
         setLoading(false);
       })
       .catch((error) => {
-        console.error(
-          "Error filtering students:",
-          error
-        );
-
+        console.error("Error filtering students:", error);
         setLoading(false);
+
+        showMessage(
+          "Unable to filter students.",
+          "error"
+        );
       });
   }, [selectedClass, filterEnabled]);
 
@@ -165,18 +157,15 @@ export default function CreatePayment() {
     const newErrors = {};
 
     if (!form.period) {
-      newErrors.period =
-        "Payment Period is required";
+      newErrors.period = "Payment period is required.";
     }
 
     if (!form.lastdate) {
-      newErrors.lastdate =
-        "Last Date is required";
+      newErrors.lastdate = "Last date is required.";
     }
 
     if (selectedIds.length === 0) {
-      newErrors.students =
-        "Select at least one student";
+      newErrors.students = "Please select at least one student.";
     }
 
     setErrors(newErrors);
@@ -189,73 +178,81 @@ export default function CreatePayment() {
   // =========================================================
 
   const handleCheckbox = (id) => {
-    if (selectedIds.includes(id)) {
-      setSelectedIds(
-        selectedIds.filter((i) => i !== id)
-      );
-    } else {
-      setSelectedIds([
-        ...selectedIds,
-        id,
-      ]);
-    }
+    setSelectedIds((prev) =>
+      prev.includes(id)
+        ? prev.filter((i) => i !== id)
+        : [...prev, id]
+    );
+
+    setErrors((prev) => ({
+      ...prev,
+      students: ""
+    }));
   };
 
   // =========================================================
-  // GET VISIBLE IDS
+  // VISIBLE STUDENTS
   // =========================================================
 
-  const getVisibleIds = () => {
-    return students
-      .filter((s) => {
-        const tuition =
-          parseInt(s.tuition_fee) || 0;
+  const tableData = students.filter((s) => {
+    const tuition = parseInt(s.tuition_fee) || 0;
+    const transport = parseInt(s.transport_fee) || 0;
 
-        const transport =
-          parseInt(s.transport_fee) || 0;
+    return tuition + transport > 0;
+  });
 
-        return tuition + transport > 0;
-      })
-      .map((s) => s.id);
-  };
+  const visibleIds = tableData.map((s) => s.id);
 
   // =========================================================
   // SELECT ALL
   // =========================================================
 
   const handleSelectAll = () => {
-    const visibleIds = getVisibleIds();
-
     const allVisibleSelected =
       visibleIds.length > 0 &&
-      visibleIds.every((id) =>
-        selectedIds.includes(id)
-      );
+      visibleIds.every((id) => selectedIds.includes(id));
 
     if (allVisibleSelected) {
-      setSelectedIds(
-        selectedIds.filter(
-          (id) => !visibleIds.includes(id)
-        )
+      setSelectedIds((prev) =>
+        prev.filter((id) => !visibleIds.includes(id))
       );
     } else {
-      setSelectedIds([
-        ...new Set([
-          ...selectedIds,
-          ...visibleIds,
-        ]),
+      setSelectedIds((prev) => [
+        ...new Set([...prev, ...visibleIds])
       ]);
     }
   };
 
   // =========================================================
-  // SUBMIT
+  // FEE SUMMARY
+  // =========================================================
+
+  const selectedStudents = tableData.filter((s) =>
+    selectedIds.includes(s.id)
+  );
+
+  const totalTuition = selectedStudents.reduce(
+    (sum, s) => sum + (parseInt(s.tuition_fee) || 0),
+    0
+  );
+
+  const totalTransport = selectedStudents.reduce(
+    (sum, s) => sum + (parseInt(s.transport_fee) || 0),
+    0
+  );
+
+  const totalAmount = totalTuition + totalTransport;
+
+  // =========================================================
+  // SUBMIT PAYMENT
   // =========================================================
 
   const handleSubmit = () => {
-    if (!validate()) {
-      return;
-    }
+    if (submitting) return;
+
+    if (!validate()) return;
+
+    setSubmitting(true);
 
     axios
       .post(API + "insertPayment", {
@@ -264,309 +261,486 @@ export default function CreatePayment() {
       })
       .then((res) => {
         if (res.data.status) {
-          alert(
-            "Payment Added Successfully"
+          showMessage(
+            "Payment created successfully!",
+            "success"
           );
 
-          navigate(
-            "/dashboard/FeeComponent/AdminViewPayment"
-          );
+          setTimeout(() => {
+            navigate(
+              "/dashboard/FeeComponent/AdminViewPayment"
+            );
+          }, 2200);
         } else {
-          alert(
-            res.data.message ||
-              "Failed to add payment"
+          showMessage(
+            res.data.message || "Failed to create payment.",
+            "error"
           );
+
+          setSubmitting(false);
         }
       })
       .catch((error) => {
-        console.error(
-          "Error creating payment:",
-          error
+        console.error("Error creating payment:", error);
+
+        showMessage(
+          "Server error. Please try again.",
+          "error"
         );
 
-        alert("Server Error");
+        setSubmitting(false);
       });
   };
 
   // =========================================================
-  // TABLE
+  // DATATABLE COLUMNS
   // =========================================================
-
-  const visibleIds = getVisibleIds();
 
   const columns = [
     {
       name: (
         <input
-          className="kk-create-payment-checkbox"
+          className="cp-checkbox"
           type="checkbox"
           onChange={handleSelectAll}
           checked={
             visibleIds.length > 0 &&
-            visibleIds.every((id) =>
-              selectedIds.includes(id)
-            )
+            visibleIds.every((id) => selectedIds.includes(id))
           }
         />
       ),
 
       cell: (row) => (
         <input
-          className="kk-create-payment-checkbox"
+          className="cp-checkbox"
           type="checkbox"
           checked={selectedIds.includes(row.id)}
-          onChange={() =>
-            handleCheckbox(row.id)
-          }
+          onChange={() => handleCheckbox(row.id)}
         />
       ),
 
-      width: "70px",
+      width: "65px",
+      center: true,
     },
 
     {
-      name: "Roll",
+      name: "ROLL / ADM NO.",
       selector: (row) => row.Admno,
       sortable: true,
+      width: "150px",
     },
 
     {
-      name: "Name",
+      name: "STUDENT NAME",
       selector: (row) => row.Name,
       sortable: true,
+      grow: 2,
     },
 
     {
-      name: "Class",
+      name: "CLASS",
       selector: (row) => row.Class,
       sortable: true,
+      width: "130px",
     },
 
     {
-      name: "Tuition",
+      name: "TUITION FEE",
+      selector: (row) => parseInt(row.tuition_fee) || 0,
 
-      selector: (row) =>
-        parseInt(row.tuition_fee) || 0,
+      cell: (row) => (
+        <span className="cp-fee-value">
+          ₹{(parseInt(row.tuition_fee) || 0).toLocaleString("en-IN")}
+        </span>
+      ),
 
-      cell: (row) =>
-        `₹${parseInt(row.tuition_fee) || 0}`,
+      width: "145px",
     },
 
     {
-      name: "Transport",
+      name: "TRANSPORT",
+      selector: (row) => parseInt(row.transport_fee) || 0,
 
-      selector: (row) =>
-        parseInt(row.transport_fee) || 0,
+      cell: (row) => (
+        <span className="cp-fee-value">
+          ₹{(parseInt(row.transport_fee) || 0).toLocaleString("en-IN")}
+        </span>
+      ),
 
-      cell: (row) =>
-        `₹${parseInt(row.transport_fee) || 0}`,
+      width: "145px",
     },
 
     {
-      name: "Total",
+      name: "TOTAL FEE",
 
       cell: (row) => {
-        const tuition =
-          parseInt(row.tuition_fee) || 0;
-
-        const transport =
-          parseInt(row.transport_fee) || 0;
+        const tuition = parseInt(row.tuition_fee) || 0;
+        const transport = parseInt(row.transport_fee) || 0;
 
         return (
-          <strong>
-            ₹{tuition + transport}
+          <strong className="cp-total-fee">
+            ₹{(tuition + transport).toLocaleString("en-IN")}
           </strong>
         );
       },
+
+      width: "145px",
     },
   ];
 
   // =========================================================
-  // TABLE DATA
+  // DATATABLE CUSTOM DESIGN
   // =========================================================
 
-  const tableData = students.filter((s) => {
-    const tuition =
-      parseInt(s.tuition_fee) || 0;
+  const customStyles = {
+    table: {
+      style: {
+        backgroundColor: "#ffffff",
+      },
+    },
 
-    const transport =
-      parseInt(s.transport_fee) || 0;
+    headRow: {
+      style: {
+        backgroundColor: "#f7f5ff",
+        minHeight: "56px",
+        borderBottom: "1px solid #ece8f7",
+      },
+    },
 
-    return tuition + transport > 0;
-  });
+    headCells: {
+      style: {
+        color: "#70668d",
+        fontSize: "11px",
+        fontWeight: "800",
+        letterSpacing: "0.6px",
+        paddingLeft: "16px",
+        paddingRight: "16px",
+      },
+    },
+
+    rows: {
+      style: {
+        minHeight: "65px",
+        color: "#38334d",
+        fontSize: "13px",
+        borderBottom: "1px solid #f0edf6",
+      },
+
+      highlightOnHoverStyle: {
+        backgroundColor: "#faf9ff",
+        transition: "0.2s ease",
+      },
+    },
+
+    cells: {
+      style: {
+        paddingLeft: "16px",
+        paddingRight: "16px",
+      },
+    },
+
+    pagination: {
+      style: {
+        borderTop: "1px solid #f0edf6",
+        minHeight: "58px",
+        color: "#716b83",
+        fontSize: "12px",
+      },
+    },
+  };
 
   // =========================================================
   // UI
   // =========================================================
 
   return (
-    <div className="kk-create-payment-page">
+    <div className="cp-page">
+
+      {/* SUCCESS / ERROR MESSAGE OVERLAY */}
+
+      {message && (
+        <div className="cp-message-overlay">
+          <div className="cp-message-box">
+
+            <div
+              className={`cp-message-icon ${
+                messageType === "success"
+                  ? "success"
+                  : "error"
+              }`}
+            >
+              {messageType === "success" ? (
+                <i className="bi bi-check-lg"></i>
+              ) : (
+                <i className="bi bi-exclamation-lg"></i>
+              )}
+            </div>
+
+            <h3>
+              {messageType === "success"
+                ? "Payment Created!"
+                : "Something Went Wrong"}
+            </h3>
+
+            <p>{message}</p>
+
+            <div className="cp-message-progress">
+              <span
+                className={
+                  messageType === "success"
+                    ? "success"
+                    : "error"
+                }
+              />
+            </div>
+
+          </div>
+        </div>
+      )}
 
       {/* PAGE HEADER */}
 
-      <div className="kk-create-payment-header">
-        <div>
-          <h1>Create Payment</h1>
+      <div className="cp-page-header">
 
-          <p>
-            Create a new fee payment for selected students
-          </p>
-        </div>
-      </div>
+        <div className="cp-heading-left">
 
-      {/* MAIN CARD */}
-
-      <div className="kk-create-payment-card">
-
-        {/* CARD HEADER */}
-
-        <div className="kk-create-payment-card-header">
-
-          <div className="kk-create-payment-card-icon">
-            ₹
+          <div className="cp-heading-icon">
+            <i className="bi bi-receipt-cutoff"></i>
           </div>
 
           <div>
-            <h2>Payment Details</h2>
+            <div className="cp-breadcrumb">
+              Dashboard <span>/</span> Fees <span>/</span> Create Payment
+            </div>
 
-            <p>
-              Configure payment information and select
-              students for payment.
-            </p>
+            <h1>Create Payment</h1>
+
+            <p>Create and assign fee payments to students.</p>
           </div>
 
         </div>
 
-        {/* FILTER SECTION */}
+        <button
+          className="cp-back-btn"
+          onClick={() =>
+            navigate("/dashboard/FeeComponent/AdminViewPayment")
+          }
+        >
+          <i className="bi bi-arrow-left"></i>
+          Back to Payments
+        </button>
 
-        <div className="kk-create-payment-filter-section">
+      </div>
 
-          <div className="kk-create-payment-section-title">
+      {/* SUMMARY CARDS */}
 
-            <h3>Student Filter</h3>
+      <div className="cp-summary-grid">
 
-            <span>
-              Filter students by class if required.
-            </span>
+        <div className="cp-summary-card">
+
+          <div className="cp-summary-icon purple">
+            <i className="bi bi-people"></i>
+          </div>
+
+          <div>
+            <span>Available Students</span>
+            <h2>{tableData.length}</h2>
+          </div>
+
+        </div>
+
+        <div className="cp-summary-card">
+
+          <div className="cp-summary-icon blue">
+            <i className="bi bi-person-check"></i>
+          </div>
+
+          <div>
+            <span>Selected Students</span>
+            <h2>{selectedIds.length}</h2>
+          </div>
+
+        </div>
+
+        <div className="cp-summary-card">
+
+          <div className="cp-summary-icon green">
+            <i className="bi bi-wallet2"></i>
+          </div>
+
+          <div>
+            <span>Selected Fee Amount</span>
+            <h2>₹{totalAmount.toLocaleString("en-IN")}</h2>
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* MAIN CONTENT */}
+
+      <div className="cp-main-card">
+
+        {/* CARD HEADER */}
+
+        <div className="cp-card-header">
+
+          <div className="cp-card-header-icon">
+            <i className="bi bi-file-earmark-text"></i>
+          </div>
+
+          <div>
+            <h2>Payment Configuration</h2>
+            <p>Enter payment details and choose the students.</p>
+          </div>
+
+          <div className="cp-session-badge">
+            <i className="bi bi-calendar3"></i>
+            Session 2026–2027
+          </div>
+
+        </div>
+
+        {/* STUDENT FILTER */}
+
+        <section className="cp-section">
+
+          <div className="cp-section-heading">
+
+            <div>
+              <h3>Student Filter</h3>
+              <p>Filter the student list according to their class.</p>
+            </div>
+
+            <span className="cp-step-label">01</span>
 
           </div>
 
-          <div className="kk-create-payment-filter-row">
+          <div className="cp-filter-panel">
 
-            <div className="kk-create-payment-switch-group">
+            <div className="cp-filter-toggle-area">
 
-              <span className="kk-create-payment-switch-label">
-                Enable Filter
-              </span>
+              <div className="cp-filter-symbol">
+                <i className="bi bi-funnel"></i>
+              </div>
 
-              <label className="kk-create-payment-switch">
+              <div className="cp-filter-toggle-text">
+                <strong>Enable Class Filter</strong>
+                <span>Show students from a particular class</span>
+              </div>
+
+              <label className="cp-switch">
 
                 <input
                   type="checkbox"
                   checked={filterEnabled}
-                  onChange={(e) =>
-                    setFilterEnabled(
-                      e.target.checked
-                    )
-                  }
+                  onChange={(e) => {
+                    setFilterEnabled(e.target.checked);
+                    setSelectedClass("");
+                  }}
                 />
 
-                <span className="kk-create-payment-slider"></span>
+                <span className="cp-switch-slider"></span>
 
               </label>
 
             </div>
 
-            <div className="kk-create-payment-filter-group">
+            <div className="cp-filter-divider"></div>
 
-              {/* <label>Select Class</label> */}
+            <div className="cp-class-select">
 
-              <select
-                value={selectedClass}
-                onChange={(e) =>
-                  setSelectedClass(
-                    e.target.value
-                  )
-                }
-                disabled={!filterEnabled}
-              >
+              <label>Select Class</label>
 
-                <option value="">
-                  Select Class
-                </option>
+              <div className="cp-select-wrapper">
 
-                {classes.map((c, i) => (
-                  <option
-                    key={i}
-                    value={c.Classname}
-                  >
-                    {c.Classname}
-                  </option>
-                ))}
+                <i className="bi bi-mortarboard"></i>
 
-              </select>
+                <select
+                  value={selectedClass}
+                  onChange={(e) =>
+                    setSelectedClass(e.target.value)
+                  }
+                  disabled={!filterEnabled}
+                >
+                  <option value="">Select a class</option>
+
+                  {classes.map((c, i) => (
+                    <option key={i} value={c.Classname}>
+                      {c.Classname}
+                    </option>
+                  ))}
+
+                </select>
+
+                <i className="bi bi-chevron-down cp-select-arrow"></i>
+
+              </div>
 
             </div>
 
           </div>
 
-        </div>
+        </section>
 
         {/* PAYMENT INFORMATION */}
 
-        <div className="kk-create-payment-details-section">
+        <section className="cp-section">
 
-          <div className="kk-create-payment-section-title">
+          <div className="cp-section-heading">
 
-            <h3>Payment Information</h3>
+            <div>
+              <h3>Payment Information</h3>
+              <p>Specify the payment period and payment deadline.</p>
+            </div>
 
-            <span>
-              Select the payment month and enter the last payment date.
-            </span>
+            <span className="cp-step-label">02</span>
 
           </div>
 
-          <div className="kk-create-payment-form">
+          <div className="cp-form-grid">
 
             {/* PAYMENT PERIOD */}
 
-            <div className="kk-create-payment-form-group">
+            <div className="cp-form-group">
 
               <label>
-                Payment Period
-                <span className="kk-create-payment-required">
-                  *
-                </span>
+                Payment Period <span>*</span>
               </label>
 
-              <select
-                className="kk-create-payment-period-select"
-                value={form.period}
-                onChange={(e) =>
-                  setForm({
-                    ...form,
-                    period: e.target.value,
-                  })
-                }
-              >
+              <div className="cp-input-wrapper">
 
-                <option value="">
-                  Select Month
-                </option>
+                <i className="bi bi-calendar-month"></i>
 
-                {months.map((month) => (
-                  <option
-                    key={month}
-                    value={month}
-                  >
-                    {month}
-                  </option>
-                ))}
+                <select
+                  value={form.period}
+                  onChange={(e) => {
+                    setForm({
+                      ...form,
+                      period: e.target.value
+                    });
 
-              </select>
+                    setErrors({
+                      ...errors,
+                      period: ""
+                    });
+                  }}
+                  className={errors.period ? "cp-invalid" : ""}
+                >
+                  <option value="">Select Payment Month</option>
+
+                  {months.map((month) => (
+                    <option key={month} value={month}>
+                      {month}
+                    </option>
+                  ))}
+
+                </select>
+
+              </div>
 
               {errors.period && (
-                <span className="kk-create-payment-error">
+                <span className="cp-error-text">
                   {errors.period}
                 </span>
               )}
@@ -575,42 +749,63 @@ export default function CreatePayment() {
 
             {/* SESSION */}
 
-            <div className="kk-create-payment-form-group">
+            <div className="cp-form-group">
 
-              <label>Session</label>
+              <label>Academic Session</label>
 
-              <input
-                type="text"
-                value={form.session}
-                disabled
-              />
+              <div className="cp-input-wrapper cp-disabled-wrapper">
+
+                <i className="bi bi-calendar-check"></i>
+
+                <input
+                  type="text"
+                  value={form.session}
+                  disabled
+                />
+
+                <i className="bi bi-lock cp-lock-icon"></i>
+
+              </div>
+
+              <span className="cp-hint">
+                Current academic session
+              </span>
 
             </div>
 
             {/* LAST DATE */}
 
-            <div className="kk-create-payment-form-group">
+            <div className="cp-form-group">
 
               <label>
-                Last Date
-                <span className="kk-create-payment-required">
-                  *
-                </span>
+                Last Payment Date <span>*</span>
               </label>
 
-              <input
-                type="date"
-                value={form.lastdate}
-                onChange={(e) =>
-                  setForm({
-                    ...form,
-                    lastdate: e.target.value,
-                  })
-                }
-              />
+              <div className="cp-input-wrapper">
+
+                <i className="bi bi-calendar-event"></i>
+
+                <input
+                  type="date"
+                  value={form.lastdate}
+                  onChange={(e) => {
+                    setForm({
+                      ...form,
+                      lastdate: e.target.value
+                    });
+
+                    setErrors({
+                      ...errors,
+                      lastdate: ""
+                    });
+                  }}
+                  className={errors.lastdate ? "cp-invalid" : ""}
+                />
+
+              </div>
 
               {errors.lastdate && (
-                <span className="kk-create-payment-error">
+                <span className="cp-error-text">
                   {errors.lastdate}
                 </span>
               )}
@@ -619,89 +814,198 @@ export default function CreatePayment() {
 
           </div>
 
-        </div>
+        </section>
 
-        {/* STUDENT SECTION */}
+        {/* STUDENT SELECTION */}
 
-        <div className="kk-create-payment-student-section">
+        <section className="cp-section cp-student-section">
 
-          <div className="kk-create-payment-student-header">
+          <div className="cp-section-heading cp-student-heading">
 
-            <div className="kk-create-payment-student-title">
-
+            <div>
               <h3>Select Students</h3>
-
               <p>
-                Students with tuition or transport fees
-                are shown below.
+                Choose the students for whom this payment will be generated.
               </p>
+            </div>
+
+            <span className="cp-step-label">03</span>
+
+          </div>
+
+          {/* STUDENT TOOLBAR */}
+
+          <div className="cp-student-toolbar">
+
+            <div className="cp-student-toolbar-left">
+
+              <div className="cp-selected-icon">
+                <i className="bi bi-person-check-fill"></i>
+              </div>
+
+              <div>
+                <strong>
+                  {selectedIds.length} Students Selected
+                </strong>
+
+                <span>
+                  Out of {tableData.length} available students
+                </span>
+              </div>
 
             </div>
 
-            <div className="kk-create-payment-student-count">
-              {selectedIds.length} Selected
+            <div className="cp-selected-badge">
+              {tableData.length > 0
+                ? `${Math.round(
+                    (selectedIds.filter((id) =>
+                      visibleIds.includes(id)
+                    ).length / tableData.length) * 100
+                  )}% Selected`
+                : "0% Selected"}
             </div>
 
           </div>
 
+          {/* VALIDATION */}
+
           {errors.students && (
-            <div className="kk-create-payment-student-error">
+            <div className="cp-student-error">
+              <i className="bi bi-exclamation-circle"></i>
               {errors.students}
             </div>
           )}
 
+          {/* LOADING */}
+
           {loading ? (
 
-            <div className="kk-create-payment-loading">
+            <div className="cp-loading">
+              <span className="cp-loader"></span>
 
-              <span className="kk-create-payment-loader"></span>
+              <strong>Loading Students</strong>
 
-              Loading students...
+              <p>
+                Please wait while we fetch student records...
+              </p>
+            </div>
+
+          ) : tableData.length === 0 ? (
+
+            <div className="cp-empty-state">
+
+              <div className="cp-empty-icon">
+                <i className="bi bi-people"></i>
+              </div>
+
+              <h3>No Students Found</h3>
+
+              <p>
+                {filterEnabled
+                  ? "Select a class to display its students."
+                  : "There are no students with tuition or transport fees."}
+              </p>
 
             </div>
 
           ) : (
 
-            <div className="kk-create-payment-table-wrapper">
+            <div className="cp-table-container">
 
               <DataTable
                 columns={columns}
                 data={tableData}
                 pagination
+                paginationPerPage={10}
+                paginationRowsPerPageOptions={[10, 25, 50]}
                 highlightOnHover
-                striped
                 responsive
+                customStyles={customStyles}
+                persistTableHead
+                noDataComponent="No students available."
               />
 
             </div>
 
           )}
 
-        </div>
+          {/* FEE BREAKDOWN */}
 
-        {/* ACTION BAR */}
+          <div className="cp-fee-breakdown">
 
-        <div className="kk-create-payment-action-bar">
+            <div className="cp-breakdown-item">
+              <span>Tuition Fee</span>
 
-          <button
-            type="button"
-            className="kk-create-payment-cancel-btn"
-            onClick={() =>
-              navigate(
-                "/dashboard/FeeComponent/AdminViewPayment"
-              )
-            }
-          >
-            Cancel
-          </button>
+              <strong>
+                ₹{totalTuition.toLocaleString("en-IN")}
+              </strong>
+            </div>
 
-          <button
-            type="button"
-            className="kk-create-payment-submit-btn"
-            onClick={handleSubmit}
-          >
-            ✓ Create Payment
-          </button>
+            <div className="cp-breakdown-item">
+              <span>Transport Fee</span>
+
+              <strong>
+                ₹{totalTransport.toLocaleString("en-IN")}
+              </strong>
+            </div>
+
+            <div className="cp-breakdown-total">
+              <span>Total Selected Fee</span>
+
+              <strong>
+                ₹{totalAmount.toLocaleString("en-IN")}
+              </strong>
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* ACTION FOOTER */}
+
+        <div className="cp-action-footer">
+
+          <div className="cp-footer-note">
+            <i className="bi bi-shield-check"></i>
+
+            <span>
+              Review all details before creating the payment.
+            </span>
+          </div>
+
+          <div className="cp-action-buttons">
+
+            <button
+              type="button"
+              className="cp-cancel-btn"
+              onClick={() =>
+                navigate("/dashboard/FeeComponent/AdminViewPayment")
+              }
+              disabled={submitting}
+            >
+              Cancel
+            </button>
+
+            <button
+              type="button"
+              className="cp-submit-btn"
+              onClick={handleSubmit}
+              disabled={submitting || loading}
+            >
+              {submitting ? (
+                <>
+                  <span className="cp-button-loader"></span>
+                  Creating Payment...
+                </>
+              ) : (
+                <>
+                  <i className="bi bi-check-circle-fill"></i>
+                  Create Payment
+                </>
+              )}
+            </button>
+
+          </div>
 
         </div>
 

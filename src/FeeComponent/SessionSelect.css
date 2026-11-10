@@ -1,7 +1,9 @@
+
 /* =========================================================
    SESSION SELECT PAGE
-   Unique Prefix: kk-session-select-
-   ========================================================= */
+   PREMIUM PURPLE + WHITE ERP DESIGN
+   UNIQUE PREFIX: kk-session-select-
+========================================================= */
 
 .kk-session-select-page {
   position: relative;
@@ -10,16 +12,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  flex-direction: column;
+  padding: 45px 20px 25px;
+  box-sizing: border-box;
   overflow: hidden;
-  background: #f5f6fa;
-  font-family: "Inter", sans-serif;
+  background: #f7f6fc;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
-
 
 /* =========================================================
    BACKGROUND DECORATION
-   ========================================================= */
+========================================================= */
 
 .kk-session-select-decoration {
   position: absolute;
@@ -28,220 +31,315 @@
 }
 
 .kk-session-select-decoration-one {
-  width: 350px;
-  height: 350px;
-  top: -150px;
-  right: -100px;
-  background: rgba(108, 76, 232, 0.06);
+  width: 420px;
+  height: 420px;
+  top: -190px;
+  right: -120px;
+  background: rgba(108, 76, 232, 0.065);
 }
 
 .kk-session-select-decoration-two {
-  width: 280px;
-  height: 280px;
-  bottom: -130px;
-  left: -100px;
-  background: rgba(108, 76, 232, 0.05);
+  width: 350px;
+  height: 350px;
+  bottom: -170px;
+  left: -130px;
+  background: rgba(108, 76, 232, 0.055);
 }
 
+.kk-session-select-decoration-three {
+  width: 180px;
+  height: 180px;
+  top: 35%;
+  left: 10%;
+  background: rgba(118, 87, 232, 0.025);
+}
 
 /* =========================================================
    MAIN CARD
-   ========================================================= */
+========================================================= */
 
 .kk-session-select-card {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 500px;
-  padding: 38px 40px;
-  background: #ffffff;
-  border: 1px solid #e6e7ed;
-  border-radius: 16px;
+  max-width: 510px;
+  padding: 40px 42px 30px;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #eeeaf7;
+  border-radius: 19px;
   box-shadow:
-    0 12px 35px rgba(31, 35, 55, 0.08),
-    0 2px 8px rgba(31, 35, 55, 0.03);
+    0 15px 45px rgba(43, 31, 85, 0.075),
+    0 3px 10px rgba(43, 31, 85, 0.025);
 }
-
 
 /* =========================================================
    ICON
-   ========================================================= */
+========================================================= */
 
 .kk-session-select-icon {
-  width: 62px;
-  height: 62px;
+  width: 68px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 20px;
-  border-radius: 15px;
-  background: #f3f2f7;
-  border: 1px solid #e3dbff;
-  font-size: 28px;
-  color: #5b3ed0;
+  margin: 0 auto 21px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #f0ecff, #f8f6ff);
+  border: 1px solid #e6deff;
+  color: #6c4ce8;
+  font-size: 29px;
+  box-shadow: 0 6px 15px rgba(108, 76, 232, 0.07);
 }
-
 
 /* =========================================================
    HEADER
-   ========================================================= */
+========================================================= */
 
 .kk-session-select-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 31px;
+}
+
+.kk-session-select-eyebrow {
+  display: inline-block;
+  margin-bottom: 9px;
+  color: #8b76d7;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 2px;
 }
 
 .kk-session-select-header h1 {
   margin: 0;
-  color: #5b3ed0;
+  color: #302747;
   font-size: 26px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
+  font-weight: 750;
+  letter-spacing: -0.5px;
 }
 
 .kk-session-select-header p {
-  max-width: 350px;
-  margin: 9px auto 0;
-  color: #858a98;
+  max-width: 365px;
+  margin: 11px auto 0;
+  color: #8d889b;
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.7;
 }
-
 
 /* =========================================================
    FORM
-   ========================================================= */
+========================================================= */
 
 .kk-session-select-form {
   width: 100%;
 }
 
 .kk-session-select-form label {
-  display: block;
-  margin-bottom: 8px;
-  color: #4e5361;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 9px;
+  color: #504963;
   font-size: 12px;
-  font-weight: 650;
+  font-weight: 700;
 }
 
+.kk-session-select-form label i {
+  color: #7657e8;
+  font-size: 14px;
+}
 
 /* =========================================================
    SELECT WRAPPER
-   ========================================================= */
+========================================================= */
 
 .kk-session-select-input-wrapper {
   position: relative;
   width: 100%;
-  height: 48px;
+  height: 51px;
 }
 
 .kk-session-select-input-icon {
   position: absolute;
   z-index: 2;
   top: 50%;
-  left: 14px;
+  left: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
   transform: translateY(-50%);
-  font-size: 16px;
+  color: #826bd0;
+  font-size: 17px;
   pointer-events: none;
 }
 
 .kk-session-select-input-wrapper select {
   width: 100%;
-  height: 48px;
-  padding: 0 42px 0 45px;
+  height: 51px;
+  padding: 0 45px 0 45px;
+  box-sizing: border-box;
   appearance: none;
-  border: 1px solid #dfe1e8;
-  border-radius: 8px;
+  border: 1px solid #e5e0ef;
+  border-radius: 9px;
   outline: none;
-  background: #ffffff;
-  color: #343844;
+  background: #fcfbfe;
+  color: #383147;
   font-family: inherit;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .kk-session-select-input-wrapper select:hover {
-  border-color: #bdb4e9;
+  border-color: #c7b9f5;
+  background: #fff;
 }
 
 .kk-session-select-input-wrapper select:focus {
-  border-color: #6c4ce8;
-  box-shadow: 0 0 0 3px rgba(108, 76, 232, 0.09);
+  border-color: #7657e8;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(108, 76, 232, 0.1);
+}
+
+.kk-session-select-input-wrapper select:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }
 
 .kk-session-select-arrow {
   position: absolute;
   z-index: 2;
   top: 50%;
-  right: 15px;
+  right: 16px;
   transform: translateY(-50%);
-  color: #777c89;
-  font-size: 9px;
+  color: #817991;
+  font-size: 12px;
   pointer-events: none;
 }
 
-
 /* =========================================================
    SELECTED SESSION
-   ========================================================= */
+========================================================= */
 
 .kk-session-select-selected {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 14px;
-  padding: 11px 13px;
-  border: 1px solid #e7e2fa;
-  border-radius: 7px;
-  background: #faf9ff;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 13px 14px;
+  border: 1px solid #e8e2fb;
+  border-radius: 9px;
+  background: linear-gradient(110deg, #faf9ff, #f6f3ff);
+}
+
+.kk-session-select-selected-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.kk-session-select-selected-icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: #ece7ff;
+  color: #6c4ce8;
+  font-size: 17px;
+}
+
+.kk-session-select-selected-left > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .kk-session-select-selected span {
-  color: #858a98;
-  font-size: 11px;
-  font-weight: 500;
+  color: #574c70;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.kk-session-select-selected small {
+  color: #a09aac;
+  font-size: 10px;
+  line-height: 1.4;
 }
 
 .kk-session-select-selected strong {
   color: #6c4ce8;
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 750;
+  white-space: nowrap;
 }
 
+/* =========================================================
+   LOADING
+========================================================= */
+
+.kk-session-select-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 0 3px;
+  color: #89839a;
+  font-size: 12px;
+}
+
+.kk-session-select-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #e9e3ff;
+  border-top-color: #7657e8;
+  border-radius: 50%;
+  animation: kk-session-select-spin 0.7s linear infinite;
+}
 
 /* =========================================================
    BUTTON
-   ========================================================= */
+========================================================= */
 
 .kk-session-select-button {
   width: 100%;
-  height: 48px;
+  height: 51px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 20px;
-  padding: 0 17px 0 20px;
+  margin-top: 21px;
+  padding: 0 14px 0 19px;
   border: none;
-  border-radius: 8px;
-  background: #6c4ce8;
-  color: #ffffff;
+  border-radius: 9px;
+  background: linear-gradient(110deg, #6c4ce8, #8065eb);
+  color: #fff;
   font-family: inherit;
   font-size: 13px;
-  font-weight: 650;
+  font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 5px 12px rgba(108, 76, 232, 0.18);
-  transition: all 0.2s ease;
+  box-shadow: 0 6px 15px rgba(108, 76, 232, 0.19);
+  transition: all 0.25s ease;
+}
+
+.kk-session-select-button > span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.kk-session-select-button > span:first-child i {
+  font-size: 16px;
 }
 
 .kk-session-select-button:hover:not(:disabled) {
-  background: #5b3ed0;
-  transform: translateY(-1px);
-  box-shadow: 0 7px 16px rgba(108, 76, 232, 0.22);
+  background: linear-gradient(110deg, #5b3ed0, #7154df);
+  transform: translateY(-2px);
+  box-shadow: 0 9px 20px rgba(108, 76, 232, 0.25);
 }
 
 .kk-session-select-button:active:not(:disabled) {
@@ -255,61 +353,98 @@
 }
 
 .kk-session-select-button-arrow {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.14);
-  font-size: 17px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 16px;
+  transition: transform 0.2s ease;
 }
 
+.kk-session-select-button:hover:not(:disabled)
+.kk-session-select-button-arrow {
+  transform: translateX(3px);
+}
 
 /* =========================================================
    FOOTER
-   ========================================================= */
+========================================================= */
 
 .kk-session-select-footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  margin-top: 22px;
-  color: #999eaa;
+  gap: 9px;
+  margin-top: 23px;
+  padding-top: 18px;
+  border-top: 1px solid #f0edf6;
+  color: #9691a3;
   font-size: 10px;
+  line-height: 1.5;
   text-align: center;
 }
 
-.kk-session-select-footer-dot {
-  width: 6px;
-  height: 6px;
+.kk-session-select-footer-icon {
+  color: #8065e7;
+  font-size: 15px;
   flex-shrink: 0;
-  border-radius: 50%;
-  background: #6c4ce8;
 }
 
+/* =========================================================
+   BOTTOM INFORMATION
+========================================================= */
+
+.kk-session-select-bottom {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 23px;
+  color: #aaa5b7;
+  font-size: 10px;
+}
+
+.kk-session-select-bottom i {
+  color: #8974d7;
+  font-size: 13px;
+}
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes kk-session-select-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 /* =========================================================
    RESPONSIVE
-   ========================================================= */
+========================================================= */
 
 @media (max-width: 600px) {
   .kk-session-select-page {
     min-height: calc(100vh - 60px);
-    padding: 25px 15px;
+    padding: 30px 15px 20px;
   }
 
   .kk-session-select-card {
-    padding: 30px 24px;
-    border-radius: 13px;
+    max-width: 460px;
+    padding: 32px 25px 25px;
+    border-radius: 15px;
   }
 
   .kk-session-select-icon {
-    width: 55px;
-    height: 55px;
-    margin-bottom: 17px;
-    font-size: 24px;
+    width: 59px;
+    height: 59px;
+    margin-bottom: 18px;
+    font-size: 25px;
   }
 
   .kk-session-select-header {
@@ -323,16 +458,31 @@
   .kk-session-select-header p {
     font-size: 12px;
   }
-}
 
+  .kk-session-select-bottom {
+    font-size: 9px;
+  }
+}
 
 @media (max-width: 400px) {
   .kk-session-select-card {
-    padding: 26px 18px;
+    padding: 27px 18px 22px;
   }
 
   .kk-session-select-header h1 {
     font-size: 21px;
+  }
+
+  .kk-session-select-selected {
+    padding: 11px;
+  }
+
+  .kk-session-select-selected small {
+    font-size: 9px;
+  }
+
+  .kk-session-select-selected strong {
+    font-size: 12px;
   }
 
   .kk-session-select-footer {

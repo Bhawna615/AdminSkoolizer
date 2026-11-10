@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Discount.css";
@@ -31,9 +32,16 @@ export default function Discount() {
 
       {/* PAGE HEADER */}
       <div className="discount-header">
-        <div>
-          <h1>Discount</h1>
-          <p>Manage fee discounts and assign them to students</p>
+        <div className="discount-heading-content">
+          <span className="discount-eyebrow">
+            FEE MANAGEMENT
+          </span>
+
+          <h1>Discount Management</h1>
+
+          <p>
+            Manage fee discounts and assign them to students
+          </p>
         </div>
 
         <button
@@ -43,9 +51,26 @@ export default function Discount() {
               "/dashboard/FeeComponent/AddDiscount")
           }
         >
-          <span>+</span>
+          <span className="discount-add-icon">+</span>
           Add Discount
         </button>
+      </div>
+
+      {/* SUMMARY SECTION */}
+      <div className="discount-summary">
+        <div className="discount-summary-icon">
+          %
+        </div>
+
+        <div className="discount-summary-content">
+          <span>Total Discount Categories</span>
+          <h2>{discounts.length}</h2>
+          <p>Available discount structures</p>
+        </div>
+
+        <div className="discount-summary-decoration">
+          %
+        </div>
       </div>
 
       {/* MAIN CARD */}
@@ -54,44 +79,75 @@ export default function Discount() {
         {/* CARD HEADER */}
         <div className="discount-card-top">
 
-          <div>
-            <h2>Discount List</h2>
-            <p>
-              {discounts.length} discount
-              {discounts.length !== 1 ? "s" : ""} available
-            </p>
+          <div className="discount-card-heading">
+            <div className="discount-card-icon">
+              <span>%</span>
+            </div>
+
+            <div>
+              <h2>Discount List</h2>
+              <p>
+                View and manage all available fee discounts
+              </p>
+            </div>
           </div>
 
           {/* SEARCH */}
           <div className="discount-search">
-            <span>⌕</span>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              className="discount-search-icon"
+            >
+              <circle
+                cx="10.8"
+                cy="10.8"
+                r="6.8"
+                stroke="currentColor"
+                strokeWidth="1.8"
+              />
+              <path
+                d="M16 16L21 21"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+              />
+            </svg>
 
             <input
               type="text"
-              placeholder="Search discount..."
+              placeholder="Search by fee type..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-          </div>
 
+            {search && (
+              <button
+                type="button"
+                className="discount-clear-search"
+                onClick={() => setSearch("")}
+                title="Clear search"
+              >
+                ×
+              </button>
+            )}
+          </div>
         </div>
 
         {/* TABLE */}
         <div className="discount-table-wrapper">
-
           <table className="discount-table">
 
             <thead>
               <tr>
                 <th>ID</th>
                 <th>FEE TYPE</th>
-                <th>AMOUNT</th>
+                <th>DISCOUNT AMOUNT</th>
                 <th>ACTION</th>
               </tr>
             </thead>
 
             <tbody>
-
               {filteredDiscounts.length > 0 ? (
 
                 filteredDiscounts.map((d) => (
@@ -113,9 +169,12 @@ export default function Discount() {
                           %
                         </div>
 
-                        <span>
-                          {d.fee_type}
-                        </span>
+                        <div className="discount-fee-details">
+                          <span className="discount-fee-name">
+                            {d.fee_type}
+                          </span>
+                          <small>Fee discount category</small>
+                        </div>
 
                       </div>
                     </td>
@@ -123,7 +182,7 @@ export default function Discount() {
                     {/* AMOUNT */}
                     <td>
                       <span className="discount-amount">
-                        ₹{Number(d.amount || 0).toLocaleString()}
+                        ₹{Number(d.amount || 0).toLocaleString("en-IN")}
                       </span>
                     </td>
 
@@ -138,6 +197,19 @@ export default function Discount() {
                       >
                         <span>+</span>
                         Add Students
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          className="discount-button-arrow"
+                        >
+                          <path
+                            d="M5 12H19M13 6L19 12L13 18"
+                            stroke="currentColor"
+                            strokeWidth="1.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
                       </button>
                     </td>
 
@@ -148,7 +220,6 @@ export default function Discount() {
               ) : (
 
                 <tr>
-
                   <td colSpan="4">
 
                     <div className="discount-empty">
@@ -157,18 +228,40 @@ export default function Discount() {
                         %
                       </div>
 
-                      <h3>No Discounts Found</h3>
+                      <h3>
+                        {search
+                          ? "No Matching Discounts"
+                          : "No Discounts Available"}
+                      </h3>
 
                       <p>
                         {search
-                          ? "No discount matches your search."
-                          : "Add a discount to get started."}
+                          ? "Try searching with a different fee type."
+                          : "You haven't created any discount structures yet. Add your first discount to get started."}
                       </p>
+
+                      {search ? (
+                        <button
+                          className="discount-empty-action"
+                          onClick={() => setSearch("")}
+                        >
+                          Clear Search
+                        </button>
+                      ) : (
+                        <button
+                          className="discount-empty-action"
+                          onClick={() =>
+                            (window.location.href =
+                              "/dashboard/FeeComponent/AddDiscount")
+                          }
+                        >
+                          + Add Discount
+                        </button>
+                      )}
 
                     </div>
 
                   </td>
-
                 </tr>
 
               )}
@@ -176,16 +269,22 @@ export default function Discount() {
             </tbody>
 
           </table>
-
         </div>
 
         {/* FOOTER */}
-        {filteredDiscounts.length > 0 && (
-          <div className="discount-footer">
-            Showing <strong>{filteredDiscounts.length}</strong>{" "}
-            of <strong>{discounts.length}</strong> discounts
+        <div className="discount-footer">
+
+          <div className="discount-footer-left">
+            <span className="discount-footer-dot"></span>
+            Showing <strong>{filteredDiscounts.length}</strong>
+            {" "}of <strong>{discounts.length}</strong> discounts
           </div>
-        )}
+
+          <span className="discount-footer-label">
+            Discount Records
+          </span>
+
+        </div>
 
       </div>
 

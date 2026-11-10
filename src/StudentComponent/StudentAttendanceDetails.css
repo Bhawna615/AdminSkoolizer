@@ -1,416 +1,1017 @@
+
 /* =========================================================
+   KK BLOSSOMS ERP
    STUDENT ATTENDANCE DETAILS
-   PURPLE + WHITE THEME
+   Purple + White Responsive UI
 ========================================================= */
 
-* {
+.sad-page {
+  min-height: 100vh;
+  width: 100%;
+  padding: 28px;
+  background: #f7f6fc;
+  color: #29243e;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
   box-sizing: border-box;
 }
 
-/* =========================
-   MAIN PAGE
-========================= */
-
-.student-attendance-page {
-  width: 100%;
-  min-height: 100vh;
-  padding: 30px;
-  background: #f7f5fb;
-  font-family: Arial, Helvetica, sans-serif;
+.sad-page *,
+.sad-state * {
+  box-sizing: border-box;
 }
 
-.student-attendance-container {
+.sad-container {
   width: 100%;
   max-width: 1200px;
-  margin: auto;
-  background: #ffffff;
-  border: 1px solid #e8e2f0;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(91, 44, 135, 0.08);
+  margin: 0 auto;
 }
 
+/* =========================================================
+   PAGE HEADER
+========================================================= */
 
-/* =========================
-   STUDENT PROFILE
-========================= */
-
-.student-attendance-profile {
+.sad-page-header {
   display: flex;
-  min-height: 230px;
-  border-bottom: 1px solid #e8e2f0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 26px;
 }
 
-.student-attendance-image-section {
-  width: 30%;
-  min-width: 280px;
+.sad-heading-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-width: 0;
+}
+
+.sad-heading-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 30px;
-  background: linear-gradient(
-    135deg,
-    #5b2c87,
-    #7d3c98
-  );
+  flex-shrink: 0;
+  width: 53px;
+  height: 53px;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #8064f1, #6845d8);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(108, 76, 232, 0.19);
 }
 
-.student-attendance-image-wrapper {
-  width: 165px;
-  height: 165px;
-  padding: 6px;
+.sad-heading-icon svg {
+  width: 25px;
+  height: 25px;
+}
+
+.sad-eyebrow,
+.sad-section-overline {
+  display: block;
+  margin-bottom: 6px;
+  color: #7657e8;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.sad-page-header h1 {
+  margin: 0;
+  color: #29243e;
+  font-size: 27px;
+  font-weight: 750;
+  line-height: 1.3;
+  letter-spacing: -0.65px;
+}
+
+.sad-page-header p {
+  margin: 7px 0 0;
+  color: #89849d;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.sad-record-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
+  padding: 11px 15px;
+  border: 1px solid #e7e0ff;
+  border-radius: 10px;
+  background: #fff;
+  color: #6d53ca;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.sad-record-dot,
+.sad-tag-dot {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background: #7b61e8;
 }
 
-.student-attendance-image {
+/* =========================================================
+   STUDENT PROFILE
+========================================================= */
+
+.sad-profile-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-width: 0;
+  margin-bottom: 30px;
+  padding: 27px;
+  overflow: hidden;
+  border: 1px solid #ebe7f7;
+  border-radius: 17px;
+  background: #fff;
+  box-shadow: 0 5px 24px rgba(45, 35, 90, 0.035);
+}
+
+.sad-profile-accent {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #967fff, #6745d8);
+}
+
+.sad-student-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 96px;
+  height: 96px;
+  padding: 4px;
+  border: 1px solid #e6ddff;
+  border-radius: 19px;
+  background: #f5f1ff;
+}
+
+.sad-student-avatar img {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: 15px;
   object-fit: cover;
-  display: block;
 }
 
-
-/* =========================
-   STUDENT INFO
-========================= */
-
-.student-attendance-info-section {
-  width: 70%;
-  padding: 35px 40px;
-  background: #ffffff;
+.sad-profile-content {
+  flex: 1;
+  min-width: 0;
 }
 
-.student-attendance-student-name {
-  margin: 0 0 30px;
-  color: #5b2c87;
-  font-size: 30px;
-  font-weight: 700;
+.sad-profile-content h2 {
+  margin: 0 0 16px;
+  color: #2e2942;
+  font-size: 23px;
+  font-weight: 750;
+  overflow-wrap: anywhere;
 }
 
-.student-attendance-info-grid {
+.sad-profile-details {
   display: flex;
-  gap: 25px;
   flex-wrap: wrap;
+  gap: 30px;
 }
 
-.student-attendance-info-item {
-  min-width: 180px;
-  padding: 16px 20px;
-  background: #f8f5fc;
-  border-left: 4px solid #7d3c98;
-  border-radius: 8px;
+.sad-profile-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 100px;
 }
 
-.student-attendance-label {
-  display: block;
-  margin-bottom: 7px;
-  color: #8b8295;
+.sad-detail-label {
+  color: #928ca5;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.sad-detail-value {
+  color: #39334e;
   font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.student-attendance-value {
-  color: #2d2035;
-  font-size: 20px;
   font-weight: 700;
+  overflow-wrap: anywhere;
 }
 
-
-/* =========================
-   ATTENDANCE SECTION
-========================= */
-
-.student-attendance-details-section {
-  padding: 35px;
-}
-
-.student-attendance-heading-wrapper {
-  text-align: center;
-  margin-bottom: 35px;
-}
-
-.student-attendance-heading {
-  margin: 0;
-  color: #5b2c87;
-  font-size: 30px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.student-attendance-heading-line {
-  width: 70px;
-  height: 4px;
-  margin: 12px auto 0;
-  border-radius: 20px;
-  background: #7d3c98;
-}
-
-
-/* =========================
-   STATISTICS CARDS
-========================= */
-
-.student-attendance-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-}
-
-.student-attendance-stat-card {
-  padding: 28px 20px;
-  text-align: center;
-  background: #ffffff;
-  border: 1px solid #e8e2f0;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(91, 44, 135, 0.07);
-  transition: 0.3s ease;
-}
-
-.student-attendance-stat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(91, 44, 135, 0.14);
-}
-
-.student-attendance-stat-label {
-  margin: 0 0 12px;
-  color: #776b82;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.student-attendance-stat-number {
-  margin: 0;
-  color: #5b2c87;
-  font-size: 42px;
-  font-weight: 700;
-}
-
-.student-attendance-percentage-card {
-  background: #5b2c87;
-  border-color: #5b2c87;
-}
-
-.student-attendance-percentage-card .student-attendance-stat-label,
-.student-attendance-percentage-card .student-attendance-stat-number {
-  color: #ffffff;
-}
-
-
-/* =========================
-   ATTENDANCE SUMMARY
-========================= */
-
-.student-attendance-summary {
-  margin: 30px 0;
-  padding: 22px;
-  text-align: center;
-  background: #f8f5fc;
-  border: 1px solid #e8e2f0;
-  border-radius: 10px;
-}
-
-.student-attendance-summary-text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin: 0;
-  color: #5e5367;
-  font-size: 20px;
-}
-
-.student-attendance-summary-number {
-  color: #5b2c87;
-  font-size: 32px;
-  font-weight: 700;
-}
-
-
-/* =========================
-   ABSENT DATES
-========================= */
-
-.student-attendance-absent-section {
-  margin-top: 30px;
-  padding: 25px;
-  background: #ffffff;
-  border: 1px solid #e8e2f0;
-  border-radius: 12px;
-}
-
-.student-attendance-absent-heading {
-  margin: 0 0 20px;
-  color: #5b2c87;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-.student-attendance-absent-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 15px;
-}
-
-.student-attendance-absent-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 15px 18px;
-  background: #f8f5fc;
-  border-left: 4px solid #7d3c98;
-  border-radius: 8px;
-}
-
-.student-attendance-date-icon {
-  font-size: 22px;
-}
-
-.student-attendance-date {
-  color: #403548;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.student-attendance-no-absence {
-  padding: 25px;
-  text-align: center;
-  color: #5b2c87;
-  font-size: 18px;
-  font-weight: 600;
-  background: #f8f5fc;
-  border-radius: 8px;
-}
-
-
-/* =========================
-   LOADING
-========================= */
-
-.student-attendance-loading {
-  min-height: 100vh;
+.sad-profile-attendance {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #5b2c87;
-  font-size: 18px;
-  background: #f7f5fb;
+  flex-shrink: 0;
+  gap: 9px;
+  min-width: 105px;
+  color: #89849d;
+  font-size: 11px;
+  font-weight: 650;
 }
 
-.student-attendance-loader {
-  width: 45px;
-  height: 45px;
-  margin-bottom: 15px;
-  border: 4px solid #e8e2f0;
-  border-top-color: #5b2c87;
+.sad-mini-ring {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
-  animation: student-attendance-spin 0.8s linear infinite;
+  background: conic-gradient(
+    #7657e8 var(--attendance-percent),
+    #eeeaf8 var(--attendance-percent)
+  );
 }
 
-@keyframes student-attendance-spin {
+.sad-mini-ring-inner {
+  display: grid;
+  place-items: center;
+  width: 61px;
+  height: 61px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.sad-mini-ring-inner strong {
+  color: #6c4ce8;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   SECTION HEADINGS
+========================================================= */
+
+.sad-section {
+  margin-bottom: 30px;
+}
+
+.sad-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.sad-section-header h2 {
+  margin: 0;
+  color: #2e2942;
+  font-size: 20px;
+  font-weight: 750;
+  letter-spacing: -0.3px;
+}
+
+.sad-section-header p {
+  margin: 7px 0 0;
+  color: #928ca5;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.sad-academic-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 9px 12px;
+  border: 1px solid #ebe6fb;
+  border-radius: 9px;
+  background: #fff;
+  color: #71678f;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.sad-tag-dot {
+  width: 7px;
+  height: 7px;
+}
+
+/* =========================================================
+   STATISTICS CARDS
+========================================================= */
+
+.sad-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.sad-stat-card {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid #ebe7f5;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(45, 35, 90, 0.025);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.sad-stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 27px rgba(45, 35, 90, 0.07);
+}
+
+.sad-stat-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 21px;
+}
+
+.sad-stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: #f1edff;
+  color: #7657e8;
+}
+
+.sad-stat-icon svg {
+  width: 21px;
+  height: 21px;
+}
+
+.sad-stat-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 7px;
+  background: #f6f3ff;
+  color: #7657e8;
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.sad-stat-label {
+  display: block;
+  color: #89849d;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.sad-stat-card h3 {
+  margin: 8px 0 5px;
+  color: #2e2942;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+  overflow-wrap: anywhere;
+}
+
+.sad-stat-card > p {
+  margin: 0;
+  color: #a19bb1;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.sad-stat-present .sad-stat-icon {
+  background: #e9f8f0;
+  color: #279968;
+}
+
+.sad-stat-present .sad-stat-chip {
+  background: #e9f8f0;
+  color: #279968;
+}
+
+.sad-stat-working .sad-stat-icon {
+  background: #edf2ff;
+  color: #5275d8;
+}
+
+.sad-stat-working .sad-stat-chip {
+  background: #edf2ff;
+  color: #5275d8;
+}
+
+.sad-stat-absent .sad-stat-icon {
+  background: #fff0f0;
+  color: #d75d67;
+}
+
+.sad-stat-absent .sad-stat-chip {
+  background: #fff0f0;
+  color: #d75d67;
+}
+
+.sad-stat-percentage .sad-stat-icon {
+  background: #f1edff;
+  color: #7657e8;
+}
+
+/* =========================================================
+   ATTENDANCE ANALYTICS
+========================================================= */
+
+.sad-analysis-card,
+.sad-absence-card {
+  margin-bottom: 28px;
+  padding: 25px;
+  border: 1px solid #ebe7f5;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(45, 35, 90, 0.025);
+}
+
+.sad-analysis-header {
+  margin-bottom: 24px;
+}
+
+.sad-analysis-content {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.4fr);
+  align-items: center;
+  gap: 40px;
+  padding: 25px;
+  border-radius: 13px;
+  background: #faf9ff;
+}
+
+.sad-donut-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.sad-donut {
+  display: grid;
+  place-items: center;
+  width: 210px;
+  height: 210px;
+  max-width: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    #7657e8 var(--attendance-percent),
+    #e8e2f7 var(--attendance-percent)
+  );
+  position: relative;
+}
+
+.sad-donut::after {
+  position: absolute;
+  inset: 13px;
+  border: 1px solid #f0ecfa;
+  border-radius: 50%;
+  content: "";
+}
+
+.sad-donut-center {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 155px;
+  height: 155px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.sad-donut-center strong {
+  color: #6c4ce8;
+  font-size: 37px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.sad-donut-center span {
+  margin-top: 5px;
+  color: #918aa6;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.sad-analysis-details {
+  min-width: 0;
+}
+
+.sad-analysis-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 13px;
+}
+
+.sad-analysis-label {
+  color: #6f6982;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.sad-analysis-summary strong {
+  color: #6c4ce8;
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.sad-progress-track {
+  width: 100%;
+  height: 9px;
+  margin-bottom: 23px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #eae5f7;
+}
+
+.sad-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #a08aff, #6c4ce8);
+  transition: width 0.4s ease;
+}
+
+.sad-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.sad-legend-row,
+.sad-legend-name {
+  display: flex;
+  align-items: center;
+}
+
+.sad-legend-row {
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.sad-legend-name {
+  gap: 10px;
+  color: #6f6982;
+  font-size: 12px;
+}
+
+.sad-legend-row > strong {
+  color: #39334e;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.sad-legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  border-radius: 3px;
+}
+
+.sad-legend-present {
+  background: #7657e8;
+}
+
+.sad-legend-absent {
+  background: #e8e2f7;
+}
+
+.sad-legend-total {
+  background: #5275d8;
+}
+
+.sad-attendance-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 23px;
+  padding: 13px;
+  border: 1px solid #e9e3ff;
+  border-radius: 10px;
+  background: #f5f2ff;
+}
+
+.sad-note-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border: 1px solid #9279ee;
+  border-radius: 50%;
+  color: #7657e8;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.sad-attendance-note p {
+  margin: 0;
+  color: #71678f;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   ABSENT DATE HISTORY
+========================================================= */
+
+.sad-absence-count {
+  flex-shrink: 0;
+  padding: 8px 11px;
+  border: 1px solid #f6dfe2;
+  border-radius: 8px;
+  background: #fff4f4;
+  color: #c65460;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.sad-absence-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sad-absence-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid #f0edf6;
+  border-radius: 12px;
+  background: #fff;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.sad-absence-item:hover {
+  border-color: #e5dfff;
+  background: #fcfbff;
+}
+
+.sad-absence-calendar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 11px;
+  background: #fff0f0;
+  color: #d75d67;
+}
+
+.sad-absence-calendar svg {
+  width: 21px;
+  height: 21px;
+}
+
+.sad-absence-date-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-width: 0;
+}
+
+.sad-absence-date-content strong {
+  color: #38324c;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.sad-absence-date-content span {
+  color: #a09aaf;
+  font-size: 11px;
+}
+
+.sad-absence-status {
+  flex-shrink: 0;
+  padding: 7px 11px;
+  border-radius: 7px;
+  background: #fff0f0;
+  color: #c65460;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+/* NO ABSENCES */
+
+.sad-no-absence {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 37px 20px;
+  border: 1px dashed #dcd4f5;
+  border-radius: 13px;
+  background: #fbfaff;
+  text-align: center;
+}
+
+.sad-no-absence-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  margin-bottom: 15px;
+  border-radius: 17px;
+  background: #e9f8f0;
+  color: #279968;
+}
+
+.sad-no-absence-icon svg {
+  width: 27px;
+  height: 27px;
+}
+
+.sad-no-absence h3 {
+  margin: 0 0 8px;
+  color: #38324c;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.sad-no-absence p {
+  margin: 0;
+  color: #928ca5;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.sad-page-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 19px 3px 5px;
+  color: #9a94ad;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.sad-page-footer span:first-child {
+  color: #7657e8;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* =========================================================
+   LOADING / ERROR STATES
+========================================================= */
+
+.sad-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 75vh;
+  padding: 30px 20px;
+  background: #f7f6fc;
+  color: #29243e;
+  text-align: center;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+.sad-spinner {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 19px;
+  border: 4px solid #e6e0fa;
+  border-top-color: #7657e8;
+  border-radius: 50%;
+  animation: sad-spin 0.8s linear infinite;
+}
+
+.sad-state h2 {
+  margin: 0 0 8px;
+  color: #29243e;
+  font-size: 21px;
+  font-weight: 750;
+}
+
+.sad-state p {
+  max-width: 400px;
+  margin: 0 0 20px;
+  color: #89849d;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.sad-state-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 57px;
+  height: 57px;
+  margin-bottom: 18px;
+  border-radius: 16px;
+  background: #eee9ff;
+  color: #7657e8;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.sad-error-icon {
+  background: #fff0f0;
+  color: #d75d67;
+}
+
+.sad-primary-button {
+  min-height: 42px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 10px;
+  background: #6c4ce8;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+@keyframes sad-spin {
   to {
     transform: rotate(360deg);
   }
 }
 
+/* =========================================================
+   RESPONSIVE — TABLET AND MOBILE
+========================================================= */
 
-/* =========================
-   ERROR / EMPTY
-========================= */
-
-.student-attendance-error,
-.student-attendance-empty {
-  margin: 30px;
-  padding: 25px;
-  text-align: center;
-  background: #ffffff;
-  border: 1px solid #e8e2f0;
-  border-radius: 10px;
-  color: #5b2c87;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.student-attendance-error {
-  border-left: 5px solid #7d3c98;
-}
-
-
-/* =========================
-   RESPONSIVE DESIGN
-========================= */
-
-@media (max-width: 900px) {
-  .student-attendance-profile {
-    flex-direction: column;
+@media (max-width: 1200px) {
+  .sad-page {
+    padding: 22px;
   }
 
-  .student-attendance-image-section,
-  .student-attendance-info-section {
-    width: 100%;
+  .sad-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .student-attendance-image-section {
-    min-width: auto;
-  }
-
-  .student-attendance-stats {
-    grid-template-columns: 1fr;
+  .sad-analysis-content {
+    gap: 25px;
+    padding: 20px;
   }
 }
 
-@media (max-width: 600px) {
-  .student-attendance-page {
-    padding: 15px;
+@media (max-width: 700px) {
+  .sad-page {
+    padding: 16px 12px;
   }
 
-  .student-attendance-image-section {
-    padding: 25px;
-  }
-
-  .student-attendance-info-section {
-    padding: 25px 20px;
-  }
-
-  .student-attendance-details-section {
-    padding: 25px 15px;
-  }
-
-  .student-attendance-heading {
-    font-size: 24px;
-  }
-
-  .student-attendance-student-name {
-    font-size: 25px;
-  }
-
-  .student-attendance-info-grid {
+  .sad-page-header {
+    align-items: flex-start;
     flex-direction: column;
     gap: 15px;
   }
 
-  .student-attendance-info-item {
+  .sad-page-header h1 {
+    font-size: 23px;
+  }
+
+  .sad-profile-card {
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 21px 17px;
+  }
+
+  .sad-student-avatar {
+    width: 75px;
+    height: 75px;
+  }
+
+  .sad-profile-content {
+    flex-basis: calc(100% - 100px);
+  }
+
+  .sad-profile-content h2 {
+    font-size: 19px;
+    margin-bottom: 12px;
+  }
+
+  .sad-profile-details {
+    gap: 17px;
+  }
+
+  .sad-profile-attendance {
+    flex-direction: row;
+    justify-content: flex-start;
     width: 100%;
+    padding-top: 14px;
+    border-top: 1px solid #f0edf8;
   }
 
-  .student-attendance-stat-number {
-    font-size: 36px;
+  .sad-mini-ring {
+    width: 51px;
+    height: 51px;
   }
 
-  .student-attendance-summary-text {
-    font-size: 16px;
+  .sad-mini-ring-inner {
+    width: 41px;
+    height: 41px;
   }
 
-  .student-attendance-summary-number {
-    font-size: 26px;
+  .sad-mini-ring-inner strong {
+    font-size: 12px;
   }
 
-  .student-attendance-absent-list {
-    grid-template-columns: 1fr;
+  .sad-section-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sad-section-header h2 {
+    font-size: 18px;
+  }
+
+  .sad-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 11px;
+  }
+
+  .sad-stat-card {
+    padding: 16px;
+  }
+
+  .sad-stat-top {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+
+  .sad-stat-card h3 {
+    font-size: 27px;
+  }
+
+  .sad-analysis-card,
+  .sad-absence-card {
+    padding: 18px 14px;
+  }
+
+  .sad-analysis-content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 25px;
+    padding: 20px 14px;
+  }
+
+  .sad-donut {
+    width: 185px;
+    height: 185px;
+  }
+
+  .sad-donut-center {
+    width: 137px;
+    height: 137px;
+  }
+
+  .sad-donut-center strong {
+    font-size: 32px;
+  }
+
+  .sad-page-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 380px) {
+  .sad-stats-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sad-stat-top {
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .sad-absence-item {
+    gap: 10px;
+    padding: 12px 10px;
+  }
+
+  .sad-absence-calendar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .sad-absence-date-content strong {
+    font-size: 12px;
+  }
+
+  .sad-absence-status {
+    padding: 6px 8px;
   }
 }

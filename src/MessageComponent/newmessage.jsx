@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import "./CreateMessage.css";
 
 const BASE_URL =
@@ -24,6 +26,13 @@ const CreateMessage = () => {
   const [messageSuccess, setMessageSuccess] = useState(false);
   const [messageText, setMessageText] = useState("");
 
+  // ================= SENDING STATE =================
+
+  const [sending, setSending] = useState(false);
+
+  // Synchronous lock prevents duplicate API requests
+  const sendingLock = useRef(false);
+
   const navigate = useNavigate();
 
   // ================= LOAD STUDENTS =================
@@ -32,7 +41,32 @@ const CreateMessage = () => {
     try {
       const res = await axios.get(`${BASE_URL}/recipients`);
 
-      setStudents(res.data.data || []);
+      console.log("RECIPIENTS API RESPONSE:", res.data);
+
+      const recipientData = Array.isArray(res.data.data)
+        ? res.data.data
+        : [];
+
+      // Normalize roll number because the backend may return
+      // Rollno, RollNo, roll_no, rollno, etc.
+      const normalizedStudents = recipientData.map((student) => ({
+        ...student,
+
+        rollNo:
+          student.RollNo ??
+          student.Rollno ??
+          student.roll_no ??
+          student.rollno ??
+          student.Roll_Number ??
+          student.RollNumber ??
+          student.roll_number ??
+          student.roll ??
+          "",
+      }));
+
+      console.log("NORMALIZED STUDENTS:", normalizedStudents);
+
+      setStudents(normalizedStudents);
     } catch (err) {
       console.log("Recipients error:", err);
     }
@@ -59,15 +93,18 @@ const CreateMessage = () => {
 
     const matchesSearch =
       !searchText ||
-      student.Name?.toLowerCase().includes(searchText) ||
-      String(student.RollNo || "")
+      String(student.Name || "")
         .toLowerCase()
         .includes(searchText) ||
-      student.Class?.toLowerCase().includes(searchText);
+      String(student.rollNo || "")
+        .toLowerCase()
+        .includes(searchText) ||
+      String(student.Class || "")
+        .toLowerCase()
+        .includes(searchText);
 
     const matchesClass =
-      !classFilter ||
-      student.Class === classFilter;
+      !classFilter || student.Class === classFilter;
 
     return matchesSearch && matchesClass;
   });
@@ -75,11 +112,13 @@ const CreateMessage = () => {
   // ================= GROUP FILTERED STUDENTS BY CLASS =================
 
   const grouped = filteredStudents.reduce((acc, curr) => {
-    if (!acc[curr.Class]) {
-      acc[curr.Class] = [];
+    const className = curr.Class || "Unassigned";
+
+    if (!acc[className]) {
+      acc[className] = [];
     }
 
-    acc[curr.Class].push(curr);
+    acc[className].push(curr);
 
     return acc;
   }, {});
@@ -87,6 +126,8 @@ const CreateMessage = () => {
   // ================= SELECT SINGLE =================
 
   const toggleSelect = (id) => {
+    if (sendingLock.current) return;
+
     setSelected((prev) =>
       prev.includes(id)
         ? prev.filter((x) => x !== id)
@@ -97,6 +138,8 @@ const CreateMessage = () => {
   // ================= SELECT ALL =================
 
   const handleSelectAll = () => {
+    if (sendingLock.current) return;
+
     if (selectAll) {
       setSelected([]);
       setSelectAll(false);
@@ -110,30 +153,22 @@ const CreateMessage = () => {
   // ================= SELECT CLASS =================
 
   const toggleClass = (cls) => {
-    const classStudents = grouped[cls] || [];
+    if (sendingLock.current) return;
 
-    const classIds = classStudents.map(
-      (s) => s.id
-    );
+    const classStudents = grouped[cls] || [];
+    const classIds = classStudents.map((s) => s.id);
 
     const allSelected =
       classIds.length > 0 &&
-      classIds.every((id) =>
-        selected.includes(id)
-      );
+      classIds.every((id) => selected.includes(id));
 
     if (allSelected) {
       setSelected((prev) =>
-        prev.filter(
-          (id) => !classIds.includes(id)
-        )
+        prev.filter((id) => !classIds.includes(id))
       );
     } else {
       setSelected((prev) => [
-        ...new Set([
-          ...prev,
-          ...classIds,
-        ]),
+        ...new Set([...prev, ...classIds]),
       ]);
     }
   };
@@ -157,15 +192,18 @@ const CreateMessage = () => {
     setShowMsg(false);
 
     if (messageSuccess) {
-      navigate(
-        "/dashboard/MessageComponent/MessageView"
-      );
+      navigate("/dashboard/MessageComponent/MessageView");
     }
   };
 
   // ================= SEND MESSAGE =================
 
   const sendMessage = async () => {
+    // Immediately block repeated clicks
+    if (sendingLock.current) {
+      return;
+    }
+
     if (!message.trim()) {
       setMessageSuccess(false);
       setMessageText("Message is required");
@@ -175,30 +213,28 @@ const CreateMessage = () => {
 
     if (selected.length === 0) {
       setMessageSuccess(false);
-      setMessageText(
-        "Select at least one student"
-      );
+      setMessageText("Select at least one student");
       setShowMsg(true);
       return;
     }
 
+    // Lock synchronously before starting the API request
+    sendingLock.current = true;
+    setSending(true);
+    setShowMsg(false);
+    setMessageText("");
+
     try {
       const formData = new FormData();
 
-      formData.append(
-        "message",
-        message
-      );
+      formData.append("message", message);
 
       selected.forEach((id) => {
         formData.append("ids[]", id);
       });
 
       if (file) {
-        formData.append(
-          "file",
-          file
-        );
+        formData.append("file", file);
       }
 
       const res = await axios.post(
@@ -206,20 +242,16 @@ const CreateMessage = () => {
         formData,
         {
           headers: {
-            "Content-Type":
-              "multipart/form-data",
+            "Content-Type": "multipart/form-data",
           },
+          timeout: 120000,
         }
       );
 
-      console.log(
-        "FCM RESPONSE:",
-        res.data
-      );
+      console.log("FCM RESPONSE:", res.data);
 
       if (res.data.status) {
         setMessageSuccess(true);
-
         setMessageText(
           "Message Sent & Push Notification Delivered 🚀"
         );
@@ -232,49 +264,103 @@ const CreateMessage = () => {
         setFile(null);
       } else {
         setMessageSuccess(false);
-
         setMessageText(
-          res.data.message ||
-            "Failed to send"
+          res.data.message || "Failed to send message"
         );
-
         setShowMsg(true);
       }
     } catch (err) {
-      console.error(
-        "SEND ERROR:",
-        err
-      );
+      console.error("SEND ERROR:", err);
 
       setMessageSuccess(false);
 
-      setMessageText(
-        "Failed to send message"
-      );
+      if (err.code === "ECONNABORTED") {
+        setMessageText(
+          "The request is taking too long. Please check the message status before trying again, to avoid sending it twice."
+        );
+      } else if (err.response) {
+        setMessageText(
+          err.response.data?.message ||
+            "The server could not send the message. Please try again later."
+        );
+      } else {
+        setMessageText(
+          "Unable to connect to the server. Please check your connection and verify the message status before retrying."
+        );
+      }
 
       setShowMsg(true);
+    } finally {
+      sendingLock.current = false;
+      setSending(false);
     }
   };
 
   return (
-    <div className="create-message-page">
+    <div className="cm-page">
 
       {/* =========================================
-          CENTER MESSAGE BOX
+          FULL SCREEN SENDING LOADER
+      ========================================= */}
+
+      {sending && (
+        <div
+          className="cm-loading-overlay"
+          role="status"
+          aria-live="polite"
+          aria-label="Sending message"
+        >
+          <div className="cm-loader-content">
+
+            <div className="cm-loader-icon">
+              <i className="bi bi-send-fill"></i>
+            </div>
+
+            <div className="cm-loader-spinner"></div>
+
+            <h2>Sending Message</h2>
+
+            <p>Your message is being processed.</p>
+
+            <span className="cm-loader-subtext">
+              Sending notification to {selected.length} recipient
+              {selected.length !== 1 ? "s" : ""}.
+              Please wait...
+            </span>
+
+            <div className="cm-loader-progress">
+              <span></span>
+            </div>
+
+            <small>
+              Please do not close this page or click the send button again.
+            </small>
+
+          </div>
+        </div>
+      )}
+
+      {/* =========================================
+          SUCCESS / ERROR MESSAGE BOX
       ========================================= */}
 
       {showMsg && (
-        <div className="create-message-overlay">
+        <div className="cm-message-overlay">
 
-          <div className="create-message-modal">
-
-            {/* ICON */}
+          <div
+            className={`cm-message-modal ${
+              messageSuccess
+                ? "cm-modal-success"
+                : "cm-modal-error"
+            }`}
+            role="alertdialog"
+            aria-modal="true"
+            aria-live="assertive"
+          >
 
             <div
-              className={`create-message-modal-icon ${
-                messageSuccess
-                  ? "success"
-                  : "error"
+              className={`cm-modal-icon ${
+                messageSuccess ? "success" : "error"
               }`}
             >
               <i
@@ -286,193 +372,171 @@ const CreateMessage = () => {
               ></i>
             </div>
 
-            {/* CONTENT */}
-
-            <div className="create-message-modal-content">
-
+            <div className="cm-modal-content">
               <h2>
-                {messageSuccess
-                  ? "Success"
-                  : "Error"}
+                {messageSuccess ? "Message Sent!" : "Action Required"}
               </h2>
 
-              <p>
-                {messageText}
-              </p>
-
+              <p>{messageText}</p>
             </div>
 
-            {/* BUTTON */}
-
-            {messageSuccess ? (
-              <button
-                type="button"
-                className="create-message-modal-btn"
-                onClick={handleContinue}
-              >
-                Continue
-              </button>
-            ) : (
-              <button
-                type="button"
-                className="create-message-modal-btn"
-                onClick={() =>
-                  setShowMsg(false)
-                }
-              >
-                OK
-              </button>
-            )}
+            <button
+              type="button"
+              className="cm-modal-btn"
+              onClick={
+                messageSuccess
+                  ? handleContinue
+                  : () => setShowMsg(false)
+              }
+            >
+              {messageSuccess ? "Continue" : "OK"}
+              <i className="bi bi-arrow-right"></i>
+            </button>
 
           </div>
-
         </div>
       )}
 
       {/* =========================================
-          HEADER
+          PAGE HEADER
       ========================================= */}
 
-      <div className="create-message-header">
+      <div className="cm-page-header">
 
-        <div>
+        <div className="cm-header-left">
+          <div className="cm-header-icon">
+            <i className="bi bi-envelope-paper-fill"></i>
+          </div>
 
-          <h1>
-            Create Message
-          </h1>
+          <div>
+            <div className="cm-breadcrumb">
+              Communication <i className="bi bi-chevron-right"></i> Messages
+            </div>
 
-          <p>
-            Compose and send a notification to students
-          </p>
+            <h1>Create Message</h1>
 
+            <p>
+              Compose and deliver messages to students and parents.
+            </p>
+          </div>
         </div>
 
         <button
-          className="back-message-btn"
+          className="cm-back-btn"
+          type="button"
+          disabled={sending}
           onClick={() =>
-            navigate(
-              "/dashboard/MessageComponent/MessageView"
-            )
+            navigate("/dashboard/MessageComponent/MessageView")
           }
         >
-          ← Back
+          <i className="bi bi-arrow-left"></i>
+          Back to Messages
         </button>
 
       </div>
 
       {/* =========================================
-          MESSAGE COMPOSE
+          MESSAGE COMPOSE CARD
       ========================================= */}
 
-      <div className="message-compose-card">
+      <div className="cm-compose-card">
 
-        <div className="message-card-heading">
-
-          <div className="message-heading-icon">
-            ✉
+        <div className="cm-section-heading">
+          <div className="cm-section-icon">
+            <i className="bi bi-chat-square-text-fill"></i>
           </div>
 
           <div>
-
-            <h2>
-              Compose Message
-            </h2>
-
-            <p>
-              Enter your message and attach a file if required.
-            </p>
-
+            <h2>Compose Message</h2>
+            <p>Write your notification and attach a file if needed.</p>
           </div>
-
         </div>
 
-        <div className="message-form-group">
+        <div className="cm-form-group">
 
-          <label>
-            Message
-            <span className="required-star">
-              *
+          <div className="cm-label-row">
+            <label htmlFor="cm-message">
+              Your Message <span>*</span>
+            </label>
+
+            <span className="cm-required-label">
+              Required field
             </span>
-          </label>
+          </div>
 
           <textarea
+            id="cm-message"
             value={message}
-            onChange={(e) =>
-              setMessage(
-                e.target.value
-              )
-            }
+            disabled={sending}
+            onChange={(e) => setMessage(e.target.value)}
             placeholder="Write your message here..."
           />
 
-          <div className="message-bottom-info">
-
+          <div className="cm-message-meta">
             <span>
+              <i className="bi bi-info-circle"></i>
               This message will be delivered as a notification.
             </span>
 
-            <span>
-              {message.length} characters
-            </span>
-
+            <strong>{message.length} characters</strong>
           </div>
 
         </div>
 
-        <div className="message-form-group file-group">
+        {/* FILE UPLOAD */}
 
-          <label>
-            Attach File
-          </label>
+        <div className="cm-form-group cm-file-group">
 
-          <label className="file-upload-box">
+          <label className="cm-file-label">Attachment</label>
+
+          <label className="cm-file-upload">
 
             <input
               type="file"
+              disabled={sending}
               onChange={(e) =>
-                setFile(
-                  e.target.files[0] ||
-                    null
-                )
+                setFile(e.target.files[0] || null)
               }
             />
 
-            <span className="upload-icon">
-              ↑
+            <span className="cm-upload-icon">
+              <i className="bi bi-cloud-arrow-up-fill"></i>
             </span>
 
-            <span className="upload-content">
-
+            <span className="cm-upload-content">
               <strong>
-                {file
-                  ? file.name
-                  : "Click to choose a file"}
+                {file ? file.name : "Choose a file to attach"}
               </strong>
 
               <small>
                 {file
-                  ? "File selected successfully"
-                  : "Optional attachment"}
+                  ? "Your attachment is ready"
+                  : "Click to browse your device · Optional"}
               </small>
-
             </span>
 
-            <span className="browse-text">
-              Browse
+            <span className="cm-browse-btn">
+              Browse Files
             </span>
 
           </label>
 
           {file && (
-            <button
-              type="button"
-              className="remove-file-btn"
-              onClick={() =>
-                setFile(null)
-              }
-            >
-              × Remove attachment
-            </button>
+            <div className="cm-selected-file">
+              <div className="cm-selected-file-info">
+                <i className="bi bi-file-earmark-check-fill"></i>
+                <span>{file.name}</span>
+              </div>
+
+              <button
+                type="button"
+                disabled={sending}
+                onClick={() => setFile(null)}
+              >
+                <i className="bi bi-trash3"></i>
+                Remove
+              </button>
+            </div>
           )}
 
         </div>
@@ -480,474 +544,340 @@ const CreateMessage = () => {
       </div>
 
       {/* =========================================
-          RECIPIENT HEADER
+          RECIPIENT SECTION HEADER
       ========================================= */}
 
-      <div className="recipient-header">
+      <div className="cm-recipient-heading">
 
         <div>
+          <div className="cm-recipient-title">
+            <div className="cm-recipient-title-icon">
+              <i className="bi bi-people-fill"></i>
+            </div>
 
-          <h2>
-            Select Recipients
-          </h2>
-
-          <p>
-            Select individual students or an entire class.
-          </p>
-
+            <div>
+              <h2>Select Recipients</h2>
+              <p>Choose students who should receive this notification.</p>
+            </div>
+          </div>
         </div>
 
-        <div className="recipient-counter">
+        <div className="cm-selected-counter">
+          <div className="cm-counter-icon">
+            <i className="bi bi-person-check-fill"></i>
+          </div>
 
-          <strong>
-            {selected.length}
-          </strong>
-
-          <span>
-            Selected
-          </span>
-
+          <div>
+            <strong>{selected.length}</strong>
+            <span>Selected</span>
+          </div>
         </div>
 
       </div>
 
       {/* =========================================
-          SEARCH + CLASS FILTER
+          RECIPIENT SEARCH AND FILTER
       ========================================= */}
 
-      <div className="recipient-filter-bar">
+      <div className="cm-recipient-tools">
 
-        {/* SEARCH */}
-
-        <div className="recipient-search-box">
-
-          <span className="recipient-search-icon">
-            <i className="bi bi-search"></i>
-          </span>
+        <div className="cm-search-box">
+          <i className="bi bi-search"></i>
 
           <input
             type="text"
             value={search}
-            onChange={(e) =>
-              setSearch(
-                e.target.value
-              )
-            }
-            placeholder="Search students..."
+            disabled={sending}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search by student name, roll number..."
           />
 
           {search && (
             <button
               type="button"
-              className="recipient-search-clear"
-              onClick={() =>
-                setSearch("")
-              }
+              disabled={sending}
+              onClick={() => setSearch("")}
+              aria-label="Clear search"
             >
-              ×
+              <i className="bi bi-x-lg"></i>
             </button>
           )}
-
         </div>
 
-        {/* CLASS FILTER */}
-
-        <div className="recipient-class-filter">
+        <div className="cm-class-select">
+          <i className="bi bi-mortarboard-fill"></i>
 
           <select
             value={classFilter}
-            onChange={(e) =>
-              setClassFilter(
-                e.target.value
-              )
-            }
+            disabled={sending}
+            onChange={(e) => setClassFilter(e.target.value)}
           >
+            <option value="">All Classes</option>
 
-            <option value="">
-              All Classes
-            </option>
-
-            {classes.map(
-              (cls, index) => (
-                <option
-                  key={index}
-                  value={cls}
-                >
-                  Class {cls}
-                </option>
-              )
-            )}
-
+            {classes.map((cls, index) => (
+              <option key={index} value={cls}>
+                Class {cls}
+              </option>
+            ))}
           </select>
 
+          <i className="bi bi-chevron-down cm-select-arrow"></i>
         </div>
-
-        {/* RESET */}
 
         {(search || classFilter) && (
           <button
             type="button"
-            className="recipient-reset-btn"
+            className="cm-reset-btn"
+            disabled={sending}
             onClick={() => {
               setSearch("");
               setClassFilter("");
             }}
           >
+            <i className="bi bi-arrow-counterclockwise"></i>
             Reset
           </button>
         )}
 
       </div>
 
-      {/* =========================================
-          FILTER RESULT INFO
-      ========================================= */}
-
       {(search || classFilter) && (
-        <div className="recipient-filter-info">
-
-          Showing{" "}
-          <strong>
-            {filteredStudents.length}
-          </strong>{" "}
-          of{" "}
-          <strong>
-            {students.length}
-          </strong>{" "}
-          students
-
+        <div className="cm-filter-result">
+          <i className="bi bi-funnel"></i>
+          Showing <strong>{filteredStudents.length}</strong> of{" "}
+          <strong>{students.length}</strong> students
         </div>
       )}
 
       {/* =========================================
-          SELECT ALL
+          SELECT ALL STUDENTS
       ========================================= */}
 
-      <div className="select-all-card">
+      <div className="cm-select-all-card">
 
-        <label className="check-row">
+        <label className="cm-check-label">
 
           <input
             type="checkbox"
             checked={selectAll}
-            onChange={
-              handleSelectAll
-            }
+            disabled={sending}
+            onChange={handleSelectAll}
           />
 
-          <span className="custom-checkbox"></span>
+          <span className="cm-custom-checkbox"></span>
 
-          <div className="select-all-text">
-
-            <strong>
-              Select All Students
-            </strong>
-
-            <span>
-              Select all{" "}
-              {students.length}{" "}
-              available students
-            </span>
-
-          </div>
+          <span className="cm-select-all-copy">
+            <strong>Select All Students</strong>
+            <small>
+              Select all {students.length} available students
+            </small>
+          </span>
 
         </label>
+
+        <div className="cm-select-all-count">
+          {selected.length} / {students.length}
+        </div>
 
       </div>
 
       {/* =========================================
-          CLASS LIST
+          CLASS-WISE STUDENT LIST
       ========================================= */}
 
-      <div className="classes-container">
+      <div className="cm-classes-container">
 
-        {Object.keys(grouped).length ===
-        0 ? (
+        {Object.keys(grouped).length === 0 ? (
 
-          <div className="no-students-message">
-
-            <div className="no-students-icon">
-              <i className="bi bi-search"></i>
+          <div className="cm-empty-state">
+            <div className="cm-empty-icon">
+              <i className="bi bi-people"></i>
             </div>
 
-            <h3>
-              No Students Found
-            </h3>
+            <h3>No Students Found</h3>
 
             <p>
-              Try changing your search or class filter.
+              Try changing your search keyword or class filter.
             </p>
-
           </div>
 
         ) : (
 
-          Object.keys(grouped).map(
-            (cls) => {
+          Object.keys(grouped).map((cls) => {
 
-              const classStudents =
-                grouped[cls];
+            const classStudents = grouped[cls];
 
-              const classSelected =
-                classStudents.filter(
-                  (s) =>
-                    selected.includes(
-                      s.id
-                    )
-                ).length;
+            const classSelected = classStudents.filter(
+              (s) => selected.includes(s.id)
+            ).length;
 
-              const allClassSelected =
-                classStudents.length >
-                  0 &&
-                classStudents.every(
-                  (s) =>
-                    selected.includes(
-                      s.id
-                    )
-                );
+            const allClassSelected =
+              classStudents.length > 0 &&
+              classStudents.every((s) =>
+                selected.includes(s.id)
+              );
 
-              return (
-                <div
-                  key={cls}
-                  className="class-section"
-                >
+            return (
+              <div key={cls} className="cm-class-card">
 
-                  {/* CLASS HEADER */}
+                {/* CLASS HEADER */}
 
-                  <div className="class-header">
+                <div className="cm-class-card-header">
 
-                    <label className="class-checkbox">
+                  <label className="cm-check-label cm-class-check">
+                    <input
+                      type="checkbox"
+                      checked={allClassSelected}
+                      disabled={sending}
+                      onChange={() => toggleClass(cls)}
+                    />
 
-                      <input
-                        type="checkbox"
-                        checked={
-                          allClassSelected
-                        }
-                        onChange={() =>
-                          toggleClass(
-                            cls
-                          )
-                        }
-                      />
+                    <span className="cm-custom-checkbox"></span>
+                  </label>
 
-                      <span className="custom-checkbox"></span>
-
-                    </label>
-
-                    <div className="class-info">
-
-                      <div className="class-icon">
-                        #
-                      </div>
-
-                      <div>
-
-                        <h3>
-                          Class {cls}
-                        </h3>
-
-                        <span>
-                          {
-                            classStudents.length
-                          }{" "}
-                          Students
-                        </span>
-
-                      </div>
-
-                    </div>
-
-                    <div className="class-selection">
-
-                      <span>
-                        {
-                          classSelected
-                        }
-                      </span>
-
-                      /
-                      {
-                        classStudents.length
-                      }
-
-                    </div>
-
+                  <div className="cm-class-symbol">
+                    <i className="bi bi-mortarboard-fill"></i>
                   </div>
 
-                  {/* STUDENT TABLE */}
+                  <div className="cm-class-details">
+                    <h3>Class {cls}</h3>
+                    <span>
+                      {classStudents.length} students
+                    </span>
+                  </div>
 
-                  <div className="student-table-wrapper">
-
-                    <table className="student-table">
-
-                      <thead>
-
-                        <tr>
-
-                          <th className="select-column">
-                            Select
-                          </th>
-
-                          <th className="roll-column">
-                            Roll No
-                          </th>
-
-                          <th>
-                            Student Name
-                          </th>
-
-                        </tr>
-
-                      </thead>
-
-                      <tbody>
-
-                        {classStudents.map(
-                          (s) => {
-
-                            const isSelected =
-                              selected.includes(
-                                s.id
-                              );
-
-                            return (
-                              <tr
-                                key={s.id}
-                                className={
-                                  isSelected
-                                    ? "student-selected"
-                                    : ""
-                                }
-                              >
-
-                                <td>
-
-                                  <label className="student-check">
-
-                                    <input
-                                      type="checkbox"
-                                      checked={
-                                        isSelected
-                                      }
-                                      onChange={() =>
-                                        toggleSelect(
-                                          s.id
-                                        )
-                                      }
-                                    />
-
-                                    <span className="custom-checkbox"></span>
-
-                                  </label>
-
-                                </td>
-
-                                <td>
-
-                                  <span className="roll-number">
-                                    {
-                                      s.RollNo
-                                    }
-                                  </span>
-
-                                </td>
-
-                                <td>
-
-                                  <div className="student-name">
-
-                                    <span className="student-avatar">
-                                      {s.Name
-                                        ?.charAt(
-                                          0
-                                        )
-                                        ?.toUpperCase()}
-                                    </span>
-
-                                    <span>
-                                      {
-                                        s.Name
-                                      }
-                                    </span>
-
-                                  </div>
-
-                                </td>
-
-                              </tr>
-                            );
-                          }
-                        )}
-
-                      </tbody>
-
-                    </table>
-
+                  <div className="cm-class-progress">
+                    <strong>{classSelected}</strong>
+                    <span>/ {classStudents.length} selected</span>
                   </div>
 
                 </div>
-              );
-            }
-          )
+
+                {/* STUDENT TABLE */}
+
+                <div className="cm-student-table-wrapper">
+
+                  <table className="cm-student-table">
+
+                    <thead>
+                      <tr>
+                        <th className="cm-student-select-col">Select</th>
+                        <th className="cm-student-roll-col">Roll No.</th>
+                        <th>Student Name</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+
+                      {classStudents.map((s) => {
+
+                        const isSelected = selected.includes(s.id);
+
+                        return (
+                          <tr
+                            key={s.id}
+                            className={
+                              isSelected ? "cm-student-row-selected" : ""
+                            }
+                          >
+
+                            <td>
+                              <label className="cm-check-label">
+                                <input
+                                  type="checkbox"
+                                  checked={isSelected}
+                                  disabled={sending}
+                                  onChange={() => toggleSelect(s.id)}
+                                />
+
+                                <span className="cm-custom-checkbox"></span>
+                              </label>
+                            </td>
+
+                            <td>
+                              <span className="cm-roll-number">
+                                {s.rollNo !== "" && s.rollNo != null
+                                  ? s.rollNo
+                                  : "—"}
+                              </span>
+                            </td>
+
+                            <td>
+                              <div className="cm-student-name">
+                                <span className="cm-student-avatar">
+                                  {s.Name
+                                    ?.charAt(0)
+                                    ?.toUpperCase()}
+                                </span>
+
+                                <span>{s.Name}</span>
+                              </div>
+                            </td>
+
+                          </tr>
+                        );
+                      })}
+
+                    </tbody>
+
+                  </table>
+
+                </div>
+
+              </div>
+            );
+          })
 
         )}
 
       </div>
 
       {/* =========================================
-          BOTTOM SEND BAR
+          SEND MESSAGE FOOTER
       ========================================= */}
 
-      <div className="send-message-footer">
+      <div className="cm-send-footer">
 
-        <div className="send-summary">
-
-          <div className="summary-icon">
-            ✓
+        <div className="cm-send-summary">
+          <div className="cm-send-summary-icon">
+            <i className="bi bi-send-check-fill"></i>
           </div>
 
           <div>
-
             <strong>
-
-              {selected.length}{" "}
-              recipient
-              {selected.length !==
-              1
-                ? "s"
-                : ""}
-
+              {selected.length} Recipient
+              {selected.length !== 1 ? "s" : ""} Selected
             </strong>
 
             <span>
-
               {selected.length > 0
-                ? "Ready to receive notification"
-                : "Select at least one student"}
-
+                ? "Your message is ready to be delivered."
+                : "Select students to enable sending."}
             </span>
-
           </div>
-
         </div>
 
         <button
-          className="send-message-btn"
-          onClick={
-            sendMessage
-          }
+          type="button"
+          className="cm-send-btn"
+          onClick={sendMessage}
           disabled={
+            sending ||
             !message.trim() ||
             selected.length === 0
           }
         >
-
-          <span>
-            ➤
-          </span>
-
-          Send Message
-
+          {sending ? (
+            <>
+              <span className="cm-button-spinner"></span>
+              Sending...
+            </>
+          ) : (
+            <>
+              <i className="bi bi-send-fill"></i>
+              Send Message
+            </>
+          )}
         </button>
 
       </div>

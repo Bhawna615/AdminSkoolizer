@@ -24,8 +24,6 @@
 ========================================= */
 
 .student-card {
-  width: 100%;
-  max-width: 950px;
   background: #ffffff;
   border-radius: 20px;
   overflow: hidden;

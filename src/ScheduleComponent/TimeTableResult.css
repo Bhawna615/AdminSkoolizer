@@ -1,671 +1,590 @@
+
 /* =========================================================
    TIME TABLE RESULT
-   Purple + White Admin Dashboard UI
-   ========================================================= */
+   PREMIUM PURPLE + WHITE ERP DESIGN
+   UNIQUE CLASSES
+========================================================= */
 
 .ttr-page {
-    min-height: calc(100vh - 70px);
-    padding: 30px;
-    background: #f7f5fc;
-    font-family: "Poppins", sans-serif;
+    width: 100%;
+    min-height: 100vh;
+    padding: 28px;
+    box-sizing: border-box;
+    background: #f7f6fc;
+    color: #29243e;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 .ttr-container {
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 1300px;
+    margin: auto;
 }
 
 /* =========================================================
    HEADER
-   ========================================================= */
+========================================================= */
 
 .ttr-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 24px;
+    gap: 20px;
+    margin-bottom: 28px;
 }
 
 .ttr-header-left {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 17px;
 }
 
 .ttr-header-icon {
-    width: 55px;
-    height: 55px;
-    border-radius: 14px;
-
+    width: 63px;
+    height: 63px;
+    min-width: 63px;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: linear-gradient(135deg, #6845df, #9679f5);
+    color: white;
+    border-radius: 19px;
+    font-size: 27px;
+    box-shadow: 0 9px 22px rgba(108, 76, 232, .22);
+}
 
-    background: linear-gradient(
-        135deg,
-        #6f42c1,
-        #8e63d2
-    );
-
-    color: #ffffff;
-    font-size: 23px;
-
-    box-shadow:
-        0 8px 20px rgba(111, 66, 193, 0.2);
+.ttr-eyebrow {
+    display: block;
+    margin-bottom: 6px;
+    color: #8064dd;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
 }
 
 .ttr-title {
     margin: 0;
-    color: #29213d;
-    font-size: 26px;
-    font-weight: 700;
+    color: #29243e;
+    font-size: 27px;
+    font-weight: 800;
 }
 
 .ttr-subtitle {
-    margin: 4px 0 0;
-    color: #81788f;
+    margin: 6px 0 0;
+    color: #918ca2;
     font-size: 13px;
 }
 
 .ttr-change-button {
-    height: 42px;
-    padding: 0 17px;
-
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    background: #ffffff;
-    border: 1px solid #ddd6eb;
-    border-radius: 8px;
-
-    color: #62409e;
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 600;
-
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-
-.ttr-change-button:hover {
-    border-color: #6f42c1;
-    background: #f5f0fc;
-}
-
-/* =========================================================
-   SUMMARY
-   ========================================================= */
-
-.ttr-summary {
-    background: #ffffff;
-    border: 1px solid #eee9f7;
-    border-radius: 15px;
-
-    padding: 20px 25px;
-    margin-bottom: 30px;
-
-    display: flex;
-    align-items: center;
-
-    box-shadow:
-        0 6px 25px rgba(66, 40, 100, 0.06);
-}
-
-.ttr-summary-item {
-    flex: 1;
-
-    display: flex;
-    align-items: center;
-    gap: 13px;
-}
-
-.ttr-summary-icon {
-    width: 42px;
-    height: 42px;
-
-    border-radius: 11px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
-    background: #f0eafa;
-    color: #6f42c1;
-
-    font-size: 17px;
+    gap: 9px;
+    padding: 12px 18px;
+    background: white;
+    border: 1px solid #e8e2f5;
+    border-radius: 10px;
+    color: #7657e8;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .25s;
 }
 
-.ttr-summary-item span {
-    display: block;
-    margin-bottom: 2px;
+.ttr-change-button:hover {
+    background: #6c4ce8;
+    color: white;
+    border-color: #6c4ce8;
+    transform: translateY(-2px);
+}
 
-    color: #9990a4;
+/* =========================================================
+   HERO CARD
+========================================================= */
+
+.ttr-hero-card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    min-height: 190px;
+    padding: 30px 35px;
+    margin-bottom: 32px;
+    box-sizing: border-box;
+    border-radius: 19px;
+    color: #51409b;
+    box-shadow: 0 12px 30px rgba(79, 51, 155, .18);
+}
+
+.ttr-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.ttr-hero-label {
+    color: #51409b;
     font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
 }
 
-.ttr-summary-item strong {
-    color: #3d344b;
+.ttr-hero-content h3 {
+    margin: 10px 0;
+    color: #5838d1;
+    font-size: 34px;
+    font-weight: 800;
+}
+
+.ttr-hero-day {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #51409b;
     font-size: 14px;
-    font-weight: 650;
 }
 
-.ttr-summary-divider {
+.ttr-hero-decoration {
+    position: absolute;
+    top: -42px;
+    left: 42%;
+    color: rgba(81, 40, 115, 0.07);
+    font-size: 190px;
+    transform: rotate(-12deg);
+}
+
+.ttr-hero-stats {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 19px 23px;
+    background: rgba(255, 255, 255, .12);
+    border: 2px solid #6845df;
+    border-radius: 14px;
+    backdrop-filter: blur(10px);
+}
+
+.ttr-hero-stat {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ttr-hero-stat-icon {
+    width: 43px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, .16);
+    border-radius: 12px;
+    font-size: 19px;
+}
+
+.ttr-hero-stat > div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ttr-hero-stat span {
+    color: #6c4ce8;
+    font-size: 11px;
+}
+
+.ttr-hero-stat strong {
+    color: #6845df;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.ttr-hero-stat-divider {
     width: 1px;
-    height: 38px;
-    background: #eeeaf4;
-    margin: 0 25px;
+    height: 42px;
+    background: rgba(255, 255, 255, .2);
 }
 
 /* =========================================================
    SECTION HEADING
-   ========================================================= */
+========================================================= */
 
 .ttr-section-heading {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 21px;
+}
 
-    margin-bottom: 18px;
+.ttr-section-eyebrow {
+    color: #8b70e5;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
 }
 
 .ttr-section-heading h3 {
-    margin: 0;
-
-    color: #332b40;
-    font-size: 18px;
-    font-weight: 650;
+    margin: 6px 0;
+    color: #302a46;
+    font-size: 21px;
+    font-weight: 800;
 }
 
 .ttr-section-heading p {
-    margin: 4px 0 0;
-
-    color: #92899e;
-    font-size: 11px;
+    margin: 0;
+    color: #9690a5;
+    font-size: 13px;
 }
 
 .ttr-period-count {
-    padding: 7px 13px;
-
-    border-radius: 20px;
-    background: #eee8f9;
-
-    color: #6542a1;
-    font-size: 11px;
-    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: #eeeaff;
+    border: 1px solid #e5deff;
+    border-radius: 9px;
+    color: #704fe0;
+    font-size: 12px;
+    font-weight: 750;
 }
 
 /* =========================================================
    PERIOD GRID
-   ========================================================= */
+========================================================= */
 
 .ttr-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 20px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 21px;
 }
 
 /* =========================================================
    PERIOD CARD
-   ========================================================= */
+========================================================= */
 
 .ttr-period-card {
     position: relative;
-
+    min-width: 0;
+    padding: 21px;
     background: #ffffff;
-
-    border: 1px solid #eee9f7;
+    border: 1px solid #eeeaf7;
     border-radius: 16px;
-
-    padding: 20px;
-
-    box-shadow:
-        0 7px 25px rgba(66, 40, 100, 0.07);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease;
+    box-shadow: 0 5px 18px rgba(39, 25, 85, .035);
+    transition: all .25s ease;
 }
 
 .ttr-period-card:hover {
-    transform: translateY(-4px);
-
-    border-color: #ddd0f1;
-
-    box-shadow:
-        0 12px 30px rgba(66, 40, 100, 0.11);
+    transform: translateY(-5px);
+    border-color: #d8cdfd;
+    box-shadow: 0 12px 28px rgba(108, 76, 232, .10);
 }
 
 /* =========================================================
-   CARD TOP
-   ========================================================= */
+   CARD HEADER
+========================================================= */
 
 .ttr-card-top {
-    position: relative;
-
     display: flex;
     align-items: center;
-
-    margin-bottom: 18px;
+    gap: 12px;
+    padding-bottom: 17px;
+    border-bottom: 1px solid #f0edf6;
 }
 
-.ttr-period-number {
-    width: 37px;
-    height: 37px;
-
+.ttr-period-badge {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-radius: 10px;
-
-    background: linear-gradient(
-        135deg,
-        #6f42c1,
-        #8b62d1
-    );
-
-    color: #ffffff;
-
-    font-size: 12px;
-    font-weight: 700;
-
-    box-shadow:
-        0 5px 12px rgba(111, 66, 193, 0.18);
+    background: linear-gradient(135deg, #6845df, #9679f5);
+    color: white;
+    border-radius: 13px;
+    box-shadow: 0 5px 12px rgba(108, 76, 232, .18);
 }
 
-.ttr-period-label {
-    margin-left: 10px;
+.ttr-period-badge span {
+    font-size: 15px;
+    font-weight: 800;
+}
 
-    color: #82798f;
+.ttr-period-heading {
+    flex: 1;
+    min-width: 0;
+}
 
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
+.ttr-period-heading span {
+    color: #a09aad;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
 
-    letter-spacing: 0.6px;
+.ttr-period-heading h4 {
+    margin: 4px 0 0;
+    color: #332d4a;
+    font-size: 14px;
+    font-weight: 750;
 }
 
 /* =========================================================
-   THREE DOT MENU
-   ========================================================= */
+   MENU
+========================================================= */
+
+.ttr-menu-wrapper {
+    position: relative;
+}
 
 .ttr-menu-button {
-    margin-left: auto;
-
-    width: 34px;
-    height: 34px;
-
-    border: none;
-    border-radius: 8px;
-
-    background: transparent;
-
-    color: #8c8395;
-
-    font-size: 18px;
-
+    width: 35px;
+    height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
-
+    background: #f7f5fc;
+    border: 1px solid #eeeaf7;
+    border-radius: 9px;
+    color: #77718e;
+    font-size: 19px;
     cursor: pointer;
-
-    transition: all 0.2s ease;
+    transition: .2s;
 }
 
 .ttr-menu-button:hover {
-    background: #f3eff8;
-    color: #6f42c1;
+    background: #eeeaff;
+    color: #6c4ce8;
 }
-
-/* =========================================================
-   DROPDOWN
-   ========================================================= */
 
 .ttr-dropdown {
     position: absolute;
-
-    z-index: 20;
-
-    top: 57px;
-    right: 18px;
-
-    min-width: 125px;
-
+    top: 42px;
+    right: 0;
+    z-index: 30;
+    min-width: 165px;
     padding: 6px;
-
-    background: #ffffff;
-
-    border: 1px solid #ebe6f2;
-    border-radius: 9px;
-
-    box-shadow:
-        0 8px 25px rgba(50, 35, 70, 0.15);
+    background: white;
+    border: 1px solid #eeeaf7;
+    border-radius: 10px;
+    box-shadow: 0 10px 28px rgba(35, 25, 70, .14);
+    animation: ttr-dropdown-show .2s ease;
 }
 
 .ttr-dropdown button {
     width: 100%;
-
-    padding: 9px 11px;
-
+    padding: 11px;
     display: flex;
     align-items: center;
-    gap: 8px;
-
-    border: none;
-    border-radius: 6px;
-
+    gap: 9px;
     background: transparent;
-
-    color: #dc4d5c;
-
-    font-family: inherit;
-    font-size: 11px;
-    font-weight: 600;
-
-    cursor: pointer;
-
+    border: none;
+    border-radius: 7px;
+    color: #d64150;
+    font-size: 12px;
+    font-weight: 700;
     text-align: left;
+    cursor: pointer;
+    transition: .2s;
 }
 
 .ttr-dropdown button:hover {
-    background: #fff1f2;
+    background: #fff0f1;
+}
+
+@keyframes ttr-dropdown-show {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* =========================================================
    SUBJECT
-   ========================================================= */
+========================================================= */
 
-.ttr-subject {
+.ttr-subject-section {
     display: flex;
     align-items: center;
-    gap: 12px;
-
-    padding-bottom: 18px;
-
-    border-bottom: 1px solid #f0edf5;
+    gap: 14px;
+    padding: 22px 0;
 }
 
-.ttr-subject > i {
-    width: 39px;
-    height: 39px;
-
+.ttr-subject-icon {
+    width: 49px;
+    height: 49px;
+    min-width: 49px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-radius: 10px;
-
-    background: #f2edfb;
-    color: #6f42c1;
-
-    font-size: 16px;
+    background: #f0ecff;
+    color: #7657e8;
+    border-radius: 14px;
+    font-size: 21px;
 }
 
-.ttr-subject span {
+.ttr-subject-section span {
     display: block;
-
-    color: #9a91a4;
-
+    margin-bottom: 5px;
+    color: #a09aad;
     font-size: 9px;
-    text-transform: uppercase;
-
-    letter-spacing: 0.5px;
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 
-.ttr-subject h4 {
-    margin: 3px 0 0;
-
-    color: #342c40;
-
-    font-size: 15px;
-    font-weight: 650;
+.ttr-subject-section h3 {
+    margin: 0;
+    color: #302a46;
+    font-size: 17px;
+    font-weight: 800;
+    overflow-wrap: anywhere;
 }
 
 /* =========================================================
-   TIME
-   ========================================================= */
+   TIME DISPLAY
+========================================================= */
 
 .ttr-time-box {
-    margin-top: 17px;
-
-    padding: 13px;
-
-    border-radius: 10px;
-
-    background: #faf9fc;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 9px;
+    padding: 15px;
+    background: #f8f6ff;
+    border: 1px solid #eee9ff;
+    border-radius: 12px;
 }
 
 .ttr-time-item {
     display: flex;
     flex-direction: column;
+    gap: 8px;
 }
 
 .ttr-time-item span {
-    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #9690aa;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .6px;
+    white-space: nowrap;
+}
 
-    color: #aaa1b0;
-
-    font-size: 8px;
-    font-weight: 600;
-
-    letter-spacing: 0.6px;
+.ttr-time-item span i {
+    color: #8265e6;
+    font-size: 12px;
 }
 
 .ttr-time-item strong {
-    color: #4d4356;
-
-    font-size: 13px;
-    font-weight: 650;
-}
-
-.ttr-time-arrow {
-    color: #a494bd;
-    font-size: 13px;
+    color: #51409b;
+    font-size: 16px;
+    font-weight: 800;
+    white-space: nowrap;
 }
 
 .ttr-time-end {
     text-align: right;
 }
 
-/* =========================================================
-   TEACHER
-   ========================================================= */
+.ttr-time-end span {
+    justify-content: flex-end;
+}
 
-.ttr-teacher {
-    margin-top: 17px;
-
+.ttr-time-connector {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
+    color: #9a82eb;
+    font-size: 13px;
+}
+
+.ttr-time-connector span {
+    width: 8px;
+    height: 2px;
+    background: #c6b8fa;
+}
+
+/* =========================================================
+   TEACHER
+========================================================= */
+
+.ttr-teacher {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding-top: 19px;
 }
 
 .ttr-teacher-icon {
-    width: 34px;
-    height: 34px;
-
+    width: 41px;
+    height: 41px;
+    min-width: 41px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-radius: 50%;
-
-    background: #eee8f8;
-    color: #6f42c1;
-
-    font-size: 14px;
-}
-
-.ttr-teacher span {
-    display: block;
-
-    color: #9b92a5;
-
-    font-size: 9px;
-}
-
-.ttr-teacher strong {
-    display: block;
-
-    margin-top: 2px;
-
-    color: #514758;
-
-    font-size: 11px;
-    font-weight: 600;
-}
-
-/* =========================================================
-   EMPTY STATE
-   ========================================================= */
-
-.ttr-empty,
-.ttr-empty-selection {
-    background: #ffffff;
-
-    border: 1px solid #eee9f7;
-    border-radius: 17px;
-
-    padding: 60px 20px;
-
-    text-align: center;
-
-    box-shadow:
-        0 7px 25px rgba(66, 40, 100, 0.06);
-}
-
-.ttr-empty-icon {
-    width: 65px;
-    height: 65px;
-
-    margin: 0 auto 18px;
-
-    border-radius: 18px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #f0eafa;
-    color: #6f42c1;
-
-    font-size: 27px;
-}
-
-.ttr-empty h3,
-.ttr-empty-selection h3 {
-    margin: 0;
-
-    color: #393041;
-
+    background: #eaf8ef;
+    color: #28985b;
+    border-radius: 12px;
     font-size: 19px;
-    font-weight: 650;
 }
 
-.ttr-empty p,
-.ttr-empty-selection p {
-    margin: 8px auto 22px;
-
-    max-width: 450px;
-
-    color: #938a9e;
-
-    font-size: 12px;
-    line-height: 1.6;
+.ttr-teacher-details {
+    flex: 1;
+    min-width: 0;
 }
 
-.ttr-empty p strong {
-    color: #60409b;
+.ttr-teacher-details span {
+    display: block;
+    margin-bottom: 5px;
+    color: #a09aad;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .7px;
 }
 
-/* =========================================================
-   BACK BUTTON
-   ========================================================= */
-
-.ttr-back-button {
-    height: 43px;
-
-    padding: 0 18px;
-
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-
-    border: none;
-    border-radius: 8px;
-
-    background: linear-gradient(
-        135deg,
-        #6f42c1,
-        #8258ce
-    );
-
-    color: #ffffff;
-
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 6px 16px rgba(111, 66, 193, 0.2);
-
-    transition: all 0.25s ease;
+.ttr-teacher-details strong {
+    display: block;
+    color: #39334f;
+    font-size: 13px;
+    font-weight: 750;
+    overflow-wrap: anywhere;
 }
 
-.ttr-back-button:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 9px 20px rgba(111, 66, 193, 0.25);
+.ttr-teacher-status {
+    color: #31a66a;
+    font-size: 16px;
 }
 
 /* =========================================================
    LOADING
-   ========================================================= */
+========================================================= */
 
 .ttr-loading {
-    background: #ffffff;
-
-    border: 1px solid #eee9f7;
-    border-radius: 17px;
-
-    padding: 70px 20px;
-
-    text-align: center;
+    min-height: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
 }
 
 .ttr-spinner {
-    width: 38px;
-    height: 38px;
-
-    margin: 0 auto 14px;
-
-    border: 3px solid #e9e2f3;
-    border-top-color: #6f42c1;
-
+    width: 47px;
+    height: 47px;
+    border: 4px solid #e9e3ff;
+    border-top-color: #7657e8;
     border-radius: 50%;
-
-    animation: ttr-spin 0.8s linear infinite;
-}
-
-.ttr-loading p {
-    margin: 0;
-
-    color: #8e8597;
-    font-size: 12px;
+    animation: ttr-spin .8s linear infinite;
 }
 
 @keyframes ttr-spin {
@@ -674,107 +593,407 @@
     }
 }
 
-/* =========================================================
-   TABLET
-   ========================================================= */
+.ttr-loading h4 {
+    margin: 5px 0 0;
+    color: #40365e;
+    font-size: 16px;
+}
 
-@media (max-width: 1000px) {
-    .ttr-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
+.ttr-loading p {
+    margin: 0;
+    color: #9992a9;
+    font-size: 12px;
 }
 
 /* =========================================================
-   MOBILE
-   ========================================================= */
+   EMPTY STATES
+========================================================= */
 
-@media (max-width: 700px) {
+.ttr-empty,
+.ttr-empty-selection {
+    width: 100%;
+    min-height: 380px;
+    padding: 35px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 1px solid #eeeaf7;
+    border-radius: 17px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(39, 25, 85, .035);
+}
+
+.ttr-empty-selection {
+    max-width: 620px;
+    margin: 50px auto;
+}
+
+.ttr-empty-illustration {
+    width: 82px;
+    height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 19px;
+    background: linear-gradient(135deg, #eeeaff, #f7f4ff);
+    color: #7657e8;
+    border-radius: 25px;
+    font-size: 35px;
+}
+
+.ttr-empty-eyebrow {
+    margin-bottom: 9px;
+    color: #896ee3;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
+
+.ttr-empty h3,
+.ttr-empty-selection h3 {
+    margin: 0 0 9px;
+    color: #302a46;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.ttr-empty p,
+.ttr-empty-selection p {
+    max-width: 430px;
+    margin: 0 0 24px;
+    color: #918ba1;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.ttr-empty p strong {
+    color: #7657e8;
+}
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+.ttr-primary-button {
+    min-height: 46px;
+    padding: 0 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    background: linear-gradient(135deg, #6c4ce8, #8567ef);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(108, 76, 232, .18);
+    transition: .25s;
+}
+
+.ttr-primary-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 9px 20px rgba(108, 76, 232, .25);
+}
+
+/* =========================================================
+   MESSAGE OVERLAY
+========================================================= */
+
+.ttr-message-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(22, 18, 39, .52);
+    backdrop-filter: blur(7px);
+    animation: ttr-overlay-show .2s ease;
+}
+
+.ttr-message-box {
+    width: 100%;
+    max-width: 420px;
+    padding: 32px;
+    box-sizing: border-box;
+    background: white;
+    border: 1px solid #eeeaf7;
+    border-radius: 19px;
+    box-shadow: 0 20px 60px rgba(20, 15, 45, .2);
+    text-align: center;
+    animation: ttr-message-show .25s ease;
+}
+
+@keyframes ttr-overlay-show {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes ttr-message-show {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.ttr-message-icon {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eaf8ef;
+    color: #269b59;
+    border-radius: 50%;
+    font-size: 27px;
+}
+
+.ttr-warning-icon {
+    background: #fff0e8;
+    color: #e17a35;
+}
+
+.ttr-message-error .ttr-message-icon {
+    background: #fff0f1;
+    color: #dc3545;
+}
+
+.ttr-message-box h3 {
+    margin: 0 0 10px;
+    color: #302a46;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.ttr-message-box p {
+    margin: 0;
+    color: #8b859b;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* =========================================================
+   MESSAGE ACTIONS
+========================================================= */
+
+.ttr-message-actions {
+    display: flex;
+    justify-content: center;
+    gap: 11px;
+    margin-top: 25px;
+}
+
+.ttr-message-cancel,
+.ttr-message-delete,
+.ttr-message-ok {
+    min-width: 115px;
+    min-height: 42px;
+    padding: 0 17px;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.ttr-message-cancel {
+    background: #f6f4fa;
+    border: 1px solid #eae5f2;
+    color: #77718b;
+}
+
+.ttr-message-cancel:hover {
+    background: #ece8f4;
+}
+
+.ttr-message-delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    background: #dc3545;
+    border: 1px solid #dc3545;
+    color: white;
+}
+
+.ttr-message-delete:hover:not(:disabled) {
+    background: #c82333;
+}
+
+.ttr-message-delete:disabled,
+.ttr-message-cancel:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+.ttr-message-ok {
+    margin-top: 23px;
+    background: #6c4ce8;
+    border: 1px solid #6c4ce8;
+    color: white;
+}
+
+.ttr-message-ok:hover {
+    background: #5838d1;
+}
+
+.ttr-button-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, .4);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: ttr-spin .7s linear infinite;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1200px) {
     .ttr-page {
-        padding: 20px 15px;
+        padding: 21px;
+    }
+
+    .ttr-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ttr-hero-card {
+        padding: 25px;
+    }
+
+    .ttr-hero-stats {
+        gap: 16px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ttr-page {
+        padding: 15px;
     }
 
     .ttr-header {
         align-items: flex-start;
     }
 
+    .ttr-header-icon {
+        width: 53px;
+        height: 53px;
+        min-width: 53px;
+        font-size: 23px;
+    }
+
     .ttr-title {
-        font-size: 21px;
+        font-size: 22px;
     }
 
     .ttr-subtitle {
-        font-size: 11px;
-    }
-
-    .ttr-header-icon {
-        width: 48px;
-        height: 48px;
-        font-size: 20px;
+        font-size: 12px;
     }
 
     .ttr-change-button {
-        padding: 0 12px;
+        padding: 10px 12px;
         font-size: 11px;
     }
 
-    .ttr-summary {
+    .ttr-hero-card {
+        align-items: flex-start;
         flex-direction: column;
-        align-items: stretch;
-        gap: 15px;
-        padding: 18px;
+        padding: 25px;
     }
 
-    .ttr-summary-divider {
+    .ttr-hero-content h3 {
+        font-size: 29px;
+    }
+
+    .ttr-hero-stats {
+        width: 100%;
+        box-sizing: border-box;
+        justify-content: space-around;
+    }
+
+    .ttr-hero-decoration {
+        left: auto;
+        right: -30px;
+        font-size: 140px;
+    }
+
+    .ttr-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .ttr-period-card {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 520px) {
+    .ttr-header {
+        flex-wrap: wrap;
+    }
+
+    .ttr-change-button {
+        margin-left: 65px;
+    }
+
+    .ttr-hero-card {
+        padding: 21px;
+    }
+
+    .ttr-hero-stats {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 13px;
+    }
+
+    .ttr-hero-stat-divider {
         width: 100%;
         height: 1px;
-        margin: 0;
     }
 
     .ttr-grid {
         grid-template-columns: 1fr;
     }
-}
 
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
-
-@media (max-width: 450px) {
-    .ttr-page {
-        padding: 15px 10px;
-    }
-
-    .ttr-header-left {
-        gap: 10px;
-    }
-
-    .ttr-header-icon {
-        width: 43px;
-        height: 43px;
-        border-radius: 11px;
-        font-size: 18px;
-    }
-
-    .ttr-title {
-        font-size: 18px;
-    }
-
-    .ttr-subtitle {
-        font-size: 10px;
-    }
-
-    .ttr-change-button {
-        width: 38px;
-        padding: 0;
-        justify-content: center;
-        font-size: 0;
-    }
-
-    .ttr-change-button i {
-        font-size: 14px;
+    .ttr-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
     }
 
     .ttr-period-card {
-        padding: 17px;
+        padding: 20px;
+    }
+
+    .ttr-message-box {
+        padding: 25px 19px;
+    }
+
+    .ttr-message-actions {
+        flex-direction: column-reverse;
+    }
+
+    .ttr-message-cancel,
+    .ttr-message-delete {
+        width: 100%;
     }
 }

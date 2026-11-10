@@ -1,8 +1,10 @@
+
 import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
-import "./MessageView.css";
 import { useNavigate } from "react-router-dom";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "./MessageView.css";
 
 const BASE_URL =
   "http://localhost/kkblossom/api.php/Adminapi/AdminMessage";
@@ -35,7 +37,6 @@ const MessageView = () => {
     const loadClasses = async () => {
       try {
         const res = await axios.get(`${BASE_URL}/classes`);
-
         setClasses(res.data?.data || []);
       } catch (err) {
         console.error("CLASS ERROR:", err);
@@ -56,46 +57,24 @@ const MessageView = () => {
     try {
       let res;
 
-      // =====================================================
-      // FILTER ENABLED
-      // =====================================================
-
       if (filters.enabled) {
         const filterData = {
           year: Number(filters.year),
-          month: filters.month
-            ? Number(filters.month)
-            : "",
+          month: filters.month ? Number(filters.month) : "",
           class: filters.class || "",
         };
 
         console.log("FILTER DATA:", filterData);
 
-        res = await axios.post(
-          `${BASE_URL}/filter`,
-          filterData
-        );
-      }
-
-      // =====================================================
-      // FILTER DISABLED
-      // =====================================================
-
-      else {
-        res = await axios.get(
-          `${BASE_URL}/index`
-        );
+        res = await axios.post(`${BASE_URL}/filter`, filterData);
+      } else {
+        res = await axios.get(`${BASE_URL}/index`);
       }
 
       console.log("MESSAGE RESPONSE:", res.data);
-
       setMessages(res.data?.data || []);
     } catch (err) {
-      console.error(
-        "MESSAGE FETCH ERROR:",
-        err
-      );
-
+      console.error("MESSAGE FETCH ERROR:", err);
       setMessages([]);
     } finally {
       setLoading(false);
@@ -118,20 +97,10 @@ const MessageView = () => {
   // =========================================================
   // SEARCH
   // =========================================================
-  //
-  // IMPORTANT:
-  // Search is LOCAL.
-  // It does NOT call the API.
-  // It searches all important fields from the table.
-  //
-  // =========================================================
 
   const filteredData = useMemo(() => {
-    const searchValue = search
-      .trim()
-      .toLowerCase();
+    const searchValue = search.trim().toLowerCase();
 
-    // If search is empty, show everything
     if (!searchValue) {
       return messages;
     }
@@ -141,29 +110,21 @@ const MessageView = () => {
         row.message_id ?? row.id ?? ""
       ).toLowerCase();
 
-      const name = String(
-        row.Name ?? ""
-      ).toLowerCase();
+      const name = String(row.Name ?? "").toLowerCase();
 
-      const className = String(
-        row.Class ?? ""
-      ).toLowerCase();
+      const className = String(row.Class ?? "").toLowerCase();
 
       const rollNo = String(
         row.Rollno ?? row.RollNo ?? ""
       ).toLowerCase();
 
-      const message = String(
-        row.message ?? ""
-      ).toLowerCase();
+      const message = String(row.message ?? "").toLowerCase();
 
       const file = String(
         row.message_file_url ?? ""
       ).toLowerCase();
 
-      const dateTime = String(
-        row.sent_at ?? ""
-      ).toLowerCase();
+      const dateTime = String(row.sent_at ?? "").toLowerCase();
 
       return (
         messageId.includes(searchValue) ||
@@ -192,120 +153,217 @@ const MessageView = () => {
   const columns = [
     {
       name: "Message ID",
-
-      selector: (row) =>
-        row.message_id ?? row.id ?? "-",
-
+      selector: (row) => row.message_id ?? row.id ?? "-",
       sortable: true,
+      width: "115px",
+      cell: (row) => (
+        <span className="mv-id">
+          #{row.message_id ?? row.id ?? "-"}
+        </span>
+      ),
     },
-
     {
       name: "To",
-
-      selector: (row) =>
-        row.Name ?? "-",
-
+      selector: (row) => row.Name ?? "-",
       sortable: true,
+      minWidth: "160px",
+      cell: (row) => (
+        <div className="mv-recipient">
+          <div className="mv-avatar">
+            {String(row.Name || "U").charAt(0).toUpperCase()}
+          </div>
+          <span>{row.Name ?? "-"}</span>
+        </div>
+      ),
     },
-
     {
       name: "Class",
-
-      selector: (row) =>
-        row.Class ?? "-",
-
+      selector: (row) => row.Class ?? "-",
       sortable: true,
+      width: "115px",
+      cell: (row) => (
+        <span className="mv-class-badge">
+          {row.Class ?? "-"}
+        </span>
+      ),
     },
-
     {
       name: "Roll No",
-
-      selector: (row) =>
-        row.Rollno ?? row.RollNo ?? "-",
-
+      selector: (row) => row.Rollno ?? row.RollNo ?? "-",
       sortable: true,
+      width: "105px",
     },
-
     {
       name: "Message",
-
-      selector: (row) =>
-        row.message ?? "-",
-
+      selector: (row) => row.message ?? "-",
       wrap: true,
+      minWidth: "250px",
+      grow: 2,
+      cell: (row) => (
+        <div className="mv-message-cell" title={row.message || ""}>
+          <i className="bi bi-chat-left-text"></i>
+          <span>{row.message ?? "-"}</span>
+        </div>
+      ),
     },
-
     {
       name: "File",
-
       cell: (row) =>
         row.message_file_url ? (
           <a
             href={row.message_file_url}
             target="_blank"
             rel="noreferrer"
+            className="mv-file-link"
           >
+            <i className="bi bi-paperclip"></i>
             View File
           </a>
         ) : (
-          "-"
+          <span className="mv-no-file">No file</span>
         ),
+      width: "115px",
     },
-
     {
-      name: "Date/Time",
-
-      selector: (row) =>
-        row.sent_at ?? "-",
-
+      name: "Date / Time",
+      selector: (row) => row.sent_at ?? "-",
       sortable: true,
+      minWidth: "165px",
+      cell: (row) => (
+        <div className="mv-date-cell">
+          <i className="bi bi-calendar3"></i>
+          <span>{row.sent_at ?? "-"}</span>
+        </div>
+      ),
     },
   ];
+
+  // =========================================================
+  // DATA TABLE STYLES
+  // =========================================================
+
+  const customStyles = {
+    table: {
+      style: {
+        backgroundColor: "#ffffff",
+      },
+    },
+    headRow: {
+      style: {
+        minHeight: "54px",
+        backgroundColor: "#f7f5ff",
+        borderBottom: "1px solid #e9e4fb",
+      },
+    },
+    headCells: {
+      style: {
+        color: "#514477",
+        fontSize: "12px",
+        fontWeight: "700",
+        textTransform: "uppercase",
+        letterSpacing: "0.45px",
+        paddingLeft: "16px",
+        paddingRight: "16px",
+      },
+    },
+    rows: {
+      style: {
+        minHeight: "66px",
+        color: "#4b4560",
+        fontSize: "13px",
+        borderBottom: "1px solid #f0edf7",
+        backgroundColor: "#ffffff",
+        transition: "background-color 0.2s ease",
+      },
+      highlightOnHoverStyle: {
+        backgroundColor: "#faf8ff",
+        borderBottomColor: "#e8e1fb",
+        outline: "none",
+      },
+    },
+    cells: {
+      style: {
+        paddingLeft: "16px",
+        paddingRight: "16px",
+      },
+    },
+    pagination: {
+      style: {
+        minHeight: "58px",
+        borderTop: "1px solid #eeeaf7",
+        color: "#6f6882",
+        fontSize: "12px",
+      },
+      pageButtonsStyle: {
+        borderRadius: "7px",
+        height: "32px",
+        width: "32px",
+        padding: "5px",
+        margin: "2px",
+        cursor: "pointer",
+        transition: "all 0.2s ease",
+        color: "#6c4ce8",
+        fill: "#6c4ce8",
+        backgroundColor: "transparent",
+        "&:disabled": {
+          cursor: "not-allowed",
+          color: "#c8c2d8",
+          fill: "#c8c2d8",
+        },
+        "&:hover:not(:disabled)": {
+          backgroundColor: "#f0ebff",
+        },
+        "&:focus": {
+          outline: "none",
+          backgroundColor: "#f0ebff",
+        },
+      },
+    },
+  };
 
   // =========================================================
   // RENDER
   // =========================================================
 
   return (
-    <div className="container">
+    <div className="mv-page">
+      {/* PAGE HEADER */}
 
-      {/* =====================================================
-          FILTER CARD
-      ===================================================== */}
+      <div className="mv-page-header">
+        <div className="mv-heading-left">
+          <div className="mv-heading-icon">
+            <i className="bi bi-envelope-paper-fill"></i>
+          </div>
 
-      <div className="message-filter-card">
+          <div>
+            <h1>Messages</h1>
+            <p>View and manage messages sent to students and parents</p>
+          </div>
+        </div>
 
-        {/* FILTER HEADER */}
+        <div className="mv-header-count">
+          <i className="bi bi-envelope-check"></i>
+          <span>{messages.length} Total Messages</span>
+        </div>
+      </div>
 
-        <div className="message-filter-header">
+      {/* FILTER CARD */}
 
-          <div className="message-filter-title-section">
-
-            <div className="message-filter-icon">
+      <div className="mv-filter-card">
+        <div className="mv-filter-header">
+          <div className="mv-filter-title">
+            <div className="mv-filter-icon">
               <i className="bi bi-funnel-fill"></i>
             </div>
 
             <div>
-
-              <h2>
-                Message Filter
-              </h2>
-
-              <p>
-                Filter messages by year, month and class
-              </p>
-
+              <h2>Message Filter</h2>
+              <p>Filter messages by year, month and class</p>
             </div>
-
           </div>
 
-          {/* ENABLE FILTER TOGGLE */}
-
-          <label className="message-filter-toggle">
-
-            <span>
-              Enable Filter
-            </span>
+          <label className="mv-filter-toggle">
+            <span>Enable Filter</span>
 
             <input
               type="checkbox"
@@ -318,31 +376,22 @@ const MessageView = () => {
               }
             />
 
-            <span className="message-toggle-slider"></span>
-
+            <span className="mv-toggle-slider"></span>
           </label>
-
         </div>
 
-        {/* DIVIDER */}
+        <div className="mv-filter-divider"></div>
 
-        <div className="message-filter-divider"></div>
-
-        {/* FILTER FIELDS */}
-
-        <div className="message-filter-fields">
-
+        <div className="mv-filter-fields">
           {/* YEAR */}
 
-          <div className="message-filter-field">
-
+          <div className="mv-filter-field">
             <label>
               <i className="bi bi-calendar3"></i>
               Year
             </label>
 
-            <div className="message-select-wrapper">
-
+            <div className="mv-select-wrapper">
               <select
                 value={filters.year}
                 disabled={!filters.enabled}
@@ -353,44 +402,32 @@ const MessageView = () => {
                   }))
                 }
               >
-
-                <option
-                  value={new Date().getFullYear()}
-                >
+                <option value={new Date().getFullYear()}>
                   {new Date().getFullYear()}
                 </option>
 
-                <option
-                  value={new Date().getFullYear() - 1}
-                >
+                <option value={new Date().getFullYear() - 1}>
                   {new Date().getFullYear() - 1}
                 </option>
 
-                <option
-                  value={new Date().getFullYear() - 2}
-                >
+                <option value={new Date().getFullYear() - 2}>
                   {new Date().getFullYear() - 2}
                 </option>
-
               </select>
 
               <i className="bi bi-chevron-down"></i>
-
             </div>
-
           </div>
 
           {/* MONTH */}
 
-          <div className="message-filter-field">
-
+          <div className="mv-filter-field">
             <label>
               <i className="bi bi-calendar-month"></i>
               Month
             </label>
 
-            <div className="message-select-wrapper">
-
+            <div className="mv-select-wrapper">
               <select
                 value={filters.month}
                 disabled={!filters.enabled}
@@ -401,10 +438,7 @@ const MessageView = () => {
                   }))
                 }
               >
-
-                <option value="">
-                  Select Month
-                </option>
+                <option value="">Select Month</option>
 
                 {[
                   "January",
@@ -420,33 +454,25 @@ const MessageView = () => {
                   "November",
                   "December",
                 ].map((monthName, index) => (
-                  <option
-                    key={index}
-                    value={index + 1}
-                  >
+                  <option key={index} value={index + 1}>
                     {monthName}
                   </option>
                 ))}
-
               </select>
 
               <i className="bi bi-chevron-down"></i>
-
             </div>
-
           </div>
 
           {/* CLASS */}
 
-          <div className="message-filter-field">
-
+          <div className="mv-filter-field">
             <label>
               <i className="bi bi-mortarboard-fill"></i>
               Class
             </label>
 
-            <div className="message-select-wrapper">
-
+            <div className="mv-select-wrapper">
               <select
                 value={filters.class}
                 disabled={!filters.enabled}
@@ -457,145 +483,129 @@ const MessageView = () => {
                   }))
                 }
               >
-
-                <option value="">
-                  Select Class
-                </option>
+                <option value="">Select Class</option>
 
                 {classes.map((c, index) => (
-                  <option
-                    key={index}
-                    value={c.Classname}
-                  >
+                  <option key={index} value={c.Classname}>
                     {c.Classname}
                   </option>
                 ))}
-
               </select>
 
               <i className="bi bi-chevron-down"></i>
-
             </div>
-
           </div>
-
         </div>
 
-        {/* FILTER INFORMATION */}
-
-        <div className="message-filter-info">
-
-          <div className="message-filter-info-icon">
-            <i className="bi bi-info-circle-fill"></i>
-          </div>
-
+        <div className="mv-filter-info">
+          <i className="bi bi-info-circle-fill"></i>
           <span>
-            Enable the filter to search messages by year,
-            month and class.
+            Enable the filter to search messages by year, month and class.
           </span>
-
         </div>
-
       </div>
 
-      {/* =====================================================
-          SEARCH SECTION
-      ===================================================== */}
+      {/* SEARCH AND RESULTS */}
 
-      <div className="message-search-section">
-
-        <div className="message-search-wrapper">
-
-          <i className="bi bi-search message-search-icon"></i>
-
-          <input
-            type="text"
-            placeholder="Search messages..."
-            className="search-box"
-            value={search}
-            onChange={(e) =>
-              setSearch(e.target.value)
-            }
-          />
-
-          {search.length > 0 && (
-            <button
-              type="button"
-              className="message-search-clear"
-              onClick={clearSearch}
-            >
-              <i className="bi bi-x"></i>
-            </button>
-          )}
-
+      <div className="mv-toolbar">
+        <div className="mv-toolbar-title">
+          <h2>All Messages</h2>
+          <p>Browse the messages sent from your school</p>
         </div>
 
-        <div className="message-search-result">
+        <div className="mv-search-area">
+          <div className="mv-search-wrapper">
+            <i className="bi bi-search mv-search-icon"></i>
 
-          {search.trim() ? (
-            <>
-              Showing{" "}
-              <strong>
-                {filteredData.length}
-              </strong>{" "}
-              of{" "}
-              <strong>
-                {messages.length}
-              </strong>{" "}
-              messages
-            </>
-          ) : (
-            <>
-              <strong>
-                {messages.length}
-              </strong>{" "}
-              messages
-            </>
-          )}
+            <input
+              type="text"
+              placeholder="Search messages..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
 
+            {search.length > 0 && (
+              <button
+                type="button"
+                className="mv-search-clear"
+                onClick={clearSearch}
+                aria-label="Clear search"
+              >
+                <i className="bi bi-x-lg"></i>
+              </button>
+            )}
+          </div>
+
+          <div className="mv-search-result">
+            {search.trim() ? (
+              <>
+                Showing <strong>{filteredData.length}</strong> of{" "}
+                <strong>{messages.length}</strong> messages
+              </>
+            ) : (
+              <>
+                <strong>{messages.length}</strong> messages
+              </>
+            )}
+          </div>
         </div>
-
       </div>
 
-      {/* =====================================================
-          DATA TABLE
-      ===================================================== */}
+      {/* DATA TABLE */}
 
-      <DataTable
-        columns={columns}
-        data={filteredData}
-        progressPending={loading}
-        pagination
-        highlightOnHover
-        striped
-        dense
-        fixedHeader
-        fixedHeaderScrollHeight="500px"
-        persistTableHead
-        noDataComponent={
-          loading
-            ? "Loading messages..."
-            : search.trim()
-            ? `No messages found for "${search}"`
-            : "No messages found"
-        }
-      />
+      <div className="mv-table-card">
+        <DataTable
+          columns={columns}
+          data={filteredData}
+          progressPending={loading}
+          pagination
+          highlightOnHover
+          striped
+          dense
+          fixedHeader
+          fixedHeaderScrollHeight="500px"
+          persistTableHead
+          customStyles={customStyles}
+          noDataComponent={
+            <div className="mv-empty-state">
+              <div className="mv-empty-icon">
+                <i className="bi bi-envelope-open"></i>
+              </div>
 
-      {/* =====================================================
-          FLOATING ACTION BUTTON
-      ===================================================== */}
+              <h3>
+                {loading
+                  ? "Loading messages..."
+                  : search.trim()
+                  ? "No matching messages"
+                  : "No messages found"}
+              </h3>
+
+              <p>
+                {loading
+                  ? "Please wait while messages are being loaded."
+                  : search.trim()
+                  ? `No messages found for "${search}". Try another search.`
+                  : "Messages sent from the school will appear here."}
+              </p>
+            </div>
+          }
+        />
+      </div>
+
+      {/* FLOATING ACTION BUTTON */}
 
       <button
-        className="fab"
+        type="button"
+        className="mv-fab"
         onClick={() =>
-          navigate(
-            "/dashboard/MessageComponent/CreateMessage"
-          )
+          navigate("/dashboard/MessageComponent/CreateMessage")
         }
+        aria-label="Create new message"
+        title="Create New Message"
       >
-        ✎
+        <i className="bi bi-plus-lg"></i>
+        <span>New Message</span>
       </button>
-
     </div>
   );
 };

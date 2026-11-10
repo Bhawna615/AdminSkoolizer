@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import Header from "../component/Header";
 import Sidebar from "../component/Sidebar";
@@ -51,10 +52,10 @@ const Dashboard = () => {
   const [monthlyAttendance, setMonthlyAttendance] = useState([]);
 
   // =====================================================
-  // STUDENT MONTHLY ADMISSION DATA
+  // MONTHLY FEE COLLECTION DATA
   // =====================================================
 
-  const [studentOverview, setStudentOverview] = useState([]);
+  const [monthlyFeeCollection, setMonthlyFeeCollection] = useState([]);
 
   // =====================================================
   // EVENTS DATA
@@ -144,28 +145,28 @@ const Dashboard = () => {
   }, []);
 
   // =====================================================
-  // LOAD MONTHLY STUDENT ADMISSIONS
+  // LOAD MONTHLY FEE COLLECTION
   // =====================================================
 
   useEffect(() => {
     fetch(
-      "http://localhost/kkblossom/api.php/Adminapi/AdminStudentAttendance/studentOverview"
+      "http://localhost/kkblossom/api.php/Adminapi/AdminStudent/monthlyFeeCollection"
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log("MONTHLY STUDENT ADMISSIONS:", result);
+        console.log("MONTHLY FEE COLLECTION:", result);
 
         if (result.status === "success") {
-          setStudentOverview(
-            Array.isArray(result.studentOverview)
-              ? result.studentOverview
+          setMonthlyFeeCollection(
+            Array.isArray(result.monthlyFeeCollection)
+              ? result.monthlyFeeCollection
               : []
           );
         }
       })
       .catch((error) => {
         console.error(
-          "Error fetching monthly student admissions:",
+          "Error fetching monthly fee collection:",
           error
         );
       });
@@ -185,9 +186,7 @@ const Dashboard = () => {
 
         let events = [];
 
-        // =================================================
         // HANDLE API RESPONSE
-        // =================================================
 
         if (Array.isArray(result)) {
           events = result;
@@ -200,17 +199,12 @@ const Dashboard = () => {
           events = result.data;
         }
 
-        // =================================================
         // TODAY'S DATE
-        // =================================================
 
         const today = new Date();
-
         today.setHours(0, 0, 0, 0);
 
-        // =================================================
         // FILTER UPCOMING EVENTS
-        // =================================================
 
         const filteredEvents = events
           .filter((event) => {
@@ -229,9 +223,7 @@ const Dashboard = () => {
             return eventDate >= today;
           })
 
-          // =================================================
           // SORT BY NEAREST UPCOMING DATE
-          // =================================================
 
           .sort((a, b) => {
             const dateA = new Date(a.date);
@@ -240,9 +232,7 @@ const Dashboard = () => {
             return dateA - dateB;
           })
 
-          // =================================================
           // ONLY FIRST 3 EVENTS
-          // =================================================
 
           .slice(0, 3);
 
@@ -288,14 +278,15 @@ const Dashboard = () => {
   ];
 
   // =====================================================
-  // MONTHLY STUDENT ADMISSION CHART DATA
+  // MONTHLY FEE COLLECTION CHART DATA
   // =====================================================
 
-  const chartData = studentOverview
+  const chartData = monthlyFeeCollection
     .map((item) => ({
       month: Number(item.month),
       year: Number(item.year),
-      students: Number(item.students || 0),
+      collection: Number(item.total_collection || 0),
+      paymentCount: Number(item.payment_count || 0),
     }))
     .sort((a, b) => {
       if (a.year !== b.year) {
@@ -310,13 +301,43 @@ const Dashboard = () => {
   // =====================================================
 
   const chartValues = chartData.map(
-    (item) => item.students
+    (item) => item.collection
   );
 
   const maxChartValue =
     chartValues.length > 0
       ? Math.max(...chartValues)
       : 0;
+
+  // =====================================================
+  // FORMAT CURRENCY
+  // =====================================================
+
+  const formatCurrency = (value) => {
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+      maximumFractionDigits: 0,
+    }).format(Number(value || 0));
+  };
+
+  const formatAxisCurrency = (value) => {
+    const amount = Number(value || 0);
+
+    if (amount >= 10000000) {
+      return `₹${(amount / 10000000).toFixed(1)}Cr`;
+    }
+
+    if (amount >= 100000) {
+      return `₹${(amount / 100000).toFixed(1)}L`;
+    }
+
+    if (amount >= 1000) {
+      return `₹${(amount / 1000).toFixed(1)}k`;
+    }
+
+    return `₹${amount}`;
+  };
 
   // =====================================================
   // GENERATE SVG LINE
@@ -348,7 +369,7 @@ const Dashboard = () => {
 
       const y =
         height -
-        (item.students / maxValue) *
+        (item.collection / maxValue) *
           (height - padding * 2) -
         padding;
 
@@ -442,9 +463,7 @@ const Dashboard = () => {
     }
 
     const day = String(date.getDate()).padStart(2, "0");
-
     const month = monthNames[date.getMonth()];
-
     const year = date.getFullYear();
 
     return `${day} ${month} ${year}`;
@@ -456,12 +475,12 @@ const Dashboard = () => {
 
   const getEventIcon = (index) => {
     const icons = [
-      "la-calendar-alt",
-      "la-bell",
-      "la-calendar-check",
+      "bi-calendar-event",
+      "bi-bell",
+      "bi-calendar-check",
     ];
 
-    return icons[index] || "la-calendar";
+    return icons[index] || "bi-calendar";
   };
 
   // =====================================================
@@ -489,8 +508,8 @@ const Dashboard = () => {
     count,
     color,
   }) => (
-    <a
-      href={link}
+    <link
+      to={link}
       className="dashboard-card-link"
     >
       <div className="dashboard-stat-card">
@@ -503,7 +522,7 @@ const Dashboard = () => {
               background: color,
             }}
           >
-            <i className={`las ${icon}`}></i>
+            <i className={`bi ${icon}`}></i>
           </div>
 
           <div className="stat-info">
@@ -518,7 +537,7 @@ const Dashboard = () => {
         </span>
 
       </div>
-    </a>
+    </link>
   );
 
   return (
@@ -608,68 +627,134 @@ const Dashboard = () => {
 
               <div className="stats-grid">
 
+                {/* STUDENTS */}
+
                 <Card
                   link="/dashboard/StudentComponent/AdminViewStudent"
-                  icon="la-user-graduate"
+                  icon="bi-mortarboard-fill"
                   title="Students"
                   count={data.students}
                   color="#3478f6"
                 />
 
+                {/* TEACHERS */}
+
                 <Card
                   link="/dashboard/TeacherComponent/ViewTeachers"
-                  icon="la-chalkboard-teacher"
+                  icon="bi-person-workspace"
                   title="Teachers"
                   count={data.teachers}
                   color="#27ae8a"
                 />
 
+                {/* CLASSES */}
+
                 <Card
                   link="/dashboard/ScheduleComponent/ScheduleClass"
-                  icon="la-school"
+                  icon="bi-people-fill"
                   title="Classes"
                   count={data.classes}
                   color="#7b61d9"
                 />
 
+                {/* EMPLOYEES */}
+
                 <Card
                   link="/dashboard/EmployeeComponent/ViewEmployee"
-                  icon="la-user-tie"
+                  icon="bi-person-badge-fill"
                   title="Employees"
                   count={data.employees}
                   color="#f58a42"
                 />
 
+                {/* PASSED OUT STUDENTS */}
+
                 <Card
                   link="/dashboard/StudentComponent/PassedOutStudent"
-                  icon="la-user-check"
+                  icon="bi-mortarboard"
                   title="Passed Out Students"
                   count={data.passedOut}
                   color="#ef476f"
                 />
 
+                {/* SPONSORED STUDENTS */}
+
                 <Card
                   link="/dashboard/StudentComponent/SponseredStudents"
-                  icon="la-hand-holding-usd"
+                  icon="bi-heart-fill"
                   title="Sponsored Students"
                   count={data.sponseredStudents}
                   color="#f59e0b"
                 />
 
+                {/* ROUTES ACTIVE - NEW */}
+
                 <Card
                   link="/dashboard/TransportComponent/ActiveRoutes"
-                  icon="la-bus"
+                  icon="bi-bus-front-fill"
                   title="Routes Active"
                   count={data.activeRoutes}
-                  color="#3b82f6"
+                  color="#3478f6"
                 />
+
+                {/* STUDENTS ABSENT - NEW */}
+
+                <Card
+                  link="/dashboard/StudentComponent/AdminViewStudent"
+                  icon="bi-exclamation-triangle-fill"
+                  title="Students Absent"
+                  count={data.absentStudents}
+                  color="#ef476f"
+                />
+
+                {/* EMPLOYEES ABSENT - NEW */}
+
+                <Card
+                  link="/dashboard/EmployeeComponent/ViewEmployee"
+                  icon="bi-exclamation-triangle"
+                  title="Employees Absent"
+                  count={data.employeeAbsent}
+                  color="#f59e0b"
+                />
+
+                {/* EXAMS TODAY */}
 
                 <Card
                   link="/dashboard/ExamComponent/SelectClass"
-                  icon="la-clipboard-check"
+                  icon="bi-speedometer2"
                   title="Exams Today"
                   count={data.examsToday}
                   color="#6d5dfc"
+                />
+
+                {/* BIRTHDAYS TODAY - NEW */}
+
+                {/* <Card
+                  link="/dashboard/StudentComponent/AdminViewStudent"
+                  icon="bi-gift-fill"
+                  title="Birthdays Today"
+                  count={data.birthdaysToday}
+                  color="#7b61d9"
+                /> */}
+
+                {/* FEE PENDING - NEW */}
+
+                <Card
+                  link="/dashboard/FeeComponent/SelectPendingPaymentsPeriod"
+                  icon="bi-currency-rupee"
+                  title="Fee Pending"
+                  count={data.feePending}
+                  color="#f59e0b"
+                />
+
+                {/* LEAVE REQUESTS */}
+
+                <Card
+                  link="/dashboard/StudentComponent/StudentLeaveRequest"
+                  icon="bi-calendar-check-fill"
+                  title="Leave Requests"
+                  count={data.leaveRequests}
+                  color="#8b5cf6"
                 />
 
               </div>
@@ -712,9 +797,7 @@ const Dashboard = () => {
                       <div className="donut-center">
 
                         <strong>
-                          {
-                            attendanceData.presentPercentage
-                          }%
+                          {attendanceData.presentPercentage}%
                         </strong>
 
                         <span>
@@ -736,9 +819,7 @@ const Dashboard = () => {
                         </span>
 
                         <b>
-                          {
-                            attendanceData.presentPercentage
-                          }%
+                          {attendanceData.presentPercentage}%
                         </b>
 
                       </div>
@@ -752,9 +833,7 @@ const Dashboard = () => {
                         </span>
 
                         <b>
-                          {
-                            attendanceData.absentPercentage
-                          }%
+                          {attendanceData.absentPercentage}%
                         </b>
 
                       </div>
@@ -768,9 +847,7 @@ const Dashboard = () => {
                         </span>
 
                         <b>
-                          {
-                            attendanceData.leavePercentage
-                          }%
+                          {attendanceData.leavePercentage}%
                         </b>
 
                       </div>
@@ -782,13 +859,13 @@ const Dashboard = () => {
                 </div>
 
                 {/* =================================================
-                    STUDENT MONTHLY ADMISSIONS
+                    MONTHLY FEE COLLECTION
                 ================================================= */}
 
                 <div className="dashboard-panel students-overview">
 
                   <h3>
-                    Student Admissions Overview
+                    Monthly Fee Collection Overview
                   </h3>
 
                   <div className="chart-area">
@@ -800,7 +877,7 @@ const Dashboard = () => {
                       {chartYAxis.map(
                         (value, index) => (
                           <span key={index}>
-                            {value}
+                            {formatAxisCurrency(value)}
                           </span>
                         )
                       )}
@@ -887,7 +964,7 @@ const Dashboard = () => {
 
                             const y =
                               height -
-                              (item.students /
+                              (item.collection /
                                 maxValue) *
                                 (height -
                                   padding * 2) -
@@ -912,32 +989,45 @@ const Dashboard = () => {
                       <div className="months">
 
                         {chartData.length > 0 ? (
+                          chartData.map((item, index) => {
 
-                          chartData.map(
-                            (item) => (
+                            const showLabel =
+                              chartData.length <= 6 ||
+                              index === 0 ||
+                              index === chartData.length - 1 ||
+                              index % Math.ceil(chartData.length / 6) === 0;
+
+                            return (
                               <span
                                 key={`${item.year}-${item.month}`}
-                              >
-                                {
-                                  monthNames[
-                                    item.month - 1
-                                  ]
+                                className={
+                                  !showLabel
+                                    ? "month-label-hidden"
+                                    : ""
                                 }
+                                title={`${monthNames[item.month - 1]} ${item.year}`}
+                              >
+                                {showLabel
+                                  ? `${monthNames[item.month - 1]} '${String(item.year).slice(-2)}`
+                                  : ""}
                               </span>
-                            )
-                          )
-
+                            );
+                          })
                         ) : (
-
                           <>
-                            <span>Jan</span>
-                            <span>Feb</span>
-                            <span>Mar</span>
-                            <span>Apr</span>
-                            <span>May</span>
-                            <span>Jun</span>
+                            {[
+                              "Jan",
+                              "Feb",
+                              "Mar",
+                              "Apr",
+                              "May",
+                              "Jun",
+                            ].map((month) => (
+                              <span key={month}>
+                                {month}
+                              </span>
+                            ))}
                           </>
-
                         )}
 
                       </div>
@@ -956,7 +1046,7 @@ const Dashboard = () => {
                       textAlign: "center",
                     }}
                   >
-                    Monthly number of students admitted
+                    Monthly fee collection received
                   </div>
 
                 </div>
@@ -979,9 +1069,7 @@ const Dashboard = () => {
 
                   </div>
 
-                  {/* =================================================
-                      LATEST 3 UPCOMING EVENTS
-                  ================================================= */}
+                  {/* LATEST 3 UPCOMING EVENTS */}
 
                   {upcomingEvents.length > 0 ? (
 
@@ -999,9 +1087,7 @@ const Dashboard = () => {
                           >
 
                             <i
-                              className={`las ${getEventIcon(
-                                index
-                              )}`}
+                              className={`bi ${getEventIcon(index)}`}
                             ></i>
 
                           </div>
@@ -1013,9 +1099,7 @@ const Dashboard = () => {
                             </h4>
 
                             <p>
-                              {formatEventDate(
-                                event.date
-                              )}
+                              {formatEventDate(event.date)}
                             </p>
 
                           </div>
@@ -1028,7 +1112,7 @@ const Dashboard = () => {
 
                     <div className="notice-empty">
 
-                      <i className="las la-calendar-times"></i>
+                      <i className="bi bi-calendar-x"></i>
 
                       <p>
                         No upcoming events
@@ -1038,12 +1122,12 @@ const Dashboard = () => {
 
                   )}
 
-                  <a
-                    href="/dashboard/ScheduleComponent/EventList"
+                  <link
+                    to="/dashboard/ScheduleComponent/EventList"
                     className="view-notices"
                   >
                     View all events
-                  </a>
+                  </link>
 
                 </div>
 

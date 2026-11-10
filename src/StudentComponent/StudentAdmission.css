@@ -11,9 +11,143 @@
     box-sizing: border-box;
     background: #f7f5fb;
     font-family: "Segoe UI", Arial, sans-serif;
-    color: #30283d;
+    color: #e8e7ea;
 }
 
+/* =========================================================
+   DONUT PROGRESS INDICATOR
+========================================================= */
+
+.student-admission-donut {
+    --admission-progress: 0deg;
+
+    width: 150px;
+    height: 150px;
+    margin: 22px auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: conic-gradient(
+        #6f42c1 0deg,
+        #8b65e8 var(--admission-progress),
+        #eee8f7 var(--admission-progress),
+        #eee8f7 360deg
+    );
+
+    position: relative;
+    flex-shrink: 0;
+
+    transition: background 0.2s ease;
+    box-shadow: 0 6px 22px rgba(111, 66, 193, 0.12);
+}
+
+.student-admission-donut::before {
+    content: "";
+    position: absolute;
+
+    width: 122px;
+    height: 122px;
+
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+.student-admission-donut-inner {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+}
+
+.student-admission-donut-value {
+    color: #6f42c1;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+}
+
+.student-admission-donut-label {
+    color: #8b8199;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.student-admission-loader-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 18px;
+    color: #81768f;
+    font-size: 11px;
+    text-align: center;
+}
+
+.student-admission-loader-footer span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.student-admission-loader-footer i {
+    color: #6f42c1;
+    font-size: 14px;
+}
+
+@media (max-width: 1200px) {
+    .student-admission-donut {
+        width: 135px;
+        height: 135px;
+    }
+
+    .student-admission-donut::before {
+        width: 109px;
+        height: 109px;
+    }
+
+    .student-admission-donut-value {
+        font-size: 27px;
+    }
+}
+
+/* =========================================
+   FULL-SCREEN STUDENT ADMISSION LOADER
+========================================= */
+
+.student-admission-loader-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    padding: 20px;
+
+    background: rgba(15, 23, 42, 0.68);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+
+    animation: admissionOverlayFade 0.25s ease;
+}
 
 /* =========================================================
    PAGE HEADER
@@ -73,195 +207,179 @@
 }
 
 .student-admission-header-badge i {
-    font-size:25px;
+    font-size: 25px;
 }
-
-
-/* =========================================================
-   SUCCESS MESSAGE
-========================================================= */
 
 /* =========================================================
    SUCCESS MESSAGE - FULL SCREEN POPUP
 ========================================================= */
 
 .student-admission-success {
-  position: fixed !important;
+    position: fixed !important;
 
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
 
-  width: 100vw !important;
-  height: 100vh !important;
+    width: 100vw !important;
+    height: 100vh !important;
 
-  margin: 0 !important;
-  padding: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
 
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 
-  background: rgba(20, 16, 30, 0.42) !important;
+    background: rgba(20, 16, 30, 0.42) !important;
 
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
 
-  border: none !important;
-  border-radius: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
 
-  z-index: 999999 !important;
+    z-index: 999999 !important;
 
-  box-sizing: border-box !important;
+    box-sizing: border-box !important;
 }
-
 
 /* =========================================================
    SUCCESS CONTENT BOX
 ========================================================= */
 
 .student-admission-success > div {
-  box-sizing: border-box !important;
+    box-sizing: border-box !important;
 
-  width: 410px !important;
-  max-width: calc(100vw - 40px) !important;
+    width: 410px !important;
+    max-width: calc(100vw - 40px) !important;
 
-  padding: 32px 30px !important;
+    padding: 32px 30px !important;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-  background: #ffffff !important;
+    background: #ffffff !important;
 
-  border: 1px solid #e7e1ef !important;
-  border-radius: 18px !important;
+    border: 1px solid #e7e1ef !important;
+    border-radius: 18px !important;
 
-  box-shadow:
-    0 25px 70px rgba(30, 20, 45, 0.25),
-    0 8px 25px rgba(111, 66, 193, 0.12) !important;
+    box-shadow:
+        0 25px 70px rgba(30, 20, 45, 0.25),
+        0 8px 25px rgba(111, 66, 193, 0.12) !important;
 
-  text-align: center !important;
+    text-align: center !important;
 
-  animation: studentAdmissionSuccessPopup 0.3s ease-out;
+    animation: studentAdmissionSuccessPopup 0.3s ease-out;
 }
-
 
 /* =========================================================
    SUCCESS ICON
 ========================================================= */
 
 .student-admission-success-icon {
-  width: 64px !important;
-  height: 64px !important;
+    width: 64px !important;
+    height: 64px !important;
 
-  margin: 0 auto 17px !important;
+    margin: 0 auto 17px !important;
 
-  flex-shrink: 0;
+    flex-shrink: 0;
 
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 
-  border-radius: 50% !important;
+    border-radius: 50% !important;
 
-  background: #6f42c1 !important;
+    background: #6f42c1 !important;
 
-  color: #ffffff !important;
+    color: #ffffff !important;
 
-  font-size: 28px !important;
+    font-size: 28px !important;
 
-  box-shadow:
-    0 9px 22px rgba(111, 66, 193, 0.25) !important;
+    box-shadow:
+        0 9px 22px rgba(111, 66, 193, 0.25) !important;
 }
-
 
 /* =========================================================
    SUCCESS TITLE
 ========================================================= */
 
 .student-admission-success strong {
-  display: block !important;
+    display: block !important;
 
-  margin: 0 !important;
+    margin: 0 !important;
 
-  color: #30283d !important;
+    color: #30283d !important;
 
-  font-size: 21px !important;
-  font-weight: 700 !important;
+    font-size: 21px !important;
+    font-weight: 700 !important;
 }
-
 
 /* =========================================================
    SUCCESS MESSAGE TEXT
 ========================================================= */
 
 .student-admission-success span {
-  display: block !important;
+    display: block !important;
 
-  margin: 8px 0 0 !important;
+    margin: 8px 0 0 !important;
 
-  color: #756c80 !important;
+    color: #756c80 !important;
 
-  font-size: 12px !important;
+    font-size: 12px !important;
 
-  line-height: 1.6 !important;
+    line-height: 1.6 !important;
 }
-
 
 /* =========================================================
    CLOSE BUTTON
 ========================================================= */
 
 .student-admission-success button {
-  display: none !important;
+    display: none !important;
 }
-
 
 /* =========================================================
    POPUP ANIMATION
 ========================================================= */
 
 @keyframes studentAdmissionSuccessPopup {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.94);
+    }
 
-  from {
-    opacity: 0;
-    transform: translateY(15px) scale(0.94);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
-
 
 /* =========================================================
    RESPONSIVE - 1200px ONLY
 ========================================================= */
 
 @media (max-width: 1200px) {
+    .student-admission-success > div {
+        width: 380px !important;
+        max-width: calc(100vw - 30px) !important;
 
-  .student-admission-success > div {
-    width: 380px !important;
-    max-width: calc(100vw - 30px) !important;
+        padding: 28px 24px !important;
+    }
 
-    padding: 28px 24px !important;
-  }
+    .student-admission-success-icon {
+        width: 58px !important;
+        height: 58px !important;
 
-  .student-admission-success-icon {
-    width: 58px !important;
-    height: 58px !important;
+        font-size: 25px !important;
+    }
 
-    font-size: 25px !important;
-  }
-
-  .student-admission-success strong {
-    font-size: 19px !important;
-  }
-
+    .student-admission-success strong {
+        font-size: 19px !important;
+    }
 }
 
 /* =========================================================
@@ -275,7 +393,6 @@
     overflow: hidden;
     box-shadow: 0 6px 22px rgba(53, 35, 82, 0.05);
 }
-
 
 /* =========================================================
    CARD HEADER
@@ -334,7 +451,6 @@
     font-weight: 700;
 }
 
-
 /* =========================================================
    FORM
 ========================================================= */
@@ -342,7 +458,6 @@
 .student-admission-form {
     width: 100%;
 }
-
 
 /* =========================================================
    SECTION
@@ -386,7 +501,6 @@
     font-size: 10px;
 }
 
-
 /* =========================================================
    FORM GRID
 ========================================================= */
@@ -405,7 +519,6 @@
     grid-column: 1 / -1;
 }
 
-
 /* =========================================================
    LABEL
 ========================================================= */
@@ -422,7 +535,6 @@
     margin-left: 3px;
     color: #dc3545;
 }
-
 
 /* =========================================================
    INPUT
@@ -480,7 +592,6 @@
     font-weight: 600;
 }
 
-
 /* =========================================================
    DATE PICKER
 ========================================================= */
@@ -522,7 +633,6 @@
     box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.08);
 }
 
-
 /* =========================================================
    FILE INPUT
 ========================================================= */
@@ -558,7 +668,6 @@
     border-color: #6f42c1;
     background: #f8f5fc;
 }
-
 
 /* =========================================================
    TEXTAREA
@@ -607,7 +716,6 @@
     box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.08);
 }
 
-
 /* =========================================================
    ERROR
 ========================================================= */
@@ -624,7 +732,6 @@
 .student-admission-error i {
     font-size: 10px;
 }
-
 
 /* =========================================================
    SUBMIT AREA
@@ -688,7 +795,6 @@
     font-size: 14px;
 }
 
-
 /* =========================================================
    DATEPICKER CUSTOMIZATION
 ========================================================= */
@@ -721,13 +827,25 @@
     color: #6f42c1 !important;
 }
 
-
 /* =========================================================
    RESPONSIVE - TABLET
 ========================================================= */
 
 @media (max-width: 1000px) {
+    .student-admission-page {
+        padding: 18px;
+    }
 
+    .student-admission-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* =========================================================
+   RESPONSIVE - 1200px ONLY
+========================================================= */
+
+@media (max-width: 1200px) {
     .student-admission-page {
         padding: 18px;
     }
@@ -736,124 +854,222 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .student-admission-header {
+        align-items: flex-start;
+    }
+
+    .student-admission-header-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        font-size: 19px;
+    }
+
+    .student-admission-header h1 {
+        font-size: 20px;
+    }
+
+    .student-admission-header p {
+        font-size: 10px;
+    }
+
+    .student-admission-header-badge {
+        display: none;
+    }
+
+    .student-admission-card-header {
+        padding: 14px;
+    }
+
+    .student-admission-required-note {
+        display: none;
+    }
+
+    .student-admission-section {
+        padding: 20px 14px;
+    }
+
+    .student-admission-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .student-admission-field.full {
+        grid-column: auto;
+    }
+
+    .student-admission-submit-area {
+        padding: 15px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .student-admission-submit-info {
+        text-align: center;
+    }
+
+    .student-admission-submit-button {
+        width: 100%;
+    }
+
+    .student-admission-page {
+        padding: 8px;
+    }
+
+    .student-admission-header-left {
+        gap: 9px;
+    }
+
+    .student-admission-header-icon {
+        width: 39px;
+        height: 39px;
+        font-size: 17px;
+    }
+
+    .student-admission-header h1 {
+        font-size: 17px;
+    }
+
+    .student-admission-card {
+        border-radius: 12px;
+    }
+
+    .student-admission-card-title h2 {
+        font-size: 13px;
+    }
 }
 
-
 /* =========================================================
-   RESPONSIVE - MOBILE
+   INPUT AUTOFILL FIX
 ========================================================= */
 
-/* =========================================================
-   RESPONSIVE - 1200px ONLY
-========================================================= */
-
-@media (max-width: 1200px) {
-
-  .student-admission-page {
-    padding: 18px;
-  }
-
-  .student-admission-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .student-admission-header {
-    align-items: flex-start;
-  }
-
-  .student-admission-header-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    font-size: 19px;
-  }
-
-  .student-admission-header h1 {
-    font-size: 20px;
-  }
-
-  .student-admission-header p {
-    font-size: 10px;
-  }
-
-  .student-admission-header-badge {
-    display: none;
-  }
-
-  .student-admission-card-header {
-    padding: 14px;
-  }
-
-  .student-admission-required-note {
-    display: none;
-  }
-
-  .student-admission-section {
-    padding: 20px 14px;
-  }
-
-  .student-admission-grid {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-
-  .student-admission-field.full {
-    grid-column: auto;
-  }
-
-  .student-admission-submit-area {
-    padding: 15px;
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .student-admission-submit-info {
-    text-align: center;
-  }
-
-  .student-admission-submit-button {
-    width: 100%;
-  }
-
-  .student-admission-page {
-    padding: 8px;
-  }
-
-  .student-admission-header-left {
-    gap: 9px;
-  }
-
-  .student-admission-header-icon {
-    width: 39px;
-    height: 39px;
-    font-size: 17px;
-  }
-
-  .student-admission-header h1 {
-    font-size: 17px;
-  }
-
-  .student-admission-card {
-    border-radius: 12px;
-  }
-
-  .student-admission-card-title h2 {
-    font-size: 13px;
-  }
-}
 .student-admission-input-wrap input {
-  background: transparent !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
 }
 
 .student-admission-input-wrap input:-webkit-autofill,
 .student-admission-input-wrap input:-webkit-autofill:hover,
 .student-admission-input-wrap input:-webkit-autofill:focus,
-.student-admission-input-wrap input:-webkit-autofill:active ,
-.student-admission-datepicker-wrap{
-  -webkit-text-fill-color: #433a4d !important;
-  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
-  box-shadow: 0 0 0 1000px #ffffff inset !important;
-  background: #ffffff !important;
+.student-admission-input-wrap input:-webkit-autofill:active {
+    -webkit-text-fill-color: #433a4d !important;
+    -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+    box-shadow: 0 0 0 1000px #ffffff inset !important;
+    background: #ffffff !important;
+}
+
+.student-admission-datepicker-wrap {
+    -webkit-text-fill-color: #433a4d !important;
+    -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+    box-shadow: 0 0 0 1000px #ffffff inset !important;
+    background: #ffffff !important;
+}
+
+/* =========================================================
+   DONUT PROGRESS INDICATOR
+========================================================= */
+
+.student-admission-donut {
+    --admission-progress: 0deg;
+
+    width: 150px;
+    height: 150px;
+    margin: 22px auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: conic-gradient(
+        #6f42c1 0deg,
+        #8b65e8 var(--admission-progress),
+        #eee8f7 var(--admission-progress),
+        #eee8f7 360deg
+    );
+
+    position: relative;
+    flex-shrink: 0;
+
+    transition: background 0.2s ease;
+    box-shadow: 0 6px 22px rgba(111, 66, 193, 0.12);
+}
+
+.student-admission-donut::before {
+    content: "";
+    position: absolute;
+
+    width: 122px;
+    height: 122px;
+
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+.student-admission-donut-inner {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+}
+
+.student-admission-donut-value {
+    color: #6f42c1;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+}
+
+.student-admission-donut-label {
+    color: #8b8199;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.student-admission-loader-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 18px;
+    color: #81768f;
+    font-size: 11px;
+    text-align: center;
+}
+
+.student-admission-loader-footer span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.student-admission-loader-footer i {
+    color: #6f42c1;
+    font-size: 14px;
+}
+
+@media (max-width: 1200px) {
+    .student-admission-donut {
+        width: 135px;
+        height: 135px;
+    }
+
+    .student-admission-donut::before {
+        width: 109px;
+        height: 109px;
+    }
+
+    .student-admission-donut-value {
+        font-size: 27px;
+    }
 }

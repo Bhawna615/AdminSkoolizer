@@ -763,3 +763,209 @@ STUDENT METRICS POPUP - RESPONSIVE
         font-size: 12px;
     }
 }
+
+/* =========================================================
+   STUDENT PERFORMANCE LINE GRAPH
+   PREMIUM PURPLE + WHITE DESIGN
+========================================================= */
+
+.student-metrics-chart-card {
+    width: 100%;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #eee8f7;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 20px rgba(35, 20, 65, 0.06);
+}
+
+.student-metrics-chart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.student-metrics-chart-heading {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.student-metrics-chart-icon {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    border-radius: 12px;
+    background: #f1eaff;
+    color: #6c4ce8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+.student-metrics-chart-heading h2 {
+    margin: 0;
+    color: #30234b;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.student-metrics-chart-heading p {
+    margin: 6px 0 0;
+    color: #91899e;
+    font-size: 13px;
+}
+
+.student-metrics-chart-label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #716981;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.student-metrics-chart-label span {
+    width: 20px;
+    height: 4px;
+    border-radius: 5px;
+    background: #7657e8;
+}
+
+/* GRAPH WRAPPER */
+
+.student-metrics-graph-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 0;
+}
+
+.student-metrics-line-graph {
+    width: 100%;
+    min-width: 550px;
+    height: auto;
+    display: block;
+    overflow: visible;
+}
+
+/* EMPTY GRAPH */
+
+.student-metrics-chart-empty {
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #938ba3;
+    padding: 25px;
+}
+
+.student-metrics-chart-empty svg {
+    font-size: 45px;
+    color: #b9a4ee;
+    margin-bottom: 15px;
+}
+
+.student-metrics-chart-empty h3 {
+    color: #514866;
+    font-size: 17px;
+    margin: 0 0 8px;
+}
+
+.student-metrics-chart-empty p {
+    font-size: 13px;
+    max-width: 350px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* SUMMARY */
+
+.student-metrics-chart-summary {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.student-metrics-summary-item {
+    background: #f8f5ff;
+    border: 1px solid #eee7ff;
+    border-radius: 12px;
+    padding: 17px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.student-metrics-summary-item span {
+    font-size: 12px;
+    color: #827796;
+    font-weight: 500;
+}
+
+.student-metrics-summary-item strong {
+    font-size: 24px;
+    font-weight: 700;
+    color: #6c4ce8;
+}
+
+/* NOTE */
+
+.student-metrics-chart-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 18px;
+    color: #898198;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.student-metrics-chart-note i {
+    color: #8b70dc;
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
+    .student-metrics-chart-summary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .student-metrics-chart-card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .student-metrics-chart-summary {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .student-metrics-summary-item {
+        padding: 13px;
+    }
+
+    .student-metrics-summary-item strong {
+        font-size: 20px;
+    }
+
+    .student-metrics-chart-heading h2 {
+        font-size: 16px;
+    }
+
+    .student-metrics-chart-card {
+        padding: 15px;
+    }
+}

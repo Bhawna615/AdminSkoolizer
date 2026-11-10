@@ -520,3 +520,748 @@
         min-width: 900px;
     }
 }
+
+/* =========================================================
+   CLASS PERFORMANCE GRAPH
+   PREMIUM PURPLE + WHITE ERP DESIGN
+========================================================= */
+
+.class-performance-chart-card {
+    width: 100%;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #eee8f7;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 20px rgba(35, 20, 65, 0.06);
+}
+
+/* HEADER */
+
+.class-performance-chart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.class-performance-chart-heading {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.class-performance-chart-icon {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1eaff;
+    color: #6c4ce8;
+    font-size: 21px;
+    border-radius: 12px;
+}
+
+.class-performance-chart-heading h3 {
+    margin: 0;
+    color: #30234b;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.class-performance-chart-heading p {
+    margin: 6px 0 0;
+    color: #91899e;
+    font-size: 13px;
+}
+
+.class-performance-chart-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border-radius: 8px;
+    background: #f5f0ff;
+    color: #6c4ce8;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* LEGEND */
+
+.class-performance-legend {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 22px;
+    margin-bottom: 18px;
+}
+
+.class-performance-legend > div {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #716981;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.class-performance-legend span {
+    width: 22px;
+    height: 4px;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.legend-average {
+    background: #7657e8;
+}
+
+.legend-highest {
+    background: #16a085;
+}
+
+.legend-lowest {
+    background: #f0a34a;
+}
+
+/* GRAPH */
+
+.class-performance-graph-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 0;
+}
+
+.class-performance-svg {
+    display: block;
+    width: 100%;
+    min-width: 600px;
+    height: auto;
+    overflow: visible;
+}
+
+/* EMPTY GRAPH */
+
+.class-performance-empty {
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 25px;
+    color: #938ba3;
+}
+
+.class-performance-empty svg {
+    font-size: 45px;
+    color: #b9a4ee;
+    margin-bottom: 15px;
+}
+
+.class-performance-empty h3 {
+    margin: 0 0 8px;
+    color: #514866;
+    font-size: 17px;
+}
+
+.class-performance-empty p {
+    max-width: 360px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* SUMMARY CARDS */
+
+.class-performance-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    margin-top: 22px;
+}
+
+.class-performance-summary-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 17px;
+    background: #faf9fd;
+    border: 1px solid #eee9f5;
+    border-radius: 12px;
+}
+
+.summary-icon {
+    width: 43px;
+    height: 43px;
+    min-width: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    font-size: 17px;
+}
+
+.average-icon {
+    color: #7657e8;
+    background: #f0eaff;
+}
+
+.highest-icon {
+    color: #159c7b;
+    background: #e5f8f1;
+}
+
+.lowest-icon {
+    color: #df913a;
+    background: #fff3e4;
+}
+
+.class-performance-summary-item span {
+    display: block;
+    color: #8c849c;
+    font-size: 11px;
+    margin-bottom: 6px;
+}
+
+.class-performance-summary-item strong {
+    color: #30234b;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* SUBJECT BREAKDOWN */
+
+.class-subject-breakdown {
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid #eeeaf4;
+}
+
+.class-subject-breakdown h4 {
+    margin: 0 0 18px;
+    font-size: 15px;
+    color: #30234b;
+}
+
+.class-subject-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.class-subject-item {
+    padding: 16px;
+    background: #faf9fd;
+    border: 1px solid #eee9f5;
+    border-radius: 11px;
+}
+
+.class-subject-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.class-subject-item-top strong {
+    color: #514866;
+    font-size: 13px;
+}
+
+.class-subject-item-top span {
+    color: #6c4ce8;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.class-subject-progress {
+    width: 100%;
+    height: 7px;
+    background: #eae5f2;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.class-subject-progress span {
+    height: 100%;
+    display: block;
+    background: linear-gradient(90deg, #6c4ce8, #a184f3);
+    border-radius: 20px;
+    transition: width 0.4s ease;
+}
+
+.class-subject-item-bottom {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.class-subject-item-bottom span {
+    color: #91899e;
+    font-size: 11px;
+}
+
+/* NOTE */
+
+.class-performance-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 20px 0 0;
+    color: #898198;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.class-performance-note i {
+    color: #8b70dc;
+    margin-top: 2px;
+}
+
+/* LOADING */
+
+.class-report-loading {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    color: #716981;
+    font-size: 14px;
+}
+
+.class-report-spinner {
+    width: 42px;
+    height: 42px;
+    border: 4px solid #e9e1fa;
+    border-top-color: #7657e8;
+    border-radius: 50%;
+    animation: classReportSpin 0.8s linear infinite;
+}
+
+@keyframes classReportSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ERROR */
+
+.class-report-error {
+    padding: 22px;
+    background: #fff3f3;
+    color: #c04444;
+    border: 1px solid #f5d5d5;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
+    .class-performance-summary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .class-performance-chart-card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .class-performance-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .class-subject-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .class-performance-chart-card {
+        padding: 15px;
+    }
+
+    .class-performance-chart-heading h3 {
+        font-size: 16px;
+    }
+
+    .class-performance-legend {
+        gap: 12px;
+    }
+
+    .class-performance-legend > div {
+        font-size: 11px;
+    }
+}
+
+/* =========================================================
+   SIMPLE CLASS PERFORMANCE BAR CHART
+========================================================= */
+
+.simple-class-bar-chart {
+    width: 100%;
+    padding: 25px 15px;
+    box-sizing: border-box;
+}
+
+.simple-chart-scale {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin-left: 145px;
+    margin-right: 65px;
+    margin-bottom: 12px;
+    color: #89839a;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.simple-chart-scale span {
+    text-align: center;
+}
+
+.simple-chart-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.simple-chart-row {
+    display: grid;
+    grid-template-columns: 125px minmax(100px, 1fr) 55px;
+    align-items: center;
+    gap: 20px;
+}
+
+.simple-chart-subject {
+    color: #383149;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.simple-chart-track {
+    width: 100%;
+    height: 22px;
+    background: #eeeaf6;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.simple-chart-fill {
+    height: 100%;
+    min-width: 0;
+    border-radius: 20px;
+    transition: width 0.7s ease;
+}
+
+.simple-chart-value {
+    color: #383149;
+    font-size: 14px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.simple-chart-description {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 22px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eeeaf5;
+}
+
+.simple-chart-description span {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #716981;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.simple-chart-dot {
+    width: 9px;
+    height: 9px;
+    display: inline-block;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.simple-chart-dot.good {
+    background: #16a085;
+}
+
+.simple-chart-dot.average {
+    background: #7657e8;
+}
+
+.simple-chart-dot.warning {
+    background: #f0a34a;
+}
+
+.simple-chart-dot.poor {
+    background: #e35d6a;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
+    .simple-class-bar-chart {
+        padding: 20px 5px;
+    }
+
+    .simple-chart-row {
+        grid-template-columns: 105px minmax(80px, 1fr) 50px;
+        gap: 12px;
+    }
+
+    .simple-chart-scale {
+        margin-left: 117px;
+        margin-right: 58px;
+    }
+}
+
+@media (max-width: 600px) {
+    .simple-chart-row {
+        grid-template-columns: 75px minmax(70px, 1fr) 48px;
+        gap: 8px;
+    }
+
+    .simple-chart-subject {
+        font-size: 12px;
+    }
+
+    .simple-chart-value {
+        font-size: 12px;
+    }
+
+    .simple-chart-scale {
+        margin-left: 83px;
+        margin-right: 53px;
+        font-size: 10px;
+    }
+
+    .simple-chart-track {
+        height: 17px;
+    }
+
+    .simple-chart-description {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* =========================================================
+   CLASS PERFORMANCE PIE CHART
+========================================================= */
+
+.class-pie-chart-container {
+    width: 100%;
+    min-height: 330px;
+    padding: 30px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 65px;
+    box-sizing: border-box;
+}
+
+.class-pie-chart-visual {
+    width: 280px;
+    height: 280px;
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.class-performance-pie-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+    filter: drop-shadow(0 5px 10px rgba(35, 25, 65, 0.10));
+}
+
+.class-pie-chart-center {
+    position: absolute;
+    width: 115px;
+    height: 115px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 3px 15px rgba(40, 30, 70, 0.10);
+    pointer-events: none;
+}
+
+.class-pie-chart-center strong {
+    color: #302747;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.class-pie-chart-center span {
+    color: #898197;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+/* =========================================================
+   PIE CHART LEGEND
+========================================================= */
+
+.class-pie-chart-legend {
+    width: 100%;
+    max-width: 430px;
+}
+
+.class-pie-chart-legend h4 {
+    color: #302747;
+    font-size: 18px;
+    font-weight: 750;
+    margin: 0 0 6px;
+}
+
+.class-pie-chart-legend > p {
+    color: #898197;
+    font-size: 13px;
+    margin: 0 0 20px;
+}
+
+.class-pie-legend-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 13px 0;
+    border-bottom: 1px solid #f0edf6;
+}
+
+.class-pie-legend-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.class-pie-legend-color {
+    width: 13px;
+    height: 13px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.class-pie-legend-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.class-pie-legend-info strong {
+    color: #39314b;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.class-pie-legend-info small {
+    color: #9992a7;
+    font-size: 11px;
+}
+
+.class-pie-legend-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.class-pie-legend-right strong {
+    color: #39314b;
+    font-size: 15px;
+    font-weight: 800;
+    min-width: 25px;
+    text-align: right;
+}
+
+.class-pie-legend-right span {
+    color: #777084;
+    font-size: 12px;
+    font-weight: 600;
+    min-width: 45px;
+    text-align: right;
+}
+
+/* =========================================================
+   RESPONSIVE PIE CHART
+========================================================= */
+
+@media (max-width: 1200px) {
+    .class-pie-chart-container {
+        gap: 35px;
+        padding: 25px 15px;
+    }
+
+    .class-pie-chart-visual {
+        width: 250px;
+        height: 250px;
+    }
+
+    .class-pie-chart-center {
+        width: 105px;
+        height: 105px;
+    }
+}
+
+@media (max-width: 600px) {
+    .class-pie-chart-container {
+        flex-direction: column;
+        gap: 25px;
+        padding: 20px 10px;
+    }
+
+    .class-pie-chart-visual {
+        width: 240px;
+        height: 240px;
+    }
+
+    .class-pie-chart-center {
+        width: 100px;
+        height: 100px;
+    }
+
+    .class-pie-chart-center strong {
+        font-size: 26px;
+    }
+
+    .class-pie-chart-legend {
+        max-width: 100%;
+    }
+
+    .class-pie-chart-legend h4 {
+        font-size: 16px;
+    }
+
+    .class-pie-legend-item {
+        padding: 11px 0;
+    }
+}

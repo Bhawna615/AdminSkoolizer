@@ -150,13 +150,13 @@ return ( <div className="former-list-page">
 
   {/* ================= SUCCESS / ERROR ================= */}
 
-  {success && (
+  {/* {success && (
 
 <div className="former-list-success"> <i className="bi bi-check-circle-fill"></i> {success} </div> )}
 
 {error && (
 
-<div className="former-list-error"> <i className="bi bi-exclamation-triangle-fill"></i> {error} </div> )}
+<div className="former-list-error"> <i className="bi bi-exclamation-triangle-fill"></i> {error} </div> )} */}
 
     
 

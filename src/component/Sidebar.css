@@ -487,3 +487,147 @@ border-radius: 7px;
   }
 
 }
+/* =========================================================
+   SIDEBAR — LIGHT / DARK MODE
+   Works with the theme toggle in Header.jsx
+========================================================= */
+
+/* DARK MODE — existing dark appearance */
+
+.sidebar {
+  background: #171f30;
+  color: #dbe1ec;
+  border-right: 1px solid #252f43;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.sidebar .menu-item {
+  color: #9ca6b8;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.sidebar .menu-item > i {
+  color: inherit !important;
+}
+
+.sidebar .menu-item:hover {
+  background: #202839;
+  color: #ffffff;
+}
+
+.sidebar .menu-item.active {
+  background: rgba(124, 58, 237, 0.18);
+  color: #a78bfa;
+}
+
+.sidebar .menu-arrow {
+  color: inherit;
+}
+
+.sidebar .submenu {
+  background: transparent;
+}
+
+.sidebar .submenu-item {
+  color: #9ca6b8;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.sidebar .submenu-item:hover {
+  background: #202839;
+  color: #ffffff;
+}
+
+.sidebar .submenu-item.active {
+  background: rgba(124, 58, 237, 0.14);
+  color: #a78bfa;
+}
+
+.sidebar-close-btn {
+  color: inherit;
+}
+
+/* LIGHT MODE */
+
+html.light-mode .sidebar,
+body.light-mode .sidebar {
+  background: #30234a;
+  color: #30234a;
+  border-right: 1px solid #e7e1ef;
+  box-shadow: 3px 0 15px rgba(53, 35, 82, 0.035);
+}
+.menu-item.i{
+  color: #6d28d9;
+}
+.submenu-item.span{
+  color:#6d28d9;
+}
+.menu-item.active .menu-arrow {
+  color: #6d28d9 !important;
+}
+html.light-mode .sidebar .menu-item,
+body.light-mode .sidebar .menu-item {
+  color: #655a76;
+}
+
+html.light-mode .sidebar .menu-item:hover,
+body.light-mode .sidebar .menu-item:hover {
+  background: #f5f0ff;
+  color: #6d28d9;
+}
+
+html.light-mode .sidebar .menu-item.active,
+body.light-mode .sidebar .menu-item.active {
+  background: #eee7ff;
+  color: #6d28d9;
+}
+
+html.light-mode .sidebar .submenu-item,
+body.light-mode .sidebar .submenu-item {
+  color: #756a86;
+}
+
+html.light-mode .sidebar .submenu-item:hover,
+body.light-mode .sidebar .submenu-item:hover {
+  background: #f7f3ff;
+  color: #6d28d9;
+}
+
+html.light-mode .sidebar .submenu-item.active,
+body.light-mode .sidebar .submenu-item.active {
+  background: #eee7ff;
+  color: #6d28d9;
+}
+
+html.light-mode .sidebar-close-btn,
+body.light-mode .sidebar-close-btn {
+  background: #f5f0ff;
+  color: #6d28d9;
+  border-color: #e7def8;
+}
+
+/* MOBILE OVERLAY */
+
+html.light-mode .sidebar-overlay,
+body.light-mode .sidebar-overlay {
+  background: rgba(35, 27, 45, 0.3);
+}
+
+/* SMOOTH THEME TRANSITIONS */
+
+.sidebar .menu-item,
+.sidebar .submenu-item,
+.sidebar .menu-arrow,
+.sidebar-close-btn {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}

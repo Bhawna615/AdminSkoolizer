@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./AdminListStudent.css";
@@ -10,6 +11,13 @@ const AdminListStudent = () => {
   const [selectAll, setSelectAll] = useState(false);
   const [admnoStart, setAdmnoStart] = useState("");
   const [admnoEnd, setAdmnoEnd] = useState("");
+
+  // LOADER AND MESSAGE STATES
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [loadingStep, setLoadingStep] = useState("Preparing student list...");
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
 
   const navigate = useNavigate();
 
@@ -26,6 +34,39 @@ const AdminListStudent = () => {
       });
   }, []);
 
+  // LOADER PROGRESS
+  useEffect(() => {
+    let interval;
+
+    if (loading) {
+      interval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 90) return prev;
+
+          if (prev < 25) {
+            setLoadingStep("Preparing student list...");
+          } else if (prev < 50) {
+            setLoadingStep("Fetching student records...");
+          } else if (prev < 75) {
+            setLoadingStep("Organizing selected columns...");
+          } else {
+            setLoadingStep("Finalizing your report...");
+          }
+
+          return prev + 1;
+        });
+      }, 35);
+    }
+
+    return () => clearInterval(interval);
+  }, [loading]);
+
+  // MESSAGE BOX
+  const showMessage = (text, type) => {
+    setMessage(text);
+    setMessageType(type);
+  };
+
   const handleSelectAll = () => {
     if (!selectAll) {
       setSelectedClasses(classes.map((c) => c.Classname));
@@ -37,11 +78,17 @@ const AdminListStudent = () => {
   };
 
   const handleClassChange = (classname) => {
-    setSelectedClasses((prev) =>
-      prev.includes(classname)
+    setSelectedClasses((prev) => {
+      const updated = prev.includes(classname)
         ? prev.filter((c) => c !== classname)
-        : [...prev, classname]
-    );
+        : [...prev, classname];
+
+      setSelectAll(
+        classes.length > 0 && updated.length === classes.length
+      );
+
+      return updated;
+    });
   };
 
   const handleFieldChange = (e) => {
@@ -53,6 +100,21 @@ const AdminListStudent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // VALIDATION
+    if (selectedClasses.length === 0) {
+      showMessage(
+        "Please select at least one class before generating the student list.",
+        "error"
+      );
+      return;
+    }
+
+    setMessage("");
+    setMessageType("");
+    setLoading(true);
+    setProgress(5);
+    setLoadingStep("Preparing student list...");
 
     const payload = {
       classes: selectedClasses,
@@ -67,12 +129,38 @@ const AdminListStudent = () => {
         payload
       )
       .then((res) => {
-        navigate("/StudentListView", {
-          state: res.data.data,
-        });
+        setLoading(false);
+        setProgress(100);
+
+        if (res.data && res.data.data) {
+          showMessage(
+            "Student list generated successfully!",
+            "success"
+          );
+
+          setTimeout(() => {
+            navigate("/StudentListView", {
+              state: res.data.data,
+            });
+          }, 1800);
+        } else {
+          showMessage(
+            "Unable to generate the student list. Please try again.",
+            "error"
+          );
+        }
       })
       .catch((err) => {
         console.error("Error creating student list:", err);
+
+        setLoading(false);
+        setProgress(0);
+
+        showMessage(
+          err.response?.data?.message ||
+          "Something went wrong while generating the student list. Please try again.",
+          "error"
+        );
       });
   };
 
@@ -489,7 +577,7 @@ const AdminListStudent = () => {
                   onChange={handleFieldChange}
                 />
                 <span className="admin-list-student-column-check">
-                  <i className="bi bi-calendar-check"></i>
+                  <i className="bi bi-check"></i>
                 </span>
                 <i className="bi bi-calendar-event"></i>
                 <span>Admission Date</span>
@@ -687,6 +775,7 @@ const AdminListStudent = () => {
             <button
               type="submit"
               className="admin-list-student-create-button"
+              disabled={loading}
             >
 
               <span className="admin-list-student-button-icon">
@@ -704,6 +793,117 @@ const AdminListStudent = () => {
         </form>
 
       </div>
+
+
+      {/* =====================================================
+          FULL SCREEN LOADER
+      ===================================================== */}
+      {loading && (
+        <div className="admin-list-student-loader-overlay">
+
+          <div className="admin-list-student-loader-content">
+
+            <div className="admin-list-student-loader-ring">
+
+              <svg viewBox="0 0 120 120">
+
+                <circle
+                  className="admin-list-student-loader-track"
+                  cx="60"
+                  cy="60"
+                  r="48"
+                />
+
+                <circle
+                  className="admin-list-student-loader-progress"
+                  cx="60"
+                  cy="60"
+                  r="48"
+                  style={{
+                    strokeDashoffset:
+                      301.59 - (301.59 * progress) / 100,
+                  }}
+                />
+
+              </svg>
+
+              <div className="admin-list-student-loader-percent">
+                {progress}%
+              </div>
+
+            </div>
+
+            <div className="admin-list-student-loader-icon">
+              <i className="bi bi-file-earmark-spreadsheet-fill"></i>
+            </div>
+
+            <h3>Generating Student List</h3>
+
+            <p>{loadingStep}</p>
+
+            <span className="admin-list-student-loader-subtext">
+              Please wait while we prepare your report
+            </span>
+
+          </div>
+
+        </div>
+      )}
+
+
+      {/* =====================================================
+          MESSAGE BOX OVERLAY
+      ===================================================== */}
+      {message && (
+        <div className="admin-list-student-message-overlay">
+
+          <div className="admin-list-student-message-box">
+
+            <div
+              className={`admin-list-student-message-icon ${
+                messageType === "success"
+                  ? "admin-list-student-message-success"
+                  : "admin-list-student-message-error"
+              }`}
+            >
+              <i
+                className={`bi ${
+                  messageType === "success"
+                    ? "bi-check-lg"
+                    : "bi-exclamation-lg"
+                }`}
+              ></i>
+            </div>
+
+            <h3>
+              {messageType === "success"
+                ? "Success!"
+                : "Attention!"}
+            </h3>
+
+            <p>{message}</p>
+
+            {messageType === "success" ? (
+              <div className="admin-list-student-message-wait">
+                Redirecting to student list...
+              </div>
+            ) : (
+              <button
+                type="button"
+                className="admin-list-student-message-button"
+                onClick={() => {
+                  setMessage("");
+                  setMessageType("");
+                }}
+              >
+                Okay, Got It
+              </button>
+            )}
+
+          </div>
+
+        </div>
+      )}
 
     </div>
   );

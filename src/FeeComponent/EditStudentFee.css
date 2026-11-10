@@ -1,63 +1,723 @@
-.edit-container {
-  padding: 20px;
-  font-family: Arial;
-  background: #f5f7fb;
-}
 
-.title {
-  text-align: center;
-  margin-bottom: 20px;
-}
+/* =========================================================
+   EDIT STUDENT FEE
+   PREMIUM PURPLE + WHITE ERP DESIGN
+   BOOTSTRAP ICONS
+========================================================= */
 
-.grid {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.card {
-  flex: 1;
-  min-width: 300px;
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-}
-
-.card h3 {
-  margin-bottom: 15px;
-  color: #333;
-}
-
-label {
-  font-size: 13px;
-  margin-top: 10px;
-  display: block;
-  color: #555;
-}
-
-input, select {
+.esf-page {
   width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  min-height: 100vh;
+  padding: 28px;
+  box-sizing: border-box;
+  background: #f7f6fc;
+  color: #29243e;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
-.btn-area {
-  text-align: center;
-  margin-top: 20px;
+.esf-container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
-.updatefee_btn {
-  padding: 10px 25px;
-  background: #2d6cdf;
-  color: white;
-  border: none;
-  border-radius: 6px;
+/* ================= PAGE HEADER ================= */
+
+.esf-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.esf-heading-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.esf-heading-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #6c4ce8, #8a70f0);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  box-shadow: 0 7px 18px rgba(108, 76, 232, 0.2);
+}
+
+.esf-heading-content h2 {
+  margin: 0;
+  color: #28213f;
+  font-size: 25px;
+  font-weight: 750;
+}
+
+.esf-heading-content p {
+  margin: 5px 0 0;
+  color: #89849c;
+  font-size: 13px;
+}
+
+.esf-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 17px;
+  border: 1px solid #e5e0f5;
+  border-radius: 9px;
+  background: #fff;
+  color: #6c4ce8;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.esf-back-btn:hover {
+  background: #6c4ce8;
+  color: #fff;
+  border-color: #6c4ce8;
+  transform: translateY(-2px);
+}
+
+/* ================= STUDENT BANNER ================= */
+
+.esf-student-banner {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  padding: 20px 23px;
+  margin-bottom: 22px;
+  background: linear-gradient(115deg, #6c4ce8, #8065eb);
+  border-radius: 15px;
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(108, 76, 232, 0.15);
+}
+
+.esf-student-avatar {
+  width: 57px;
+  height: 57px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.17);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 27px;
+}
+
+.esf-student-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.esf-student-info > span {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  font-weight: 700;
+  opacity: 0.8;
+  margin-bottom: 5px;
+}
+
+.esf-student-info h3 {
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0 0 7px;
+  color: #fff;
+}
+
+.esf-student-info p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.esf-student-info p span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.esf-session-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 13px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 12px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+/* ================= MAIN GRID ================= */
+
+.esf-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+
+/* ================= CARDS ================= */
+
+.esf-card {
+  min-width: 0;
+  background: #fff;
+  border: 1px solid #eeeaf7;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(44, 32, 88, 0.035);
+}
+
+.esf-card-header {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 19px 21px;
+  border-bottom: 1px solid #f0edf7;
+}
+
+.esf-card-heading-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  background: #f0edff;
+  color: #6c4ce8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  flex-shrink: 0;
+}
+
+.esf-card-heading-icon.esf-purple {
+  background: #f0edff;
+  color: #7657e8;
+}
+
+.esf-card-heading-icon.esf-green {
+  background: #e9f8f1;
+  color: #21a36b;
+}
+
+.esf-card-header h3 {
+  margin: 0;
+  color: #302a45;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.esf-card-header p {
+  margin: 4px 0 0;
+  color: #9691a5;
+  font-size: 11px;
+}
+
+.esf-card-body {
+  padding: 21px;
+}
+
+/* ================= FORM FIELDS ================= */
+
+.esf-form-group {
+  min-width: 0;
+  margin-bottom: 17px;
+}
+
+.esf-form-group:last-child {
+  margin-bottom: 0;
+}
+
+.esf-form-group label {
+  display: block;
+  margin-bottom: 7px;
+  color: #625c74;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.esf-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.esf-input-wrap > i:first-child {
+  position: absolute;
+  left: 13px;
+  color: #9286bc;
+  font-size: 15px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.esf-input-wrap input,
+.esf-input-wrap select,
+.esf-input-wrap textarea {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  border: 1px solid #e8e4f1;
+  border-radius: 8px;
+  background: #fcfbfe;
+  padding: 11px 13px 11px 39px;
+  color: #373047;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.esf-input-wrap input,
+.esf-input-wrap select {
+  height: 43px;
+}
+
+.esf-input-wrap textarea {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.5;
+}
+
+.esf-input-wrap input:focus,
+.esf-input-wrap select:focus,
+.esf-input-wrap textarea:focus {
+  border-color: #8a70ee;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(108, 76, 232, 0.09);
+}
+
+.esf-input-wrap input::placeholder,
+.esf-input-wrap textarea::placeholder {
+  color: #b3adbf;
+  font-size: 12px;
+}
+
+.esf-input-wrap select {
+  appearance: none;
   cursor: pointer;
 }
 
-.updatefee_btn:hover {
-  background: #1f55b5;
+.esf-disabled input {
+  background: #f4f2f8;
+  color: #898399;
+  cursor: not-allowed;
+  padding-right: 38px;
+}
+
+.esf-lock-icon {
+  position: absolute;
+  right: 13px;
+  color: #aaa4b8;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.esf-textarea-wrap {
+  align-items: flex-start;
+}
+
+.esf-textarea-wrap > i:first-child {
+  top: 12px;
+}
+
+/* ================= TOTAL PREVIEW ================= */
+
+.esf-total-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 15px;
+  margin-top: 5px;
+  border: 1px solid #e9e3ff;
+  border-radius: 10px;
+  background: linear-gradient(110deg, #f8f6ff, #f1edff);
+}
+
+.esf-total-preview > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.esf-total-preview span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #51416f;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.esf-total-preview span i {
+  color: #7657e8;
+  font-size: 15px;
+}
+
+.esf-total-preview small {
+  color: #9790a9;
+  font-size: 10px;
+}
+
+.esf-total-preview strong {
+  color: #6c4ce8;
+  font-size: 20px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+/* ================= PAYMENT DETAILS ================= */
+
+.esf-payment-card {
+  grid-column: 1 / -1;
+}
+
+.esf-payment-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 22px;
+  row-gap: 2px;
+}
+
+.esf-full-width {
+  grid-column: 1 / -1;
+}
+
+/* ================= FOOTER ================= */
+
+.esf-action-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 19px 21px;
+  margin-top: 22px;
+  background: #fff;
+  border: 1px solid #eeeaf7;
+  border-radius: 13px;
+  box-shadow: 0 4px 16px rgba(44, 32, 88, 0.035);
+}
+
+.esf-footer-note {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #89839b;
+  font-size: 12px;
+}
+
+.esf-footer-note i {
+  color: #7657e8;
+  font-size: 16px;
+}
+
+.esf-actions {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.esf-cancel-btn,
+.esf-update-btn {
+  min-width: 125px;
+  height: 43px;
+  padding: 0 18px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.esf-cancel-btn {
+  color: #746d83;
+  background: #fff;
+  border: 1px solid #e5e0ee;
+}
+
+.esf-cancel-btn:hover {
+  background: #f6f4fa;
+  border-color: #d6cfee;
+}
+
+.esf-update-btn {
+  color: #fff;
+  background: linear-gradient(135deg, #6c4ce8, #8065eb);
+  border: none;
+  box-shadow: 0 5px 13px rgba(108, 76, 232, 0.19);
+}
+
+.esf-update-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 17px rgba(108, 76, 232, 0.28);
+}
+
+.esf-update-btn:disabled,
+.esf-cancel-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.esf-button-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: esf-spin 0.7s linear infinite;
+}
+
+/* ================= LOADING ================= */
+
+.esf-loading {
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  color: #817994;
+  font-size: 13px;
+}
+
+.esf-loader {
+  width: 38px;
+  height: 38px;
+  border: 3px solid #e9e3ff;
+  border-top-color: #7657e8;
+  border-radius: 50%;
+  animation: esf-spin 0.8s linear infinite;
+}
+
+/* ================= MESSAGE OVERLAY ================= */
+
+.esf-message-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(25, 19, 43, 0.42);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: esf-fade-in 0.25s ease;
+}
+
+.esf-message-box {
+  width: 100%;
+  max-width: 390px;
+  padding: 32px 28px 25px;
+  background: #fff;
+  border-radius: 17px;
+  text-align: center;
+  box-shadow: 0 18px 60px rgba(22, 15, 48, 0.2);
+  animation: esf-message-pop 0.3s ease;
+}
+
+.esf-message-icon {
+  width: 65px;
+  height: 65px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 31px;
+}
+
+.esf-message-box.success .esf-message-icon {
+  background: #e7f8ef;
+  color: #20a568;
+}
+
+.esf-message-box.error .esf-message-icon {
+  background: #fff0f0;
+  color: #e34f5f;
+}
+
+.esf-message-box h3 {
+  margin: 0 0 9px;
+  color: #302a45;
+  font-size: 20px;
+  font-weight: 750;
+}
+
+.esf-message-box p {
+  margin: 0;
+  color: #858095;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.esf-message-progress {
+  height: 4px;
+  overflow: hidden;
+  margin-top: 23px;
+  border-radius: 10px;
+  background: #eeeaf5;
+}
+
+.esf-message-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  animation: esf-progress 2.2s linear forwards;
+}
+
+.esf-message-box.success .esf-message-progress span {
+  background: #24ad70;
+}
+
+.esf-message-box.error .esf-message-progress span {
+  background: #e35b68;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes esf-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes esf-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes esf-message-pop {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes esf-progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1200px) {
+  .esf-page {
+    padding: 22px;
+  }
+
+  .esf-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .esf-payment-card {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 650px) {
+  .esf-page {
+    padding: 14px;
+  }
+
+  .esf-page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .esf-heading-content h2 {
+    font-size: 21px;
+  }
+
+  .esf-back-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .esf-student-banner {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 17px;
+  }
+
+  .esf-student-info {
+    width: calc(100% - 75px);
+    flex: initial;
+  }
+
+  .esf-student-info p {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .esf-session-tag {
+    margin-left: 74px;
+  }
+
+  .esf-card-header {
+    padding: 16px;
+  }
+
+  .esf-card-body {
+    padding: 16px;
+  }
+
+  .esf-payment-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .esf-full-width {
+    grid-column: auto;
+  }
+
+  .esf-action-footer {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .esf-actions {
+    width: 100%;
+  }
+
+  .esf-cancel-btn,
+  .esf-update-btn {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .esf-total-preview strong {
+    font-size: 17px;
+  }
 }

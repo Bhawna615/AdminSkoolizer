@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
@@ -6,385 +7,568 @@ import "./ViewStudentProfile.css";
 const BASE_URL = "http://localhost/kkblossom/api.php/Adminapi/";
 const IMAGE_BASE = "http://localhost/kkblossom/assets/images/students/";
 const QR_BASE = "http://localhost/kkblossom/assets/images/students/qrcode/";
+const DEFAULT_IMAGE =
+  "http://localhost/kkblossom/assets/icons/user-black.png";
 
 const ViewStudentProfile = () => {
-const { studentId } = useParams();
-const navigate = useNavigate();
-const location = useLocation();
+  const { studentId } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-const [student, setStudent] = useState(null);
-const [error, setError] = useState("");
-const [successMessage, setSuccessMessage] = useState("");
+  const [student, setStudent] = useState(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [imageError, setImageError] = useState(false);
+  const [qrError, setQrError] = useState(false);
 
-useEffect(() => {
-axios
-.get(`${BASE_URL}AdminStudent/view/${studentId}`)
-.then((res) => {
-if (Array.isArray(res.data)) {
-setStudent(res.data[0]);
-} else {
-setStudent(res.data);
-}
-})
-.catch((err) => {
-console.error(err);
-setError("Failed to fetch student profile");
-});
-}, [studentId]);
+  useEffect(() => {
+    let isMounted = true;
 
-useEffect(() => {
-if (location.state && location.state.successMessage) {
-setSuccessMessage(location.state.successMessage);
+    const fetchStudent = async () => {
+      setLoading(true);
+      setError("");
 
+      try {
+        const res = await axios.get(
+          `${BASE_URL}AdminStudent/view/${studentId}`
+        );
 
-  const timer = setTimeout(() => {
-    setSuccessMessage("");
-  }, 3000);
+        const data = Array.isArray(res.data)
+          ? res.data[0]
+          : res.data;
 
-  return () => clearTimeout(timer);
-}
+        if (!data) {
+          throw new Error("Student profile not found.");
+        }
 
+        if (isMounted) {
+          setStudent(data);
+          setImageError(false);
+          setQrError(false);
+        }
+      } catch (err) {
+        console.error("Failed to fetch student profile:", err);
 
-}, [location]);
+        if (isMounted) {
+          setError(
+            err.message === "Student profile not found."
+              ? err.message
+              : "Unable to load student profile. Please try again."
+          );
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
 
-const formatDate = (date) => {
-if (!date) return "-";
+    fetchStudent();
 
+    return () => {
+      isMounted = false;
+    };
+  }, [studentId]);
 
-const parsedDate = new Date(date);
+  useEffect(() => {
+    if (!location.state?.successMessage) return;
 
-if (isNaN(parsedDate.getTime())) return "-";
+    setSuccessMessage(location.state.successMessage);
 
-return parsedDate.toLocaleDateString("en-GB");
+    const timer = setTimeout(() => {
+      setSuccessMessage("");
+    }, 3500);
 
+    return () => clearTimeout(timer);
+  }, [location.state]);
 
-};
+  const formatDate = (date) => {
+    if (!date) return "-";
 
-if (error) {
-return ( <div className="student-profile-error">
-{error} </div>
-);
-}
+    const parsedDate = new Date(date);
 
-if (!student) {
-return ( <div className="student-profile-loading">
-Loading... </div>
-);
-}
+    if (Number.isNaN(parsedDate.getTime())) return "-";
 
-return ( <div className="student-profile-page">
+    return parsedDate.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+  };
 
+  const displayValue = (value) => {
+    if (value === null || value === undefined || value === "") {
+      return "-";
+    }
 
-  {/* Success Message */}
-  {successMessage && (
-    <div className="student-profile-success">
-      <span className="student-profile-success-icon">✓</span>
-      {successMessage}
-    </div>
-  )}
+    return value;
+  };
 
-  <div className="student-profile-card">
+  const formatFee = (value) => {
+    if (value === null || value === undefined || value === "") {
+      return "-";
+    }
 
-    {/* =====================================
-        PROFILE HEADER
-    ====================================== */}
+    const numericValue = Number(value);
 
-    <div className="student-profile-header">
+    if (!Number.isFinite(numericValue)) {
+      return value;
+    }
 
-      <div className="student-profile-header-content">
+    return `₹${numericValue.toLocaleString("en-IN", {
+      maximumFractionDigits: 2,
+    })}`;
+  };
 
-        <div className="student-profile-photo-wrapper">
-          <img
-            src={
-              student.image
-                ? `${IMAGE_BASE}${student.image}`
-                : "http://localhost/kkblossom/assets/icons/user-black.png"
-            }
-            alt="Student"
-            className="student-profile-photo"
-          />
+  const getGender = (gender) => {
+    const normalizedGender = String(gender || "").toLowerCase();
+
+    if (normalizedGender === "m" || normalizedGender === "male") {
+      return "Male";
+    }
+
+    if (normalizedGender === "f" || normalizedGender === "female") {
+      return "Female";
+    }
+
+    return displayValue(gender);
+  };
+
+  const handleEdit = () => {
+    navigate(
+      `/dashboard/StudentComponent/EditStudent/${student.id}`
+    );
+  };
+
+  if (loading) {
+    return (
+      <div className="vsp-page">
+        <div className="vsp-state">
+          <div className="vsp-loader-ring" />
+          <h2>Loading student profile</h2>
+          <p>Please wait while we retrieve the student details.</p>
         </div>
+      </div>
+    );
+  }
 
-        <div className="student-profile-heading">
+  if (error || !student) {
+    return (
+      <div className="vsp-page">
+        <div className="vsp-state vsp-error-state">
+          <div className="vsp-state-icon">!</div>
+          <h2>Profile unavailable</h2>
+          <p>{error || "Student profile could not be found."}</p>
 
-          <h1>
-            {student.Name || "Student Name"}
-          </h1>
+          <button
+            type="button"
+            className="vsp-primary-btn"
+            onClick={() => window.location.reload()}
+          >
+            Try Again
+          </button>
 
-          <p>
-            Student Profile
-          </p>
+          <button
+            type="button"
+            className="vsp-secondary-btn"
+            onClick={() => navigate(-1)}
+          >
+            Go Back
+          </button>
+        </div>
+      </div>
+    );
+  }
 
-          <div className="student-profile-basic-info">
+  const studentImage = student.image
+    ? `${IMAGE_BASE}${student.image}`
+    : DEFAULT_IMAGE;
 
-            <span>
-              Class: {student.Class || "-"}
-            </span>
+  return (
+    <div className="vsp-page">
+      <div className="vsp-container">
 
-            <span>
-              Roll No: {student.Rollno || "-"}
-            </span>
+        {/* PAGE HEADING */}
+        <div className="vsp-page-heading">
+          <div className="vsp-breadcrumb">
+            <button
+              type="button"
+              onClick={() => navigate(-1)}
+              className="vsp-back-btn"
+              aria-label="Go back"
+            >
+              <span aria-hidden="true">←</span>
+            </button>
 
-            <span>
-              Admission No: {student.Admno || "-"}
-            </span>
-
+            <div>
+              <div className="vsp-eyebrow">STUDENT MANAGEMENT</div>
+              <h1>Student Profile</h1>
+              <p>View and manage student information.</p>
+            </div>
           </div>
 
+          <div className="vsp-heading-tag">
+            <span className="vsp-status-dot" />
+            Student Record
+          </div>
         </div>
 
-      </div>
+        {/* SUCCESS MESSAGE
+        {successMessage && (
+          <div
+            className="vsp-success-message"
+            role="status"
+            aria-live="polite"
+          >
+            <span className="vsp-success-icon">✓</span>
+            <span>{successMessage}</span>
 
-      <button
-        className="student-profile-edit-btn"
-        onClick={() =>
-          navigate(
-            `/dashboard/StudentComponent/EditStudent/${student.id}`
-          )
-        }
-      >
-        Edit Profile
-      </button>
+            <button
+              type="button"
+              className="vsp-message-close"
+              onClick={() => setSuccessMessage("")}
+              aria-label="Dismiss message"
+            >
+              ×
+            </button>
+          </div>
+        )} */}
 
-    </div>
+        {/* STUDENT IDENTITY CARD */}
+        <section className="vsp-identity-card">
+          <div className="vsp-identity-decoration vsp-decoration-one" />
+          <div className="vsp-identity-decoration vsp-decoration-two" />
 
-
-    {/* =====================================
-        PROFILE BODY
-    ====================================== */}
-
-    <div className="student-profile-body">
-
-      {/* LEFT COLUMN */}
-      <div className="student-profile-column">
-
-        <div className="student-profile-section">
-
-          <h2 className="student-profile-section-title">
-            Personal Information
-          </h2>
-
-          <ProfileItem
-            label="Name"
-            value={student.Name}
-          />
-
-          <ProfileItem
-            label="Date of Birth"
-            value={formatDate(student.Dob)}
-          />
-
-          <ProfileItem
-            label="Gender"
-            value={
-              student.gender === "m"
-                ? "Male"
-                : student.gender === "f"
-                ? "Female"
-                : "-"
-            }
-          />
-
-          <ProfileItem
-            label="Height"
-            value={student.height}
-          />
-
-          <ProfileItem
-            label="Weight"
-            value={student.weight}
-          />
-
-          <ProfileItem
-            label="Blood Group"
-            value={student.blood_group}
-          />
-
-          <ProfileItem
-            label="House"
-            value={student.House}
-          />
-
-        </div>
-
-
-        <div className="student-profile-section">
-
-          <h2 className="student-profile-section-title">
-            Family Information
-          </h2>
-
-          <ProfileItem
-            label="Father's Name"
-            value={student.Fname}
-          />
-
-          <ProfileItem
-            label="Mother's Name"
-            value={student.Mname}
-          />
-
-          <ProfileItem
-            label="Guardian's Name"
-            value={student.Guardianname}
-          />
-
-        </div>
-
-      </div>
-
-
-      {/* MIDDLE COLUMN */}
-      <div className="student-profile-column">
-
-        <div className="student-profile-section">
-
-          <h2 className="student-profile-section-title">
-            Contact Information
-          </h2>
-
-          <ProfileItem
-            label="Address"
-            value={student.Address}
-          />
-
-          <ProfileItem
-            label="Contact"
-            value={student.Contact}
-          />
-
-          <ProfileItem
-            label="SMS Number"
-            value={student.Smsno}
-          />
-
-          <ProfileItem
-            label="Email"
-            value={student.Email}
-          />
-
-          <ProfileItem
-            label="Aadhar Number"
-            value={student.Aadharno}
-          />
-
-        </div>
-
-
-        <div className="student-profile-section">
-
-          <h2 className="student-profile-section-title">
-            Admission Information
-          </h2>
-
-          <ProfileItem
-            label="Admission Number"
-            value={student.Admno}
-          />
-
-          <ProfileItem
-            label="Admission Date"
-            value={formatDate(student.admission_date)}
-          />
-
-          <ProfileItem
-            label="Last School"
-            value={student.Lastschool}
-          />
-
-          <ProfileItem
-            label="Transport ID"
-            value={student.Passengerid}
-          />
-
-        </div>
-
-      </div>
-
-
-      {/* RIGHT COLUMN */}
-      <div className="student-profile-column">
-
-        <div className="student-profile-section">
-
-          <h2 className="student-profile-section-title">
-            Fee Information
-          </h2>
-
-          <ProfileItem
-            label="Tuition Fee"
-            value={student.tuition_fee}
-          />
-
-          <ProfileItem
-            label="Annual Fee"
-            value={student.annual_fee}
-          />
-
-          <ProfileItem
-            label="Admission Fee"
-            value={student.admission_fee}
-          />
-
-          <ProfileItem
-            label="Transport Fee"
-            value={student.transport_fee}
-          />
-
-        </div>
-
-
-        {/* QR CODE */}
-        {student.qrcode && (
-          <div className="student-profile-qr-section">
-
-            <h2 className="student-profile-section-title">
-              Student QR Code
-            </h2>
-
-            <div className="student-profile-qr-box">
-
+          <div className="vsp-identity-content">
+            <div className="vsp-avatar-frame">
               <img
-                src={`${QR_BASE}${student.qrcode}.png`}
-                alt="QR Code"
-                className="student-profile-qr"
+                src={imageError ? DEFAULT_IMAGE : studentImage}
+                alt={`${student.Name || "Student"} profile`}
+                className="vsp-avatar"
+                onError={() => setImageError(true)}
               />
 
-              <p>
-                Scan student QR code
-              </p>
-
+              <span
+                className="vsp-avatar-status"
+                title="Student record available"
+              />
             </div>
 
+            <div className="vsp-identity-details">
+              <span className="vsp-identity-label">
+                STUDENT INFORMATION
+              </span>
+
+              <h2>{displayValue(student.Name)}</h2>
+
+              <p className="vsp-identity-subtitle">
+                Student profile and academic record
+              </p>
+
+              <div className="vsp-identity-meta">
+                <div className="vsp-meta-chip">
+                  <span className="vsp-meta-icon">▦</span>
+                  <span>
+                    <small>CLASS</small>
+                    <strong>{displayValue(student.Class)}</strong>
+                  </span>
+                </div>
+
+                <div className="vsp-meta-chip">
+                  <span className="vsp-meta-icon">#</span>
+                  <span>
+                    <small>ROLL NUMBER</small>
+                    <strong>{displayValue(student.Rollno)}</strong>
+                  </span>
+                </div>
+
+                <div className="vsp-meta-chip">
+                  <span className="vsp-meta-icon">ID</span>
+                  <span>
+                    <small>ADMISSION NO.</small>
+                    <strong>{displayValue(student.Admno)}</strong>
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
-        )}
+
+          <div className="vsp-identity-actions">
+            <button
+              type="button"
+              className="vsp-edit-btn"
+              onClick={handleEdit}
+            >
+              <span aria-hidden="true">✎</span>
+              Edit Profile
+            </button>
+          </div>
+        </section>
+
+        {/* QUICK INFORMATION */}
+        <div className="vsp-overview-grid">
+          <div className="vsp-overview-card">
+            <div className="vsp-overview-icon vsp-icon-purple">▦</div>
+            <div className="vsp-overview-text">
+              <span>Class</span>
+              <strong>{displayValue(student.Class)}</strong>
+              <small>Current class</small>
+            </div>
+          </div>
+
+          <div className="vsp-overview-card">
+            <div className="vsp-overview-icon vsp-icon-blue">#</div>
+            <div className="vsp-overview-text">
+              <span>Roll Number</span>
+              <strong>{displayValue(student.Rollno)}</strong>
+              <small>Student identification</small>
+            </div>
+          </div>
+
+          <div className="vsp-overview-card">
+            <div className="vsp-overview-icon vsp-icon-orange">ID</div>
+            <div className="vsp-overview-text">
+              <span>Admission No.</span>
+              <strong>{displayValue(student.Admno)}</strong>
+              <small>Admission record</small>
+            </div>
+          </div>
+
+          <div className="vsp-overview-card">
+            <div className="vsp-overview-icon vsp-icon-green">₹</div>
+            <div className="vsp-overview-text">
+              <span>Tuition Fee</span>
+              <strong>{formatFee(student.tuition_fee)}</strong>
+              <small>Recorded tuition fee</small>
+            </div>
+          </div>
+        </div>
+
+        {/* INFORMATION SECTIONS */}
+        <div className="vsp-section-heading">
+          <div>
+            <h2>Student Details</h2>
+            <p>Personal, family, contact and admission information.</p>
+          </div>
+          <span className="vsp-record-label">PROFILE DETAILS</span>
+        </div>
+
+        <div className="vsp-details-grid">
+
+          {/* PERSONAL INFORMATION */}
+          <ProfileSection
+            icon="01"
+            title="Personal Information"
+            subtitle="Student's basic details"
+          >
+            <ProfileItem label="Full Name" value={student.Name} />
+            <ProfileItem
+              label="Date of Birth"
+              value={formatDate(student.Dob)}
+            />
+            <ProfileItem
+              label="Gender"
+              value={getGender(student.gender)}
+            />
+            <ProfileItem label="Height" value={student.height} />
+            <ProfileItem
+              label="Weight"
+              value={
+                student.weight !== null &&
+                student.weight !== undefined &&
+                student.weight !== ""
+                  ? student.weight
+                  : "-"
+              }
+            />
+            <ProfileItem
+              label="Blood Group"
+              value={student.blood_group}
+            />
+            <ProfileItem label="House" value={student.House} />
+          </ProfileSection>
+
+          {/* FAMILY INFORMATION */}
+          <ProfileSection
+            icon="02"
+            title="Family Information"
+            subtitle="Parent and guardian details"
+          >
+            <ProfileItem
+              label="Father's Name"
+              value={student.Fname}
+            />
+            <ProfileItem
+              label="Mother's Name"
+              value={student.Mname}
+            />
+            <ProfileItem
+              label="Guardian's Name"
+              value={student.Guardianname}
+            />
+          </ProfileSection>
+
+          {/* CONTACT INFORMATION */}
+          <ProfileSection
+            icon="03"
+            title="Contact Information"
+            subtitle="Address and contact details"
+          >
+            <ProfileItem label="Address" value={student.Address} />
+            <ProfileItem label="Contact Number" value={student.Contact} />
+            <ProfileItem label="SMS Number" value={student.Smsno} />
+            <ProfileItem label="Email Address" value={student.Email} />
+            <ProfileItem
+              label="Aadhaar Number"
+              value={student.Aadharno}
+            />
+          </ProfileSection>
+
+          {/* ADMISSION INFORMATION */}
+          <ProfileSection
+            icon="04"
+            title="Admission Information"
+            subtitle="School enrollment details"
+          >
+            <ProfileItem
+              label="Admission Number"
+              value={student.Admno}
+            />
+            <ProfileItem
+              label="Admission Date"
+              value={formatDate(student.admission_date)}
+            />
+            <ProfileItem
+              label="Previous School"
+              value={student.Lastschool}
+            />
+            <ProfileItem
+              label="Transport ID"
+              value={student.Passengerid}
+            />
+          </ProfileSection>
+
+          {/* FEE INFORMATION */}
+          <ProfileSection
+            icon="05"
+            title="Fee Information"
+            subtitle="Recorded student fee amounts"
+          >
+            <ProfileItem
+              label="Tuition Fee"
+              value={formatFee(student.tuition_fee)}
+            />
+            <ProfileItem
+              label="Annual Fee"
+              value={formatFee(student.annual_fee)}
+            />
+            <ProfileItem
+              label="Admission Fee"
+              value={formatFee(student.admission_fee)}
+            />
+            <ProfileItem
+              label="Transport Fee"
+              value={formatFee(student.transport_fee)}
+            />
+          </ProfileSection>
+
+          {/* QR CODE */}
+          <section className="vsp-section vsp-qr-section">
+            <div className="vsp-section-header">
+              <div className="vsp-section-number vsp-qr-number">
+                06
+              </div>
+
+              <div className="vsp-section-title-wrap">
+                <h3>Student QR Code</h3>
+                <p>Student identification</p>
+              </div>
+            </div>
+
+            <div className="vsp-qr-content">
+              {student.qrcode && !qrError ? (
+                <>
+                  <div className="vsp-qr-image-frame">
+                    <img
+                      src={`${QR_BASE}${student.qrcode}.png`}
+                      alt="Student QR Code"
+                      className="vsp-qr-image"
+                      onError={() => setQrError(true)}
+                    />
+                  </div>
+
+                  <h4>Student Identification QR</h4>
+                  <p>Scan this code using a compatible QR scanner.</p>
+
+                  <span className="vsp-qr-code-label">
+                    {student.qrcode}
+                  </span>
+                </>
+              ) : (
+                <div className="vsp-qr-empty">
+                  <div className="vsp-qr-empty-icon">▦</div>
+                  <h4>QR code unavailable</h4>
+                  <p>
+                    {student.qrcode
+                      ? "The QR code image could not be loaded."
+                      : "No QR code is available for this student."}
+                  </p>
+                </div>
+              )}
+            </div>
+          </section>
+
+        </div>
+
+        {/* FOOTER */}
+        <div className="vsp-footer">
+          <span className="vsp-footer-mark">S</span>
+          <p>
+            <span>Student Management System</span>
+          </p>
+
+          <button
+            type="button"
+            className="vsp-footer-back"
+            onClick={() => navigate(-1)}
+          >
+            ← Back to previous page
+          </button>
+        </div>
 
       </div>
-
     </div>
-
-  </div>
-
-</div>
-
-
-);
+  );
 };
 
-const ProfileItem = ({ label, value }) => (
+const ProfileSection = ({ icon, title, subtitle, children }) => (
+  <section className="vsp-section">
+    <div className="vsp-section-header">
+      <div className="vsp-section-number">{icon}</div>
 
-  <div className="student-profile-item">
+      <div className="vsp-section-title-wrap">
+        <h3>{title}</h3>
+        <p>{subtitle}</p>
+      </div>
+    </div>
 
-
-<p className="student-profile-label">
-  {label}
-</p>
-
-<p className="student-profile-value">
-  {value || "-"}
-</p>
-
-  </div>
+    <div className="vsp-section-content">{children}</div>
+  </section>
 );
+
+const ProfileItem = ({ label, value }) => {
+  const formattedValue =
+    value === null || value === undefined || value === ""
+      ? "-"
+      : value;
+
+  return (
+    <div className="vsp-profile-item">
+      <span className="vsp-profile-label">{label}</span>
+      <span className="vsp-profile-value">{formattedValue}</span>
+    </div>
+  );
+};
 
 export default ViewStudentProfile;

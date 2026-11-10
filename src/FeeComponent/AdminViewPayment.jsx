@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
@@ -74,14 +75,28 @@ export default function AdminViewPayment() {
     } catch (err) {
       console.error("Error fetching payments:", err);
       setPayments([]);
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   useEffect(() => {
     fetchPayments();
   }, [filters, location.state?.refresh]);
+
+  // ================= PAYMENT SUMMARY =================
+  const paidPayments = payments.filter(
+    (payment) => payment.status == 1 || payment.status === true
+  );
+
+  const pendingPayments = payments.filter(
+    (payment) => !(payment.status == 1 || payment.status === true)
+  );
+
+  const totalCollected = paidPayments.reduce(
+    (total, payment) => total + (Number(payment.amount_paid) || 0),
+    0
+  );
 
   // ================= LATE FEE =================
   const calculateLateFee = (row) => {
@@ -92,7 +107,7 @@ export default function AdminViewPayment() {
 
     if (today > lastDate) {
       const diff = Math.floor(
-        (today - lastDate) / (1000 * 60 * 60 * 24),
+        (today - lastDate) / (1000 * 60 * 60 * 24)
       );
 
       return (diff - 1) * 10;
@@ -158,16 +173,27 @@ export default function AdminViewPayment() {
       p.remarks,
     ]);
 
-    const csv =
-      "data:text/csv;charset=utf-8," +
-      [headers, ...rows]
-        .map((e) => e.join(","))
-        .join("\n");
+    const escapeCSV = (value) => {
+      const text = value == null ? "" : String(value);
+      return `"${text.replace(/"/g, '""')}"`;
+    };
+
+    const csvContent = [headers, ...rows]
+      .map((row) => row.map(escapeCSV).join(","))
+      .join("\n");
+
+    const blob = new Blob(["\uFEFF" + csvContent], {
+      type: "text/csv;charset=utf-8;",
+    });
 
     const link = document.createElement("a");
-    link.href = encodeURI(csv);
+    const url = URL.createObjectURL(blob);
+
+    link.href = url;
     link.download = "payments.csv";
     link.click();
+
+    URL.revokeObjectURL(url);
   };
 
   // ================= TABLE COLUMNS =================
@@ -176,16 +202,16 @@ export default function AdminViewPayment() {
       name: "ID",
       selector: (row) => row.feeid,
       sortable: true,
-      width: "70px",
+      width: "75px",
     },
     {
       name: "Txn ID",
-      selector: (row) => row.razorpay_order_id,
+      selector: (row) => row.razorpay_order_id || "-",
       width: "150px",
     },
     {
       name: "EasePay",
-      selector: (row) => row.easepay_id,
+      selector: (row) => row.easepay_id || "-",
       width: "120px",
     },
     {
@@ -250,6 +276,7 @@ export default function AdminViewPayment() {
               : "kk-view-payment-status kk-view-payment-status-pending"
           }
         >
+          <span className="kk-view-payment-status-dot"></span>
           {row.status ? "Paid" : "Pending"}
         </span>
       ),
@@ -257,7 +284,7 @@ export default function AdminViewPayment() {
     },
     {
       name: "Mode",
-      selector: (row) => row.payment_mode,
+      selector: (row) => row.payment_mode || "-",
       width: "110px",
     },
     {
@@ -276,17 +303,17 @@ export default function AdminViewPayment() {
     },
     {
       name: "Paid On",
-      selector: (row) => row.paidondate,
+      selector: (row) => row.paidondate || "-",
       width: "120px",
     },
     {
       name: "Session",
-      selector: (row) => row.session,
+      selector: (row) => row.session || "-",
       width: "110px",
     },
     {
       name: "Remarks",
-      selector: (row) => row.remarks,
+      selector: (row) => row.remarks || "-",
       width: "150px",
     },
     {
@@ -300,7 +327,7 @@ export default function AdminViewPayment() {
                 title="View Receipt"
                 onClick={() => handleReceipt(row.feeid)}
               >
-                🧾
+                <i className="bi bi-receipt"></i>
               </button>
 
               <button
@@ -308,7 +335,7 @@ export default function AdminViewPayment() {
                 title="Edit Paid Fee"
                 onClick={() => handleEditPaid(row.feeid)}
               >
-                ✏️
+                <i className="bi bi-pencil"></i>
               </button>
             </>
           ) : (
@@ -321,11 +348,11 @@ export default function AdminViewPayment() {
                     `/dashboard/FeeComponent/AcceptPayment/${row.feeid}`,
                     {
                       state: { refresh: Date.now() },
-                    },
+                    }
                   )
                 }
               >
-                💰
+                <i className="bi bi-wallet2"></i>
               </button>
 
               <button
@@ -333,11 +360,11 @@ export default function AdminViewPayment() {
                 title="Edit Student Fee"
                 onClick={() =>
                   navigate(
-                    `/dashboard/FeeComponent/EditStudentFee/${row.feeid}`,
+                    `/dashboard/FeeComponent/EditStudentFee/${row.feeid}`
                   )
                 }
               >
-                ✏️
+                <i className="bi bi-pencil"></i>
               </button>
             </>
           )}
@@ -350,29 +377,80 @@ export default function AdminViewPayment() {
 
   return (
     <div className="kk-view-payment-page">
-
       {/* ================= HEADER ================= */}
       <div className="kk-view-payment-header">
-        <div>
-          <h1>View Payments</h1>
-          <p>Manage and monitor student fee payments</p>
+        <div className="kk-view-payment-heading">
+          <div className="kk-view-payment-heading-icon">
+            <i className="bi bi-wallet2"></i>
+          </div>
+
+          <div>
+            <h1>View Payments</h1>
+            <p>Manage, track and monitor student fee payments</p>
+          </div>
         </div>
 
         <div className="kk-view-payment-header-right">
-          <div className="kk-view-payment-count">
+          <div className="kk-view-payment-session">
+            <i className="bi bi-calendar3"></i>
+            <span>{sessionParam || "All Sessions"}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* ================= SUMMARY CARDS ================= */}
+      <div className="kk-view-payment-summary">
+        <div className="kk-view-payment-summary-card">
+          <div className="kk-view-payment-summary-icon kk-view-payment-summary-purple">
+            <i className="bi bi-receipt"></i>
+          </div>
+          <div className="kk-view-payment-summary-info">
             <span>Total Payments</span>
             <strong>{payments.length}</strong>
+            <small>Payment records</small>
+          </div>
+        </div>
+
+        <div className="kk-view-payment-summary-card">
+          <div className="kk-view-payment-summary-icon kk-view-payment-summary-green">
+            <i className="bi bi-check-circle"></i>
+          </div>
+          <div className="kk-view-payment-summary-info">
+            <span>Paid Payments</span>
+            <strong>{paidPayments.length}</strong>
+            <small>Successfully paid</small>
+          </div>
+        </div>
+
+        <div className="kk-view-payment-summary-card">
+          <div className="kk-view-payment-summary-icon kk-view-payment-summary-orange">
+            <i className="bi bi-clock-history"></i>
+          </div>
+          <div className="kk-view-payment-summary-info">
+            <span>Pending Payments</span>
+            <strong>{pendingPayments.length}</strong>
+            <small>Awaiting payment</small>
+          </div>
+        </div>
+
+        <div className="kk-view-payment-summary-card">
+          <div className="kk-view-payment-summary-icon kk-view-payment-summary-blue">
+            <i className="bi bi-currency-rupee"></i>
+          </div>
+          <div className="kk-view-payment-summary-info">
+            <span>Total Collected</span>
+            <strong>₹{totalCollected.toLocaleString("en-IN")}</strong>
+            <small>Amount received</small>
           </div>
         </div>
       </div>
 
       {/* ================= FILTER CARD ================= */}
       <div className="kk-view-payment-card">
-
         <div className="kk-view-payment-card-header">
           <div className="kk-view-payment-card-title">
             <div className="kk-view-payment-card-icon">
-              <i class="bi bi-search"></i>
+              <i className="bi bi-funnel"></i>
             </div>
 
             <div>
@@ -381,7 +459,6 @@ export default function AdminViewPayment() {
             </div>
           </div>
 
-          {/* FILTER SWITCH */}
           <label className="kk-view-payment-switch-wrapper">
             <span>Enable Filter</span>
 
@@ -407,9 +484,10 @@ export default function AdminViewPayment() {
               : "kk-view-payment-filter-disabled"
           }`}
         >
-          {/* YEAR */}
           <div className="kk-view-payment-form-group">
-            <label>Year</label>
+            <label>
+              <i className="bi bi-calendar-event"></i> Year
+            </label>
 
             <select
               value={filters.year}
@@ -431,9 +509,10 @@ export default function AdminViewPayment() {
             </select>
           </div>
 
-          {/* MONTH */}
           <div className="kk-view-payment-form-group">
-            <label>Month</label>
+            <label>
+              <i className="bi bi-calendar-month"></i> Month
+            </label>
 
             <select
               value={filters.month}
@@ -455,9 +534,10 @@ export default function AdminViewPayment() {
             </select>
           </div>
 
-          {/* CLASS */}
           <div className="kk-view-payment-form-group">
-            <label>Class</label>
+            <label>
+              <i className="bi bi-mortarboard"></i> Class
+            </label>
 
             <select
               value={filters.class}
@@ -479,25 +559,38 @@ export default function AdminViewPayment() {
             </select>
           </div>
         </div>
+
+        {!filters.enabled && (
+          <div className="kk-view-payment-filter-hint">
+            <i className="bi bi-info-circle"></i>
+            Enable the filter to narrow down payment records.
+          </div>
+        )}
       </div>
 
       {/* ================= TABLE CARD ================= */}
       <div className="kk-view-payment-table-card">
-
         <div className="kk-view-payment-table-header">
-          <div>
-            <h2>Payment Records</h2>
-            <p>
-              {payments.length} payment
-              {payments.length !== 1 ? "s" : ""} found
-            </p>
+          <div className="kk-view-payment-table-heading">
+            <div className="kk-view-payment-table-heading-icon">
+              <i className="bi bi-list-ul"></i>
+            </div>
+
+            <div>
+              <h2>Payment Records</h2>
+              <p>
+                {payments.length} payment
+                {payments.length !== 1 ? "s" : ""} found
+              </p>
+            </div>
           </div>
 
           <button
             className="kk-view-payment-export-btn"
             onClick={exportCSV}
+            disabled={payments.length === 0}
           >
-            <span>↓</span>
+            <i className="bi bi-download"></i>
             Export CSV
           </button>
         </div>
@@ -514,17 +607,62 @@ export default function AdminViewPayment() {
             fixedHeader
             fixedHeaderScrollHeight="500px"
             responsive
+            customStyles={{
+              headRow: {
+                style: {
+                  minHeight: "52px",
+                  backgroundColor: "#f8f7fc",
+                  borderBottom: "1px solid #eceaf3",
+                },
+              },
+              headCells: {
+                style: {
+                  color: "#77728b",
+                  fontSize: "11px",
+                  fontWeight: "700",
+                  textTransform: "uppercase",
+                  paddingLeft: "12px",
+                  paddingRight: "12px",
+                },
+              },
+              rows: {
+                style: {
+                  minHeight: "54px",
+                  fontSize: "12px",
+                  color: "#454158",
+                  borderBottom: "1px solid #f0eef5",
+                },
+                highlightOnHoverStyle: {
+                  backgroundColor: "#f8f6ff",
+                  transition: "0.2s ease",
+                },
+              },
+              cells: {
+                style: {
+                  paddingLeft: "12px",
+                  paddingRight: "12px",
+                },
+              },
+              pagination: {
+                style: {
+                  borderTop: "1px solid #eceaf3",
+                  minHeight: "58px",
+                  color: "#77728b",
+                  fontSize: "12px",
+                },
+              },
+            }}
             noDataComponent={
               <div className="kk-view-payment-empty">
                 <div className="kk-view-payment-empty-icon">
-                  📋
+                  <i className="bi bi-receipt"></i>
                 </div>
 
                 <h3>No Payment Records</h3>
 
                 <p>
-                  There are no payment records available for the
-                  selected filters.
+                  There are no payment records available for the selected
+                  filters.
                 </p>
               </div>
             }

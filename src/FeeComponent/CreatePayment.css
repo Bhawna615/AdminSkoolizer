@@ -1,538 +1,1152 @@
+
 /* =========================================================
-   KK CREATE PAYMENT PAGE
+   CREATE PAYMENT
+   PREMIUM WHITE + PURPLE ERP DESIGN
 ========================================================= */
 
-.kk-create-payment-page {
+.cp-page {
+  width: 100%;
   min-height: 100vh;
   padding: 28px;
-  background: #f5f6fa;
-  font-family: "Inter", sans-serif;
-  color: #5d40d0;
+  box-sizing: border-box;
+  background: #f7f6fc;
+  color: #29243e;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 /* =========================================================
    PAGE HEADER
 ========================================================= */
 
-.kk-create-payment-header {
+.cp-page-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 26px;
 }
 
-.kk-create-payment-header h1 {
+.cp-heading-left {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+
+.cp-heading-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 17px;
+  background: linear-gradient(135deg, #7657e8, #5735ca);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+  box-shadow: 0 7px 18px rgba(108, 76, 232, 0.22);
+}
+
+.cp-breadcrumb {
+  color: #9992ad;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.cp-breadcrumb span {
+  margin: 0 7px;
+  color: #c2bbd2;
+}
+
+.cp-page-header h1 {
   margin: 0;
-  font-size: 26px;
-  font-weight: 700;
- color: #5d40d0;
+  color: #29243e;
+  font-size: 27px;
+  font-weight: 750;
+  letter-spacing: -0.6px;
 }
 
-.kk-create-payment-header p {
-  margin: 6px 0 0;
-  font-size: 14px;
-  color: #7a8191;
+.cp-page-header p {
+  margin: 5px 0 0;
+  color: #928ba4;
+  font-size: 13px;
+}
+
+.cp-back-btn {
+  height: 42px;
+  padding: 0 17px;
+  border: 1px solid #e6e0f2;
+  border-radius: 9px;
+  background: white;
+  color: #6c4ce8;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  transition: 0.25s;
+}
+
+.cp-back-btn:hover {
+  background: #f2eeff;
+  border-color: #cfc3fa;
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   SUMMARY CARDS
+========================================================= */
+
+.cp-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 17px;
+  margin-bottom: 23px;
+}
+
+.cp-summary-card {
+  min-height: 100px;
+  padding: 20px 22px;
+  background: white;
+  border: 1px solid #eeeaf6;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 3px 12px rgba(42, 31, 84, 0.025);
+  transition: 0.25s;
+  box-sizing: border-box;
+}
+
+.cp-summary-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(42, 31, 84, 0.07);
+}
+
+.cp-summary-icon {
+  width: 49px;
+  height: 49px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  flex-shrink: 0;
+}
+
+.cp-summary-icon.purple {
+  background: #f0ebff;
+  color: #7957e8;
+}
+
+.cp-summary-icon.blue {
+  background: #eaf3ff;
+  color: #4289d9;
+}
+
+.cp-summary-icon.green {
+  background: #e7f8f0;
+  color: #2ca879;
+}
+
+.cp-summary-card span {
+  display: block;
+  color: #918ba3;
+  font-size: 12px;
+  font-weight: 550;
+  margin-bottom: 7px;
+}
+
+.cp-summary-card h2 {
+  margin: 0;
+  color: #302a47;
+  font-size: 22px;
+  font-weight: 750;
 }
 
 /* =========================================================
    MAIN CARD
 ========================================================= */
 
-.kk-create-payment-card {
+.cp-main-card {
   background: #ffffff;
-  border: 1px solid #e5e8ef;
-  border-radius: 12px;
-  box-shadow: 0 4px 18px rgba(23, 30, 46, 0.05);
+  border: 1px solid #eeeaf5;
+  border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 5px 22px rgba(42, 31, 84, 0.035);
 }
 
-/* =========================================================
-   CARD HEADER
-========================================================= */
-
-.kk-create-payment-card-header {
+.cp-card-header {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 22px 24px;
-  border-bottom: 1px solid #edf0f4;
+  gap: 15px;
+  padding: 24px 27px;
+  border-bottom: 1px solid #f0edf6;
+  background: linear-gradient(110deg, #ffffff, #fcfbff);
 }
 
-.kk-create-payment-card-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 10px;
-  background: #f0ecff;
-  color: #6c4ce8;
+.cp-card-header-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  background: #f0ebff;
+  color: #704fe0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 19px;
 }
 
-.kk-create-payment-card-header h2 {
+.cp-card-header h2 {
   margin: 0;
-  font-size: 18px;
-  font-weight: 650;
- color: #6e52e1;
+  color: #302a46;
+  font-size: 17px;
+  font-weight: 750;
 }
 
-.kk-create-payment-card-header p {
+.cp-card-header p {
   margin: 5px 0 0;
-  font-size: 13px;
-  color: #7b8392;
-}
-
-/* =========================================================
-   SECTION TITLE
-========================================================= */
-
-.kk-create-payment-section-title {
-  margin-bottom: 15px;
-}
-
-.kk-create-payment-section-title h3 {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 650;
-  color: #836dda;
-}
-
-.kk-create-payment-section-title span {
-  display: block;
-  margin-top: 4px;
-  color: #858c9b;
+  color: #9690a6;
   font-size: 12px;
 }
 
+.cp-session-badge {
+  margin-left: auto;
+  background: #f2eeff;
+  color: #704fe0;
+  border: 1px solid #e7dfff;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
 /* =========================================================
-   FILTER SECTION
+   SECTIONS
 ========================================================= */
 
-.kk-create-payment-filter-section {
-  padding: 20px 24px;
-  background: #fafbfc;
-  border-bottom: 1px solid #edf0f4;
+.cp-section {
+  padding: 26px 27px;
+  border-bottom: 1px solid #f0edf6;
 }
 
-.kk-create-payment-filter-row {
+.cp-section-heading {
   display: flex;
-  align-items: flex-end;
-  gap: 20px;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 19px;
 }
 
-.kk-create-payment-filter-group {
+.cp-section-heading h3 {
+  margin: 0;
+  color: #332d49;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.cp-section-heading p {
+  margin: 6px 0 0;
+  color: #9992a8;
+  font-size: 12px;
+}
+
+.cp-step-label {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #f3efff;
+  color: #7655e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   FILTER PANEL
+========================================================= */
+
+.cp-filter-panel {
+  display: grid;
+  grid-template-columns: 1fr 1px 0.8fr;
+  align-items: center;
+  gap: 24px;
+  padding: 19px 21px;
+  border: 1px solid #eee9f7;
+  border-radius: 12px;
+  background: #fcfbff;
+}
+
+.cp-filter-toggle-area {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.cp-filter-symbol {
+  width: 41px;
+  height: 41px;
+  flex-shrink: 0;
+  border-radius: 11px;
+  background: #f0ebff;
+  color: #7655e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cp-filter-toggle-text {
   display: flex;
   flex-direction: column;
-  gap: 7px;
-  min-width: 240px;
+  gap: 5px;
 }
 
-.kk-create-payment-filter-group label {
+.cp-filter-toggle-text strong {
+  color: #39334e;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cp-filter-toggle-text span {
+  color: #9992a7;
+  font-size: 11px;
+}
+
+.cp-filter-divider {
+  height: 43px;
+  background: #eae5f3;
+}
+
+.cp-class-select label {
+  display: block;
+  margin-bottom: 8px;
+  color: #635b79;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.cp-select-wrapper {
+  position: relative;
+}
+
+.cp-select-wrapper > i:first-child {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8b76da;
   font-size: 13px;
-  font-weight: 600;
-  color: #4d5565;
+  pointer-events: none;
 }
 
-.kk-create-payment-filter-group select {
+.cp-select-wrapper select {
+  width: 100%;
   height: 42px;
-  padding: 0 13px;
-  border: 1px solid #dfe3ea;
-  border-radius: 7px;
-  background: #ffffff;
-  color: #343b4b;
-  font-size: 13px;
+  padding: 0 34px;
+  appearance: none;
+  border: 1px solid #e7e2f0;
+  border-radius: 8px;
   outline: none;
+  background: white;
+  color: #49415f;
+  font-size: 12px;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
-.kk-create-payment-filter-group select:focus {
-  border-color: #7657e8;
-  box-shadow: 0 0 0 3px rgba(118, 87, 232, 0.08);
+.cp-select-wrapper select:focus {
+  border-color: #8669e8;
+  box-shadow: 0 0 0 3px rgba(108, 76, 232, 0.09);
 }
 
-.kk-create-payment-filter-group select:disabled {
-  background: #f1f2f4;
-  color: #969ca8;
+.cp-select-wrapper select:disabled {
+  background: #f3f1f7;
+  color: #b2adbc;
   cursor: not-allowed;
 }
 
-/* =========================================================
-   FILTER SWITCH
-========================================================= */
-
-.kk-create-payment-switch-group {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  height: 42px;
+.cp-select-arrow {
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  color: #9991aa;
+  pointer-events: none;
 }
 
-.kk-create-payment-switch-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #4d5565;
-}
+/* TOGGLE SWITCH */
 
-.kk-create-payment-switch {
+.cp-switch {
   position: relative;
-  width: 42px;
-  height: 23px;
+  display: inline-block;
+  width: 43px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
-.kk-create-payment-switch input {
+.cp-switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-.kk-create-payment-slider {
+.cp-switch-slider {
   position: absolute;
   inset: 0;
-  background: #cfd4dd;
-  border-radius: 20px;
+  border-radius: 30px;
+  background: #d9d5e2;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.3s;
 }
 
-.kk-create-payment-slider::before {
+.cp-switch-slider::before {
   content: "";
   position: absolute;
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
   left: 3px;
   top: 3px;
-  background: #ffffff;
   border-radius: 50%;
-  transition: 0.2s;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  background: white;
+  transition: 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
-.kk-create-payment-switch input:checked + .kk-create-payment-slider {
-  background: #6c4ce8;
+.cp-switch input:checked + .cp-switch-slider {
+  background: #7655e6;
 }
 
-.kk-create-payment-switch input:checked + .kk-create-payment-slider::before {
+.cp-switch input:checked + .cp-switch-slider::before {
   transform: translateX(19px);
 }
 
 /* =========================================================
-   PAYMENT DETAILS
-========================================================= */
-
-.kk-create-payment-details-section {
-  padding: 24px;
-  border-bottom: 1px solid #edf0f4;
-}
-
-/* =========================================================
    PAYMENT FORM
-   PAYMENT PERIOD + SESSION + LAST DATE
 ========================================================= */
 
-.kk-create-payment-form {
+.cp-form-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
 }
 
-.kk-create-payment-form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
+.cp-form-group {
+  min-width: 0;
 }
 
-.kk-create-payment-form-group label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #4d5565;
+.cp-form-group label {
+  display: block;
+  margin-bottom: 9px;
+  color: #504966;
+  font-size: 12px;
+  font-weight: 700;
 }
 
-.kk-create-payment-form-group input,
-.kk-create-payment-form-group select {
-  width: 100%;
-  height: 42px;
-  padding: 0 13px;
-  border: 1px solid #dfe3ea;
-  border-radius: 7px;
-  background: #ffffff;
-  color: #303746;
-  font-size: 13px;
-  outline: none;
-  box-sizing: border-box;
-  transition: 0.2s;
-}
-
-.kk-create-payment-form-group input:focus,
-.kk-create-payment-form-group select:focus {
-  border-color: #7657e8;
-  box-shadow: 0 0 0 3px rgba(118, 87, 232, 0.08);
-}
-
-.kk-create-payment-form-group input:disabled {
-  background: #f4f5f7;
-  color: #7d8491;
-  cursor: not-allowed;
-}
-
-/* =========================================================
-   PAYMENT PERIOD DROPDOWN
-========================================================= */
-
-.kk-create-payment-period-select {
-  cursor: pointer;
-}
-
-.kk-create-payment-period-select option {
-  color: #303746;
-}
-
-/* =========================================================
-   REQUIRED + ERROR
-========================================================= */
-
-.kk-create-payment-required {
-  color: #e05252;
+.cp-form-group label span {
+  color: #e45b70;
   margin-left: 3px;
 }
 
-.kk-create-payment-error {
-  margin-top: 2px;
+.cp-input-wrapper {
+  position: relative;
+}
+
+.cp-input-wrapper > i:first-child {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8973d7;
+  font-size: 13px;
+  pointer-events: none;
+}
+
+.cp-input-wrapper input,
+.cp-input-wrapper select {
+  width: 100%;
+  height: 46px;
+  padding: 0 37px;
+  box-sizing: border-box;
+  border: 1px solid #e8e3f0;
+  border-radius: 9px;
+  outline: none;
+  background: #ffffff;
+  color: #443d59;
+  font-family: inherit;
   font-size: 12px;
-  color: #df4545;
+  transition: 0.25s;
 }
 
-.kk-create-payment-student-error {
-  margin: 0 18px 14px;
-  padding: 10px 12px;
-  border-radius: 6px;
-  background: #fff1f1;
-  color: #df4545;
-  font-size: 12px;
+.cp-input-wrapper input:focus,
+.cp-input-wrapper select:focus {
+  border-color: #8566e8;
+  box-shadow: 0 0 0 3px rgba(108, 76, 232, 0.09);
 }
 
-/* =========================================================
-   STUDENT SECTION
-========================================================= */
-
-.kk-create-payment-student-section {
-  padding: 0;
+.cp-input-wrapper input:disabled {
+  background: #f7f5fb;
+  color: #807894;
+  cursor: not-allowed;
 }
 
-.kk-create-payment-student-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 18px;
+.cp-input-wrapper .cp-lock-icon {
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa3b9;
+  font-size: 11px;
 }
 
-.kk-create-payment-student-title h3 {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 650;
-  color: #252b3a;
+.cp-input-wrapper .cp-invalid {
+  border-color: #e45b70 !important;
+  background: #fffafb;
 }
 
-.kk-create-payment-student-title p {
-  margin: 5px 0 0;
-  font-size: 12px;
-  color: #858c9b;
+.cp-hint {
+  display: block;
+  margin-top: 7px;
+  color: #aaa3b6;
+  font-size: 10px;
 }
 
-.kk-create-payment-student-count {
-  padding: 7px 12px;
-  border-radius: 6px;
-  background: #f0ecff;
-  color: #6647dc;
-  font-size: 12px;
+.cp-error-text {
+  display: block;
+  color: #e04f68;
+  margin-top: 7px;
+  font-size: 11px;
   font-weight: 600;
 }
 
 /* =========================================================
-   DATATABLE
+   STUDENT TOOLBAR
 ========================================================= */
 
-.kk-create-payment-table-wrapper {
-  border: 1px solid #e5e8ee;
-  border-radius: 8px;
-  overflow: hidden;
-  margin: 18px;
-}
-
-.kk-create-payment-table-wrapper .rdt_TableHeadRow {
-  min-height: 48px;
-  background: #f7f8fa;
-  border-bottom: 1px solid #e4e7ec;
-}
-
-.kk-create-payment-table-wrapper .rdt_TableCol {
-  font-size: 12px;
-  font-weight: 650;
-  color: #505867;
-}
-
-.kk-create-payment-table-wrapper .rdt_TableCell {
-  font-size: 13px;
-  color: #3d4452;
-  border-bottom: 1px solid #f0f1f4;
-}
-
-.kk-create-payment-table-wrapper .rdt_TableRow {
-  min-height: 52px;
-}
-
-.kk-create-payment-table-wrapper .rdt_TableRow:hover {
+.cp-student-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 15px 18px;
   background: #faf9ff;
+  border: 1px solid #eee9f7;
+  border-radius: 11px;
+  margin-bottom: 17px;
+}
+
+.cp-student-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cp-selected-icon {
+  width: 39px;
+  height: 39px;
+  border-radius: 10px;
+  background: #eee9ff;
+  color: #7655e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.cp-student-toolbar-left strong {
+  display: block;
+  color: #403952;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.cp-student-toolbar-left span {
+  display: block;
+  color: #a09aae;
+  font-size: 10px;
+}
+
+.cp-selected-badge {
+  padding: 8px 13px;
+  border-radius: 7px;
+  background: #e9f8f0;
+  color: #279a69;
+  font-size: 11px;
+  font-weight: 750;
+  white-space: nowrap;
 }
 
 /* =========================================================
    CHECKBOX
 ========================================================= */
 
-.kk-create-payment-checkbox {
+.cp-checkbox {
   width: 16px;
   height: 16px;
-  accent-color: #6c4ce8;
+  accent-color: #7655e6;
   cursor: pointer;
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.cp-table-container {
+  width: 100%;
+  border: 1px solid #eeeaf5;
+  border-radius: 11px;
+  overflow: hidden;
+}
+
+.cp-fee-value {
+  color: #6f6683;
+  font-size: 12px;
+  font-weight: 550;
+}
+
+.cp-total-fee {
+  color: #6c4ce8;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   STUDENT ERROR
+========================================================= */
+
+.cp-student-error {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 15px;
+  margin-bottom: 14px;
+  border-radius: 8px;
+  background: #fff0f1;
+  border: 1px solid #ffd8dc;
+  color: #d94d61;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 /* =========================================================
    LOADING
 ========================================================= */
 
-.kk-create-payment-loading {
+.cp-loading {
+  min-height: 220px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 160px;
-  color: #747c8c;
-  font-size: 14px;
+  gap: 10px;
 }
 
-.kk-create-payment-loader {
-  width: 22px;
-  height: 22px;
-  border: 3px solid #e2def8;
-  border-top-color: #6c4ce8;
+.cp-loader {
+  width: 37px;
+  height: 37px;
+  border: 3px solid #e9e2ff;
+  border-top-color: #7655e6;
   border-radius: 50%;
-  animation: kkCreatePaymentSpin 0.8s linear infinite;
-  margin-right: 10px;
+  animation: cp-spin 0.8s linear infinite;
 }
 
-@keyframes kkCreatePaymentSpin {
+@keyframes cp-spin {
   to {
     transform: rotate(360deg);
   }
 }
 
+.cp-loading strong {
+  color: #554b70;
+  font-size: 13px;
+}
+
+.cp-loading p {
+  margin: 0;
+  color: #a09aae;
+  font-size: 11px;
+}
+
 /* =========================================================
-   ACTION BAR
+   EMPTY STATE
 ========================================================= */
 
-.kk-create-payment-action-bar {
+.cp-empty-state {
+  padding: 45px 15px;
+  text-align: center;
+  background: #fcfbff;
+  border: 1px dashed #ded6f0;
+  border-radius: 11px;
+}
+
+.cp-empty-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 16px;
+  background: #f0ebff;
+  color: #8064e3;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  gap: 12px;
-  padding: 20px 24px;
-  border-top: 1px solid #edf0f4;
-  background: #fafbfc;
+  justify-content: center;
+  margin: 0 auto 14px;
+  font-size: 21px;
 }
 
-.kk-create-payment-cancel-btn {
-  height: 42px;
-  padding: 0 20px;
-  border: 1px solid #d9dde5;
-  border-radius: 7px;
-  background: #ffffff;
-  color: #555d6c;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
+.cp-empty-state h3 {
+  color: #403951;
+  font-size: 14px;
+  margin: 0 0 7px;
 }
 
-.kk-create-payment-cancel-btn:hover {
-  background: #f4f5f7;
-}
-
-.kk-create-payment-submit-btn {
-  height: 42px;
-  padding: 0 22px;
-  border: none;
-  border-radius: 7px;
-  background: #6c4ce8;
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.kk-create-payment-submit-btn:hover {
-  background: #5d40d0;
-  transform: translateY(-1px);
-}
-
-.kk-create-payment-submit-btn:active {
-  transform: translateY(0);
+.cp-empty-state p {
+  color: #9992a8;
+  font-size: 12px;
+  margin: 0;
 }
 
 /* =========================================================
-   RESPONSIVE
+   FEE BREAKDOWN
 ========================================================= */
 
-@media (max-width: 900px) {
-  .kk-create-payment-form {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.cp-fee-breakdown {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  gap: 12px;
+  margin-top: 19px;
+}
 
-  .kk-create-payment-filter-row {
-    align-items: stretch;
-  }
+.cp-breakdown-item,
+.cp-breakdown-total {
+  padding: 15px 17px;
+  border: 1px solid #eeeaf5;
+  border-radius: 9px;
+  background: #fcfbff;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
 
-  .kk-create-payment-filter-group {
+.cp-breakdown-item span,
+.cp-breakdown-total span {
+  color: #9991a8;
+  font-size: 11px;
+  font-weight: 550;
+}
+
+.cp-breakdown-item strong {
+  color: #514966;
+  font-size: 16px;
+}
+
+.cp-breakdown-total {
+  background: #f2eeff;
+  border-color: #e5dcff;
+}
+
+.cp-breakdown-total span {
+  color: #7866b3;
+}
+
+.cp-breakdown-total strong {
+  color: #6848db;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   ACTION FOOTER
+========================================================= */
+
+.cp-action-footer {
+  padding: 21px 27px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #fdfcff;
+}
+
+.cp-footer-note {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #9992a8;
+  font-size: 11px;
+}
+
+.cp-footer-note i {
+  color: #8065df;
+  font-size: 15px;
+}
+
+.cp-action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.cp-cancel-btn,
+.cp-submit-btn {
+  height: 43px;
+  padding: 0 21px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  transition: 0.25s;
+}
+
+.cp-cancel-btn {
+  color: #716980;
+  background: white;
+  border: 1px solid #e5e0ed;
+}
+
+.cp-cancel-btn:hover {
+  background: #f5f3f9;
+  border-color: #d4cde2;
+}
+
+.cp-submit-btn {
+  color: white;
+  border: none;
+  background: linear-gradient(135deg, #7958e9, #6341d3);
+  box-shadow: 0 5px 13px rgba(108, 76, 232, 0.2);
+}
+
+.cp-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(108, 76, 232, 0.3);
+}
+
+.cp-submit-btn:disabled,
+.cp-cancel-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.cp-button-loader {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: cp-spin 0.7s linear infinite;
+}
+
+/* =========================================================
+   SUCCESS / ERROR MESSAGE OVERLAY
+========================================================= */
+
+.cp-message-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: rgba(20, 16, 39, 0.45);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  animation: cp-overlay-in 0.25s ease;
+}
+
+.cp-message-box {
+  width: 100%;
+  max-width: 390px;
+  padding: 35px 30px 27px;
+  background: #ffffff;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 20px 65px rgba(21, 15, 49, 0.22);
+  animation: cp-message-in 0.35s ease;
+}
+
+.cp-message-icon {
+  width: 66px;
+  height: 66px;
+  margin: 0 auto 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 29px;
+  font-weight: 800;
+}
+
+.cp-message-icon.success {
+  background: #e5f8ef;
+  color: #26a56f;
+  box-shadow: 0 0 0 8px #f2fbf6;
+}
+
+.cp-message-icon.error {
+  background: #fff0f1;
+  color: #df5265;
+  box-shadow: 0 0 0 8px #fff7f7;
+}
+
+.cp-message-box h3 {
+  color: #332c48;
+  font-size: 19px;
+  font-weight: 750;
+  margin: 0 0 9px;
+}
+
+.cp-message-box p {
+  color: #928ba2;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.cp-message-progress {
+  height: 4px;
+  margin-top: 24px;
+  border-radius: 10px;
+  background: #f0edf5;
+  overflow: hidden;
+}
+
+.cp-message-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  animation: cp-progress 2.2s linear forwards;
+}
+
+.cp-message-progress span.success {
+  background: linear-gradient(90deg, #36b77f, #75d8a9);
+}
+
+.cp-message-progress span.error {
+  background: linear-gradient(90deg, #e05265, #f08a96);
+  animation: none;
+}
+
+@keyframes cp-progress {
+  from {
     width: 100%;
   }
+  to {
+    width: 0%;
+  }
 }
 
-@media (max-width: 600px) {
-  .kk-create-payment-page {
+@keyframes cp-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cp-message-in {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
+
+@media (max-width: 1200px) {
+
+  .cp-page {
+    padding: 20px;
+  }
+
+  .cp-summary-grid {
+    gap: 12px;
+  }
+
+  .cp-summary-card {
+    padding: 16px;
+  }
+
+  .cp-section {
+    padding: 23px 20px;
+  }
+
+  .cp-filter-panel {
+    gap: 15px;
+  }
+
+  .cp-form-grid {
+    gap: 15px;
+  }
+
+  .cp-card-header,
+  .cp-action-footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .cp-page {
     padding: 15px;
   }
 
-  .kk-create-payment-header {
+  .cp-page-header {
     align-items: flex-start;
-  }
-
-  .kk-create-payment-header h1 {
-    font-size: 22px;
-  }
-
-  .kk-create-payment-card-header,
-  .kk-create-payment-filter-section,
-  .kk-create-payment-details-section {
-    padding: 18px;
-  }
-
-  .kk-create-payment-form {
-    grid-template-columns: 1fr;
-  }
-
-  .kk-create-payment-student-header {
-    align-items: flex-start;
-    gap: 10px;
     flex-direction: column;
   }
 
-  .kk-create-payment-action-bar {
-    padding: 16px 18px;
+  .cp-heading-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 19px;
+  }
+
+  .cp-page-header h1 {
+    font-size: 23px;
+  }
+
+  .cp-back-btn {
+    align-self: flex-start;
+  }
+
+  .cp-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cp-summary-card {
+    min-height: 83px;
+  }
+
+  .cp-card-header {
+    flex-wrap: wrap;
+    padding: 19px;
+  }
+
+  .cp-session-badge {
+    margin-left: 60px;
+  }
+
+  .cp-section {
+    padding: 20px 16px;
+  }
+
+  .cp-filter-panel {
+    grid-template-columns: 1fr;
+    gap: 17px;
+  }
+
+  .cp-filter-divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .cp-form-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .cp-fee-breakdown {
+    grid-template-columns: 1fr;
+  }
+
+  .cp-student-toolbar {
+    align-items: flex-start;
+  }
+
+  .cp-action-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cp-action-buttons {
+    width: 100%;
+  }
+
+  .cp-cancel-btn,
+  .cp-submit-btn {
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .cp-page {
+    padding: 11px;
+  }
+
+  .cp-heading-left {
+    gap: 11px;
+  }
+
+  .cp-page-header h1 {
+    font-size: 20px;
+  }
+
+  .cp-breadcrumb {
+    font-size: 10px;
+  }
+
+  .cp-card-header {
+    gap: 10px;
+  }
+
+  .cp-card-header h2 {
+    font-size: 15px;
+  }
+
+  .cp-session-badge {
+    margin-left: 0;
+  }
+
+  .cp-section-heading h3 {
+    font-size: 14px;
+  }
+
+  .cp-section-heading p {
+    max-width: 250px;
+    line-height: 1.5;
+  }
+
+  .cp-student-toolbar {
+    flex-direction: column;
+  }
+
+  .cp-selected-badge {
+    align-self: flex-start;
+  }
+
+  .cp-action-buttons {
     flex-direction: column-reverse;
   }
 
-  .kk-create-payment-action-bar button {
+  .cp-cancel-btn,
+  .cp-submit-btn {
     width: 100%;
+    flex: unset;
+  }
+
+  .cp-footer-note {
+    line-height: 1.5;
+  }
+
+  .cp-message-box {
+    padding: 30px 20px 24px;
   }
 }

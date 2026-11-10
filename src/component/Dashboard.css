@@ -547,15 +547,15 @@
 }
 
 .legend-dot.present {
-  background: #7657e8;
+  background: rgb(39, 174, 138);
 }
 
 .legend-dot.absent {
-  background: #ef476f;
+  background: rgb(239, 71, 111);
 }
 
 .legend-dot.leave {
-  background: #3d8bfd;
+  background: rgb(245, 166, 35) ;
 }
 
 
@@ -893,4 +893,139 @@
   .chart-area {
     min-width: 0;
   }
+}
+/* =========================================================
+   DASHBOARD LIGHT / DARK MODE
+   Add this block at the END of Dashboard.css
+========================================================= */
+
+/* DARK MODE — original dashboard appearance */
+
+.dashboard-page {
+  --dash-page-bg: #121827;
+  --dash-card-bg: #202839;
+  --dash-card-hover: #242e41;
+  --dash-panel-bg: #171f30;
+  --dash-control-bg: #171e2e;
+  --dash-border: #283247;
+  --dash-panel-border: #252f43;
+  --dash-input-border: #293246;
+  --dash-text: #ffffff;
+  --dash-text-secondary: #dbe1ec;
+  --dash-text-muted: #9ca6b8;
+  --dash-text-soft: #8f99aa;
+  --dash-grid-line: #232c3e;
+
+  background: var(--dash-page-bg);
+  color: var(--dash-text);
+}
+
+/* LIGHT MODE */
+
+html.light-mode .dashboard-page,
+body.light-mode .dashboard-page {
+  --dash-page-bg: #f7f5fb;
+  --dash-card-bg: #ffffff;
+  --dash-card-hover: #f5f0ff;
+  --dash-panel-bg: #ffffff;
+  --dash-control-bg: #ffffff;
+  --dash-border: #e7e1ef;
+  --dash-panel-border: #e7e1ef;
+  --dash-input-border: #ded7eb;
+  --dash-text: #30234a;
+  --dash-text-secondary: #514563;
+  --dash-text-muted: #81768f;
+  --dash-text-soft: #9288a0;
+  --dash-grid-line: #ece6f5;
+}
+
+.dashboard-page,
+.dashboard-layout,
+.dashboard-main {
+  background: var(--dash-page-bg);
+  color: var(--dash-text);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.dashboard-stat-card {
+  background: var(--dash-card-bg);
+  border-color: var(--dash-border);
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.dashboard-stat-card:hover {
+  background: var(--dash-card-hover);
+}
+
+.dashboard-panel {
+  background: var(--dash-panel-bg);
+  border-color: var(--dash-panel-border);
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.dashboard-heading h2,
+.dashboard-panel h3,
+.stat-info h3,
+.attendance-legend b,
+.donut-center strong {
+  color: var(--dash-text);
+}
+
+.dashboard-heading p,
+.stat-info p,
+.view-all,
+.attendance-legend,
+.donut-center span,
+.y-axis,
+.months {
+  color: var(--dash-text-muted);
+}
+
+.notice-item h4 {
+  color: var(--dash-text-secondary);
+}
+
+.notice-item p {
+  color: var(--dash-text-soft);
+}
+
+.dashboard-actions select {
+  background: var(--dash-control-bg);
+  border-color: var(--dash-input-border);
+  color: var(--dash-text-secondary);
+}
+
+.donut-chart::before {
+  background: var(--dash-panel-bg);
+}
+
+.line-chart::before {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 24px,
+    var(--dash-grid-line) 25px
+  );
+}
+
+/* LIGHT MODE POLISH */
+
+html.light-mode .dashboard-stat-card,
+body.light-mode .dashboard-stat-card {
+  box-shadow: 0 5px 18px rgba(53, 35, 82, 0.05);
+}
+
+html.light-mode .dashboard-panel,
+body.light-mode .dashboard-panel {
+  box-shadow: 0 5px 18px rgba(53, 35, 82, 0.045);
+}
+
+.dashboard-main::-webkit-scrollbar-thumb {
+  background: var(--dash-border);
 }

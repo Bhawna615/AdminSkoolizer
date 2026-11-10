@@ -1,73 +1,191 @@
+
 /* =========================================================
    FEE STRUCTURE PAGE
-   WHITE + PURPLE ADMIN UI
+   MODERN WHITE + PURPLE SKOOLIZER UI
 ========================================================= */
 
 .fee-page {
-  width: 100%;
-  min-height: calc(100vh - 70px);
-  padding: 30px;
-  background: #f7f7fb;
-  font-family: "Inter", sans-serif;
-  color: #25233a;
+    width: 100%;
+    min-height: calc(100vh - 70px);
+    padding: 30px;
+    box-sizing: border-box;
+    background: #f7f6fc;
+    color: #29243e;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
 }
 
 /* =========================================================
-   HEADER
+   PAGE HEADER
 ========================================================= */
 
 .fee-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.fee-header-left {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.fee-header-icon {
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 17px;
+    background: linear-gradient(145deg, #7657e8, #5637c9);
+    color: #ffffff;
+    font-size: 25px;
+    box-shadow: 0 7px 18px rgba(108, 76, 232, 0.22);
+}
+
+.fee-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 7px;
+    color: #9995aa;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.fee-breadcrumb i {
+    font-size: 9px;
+}
+
+.fee-breadcrumb span:last-child {
+    color: #7657e8;
+    font-weight: 650;
 }
 
 .fee-header h1 {
-  margin: 0;
-  font-size: 28px;
-  font-weight: 700;
-  color: #24213a;
+    margin: 0;
+    color: #29243e;
+    font-size: 27px;
+    font-weight: 750;
+    letter-spacing: -0.7px;
 }
 
 .fee-header p {
-  margin: 7px 0 0;
-  font-size: 14px;
-  color: #858398;
+    margin: 7px 0 0;
+    color: #918da2;
+    font-size: 13px;
+    line-height: 1.5;
 }
 
 /* =========================================================
-   ADD BUTTON
+   ADD STRUCTURE BUTTON
 ========================================================= */
 
 .add-fee-btn {
-  border: none;
-  background: #6c4ce8;
-  color: white;
-  height: 44px;
-  padding: 0 20px;
-  border-radius: 9px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  gap: 9px;
-
-  transition: all 0.2s ease;
+    min-height: 45px;
+    padding: 0 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #7657e8, #6343d2);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 650;
+    cursor: pointer;
+    box-shadow: 0 5px 14px rgba(108, 76, 232, 0.17);
+    transition: all 0.25s ease;
 }
 
-.add-fee-btn span {
-  font-size: 21px;
-  font-weight: 400;
-  line-height: 1;
+.add-fee-btn i {
+    font-size: 16px;
 }
 
 .add-fee-btn:hover {
-  background: #5b3bd1;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 15px rgba(108, 76, 232, 0.22);
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #6848dc, #5435c0);
+    box-shadow: 0 9px 20px rgba(108, 76, 232, 0.25);
+}
+
+/* =========================================================
+   OVERVIEW CARDS
+========================================================= */
+
+.fee-overview {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+    margin-bottom: 23px;
+}
+
+.fee-overview-card {
+    min-height: 112px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #eeecf5;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(36, 33, 58, 0.025);
+    transition: 0.25s ease;
+}
+
+.fee-overview-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(36, 33, 58, 0.06);
+}
+
+.fee-overview-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+    font-size: 21px;
+}
+
+.fee-overview-icon.purple {
+    color: #7657e8;
+    background: #f0ebff;
+}
+
+.fee-overview-icon.blue {
+    color: #4385db;
+    background: #eaf3ff;
+}
+
+.fee-overview-icon.green {
+    color: #20a77a;
+    background: #e7f8f1;
+}
+
+.fee-overview-card span {
+    display: block;
+    color: #89859a;
+    font-size: 12px;
+    font-weight: 550;
+}
+
+.fee-overview-card h3 {
+    margin: 5px 0 3px;
+    color: #302b45;
+    font-size: 23px;
+    font-weight: 750;
+    line-height: 1.2;
+}
+
+.fee-overview-card small {
+    color: #aaa6b7;
+    font-size: 10px;
 }
 
 /* =========================================================
@@ -75,11 +193,11 @@
 ========================================================= */
 
 .fee-card {
-  background: #ffffff;
-  border: 1px solid #ebeaf2;
-  border-radius: 13px;
-  overflow: hidden;
-  box-shadow: 0 3px 15px rgba(36, 33, 58, 0.04);
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #eeecf5;
+    border-radius: 15px;
+    box-shadow: 0 4px 18px rgba(36, 33, 58, 0.035);
 }
 
 /* =========================================================
@@ -87,27 +205,44 @@
 ========================================================= */
 
 .fee-card-top {
-  min-height: 82px;
-  padding: 20px 24px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  border-bottom: 1px solid #eeeeF4;
+    min-height: 94px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: 1px solid #f0eef5;
 }
 
-.fee-card-top h2 {
-  margin: 0;
-  font-size: 17px;
-  font-weight: 650;
-  color: #29263e;
+.fee-card-heading {
+    display: flex;
+    align-items: center;
+    gap: 13px;
 }
 
-.fee-card-top p {
-  margin: 5px 0 0;
-  color: #9997a8;
-  font-size: 12px;
+.fee-card-heading-icon {
+    width: 43px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #f0ebff;
+    color: #7657e8;
+    font-size: 19px;
+}
+
+.fee-card-heading h2 {
+    margin: 0;
+    color: #302b45;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.fee-card-heading p {
+    margin: 5px 0 0;
+    color: #a09bad;
+    font-size: 11px;
 }
 
 /* =========================================================
@@ -115,137 +250,156 @@
 ========================================================= */
 
 .fee-search {
-  width: 230px;
-  height: 38px;
-
-  display: flex;
-  align-items: center;
-
-  border: 1px solid #e3e1eb;
-  border-radius: 8px;
-  background: #fff;
-
-  transition: 0.2s ease;
+    width: 250px;
+    height: 41px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-sizing: border-box;
+    border: 1px solid #eae7f1;
+    border-radius: 9px;
+    background: #fbfaff;
+    transition: 0.25s ease;
 }
 
 .fee-search:focus-within {
-  border-color: #8b70eb;
-  box-shadow: 0 0 0 3px rgba(108, 76, 232, 0.08);
+    border-color: #957cf0;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(108, 76, 232, 0.08);
 }
 
-.fee-search span {
-  margin-left: 12px;
-  font-size: 20px;
-  color: #918da2;
-  transform: rotate(-20deg);
+.fee-search > i {
+    color: #918aa7;
+    font-size: 14px;
 }
 
 .fee-search input {
-  width: 100%;
-  height: 100%;
-  border: none;
-  outline: none;
-
-  padding: 0 12px 0 8px;
-
-  font-size: 13px;
-  color: #343146;
-  background: transparent;
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #39344e;
+    font-family: inherit;
+    font-size: 12px;
 }
 
 .fee-search input::placeholder {
-  color: #aaa7b5;
+    color: #aaa6b6;
+}
+
+.fee-search-clear {
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #aaa4ba;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.fee-search-clear:hover {
+    color: #7657e8;
 }
 
 /* =========================================================
-   TABLE
+   TABLE WRAPPER
 ========================================================= */
 
 .fee-table-wrapper {
-  width: 100%;
-  overflow-x: auto;
+    width: 100%;
+    overflow-x: auto;
 }
 
 .fee-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 850px;
-}
-
-/* TABLE HEADER */
-
-.fee-table thead {
-  background: #6c4ce8;
-}
-
-.fee-table th {
-  padding: 14px 20px;
-
-  text-align: left;
-
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-
-  color: #ecf1f2;
-
-  border-bottom: 1px solid #ebeaf1;
-  white-space: nowrap;
-}
-
-/* TABLE BODY */
-
-.fee-table td {
-  padding: 15px 20px;
-
-  font-size: 13px;
-  color: #555266;
-
-  border-bottom: 1px solid #f0eff4;
-
-  vertical-align: middle;
-}
-
-.fee-table tbody tr {
-  transition: background 0.15s ease;
-}
-
-.fee-table tbody tr:hover {
-  background: #faf9ff;
-}
-
-.fee-table tbody tr:last-child td {
-  border-bottom: none;
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
 }
 
 /* =========================================================
-   CLASS
+   TABLE HEADER
+========================================================= */
+
+.fee-table thead {
+    background: #faf9fd;
+}
+
+.fee-table th {
+    padding: 16px 20px;
+    text-align: left;
+    color: #858096;
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 0.65px;
+    white-space: nowrap;
+    border-bottom: 1px solid #eeecf4;
+}
+
+/* =========================================================
+   TABLE BODY
+========================================================= */
+
+.fee-table td {
+    padding: 15px 20px;
+    color: #575268;
+    font-size: 12px;
+    vertical-align: middle;
+    border-bottom: 1px solid #f1eff5;
+}
+
+.fee-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.fee-table tbody tr:hover {
+    background: #fbfaff;
+}
+
+.fee-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* =========================================================
+   CLASS DETAILS
 ========================================================= */
 
 .class-name {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-
-  font-weight: 600;
-  color: #373349;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .class-icon {
-  width: 34px;
-  height: 34px;
+    width: 39px;
+    height: 39px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    background: linear-gradient(145deg, #f1edff, #e9e2ff);
+    color: #704fdd;
+    font-size: 15px;
+    font-weight: 750;
+}
 
-  border-radius: 8px;
+.class-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.class-details span {
+    color: #373249;
+    font-size: 12px;
+    font-weight: 700;
+}
 
-  background: #f0ebff;
-  color: #6c4ce8;
-
-  font-size: 13px;
-  font-weight: 700;
+.class-details small {
+    color: #aaa5b5;
+    font-size: 10px;
 }
 
 /* =========================================================
@@ -253,72 +407,103 @@
 ========================================================= */
 
 .amount {
-  font-size: 13px;
-  font-weight: 600;
-  color: #403b52;
+    color: #403b53;
+    font-size: 12px;
+    font-weight: 650;
+    white-space: nowrap;
 }
 
 /* =========================================================
-   DISCOUNT
+   DISCOUNT BADGE
 ========================================================= */
 
 .discount-badge {
-  display: inline-flex;
-  align-items: center;
+    min-width: 75px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 7px 10px;
+    border-radius: 7px;
+    background: #f0ebff;
+    color: #704fdb;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
 
-  padding: 5px 10px;
-
-  border-radius: 6px;
-
-  background: #f1edff;
-  color: #6848d8;
-
-  font-size: 12px;
-  font-weight: 600;
+.discount-badge i {
+    font-size: 10px;
 }
 
 /* =========================================================
-   DELETE
+   DELETE BUTTON
 ========================================================= */
 
 .delete-btn {
-  width: 34px;
-  height: 34px;
-
-  border: 1px solid #eee8ef;
-  border-radius: 7px;
-
-  background: #fff;
-  color: #d45c6b;
-
-  cursor: pointer;
-
-  font-size: 14px;
-
-  transition: all 0.2s ease;
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #f1e5e8;
+    border-radius: 9px;
+    background: #fff8f9;
+    color: #d85d70;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.22s ease;
 }
 
-.delete-btn:hover {
-  background: #fff1f3;
-  border-color: #f0cbd0;
-  transform: translateY(-1px);
+.delete-btn:hover:not(:disabled) {
+    background: #e85d70;
+    border-color: #e85d70;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(216, 93, 112, 0.17);
+}
+
+.delete-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 /* =========================================================
-   FOOTER
+   TABLE FOOTER
 ========================================================= */
 
 .fee-card-footer {
-  padding: 15px 24px;
-
-  border-top: 1px solid #eeeeF4;
-
-  color: #9996a7;
-  font-size: 12px;
+    min-height: 53px;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    box-sizing: border-box;
+    border-top: 1px solid #f0eef5;
+    color: #9b97a9;
+    font-size: 11px;
 }
 
 .fee-card-footer strong {
-  color: #615d70;
+    color: #504a63;
+    font-weight: 750;
+}
+
+.fee-footer-status {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #8c879a;
+    font-size: 10px;
+}
+
+.fee-footer-status span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #26b47c;
+    box-shadow: 0 0 0 3px #e7f8f0;
 }
 
 /* =========================================================
@@ -326,72 +511,394 @@
 ========================================================= */
 
 .empty-state {
-  text-align: center;
-  padding: 55px 20px;
+    padding: 65px 20px;
+    text-align: center;
 }
 
 .empty-icon {
-  width: 52px;
-  height: 52px;
-
-  margin: 0 auto 15px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 12px;
-
-  background: #f1edff;
-  color: #6c4ce8;
-
-  font-size: 21px;
-  font-weight: 700;
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background: #f1edff;
+    color: #7657e8;
+    font-size: 26px;
 }
 
 .empty-state h3 {
-  margin: 0;
-
-  font-size: 16px;
-  color: #403c51;
+    margin: 0;
+    color: #39344d;
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .empty-state p {
-  margin-top: 7px;
+    max-width: 390px;
+    margin: 9px auto 0;
+    color: #9994a7;
+    font-size: 12px;
+    line-height: 1.7;
+}
 
-  font-size: 13px;
-  color: #9b98a8;
+.empty-add-btn {
+    margin-top: 20px;
+    padding: 10px 17px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 8px;
+    background: #7657e8;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 650;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.empty-add-btn:hover {
+    background: #5e40ca;
+    transform: translateY(-2px);
 }
 
 /* =========================================================
-   RESPONSIVE
+   DELETE MESSAGE OVERLAY
 ========================================================= */
 
-@media (max-width: 768px) {
-
-  .fee-page {
-    padding: 20px 15px;
-  }
-
-  .fee-header {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 18px;
-  }
-
-  .add-fee-btn {
-    width: 100%;
+.fee-message-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    padding: 20px;
+    display: flex;
+    align-items: center;
     justify-content: center;
-  }
+    box-sizing: border-box;
+    background: rgba(20, 17, 38, 0.63);
+    backdrop-filter: blur(13px);
+    -webkit-backdrop-filter: blur(13px);
+}
 
-  .fee-card-top {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .fee-search {
+.fee-message-modal {
     width: 100%;
-  }
+    max-width: 425px;
+    padding: 37px 32px 32px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 23px;
+    background: #ffffff;
+    text-align: center;
+    box-shadow: 0 25px 80px rgba(20, 17, 38, 0.24);
+    animation: feeModalAppear 0.3s ease;
+}
 
+.fee-message-icon {
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 23px;
+    font-size: 29px;
+}
+
+.fee-message-icon.confirm {
+    background: #fff0f1;
+    color: #e15c6e;
+}
+
+.fee-message-icon.success {
+    background: #e8f8f0;
+    color: #20a575;
+}
+
+.fee-message-icon.error {
+    background: #fff0f0;
+    color: #df5260;
+}
+
+.fee-message-eyebrow {
+    display: block;
+    margin-bottom: 9px;
+    color: #988bbd;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.fee-message-content h2 {
+    margin: 0 0 12px;
+    color: #302b43;
+    font-size: 22px;
+    font-weight: 750;
+    letter-spacing: -0.4px;
+}
+
+.fee-message-content p {
+    margin: 0;
+    color: #858095;
+    font-size: 13px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   MESSAGE BUTTONS
+========================================================= */
+
+.fee-message-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 27px;
+}
+
+.fee-message-cancel-btn,
+.fee-message-delete-btn,
+.fee-message-ok-btn {
+    min-width: 120px;
+    min-height: 43px;
+    padding: 0 19px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.22s ease;
+}
+
+.fee-message-cancel-btn {
+    background: #f2f1f6;
+    color: #625d72;
+}
+
+.fee-message-cancel-btn:hover {
+    background: #e7e5ee;
+}
+
+.fee-message-delete-btn {
+    background: #e45b6d;
+    color: #ffffff;
+    box-shadow: 0 5px 12px rgba(228, 91, 109, 0.16);
+}
+
+.fee-message-delete-btn:hover {
+    background: #ce4054;
+    transform: translateY(-2px);
+}
+
+.fee-message-ok-btn {
+    min-width: 145px;
+    margin-top: 25px;
+    background: linear-gradient(135deg, #7657e8, #6142ce);
+    color: #ffffff;
+    box-shadow: 0 5px 13px rgba(108, 76, 232, 0.17);
+}
+
+.fee-message-ok-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(108, 76, 232, 0.23);
+}
+
+@keyframes feeModalAppear {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =========================================================
+   FULL SCREEN DELETE LOADER
+========================================================= */
+
+.fee-delete-loading-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background: rgba(17, 15, 34, 0.83);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.fee-delete-loader-content {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.fee-delete-loader-icon {
+    width: 65px;
+    height: 65px;
+    margin-bottom: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    background: rgba(118, 87, 232, 0.2);
+    color: #c9baff;
+    font-size: 27px;
+    box-shadow: 0 0 35px rgba(118, 87, 232, 0.13);
+}
+
+.fee-delete-spinner {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 26px;
+    border: 4px solid rgba(255, 255, 255, 0.12);
+    border-top-color: #c4b5fd;
+    border-right-color: #7657e8;
+    border-radius: 50%;
+    animation: feeDeleteSpin 0.85s linear infinite;
+}
+
+.fee-delete-loader-content h2 {
+    margin: 0 0 11px;
+    color: #ffffff;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.fee-delete-loader-content p {
+    margin: 0 0 12px;
+    color: #ded6ff;
+    font-size: 13px;
+}
+
+.fee-delete-loader-content span {
+    color: #aaa4bd;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+@keyframes feeDeleteSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
+
+@media (max-width: 1200px) {
+    .fee-page {
+        padding: 24px;
+    }
+
+    .fee-overview {
+        gap: 12px;
+    }
+
+    .fee-overview-card {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .fee-page {
+        padding: 19px 14px;
+    }
+
+    .fee-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .fee-header-left {
+        align-items: flex-start;
+    }
+
+    .fee-header-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        font-size: 21px;
+    }
+
+    .fee-header h1 {
+        font-size: 23px;
+    }
+
+    .add-fee-btn {
+        width: 100%;
+    }
+
+    .fee-overview {
+        grid-template-columns: 1fr;
+        gap: 11px;
+    }
+
+    .fee-overview-card {
+        min-height: 94px;
+    }
+
+    .fee-card-top {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 18px;
+    }
+
+    .fee-card-tools,
+    .fee-search {
+        width: 100%;
+    }
+
+    .fee-card-footer {
+        padding: 13px 16px;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .fee-message-modal {
+        padding: 30px 20px;
+        border-radius: 19px;
+    }
+
+    .fee-message-content h2 {
+        font-size: 19px;
+    }
+
+    .fee-message-actions {
+        gap: 8px;
+    }
+
+    .fee-message-cancel-btn,
+    .fee-message-delete-btn {
+        min-width: 0;
+        flex: 1;
+        padding: 0 12px;
+    }
+
+    .fee-delete-loader-content h2 {
+        font-size: 20px;
+    }
+
+    .fee-breadcrumb {
+        flex-wrap: wrap;
+    }
 }

@@ -1,6 +1,14 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import DataTable from "react-data-table-component";
+import { Doughnut } from "react-chartjs-2";
+import {
+    Chart as ChartJS,
+    ArcElement,
+    Tooltip,
+    Legend,
+} from "chart.js";
+
 import "./ViewAttendance.css";
 
 import {
@@ -12,6 +20,8 @@ import {
 } from "../AttendanceComponent/attendanceApi";
 
 import { useLocation, useNavigate } from "react-router-dom";
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function ViewAttendance() {
 
@@ -25,14 +35,16 @@ export default function ViewAttendance() {
     const [filterEnabled, setFilterEnabled] = useState(false);
     const [message, setMessage] = useState("");
 
-    // Custom edit confirmation message box
     const [showEditConfirmation, setShowEditConfirmation] = useState(false);
     const [selectedAttendance, setSelectedAttendance] = useState(null);
 
     const location = useLocation();
     const navigate = useNavigate();
 
-    // ================= FLASH MESSAGE =================
+    // =====================================================
+    // FLASH MESSAGE
+    // =====================================================
+
     useEffect(() => {
         if (location.state?.message) {
             setMessage(location.state.message);
@@ -45,7 +57,10 @@ export default function ViewAttendance() {
         }
     }, [location.state]);
 
-    // ================= INITIAL LOAD =================
+    // =====================================================
+    // INITIAL LOAD
+    // =====================================================
+
     useEffect(() => {
         loadAttendance();
         loadClasses();
@@ -54,24 +69,28 @@ export default function ViewAttendance() {
     const loadAttendance = async () => {
         try {
             const res = await getAttendance();
-            setAttendance(res.data || []);
+            setAttendance(Array.isArray(res.data) ? res.data : []);
         } catch (error) {
             console.log("Attendance loading error:", error);
             setAttendance([]);
+            setMessage("Unable to load attendance records.");
         }
     };
 
     const loadClasses = async () => {
         try {
             const res = await getClasses();
-            setClasses(res.data || []);
+            setClasses(Array.isArray(res.data) ? res.data : []);
         } catch (error) {
             console.log("Class loading error:", error);
             setClasses([]);
         }
     };
 
-    // ================= FILTER =================
+    // =====================================================
+    // FILTER ATTENDANCE
+    // =====================================================
+
     useEffect(() => {
 
         if (!filterEnabled) {
@@ -80,21 +99,162 @@ export default function ViewAttendance() {
         }
 
         if (!className) {
+            setAttendance([]);
             return;
         }
 
         filterAttendance(year, month, className)
             .then((res) => {
-                setAttendance(res.data || []);
+                setAttendance(
+                    Array.isArray(res.data) ? res.data : []
+                );
             })
             .catch((error) => {
                 console.log("Filter error:", error);
                 setAttendance([]);
+                setMessage("Unable to filter attendance records.");
             });
 
     }, [year, month, className, filterEnabled]);
 
-    // ================= VIEW DETAILS =================
+    // =====================================================
+    // ATTENDANCE GRAPH DATA
+    // =====================================================
+
+    const attendanceSummary = useMemo(() => {
+
+        return attendance.reduce(
+            (total, row) => {
+
+                total.present += Number(row.Present) || 0;
+                total.absent += Number(row.Absent) || 0;
+                total.leave += Number(row.onLeave) || 0;
+                total.strength += Number(row.Strength) || 0;
+
+                return total;
+            },
+            {
+                present: 0,
+                absent: 0,
+                leave: 0,
+                strength: 0,
+            }
+        );
+
+    }, [attendance]);
+
+    const totalMarkedAttendance =
+        attendanceSummary.present +
+        attendanceSummary.absent +
+        attendanceSummary.leave;
+
+    const getPercentage = (value) => {
+        if (totalMarkedAttendance === 0) {
+            return 0;
+        }
+
+        return Number(
+            ((value / totalMarkedAttendance) * 100).toFixed(1)
+        );
+    };
+
+    const presentPercentage = getPercentage(
+        attendanceSummary.present
+    );
+
+    const absentPercentage = getPercentage(
+        attendanceSummary.absent
+    );
+
+    const leavePercentage = getPercentage(
+        attendanceSummary.leave
+    );
+
+    // =====================================================
+    // DOUGHNUT CHART DATA
+    // =====================================================
+
+    const attendanceChartData = {
+        labels: ["Present", "Absent", "On Leave"],
+
+        datasets: [
+            {
+                data: [
+                    attendanceSummary.present,
+                    attendanceSummary.absent,
+                    attendanceSummary.leave,
+                ],
+
+                backgroundColor: [
+                    "#27AE8A",
+                    "#EF476F",
+                    "#F5A623",
+                ],
+
+                hoverBackgroundColor: [
+                    "#209A79",
+                    "#D93860",
+                    "#DF9418",
+                ],
+
+                borderWidth: 0,
+                spacing: 0,
+                borderRadius: 0,
+                hoverOffset: 8,
+            },
+        ],
+    };
+
+    // =====================================================
+    // CHART OPTIONS - SMOOTH ANIMATION
+    // =====================================================
+
+    const attendanceChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+
+        cutout: "68%",
+
+        animation: {
+            animateRotate: true,
+            animateScale: true,
+            duration: 1000,
+            easing: "easeOutQuart",
+        },
+
+        plugins: {
+            legend: {
+                display: false,
+            },
+
+            tooltip: {
+                enabled: true,
+
+                backgroundColor: "#302747",
+                titleColor: "#ffffff",
+                bodyColor: "#ffffff",
+
+                padding: 12,
+                cornerRadius: 8,
+
+                callbacks: {
+                    label: (context) => {
+
+                        const value = Number(context.raw || 0);
+
+                        const percentage = getPercentage(value);
+
+                        return ` ${context.label}: ${value.toLocaleString("en-IN")} (${percentage}%)`;
+                    },
+                },
+            },
+        },
+    };
+
+    // =====================================================
+    // VIEW ATTENDANCE DETAILS
+    // =====================================================
+
     const viewDetails = async (row) => {
 
         try {
@@ -118,18 +278,19 @@ export default function ViewAttendance() {
 
         } catch (error) {
             console.log("Attendance details error:", error);
-            alert("Unable to load attendance details.");
+            setMessage("Unable to load attendance details.");
         }
     };
 
-    // ================= EDIT ATTENDANCE =================
-    // Open custom confirmation message box
+    // =====================================================
+    // EDIT ATTENDANCE
+    // =====================================================
+
     const remarkAttendance = (row) => {
         setSelectedAttendance(row);
         setShowEditConfirmation(true);
     };
 
-    // Continue editing after confirmation
     const confirmEditAttendance = async () => {
 
         if (!selectedAttendance) {
@@ -165,8 +326,12 @@ export default function ViewAttendance() {
         }
     };
 
-    // ================= TABLE COLUMNS =================
+    // =====================================================
+    // TABLE COLUMNS
+    // =====================================================
+
     const columns = [
+
         {
             name: "Date",
             selector: (row) => row.Date,
@@ -217,7 +382,6 @@ export default function ViewAttendance() {
             cell: (row) => (
                 <div className="view-attendance-action-wrapper">
 
-                    {/* VIEW ATTENDANCE */}
                     <button
                         type="button"
                         className="view-attendance-action-btn view-attendance-view-btn"
@@ -228,7 +392,6 @@ export default function ViewAttendance() {
                         <i className="bi bi-eye-fill"></i>
                     </button>
 
-                    {/* EDIT ATTENDANCE */}
                     <button
                         type="button"
                         className="view-attendance-action-btn view-attendance-view-btn"
@@ -244,8 +407,12 @@ export default function ViewAttendance() {
         },
     ];
 
-    // ================= CUSTOM TABLE STYLES =================
+    // =====================================================
+    // CUSTOM TABLE STYLES
+    // =====================================================
+
     const customTableStyles = {
+
         table: {
             style: {
                 backgroundColor: "#ffffff",
@@ -344,10 +511,18 @@ export default function ViewAttendance() {
         },
     };
 
+    // =====================================================
+    // RENDER
+    // =====================================================
+
     return (
+
         <div className="view-attendance-page">
 
-            {/* ================= PAGE HEADER ================= */}
+            {/* =================================================
+                PAGE HEADER
+            ================================================= */}
+
             <div className="view-attendance-page-header">
 
                 <div className="view-attendance-header-left">
@@ -373,31 +548,32 @@ export default function ViewAttendance() {
 
             </div>
 
-            {/* ================= SUCCESS MESSAGE =================
+            {/* =================================================
+                MESSAGE
+            ================================================= */}
+
             {message && (
-                <div className="view-attendance-success-message">
+                <div className="view-attendance-message">
 
-                    <div className="view-attendance-success-icon">
-                        <i className="bi bi-check-circle-fill"></i>
-                    </div>
+                    <i className="bi bi-info-circle-fill"></i>
 
-                    <div className="view-attendance-success-text">
-                        {message}
-                    </div>
+                    <span>{message}</span>
 
                     <button
                         type="button"
-                        className="view-attendance-success-close"
                         onClick={() => setMessage("")}
                         aria-label="Close message"
                     >
-                        <i className="bi bi-x"></i>
+                        <i className="bi bi-x-lg"></i>
                     </button>
 
                 </div>
-            )} */}
+            )}
 
-            {/* ================= FILTER CARD ================= */}
+            {/* =================================================
+                FILTER CARD
+            ================================================= */}
+
             <div className="view-attendance-filter-card">
 
                 <div className="view-attendance-filter-header">
@@ -410,6 +586,7 @@ export default function ViewAttendance() {
 
                         <div>
                             <h3>Attendance Filter</h3>
+
                             <p>
                                 Filter attendance records by year, month and class
                             </p>
@@ -422,9 +599,9 @@ export default function ViewAttendance() {
                         <input
                             type="checkbox"
                             checked={filterEnabled}
-                            onChange={() =>
-                                setFilterEnabled(!filterEnabled)
-                            }
+                            onChange={() => {
+                                setFilterEnabled((prev) => !prev);
+                            }}
                         />
 
                         <span className="view-attendance-toggle-slider"></span>
@@ -440,6 +617,7 @@ export default function ViewAttendance() {
                 <div className="view-attendance-filter-fields">
 
                     {/* YEAR */}
+
                     <div className="view-attendance-filter-field">
 
                         <label>
@@ -451,11 +629,10 @@ export default function ViewAttendance() {
 
                             <select
                                 value={year}
-                                onChange={(e) =>
-                                    setYear(Number(e.target.value))
-                                }
+                                onChange={(e) => setYear(Number(e.target.value))}
                                 disabled={!filterEnabled}
                             >
+
                                 <option value={new Date().getFullYear()}>
                                     {new Date().getFullYear()}
                                 </option>
@@ -467,6 +644,7 @@ export default function ViewAttendance() {
                                 <option value={new Date().getFullYear() - 2}>
                                     {new Date().getFullYear() - 2}
                                 </option>
+
                             </select>
 
                             <i className="bi bi-chevron-down view-attendance-select-arrow"></i>
@@ -476,6 +654,7 @@ export default function ViewAttendance() {
                     </div>
 
                     {/* MONTH */}
+
                     <div className="view-attendance-filter-field">
 
                         <label>
@@ -487,11 +666,10 @@ export default function ViewAttendance() {
 
                             <select
                                 value={month}
-                                onChange={(e) =>
-                                    setMonth(Number(e.target.value))
-                                }
+                                onChange={(e) => setMonth(Number(e.target.value))}
                                 disabled={!filterEnabled}
                             >
+
                                 {[...Array(12)].map((_, index) => (
                                     <option
                                         key={index}
@@ -500,6 +678,7 @@ export default function ViewAttendance() {
                                         {index + 1}
                                     </option>
                                 ))}
+
                             </select>
 
                             <i className="bi bi-chevron-down view-attendance-select-arrow"></i>
@@ -509,6 +688,7 @@ export default function ViewAttendance() {
                     </div>
 
                     {/* CLASS */}
+
                     <div className="view-attendance-filter-field view-attendance-class-field">
 
                         <label>
@@ -520,11 +700,10 @@ export default function ViewAttendance() {
 
                             <select
                                 value={className}
-                                onChange={(e) =>
-                                    setClassName(e.target.value)
-                                }
+                                onChange={(e) => setClassName(e.target.value)}
                                 disabled={!filterEnabled}
                             >
+
                                 <option value="">
                                     Select Class
                                 </option>
@@ -537,6 +716,7 @@ export default function ViewAttendance() {
                                         {c.Classname}
                                     </option>
                                 ))}
+
                             </select>
 
                             <i className="bi bi-chevron-down view-attendance-select-arrow"></i>
@@ -562,7 +742,214 @@ export default function ViewAttendance() {
 
             </div>
 
-            {/* ================= TABLE CARD ================= */}
+            {/* =================================================
+                ATTENDANCE OVERVIEW GRAPH
+            ================================================= */}
+
+            <div className="view-attendance-overview-card">
+
+                <div className="view-attendance-overview-header">
+
+                    <div className="view-attendance-overview-title">
+
+                        <div className="view-attendance-overview-icon">
+                            <i className="bi bi-pie-chart-fill"></i>
+                        </div>
+
+                        <div>
+                            <h3>Attendance Overview</h3>
+
+                            <p>
+                                Present, absent and leave distribution
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div className="view-attendance-overview-badge">
+                        <span></span>
+                        Live Statistics
+                    </div>
+
+                </div>
+
+                <div className="view-attendance-overview-divider"></div>
+
+                {totalMarkedAttendance > 0 ? (
+
+                    <div className="view-attendance-overview-content">
+
+                        {/* DOUGHNUT CHART */}
+
+                        <div className="view-attendance-donut-wrapper">
+
+                            <div className="view-attendance-donut-chart">
+
+                                <Doughnut
+                                    key={`${attendanceSummary.present}-${attendanceSummary.absent}-${attendanceSummary.leave}`}
+                                    data={attendanceChartData}
+                                    options={attendanceChartOptions}
+                                />
+
+                                <div className="view-attendance-donut-center">
+
+                                    <strong>
+                                        {totalMarkedAttendance.toLocaleString("en-IN")}
+                                    </strong>
+
+                                    <span>
+                                        Total Marked
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        {/* ATTENDANCE LEGEND */}
+
+                        <div className="view-attendance-overview-details">
+
+                            <div className="view-attendance-overview-detail-heading">
+                                <h4>Attendance Breakdown</h4>
+
+                                <p>
+                                    Student attendance distribution
+                                </p>
+                            </div>
+
+                            {/* PRESENT */}
+
+                            <div className="view-attendance-overview-stat present">
+
+                                <div className="view-attendance-overview-stat-left">
+
+                                    <span className="view-attendance-stat-dot"></span>
+
+                                    <div>
+                                        <strong>Present</strong>
+                                        <small>Students present</small>
+                                    </div>
+
+                                </div>
+
+                                <div className="view-attendance-overview-stat-right">
+
+                                    <strong>
+                                        {attendanceSummary.present.toLocaleString("en-IN")}
+                                    </strong>
+
+                                    <span>
+                                        {presentPercentage}%
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            {/* ABSENT */}
+
+                            <div className="view-attendance-overview-stat absent">
+
+                                <div className="view-attendance-overview-stat-left">
+
+                                    <span className="view-attendance-stat-dot"></span>
+
+                                    <div>
+                                        <strong>Absent</strong>
+                                        <small>Students absent</small>
+                                    </div>
+
+                                </div>
+
+                                <div className="view-attendance-overview-stat-right">
+
+                                    <strong>
+                                        {attendanceSummary.absent.toLocaleString("en-IN")}
+                                    </strong>
+
+                                    <span>
+                                        {absentPercentage}%
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            {/* ON LEAVE */}
+
+                            <div className="view-attendance-overview-stat leave">
+
+                                <div className="view-attendance-overview-stat-left">
+
+                                    <span className="view-attendance-stat-dot"></span>
+
+                                    <div>
+                                        <strong>On Leave</strong>
+                                        <small>Students on leave</small>
+                                    </div>
+
+                                </div>
+
+                                <div className="view-attendance-overview-stat-right">
+
+                                    <strong>
+                                        {attendanceSummary.leave.toLocaleString("en-IN")}
+                                    </strong>
+
+                                    <span>
+                                        {leavePercentage}%
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            {/* TOTAL STRENGTH */}
+
+                            <div className="view-attendance-overview-strength">
+
+                                <div>
+                                    <i className="bi bi-people-fill"></i>
+                                    Total Recorded Strength
+                                </div>
+
+                                <strong>
+                                    {attendanceSummary.strength.toLocaleString("en-IN")}
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                ) : (
+
+                    <div className="view-attendance-overview-empty">
+
+                        <div className="view-attendance-overview-empty-icon">
+                            <i className="bi bi-pie-chart"></i>
+                        </div>
+
+                        <h3>No Attendance Statistics</h3>
+
+                        <p>
+                            Attendance statistics will appear here when
+                            attendance records are available.
+                        </p>
+
+                    </div>
+
+                )}
+
+            </div>
+
+            {/* =================================================
+                ATTENDANCE TABLE
+            ================================================= */}
+
             <div className="view-attendance-table-card">
 
                 <div className="view-attendance-table-header">
@@ -575,6 +962,7 @@ export default function ViewAttendance() {
 
                         <div>
                             <h3>Attendance Records</h3>
+
                             <p>
                                 {attendance.length} attendance record
                                 {attendance.length !== 1 ? "s" : ""} found
@@ -602,7 +990,9 @@ export default function ViewAttendance() {
                         persistTableHead
                         defaultSortFieldId={1}
                         customStyles={customTableStyles}
+
                         noDataComponent={
+
                             <div className="view-attendance-no-data">
 
                                 <div className="view-attendance-no-data-icon">
@@ -622,7 +1012,8 @@ export default function ViewAttendance() {
 
                 </div>
 
-                {/* ================= TABLE LEGEND ================= */}
+                {/* TABLE LEGEND */}
+
                 <div className="view-attendance-table-footer">
 
                     <div className="view-attendance-legend">
@@ -632,17 +1023,23 @@ export default function ViewAttendance() {
                         </span>
 
                         <span className="view-attendance-legend-item">
+
                             <span className="view-attendance-legend-icon view-attendance-legend-view">
                                 <i className="bi bi-eye-fill"></i>
                             </span>
+
                             View Details
+
                         </span>
 
                         <span className="view-attendance-legend-item">
+
                             <span className="view-attendance-legend-icon view-attendance-legend-edit">
                                 <i className="bi bi-pencil-square"></i>
                             </span>
+
                             Edit Attendance
+
                         </span>
 
                     </div>
@@ -651,12 +1048,17 @@ export default function ViewAttendance() {
 
             </div>
 
-            {/* ================= EDIT ATTENDANCE CONFIRMATION BOX ================= */}
+            {/* =================================================
+                EDIT ATTENDANCE CONFIRMATION
+            ================================================= */}
+
             {showEditConfirmation && selectedAttendance && (
+
                 <div
                     className="view-attendance-confirm-overlay"
                     onClick={() => setShowEditConfirmation(false)}
                 >
+
                     <div
                         className="view-attendance-confirm-modal"
                         role="dialog"
@@ -702,7 +1104,9 @@ export default function ViewAttendance() {
                         </div>
 
                     </div>
+
                 </div>
+
             )}
 
         </div>

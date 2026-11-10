@@ -1,97 +1,389 @@
+
+/* =========================================================
+   SKOOLIZER GLOBAL RESET
+========================================================= */
+
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html,
 body,
 #root {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
 }
+
+
+/* =========================================================
+   SKOOLIZER GLOBAL THEME — LIGHT MODE
+========================================================= */
+
+:root {
+    color-scheme: light;
+
+    /* PAGE */
+    --sk-page-bg: #f7f5fb;
+    --sk-card-bg: #ffffff;
+    --sk-secondary-bg: #fcfbfd;
+
+    /* TEXT */
+    --sk-text-primary: #30234a;
+    --sk-text-secondary: #5b5267;
+    --sk-text-muted: #877f92;
+
+    /* BORDER */
+    --sk-border: #e7e1ef;
+    --sk-border-light: #eeeaf3;
+
+    /* PURPLE */
+    --sk-purple: #6f42c1;
+    --sk-purple-dark: #5e35aa;
+    --sk-purple-light: #f0eafd;
+
+    /* INPUT */
+    --sk-input-bg: #ffffff;
+    --sk-input-border: #ded8e7;
+
+    /* SHADOW */
+    --sk-shadow: 0 6px 22px rgba(53, 35, 82, 0.05);
+
+    /* HEADER */
+    --sk-header-bg: #ffffff;
+
+    /* SIDEBAR */
+    --sk-sidebar-bg: #ffffff;
+    --sk-sidebar-text: #5b5267;
+    --sk-sidebar-hover: #f0eafd;
+
+    /* TABLE */
+    --sk-table-header: #faf9fc;
+    --sk-table-row-hover: #fbf9ff;
+
+    /* FORM */
+    --sk-form-bg: #ffffff;
+
+    /* SCROLLBAR */
+    --sk-scrollbar-track: #f7f5fb;
+    --sk-scrollbar-thumb: #d9cfee;
+}
+
+
+/* =========================================================
+   SKOOLIZER GLOBAL THEME — DARK MODE
+   Applied when .dark-mode is added to document.body
+========================================================= */
+
+.dark-mode {
+    color-scheme: dark;
+
+    /* PAGE */
+    --sk-page-bg: #14111d;
+    --sk-card-bg: #1d1928;
+    --sk-secondary-bg: #191521;
+
+    /* TEXT */
+    --sk-text-primary: #f4f1fa;
+    --sk-text-secondary: #d0c8dc;
+    --sk-text-muted: #a99fb8;
+
+    /* BORDER */
+    --sk-border: #393149;
+    --sk-border-light: #30283d;
+
+    /* PURPLE */
+    --sk-purple: #a48af5;
+    --sk-purple-dark: #8b72ed;
+    --sk-purple-light: #29213d;
+
+    /* INPUT */
+    --sk-input-bg: #211c2d;
+    --sk-input-border: #453a57;
+
+    /* SHADOW */
+    --sk-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+
+    /* HEADER */
+    --sk-header-bg: #1d1928;
+
+    /* SIDEBAR */
+    --sk-sidebar-bg: #1d1928;
+    --sk-sidebar-text: #d0c8dc;
+    --sk-sidebar-hover: #29213d;
+
+    /* TABLE */
+    --sk-table-header: #211c2d;
+    --sk-table-row-hover: #282136;
+
+    /* FORM */
+    --sk-form-bg: #1d1928;
+
+    /* SCROLLBAR */
+    --sk-scrollbar-track: #191521;
+    --sk-scrollbar-thumb: #453a57;
+}
+
+
+/* =========================================================
+   GLOBAL BODY
+========================================================= */
 
 body {
-  font-family: "Poppins", sans-serif;
-  overflow: hidden;
+    font-family: "Poppins", sans-serif;
+    background: var(--sk-page-bg);
+    color: var(--sk-text-primary);
+    overflow: hidden;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
+
+
+/* =========================================================
+   ROOT CONTAINER
+========================================================= */
+
+#root {
+    /* background: var(--sk-page-bg); */
+    color: var(--sk-text-primary);
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+
+/* =========================================================
+   GLOBAL THEME TRANSITIONS
+========================================================= */
+
+.skoolizer-header,
+.student-admission-page,
+.student-admission-card,
+.student-admission-card-header,
+.student-admission-section,
+.student-admission-submit-area {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
 
 button {
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  font: inherit;
-  color: inherit;
-  outline: none;
-  cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    outline: none;
+    cursor: pointer;
 }
 
-a {
-  text-decoration: none;
+
+/* Accessible keyboard focus */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--sk-purple);
+    outline-offset: 3px;
 }
+
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   LISTS
+========================================================= */
 
 ul,
 ol {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 li {
-  text-decoration: none;
+    text-decoration: none;
 }
 
+
+/* =========================================================
+   ROW / GRID HELPERS
+========================================================= */
+
 .row {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .col-1 {
-  width: 8.33%;
+    width: 8.33%;
 }
 
 .col-2 {
-  width: 16.66%;
+    width: 16.66%;
 }
 
 .col-3 {
-  width: 25%;
+    width: 25%;
 }
 
 .col-4 {
-  width: 33.33%;
+    width: 33.33%;
 }
 
 .col-5 {
-  width: 41.66%;
+    width: 41.66%;
 }
 
 .col-6 {
-  width: 50%;
+    width: 50%;
 }
 
 .col-7 {
-  width: 58.33%;
+    width: 58.33%;
 }
 
 .col-8 {
-  width: 66.66%;
+    width: 66.66%;
 }
 
 .col-9 {
-  width: 75%;
+    width: 75%;
 }
 
 .col-10 {
-  width: 83.33%;
+    width: 83.33%;
 }
 
 .col-11 {
-  width: 91.66%;
+    width: 91.66%;
 }
 
 .col-12 {
-  width: 100%;
+    width: 100%;
+}
+
+
+/* =========================================================
+   GLOBAL SCROLLBAR
+========================================================= */
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color:
+        var(--sk-scrollbar-thumb)
+        var(--sk-scrollbar-track);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--sk-scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--sk-scrollbar-thumb);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--sk-purple);
+}
+
+
+/* =========================================================
+   REDUCED MOTION ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    body,
+    #root,
+    .skoolizer-header,
+    .student-admission-page,
+    .student-admission-card,
+    .student-admission-card-header,
+    .student-admission-section,
+    .student-admission-submit-area {
+        transition: none !important;
+    }
+}
+/* =========================================================
+   GLOBAL SCROLLBAR — ALL PAGES
+========================================================= */
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color:
+        var(--sk-scrollbar-thumb)
+        var(--sk-scrollbar-track);
+}
+
+/* Chrome, Edge, Safari */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--sk-scrollbar-track);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--sk-scrollbar-thumb);
+    border: 2px solid var(--sk-scrollbar-track);
+    border-radius: 10px;
+    transition: background-color 0.25s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--sk-purple);
+}
+
+/* Dark-mode purple scrollbar */
+
+.dark-mode * {
+    scrollbar-color: #7657e8 #f5f3f7;
+}
+
+.dark-mode ::-webkit-scrollbar-track {
+    background: #463c5a;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+    background: #7657e8;
+    border: 2px solid #191521;
+    border-radius: 10px;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+    background: #a48af5;
 }

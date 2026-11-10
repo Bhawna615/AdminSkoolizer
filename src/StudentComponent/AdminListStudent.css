@@ -1044,3 +1044,277 @@ input:checked
         min-width: 0;
     }
 }
+
+/* =========================================================
+   ADMIN LIST STUDENT - LOADER OVERLAY
+   WHITE + PURPLE THEME
+========================================================= */
+
+.admin-list-student-loader-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(24, 17, 38, 0.68);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.admin-list-student-loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: adminListStudentFadeIn 0.35s ease;
+}
+
+.admin-list-student-loader-ring {
+    width: 125px;
+    height: 125px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    filter: drop-shadow(0 0 16px rgba(163, 129, 249, 0.28));
+}
+
+.admin-list-student-loader-ring svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.admin-list-student-loader-ring circle {
+    fill: none;
+    stroke-width: 7;
+}
+
+.admin-list-student-loader-track {
+    stroke: rgba(255, 255, 255, 0.15);
+}
+
+.admin-list-student-loader-progress {
+    stroke: #b99aff;
+    stroke-linecap: round;
+    stroke-dasharray: 301.59;
+    transition: stroke-dashoffset 0.3s ease;
+}
+
+.admin-list-student-loader-percent {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.admin-list-student-loader-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 13px;
+    background: rgba(163, 129, 249, 0.16);
+    color: #cbb6ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+    margin-bottom: 15px;
+}
+
+.admin-list-student-loader-content h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.admin-list-student-loader-content p {
+    margin: 10px 0 0;
+    color: #d2c1f4;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.admin-list-student-loader-subtext {
+    margin-top: 8px;
+    color: #b7a9ce;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   MESSAGE BOX OVERLAY
+   WHITE BACKGROUND + PURPLE FONTS
+========================================================= */
+
+.admin-list-student-message-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    padding: 20px;
+    background: rgba(35, 24, 52, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: adminListStudentFadeIn 0.25s ease;
+}
+
+.admin-list-student-message-box {
+    width: 100%;
+    max-width: 410px;
+    padding: 35px 30px 30px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #eee6fa;
+    border-radius: 19px;
+    box-shadow: 0 20px 65px rgba(30, 16, 55, 0.22);
+    text-align: center;
+    animation: adminListStudentMessagePop 0.3s ease;
+}
+
+.admin-list-student-message-icon {
+    width: 66px;
+    height: 66px;
+    margin: 0 auto 19px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.admin-list-student-message-success {
+    background: #f0eafa;
+    color: #6f42c1;
+    box-shadow: 0 0 0 7px #faf8fe;
+}
+
+.admin-list-student-message-error {
+    background: #f3edfc;
+    color: #7042bd;
+    box-shadow: 0 0 0 7px #faf8fe;
+}
+
+.admin-list-student-message-box h3 {
+    margin: 0;
+    color: #51318b;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.admin-list-student-message-box p {
+    margin: 12px 0 0;
+    color: #756588;
+    font-size: 13px;
+    line-height: 1.7;
+    font-weight: 500;
+}
+
+.admin-list-student-message-button {
+    min-width: 145px;
+    height: 43px;
+    margin-top: 23px;
+    padding: 0 22px;
+    border: none;
+    border-radius: 9px;
+    background: #6f42c1;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(111, 66, 193, 0.20);
+    transition: all 0.2s ease;
+}
+
+.admin-list-student-message-button:hover {
+    background: #5f35ad;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(111, 66, 193, 0.27);
+}
+
+.admin-list-student-message-wait {
+    margin-top: 22px;
+    padding-top: 14px;
+    border-top: 1px solid #eee8f5;
+    color: #8b73b0;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   BUTTON LOADING STATE
+========================================================= */
+
+.admin-list-student-create-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes adminListStudentFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes adminListStudentMessagePop {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE MESSAGE BOX
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .admin-list-student-message-box {
+        max-width: 100%;
+        padding: 30px 22px 25px;
+        border-radius: 16px;
+    }
+
+    .admin-list-student-message-box h3 {
+        font-size: 19px;
+    }
+
+    .admin-list-student-message-box p {
+        font-size: 12px;
+    }
+
+    .admin-list-student-loader-ring {
+        width: 110px;
+        height: 110px;
+    }
+
+    .admin-list-student-loader-content h3 {
+        font-size: 17px;
+    }
+
+}

@@ -2,13 +2,49 @@ import "./Header.css";
 import skoolizerLogo from "../images/image.png";
 import schoolLogo from "../images/school-logo.png";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Header = ({ toggleSidebar, isSidebarOpen }) => {
   const navigate = useNavigate();
 
-  const adminData = JSON.parse(
-    localStorage.getItem("admin")
-  );
+  const adminData = JSON.parse(localStorage.getItem("admin"));
+
+  /* =====================================================
+     THEME
+  ===================================================== */
+
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem("skoolizer-theme");
+    return savedTheme ? savedTheme === "dark" : true;
+  });
+
+  useEffect(() => {
+    const theme = isDarkMode ? "dark" : "light";
+
+    // Apply the theme consistently across the application.
+    document.documentElement.classList.toggle(
+      "dark-mode",
+      isDarkMode
+    );
+
+    document.documentElement.classList.toggle(
+      "light-mode",
+      !isDarkMode
+    );
+
+    document.body.classList.toggle("dark-mode", isDarkMode);
+    document.body.classList.toggle("light-mode", !isDarkMode);
+
+    localStorage.setItem("skoolizer-theme", theme);
+  }, [isDarkMode]);
+
+  const toggleTheme = () => {
+    setIsDarkMode((previousMode) => !previousMode);
+  };
+
+  /* =====================================================
+     LOGOUT
+  ===================================================== */
 
   const handleLogout = async () => {
     try {
@@ -36,10 +72,8 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
 
   return (
     <header className="skoolizer-header">
+      {/* LOGO */}
 
-      {/* =====================================================
-          LOGO
-      ====================================================== */}
       <div
         className="header-brand"
         onClick={() => navigate("/dashboard")}
@@ -51,117 +85,116 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
         />
       </div>
 
+      {/* HEADER CONTENT */}
 
-      {/* =====================================================
-          HEADER CONTENT
-      ====================================================== */}
       <div className="header-content">
+        {/* LEFT SECTION */}
 
-        {/* ===================================================
-            LEFT SECTION
-        ==================================================== */}
         <div className="header-left-section">
-
           {/* SIDEBAR TOGGLE */}
+
           <button
             type="button"
             className="menu-toggle"
             onClick={toggleSidebar}
             aria-label={
-              isSidebarOpen
-                ? "Close Sidebar"
-                : "Open Sidebar"
+              isSidebarOpen ? "Close Sidebar" : "Open Sidebar"
             }
             title={
-              isSidebarOpen
-                ? "Close Sidebar"
-                : "Open Sidebar"
+              isSidebarOpen ? "Close Sidebar" : "Open Sidebar"
             }
           >
             <i
               className={`las ${
-                isSidebarOpen
-                  ? "la-times"
-                  : "la-bars"
+                isSidebarOpen ? "la-times" : "la-bars"
               }`}
             ></i>
           </button>
 
-
           {/* SEARCH */}
-          <div className="header-search">
 
+          <div className="header-search">
             <i className="las la-search"></i>
 
             <input
               type="text"
               placeholder="Search anything..."
             />
-
           </div>
-
         </div>
 
+        {/* RIGHT SECTION */}
 
-        {/* ===================================================
-            RIGHT SECTION
-        ==================================================== */}
         <div className="header-right-section">
+          {/* THEME TOGGLE */}
+
+          <button
+            type="button"
+            className={`theme-toggle ${
+              isDarkMode ? "dark-active" : "light-active"
+            }`}
+            onClick={toggleTheme}
+            aria-label={
+              isDarkMode
+                ? "Switch to light mode"
+                : "Switch to dark mode"
+            }
+            title={
+              isDarkMode
+                ? "Switch to Light Mode"
+                : "Switch to Dark Mode"
+            }
+            aria-pressed={!isDarkMode}
+          >
+            <span className="theme-toggle-track">
+              <span className="theme-toggle-icon sun-icon">
+                <i className="las la-sun"></i>
+              </span>
+
+              <span className="theme-toggle-icon moon-icon">
+                <i className="las la-moon"></i>
+              </span>
+
+              <span className="theme-toggle-thumb"></span>
+            </span>
+          </button>
 
           {/* NOTIFICATION */}
+
           <button
             type="button"
             className="header-icon-btn"
             aria-label="Notifications"
+            onClick={() =>
+              navigate(
+                "/dashboard/StudentComponent/StudentLeaveRequest"
+              )
+            }
           >
             <i className="las la-bell"></i>
-
             <span className="notification-dot"></span>
           </button>
 
-
           {/* ADMIN PROFILE */}
+
           <div className="admin-profile">
-
-            {/* AVATAR */}
             <div className="admin-avatar">
-
               {schoolLogo ? (
-                <img
-                  src={schoolLogo}
-                  alt="Admin"
-                />
+                <img src={schoolLogo} alt="Admin" />
               ) : (
                 <i className="las la-user"></i>
               )}
-
             </div>
 
-
-            {/* ADMIN INFORMATION */}
             <div className="admin-info">
-
-              <h4>
-                {adminData?.username || "Admin"}
-              </h4>
-
-              <span>
-                Administrator
-              </span>
-
+              <h4>{adminData?.username || "Admin"}</h4>
+              <span>Administrator</span>
             </div>
 
-
-            {/* ARROW */}
             <i className="las la-angle-down profile-arrow"></i>
-
           </div>
 
-
-          {/* =================================================
-              LOGOUT BUTTON
-              Currently disabled/commented
-          ================================================== */}
+          {/* LOGOUT BUTTON — PRESERVED */}
 
           {/*
           <button
@@ -173,11 +206,8 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
             <i className="las la-sign-out-alt"></i>
           </button>
           */}
-
         </div>
-
       </div>
-
     </header>
   );
 };

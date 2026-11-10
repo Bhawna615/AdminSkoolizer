@@ -1,8 +1,226 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import "./ViewTeachers.css";
 import { useNavigate } from "react-router-dom";
+
+
+
+const TEACHER_CHART_COLORS = [
+  "#70db85", "#F07878", "#72B7E8", "#65C9A7",
+  "#F5B66B", "#E98BBE", "#929FF5", "#9BCB78",
+  "#F28CA8", "#B995D6", "#F2A98B", "#65BFC3",
+  "#C49A78", "#82BCE8", "#E98982", "#B5C879",
+  "#E69BCB", "#83C5D5", "#B09AE8", "#79C69A",
+  "#E8C85A", "#8FA9CC", "#F28B8B", "#A6CF75",
+  "#C58AE8", "#70B5C9", "#F2A653", "#71BFAE",
+  "#C19AE8", "#83B987",
+];
+
+// Supports common date formats returned by the teacher API.
+const getTeacherJoiningDate = (value) => {
+  if (!value) return null;
+
+  const input = String(value).trim();
+  let date = null;
+
+  // YYYY-MM-DD
+  if (/^\d{4}-\d{1,2}-\d{1,2}/.test(input)) {
+    date = new Date(input.substring(0, 10) + "T00:00:00");
+  }
+  // DD/MM/YYYY or DD-MM-YYYY
+  else if (/^\d{1,2}[/-]\d{1,2}[/-]\d{4}$/.test(input)) {
+    const parts = input.split(/[/-]/);
+    date = new Date(
+      Number(parts[2]),
+      Number(parts[1]) - 1,
+      Number(parts[0])
+    );
+  } else {
+    date = new Date(input);
+  }
+
+  return date && !Number.isNaN(date.getTime()) ? date : null;
+};
+
+const createTeacherPieGradient = (items) => {
+  const total = items.reduce((sum, item) => sum + item.value, 0);
+
+  if (!total) return "#eeeaf8";
+
+  let current = 0;
+  const segments = items
+    .filter((item) => item.value > 0)
+    .map((item) => {
+      const start = current;
+      current += (item.value / total) * 100;
+      return `${item.color} ${start}% ${current}%`;
+    });
+
+  return `conic-gradient(${segments.join(", ")})`;
+};
+
+const TeacherPieChart = ({ title, subtitle, items, total }) => {
+  const chartTotal = items.reduce((sum, item) => sum + item.value, 0);
+
+  return (
+    <div className="teacher-analytics-chart-card">
+      <div className="teacher-analytics-chart-header">
+        <div>
+          <h3>{title}</h3>
+          <p>{subtitle}</p>
+        </div>
+        <span className="teacher-chart-icon">
+          <i className="bi bi-pie-chart-fill"></i>
+        </span>
+      </div>
+
+      <div className="teacher-pie-layout">
+        <div
+          className="teacher-pie-chart"
+          style={{ background: createTeacherPieGradient(items) }}
+          role="img"
+          aria-label={`${title}: ${total} teachers`}
+        >
+          <div className="teacher-pie-center">
+            <strong>{total}</strong>
+            <span>Total</span>
+          </div>
+        </div>
+
+        <div className="teacher-pie-legend">
+          {items.map((item) => {
+            const percentage = chartTotal
+              ? ((item.value / chartTotal) * 100).toFixed(1)
+              : "0.0";
+
+            return (
+              <div className="teacher-pie-legend-item" key={item.label}>
+                <div className="teacher-pie-legend-left">
+                  <span
+                    className="teacher-pie-dot"
+                    style={{ background: item.color }}
+                  ></span>
+                  <span className="teacher-pie-legend-label">{item.label}</span>
+                </div>
+                <div className="teacher-pie-legend-value">
+                  <strong>{item.value}</strong>
+                  <small>{percentage}%</small>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const TeacherJoiningChart = ({ data }) => {
+  const width = 700;
+  const height = 270;
+  const left = 48;
+  const right = 22;
+  const top = 24;
+  const bottom = 48;
+  const maxValue = Math.max(1, ...data.map((item) => item.value));
+  const chartHeight = height - top - bottom;
+  const chartWidth = width - left - right;
+
+  const points = data.map((item, index) => {
+    const x = left + (index / Math.max(data.length - 1, 1)) * chartWidth;
+    const y = top + chartHeight - (item.value / maxValue) * chartHeight;
+    return { ...item, x, y };
+  });
+
+  const linePoints = points.map((point) => `${point.x},${point.y}`).join(" ");
+  const areaPoints = [
+    `${left},${height - bottom}`,
+    linePoints,
+    `${width - right},${height - bottom}`,
+  ].join(" ");
+  const joiningTotal = data.reduce((sum, item) => sum + item.value, 0);
+
+  return (
+    <div className="teacher-analytics-chart-card teacher-line-chart-card">
+      <div className="teacher-analytics-chart-header">
+        <div>
+          <h3>Teacher Joining Trend</h3>
+          <p>Monthly teacher recruitment overview</p>
+        </div>
+        <span className="teacher-chart-icon">
+          <i className="bi bi-graph-up-arrow"></i>
+        </span>
+      </div>
+
+      <div className="teacher-line-chart-summary">
+        <div>
+          <strong>{joiningTotal}</strong>
+          <span>New Joinings</span>
+        </div>
+        <span className="teacher-line-chart-period">Last 6 Months</span>
+      </div>
+
+      <div className="teacher-line-chart-wrapper">
+        <svg
+          viewBox={`0 0 ${width} ${height}`}
+          className="teacher-line-svg"
+          role="img"
+          aria-label="Monthly teacher joining trend for the last six months"
+        >
+          {[0, 1, 2, 3].map((step) => {
+            const y = top + (chartHeight / 3) * step;
+            const value = Math.round((maxValue * (3 - step)) / 3);
+
+            return (
+              <g key={step}>
+                <line
+                  x1={left}
+                  y1={y}
+                  x2={width - right}
+                  y2={y}
+                  className="teacher-chart-grid-line"
+                />
+                <text
+                  x={left - 10}
+                  y={y + 4}
+                  textAnchor="end"
+                  className="teacher-chart-axis-label"
+                >
+                  {value}
+                </text>
+              </g>
+            );
+          })}
+
+          <polygon points={areaPoints} className="teacher-chart-area" />
+          <polyline points={linePoints} className="teacher-chart-line" />
+
+          {points.map((point) => (
+            <g key={`${point.label}-${point.year}`}>
+              <circle
+                cx={point.x}
+                cy={point.y}
+                r="5"
+                className="teacher-chart-point"
+              >
+                <title>{`${point.label} ${point.year}: ${point.value} joinings`}</title>
+              </circle>
+              <text
+                x={point.x}
+                y={height - 17}
+                textAnchor="middle"
+                className="teacher-chart-month-label"
+              >
+                {point.label}
+              </text>
+            </g>
+          ))}
+        </svg>
+      </div>
+    </div>
+  );
+};
 
 const BASE_URL =
   "http://localhost/kkblossom/api.php/Adminapi/AdminTeacher/";
@@ -141,6 +359,55 @@ const ViewTeachers = () => {
     endIndex
   );
 
+
+  // All analytics are calculated from the live getTeachers API response.
+  const teacherAnalytics = useMemo(() => {
+
+    const assigned = teachers.filter(
+      (teacher) =>
+        teacher.Classteacher && String(teacher.Classteacher).trim() !== ""
+    ).length;
+
+    const assignmentData = [
+      { label: "Assigned", value: assigned, color: TEACHER_CHART_COLORS[0] },
+      {
+        label: "Not Assigned",
+        value: teachers.length - assigned,
+        color: TEACHER_CHART_COLORS[1],
+      },
+    ];
+
+    const today = new Date();
+    const joiningData = [];
+
+    for (let i = 5; i >= 0; i--) {
+      const monthDate = new Date(
+        today.getFullYear(),
+        today.getMonth() - i,
+        1
+      );
+      const month = monthDate.getMonth();
+      const year = monthDate.getFullYear();
+
+      const count = teachers.filter((teacher) => {
+        const date = getTeacherJoiningDate(teacher.Doj);
+        return (
+          date &&
+          date.getMonth() === month &&
+          date.getFullYear() === year
+        );
+      }).length;
+
+      joiningData.push({
+        label: monthDate.toLocaleString("en-US", { month: "short" }),
+        year,
+        value: count,
+      });
+    }
+
+    return { assignmentData, joiningData };
+  }, [teachers]);
+
   const getInitials = (name) => {
     if (!name) return "T";
 
@@ -208,6 +475,41 @@ const ViewTeachers = () => {
               <h3>{filteredTeachers.length}</h3>
             </div>
           </div>
+        </div>
+
+        {/* TEACHER ANALYTICS */}
+        <div className="teacher-analytics-section">
+          <div className="teacher-analytics-heading">
+            <div>
+              <h3>
+                <i className="bi bi-bar-chart-line-fill"></i>
+                Teacher Analytics
+              </h3>
+              <p>
+                Insights into teacher distribution and recruitment trends
+              </p>
+            </div>
+          </div>
+
+          {loading ? (
+            <div className="teacher-analytics-loading">
+              <div className="view-teachers-loader"></div>
+              Preparing teacher analytics...
+            </div>
+          ) : (
+            <>
+              <div className="teacher-analytics-charts-grid">
+                <TeacherPieChart
+                  title="Class Assignment"
+                  subtitle="Teacher class allocation overview"
+                  items={teacherAnalytics.assignmentData}
+                  total={teachers.length}
+                />
+
+                <TeacherJoiningChart data={teacherAnalytics.joiningData} />
+              </div>
+            </>
+          )}
         </div>
 
         {/* TABLE CARD */}

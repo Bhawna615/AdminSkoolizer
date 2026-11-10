@@ -1,8 +1,10 @@
+
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import SpecialReport from "./SpecialReport";
 import CustomReport from "./CustomReport";
+import "./ReportRouter.css";
 
 const ReportRouter = () => {
   const { id } = useParams();
@@ -12,12 +14,19 @@ const ReportRouter = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!id) return;
+    let isMounted = true;
 
     const fetchReport = async () => {
+      if (!id) {
+        setError("Report ID is missing.");
+        setLoading(false);
+        return;
+      }
+
       try {
         setLoading(true);
         setError(null);
+        setReportData(null);
 
         const formData = new FormData();
         formData.append("id", id);
@@ -28,45 +37,189 @@ const ReportRouter = () => {
           { withCredentials: true }
         );
 
+        if (!isMounted) return;
+
         if (response.data?.status) {
           setReportData(response.data.data);
         } else {
-          setError(response.data?.message || "Invalid response from server");
+          setError(
+            response.data?.message || "Unable to load the student report."
+          );
         }
-
       } catch (err) {
         console.error("API Error:", err);
-        setError("Server Error. Please check backend.");
+
+        if (isMounted) {
+          setError("Server error. Please check your connection and try again.");
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
     fetchReport();
 
+    return () => {
+      isMounted = false;
+    };
   }, [id]);
 
-  // ✅ Loading State
+  const handlePrint = () => {
+    window.print();
+  };
+
+  const handleRetry = () => {
+    window.location.reload();
+  };
+
   if (loading) {
-    return <div>Loading Report...</div>;
+    return (
+      <div className="report-router-state report-router-loading">
+        <div className="report-router-glow" />
+
+        <div className="report-router-loader-content">
+          <div className="report-router-spinner">
+            <span />
+          </div>
+
+          <div className="report-router-loader-label">
+            ACADEMIC RECORDS
+          </div>
+
+          <h2>Preparing Student Report</h2>
+          <p>Loading academic records and performance details...</p>
+        </div>
+      </div>
+    );
   }
 
-  // ✅ Error State
   if (error) {
-    return <div style={{ color: "red" }}>{error}</div>;
+    return (
+      <div className="report-router-state">
+        <div className="report-router-state-panel">
+          <div className="report-router-state-icon report-router-error-icon">
+            !
+          </div>
+
+          <span className="report-router-state-label">REPORT STATUS</span>
+          <h2>Unable to Load Report</h2>
+          <p>{error}</p>
+
+          <button
+            type="button"
+            className="report-router-button"
+            onClick={handleRetry}
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
   }
 
-  // ✅ No Data
   if (!reportData || !reportData.student) {
-    return <div>No Report Found</div>;
+    return (
+      <div className="report-router-state">
+        <div className="report-router-state-panel">
+          <div className="report-router-state-icon">
+            <svg
+              viewBox="0 0 24 24"
+              width="28"
+              height="28"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.7"
+            >
+              <path d="M7 3h7l5 5v13H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" />
+              <path d="M14 3v6h5M9 14h6M9 17h6" />
+            </svg>
+          </div>
+
+          <span className="report-router-state-label">NO RECORD</span>
+          <h2>No Report Found</h2>
+          <p>
+            No student report is available for this record. Please verify the
+            student details and try again.
+          </p>
+
+          <button
+            type="button"
+            className="report-router-button"
+            onClick={handleRetry}
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
   }
 
-  // ✅ Your original CodeIgniter logic equivalent
-  if (reportData.student?.Class === "test") {
-    return <SpecialReport data={reportData} />;
-  } else {
-    return <CustomReport data={reportData} />;
-  }
+  const ReportComponent =
+    reportData.student?.Class === "test" ? SpecialReport : CustomReport;
+
+  return (
+    <div className="report-router-page">
+      <div className="report-router-toolbar no-print">
+        <div className="report-router-toolbar-info">
+          <div className="report-router-title-line">
+            <div className="report-router-title-icon">
+              <svg
+                viewBox="0 0 24 24"
+                width="23"
+                height="23"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+              >
+                <path d="M7 3h7l5 5v13H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" />
+                <path d="M14 3v6h5M9 14h6M9 17h6" />
+              </svg>
+            </div>
+
+            <div>
+              <span className="report-router-eyebrow">
+                KK BLOSSOMS SCHOOL
+              </span>
+              <h1>Student Report Card</h1>
+            </div>
+          </div>
+
+          <p className="report-router-subtitle">
+            Academic performance, student progress and assessment records.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          className="report-router-button"
+          onClick={handlePrint}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="19"
+            height="19"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          >
+            <path d="M7 8V3h10v5M7 17H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-3" />
+            <path d="M7 14h10v7H7zM17 11h.01" />
+          </svg>
+          <span>Print Report</span>
+        </button>
+      </div>
+
+      <main className="report-router-document">
+        <ReportComponent data={reportData} />
+      </main>
+
+      <div className="report-router-print-footer">
+        KK BLOSSOMS SCHOOL · Student Academic Report
+      </div>
+    </div>
+  );
 };
 
 export default ReportRouter;
